@@ -17,6 +17,41 @@ scripts:
     timeout: 60
     note: "iios 签到"
 
+  - name: 一点万象
+    file: mixc_signin.js
+    upstream: https://raw.githubusercontent.com/ZenmoFeiShi/Qx/refs/heads/main/mixc_signin.js
+    cron: "1 0 * * *"
+    timeout: 60
+    note: "万象星 App 抓参+签到"
+
+  - name: NodeSeek
+    file: Nodeseek_NsCheckin.js
+    upstream: https://raw.githubusercontent.com/ZenmoFeiShi/Qx/refs/heads/main/Nodeseek_NsCheckin.js
+    cron: "1 0 * * *"
+    timeout: 60
+    note: "NodeSeek 论坛抓参+签到"
+
+  - name: 来充
+    file: LaiChong.js
+    upstream: https://raw.githubusercontent.com/ZenmoFeiShi/Qx/refs/heads/main/LaiChong.js
+    cron: "50 9 * * *"
+    timeout: 60
+    note: "来充小程序抓参+签到"
+
+  - name: Soul唱歌
+    file: SoulSing.js
+    upstream: https://raw.githubusercontent.com/ZenmoFeiShi/Qx/refs/heads/main/SoulSing.js
+    cron: "50 9 * * *"
+    timeout: 60
+    note: "Soul 唱歌签到"
+
+  - name: 岁乐游
+    file: SLY.js
+    upstream: https://raw.githubusercontent.com/ZenmoFeiShi/Qx/refs/heads/main/SLY.js
+    cron: "1 0 * * *"
+    timeout: 60
+    note: "岁乐游公众号抓参+签到"
+
   - name: 起点读书
     file: qdreader.js
     upstream: https://raw.githubusercontent.com/Yuheng0101/X/main/Tasks/QDReader/qdreader.js

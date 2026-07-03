@@ -44,7 +44,7 @@ Direct + WeChat + Bilibili + AppleCN + ChinaDomain + ChinaIP + ChinaASN
 
 ## 签到脚本
 
-`scripts/` 目录镜像签到脚本（PingMe 上游为 **ZenmoFeiShi/Qx**，其余见 `scripts/manifest.yaml`）。Actions 每日自动同步。
+`scripts/` 目录镜像签到脚本（ZenmoFeiShi / chavyleung / Yuheng0101 等，见 `scripts/manifest.yaml`）。模块含 **BoxJs**（chavyleung 签到依赖）和 **kelee.one** 去广告/微信解锁。Actions 每日自动同步。
 
 ## 快速开始
 

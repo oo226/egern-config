@@ -382,6 +382,11 @@ mitm:
   hostnames:
     includes:
       - api.pingmeapp.net
+      - app.mixcapp.com
+      - www.nodeseek.com
+      - shop.laichon.com
+      - increase-openapi.soulapp.cn
+      - m.suileyoo.com
       - m.qidian.com
       - qidian.com
 
@@ -443,6 +448,82 @@ scriptings:
       script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/scripts/ximalaya.js
       timeout: 60
       disabled: true
+  # ZenmoFeiShi: 一点万象
+  - schedule:
+      name: 万象签到
+      cron: "1 0 * * *"
+      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/scripts/mixc_signin.js
+      update_interval: 86400
+      timeout: 60
+      disabled: true
+  - http_request:
+      name: 万象参数
+      match: ^https?:\/\/app\.mixcapp\.com\/mixc\/gateway
+      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/scripts/mixc_signin.js
+      body_required: true
+      update_interval: 86400
+      timeout: 60
+      disabled: true
+  # ZenmoFeiShi: NodeSeek
+  - schedule:
+      name: NodeSeek签到
+      cron: "1 0 * * *"
+      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/scripts/Nodeseek_NsCheckin.js
+      update_interval: 86400
+      timeout: 60
+      disabled: true
+  - http_request:
+      name: NodeSeek参数
+      match: ^https:\/\/www\.nodeseek\.com\/api\/account\/getInfo\/\d+\?readme=1$
+      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/scripts/Nodeseek_NsCheckin.js
+      update_interval: 86400
+      timeout: 60
+      disabled: true
+  # ZenmoFeiShi: 来充
+  - schedule:
+      name: 来充签到
+      cron: "50 9 * * *"
+      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/scripts/LaiChong.js
+      update_interval: 86400
+      timeout: 60
+      disabled: true
+  - http_request:
+      name: 来充参数
+      match: ^https://shop\.laichon\.com/api/v1/member/userinfo
+      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/scripts/LaiChong.js
+      update_interval: 86400
+      timeout: 60
+      disabled: true
+  # ZenmoFeiShi: Soul 唱歌
+  - schedule:
+      name: Soul唱歌签到
+      cron: "50 9 * * *"
+      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/scripts/SoulSing.js
+      update_interval: 86400
+      timeout: 60
+      disabled: true
+  - http_request:
+      name: Soul唱歌参数
+      match: ^https://increase-openapi\.soulapp\.cn/increase/sign/userSign
+      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/scripts/SoulSing.js
+      update_interval: 86400
+      timeout: 60
+      disabled: true
+  # ZenmoFeiShi: 岁乐游
+  - schedule:
+      name: 岁乐游签到
+      cron: "1 0 * * *"
+      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/scripts/SLY.js
+      update_interval: 86400
+      timeout: 60
+      disabled: true
+  - http_request:
+      name: 岁乐游参数
+      match: ^https://m\.suileyoo\.com/api/user/profile
+      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/scripts/SLY.js
+      update_interval: 86400
+      timeout: 60
+      disabled: true
 
 modules:
   - name: 广告平台拦截
@@ -453,6 +534,24 @@ modules:
     enabled: true
   - name: 跳过代理列表
     url: https://raw.githubusercontent.com/mieqq/mieqq/master/skip-proxy-lists.sgmodule
+    enabled: true
+  - name: BoxJs
+    url: https://raw.githubusercontent.com/chavyleung/scripts/master/box/rewrite/boxjs.rewrite.surge.sgmodule
+    enabled: true
+  - name: 可莉去广告
+    url: http://script.hub/file/_start_/https://kelee.one/Tool/Loon/Lpx/Remove_ads_by_keli.lpx/_end_/Remove_ads_by_keli.sgmodule?type=loon-plugin&target=surge-module&del=true&jqEnabled=true&pm=.&sni=.
+    enabled: true
+  - name: 微信外链解锁
+    url: http://script.hub/file/_start_/https://kelee.one/Tool/Loon/Lpx/Weixin_external_links_unlock.lpx/_end_/Weixin_external_links_unlock.sgmodule?type=loon-plugin&target=surge-module&del=true&jqEnabled=true
+    enabled: true
+  - name: 微信小程序去广告
+    url: http://script.hub/file/_start_/https://kelee.one/Tool/Loon/Lpx/WexinMiniPrograms_Remove_ads.lpx/_end_/WexinMiniPrograms_Remove_ads.sgmodule?type=loon-plugin&target=surge-module&del=true&jqEnabled=true
+    enabled: true
+  - name: 微信公众号去广告
+    url: http://script.hub/file/_start_/https://kelee.one/Tool/Loon/Lpx/Weixin_Official_Accounts_remove_ads.lpx/_end_/Weixin_Official_Accounts_remove_ads.sgmodule?type=loon-plugin&target=surge-module&del=true&jqEnabled=true
+    enabled: true
+  - name: QQ重定向
+    url: http://script.hub/file/_start_/https://kelee.one/Tool/Loon/Lpx/QQ_Redirect.lpx/_end_/QQ_Redirect.sgmodule?type=loon-plugin&target=surge-module&del=true&jqEnabled=true&pm=.&sni=.
     enabled: true
 
 default_subscription_group: 节点订阅
