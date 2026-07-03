@@ -27,12 +27,16 @@ jobs:
             Game ProxyGFW Proxy
           )
           BASE="https://raw.githubusercontent.com/Repcz/Tool/X/Egern/Rules"
+          MIRROR="https://ghproxy.net/https://raw.githubusercontent.com/Repcz/Tool/X/Egern/Rules"
           for name in "${RULES[@]}"; do
-            curl -fsSL "${BASE}/${name}.yaml" -o "Rules/${name}.yaml"
+            if ! curl -fsSL "${BASE}/${name}.yaml" -o "Rules/${name}.yaml"; then
+              curl -fsSL "${MIRROR}/${name}.yaml" -o "Rules/${name}.yaml"
+            fi
             echo "synced ${name}.yaml"
           done
-          curl -fsSL "https://ruleset.skk.moe/List/domainset/reject.conf" -o "Rules/skk/reject.conf"
-          echo "synced skk/reject.conf"
+          if ! curl -fsSL "https://ruleset.skk.moe/List/domainset/reject.conf" -o "Rules/skk/reject.conf"; then
+            curl -fsSL "https://ghproxy.net/https://ruleset.skk.moe/List/domainset/reject.conf" -o "Rules/skk/reject.conf"
+          fi
 
       - name: Commit and push
         run: |
