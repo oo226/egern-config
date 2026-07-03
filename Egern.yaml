@@ -1,9 +1,4 @@
-# Egern 主配置 - 规则指向本仓库 Rules/ 目录
-# 使用前修改:
-#   1. 全局替换 oo226 为你的 GitHub 用户名
-#   2. 若仓库名不是 egern-config, 一并替换
-#   3. policy_groups 中填入订阅链接
-# ============================================================
+BASE: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main
 
 ipv6: false
 http_port: 3080
@@ -69,7 +64,7 @@ dns:
         match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Rules/Reject.yaml
         value: 广告
     - proxy_rule_set:
-        match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Rules/ChinaDomain.yaml
+        match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Rules/China-Direct.yaml
         value: 国内
     - domain_wildcard:
         match: '*'
@@ -283,9 +278,10 @@ rules:
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Rules/Lan.yaml
       policy: DIRECT
       update_interval: 86400
+
   - rule_set:
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Rules/Direct.yaml
-      policy: DIRECT
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Rules/China-Direct.yaml
+      policy: 国内直连
       update_interval: 86400
 
   - rule_set:
@@ -299,31 +295,6 @@ rules:
   - domain_wildcard:
       match: stun.*
       policy: REJECT
-
-  - rule_set:
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Rules/WeChat.yaml
-      policy: 国内直连
-      update_interval: 86400
-  - rule_set:
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Rules/Bilibili.yaml
-      policy: 国内直连
-      update_interval: 86400
-  - rule_set:
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Rules/AppleCN.yaml
-      policy: DIRECT
-      update_interval: 86400
-  - rule_set:
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Rules/ChinaDomain.yaml
-      policy: 国内直连
-      update_interval: 86400
-  - rule_set:
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Rules/ChinaIP.yaml
-      policy: 国内直连
-      update_interval: 86400
-  - rule_set:
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Rules/ChinaASN.yaml
-      policy: DIRECT
-      update_interval: 86400
 
   - rule_set:
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Rules/AI.yaml
@@ -408,6 +379,70 @@ url_rewrites:
 
 mitm:
   enabled: true
+  hostnames:
+    includes:
+      - api.pingmeapp.net
+      - m.qidian.com
+      - qidian.com
+
+scriptings:
+  # PingMe: 镜像自 ZenmoFeiShi/Qx (Actions 每日同步, 同一脚本抓参+签到)
+  - schedule:
+      name: PingMe签到
+      cron: "30 8,20 * * *"
+      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/scripts/PingMe.js
+      update_interval: 86400
+      timeout: 300
+      disabled: true
+  - http_request:
+      name: PingMe参数
+      match: ^https://api\.pingmeapp\.net/app/queryBalanceAndBonus
+      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/scripts/PingMe.js
+      update_interval: 86400
+      timeout: 60
+      disabled: true
+  - schedule:
+      name: iios签到
+      cron: "30 8,20 * * *"
+      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/scripts/iios_checkin.js
+      timeout: 60
+      disabled: true
+  - schedule:
+      name: 起点签到
+      cron: "11 2 * * *"
+      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/scripts/qdreader.js
+      timeout: 60
+      disabled: true
+  - schedule:
+      name: 电信签到
+      cron: "0 8 * * *"
+      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/scripts/dianxin10000.js
+      timeout: 60
+      disabled: true
+  - schedule:
+      name: 贴吧签到
+      cron: "0 8 * * *"
+      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/scripts/tieba.js
+      timeout: 60
+      disabled: true
+  - schedule:
+      name: 顺丰签到
+      cron: "0 9 * * *"
+      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/scripts/sfexpress.js
+      timeout: 60
+      disabled: true
+  - schedule:
+      name: 严选签到
+      cron: "0 8 * * *"
+      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/scripts/yanxuan.js
+      timeout: 60
+      disabled: true
+  - schedule:
+      name: 喜马拉雅签到
+      cron: "0 8 * * *"
+      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/scripts/ximalaya.js
+      timeout: 60
+      disabled: true
 
 modules:
   - name: 广告平台拦截

@@ -2,21 +2,49 @@
 
 个人 Egern（松鼠）配置文件与规则镜像仓库。
 
-规则自 [Repcz/Tool](https://github.com/Repcz/Tool/tree/X/Egern/Rules)（blackmatrix7 等转换）与 [skk.moe](https://ruleset.skk.moe) 每日自动同步到 `Rules/`，主配置 `Egern.yaml` 引用本仓库 raw 地址。
+[![Sync Rules](https://github.com/oo226/egern-config/actions/workflows/sync-rules.yml/badge.svg)](https://github.com/oo226/egern-config/actions/workflows/sync-rules.yml)
+
+## 自动同步（不依赖本地电脑）
+
+**GitHub Actions 会在云端自动运行**，你的电脑关机也没关系：
+
+| 触发方式 | 说明 |
+|---------|------|
+| **定时** | 每天 **11:00（北京时间）** 自动从上游拉取最新规则 |
+| **手动** | Actions 页 → Sync Egern Rules → Run workflow |
+
+规则自 [Repcz/Tool](https://github.com/Repcz/Tool/tree/X/Egern/Rules) 与 [skk.moe](https://ruleset.skk.moe) 同步到 `Rules/`，`Egern.yaml` 只引用本仓库链接。
+
+## Egern 导入地址
+
+```
+https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Egern.yaml
+```
 
 ## 目录结构
 
 ```
 egern-config/
-├── Egern.yaml              # 主配置 (导入 Egern)
-├── Rules/                  # 规则镜像 (Actions 自动填充)
-│   ├── Reject.yaml
-│   ├── ChinaDomain.yaml
-│   └── skk/reject.conf
-├── .github/workflows/
-│   └── sync-rules.yml      # 每日同步上游规则
-└── scripts/sync-rules.ps1  # 本地手动同步
+├── Egern.yaml              # 主配置
+├── Rules/
+│   ├── China-Direct.yaml   # 国内规则合并去重 (Actions 自动生成)
+│   ├── Reject.yaml         # 去广告
+│   └── ...                 # 各分类规则 (上游镜像)
+├── scripts/                # 签到脚本镜像 + 同步工具 (Actions 每日同步)
+└── .github/workflows/      # 每日自动同步
 ```
+
+## 国内规则合并
+
+`Rules/China-Direct.yaml` 由 Actions 自动合并以下上游文件并去重：
+
+Direct + WeChat + Bilibili + AppleCN + ChinaDomain + ChinaIP + ChinaASN
+
+`Egern.yaml` 只引用 `Lan.yaml` + `China-Direct.yaml`，上游更新后合并文件会自动刷新。
+
+## 签到脚本
+
+`scripts/` 目录镜像签到脚本（PingMe 上游为 **ZenmoFeiShi/Qx**，其余见 `scripts/manifest.yaml`）。Actions 每日自动同步。
 
 ## 快速开始
 
@@ -27,20 +55,13 @@ egern-config/
 ### 2. 推送本目录
 
 ```powershell
-cd d:\共享\egern-config
-git init
-git add .
-git commit -m "init: egern config and rule sync workflow"
-git branch -M main
-git remote add origin https://github.com/oo226/egern-config.git
-git push -u origin main
+cd C:\Users\Administrator\egern-config
+.\push-github.ps1
 ```
 
-### 3. 首次同步规则
+### 3. 规则自动更新
 
-GitHub 仓库 → **Actions** → **Sync Egern Rules** → **Run workflow**
-
-运行完成后 `Rules/` 下会出现 25+ 规则文件。
+**无需操作。** GitHub Actions 每天自动同步；也可在 Actions 页手动 Run workflow。
 
 ### 4. 修改 Egern.yaml
 
