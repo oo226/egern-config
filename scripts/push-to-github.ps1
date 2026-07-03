@@ -22,7 +22,10 @@ if ($remote -ne $target) {
 }
 
 Write-Host ''
-Write-Host '正在推送到 GitHub... (若弹出窗口, 请选择 GitHub 登录, 不是 Gitee)'
+Write-Host '>>> 若提示 Repository not found, 请先在 GitHub 创建空仓库:'
+Write-Host '    https://github.com/new  名称填 egern-config (Public, 不要勾选 README)'
+Write-Host ''
+Write-Host '正在推送到 GitHub... (若弹出窗口, 请选择 GitHub 登录)'
 Write-Host '仓库地址: https://github.com/oo226/egern-config'
 Write-Host ''
 git push -u origin main
