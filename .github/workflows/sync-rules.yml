@@ -1,0 +1,47 @@
+name: Sync Egern Rules
+
+on:
+  schedule:
+    - cron: '0 3 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download Repcz rules
+        run: |
+          set -euo pipefail
+          mkdir -p Rules/skk
+          RULES=(
+            Reject ChinaDomain Lan Direct
+            WeChat Bilibili AppleCN ChinaIP ChinaASN
+            AI Telegram Twitter TikTok
+            YouTube Netflix Disney Spotify Emby
+            Google Github Microsoft AppleServers
+            Game ProxyGFW Proxy
+          )
+          BASE="https://raw.githubusercontent.com/Repcz/Tool/X/Egern/Rules"
+          for name in "${RULES[@]}"; do
+            curl -fsSL "${BASE}/${name}.yaml" -o "Rules/${name}.yaml"
+            echo "synced ${name}.yaml"
+          done
+          curl -fsSL "https://ruleset.skk.moe/List/domainset/reject.conf" -o "Rules/skk/reject.conf"
+          echo "synced skk/reject.conf"
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add Rules/
+          if git diff --staged --quiet; then
+            echo "No rule changes."
+            exit 0
+          fi
+          git commit -m "chore: sync rules from Repcz/Tool and skk.moe"
+          git push

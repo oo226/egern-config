@@ -1,0 +1,424 @@
+# Egern 主配置 - 规则指向本仓库 Rules/ 目录
+# 使用前修改:
+#   1. 全局替换 oo226 为你的 GitHub 用户名
+#   2. 若仓库名不是 egern-config, 一并替换
+#   3. policy_groups 中填入订阅链接
+# ============================================================
+
+ipv6: false
+http_port: 3080
+socks_port: 3090
+allow_external_connections: false
+vif_only: true
+compat_route: true
+block_quic: true
+hide_vpn_icon: true
+include_all_networks: false
+include_apns: false
+include_cellular_services: false
+include_local_networks: false
+
+bypass_tunnel_proxy:
+  - "*.local"
+  - "*.lan"
+  - "192.168.0.0/16"
+  - "10.0.0.0/8"
+  - "172.16.0.0/12"
+
+hijack_dns:
+  - '*:53'
+
+geoip_db_url: https://raw.githubusercontent.com/Loyalsoldier/geoip/release/Country-without-asn.mmdb
+asn_db_url: https://raw.githubusercontent.com/Loyalsoldier/geoip/release/GeoLite2-ASN.mmdb
+proxy_latency_test_url: http://1.1.1.1/generate_204
+direct_latency_test_url: http://wifi.vivo.com.cn/generate_204
+
+real_ip_domains:
+  - "*.lan"
+  - "*.local"
+  - "*.push.apple.com"
+  - lancache.steamcontent.com
+  - "*.msftconnecttest.com"
+  - "*.msftncsi.com"
+  - "*.srv.nintendo.net"
+  - "*.stun.playstation.net"
+  - xbox.*.microsoft.com
+  - "*.xboxlive.com"
+  - stun.l.google.com
+  - "*.prod.cloud.netflix.com"
+  - appboot.netflix.com
+
+dns:
+  bootstrap:
+    - system
+    - 223.5.5.5
+    - 119.29.29.29
+  upstreams:
+    国内:
+      - 223.5.5.5
+      - 119.29.29.29
+      - https://dns.alidns.com/dns-query
+      - https://doh.pub/dns-query
+    国外:
+      - https://cloudflare-dns.com/dns-query
+      - https://dns.google/dns-query
+    广告:
+      - https://dns.adguard-dns.com/dns-query
+  forward:
+    - proxy_rule_set:
+        match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Rules/Reject.yaml
+        value: 广告
+    - proxy_rule_set:
+        match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Rules/ChinaDomain.yaml
+        value: 国内
+    - domain_wildcard:
+        match: '*'
+        value: 国外
+  hosts:
+    dns.google:
+      - 8.8.8.8, 8.8.4.4
+    cloudflare-dns.com:
+      - 104.16.249.249, 104.16.248.249
+    dns.alidns.com:
+      - 223.5.5.5, 223.6.6.6
+    doh.pub:
+      - 1.12.12.12, 120.53.53.53
+  proxy_nameservers:
+    - 223.5.5.5
+    - 119.29.29.29
+  public_ip_lookup_url: https://ifconfig.me/ip
+
+policy_groups:
+  - external:
+      name: 节点订阅
+      type: select
+      urls:
+        - https://你的订阅链接
+      filter: '^((?!Remain|Expired|官网|如需|套餐|去除|剩余|距离|Reset|重置|流量).)+$'
+      update_interval: 86400
+      hidden: true
+
+  - auto_test:
+      name: 自动选择
+      policies:
+        - 节点订阅
+      flatten: true
+      interval: 300
+      tolerance: 50
+      timeout: 5
+
+  - auto_test:
+      name: 香港节点
+      policies:
+        - 节点订阅
+      flatten: true
+      filter: 🇭🇰|香港|Hong Kong|HongKong|\bHK\b|\bHKG\b
+      interval: 300
+      tolerance: 50
+      timeout: 5
+      hidden: true
+
+  - auto_test:
+      name: 新加坡节点
+      policies:
+        - 节点订阅
+      flatten: true
+      filter: 🇸🇬|新加坡|Singapore|\bSG\b|\bSGP\b
+      interval: 300
+      tolerance: 50
+      timeout: 5
+      hidden: true
+
+  - auto_test:
+      name: 台湾节点
+      policies:
+        - 节点订阅
+      flatten: true
+      filter: 🇹🇼|台湾|Taiwan|\bTW\b|\bTWN\b
+      interval: 300
+      tolerance: 50
+      timeout: 5
+      hidden: true
+
+  - auto_test:
+      name: 日本节点
+      policies:
+        - 节点订阅
+      flatten: true
+      filter: 🇯🇵|日本|Japan|\bJP\b|\bJPN\b
+      interval: 300
+      tolerance: 50
+      timeout: 5
+      hidden: true
+
+  - auto_test:
+      name: 美国节点
+      policies:
+        - 节点订阅
+      flatten: true
+      filter: 🇺🇸|美国|United States|USA|\bUS\b
+      interval: 300
+      tolerance: 50
+      timeout: 5
+      hidden: true
+
+  - auto_test:
+      name: 韩国节点
+      policies:
+        - 节点订阅
+      flatten: true
+      filter: 🇰🇷|韩国|Korea|\bKR\b|\bKOR\b
+      interval: 300
+      tolerance: 50
+      timeout: 5
+      hidden: true
+
+  - select:
+      name: 兜底分流
+      policies:
+        - 自动选择
+        - 香港节点
+        - 新加坡节点
+        - 台湾节点
+        - 日本节点
+        - 美国节点
+        - 韩国节点
+        - 节点订阅
+
+  - select:
+      name: ChatGPT
+      policies:
+        - 美国节点
+        - 日本节点
+        - 新加坡节点
+        - 自动选择
+
+  - select:
+      name: Telegram
+      policies:
+        - 新加坡节点
+        - 香港节点
+        - 自动选择
+
+  - select:
+      name: GitHub
+      policies:
+        - 日本节点
+        - 美国节点
+        - 自动选择
+
+  - select:
+      name: 谷歌服务
+      policies:
+        - 自动选择
+        - 香港节点
+        - 美国节点
+        - 日本节点
+
+  - select:
+      name: 流媒体
+      policies:
+        - 自动选择
+        - 香港节点
+        - 台湾节点
+        - 新加坡节点
+        - 美国节点
+        - 日本节点
+
+  - select:
+      name: 微软服务
+      policies:
+        - 自动选择
+        - 香港节点
+        - 美国节点
+        - 新加坡节点
+
+  - select:
+      name: 社交媒体
+      policies:
+        - 自动选择
+        - 香港节点
+        - 日本节点
+        - 美国节点
+
+  - select:
+      name: 游戏平台
+      policies:
+        - 自动选择
+        - 香港节点
+        - 日本节点
+        - 美国节点
+
+  - select:
+      name: Emby
+      policies:
+        - 兜底分流
+        - 节点订阅
+      hidden: true
+
+  - select:
+      name: Spotify
+      policies:
+        - 美国节点
+        - 自动选择
+      hidden: true
+
+  - select:
+      name: 国内直连
+      policies:
+        - DIRECT
+
+rules:
+  - domain:
+      match: connectivitycheck.gstatic.com
+      policy: DIRECT
+  - domain:
+      match: www.msftconnecttest.com
+      policy: DIRECT
+  - domain:
+      match: captive.apple.com
+      policy: DIRECT
+
+  - rule_set:
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Rules/Lan.yaml
+      policy: DIRECT
+      update_interval: 86400
+  - rule_set:
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Rules/Direct.yaml
+      policy: DIRECT
+      update_interval: 86400
+
+  - rule_set:
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Rules/Reject.yaml
+      policy: REJECT
+      update_interval: 86400
+  - rule_set:
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Rules/skk/reject.conf
+      policy: REJECT
+      update_interval: 86400
+  - domain_wildcard:
+      match: stun.*
+      policy: REJECT
+
+  - rule_set:
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Rules/WeChat.yaml
+      policy: 国内直连
+      update_interval: 86400
+  - rule_set:
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Rules/Bilibili.yaml
+      policy: 国内直连
+      update_interval: 86400
+  - rule_set:
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Rules/AppleCN.yaml
+      policy: DIRECT
+      update_interval: 86400
+  - rule_set:
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Rules/ChinaDomain.yaml
+      policy: 国内直连
+      update_interval: 86400
+  - rule_set:
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Rules/ChinaIP.yaml
+      policy: 国内直连
+      update_interval: 86400
+  - rule_set:
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Rules/ChinaASN.yaml
+      policy: DIRECT
+      update_interval: 86400
+
+  - rule_set:
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Rules/AI.yaml
+      policy: ChatGPT
+      update_interval: 86400
+
+  - rule_set:
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Rules/Telegram.yaml
+      policy: Telegram
+      update_interval: 86400
+  - rule_set:
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Rules/Twitter.yaml
+      policy: 社交媒体
+      update_interval: 86400
+  - rule_set:
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Rules/TikTok.yaml
+      policy: 社交媒体
+      update_interval: 86400
+
+  - rule_set:
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Rules/YouTube.yaml
+      policy: 流媒体
+      update_interval: 86400
+  - rule_set:
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Rules/Netflix.yaml
+      policy: 流媒体
+      update_interval: 86400
+  - rule_set:
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Rules/Disney.yaml
+      policy: 流媒体
+      update_interval: 86400
+  - rule_set:
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Rules/Spotify.yaml
+      policy: Spotify
+      update_interval: 86400
+  - rule_set:
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Rules/Emby.yaml
+      policy: Emby
+      update_interval: 86400
+
+  - rule_set:
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Rules/Google.yaml
+      policy: 谷歌服务
+      update_interval: 86400
+  - rule_set:
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Rules/Github.yaml
+      policy: GitHub
+      update_interval: 86400
+  - rule_set:
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Rules/Microsoft.yaml
+      policy: 微软服务
+      update_interval: 86400
+  - rule_set:
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Rules/AppleServers.yaml
+      policy: 香港节点
+      update_interval: 86400
+
+  - rule_set:
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Rules/Game.yaml
+      policy: 游戏平台
+      update_interval: 86400
+  - rule_set:
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Rules/ProxyGFW.yaml
+      policy: 兜底分流
+      update_interval: 86400
+  - rule_set:
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Rules/Proxy.yaml
+      policy: 兜底分流
+      update_interval: 86400
+
+  - geoip:
+      match: CN
+      policy: DIRECT
+      no_resolve: true
+  - default:
+      policy: 兜底分流
+
+url_rewrites:
+  - match: ^https?://(.*?L[.])?(?:glgoogle).cn
+    location: https://$1google.com
+    status_code: 302
+
+mitm:
+  enabled: true
+
+modules:
+  - name: 广告平台拦截
+    url: https://raw.githubusercontent.com/QingRex/LoonKissSurge/refs/heads/main/Surge/Beta/广告平台拦截器.beta.sgmodule
+    enabled: true
+  - name: HTTPDNS拦截
+    url: https://raw.githubusercontent.com/QingRex/LoonKissSurge/refs/heads/main/Surge/Beta/拦截HTTPDNS.beta.sgmodule
+    enabled: true
+  - name: 跳过代理列表
+    url: https://raw.githubusercontent.com/mieqq/mieqq/master/skip-proxy-lists.sgmodule
+    enabled: true
+
+default_subscription_group: 节点订阅
+default_proxy_group: 节点订阅
