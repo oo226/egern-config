@@ -30,7 +30,8 @@ egern-config/
 │   ├── China-Direct.yaml   # 国内规则合并去重 (Actions 自动生成)
 │   ├── Reject.yaml         # 去广告
 │   └── ...                 # 各分类规则 (上游镜像)
-├── scripts/                # 签到脚本镜像 + 同步工具 (Actions 每日同步)
+├── Modules/                # 去广告合集 adblock-collection.module
+├── scripts/                # 签到脚本镜像 + 同步工具
 └── .github/workflows/      # 每日自动同步
 ```
 
@@ -42,9 +43,21 @@ Direct + WeChat + Bilibili + AppleCN + ChinaDomain + ChinaIP + ChinaASN
 
 `Egern.yaml` 只引用 `Lan.yaml` + `China-Direct.yaml`，上游更新后合并文件会自动刷新。
 
+## 去广告 / 去开屏合集
+
+原先十几个 QingRex / 可莉 / 微信模块，已合并为 **一个合集**：
+
+| 文件 | 上游 | 说明 |
+|------|------|------|
+| `Modules/adblock-collection.module` | fmz200 奶思 blockAds | App/小程序净化 + 去开屏（约 730 款） |
+
+Egern 另保留 **HTTPDNS 拦截**、**BoxJs**（签到）、**跳过代理列表** 三个基础模块。
+
+分流已合并：`Rules/China-Direct.yaml` + `Rules/Reject.yaml`。
+
 ## 签到脚本
 
-`scripts/` 目录镜像签到脚本（ZenmoFeiShi / chavyleung / Yuheng0101 等，见 `scripts/manifest.yaml`）。模块含 **BoxJs**（chavyleung 签到依赖）和 **kelee.one** 去广告/微信解锁。Actions 每日自动同步。
+`scripts/` 目录镜像签到脚本（ZenmoFeiShi / chavyleung / Yuheng0101 等，见 `scripts/manifest.yaml`）。Actions 每日自动同步。
 
 ## 快速开始
 

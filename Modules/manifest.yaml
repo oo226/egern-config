@@ -1,0 +1,8 @@
+# Mirrored ad-block collection (synced by Actions).
+# Replaces many QingRex / kelee per-app modules.
+
+modules:
+  - name: adblock-collection
+    file: adblock-collection.module
+    upstream: https://raw.githubusercontent.com/fmz200/wool_scripts/main/Surge/module/blockAds.module
+    note: "奶思 blockAds — App/小程序净化 + 去开屏 (~730 款，含原可莉/QingRex 常见项)"

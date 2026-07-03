@@ -526,32 +526,20 @@ scriptings:
       disabled: true
 
 modules:
-  - name: 广告平台拦截
-    url: https://raw.githubusercontent.com/QingRex/LoonKissSurge/refs/heads/main/Surge/Beta/广告平台拦截器.beta.sgmodule
+  # 去广告合集 (镜像于 Modules/adblock-collection.module, Actions 每日同步)
+  - name: 去广告净化合集
+    url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/adblock-collection.module
+    update_interval: 86400
     enabled: true
+  # 基础
   - name: HTTPDNS拦截
     url: https://raw.githubusercontent.com/QingRex/LoonKissSurge/refs/heads/main/Surge/Beta/拦截HTTPDNS.beta.sgmodule
-    enabled: true
-  - name: 跳过代理列表
-    url: https://raw.githubusercontent.com/mieqq/mieqq/master/skip-proxy-lists.sgmodule
     enabled: true
   - name: BoxJs
     url: https://raw.githubusercontent.com/chavyleung/scripts/master/box/rewrite/boxjs.rewrite.surge.sgmodule
     enabled: true
-  - name: 可莉去广告
-    url: http://script.hub/file/_start_/https://kelee.one/Tool/Loon/Lpx/Remove_ads_by_keli.lpx/_end_/Remove_ads_by_keli.sgmodule?type=loon-plugin&target=surge-module&del=true&jqEnabled=true&pm=.&sni=.
-    enabled: true
-  - name: 微信外链解锁
-    url: http://script.hub/file/_start_/https://kelee.one/Tool/Loon/Lpx/Weixin_external_links_unlock.lpx/_end_/Weixin_external_links_unlock.sgmodule?type=loon-plugin&target=surge-module&del=true&jqEnabled=true
-    enabled: true
-  - name: 微信小程序去广告
-    url: http://script.hub/file/_start_/https://kelee.one/Tool/Loon/Lpx/WexinMiniPrograms_Remove_ads.lpx/_end_/WexinMiniPrograms_Remove_ads.sgmodule?type=loon-plugin&target=surge-module&del=true&jqEnabled=true
-    enabled: true
-  - name: 微信公众号去广告
-    url: http://script.hub/file/_start_/https://kelee.one/Tool/Loon/Lpx/Weixin_Official_Accounts_remove_ads.lpx/_end_/Weixin_Official_Accounts_remove_ads.sgmodule?type=loon-plugin&target=surge-module&del=true&jqEnabled=true
-    enabled: true
-  - name: QQ重定向
-    url: http://script.hub/file/_start_/https://kelee.one/Tool/Loon/Lpx/QQ_Redirect.lpx/_end_/QQ_Redirect.sgmodule?type=loon-plugin&target=surge-module&del=true&jqEnabled=true&pm=.&sni=.
+  - name: 跳过代理列表
+    url: https://raw.githubusercontent.com/mieqq/mieqq/master/skip-proxy-lists.sgmodule
     enabled: true
 
 default_subscription_group: 节点订阅
