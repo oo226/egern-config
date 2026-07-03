@@ -19,6 +19,16 @@ bypass_tunnel_proxy:
   - "192.168.0.0/16"
   - "10.0.0.0/8"
   - "172.16.0.0/12"
+  # 税务局 / 邮储：绕过 VPN 隧道，避免检测代理
+  - "*.chinatax.gov.cn"
+  - "chinatax.gov.cn"
+  - "etax.chinatax.gov.cn"
+  - "login-service.mobile-bank.psbc.com"
+  - "mobile-bank.psbc.com"
+  - "static.mobile-bank.psbc.com"
+  - "static.psbc.com"
+  - "mcc.psbc.com"
+  - "d.psbc.com"
 
 hijack_dns:
   - '*:53'
@@ -529,6 +539,11 @@ modules:
   # 去广告合集 (镜像于 Modules/adblock-collection.module, Actions 每日同步)
   - name: 去广告净化合集
     url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/adblock-collection.module
+    update_interval: 86400
+    enabled: true
+  # 邮储/动卡/MITM 补全 + 税务局 bypass + NB助手去开屏
+  - name: 银行税务NB补全
+    url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/custom-apps.sgmodule
     update_interval: 86400
     enabled: true
   # 基础

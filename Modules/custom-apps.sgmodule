@@ -1,0 +1,31 @@
+#!name=银行·税务·NB助手补全
+#!desc=邮储/动卡 MITM 补全；税务局与邮储 bypass；NB全能助手去开屏与广告
+#!author=oo226/egern-config
+#!category=自定义补全
+#!system=ios
+
+[General]
+skip-proxy = %APPEND% *.chinatax.gov.cn, chinatax.gov.cn, etax.chinatax.gov.cn, login-service.mobile-bank.psbc.com, mobile-bank.psbc.com, static.mobile-bank.psbc.com, static.psbc.com, mcc.psbc.com, d.psbc.com
+
+[MITM]
+hostname = %APPEND% static.psbc.com, mcc.psbc.com, static.mobile-bank.psbc.com, d.psbc.com, mobile-bank.psbc.com, nbtool8.com, api.nbtool8.com, www.nbtool8.com, app.nbtool8.com
+
+[URL Rewrite]
+# 邮储银行（与奶思合集互补，确保子域 MITM 生效）
+^https?:\/\/static\.mobile-bank\.psbc\.com\/mgs - reject
+
+# 动卡空间开屏（中信）
+^https?:\/\/ump\.sz\.creditcard\.ecitic\.com\/citiccard\/cm-ump\/ump-gateway\/ump-net-app\/ump-net-app\/adv data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+^https?:\/\/m\.creditcard\.ecitic\.com\/citiccard\/mbk\/appspace-getway\/getWay\/dkkj-system-web\/system\/v\d+\/init-config data-type=text data=" " status-code=200
+
+# NB全能助手 / NB Pro — 官方域名的开屏与广告接口
+^https?:\/\/(api\.|www\.|app\.)?nbtool8\.com\/.*(splash|startup|launch|open[Ss]creen|welcome|banner|popup|promo|advert|/ad/|/ads/) - reject-dict
+^https?:\/\/[^/]*nbtool8\.com\/.*(splash|startup|launch|banner|popup|advert|/ad/|/ads/) - reject-dict
+
+# NB助手 — 常见嵌入式开屏 SDK
+^https?:\/\/(mi|v|tv)\.gdt\.qq\.com\/gdt_mview\.fcg - reject-dict
+^https?:\/\/api-access\.pangolin-sdk-toutiao\.com\/ - reject
+^https?:\/\/api-access\.pangolin-sdk-toutiao1\.com\/ - reject
+^https?:\/\/open\.snssdk\.com\/api\/ad\/ - reject
+^https?:\/\/is\.snssdk\.com\/api\/ad\/ - reject
+^https?:\/\/api\.ks\.com\/rest\/e\/v\d+\/open\/ - reject

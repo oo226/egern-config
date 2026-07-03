@@ -51,7 +51,7 @@ Direct + WeChat + Bilibili + AppleCN + ChinaDomain + ChinaIP + ChinaASN
 |------|------|------|
 | `Modules/adblock-collection.module` | fmz200 奶思 blockAds | App/小程序净化 + 去开屏（约 730 款） |
 
-Egern 另保留 **HTTPDNS 拦截**、**BoxJs**（签到）、**跳过代理列表** 三个基础模块。
+Egern 另保留 **HTTPDNS 拦截**、**BoxJs**（签到）、**跳过代理列表** 三个基础模块，以及 **银行税务NB补全**（邮储/税务局/NB助手）。
 
 分流已合并：`Rules/China-Direct.yaml` + `Rules/Reject.yaml`。
 
