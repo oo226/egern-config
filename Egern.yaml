@@ -71,7 +71,7 @@ dns:
       - https://dns.adguard-dns.com/dns-query
   forward:
     - proxy_rule_set:
-        match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Rules/Reject.yaml
+        match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Rules/Reject-Merged.yaml
         value: 广告
     - proxy_rule_set:
         match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Rules/China-Direct.yaml
@@ -295,11 +295,7 @@ rules:
       update_interval: 86400
 
   - rule_set:
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Rules/Reject.yaml
-      policy: REJECT
-      update_interval: 86400
-  - rule_set:
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Rules/skk/reject.conf
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Rules/Reject-Merged.yaml
       policy: REJECT
       update_interval: 86400
   - domain_wildcard:
@@ -536,7 +532,7 @@ scriptings:
       disabled: true
 
 modules:
-  # 去广告合集 (镜像于 Modules/adblock-collection.module, Actions 每日同步)
+  # 去广告合集 (fmz200 + blackmatrix7 多源合并, Actions 每日同步去重)
   - name: 去广告净化合集
     url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/adblock-collection.module
     update_interval: 86400

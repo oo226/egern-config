@@ -1,8 +1,25 @@
-# Mirrored ad-block collection (synced by Actions).
+# Mirrored ad-block sources, merged & deduplicated by Actions into adblock-collection.module.
 # Replaces many QingRex / kelee per-app modules.
 
+merge:
+  output: adblock-collection.module
+
 modules:
-  - name: adblock-collection
+  - name: fmz200-blockAds
     file: adblock-collection.module
+    cache: fmz200-blockAds.module
+    role: primary
     upstream: https://raw.githubusercontent.com/fmz200/wool_scripts/main/Surge/module/blockAds.module
     note: "奶思 blockAds — App/小程序净化 + 去开屏 (~730 款，含原可莉/QingRex 常见项)"
+
+  - name: blackmatrix7-Advertising
+    cache: blackmatrix7-Advertising.sgmodule
+    role: supplement
+    upstream: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rewrite/Surge/Advertising/Advertising.sgmodule
+    note: "blackmatrix7 去广告 URL Rewrite + MITM (~740 reject)"
+
+  - name: blackmatrix7-AdvertisingScript
+    cache: blackmatrix7-AdvertisingScript.sgmodule
+    role: supplement
+    upstream: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rewrite/Surge/AdvertisingScript/AdvertisingScript.sgmodule
+    note: "blackmatrix7 开屏脚本 + 补充 Rule/Script"

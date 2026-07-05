@@ -58,17 +58,20 @@ jobs:
       - name: Merge China direct rules
         run: python scripts/merge-china-rules.py
 
+      - name: Merge ad reject rules
+        run: python scripts/merge-reject-rules.py
+
       - name: Sync sign-in scripts
         run: python scripts/download-scripts.py
 
-      - name: Sync module collections
-        run: python scripts/download-modules.py
+      - name: Merge adblock modules
+        run: python scripts/merge-adblock-modules.py
 
       - name: Commit and push
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add Rules/ scripts/*.js Modules/
+          git add Rules/ scripts/*.js Modules/adblock-collection.module Modules/manifest.yaml
           if git diff --staged --quiet; then
             echo "No changes."
             exit 0

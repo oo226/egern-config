@@ -27,33 +27,43 @@ https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Egern.yaml
 egern-config/
 ├── Egern.yaml              # 主配置
 ├── Rules/
-│   ├── China-Direct.yaml   # 国内规则合并去重 (Actions 自动生成)
-│   ├── Reject.yaml         # 去广告
-│   └── ...                 # 各分类规则 (上游镜像)
-├── Modules/                # 去广告合集 adblock-collection.module
+│   ├── China-Direct.yaml   # 国内规则合并去重 (Actions 自动生成，含来源标注)
+│   ├── Reject-Merged.yaml  # 去广告域名合并去重 (Repcz + Sukka)
+│   ├── Reject.yaml         # 上游镜像 (Repcz)
+│   └── skk/reject.conf     # 上游镜像 (Sukka)
+├── Modules/                # 去广告合集 adblock-collection.module (多源合并)
 ├── scripts/                # 签到脚本镜像 + 同步工具
 └── .github/workflows/      # 每日自动同步
 ```
 
 ## 国内规则合并
 
-`Rules/China-Direct.yaml` 由 Actions 自动合并以下上游文件并去重：
+`Rules/China-Direct.yaml` 由 Actions 自动合并以下上游文件并去重，**文件头标注各来源与去重统计**：
 
 Direct + WeChat + Bilibili + AppleCN + ChinaDomain + ChinaIP + ChinaASN
 
 `Egern.yaml` 只引用 `Lan.yaml` + `China-Direct.yaml`，上游更新后合并文件会自动刷新。
 
+## 去广告域名合并
+
+`Rules/Reject-Merged.yaml` 由 Actions 自动合并：
+
+- Repcz `Reject.yaml`（域名 / 后缀 / 关键词 / IP / UA）
+- Sukka `skk/reject.conf`（大规模广告域名集）
+
+合并去重后 **只引用一个文件**，避免 Egern 重复匹配两份 REJECT 列表。
+
 ## 去广告 / 去开屏合集
 
-原先十几个 QingRex / 可莉 / 微信模块，已合并为 **一个合集**：
+原先十几个 QingRex / 可莉 / 微信模块，已合并为 **一个多源合集**（每日自动去重）：
 
 | 文件 | 上游 | 说明 |
 |------|------|------|
-| `Modules/adblock-collection.module` | fmz200 奶思 blockAds | App/小程序净化 + 去开屏（约 730 款） |
+| `Modules/adblock-collection.module` | fmz200 奶思 blockAds + blackmatrix7 Advertising/Script | App/小程序净化 + 去开屏 |
 
 Egern 另保留 **HTTPDNS 拦截**、**BoxJs**（签到）、**跳过代理列表** 三个基础模块，以及 **银行税务NB补全**（邮储/税务局/NB助手）。
 
-分流已合并：`Rules/China-Direct.yaml` + `Rules/Reject.yaml`。
+分流：`Rules/China-Direct.yaml`；去广告域名：`Rules/Reject-Merged.yaml`。
 
 ## 签到脚本
 
