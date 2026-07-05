@@ -43,7 +43,7 @@ jobs:
       - name: Download upstream rules
         run: |
           set -euo pipefail
-          mkdir -p 分流/_upstream/skk 分流/国外
+          mkdir -p Routing/_upstream/skk Routing/Foreign
           MERGE=(
             Reject Direct WeChat Bilibili AppleCN ChinaDomain ChinaIP ChinaASN
           )
@@ -56,22 +56,22 @@ jobs:
           BASE="https://raw.githubusercontent.com/Repcz/Tool/X/Egern/Rules"
           MIRROR="https://ghproxy.net/https://raw.githubusercontent.com/Repcz/Tool/X/Egern/Rules"
           for name in "${MERGE[@]}"; do
-            if ! curl -fsSL "${BASE}/${name}.yaml" -o "分流/_upstream/${name}.yaml"; then
-              curl -fsSL "${MIRROR}/${name}.yaml" -o "分流/_upstream/${name}.yaml"
+            if ! curl -fsSL "${BASE}/${name}.yaml" -o "Routing/_upstream/${name}.yaml"; then
+              curl -fsSL "${MIRROR}/${name}.yaml" -o "Routing/_upstream/${name}.yaml"
             fi
             echo "synced upstream ${name}.yaml"
           done
-          if ! curl -fsSL "${BASE}/Lan.yaml" -o "分流/局域网.yaml"; then
-            curl -fsSL "${MIRROR}/Lan.yaml" -o "分流/局域网.yaml"
+          if ! curl -fsSL "${BASE}/Lan.yaml" -o "Routing/Lan.yaml"; then
+            curl -fsSL "${MIRROR}/Lan.yaml" -o "Routing/Lan.yaml"
           fi
           for name in "${FOREIGN[@]}"; do
-            if ! curl -fsSL "${BASE}/${name}.yaml" -o "分流/国外/${name}.yaml"; then
-              curl -fsSL "${MIRROR}/${name}.yaml" -o "分流/国外/${name}.yaml"
+            if ! curl -fsSL "${BASE}/${name}.yaml" -o "Routing/Foreign/${name}.yaml"; then
+              curl -fsSL "${MIRROR}/${name}.yaml" -o "Routing/Foreign/${name}.yaml"
             fi
             echo "synced foreign ${name}.yaml"
           done
-          if ! curl -fsSL "https://ruleset.skk.moe/List/domainset/reject.conf" -o "分流/_upstream/skk/reject.conf"; then
-            curl -fsSL "https://ghproxy.net/https://ruleset.skk.moe/List/domainset/reject.conf" -o "分流/_upstream/skk/reject.conf"
+          if ! curl -fsSL "https://ruleset.skk.moe/List/domainset/reject.conf" -o "Routing/_upstream/skk/reject.conf"; then
+            curl -fsSL "https://ghproxy.net/https://ruleset.skk.moe/List/domainset/reject.conf" -o "Routing/_upstream/skk/reject.conf"
           fi
 
       - name: Merge routing rules
@@ -89,7 +89,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add 分流/ 模块/ 脚本/ Egern.yaml README.md
+          git add Routing/ Modules/ Scripts/ Egern.yaml README.md
           if git diff --staged --quiet; then
             echo "No changes on integration branch."
           else

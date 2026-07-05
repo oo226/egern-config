@@ -71,10 +71,10 @@ dns:
       - https://dns.adguard-dns.com/dns-query
   forward:
     - proxy_rule_set:
-        match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/分流/去广告.yaml
+        match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Reject-Merged.yaml
         value: 广告
     - proxy_rule_set:
-        match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/分流/国内直连.yaml
+        match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/China-Direct.yaml
         value: 国内
     - domain_wildcard:
         match: '*'
@@ -285,17 +285,17 @@ rules:
       policy: DIRECT
 
   - rule_set:
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/分流/局域网.yaml
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Lan.yaml
       policy: DIRECT
       update_interval: 86400
 
   - rule_set:
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/分流/国内直连.yaml
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/China-Direct.yaml
       policy: 国内直连
       update_interval: 86400
 
   - rule_set:
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/分流/去广告.yaml
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Reject-Merged.yaml
       policy: REJECT
       update_interval: 86400
   - domain_wildcard:
@@ -303,71 +303,71 @@ rules:
       policy: REJECT
 
   - rule_set:
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/分流/国外/AI.yaml
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/AI.yaml
       policy: ChatGPT
       update_interval: 86400
 
   - rule_set:
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/分流/国外/Telegram.yaml
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/Telegram.yaml
       policy: Telegram
       update_interval: 86400
   - rule_set:
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/分流/国外/Twitter.yaml
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/Twitter.yaml
       policy: 社交媒体
       update_interval: 86400
   - rule_set:
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/分流/国外/TikTok.yaml
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/TikTok.yaml
       policy: 社交媒体
       update_interval: 86400
 
   - rule_set:
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/分流/国外/YouTube.yaml
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/YouTube.yaml
       policy: 流媒体
       update_interval: 86400
   - rule_set:
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/分流/国外/Netflix.yaml
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/Netflix.yaml
       policy: 流媒体
       update_interval: 86400
   - rule_set:
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/分流/国外/Disney.yaml
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/Disney.yaml
       policy: 流媒体
       update_interval: 86400
   - rule_set:
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/分流/国外/Spotify.yaml
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/Spotify.yaml
       policy: Spotify
       update_interval: 86400
   - rule_set:
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/分流/国外/Emby.yaml
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/Emby.yaml
       policy: Emby
       update_interval: 86400
 
   - rule_set:
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/分流/国外/Google.yaml
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/Google.yaml
       policy: 谷歌服务
       update_interval: 86400
   - rule_set:
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/分流/国外/Github.yaml
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/Github.yaml
       policy: GitHub
       update_interval: 86400
   - rule_set:
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/分流/国外/Microsoft.yaml
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/Microsoft.yaml
       policy: 微软服务
       update_interval: 86400
   - rule_set:
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/分流/国外/AppleServers.yaml
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/AppleServers.yaml
       policy: 香港节点
       update_interval: 86400
 
   - rule_set:
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/分流/国外/Game.yaml
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/Game.yaml
       policy: 游戏平台
       update_interval: 86400
   - rule_set:
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/分流/国外/ProxyGFW.yaml
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/ProxyGFW.yaml
       policy: 兜底分流
       update_interval: 86400
   - rule_set:
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/分流/国外/Proxy.yaml
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/Proxy.yaml
       policy: 兜底分流
       update_interval: 86400
 
@@ -401,71 +401,71 @@ scriptings:
   - schedule:
       name: PingMe签到
       cron: "30 8,20 * * *"
-      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/脚本/PingMe.js
+      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/PingMe.js
       update_interval: 86400
       timeout: 300
       disabled: true
   - http_request:
       name: PingMe参数
       match: ^https://api\.pingmeapp\.net/app/queryBalanceAndBonus
-      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/脚本/PingMe.js
+      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/PingMe.js
       update_interval: 86400
       timeout: 60
       disabled: true
   - schedule:
       name: iios签到
       cron: "30 8,20 * * *"
-      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/脚本/iios_checkin.js
+      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/iios_checkin.js
       timeout: 60
       disabled: true
   - schedule:
       name: 起点签到
       cron: "11 2 * * *"
-      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/脚本/qdreader.js
+      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/qdreader.js
       timeout: 60
       disabled: true
   - schedule:
       name: 电信签到
       cron: "0 8 * * *"
-      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/脚本/dianxin10000.js
+      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/dianxin10000.js
       timeout: 60
       disabled: true
   - schedule:
       name: 贴吧签到
       cron: "0 8 * * *"
-      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/脚本/tieba.js
+      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/tieba.js
       timeout: 60
       disabled: true
   - schedule:
       name: 顺丰签到
       cron: "0 9 * * *"
-      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/脚本/sfexpress.js
+      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/sfexpress.js
       timeout: 60
       disabled: true
   - schedule:
       name: 严选签到
       cron: "0 8 * * *"
-      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/脚本/yanxuan.js
+      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/yanxuan.js
       timeout: 60
       disabled: true
   - schedule:
       name: 喜马拉雅签到
       cron: "0 8 * * *"
-      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/脚本/ximalaya.js
+      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/ximalaya.js
       timeout: 60
       disabled: true
   # ZenmoFeiShi: 一点万象
   - schedule:
       name: 万象签到
       cron: "1 0 * * *"
-      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/脚本/mixc_signin.js
+      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/mixc_signin.js
       update_interval: 86400
       timeout: 60
       disabled: true
   - http_request:
       name: 万象参数
       match: ^https?:\/\/app\.mixcapp\.com\/mixc\/gateway
-      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/脚本/mixc_signin.js
+      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/mixc_signin.js
       body_required: true
       update_interval: 86400
       timeout: 60
@@ -474,14 +474,14 @@ scriptings:
   - schedule:
       name: NodeSeek签到
       cron: "1 0 * * *"
-      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/脚本/Nodeseek_NsCheckin.js
+      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/Nodeseek_NsCheckin.js
       update_interval: 86400
       timeout: 60
       disabled: true
   - http_request:
       name: NodeSeek参数
       match: ^https:\/\/www\.nodeseek\.com\/api\/account\/getInfo\/\d+\?readme=1$
-      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/脚本/Nodeseek_NsCheckin.js
+      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/Nodeseek_NsCheckin.js
       update_interval: 86400
       timeout: 60
       disabled: true
@@ -489,14 +489,14 @@ scriptings:
   - schedule:
       name: 来充签到
       cron: "50 9 * * *"
-      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/脚本/LaiChong.js
+      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/LaiChong.js
       update_interval: 86400
       timeout: 60
       disabled: true
   - http_request:
       name: 来充参数
       match: ^https://shop\.laichon\.com/api/v1/member/userinfo
-      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/脚本/LaiChong.js
+      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/LaiChong.js
       update_interval: 86400
       timeout: 60
       disabled: true
@@ -504,14 +504,14 @@ scriptings:
   - schedule:
       name: Soul唱歌签到
       cron: "50 9 * * *"
-      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/脚本/SoulSing.js
+      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/SoulSing.js
       update_interval: 86400
       timeout: 60
       disabled: true
   - http_request:
       name: Soul唱歌参数
       match: ^https://increase-openapi\.soulapp\.cn/increase/sign/userSign
-      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/脚本/SoulSing.js
+      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/SoulSing.js
       update_interval: 86400
       timeout: 60
       disabled: true
@@ -519,14 +519,14 @@ scriptings:
   - schedule:
       name: 岁乐游签到
       cron: "1 0 * * *"
-      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/脚本/SLY.js
+      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/SLY.js
       update_interval: 86400
       timeout: 60
       disabled: true
   - http_request:
       name: 岁乐游参数
       match: ^https://m\.suileyoo\.com/api/user/profile
-      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/脚本/SLY.js
+      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/SLY.js
       update_interval: 86400
       timeout: 60
       disabled: true
@@ -534,7 +534,7 @@ scriptings:
 modules:
   # 去广告/去开屏/净化 — 单模块（奶思+blackmatrix7+银行税务NB，Actions 每日合并去重）
   - name: 去广告净化合集
-    url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/模块/去广告净化合集.module
+    url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/adblock-collection.module
     update_interval: 86400
     enabled: true
   # 基础

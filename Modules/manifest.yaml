@@ -1,8 +1,8 @@
 # Mirrored ad-block sources, merged & deduplicated by Actions.
-# Output: 模块/去广告净化合集.module (single module for 去广告+去开屏)
+# Output: Modules/adblock-collection.module
 
 merge:
-  output: 去广告净化合集.module
+  output: adblock-collection.module
 
 modules:
   - name: fmz200-blockAds

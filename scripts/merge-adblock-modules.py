@@ -264,7 +264,7 @@ def build_merged_module(primary_text: str, supplements: list[tuple[str, str]]) -
 def main() -> None:
     data = load_manifest()
     merge_cfg = data.get("merge") or {}
-    output_name = merge_cfg.get("output", "去广告净化合集.module")
+    output_name = merge_cfg.get("output", "adblock-collection.module")
     output_path = MODULES / output_name
 
     UPSTREAM_CACHE.mkdir(parents=True, exist_ok=True)

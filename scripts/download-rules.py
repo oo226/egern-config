@@ -64,11 +64,6 @@ def main() -> None:
 
     # Lan goes to 分流/局域网.yaml directly as upstream mirror
     if download_yaml("Lan", str(ROUTING_UPSTREAM.parent)):
-        # move Lan to correct name 局域网.yaml - workflow handles this
-        lan_src = ROUTING_UPSTREAM.parent / "Lan.yaml"
-        lan_dst = ROUTING_UPSTREAM.parent / "局域网.yaml"
-        if lan_src.exists():
-            lan_src.replace(lan_dst)
         ok += 1
     else:
         fail += 1
