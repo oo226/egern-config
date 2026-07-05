@@ -56,6 +56,18 @@ FMZ200_UNLOCK = frozenset(
     }
 )
 
+# NSRingo/iRingo: standalone Modules/iringo-*.sgmodule — exclude from QingRex merge
+QINGREX_SKIP_FILES = frozenset(
+    {
+        "Official/🍟 Apple 定位修改.official.sgmodule",
+        "Official/🍟 Apple 天气增强.official.sgmodule",
+        "Official/🍟 Apple 地图优化.official.sgmodule",
+        "Official/🍟 Apple TestFlight.official.sgmodule",
+        "Official/🍟 Apple TV 增强.official.sgmodule",
+        "Official/🍟 Apple News 解锁.official.sgmodule",
+    }
+)
+
 
 def load_config() -> dict:
     if not yaml:
@@ -70,14 +82,20 @@ def module_kind(filename: str) -> str:
     return "adblock"
 
 
-def read_modules(directory: Path) -> list[tuple[str, str]]:
+def read_modules(directory: Path, *, skip: frozenset[str] | None = None) -> list[tuple[str, str]]:
     if not directory.is_dir():
         return []
     items: list[tuple[str, str]] = []
     for path in sorted(directory.rglob("*.sgmodule")):
-        items.append((path.relative_to(directory).as_posix(), path.read_text(encoding="utf-8", errors="replace")))
+        rel = path.relative_to(directory).as_posix()
+        if skip and rel in skip:
+            continue
+        items.append((rel, path.read_text(encoding="utf-8", errors="replace")))
     for path in sorted(directory.rglob("*.module")):
-        items.append((path.relative_to(directory).as_posix(), path.read_text(encoding="utf-8", errors="replace")))
+        rel = path.relative_to(directory).as_posix()
+        if skip and rel in skip:
+            continue
+        items.append((rel, path.read_text(encoding="utf-8", errors="replace")))
     return items
 
 
@@ -120,7 +138,7 @@ def write_if_content(path: Path, content: str) -> None:
 
 def generate_qingrex() -> None:
     directory = UPSTREAM_CACHE / "qingrex"
-    modules = read_modules(directory)
+    modules = read_modules(directory, skip=QINGREX_SKIP_FILES)
     if not modules:
         print("skip qingrex: no mirrored modules")
         return

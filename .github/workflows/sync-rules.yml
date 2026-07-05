@@ -82,6 +82,7 @@ jobs:
       - name: Mirror author repositories (full-repo)
         run: |
           python3 scripts/download-author-repos.py
+          python3 scripts/download-iringo-modules.py
           python3 scripts/generate-unlock-supplements.py
           python3 scripts/generate-author-collection-supplements.py
 

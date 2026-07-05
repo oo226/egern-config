@@ -1,0 +1,29 @@
+# NSRingo/iRingo standalone modules — NOT merged into adblock/unlock collections.
+# Maps / Weather / Location: separate URLs; TV + TestFlight + News: iringo-others.sgmodule
+
+standalone:
+  - id: maps
+    repo: NSRingo/Maps
+    asset: iRingo.Maps.sgmodule
+    output: iringo-maps.sgmodule
+
+  - id: weather
+    repo: NSRingo/WeatherKit
+    asset: iRingo.WeatherKit.sgmodule
+    output: iringo-weather.sgmodule
+
+  - id: location
+    repo: NSRingo/LocationServices
+    asset: iRingo.LocationService.sgmodule
+    output: iringo-location.sgmodule
+
+others_merge:
+  output: iringo-others.sgmodule
+  title: " iRingo 其他（TV / TestFlight / News）"
+  repos:
+    - repo: NSRingo/TV
+      asset: iRingo.TV.sgmodule
+    - repo: NSRingo/TestFlight
+      asset: iRingo.TestFlight.sgmodule
+    - repo: NSRingo/News
+      asset: iRingo.News.sgmodule
