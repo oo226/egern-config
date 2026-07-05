@@ -33,8 +33,8 @@ bypass_tunnel_proxy:
 hijack_dns:
   - '*:53'
 
-geoip_db_url: https://raw.githubusercontent.com/Loyalsoldier/geoip/release/Country-without-asn.mmdb
-asn_db_url: https://raw.githubusercontent.com/Loyalsoldier/geoip/release/GeoLite2-ASN.mmdb
+geoip_db_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Assets/geoip/Country-without-asn.mmdb
+asn_db_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Assets/geoip/GeoLite2-ASN.mmdb
 proxy_latency_test_url: http://1.1.1.1/generate_204
 direct_latency_test_url: http://wifi.vivo.com.cn/generate_204
 
@@ -561,7 +561,7 @@ modules:
     enabled: false
   # 基础
   - name: BoxJs
-    url: https://raw.githubusercontent.com/chavyleung/scripts/master/box/rewrite/boxjs.rewrite.surge.sgmodule
+    url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/boxjs.sgmodule
     enabled: true
 
 default_subscription_group: 节点订阅

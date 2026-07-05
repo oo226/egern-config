@@ -34,6 +34,10 @@ merge:
     "https://raw.githubusercontent.com/Maasea/sgmodule/master/Script/Bilibili/dist/bilibili.helper.v2.beta.js": "https://raw.githubusercontent.com/kokoryh/Sparkle/master/dist/bilibili.json.js"
     "https://raw.githubusercontent.com/Maasea/sgmodule/master/Script/Bilibili/dist/bilibili.helper.beta.js": "https://raw.githubusercontent.com/kokoryh/Sparkle/master/dist/bilibili.protobuf.response.js"
     "https://raw.githubusercontent.com/kokoryh/Sparkle/refs/heads/master/dist/bilibili.airborne.js": "https://raw.githubusercontent.com/kokoryh/Sparkle/master/dist/bilibili.protobuf.request.js"
+    "https://raw.githubusercontent.com/kokoryh/Sparkle/refs/heads/master/dist/bilibili.protobuf.js": "https://raw.githubusercontent.com/kokoryh/Sparkle/master/dist/bilibili.protobuf.response.js"
+    # chavyleung 已删库的签到脚本 → 本地空桩
+    "https://raw.githubusercontent.com/chavyleung/scripts/master/rrtv/rrtv.cookie.js": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_stubs/noop.js"
+    "https://raw.githubusercontent.com/chavyleung/scripts/master/zimuzu/zimuzu.cookie.js": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_stubs/noop.js"
 
 modules:
   - name: fmz200-blockAds

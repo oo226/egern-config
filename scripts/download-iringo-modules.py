@@ -56,7 +56,9 @@ def download_module(repo: str, asset: str, dest: Path) -> None:
     head = data[:256].lstrip()
     if head.startswith(b"<!DOCTYPE") or head.startswith(b"<html"):
         raise ValueError(f"invalid payload from {url}")
-    dest.write_bytes(data)
+    text = data.decode("utf-8", errors="replace")
+    text = _merge.mirror_script_paths(text)
+    dest.write_text(text, encoding="utf-8")
     print(f"OK {dest.name} <- {repo} ({len(data)} bytes)")
 
 
@@ -82,6 +84,7 @@ def merge_others(items: list[tuple[str, str]], title: str, output: Path) -> None
         ],
         primary_desc=title,
     )
+    merged = _merge.mirror_script_paths(merged)
     output.write_text(merged, encoding="utf-8")
     print(f"OK {output.name} merged ({len(merged.splitlines())} lines)")
 

@@ -98,11 +98,17 @@ jobs:
       - name: Merge unlock module
         run: python scripts/merge-adblock-modules.py Modules/unlock-manifest.yaml
 
+      - name: Mirror external module scripts and rewrite collections
+        run: python3 scripts/mirror-external-scripts.py
+
+      - name: Mirror GeoIP databases
+        run: python3 scripts/mirror-geoip.py
+
       - name: Commit integration branch
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add Routing/ Modules/ Scripts/ Egern.yaml README.md
+          git add Routing/ Modules/ Scripts/ Assets/ Egern.yaml scripts/external-script-rewrites.yaml README.md
           if git diff --staged --quiet; then
             echo "No changes on integration branch."
           else

@@ -10,7 +10,8 @@ import urllib.request
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from paths import MANIFEST, MIRRORED_SCRIPT_REWRITES, MODULES, UPSTREAM_CACHE
+from external_script_utils import apply_external_rewrites, load_rewrite_map
+from paths import GITHUB_RAW_MAIN, MANIFEST, MIRRORED_SCRIPT_REWRITES, MODULES, UPSTREAM_CACHE
 
 try:
     import yaml
@@ -35,6 +36,24 @@ DEFAULT_SCRIPT_URL_FIXES = {
     "https://raw.githubusercontent.com/limbopro/Adblock4limbo/main/Adguard/cnys.js": (
         "https://raw.githubusercontent.com/limbopro/Adblock4limbo/main/Adguard/Adblock4limbo.js"
     ),
+    "https://raw.githubusercontent.com/Maasea/sgmodule/master/Script/Bilibili/dist/bilibili.helper.v2.beta.js": (
+        "https://raw.githubusercontent.com/kokoryh/Sparkle/master/dist/bilibili.json.js"
+    ),
+    "https://raw.githubusercontent.com/Maasea/sgmodule/master/Script/Bilibili/dist/bilibili.helper.beta.js": (
+        "https://raw.githubusercontent.com/kokoryh/Sparkle/master/dist/bilibili.protobuf.response.js"
+    ),
+    "https://raw.githubusercontent.com/kokoryh/Sparkle/refs/heads/master/dist/bilibili.airborne.js": (
+        "https://raw.githubusercontent.com/kokoryh/Sparkle/master/dist/bilibili.protobuf.request.js"
+    ),
+    "https://raw.githubusercontent.com/kokoryh/Sparkle/refs/heads/master/dist/bilibili.protobuf.js": (
+        "https://raw.githubusercontent.com/kokoryh/Sparkle/master/dist/bilibili.protobuf.response.js"
+    ),
+    "https://raw.githubusercontent.com/chavyleung/scripts/master/rrtv/rrtv.cookie.js": (
+        f"{GITHUB_RAW_MAIN}/Scripts/_stubs/noop.js"
+    ),
+    "https://raw.githubusercontent.com/chavyleung/scripts/master/zimuzu/zimuzu.cookie.js": (
+        f"{GITHUB_RAW_MAIN}/Scripts/_stubs/noop.js"
+    ),
 }
 
 
@@ -51,7 +70,7 @@ def mirror_script_paths(text: str) -> str:
     for old, new in MIRRORED_SCRIPT_REWRITES:
         if old in text:
             text = text.replace(old, new)
-    return text
+    return apply_external_rewrites(text, load_rewrite_map())
 
 
 def fetch(url: str) -> str:
@@ -322,11 +341,18 @@ def main() -> None:
             print(f"OK local {name} <- {local_path.name}")
         else:
             cache_path = UPSTREAM_CACHE / cache_name
-            text = fetch(item["upstream"])
-            text = apply_script_url_fixes(text, script_url_fixes)
-            text = mirror_script_paths(text)
-            cache_path.write_text(text, encoding="utf-8")
-            print(f"OK upstream {name} -> {cache_path.name}")
+            try:
+                text = fetch(item["upstream"])
+                text = apply_script_url_fixes(text, script_url_fixes)
+                text = mirror_script_paths(text)
+                cache_path.write_text(text, encoding="utf-8")
+                print(f"OK upstream {name} -> {cache_path.name}")
+            except Exception as exc:
+                if cache_path.is_file():
+                    text = cache_path.read_text(encoding="utf-8")
+                    print(f"KEEP upstream {name} <- cache ({exc})")
+                else:
+                    raise SystemExit(f"upstream fetch failed for {name}: {exc}") from exc
         loaded.append((name, item.get("role", "supplement"), text))
 
     primary = next((x for x in loaded if x[1] == "primary"), loaded[0])
