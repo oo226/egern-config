@@ -290,6 +290,7 @@ policy_groups:
         - 自动选择
 
   - select:
+      name: Telegram
       policies:
         - 新加坡节点
         - 香港节点
