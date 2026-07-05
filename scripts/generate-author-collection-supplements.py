@@ -65,7 +65,17 @@ QINGREX_SKIP_FILES = frozenset(
         "Official/🍟 Apple TestFlight.official.sgmodule",
         "Official/🍟 Apple TV 增强.official.sgmodule",
         "Official/🍟 Apple News 解锁.official.sgmodule",
+        "Official/新手友好の去广告集合.official.sgmodule",
+        "Official/小程序和应用懒人去广告合集.official.sgmodule",
     }
+)
+
+# Skip modules whose scripts point at dead or blocked hosts (kelee.one 403/404, perzikkop down)
+QINGREX_SKIP_CONTENT_MARKERS = (
+    "kelee.one",
+    "perzikkop.com",
+    "Maasea/sgmodule/master/Script/Bilibili/dist/bilibili.helper",
+    "kokoryh/Sparkle/refs/heads/master/dist/bilibili.airborne.js",
 )
 
 
@@ -82,7 +92,12 @@ def module_kind(filename: str) -> str:
     return "adblock"
 
 
-def read_modules(directory: Path, *, skip: frozenset[str] | None = None) -> list[tuple[str, str]]:
+def read_modules(
+    directory: Path,
+    *,
+    skip: frozenset[str] | None = None,
+    skip_content_markers: tuple[str, ...] = (),
+) -> list[tuple[str, str]]:
     if not directory.is_dir():
         return []
     items: list[tuple[str, str]] = []
@@ -90,12 +105,18 @@ def read_modules(directory: Path, *, skip: frozenset[str] | None = None) -> list
         rel = path.relative_to(directory).as_posix()
         if skip and rel in skip:
             continue
-        items.append((rel, path.read_text(encoding="utf-8", errors="replace")))
+        text = path.read_text(encoding="utf-8", errors="replace")
+        if skip_content_markers and any(m in text for m in skip_content_markers):
+            continue
+        items.append((rel, text))
     for path in sorted(directory.rglob("*.module")):
         rel = path.relative_to(directory).as_posix()
         if skip and rel in skip:
             continue
-        items.append((rel, path.read_text(encoding="utf-8", errors="replace")))
+        text = path.read_text(encoding="utf-8", errors="replace")
+        if skip_content_markers and any(m in text for m in skip_content_markers):
+            continue
+        items.append((rel, text))
     return items
 
 
@@ -138,7 +159,11 @@ def write_if_content(path: Path, content: str) -> None:
 
 def generate_qingrex() -> None:
     directory = UPSTREAM_CACHE / "qingrex"
-    modules = read_modules(directory, skip=QINGREX_SKIP_FILES)
+    modules = read_modules(
+        directory,
+        skip=QINGREX_SKIP_FILES,
+        skip_content_markers=QINGREX_SKIP_CONTENT_MARKERS,
+    )
     if not modules:
         print("skip qingrex: no mirrored modules")
         return

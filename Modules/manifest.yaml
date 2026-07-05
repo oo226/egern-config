@@ -6,6 +6,34 @@ merge:
   script_url_fixes:
     # limbopro 上游 cnys.js 已从仓库删除，回退到通用脚本
     "https://raw.githubusercontent.com/limbopro/Adblock4limbo/main/Adguard/cnys.js": "https://raw.githubusercontent.com/limbopro/Adblock4limbo/main/Adguard/Adblock4limbo.js"
+    # perzikkop.com 已失效 → 奶思本地镜像
+    "https://raw.perzikkop.com/Scripts/Weibo.js": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/weibo/weibo_ads.js"
+    "https://raw.perzikkop.com/Scripts/Cainiao.js": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/cainiao/cainiao.js"
+    "https://raw.perzikkop.com/Scripts/Adrive.js": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/adrive/adrive.js"
+    "https://raw.perzikkop.com/Scripts/Pinduoduo.js": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/jingxiAd.js"
+    "https://raw.perzikkop.com/Scripts/Amap.js": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/baidumap.js"
+    "https://raw.perzikkop.com/Scripts/Caiyun.js": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/caiyun/caiyun.js"
+    "https://raw.perzikkop.com/Scripts/Baidu_index.js": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/baidu/baiduLib.js"
+    "https://raw.perzikkop.com/Scripts/Hupu.js": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/header.js"
+    "https://raw.perzikkop.com/Scripts/Taobao.js": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/applet.js"
+    "https://raw.perzikkop.com/Scripts/12306.js": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/header.js"
+    "https://raw.perzikkop.com/Scripts/12306_splashscreen.js": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/header.js"
+    "https://raw.perzikkop.com/Scripts/MiniPrograms/kff.js": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/kff.js"
+    "https://raw.perzikkop.com/Scripts/MiniPrograms/ems.js": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/ems.js"
+    "https://raw.perzikkop.com/Scripts/MiniPrograms/xiaotucc.js": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/xiaotucc.js"
+    "https://raw.perzikkop.com/Scripts/MiniPrograms/FamilyMart.js": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/FamilyMart.js"
+    "https://raw.perzikkop.com/Scripts/MiniPrograms/lawson.js": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/lawson.js"
+    "https://raw.perzikkop.com/Scripts/MiniPrograms/chayanyuese_remove_ads.js": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/cyys.js"
+    "https://raw.perzikkop.com/Scripts/MiniPrograms/coco.js": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/coco.js"
+    "https://raw.perzikkop.com/Scripts/MiniPrograms/qingju.js": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/qingju.js"
+    "https://raw.perzikkop.com/Scripts/MiniPrograms/alittle-tea.js": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/alittle-tea.js"
+    "https://raw.perzikkop.com/Scripts/MiniPrograms/M_Stand.js": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/ming.js"
+    "https://raw.perzikkop.com/Scripts/MiniPrograms/T3.js": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/T3.js"
+    "https://raw.perzikkop.com/Scripts/MiniPrograms/ming.js": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/ming.js"
+    # Maasea B站 helper 路径失效 → Sparkle protobuf 版
+    "https://raw.githubusercontent.com/Maasea/sgmodule/master/Script/Bilibili/dist/bilibili.helper.v2.beta.js": "https://raw.githubusercontent.com/kokoryh/Sparkle/master/dist/bilibili.json.js"
+    "https://raw.githubusercontent.com/Maasea/sgmodule/master/Script/Bilibili/dist/bilibili.helper.beta.js": "https://raw.githubusercontent.com/kokoryh/Sparkle/master/dist/bilibili.protobuf.response.js"
+    "https://raw.githubusercontent.com/kokoryh/Sparkle/refs/heads/master/dist/bilibili.airborne.js": "https://raw.githubusercontent.com/kokoryh/Sparkle/master/dist/bilibili.protobuf.request.js"
 
 modules:
   - name: fmz200-blockAds

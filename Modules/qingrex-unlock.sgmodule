@@ -2,147 +2,20 @@
 # 可莉/QingRex 全仓库解锁/增强模块合并去重（本地镜像）
 # Do not edit manually.
 
-#!name=DNS防泄露
+#!name=Google搜索重定向
 #!desc=可莉/QingRex 全仓库解锁/增强模块合并去重（本地镜像）
-#!author=非正常人类研究中心
-#!icon=https://raw.githubusercontent.com/luestr/IconResource/main/Other_icon/120px/Prevent_DNS_Leaks.png
+#!author=可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon=https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/Google.png
 #!category=BetaModule
-#!tag=DNS
+#!tag=去广告
 #!loon_version=3.2.4(787)
-#!homepage=https://hub.kelee.one
+#!homepage=https://github.com/luestr/ProxyResource/blob/main/README.md
 #!date=2025-05-13 15:17:08
 
 
-[Script]
-
-# >>> merged from Beta/Fileball网盘挂载.beta.sgmodule (unique only)
-三合一网盘挂载 = type=http-request, pattern=^http:\/\/(aliyun|quark|pikpak)\.example\.com, script-path=https://kelee.one/Resource/JavaScript/Fileball/Fileball_mount.js, requires-body=true
-
-
-# >>> merged from Beta/Spotify去广告.beta.sgmodule (unique only)
-Protobuf处理 = type=http-response, pattern=^https:\/\/(?:\w+-spclient|spclient\.wg)\.spotify\.com(?::443)?\/(?:bootstrap|user-customization-service), script-path=https://kelee.one/Resource/JavaScript/Spotify/Spotify_remove_ads.js, requires-body=true, binary-body-mode=true, timeout=5, argument="[{{{tab}}},{{{useractivity}}}]"
-
-
-# >>> merged from Beta/Spotify歌词增强.beta.sgmodule (unique only)
-跟踪响应·JSON = type=http-response, pattern=^https?:\/\/api\.spotify\.com\/v1\/tracks\?, script-path=https://kelee.one/Resource/JavaScript/Spotify/Spotify_response.js, requires-body=true
-
-歌词请求·JSON = type=http-request, pattern=^https?:\/\/spclient\.wg\.spotify\.com\/color-lyrics\/v2\/track\/(.+)\?(.*)format=json, script-path=https://kelee.one/Resource/JavaScript/Spotify/Spotify_request.js, requires-body=true
-
-歌词请求·Proto = type=http-request, pattern=^https?:\/\/spclient\.wg\.spotify\.com\/color-lyrics\/v2\/track\/\w+\?(.*), script-path=https://kelee.one/Resource/JavaScript/Spotify/Spotify_request.js, requires-body=true, binary-body-mode=true
-
-翻译歌词响应·JSON = type=http-response, pattern=^https?:\/\/spclient\.wg\.spotify\.com\/color-lyrics\/v2\/track\/(.+)\?(.*)format=json(.*)subtype=Translate, script-path=https://kelee.one/Resource/JavaScript/Spotify/Translate_response.js, requires-body=true
-
-翻译歌词响应·Proto = type=http-response, pattern=^https?:\/\/spclient\.wg\.spotify\.com\/color-lyrics\/v2\/track\/\w+\?(.*)subtype=Translate, script-path=https://kelee.one/Resource/JavaScript/Spotify/Translate_response.js, requires-body=true, binary-body-mode=true
-
-外部歌词响应·JSON = type=http-response, pattern=^https?:\/\/spclient\.wg\.spotify\.com\/color-lyrics\/v2\/track\/(.+)\?(.*)format=json(.*)subtype=External, script-path=https://kelee.one/Resource/JavaScript/Spotify/External_Lyrics_response.js, requires-body=true
-
-外部歌词响应·Proto = type=http-response, pattern=^https?:\/\/spclient\.wg\.spotify\.com\/color-lyrics\/v2\/track\/\w+\?(.*)subtype=External, script-path=https://kelee.one/Resource/JavaScript/Spotify/External_Lyrics_response.js, requires-body=true, binary-body-mode=true
-
-
-# >>> merged from Beta/Spotify歌词翻译.beta.sgmodule (unique only)
-
-
-
-
-
-
-
-
-# >>> merged from Beta/TikTok多地区解锁.beta.sgmodule (unique only)
-TikTok解锁 = type=http-request, pattern=https?:\/\/.+.(tiktokv|tiktokcdn).com\/.+(region\d?=CN|&mcc_mnc=\d+), script-path=https://kelee.one/Resource/Script/TikTok/TikTok_redirect.js
-
-
-# >>> merged from Beta/微信外部链接解锁.beta.sgmodule (unique only)
-微信外部链接解锁 = type=http-response, pattern=^https\:\/\/(weixin110\.qq|security.wechat)\.com\/cgi-bin\/mmspamsupport-bin\/newredirectconfirmcgi\?, script-path=https://kelee.one/Resource/JavaScript/Weixin/Weixin_external_links_unlock.js, requires-body=true
-
-
-# >>> merged from Fileball网盘挂载.sgmodule (unique only)
-
-
-# >>> merged from Official/Spotify Plus.official.sgmodule (unique only)
-spotify-json = type=http-request,pattern=^https:\/\/(spclient\.wg\.spotify\.com|.*-spclient\.spotify\.com(:443)?)\/(artistview\/v1\/artist|album-entity-view\/v2\/album)\/,requires-body=0,script-path=https://raw.githubusercontent.com/app2smile/rules/master/js/spotify-json.js
-spotify-proto = type=http-response,pattern=^https:\/\/(spclient\.wg\.spotify\.com|.*-spclient\.spotify\.com(:443)?)\/(bootstrap\/v1\/bootstrap|user-customization-service\/v1\/customize)$,requires-body=1,binary-body-mode=1,max-size=0,script-path=https://raw.githubusercontent.com/app2smile/rules/master/js/spotify-proto.js,script-update-interval=0
-
-# >>> merged from Official/流媒体解锁检测 Lite.official.sgmodule (unique only)
-Stream-All-Lite = type=generic,timeout=30,script-path=https://raw.githubusercontent.com/githubdulong/Script/master/Stream-All.js,script-update-interval=0,argument=title=流媒体解锁检测&icon=play.tv.fill&color=#D22F28
-
-# >>> merged from Official/流媒体解锁检测.official.sgmodule (unique only)
-stream-all = type=generic, timeout=15, script-path=https://raw.githubusercontent.com/Rabbit-Spec/Surge/Master/Module/Panel/Stream-All/Moore/Stream-All.js
-
-# >>> merged from Official/🍟 DualSubsSpotify.official.sgmodule (unique only)
-
-🍿️ DualSubs.Spotify.Lyrics.request.json = type=http-request, pattern=^https?:\/\/(.+-spclient|spclient\.wg).spotify\.com(:443)?\/color-lyrics\/v2\/track\/(.+)\?(.*)format=json, requires-body=1, script-path=https://github.com/DualSubs/Spotify/releases/download/v1.9.12/request.bundle.js, argument=Types="{{{Types}}}"&Languages[0]="{{{Languages[0]}}}"&Languages[1]="{{{Languages[1]}}}"&Vendor="{{{Vendor}}}"&LrcVendor="{{{LrcVendor}}}"&LogLevel="{{{LogLevel}}}"
-🍿️ DualSubs.Spotify.Lyrics.request.proto = type=http-request, pattern=^https?:\/\/(.+-spclient|spclient\.wg).spotify\.com(:443)?\/color-lyrics\/v2\/track\/\w+\?(.*), requires-body=1, binary-body-mode=1, script-path=https://github.com/DualSubs/Spotify/releases/download/v1.9.12/request.bundle.js, argument=Types="{{{Types}}}"&Languages[0]="{{{Languages[0]}}}"&Languages[1]="{{{Languages[1]}}}"&Vendor="{{{Vendor}}}"&LrcVendor="{{{LrcVendor}}}"&LogLevel="{{{LogLevel}}}"
-
-🍿️ DualSubs.Spotify.Translate.Lyrics.response.json = type=http-response, pattern=^https?:\/\/(.+-spclient|spclient\.wg).spotify\.com(:443)?\/color-lyrics\/v2\/track\/(.+)\?(.*)format=json(.*)subtype=Translate, requires-body=1, script-path=https://github.com/DualSubs/Universal/releases/latest/download/Translate.response.bundle.js, argument=Types="{{{Types}}}"&Languages[0]="{{{Languages[0]}}}"&Languages[1]="{{{Languages[1]}}}"&Vendor="{{{Vendor}}}"&LrcVendor="{{{LrcVendor}}}"&LogLevel="{{{LogLevel}}}"
-🍿️ DualSubs.Spotify.Translate.Lyrics.response.proto = type=http-response, pattern=^https?:\/\/(.+-spclient|spclient\.wg).spotify\.com(:443)?\/color-lyrics\/v2\/track\/\w+\?(.*)subtype=Translate, requires-body=1, binary-body-mode=1, script-path=https://github.com/DualSubs/Universal/releases/latest/download/Translate.response.bundle.js, argument=Types="{{{Types}}}"&Languages[0]="{{{Languages[0]}}}"&Languages[1]="{{{Languages[1]}}}"&Vendor="{{{Vendor}}}"&LrcVendor="{{{LrcVendor}}}"&LogLevel="{{{LogLevel}}}"
-🍿️ DualSubs.Spotify.External.Lyrics.response.json = type=http-response, pattern=^https?:\/\/(.+-spclient|spclient\.wg).spotify\.com(:443)?\/color-lyrics\/v2\/track\/(.+)\?(.*)format=json(.*)subtype=External, requires-body=1, script-path=https://github.com/DualSubs/Universal/releases/latest/download/External.Lyrics.response.bundle.js, argument=Types="{{{Types}}}"&Languages[0]="{{{Languages[0]}}}"&Languages[1]="{{{Languages[1]}}}"&Vendor="{{{Vendor}}}"&LrcVendor="{{{LrcVendor}}}"&LogLevel="{{{LogLevel}}}"
-🍿️ DualSubs.Spotify.External.Lyrics.response.proto = type=http-response, pattern=^https?:\/\/(.+-spclient|spclient\.wg).spotify\.com(:443)?\/color-lyrics\/v2\/track\/\w+\?(.*)subtype=External, requires-body=1, binary-body-mode=1, script-path=https://github.com/DualSubs/Universal/releases/latest/download/External.Lyrics.response.bundle.js, argument=Types="{{{Types}}}"&Languages[0]="{{{Languages[0]}}}"&Languages[1]="{{{Languages[1]}}}"&Vendor="{{{Vendor}}}"&LrcVendor="{{{LrcVendor}}}"&LogLevel="{{{LogLevel}}}"
-
-
-# >>> merged from Spotify去广告.sgmodule (unique only)
-
-
-# >>> merged from Spotify歌词增强.sgmodule (unique only)
-
-
-
-
-
-
-
-
-# >>> merged from Spotify歌词翻译.sgmodule (unique only)
-
-
-
-
-
-
-
-
-# >>> merged from TikTok多地区解锁.sgmodule (unique only)
-
-
-# >>> merged from 微信外部链接解锁.sgmodule (unique only)
-
-
-[MITM]
-hostname = %APPEND% *-spclient.spotify.com, *.byteoversea.com, *.httpdns.pro, *.tik-tokapi.com, *.tiktokcdn.com, *.tiktokv.com, *spclient.spotify.com, 119.29.29.29, 119.29.29.98, 119.29.29.99, 180.76.76.112, 180.76.76.200, 203.107.1.1, 203.107.1.33, 203.107.1.66, 203.107.1.67, 203.107.1.97, 2401:b180:2000:20::10, 2401:b180:2000:30::1c, aliyun.example.com, amdc-sibling.alipay.com.cn, amdc.alipay.com, api.spotify.com, appconf.mail.163.com, dns.jd.com, duckduckgo.com, msglb.91160.com, pikpak.example.com, quark.example.com, security.wechat.com, spclient.wg.spotify.com, ucdc2-upaas.uc.cn, weixin110.qq.com, www.google.cn
-
 [URL Rewrite]
-
-# >>> merged from Beta/Google搜索重定向.beta.sgmodule (unique only)
 ^https?:\/\/(www.)?(g|google)\.cn https://www.google.com 307
 ^https?:\/\/(ditu|maps).google\.cn https://maps.google.com 307
-
-
-# >>> merged from Beta/Google重定向.beta.sgmodule (unique only)
-
-
-# >>> merged from Beta/HTTPDNS拦截器.beta.sgmodule (unique only)
-^https?:\/\/cdn\.wup\.huya\.com\/monitor\/monitor\.jsp - reject
-^https:\/\/gslbali\.ximalaya\.com\/linkeye-cloud\/httpdns\/ - reject
-
-
-# >>> merged from Beta/Spotify去广告.beta.sgmodule (unique only)
-^https:\/\/(?:\w+-spclient|spclient\.wg)\.spotify\.com(?::443)?\/artistview\/v1\/artist\/(.*)&platform=iphone https://spclient.wg.spotify.com/artistview/v1/artist/$1&platform=ipad header
-
-
-# >>> merged from Beta/TikTok多地区解锁.beta.sgmodule (unique only)
-^https:\/\/api-va\.tiktokv\.com\/api\/ad\/ - reject
-^https:\/\/tnc\d+-platform-\w+\.tiktokv\.com\/get_domains\/ - reject
-
-
-# >>> merged from Beta/快捷搜索.beta.sgmodule (unique only)
-^https:\/\/duckduckgo\.com\/\?q=bd\+([^&]+).+ https://www.baidu.com/s?wd=$1 307
-^https:\/\/duckduckgo\.com\/\?q=bdimg\+([^&]+).+ https://image.baidu.com/search/index?tn=baiduimage&word=$1 307
-^https:\/\/duckduckgo\.com\/\?q=gimg\+([^&]+).+ https://www.google.com/search?&tbm=isch&q=$1 307
-^https:\/\/duckduckgo\.com\/\?q=b\+([^&]+).+ https://www.bing.com/search?q=$1 307
-^https:\/\/duckduckgo\.com\/\?q=wk\+([^&]+).+ https://zh.wikipedia.org/wiki/$1 307
-^https:\/\/duckduckgo\.com\/\?q=qm\+([^&]+).+ https://www.qimai.cn/search/index/country/cn/search/$1 307
-^https:\/\/duckduckgo\.com\/\?q=gh\+([^&]+).+ https://github.com/search?q=$1 307
-^https:\/\/duckduckgo\.com\/\?q=([^&]+).+ https://www.google.com/search?q=$1 307
 
 
 # >>> merged from Beta/拦截HTTPDNS.beta.sgmodule (unique only)
@@ -156,15 +29,10 @@ hostname = %APPEND% *-spclient.spotify.com, *.byteoversea.com, *.httpdns.pro, *.
 ^https?:\/\/2401:b180:2000:20::10\/\d+\/d - reject
 ^https?:\/\/180\.76\.76\.200\/v\d\/resolve - reject
 ^https?:\/\/180\.76\.76\.112\/v\d\/resolve - reject
-
-
-# >>> merged from Google搜索重定向.sgmodule (unique only)
+^https?:\/\/cdn\.wup\.huya\.com\/monitor\/monitor\.jsp - reject
 
 
 # >>> merged from Google重定向.sgmodule (unique only)
-
-
-# >>> merged from HTTPDNS拦截器.sgmodule (unique only)
 
 
 # >>> merged from Official/拦截HTTPDNS.official.sgmodule (unique only)
@@ -258,40 +126,31 @@ hostname = %APPEND% *-spclient.spotify.com, *.byteoversea.com, *.httpdns.pro, *.
 ^http:\/\/103\.41\.167\.237\/v2\/resolv - reject
 
 
-# >>> merged from Spotify去广告.sgmodule (unique only)
-
-
-# >>> merged from TikTok多地区解锁.sgmodule (unique only)
-
-
-# >>> merged from 快捷搜索.sgmodule (unique only)
-
-
 # >>> merged from 拦截HTTPDNS.sgmodule (unique only)
 
 
+[MITM]
+
+hostname = %APPEND% *-spclient.spotify.com, *.httpdns.pro, *spclient.spotify.com, 119.29.29.29, 119.29.29.98, 119.29.29.99, 180.76.76.112, 180.76.76.200, 203.107.1.1, 203.107.1.33, 203.107.1.66, 203.107.1.67, 203.107.1.97, 2401:b180:2000:20::10, 2401:b180:2000:30::1c, amdc-sibling.alipay.com.cn, amdc.alipay.com, api.spotify.com, appconf.mail.163.com, dns.jd.com, msglb.91160.com, spclient.wg.spotify.com, www.google.cn
+
 [Rule]
 
-# >>> merged from Beta/HTTPDNS拦截器.beta.sgmodule (unique only)
-DOMAIN-KEYWORD,httpdns,REJECT,extended-matching,pre-matching
-DOMAIN-KEYWORD,httpsdns,REJECT,extended-matching,pre-matching
-USER-AGENT,"httpdns*",REJECT
-USER-AGENT,"httpsdns*",REJECT
-USER-AGENT,"Httpdns*",REJECT
-USER-AGENT,"Httpsdns*",REJECT
-URL-REGEX,"^http:\/\/((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(?:\/v?[0-9]+)?\/(?:sign_)?(?:(?:d|ss)[46]?|resolve)\?",REJECT,extended-matching
-URL-REGEX,"^http:\/\/\[[0-9a-fA-F:]+\](?:\/v?[0-9]+)?\/(?:sign_)?(?:(?:d|ss)[46]?|resolve)\?",REJECT,extended-matching
+# >>> merged from Beta/拦截HTTPDNS.beta.sgmodule (unique only)
 DOMAIN,yyapp-httpdns.gslb.yy.com,REJECT,extended-matching,pre-matching
 DOMAIN,union-httpdns.gslb.yy.com,REJECT,extended-matching,pre-matching
-DOMAIN,yuyin-httpdns.gslb.yy.com,REJECT,extended-matching,pre-matching
 DOMAIN,httpdns-v6.gslb.yy.com,REJECT,extended-matching,pre-matching
 URL-REGEX,"^http:\/\/103\.44\.58\.64\/md\?",REJECT,extended-matching
 URL-REGEX,"^http:\/\/cdn\.wup\.huya\.com\/launch\/queryHttpDns",REJECT,extended-matching
 DOMAIN,dns2.q2cdn.com,REJECT,extended-matching,pre-matching
 URL-REGEX,"^http:\/\/xmc\.ximalaya\.com\/xmlymain-login-web\/login\/",REJECT,extended-matching
+IP-CIDR,8.134.241.67/32,REJECT,no-resolve,pre-matching
+DOMAIN,httpdns.volcengineapi.com,REJECT,extended-matching,pre-matching
+DOMAIN,dig.bdurl.net,REJECT,extended-matching,pre-matching
+DOMAIN,dig.zjurl.cn,REJECT,extended-matching,pre-matching
 DOMAIN,dns.weixin.qq.com,REJECT,extended-matching,pre-matching
 DOMAIN,dns.weixin.qq.com.cn,REJECT,extended-matching,pre-matching
 DOMAIN,aedns.weixin.qq.com,REJECT,extended-matching,pre-matching
+DOMAIN,paydns.wechatpay.cn,REJECT,extended-matching,pre-matching
 IP-CIDR,39.156.140.30/32,REJECT,no-resolve,pre-matching
 IP-CIDR,39.156.140.47/32,REJECT,no-resolve,pre-matching
 IP-CIDR,39.156.140.245/32,REJECT,no-resolve,pre-matching
@@ -336,15 +195,30 @@ IP-CIDR6,2402:4e00:1900:1700:0:9554:1ad9:c3a/128,REJECT,no-resolve,pre-matching
 IP-CIDR6,2408:8711:10:10::20/128,REJECT,no-resolve,pre-matching
 IP-CIDR6,2409:8702:4860:10::4d/128,REJECT,no-resolve,pre-matching
 DOMAIN,httpdns.kg.qq.com,REJECT,extended-matching,pre-matching
+URL-REGEX,"^http:\/\/182\.256\.116\.116\/d",REJECT,extended-matching
 DOMAIN,httpdns.bilivideo.com,REJECT,extended-matching,pre-matching
+URL-REGEX,"^http:\/\/47\.101\.175\.206\/resolve",REJECT,extended-matching
+URL-REGEX,"^http:\/\/47\.100\.123\.169\/resolve",REJECT,extended-matching
+URL-REGEX,"^http:\/\/120\.46\.169\.234\/resolve",REJECT,extended-matching
+URL-REGEX,"^http:\/\/121\.36\.72\.124\/resolve",REJECT,extended-matching
+URL-REGEX,"^http:\/\/116\.63\.10\.135\/resolve",REJECT,extended-matching
+URL-REGEX,"^http:\/\/117\.185\.228\.108\/resolve",REJECT,extended-matching
+URL-REGEX,"^http:\/\/117\.144\.238\.29\/resolve",REJECT,extended-matching
+URL-REGEX,"^http:\/\/122\.9\.7\.134\/resolve",REJECT,extended-matching
+URL-REGEX,"^http:\/\/101\.91\.140\.124\/resolve",REJECT,extended-matching
+URL-REGEX,"^http:\/\/101\.91\.140\.224\/resolve",REJECT,extended-matching
+URL-REGEX,"^http:\/\/122\.9\.13\.79\/resolve",REJECT,extended-matching
+URL-REGEX,"^http:\/\/122\.9\.15\.129\/resolve",REJECT,extended-matching
+URL-REGEX,"^http:\/\/112\.65\.200\.117\/resolve",REJECT,extended-matching
+URL-REGEX,"^http:\/\/112\.64\.218\.119\/resolve",REJECT,extended-matching
+URL-REGEX,"^http:\/\/114\.116\.215\.110\/resolve",REJECT,extended-matching
+URL-REGEX,"^http:\/\/116\.63\.10\.31\/resolve",REJECT,extended-matching
 DOMAIN,httpdns.browser.miui.com,REJECT,extended-matching,pre-matching
 DOMAIN,resolver.msg.xiaomi.net,REJECT,extended-matching,pre-matching
 DOMAIN,httpdns.alicdn.com,REJECT,extended-matching,pre-matching
 DOMAIN,httpdns-api.aliyuncs.com,REJECT,extended-matching,pre-matching
 DOMAIN,httpdns-sc.aliyuncs.com,REJECT,extended-matching,pre-matching
 IP-CIDR,203.107.1.0/24,REJECT,no-resolve,pre-matching
-DOMAIN,amdc.alipay.com,REJECT,extended-matching,pre-matching
-DOMAIN,ucdc.upaas.quark.cn,REJECT,extended-matching,pre-matching
 DOMAIN,httpdns.danuoyi.tbcache.com,REJECT,extended-matching,pre-matching
 DOMAIN,httpdns.cctv.com,REJECT,extended-matching,pre-matching
 DOMAIN,httpdns-browser.platform.dbankcloud.cn,REJECT,extended-matching,pre-matching
@@ -362,8 +236,10 @@ DOMAIN,dns.iqiyi.com,REJECT,extended-matching,pre-matching
 DOMAIN,doh.iqiyi.com,REJECT,extended-matching,pre-matching
 DOMAIN,dns.qiyipic.iqiyi.com,REJECT,extended-matching,pre-matching
 DOMAIN,httpdns.n.shifen.com,REJECT,extended-matching,pre-matching
+URL-REGEX,"^http:\/\/180\.76\.76\.112\/v\d\/",REJECT,extended-matching
+URL-REGEX,"^http:\/\/180\.76\.76\.112\/v\d\/resolve",REJECT,extended-matching
+URL-REGEX,"^http:\/\/180\.76\.76\.220\/v\d\/resolve",REJECT,extended-matching
 IP-CIDR,186.76.76.200/32,REJECT,no-resolve,pre-matching
-IP-CIDR,180.76.76.200/32,REJECT,no-resolve,pre-matching
 DOMAIN,httpdns.ocloud.heytapmobi.com,REJECT,extended-matching,pre-matching
 DOMAIN,httpdns.push.heytapmobi.com,REJECT,extended-matching,pre-matching
 DOMAIN,dns.jd.com,REJECT,extended-matching,pre-matching
@@ -372,8 +248,10 @@ IP-CIDR6,2402:db40:5100:1011::5/128,REJECT,no-resolve,pre-matching
 IP-CIDR,103.224.222.208/32,REJECT,no-resolve,pre-matching
 IP-CIDR,119.29.29.98/32,REJECT,no-resolve,pre-matching
 IP-CIDR,119.29.29.99/32,REJECT,no-resolve,pre-matching
+URL-REGEX,"^http:\/\/182\.254\.116\.116\/d",REJECT,extended-matching
 DOMAIN,dotserver.douyucdn.cn,REJECT,extended-matching,pre-matching
 DOMAIN,hdns.ksyun.com,REJECT,extended-matching,pre-matching
+URL-REGEX,"^http:\/\/162\.14\.3\.250\/v4",REJECT,extended-matching
 DOMAIN,httpdns.push.oppomobile.com,REJECT,extended-matching,pre-matching
 DOMAIN,httpdns.ocloud.oppomobile.com,REJECT,extended-matching,pre-matching
 DOMAIN,kuaishou.httpdns.pro,REJECT,extended-matching,pre-matching
@@ -381,9 +259,17 @@ DOMAIN,httpdns.kwd.inkuai.com,REJECT,extended-matching,pre-matching
 DOMAIN,apidns.kwd.inkuai.com,REJECT,extended-matching,pre-matching
 DOMAIN,apidns-js.kwd.inkuai.com,REJECT,extended-matching,pre-matching
 DOMAIN,httpdns.meituan.com,REJECT,extended-matching,pre-matching
-DOMAIN,httpdnsmultiapi.meituan.com,REJECT,extended-matching,pre-matching
 DOMAIN,httpdnsmultiapivip.meituan.com,REJECT,extended-matching,pre-matching
 URL-REGEX,"^http:\/\/103\.37\.155\.60\/fetch",REJECT,extended-matching
+URL-REGEX,"^http:\/\/81\.69\.130\.131\/d",REJECT,extended-matching
+URL-REGEX,"^http:\/\/101\.35\.204\.35\/d",REJECT,extended-matching
+URL-REGEX,"^http:\/\/101\.35\.212\.35\/d",REJECT,extended-matching
+URL-REGEX,"^http:\/\/114\.110\.96\.6\/d",REJECT,extended-matching
+URL-REGEX,"^http:\/\/114\.110\.96\.26\/d",REJECT,extended-matching
+URL-REGEX,"^http:\/\/114\.110\.97\.30\/d",REJECT,extended-matching
+URL-REGEX,"^http:\/\/114\.110\.97\.97\/d",REJECT,extended-matching
+URL-REGEX,"^http:\/\/121\.5\.84\.85\/d",REJECT,extended-matching
+URL-REGEX,"^http:\/\/\[2402:4e00:1411:201:0:9964:ba21:5a41\]\/d",REJECT,extended-matching
 DOMAIN,httpdns.music.163.com,REJECT,extended-matching,pre-matching
 DOMAIN,httpdns.n.netease.com,REJECT,extended-matching,pre-matching
 DOMAIN,httpdns-sdk.n.netease.com,REJECT,extended-matching,pre-matching
@@ -399,69 +285,12 @@ DOMAIN,httpdns.calorietech.com,REJECT,extended-matching,pre-matching
 DOMAIN,dns.weibo.cn,REJECT,extended-matching,pre-matching
 IP-CIDR,39.97.130.51/32,REJECT,no-resolve,pre-matching
 IP-CIDR,39.97.128.148/32,REJECT,no-resolve,pre-matching
-URL-REGEX,"^http:\/\/api\.weibo\.cn\/\d+\/httpdns\/config",REJECT,extended-matching
+URL-REGEX,"^http:\/\/api\.weibo\.cn\/2\/httpdns\/config",REJECT,extended-matching
 URL-REGEX,"^http:\/\/api\.weibo\.cn\/httpdns\/config",REJECT,extended-matching
 URL-REGEX,"^http:\/\/103\.41\.167\.237\/v2\/resolv",REJECT,extended-matching
 IP-CIDR,118.89.204.198/23,REJECT,no-resolve,pre-matching
 IP-CIDR6,2402:4e00:1200:ed00:0:9089:6dac:96b6/128,REJECT,no-resolve,pre-matching
 DOMAIN,hd.xiaojukeji.com,REJECT,extended-matching,pre-matching
-DOMAIN,serveraddr.service.kugou.com,REJECT,extended-matching,pre-matching
-DOMAIN,twns.p2ptun.qq.com,REJECT,extended-matching,pre-matching
-DOMAIN,tp2p.kg.qq.com,REJECT,extended-matching,pre-matching
-IP-CIDR,81.71.61.216/32,REJECT,no-resolve,pre-matching
-URL-REGEX,"^http:\/\/((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?):\d+\/httpdns\/",REJECT,extended-matching
-URL-REGEX,"^http:\/\/\[[0-9a-fA-F:]+\]:\d+\/httpdns\/",REJECT,extended-matching
-
-
-# >>> merged from Beta/Spotify去广告.beta.sgmodule (unique only)
-AND,((DOMAIN-SUFFIX,spotify.com,extended-matching),(PROTOCOL,QUIC)),REJECT
-
-
-# >>> merged from Beta/TikTok多地区解锁.beta.sgmodule (unique only)
-AND,((GEOIP,CN),(DOMAIN,pitaya.bytedance.com,extended-matching)),DIRECT
-
-
-# >>> merged from Beta/拦截HTTPDNS.beta.sgmodule (unique only)
-IP-CIDR,8.134.241.67/32,REJECT,no-resolve,pre-matching
-DOMAIN,httpdns.volcengineapi.com,REJECT,extended-matching,pre-matching
-DOMAIN,dig.bdurl.net,REJECT,extended-matching,pre-matching
-DOMAIN,dig.zjurl.cn,REJECT,extended-matching,pre-matching
-DOMAIN,paydns.wechatpay.cn,REJECT,extended-matching,pre-matching
-URL-REGEX,"^http:\/\/182\.256\.116\.116\/d",REJECT,extended-matching
-URL-REGEX,"^http:\/\/47\.101\.175\.206\/resolve",REJECT,extended-matching
-URL-REGEX,"^http:\/\/47\.100\.123\.169\/resolve",REJECT,extended-matching
-URL-REGEX,"^http:\/\/120\.46\.169\.234\/resolve",REJECT,extended-matching
-URL-REGEX,"^http:\/\/121\.36\.72\.124\/resolve",REJECT,extended-matching
-URL-REGEX,"^http:\/\/116\.63\.10\.135\/resolve",REJECT,extended-matching
-URL-REGEX,"^http:\/\/117\.185\.228\.108\/resolve",REJECT,extended-matching
-URL-REGEX,"^http:\/\/117\.144\.238\.29\/resolve",REJECT,extended-matching
-URL-REGEX,"^http:\/\/122\.9\.7\.134\/resolve",REJECT,extended-matching
-URL-REGEX,"^http:\/\/101\.91\.140\.124\/resolve",REJECT,extended-matching
-URL-REGEX,"^http:\/\/101\.91\.140\.224\/resolve",REJECT,extended-matching
-URL-REGEX,"^http:\/\/122\.9\.13\.79\/resolve",REJECT,extended-matching
-URL-REGEX,"^http:\/\/122\.9\.15\.129\/resolve",REJECT,extended-matching
-URL-REGEX,"^http:\/\/112\.65\.200\.117\/resolve",REJECT,extended-matching
-URL-REGEX,"^http:\/\/112\.64\.218\.119\/resolve",REJECT,extended-matching
-URL-REGEX,"^http:\/\/114\.116\.215\.110\/resolve",REJECT,extended-matching
-URL-REGEX,"^http:\/\/116\.63\.10\.31\/resolve",REJECT,extended-matching
-URL-REGEX,"^http:\/\/180\.76\.76\.112\/v\d\/",REJECT,extended-matching
-URL-REGEX,"^http:\/\/180\.76\.76\.112\/v\d\/resolve",REJECT,extended-matching
-URL-REGEX,"^http:\/\/180\.76\.76\.220\/v\d\/resolve",REJECT,extended-matching
-URL-REGEX,"^http:\/\/182\.254\.116\.116\/d",REJECT,extended-matching
-URL-REGEX,"^http:\/\/162\.14\.3\.250\/v4",REJECT,extended-matching
-URL-REGEX,"^http:\/\/81\.69\.130\.131\/d",REJECT,extended-matching
-URL-REGEX,"^http:\/\/101\.35\.204\.35\/d",REJECT,extended-matching
-URL-REGEX,"^http:\/\/101\.35\.212\.35\/d",REJECT,extended-matching
-URL-REGEX,"^http:\/\/114\.110\.96\.6\/d",REJECT,extended-matching
-URL-REGEX,"^http:\/\/114\.110\.96\.26\/d",REJECT,extended-matching
-URL-REGEX,"^http:\/\/114\.110\.97\.30\/d",REJECT,extended-matching
-URL-REGEX,"^http:\/\/114\.110\.97\.97\/d",REJECT,extended-matching
-URL-REGEX,"^http:\/\/121\.5\.84\.85\/d",REJECT,extended-matching
-URL-REGEX,"^http:\/\/\[2402:4e00:1411:201:0:9964:ba21:5a41\]\/d",REJECT,extended-matching
-URL-REGEX,"^http:\/\/api\.weibo\.cn\/2\/httpdns\/config",REJECT,extended-matching
-
-
-# >>> merged from HTTPDNS拦截器.sgmodule (unique only)
 
 
 # >>> merged from Official/拦截HTTPDNS.official.sgmodule (unique only)
@@ -479,6 +308,7 @@ DOMAIN,resolvers-cn.httpdns.aliyuncs.com,REJECT,extended-matching,pre-matching
 
 # BaiduBCE
 # refer: https://bce-cdn.bj.bcebos.com/p3m/pdf/bce-doc/online/HTTPDNS/HTTPDNS.pdf
+IP-CIDR,180.76.76.200/32,REJECT,no-resolve,pre-matching
 
 # Bilibili
 # KEY_EXT_P2P_HTTPDNS_BILI_IP
@@ -518,6 +348,7 @@ IP-CIDR,112.65.200.117/32,REJECT,no-resolve,pre-matching
 
 # Meituan
 DOMAIN,httpdnsvip.meituan.com,REJECT,extended-matching,pre-matching
+DOMAIN,httpdnsmultiapi.meituan.com,REJECT,extended-matching,pre-matching
 DOMAIN,dnspod.meituan.httpdns.qcloud.com,REJECT,extended-matching,pre-matching
 DOMAIN,dnspod.meituan.httpdns.start.qcloud.com,REJECT,extended-matching,pre-matching
 IP-CIDR,202.90.108.13/32,REJECT,no-resolve
@@ -556,19 +387,38 @@ IP-CIDR,182.254.118.119/32,REJECT,no-resolve,pre-matching
 # refer: https://res.mail.qq.com/zh_CN/wework_ip/latest.html
 
 # YY
+DOMAIN,yuyin-httpdns.gslb.yy.com,REJECT,extended-matching,pre-matching
 
 # Zhihu
 # refer: https://github.com/lwd-temp/anti-ip-attribution/issues/24
 IP-CIDR,118.89.204.198/32,REJECT,no-resolve,pre-matching
 
 
-# >>> merged from Spotify去广告.sgmodule (unique only)
-
-
-# >>> merged from TikTok多地区解锁.sgmodule (unique only)
-
-
 # >>> merged from 拦截HTTPDNS.sgmodule (unique only)
+
+
+[Script]
+
+# >>> merged from Official/Spotify Plus.official.sgmodule (unique only)
+spotify-json = type=http-request,pattern=^https:\/\/(spclient\.wg\.spotify\.com|.*-spclient\.spotify\.com(:443)?)\/(artistview\/v1\/artist|album-entity-view\/v2\/album)\/,requires-body=0,script-path=https://raw.githubusercontent.com/app2smile/rules/master/js/spotify-json.js
+spotify-proto = type=http-response,pattern=^https:\/\/(spclient\.wg\.spotify\.com|.*-spclient\.spotify\.com(:443)?)\/(bootstrap\/v1\/bootstrap|user-customization-service\/v1\/customize)$,requires-body=1,binary-body-mode=1,max-size=0,script-path=https://raw.githubusercontent.com/app2smile/rules/master/js/spotify-proto.js,script-update-interval=0
+
+# >>> merged from Official/流媒体解锁检测 Lite.official.sgmodule (unique only)
+Stream-All-Lite = type=generic,timeout=30,script-path=https://raw.githubusercontent.com/githubdulong/Script/master/Stream-All.js,script-update-interval=0,argument=title=流媒体解锁检测&icon=play.tv.fill&color=#D22F28
+
+# >>> merged from Official/流媒体解锁检测.official.sgmodule (unique only)
+stream-all = type=generic, timeout=15, script-path=https://raw.githubusercontent.com/Rabbit-Spec/Surge/Master/Module/Panel/Stream-All/Moore/Stream-All.js
+
+# >>> merged from Official/🍟 DualSubsSpotify.official.sgmodule (unique only)
+🍿️ DualSubs.Spotify.Tracks.response.json = type=http-response, pattern=^https?:\/\/api\.spotify\.com\/v1\/tracks\?, requires-body=1, engine=webview, script-path=https://github.com/DualSubs/Spotify/releases/download/v1.9.12/response.bundle.js, argument=Types="{{{Types}}}"&Languages[0]="{{{Languages[0]}}}"&Languages[1]="{{{Languages[1]}}}"&Vendor="{{{Vendor}}}"&LrcVendor="{{{LrcVendor}}}"&LogLevel="{{{LogLevel}}}"
+
+🍿️ DualSubs.Spotify.Lyrics.request.json = type=http-request, pattern=^https?:\/\/(.+-spclient|spclient\.wg).spotify\.com(:443)?\/color-lyrics\/v2\/track\/(.+)\?(.*)format=json, requires-body=1, script-path=https://github.com/DualSubs/Spotify/releases/download/v1.9.12/request.bundle.js, argument=Types="{{{Types}}}"&Languages[0]="{{{Languages[0]}}}"&Languages[1]="{{{Languages[1]}}}"&Vendor="{{{Vendor}}}"&LrcVendor="{{{LrcVendor}}}"&LogLevel="{{{LogLevel}}}"
+🍿️ DualSubs.Spotify.Lyrics.request.proto = type=http-request, pattern=^https?:\/\/(.+-spclient|spclient\.wg).spotify\.com(:443)?\/color-lyrics\/v2\/track\/\w+\?(.*), requires-body=1, binary-body-mode=1, script-path=https://github.com/DualSubs/Spotify/releases/download/v1.9.12/request.bundle.js, argument=Types="{{{Types}}}"&Languages[0]="{{{Languages[0]}}}"&Languages[1]="{{{Languages[1]}}}"&Vendor="{{{Vendor}}}"&LrcVendor="{{{LrcVendor}}}"&LogLevel="{{{LogLevel}}}"
+
+🍿️ DualSubs.Spotify.Translate.Lyrics.response.json = type=http-response, pattern=^https?:\/\/(.+-spclient|spclient\.wg).spotify\.com(:443)?\/color-lyrics\/v2\/track\/(.+)\?(.*)format=json(.*)subtype=Translate, requires-body=1, script-path=https://github.com/DualSubs/Universal/releases/latest/download/Translate.response.bundle.js, argument=Types="{{{Types}}}"&Languages[0]="{{{Languages[0]}}}"&Languages[1]="{{{Languages[1]}}}"&Vendor="{{{Vendor}}}"&LrcVendor="{{{LrcVendor}}}"&LogLevel="{{{LogLevel}}}"
+🍿️ DualSubs.Spotify.Translate.Lyrics.response.proto = type=http-response, pattern=^https?:\/\/(.+-spclient|spclient\.wg).spotify\.com(:443)?\/color-lyrics\/v2\/track\/\w+\?(.*)subtype=Translate, requires-body=1, binary-body-mode=1, script-path=https://github.com/DualSubs/Universal/releases/latest/download/Translate.response.bundle.js, argument=Types="{{{Types}}}"&Languages[0]="{{{Languages[0]}}}"&Languages[1]="{{{Languages[1]}}}"&Vendor="{{{Vendor}}}"&LrcVendor="{{{LrcVendor}}}"&LogLevel="{{{LogLevel}}}"
+🍿️ DualSubs.Spotify.External.Lyrics.response.json = type=http-response, pattern=^https?:\/\/(.+-spclient|spclient\.wg).spotify\.com(:443)?\/color-lyrics\/v2\/track\/(.+)\?(.*)format=json(.*)subtype=External, requires-body=1, script-path=https://github.com/DualSubs/Universal/releases/latest/download/External.Lyrics.response.bundle.js, argument=Types="{{{Types}}}"&Languages[0]="{{{Languages[0]}}}"&Languages[1]="{{{Languages[1]}}}"&Vendor="{{{Vendor}}}"&LrcVendor="{{{LrcVendor}}}"&LogLevel="{{{LogLevel}}}"
+🍿️ DualSubs.Spotify.External.Lyrics.response.proto = type=http-response, pattern=^https?:\/\/(.+-spclient|spclient\.wg).spotify\.com(:443)?\/color-lyrics\/v2\/track\/\w+\?(.*)subtype=External, requires-body=1, binary-body-mode=1, script-path=https://github.com/DualSubs/Universal/releases/latest/download/External.Lyrics.response.bundle.js, argument=Types="{{{Types}}}"&Languages[0]="{{{Languages[0]}}}"&Languages[1]="{{{Languages[1]}}}"&Vendor="{{{Vendor}}}"&LrcVendor="{{{LrcVendor}}}"&LogLevel="{{{LogLevel}}}"
 
 
 [General]
