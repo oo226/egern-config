@@ -8,6 +8,8 @@
 
 | 文件 | 中文名 | 说明 |
 |------|--------|------|
+| `Bootstrap-Direct.yaml` | 基础设施直连 | 系统测网 + 公共 DNS（原散装 10 条） |
+| `Privacy-Reject.yaml` | WebRTC 防护 | STUN / webrtc.org 拦截 |
 | `Lan.yaml` | 局域网 | 局域网直连 |
 | `China-Direct.yaml` | 国内直连 | **合并去重** — Direct+微信+B站+苹果中国+国内域名/IP/ASN |
 | `Reject-Merged.yaml` | 去广告 | **合并去重** — Repcz Reject + Sukka 广告域名集 |

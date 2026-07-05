@@ -1,0 +1,7 @@
+# 类型: 分流规则 — WebRTC / STUN 泄露防护
+# 合并原 Egern.yaml 内 stun.* 与 webrtc.org 两条散装规则
+
+domain_wildcard_set:
+  - "stun.*"
+domain_suffix_set:
+  - webrtc.org

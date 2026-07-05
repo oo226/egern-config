@@ -24,6 +24,8 @@ TOOLS = ROOT / "scripts"
 
 CHINA_DIRECT = ROUTING / "China-Direct.yaml"
 REJECT_MERGED = ROUTING / "Reject-Merged.yaml"
+BOOTSTRAP_DIRECT = ROUTING / "Bootstrap-Direct.yaml"
+PRIVACY_REJECT = ROUTING / "Privacy-Reject.yaml"
 LAN = ROUTING / "Lan.yaml"
 ADBLOCK_MODULE = MODULES / "adblock-collection.module"
 UNLOCK_MODULE = MODULES / "unlock-collection.module"
