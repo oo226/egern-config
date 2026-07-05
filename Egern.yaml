@@ -1,6 +1,6 @@
 # oo226 最强懒人配置 — 融合自用 + fmz200 + Matrix + vulnnull + IBL3ND
 # 原则：规则能 DIRECT/REJECT 就不上策略组；面板只留常用手动项
-# 模块/脚本/小组件请在本机 Egern 按需添加，勿全塞进此文件
+# 图标：离歌 lige47；PingMe/油价脚本默认 disabled，抓参后再开签到
 BASE: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main
 
 ipv6: true
@@ -163,6 +163,7 @@ policy_groups:
       interval: 300
       tolerance: 50
       timeout: 5
+      icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/02ProxySoftLogo/quanx.png
 
   - auto_test:
       name: 香港节点
@@ -174,6 +175,7 @@ policy_groups:
       tolerance: 50
       timeout: 5
       hidden: true
+      icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/01Country/Hongkong.png
 
   - auto_test:
       name: 新国节点
@@ -186,6 +188,7 @@ policy_groups:
       timeout: 3
       block_quic: true
       hidden: true
+      icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/01Country/singapore.png
 
   - auto_test:
       name: 台湾节点
@@ -197,6 +200,7 @@ policy_groups:
       tolerance: 5
       timeout: 3
       hidden: true
+      icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/01Country/taiwan.png
 
   - auto_test:
       name: 日本节点
@@ -208,6 +212,7 @@ policy_groups:
       tolerance: 50
       timeout: 5
       hidden: true
+      icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/01Country/Japan.png
 
   - auto_test:
       name: 韩国节点
@@ -219,6 +224,7 @@ policy_groups:
       tolerance: 50
       timeout: 5
       hidden: true
+      icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/01Country/Korea.png
 
   - auto_test:
       name: 美国节点
@@ -230,6 +236,7 @@ policy_groups:
       tolerance: 50
       timeout: 5
       hidden: true
+      icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/01Country/US.png
 
   - auto_test:
       name: ChatGPT
@@ -242,6 +249,7 @@ policy_groups:
       interval: 300
       tolerance: 50
       timeout: 5
+      icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/04ProxySoft/chatgpt4.0.png
 
   - select:
       name: Telegram
@@ -249,6 +257,7 @@ policy_groups:
         - 新国节点
         - 香港节点
         - 兜底
+      icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/04ProxySoft/telegram.png
 
   - select:
       name: GitHub
@@ -256,6 +265,7 @@ policy_groups:
         - 日本节点
         - 美国节点
         - 兜底
+      icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/04ProxySoft/github.png
 
   - select:
       name: Spotify
@@ -264,6 +274,7 @@ policy_groups:
         - 香港节点
         - DIRECT
         - 美国节点
+      icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/04ProxySoft/spotify(green).png
 
   - select:
       name: Emby
@@ -271,8 +282,10 @@ policy_groups:
         - 兜底
         - 节点订阅
       hidden: true
+      icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/04ProxySoft/emby.png
 
 rules:
+  # ── 第 1 段：系统探测 / 局域网 / 防断网 ──
   - domain:
       match: connectivitycheck.gstatic.com
       policy: DIRECT
@@ -293,12 +306,15 @@ rules:
       policy: DIRECT
       update_interval: 86400
 
-  # 微信/苹果/微软/TestFlight/PingMe 等 — 合并为一条，须在 Proxy 规则之前
+  # ── 第 2 段：必须直连（微信/苹果/微软/TestFlight/PingMe）──
+  # 这些域名也在 China-Direct 大合集里，但 Proxy 规则排在大合集前面；
+  # 所以用 Direct-Priority 提前匹配，保证走 DIRECT 而不是代理。
   - rule_set:
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Direct-Priority.yaml
       policy: DIRECT
       update_interval: 86400
 
+  # ── 第 3 段：广告 / WebRTC 拦截 ──
   - rule_set:
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Reject-Merged.yaml
       policy: REJECT
@@ -310,51 +326,7 @@ rules:
       match: webrtc.org
       policy: REJECT
 
-  # 需手动的少数服务
-  - rule_set:
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/AI-Merged.yaml
-      policy: ChatGPT
-      update_interval: 86400
-  - rule_set:
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/Telegram.yaml
-      policy: Telegram
-      update_interval: 86400
-  - rule_set:
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/Github.yaml
-      policy: GitHub
-      update_interval: 86400
-  - rule_set:
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/Spotify.yaml
-      policy: Spotify
-      update_interval: 86400
-  - rule_set:
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/Emby.yaml
-      policy: Emby
-      update_interval: 86400
-
-  # 流媒体 / 社交：直接指定节点，不上面板
-  - rule_set:
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/YouTube.yaml
-      policy: 兜底
-      update_interval: 86400
-  - rule_set:
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/Netflix.yaml
-      policy: 兜底
-      update_interval: 86400
-  - rule_set:
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/Disney.yaml
-      policy: 兜底
-      update_interval: 86400
-  - rule_set:
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/Twitter.yaml
-      policy: 美国节点
-      update_interval: 86400
-  - rule_set:
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/Google.yaml
-      policy: 兜底
-      update_interval: 86400
-
-  # 分应用：奶思习惯，规则写死节点
+  # ── 第 4 段：分应用固定节点（B站→香港、抖音→台湾…）──
   - rule_set:
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/App/Bilibili.yaml
       policy: 香港节点
@@ -388,10 +360,55 @@ rules:
       policy: 香港节点
       update_interval: 86400
 
+  # ── 第 5 段：面板可手动的服务 ──
+  - rule_set:
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/AI-Merged.yaml
+      policy: ChatGPT
+      update_interval: 86400
+  - rule_set:
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/Telegram.yaml
+      policy: Telegram
+      update_interval: 86400
+  - rule_set:
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/Github.yaml
+      policy: GitHub
+      update_interval: 86400
+  - rule_set:
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/Spotify.yaml
+      policy: Spotify
+      update_interval: 86400
+  - rule_set:
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/Emby.yaml
+      policy: Emby
+      update_interval: 86400
+
+  # ── 第 6 段：流媒体 / 社交（自动走兜底或指定地区）──
+  - rule_set:
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/YouTube.yaml
+      policy: 兜底
+      update_interval: 86400
+  - rule_set:
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/Netflix.yaml
+      policy: 兜底
+      update_interval: 86400
+  - rule_set:
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/Disney.yaml
+      policy: 兜底
+      update_interval: 86400
+  - rule_set:
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/Twitter.yaml
+      policy: 美国节点
+      update_interval: 86400
+  - rule_set:
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/Google.yaml
+      policy: 兜底
+      update_interval: 86400
   - rule_set:
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/Game.yaml
       policy: 兜底
       update_interval: 86400
+
+  # ── 第 7 段：被墙 / 通用代理列表 → 兜底 ──
   - rule_set:
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/ProxyGFW.yaml
       policy: 兜底
@@ -401,6 +418,7 @@ rules:
       policy: 兜底
       update_interval: 86400
 
+  # ── 第 8 段：国内大合集 + GeoIP 兜底直连 ──
   - rule_set:
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/China-Direct.yaml
       policy: DIRECT
@@ -436,6 +454,8 @@ mitm:
   quic: true
   tcp: true
   hostnames:
+    includes:
+      - api.pingmeapp.net
     excludes:
       - "*.wechat.com"
       - "*.weixin.qq.com"
@@ -454,6 +474,36 @@ mitm:
       - "*.cdn-apple.com"
       - "*.mzstatic.com"
       - buy.itunes.apple.com
+
+scriptings:
+  # PingMe：先开「PingMe参数」+ MITM，打开 App 抓一次参；再开「PingMe签到」
+  - schedule:
+      name: PingMe签到
+      cron: "30 8,20 * * *"
+      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/PingMe.js
+      update_interval: 86400
+      timeout: 300
+      disabled: true
+  - http_request:
+      name: PingMe参数
+      match: ^https://api\.pingmeapp\.net/app/queryBalanceAndBonus
+      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/PingMe.js
+      update_interval: 86400
+      timeout: 60
+      disabled: true
+  - generic:
+      name: 今日油价
+      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/Oil_Widget.JS
+      update_interval: 86400
+      env:
+        region: zhejiang/ningbo
+        SHOW_TREND: "true"
+
+widgets:
+  - name: 今日油价
+    env:
+      region: zhejiang/ningbo
+      SHOW_TREND: "true"
 
 # 本地合集；其余模块 / 脚本 / 小组件请在手机 Egern 里按需添加
 modules:
