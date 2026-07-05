@@ -28,3 +28,9 @@ modules:
     role: supplement
     local: true
     note: "本仓库 — 银行/税务/NB助手 NBToolAds 补全"
+
+  - name: limbopro-web-ads
+    cache: limbopro-Adblock4limbo.sgmodule
+    role: supplement
+    upstream: https://raw.githubusercontent.com/limbopro/Adblock4limbo/main/Adblock4limbo.sgmodule
+    note: "毒奶 网页去广告 (2026 仍活跃更新)"

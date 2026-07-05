@@ -85,6 +85,9 @@ jobs:
       - name: Merge adblock module
         run: python scripts/merge-adblock-modules.py
 
+      - name: Merge unlock module
+        run: python scripts/merge-adblock-modules.py Modules/unlock-manifest.yaml
+
       - name: Commit integration branch
         run: |
           git config user.name "github-actions[bot]"

@@ -532,20 +532,19 @@ scriptings:
       disabled: true
 
 modules:
-  # 去广告/去开屏/净化 — 单模块（奶思+blackmatrix7+银行税务NB，Actions 每日合并去重）
+  # 去广告/去开屏/净化 — 单模块（奶思+blackmatrix7+网页去广告+银行税务NB，Actions 每日合并去重）
   - name: 去广告净化合集
     url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/adblock-collection.module
     update_interval: 86400
     enabled: true
-  # 基础
-  - name: HTTPDNS拦截
-    url: https://raw.githubusercontent.com/QingRex/LoonKissSurge/refs/heads/main/Surge/Beta/拦截HTTPDNS.beta.sgmodule
+  # 解锁/增强 — 单模块（跳过代理、链接解锁、Spotify、VIP、屏蔽更新等，Actions 每日合并去重）
+  - name: 解锁增强合集
+    url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/unlock-collection.module
+    update_interval: 86400
     enabled: true
+  # 基础
   - name: BoxJs
     url: https://raw.githubusercontent.com/chavyleung/scripts/master/box/rewrite/boxjs.rewrite.surge.sgmodule
-    enabled: true
-  - name: 跳过代理列表
-    url: https://raw.githubusercontent.com/mieqq/mieqq/master/skip-proxy-lists.sgmodule
     enabled: true
 
 default_subscription_group: 节点订阅

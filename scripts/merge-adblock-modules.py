@@ -47,8 +47,8 @@ def fetch(url: str) -> str:
     return text
 
 
-def load_manifest() -> dict:
-    text = MANIFEST.read_text(encoding="utf-8")
+def load_manifest(path: Path) -> dict:
+    text = path.read_text(encoding="utf-8")
     if yaml:
         return yaml.safe_load(text) or {}
     raise SystemExit("PyYAML required: pip install pyyaml")
@@ -195,7 +195,13 @@ def merge_section(
     return output
 
 
-def build_merged_module(primary_text: str, supplements: list[tuple[str, str]]) -> str:
+def build_merged_module(
+    primary_text: str,
+    supplements: list[tuple[str, str]],
+    *,
+    header_lines: list[str] | None = None,
+    primary_desc: str | None = None,
+) -> str:
     primary_header, primary_sections = parse_module(primary_text)
 
     supp_parsed: list[tuple[str, dict[str, list[str]]]] = []
@@ -213,7 +219,7 @@ def build_merged_module(primary_text: str, supplements: list[tuple[str, str]]) -
             if name not in all_section_names:
                 all_section_names.append(name)
 
-    merge_header = [
+    merge_header = header_lines or [
         "# AUTO-MERGED by scripts/merge-adblock-modules.py",
         "# 类型: 模块 — 去广告/去开屏/净化（URL Rewrite + MITM + Script）",
         "# Primary: fmz200 blockAds | Supplements: blackmatrix7 + 本仓库 NB/银行补全",
@@ -221,10 +227,14 @@ def build_merged_module(primary_text: str, supplements: list[tuple[str, str]]) -
         "",
     ]
 
-    # Refresh primary metadata
+    # Refresh primary metadata (optional override via manifest merge.primary_desc)
     refreshed_header: list[str] = []
     for line in primary_header:
-        if line.startswith("#!desc="):
+        if line.startswith("#!desc=") and primary_desc:
+            refreshed_header.append(f"#!desc={primary_desc}")
+        elif line.startswith("#!desc=") and primary_desc is None and header_lines:
+            refreshed_header.append(line)
+        elif line.startswith("#!desc="):
             refreshed_header.append(
                 "#!desc=多源合并去重：奶思 + blackmatrix7 + 银行税务NB（Actions 每日同步）"
             )
@@ -262,10 +272,13 @@ def build_merged_module(primary_text: str, supplements: list[tuple[str, str]]) -
 
 
 def main() -> None:
-    data = load_manifest()
+    manifest_path = Path(sys.argv[1]) if len(sys.argv) > 1 else MANIFEST
+    data = load_manifest(manifest_path)
     merge_cfg = data.get("merge") or {}
     output_name = merge_cfg.get("output", "adblock-collection.module")
     output_path = MODULES / output_name
+    header_lines = merge_cfg.get("header_lines")
+    primary_desc = merge_cfg.get("primary_desc")
 
     UPSTREAM_CACHE.mkdir(parents=True, exist_ok=True)
 
@@ -295,7 +308,9 @@ def main() -> None:
         (n, t) for n, role, t in loaded if (n, role, t) != primary and role != "skip"
     ]
 
-    merged = build_merged_module(primary[2], supplements)
+    merged = build_merged_module(
+        primary[2], supplements, header_lines=header_lines, primary_desc=primary_desc
+    )
     output_path.write_text(merged, encoding="utf-8")
     print(f"wrote {output_path.name} ({len(merged.splitlines())} lines)")
 
