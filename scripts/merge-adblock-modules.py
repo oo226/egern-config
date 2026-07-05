@@ -30,6 +30,22 @@ MERGE_SECTIONS = (
 
 HEADER_KEYS = ("#!name=", "#!desc=", "#!author=", "#!category=", "#!system=")
 
+# Fallback fixes when upstream modules reference deleted scripts
+DEFAULT_SCRIPT_URL_FIXES = {
+    "https://raw.githubusercontent.com/limbopro/Adblock4limbo/main/Adguard/cnys.js": (
+        "https://raw.githubusercontent.com/limbopro/Adblock4limbo/main/Adguard/Adblock4limbo.js"
+    ),
+}
+
+
+def apply_script_url_fixes(text: str, fixes: dict[str, str]) -> str:
+    if not fixes:
+        return text
+    for old, new in fixes.items():
+        if old in text:
+            text = text.replace(old, new)
+    return text
+
 
 def fetch(url: str) -> str:
     req = urllib.request.Request(url, headers={"User-Agent": "egern-config-sync/1.0"})
@@ -279,6 +295,7 @@ def main() -> None:
     output_path = MODULES / output_name
     header_lines = merge_cfg.get("header_lines")
     primary_desc = merge_cfg.get("primary_desc")
+    script_url_fixes = {**DEFAULT_SCRIPT_URL_FIXES, **(merge_cfg.get("script_url_fixes") or {})}
 
     UPSTREAM_CACHE.mkdir(parents=True, exist_ok=True)
 
@@ -299,6 +316,7 @@ def main() -> None:
         else:
             cache_path = UPSTREAM_CACHE / cache_name
             text = fetch(item["upstream"])
+            text = apply_script_url_fixes(text, script_url_fixes)
             cache_path.write_text(text, encoding="utf-8")
             print(f"OK upstream {name} -> {cache_path.name}")
         loaded.append((name, item.get("role", "supplement"), text))
@@ -311,6 +329,7 @@ def main() -> None:
     merged = build_merged_module(
         primary[2], supplements, header_lines=header_lines, primary_desc=primary_desc
     )
+    merged = apply_script_url_fixes(merged, script_url_fixes)
     output_path.write_text(merged, encoding="utf-8")
     print(f"wrote {output_path.name} ({len(merged.splitlines())} lines)")
 
