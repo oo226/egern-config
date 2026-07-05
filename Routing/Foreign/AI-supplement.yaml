@@ -1,0 +1,92 @@
+# Local AI routing supplement — domains missing from Repcz/VPSDance/Sukka.
+# Merged by scripts/merge-ai-rules.py into Routing/Foreign/AI-Merged.yaml
+
+no_resolve: true
+
+domain_set:
+  - chat.openai.com
+  - platform.openai.com
+  - api.openai.com
+  - auth0.openai.com
+  - oaiusercontent.com
+  - files.oaiusercontent.com
+  - api.mistral.ai
+  - console.mistral.ai
+  - api.deepseek.com
+  - chat.deepseek.com
+  - api.cohere.ai
+  - api.together.xyz
+  - api.fireworks.ai
+  - api.replicate.com
+  - api.elevenlabs.io
+  - api.runwayml.com
+  - api.cursor.sh
+  - api2.cursor.sh
+  - api.anthropic.com
+  - claudeusercontent.com
+  - api.githubcopilot.com
+  - copilot.microsoft.com
+  - sydney.bing.com
+  - api.kimi.moonshot.cn
+  - api.minimax.chat
+  - ark.cn-beijing.volces.com
+
+domain_suffix_set:
+  - openai.com
+  - mistral.ai
+  - deepseek.com
+  - cohere.com
+  - together.ai
+  - fireworks.ai
+  - replicate.com
+  - elevenlabs.io
+  - runwayml.com
+  - midjourney.com
+  - cursor.com
+  - cursor.sh
+  - v0.dev
+  - codeium.com
+  - tabnine.com
+  - continue.dev
+  - windsurf.com
+  - githubcopilot.com
+  - copilot.microsoft.com
+  - character.ai
+  - huggingface.co
+  - hf.co
+  - civitai.com
+  - stability.ai
+  - leonardo.ai
+  - pika.art
+  - lumalabs.ai
+  - ideogram.ai
+  - gamma.app
+  - writesonic.com
+  - copy.ai
+  - you.com
+  - pi.ai
+  - flowgpt.com
+  - phind.com
+  - replit.com
+  - bolt.new
+  - lovable.dev
+  - sourcegraph.com
+  - moonshot.cn
+  - kimi.moonshot.cn
+  - minimax.io
+  - tongyi.aliyun.com
+  - qianwen.com
+  - yiyan.baidu.com
+  - sparkdesk.cn
+  - sensetime.com
+  - baichuan-ai.com
+  - zhipuai.cn
+  - doubao.com
+  - volcengine.com
+  - byteintlapi.com
+
+domain_keyword_set:
+  - openai
+
+url_regex_set:
+  - "https://chat\\.openai\\.com/.*"

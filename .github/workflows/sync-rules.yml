@@ -73,11 +73,19 @@ jobs:
           if ! curl -fsSL "https://ruleset.skk.moe/List/domainset/reject.conf" -o "Routing/_upstream/skk/reject.conf"; then
             curl -fsSL "https://ghproxy.net/https://ruleset.skk.moe/List/domainset/reject.conf" -o "Routing/_upstream/skk/reject.conf"
           fi
+          mkdir -p Routing/_upstream/ai
+          if ! curl -fsSL "https://cdn.jsdelivr.net/gh/VPSDance/ai-proxy-rules@main/rules/egern/all.yaml" -o "Routing/_upstream/ai/vpsdance-all.yaml"; then
+            curl -fsSL "https://ghproxy.net/https://cdn.jsdelivr.net/gh/VPSDance/ai-proxy-rules@main/rules/egern/all.yaml" -o "Routing/_upstream/ai/vpsdance-all.yaml"
+          fi
+          if ! curl -fsSL "https://ruleset.skk.moe/List/non_ip/ai.conf" -o "Routing/_upstream/skk/ai.conf"; then
+            curl -fsSL "https://ghproxy.net/https://ruleset.skk.moe/List/non_ip/ai.conf" -o "Routing/_upstream/skk/ai.conf"
+          fi
 
       - name: Merge routing rules
         run: |
           python scripts/merge-china-rules.py
           python scripts/merge-reject-rules.py
+          python scripts/merge-ai-rules.py
 
       - name: Mirror author repositories (full-repo)
         run: |
@@ -104,11 +112,14 @@ jobs:
       - name: Mirror GeoIP databases
         run: python3 scripts/mirror-geoip.py
 
+      - name: Mirror IBL3ND widgets
+        run: python3 scripts/download-ibl3nd-widgets.py
+
       - name: Commit integration branch
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add Routing/ Modules/ Scripts/ Assets/ Egern.yaml scripts/external-script-rewrites.yaml README.md
+          git add Routing/ Modules/ Scripts/ Assets/ Widgets/ Egern.yaml scripts/external-script-rewrites.yaml README.md
           if git diff --staged --quiet; then
             echo "No changes on integration branch."
           else

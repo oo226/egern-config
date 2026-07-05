@@ -303,7 +303,7 @@ rules:
       policy: REJECT
 
   - rule_set:
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/AI.yaml
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/AI-Merged.yaml
       policy: ChatGPT
       update_interval: 86400
 
