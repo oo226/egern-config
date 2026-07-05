@@ -435,11 +435,6 @@ rules:
       update_interval: 86400
 
   - rule_set:
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/China-Direct.yaml
-      policy: 国内直连
-      update_interval: 86400
-
-  - rule_set:
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Reject-Merged.yaml
       policy: REJECT
       update_interval: 86400
@@ -514,6 +509,11 @@ rules:
   - rule_set:
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/Proxy.yaml
       policy: 兜底分流
+      update_interval: 86400
+
+  - rule_set:
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/China-Direct.yaml
+      policy: 国内直连
       update_interval: 86400
 
   - geoip:
