@@ -504,14 +504,14 @@ scriptings:
   - schedule:
       name: PingMe签到
       cron: "30 8,20 * * *"
-      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/PingMe.js
+      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/PingMe-signin.js
       update_interval: 86400
       timeout: 300
       disabled: true
   - http_request:
       name: PingMe参数
       match: ^https://api\.pingmeapp\.net/app/queryBalanceAndBonus
-      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/PingMe.js
+      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/PingMe-capture.js
       update_interval: 86400
       timeout: 60
       debug: true

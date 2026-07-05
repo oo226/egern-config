@@ -2,9 +2,15 @@
 # Full author repos: scripts/author-repos.yaml + download-author-repos.py
 
 scripts:
+  - name: PingMe-capture
+    file: PingMe-capture.js
+    note: "抓参 — 对齐 quanx/cook.js，存 #pingme_capture_v3，Egern 专用"
+  - name: PingMe-signin
+    file: PingMe-signin.js
+    note: "签到 — 镜像 oo226/quanx PingMe.js，读 #pingme_capture_v3"
   - name: PingMe
     file: PingMe.js
-    note: "本地 Egern 适配版（export default + ctx.request）；勿 mirror 上游以免覆盖"
+    note: "ZenmoFeiShi 多账号合一版（QX）；Egern 请用 capture+signin 拆分脚本"
     cron: "30 8,20 * * *"
     timeout: 300
     type: http_request
