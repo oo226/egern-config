@@ -9,6 +9,7 @@ import ssl
 import sys
 import urllib.request
 from pathlib import Path, PurePosixPath
+from urllib.parse import quote
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from paths import GITHUB_RAW_MAIN, MODULES, SIGNIN_SCRIPTS, UPSTREAM_CACHE
@@ -57,7 +58,8 @@ def list_tree(github: str, branch: str) -> list[dict]:
 
 
 def raw_url(github: str, branch: str, path: str) -> str:
-    return f"https://raw.githubusercontent.com/{github}/{branch}/{path}"
+    encoded = "/".join(quote(part, safe="") for part in path.split("/"))
+    return f"https://raw.githubusercontent.com/{github}/{branch}/{encoded}"
 
 
 def match_any(path: str, patterns: list[str]) -> bool:
@@ -74,7 +76,14 @@ def dest_script_path(repo: dict, upstream_path: str) -> Path:
 
 
 def dest_module_path(repo: dict, upstream_path: str) -> Path:
-    return UPSTREAM_CACHE / repo["id"] / PurePosixPath(upstream_path).name
+    rel = upstream_path
+    for prefix in repo.get("strip_module_prefixes") or []:
+        if rel.startswith(prefix):
+            rel = rel[len(prefix) :]
+            break
+    if repo.get("flat_module_names"):
+        rel = PurePosixPath(upstream_path).name
+    return UPSTREAM_CACHE / repo["id"] / PurePosixPath(rel)
 
 
 def mirror_file(url: str, dest: Path) -> str:

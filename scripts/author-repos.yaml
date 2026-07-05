@@ -6,12 +6,22 @@ repos:
     github: fmz200/wool_scripts
     branch: main
     dest_scripts: fmz200
+    flat_module_names: true
     strip_script_prefixes:
       - Scripts/
     include_scripts:
       - "^Scripts/.+\\.js$"
     include_modules:
-      - "^Surge/module/.+\\.module$"
+      - "^Surge/module/.+\\.(module|sgmodule)$"
+
+  - id: qingrex
+    github: QingRex/LoonKissSurge
+    branch: main
+    strip_module_prefixes:
+      - Surge/
+    include_modules:
+      - "^Surge/.+\\.sgmodule$"
+    generate_collections: true
 
   - id: weigiegie
     github: WeiGiegie/666
@@ -33,10 +43,20 @@ repos:
     github: Yu9191/shortcutstudio-rewrite
     branch: baby
     dest_scripts: yu9191
+    flat_module_names: true
     strip_script_prefixes:
       - dist/
     include_scripts:
       - "^dist/(request|response)\\.js$"
+    include_modules:
+      - "^modules/.+\\.sgmodule$"
+
+  - id: yu9191-rewrite
+    github: Yu9191/Rewrite
+    branch: main
+    dest_scripts: yu9191/rewrite
+    include_scripts:
+      - "^.+\\.js$"
 
   - id: tencent-sports
     github: Hey-sayiwanna/TencentSports-Surge

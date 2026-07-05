@@ -84,6 +84,22 @@ EXTRA_SCRIPT_REWRITES = (
         "https://raw.githubusercontent.com/ZenmoFeiShi/Qx/main/",
         f"{GITHUB_RAW_MAIN}/Scripts/zenmofeishi/",
     ),
+    (
+        "https://raw.githubusercontent.com/QingRex/LoonKissSurge/refs/heads/main/Surge/",
+        f"{GITHUB_RAW_MAIN}/Modules/_upstream/qingrex/",
+    ),
+    (
+        "https://raw.githubusercontent.com/QingRex/LoonKissSurge/main/Surge/",
+        f"{GITHUB_RAW_MAIN}/Modules/_upstream/qingrex/",
+    ),
+    (
+        "https://raw.githubusercontent.com/Yu9191/Rewrite/refs/heads/main/",
+        f"{GITHUB_RAW_MAIN}/Scripts/yu9191/rewrite/",
+    ),
+    (
+        "https://raw.githubusercontent.com/Yu9191/Rewrite/main/",
+        f"{GITHUB_RAW_MAIN}/Scripts/yu9191/rewrite/",
+    ),
 )
 
 MIRRORED_SCRIPT_REWRITES = CHXM1023_SCRIPT_REWRITES + EXTRA_SCRIPT_REWRITES

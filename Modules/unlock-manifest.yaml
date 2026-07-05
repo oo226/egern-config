@@ -19,35 +19,23 @@ modules:
     upstream: https://raw.githubusercontent.com/mieqq/mieqq/master/skip-proxy-lists.sgmodule
     note: "mieqq — 跳过国内 App 代理检测"
 
-  - name: qingrex-httpdns
-    cache: qingrex-httpdns.sgmodule
+  - name: qingrex-unlock
+    cache: qingrex-unlock.sgmodule
     role: supplement
-    upstream: https://raw.githubusercontent.com/QingRex/LoonKissSurge/refs/heads/main/Surge/Beta/%E6%8B%A6%E6%88%AAHTTPDNS.beta.sgmodule
-    note: "QingRex/可莉系 — 拦截 HTTPDNS"
+    local: true
+    note: "QingRex/可莉 — 全仓库解锁/HTTPDNS/Spotify 等（自动生成）"
 
-  - name: fmz200-blockHTTPDNS
-    cache: fmz200-blockHTTPDNS.module
+  - name: fmz200-unlock-extra
+    cache: fmz200-unlock-extra.sgmodule
     role: supplement
-    upstream: https://raw.githubusercontent.com/fmz200/wool_scripts/main/Surge/module/blockHTTPDNS.module
-    note: "奶思 — 拦截 HTTPDNS 补充"
-
-  - name: qingrex-wechat-unlock
-    cache: qingrex-wechat-unlock.sgmodule
-    role: supplement
-    upstream: https://raw.githubusercontent.com/QingRex/LoonKissSurge/refs/heads/main/Surge/Beta/%E5%BE%AE%E4%BF%A1%E5%A4%96%E9%83%A8%E9%93%BE%E6%8E%A5%E8%A7%A3%E9%94%81.beta.sgmodule
-    note: "QingRex/可莉系 + zZPiglet — 微信外部链接解锁"
+    local: true
+    note: "奶思 — HTTPDNS 等解锁补充（自动生成）"
 
   - name: miranquil-qq-unlock
     cache: miranquil-qq.sgmodule
     role: supplement
     upstream: https://raw.githubusercontent.com/miranquil/surge-scripts/main/tencent/c-pc-page/module.sgmodule
     note: "miranquil — QQ 非官方/禁止访问页解锁"
-
-  - name: qingrex-spotify
-    cache: qingrex-spotify-beta.sgmodule
-    role: supplement
-    upstream: https://raw.githubusercontent.com/QingRex/LoonKissSurge/refs/heads/main/Surge/Beta/Spotify%E5%8E%BB%E5%B9%BF%E5%91%8A.beta.sgmodule
-    note: "QingRex/可莉系 + 001ProMax — Spotify 去广告（脚本走 hub.kelee.one，Build 2026/4/19）"
 
   - name: iewha-unlock
     cache: iewha-unlock.sgmodule

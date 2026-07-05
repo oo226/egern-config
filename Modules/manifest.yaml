@@ -44,47 +44,23 @@ modules:
     upstream: https://raw.githubusercontent.com/chxm1023/Advertising/Shadowrocket/AppAd.sgmodule
     note: "ddm1023/chxm1023 — App/小程序开屏去广告补充"
 
-  - name: qingrex-wechat-miniprogram
-    cache: qingrex-wechat-miniprogram.sgmodule
+  - name: qingrex-adblock
+    cache: qingrex-adblock.sgmodule
     role: supplement
-    upstream: https://raw.githubusercontent.com/QingRex/LoonKissSurge/refs/heads/main/Surge/Beta/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%8E%BB%E5%B9%BF%E5%91%8A.beta.sgmodule
-    note: "QingRex/可莉系 — 微信小程序去广告（替代 script.hub 链接）"
+    local: true
+    note: "QingRex/可莉 — 全仓库去广告模块合并去重（自动生成）"
 
-  - name: qingrex-alicloud-ad
-    cache: qingrex-alicloud-ad.sgmodule
+  - name: fmz200-extra
+    cache: fmz200-extra.sgmodule
     role: supplement
-    upstream: https://raw.githubusercontent.com/QingRex/LoonKissSurge/refs/heads/main/Surge/Beta/%E9%98%BF%E9%87%8C%E4%BA%91%E7%9B%98%E5%8E%BB%E5%B9%BF%E5%91%8A.beta.sgmodule
-    note: "QingRex/可莉系 — 阿里云盘去广告"
+    local: true
+    note: "奶思 — 全仓库单 App 模块补充（blockAds 之外的合并去重）"
 
   - name: chxm1023-ad-supplement
     cache: chxm1023-ad-supplement.sgmodule
     role: supplement
     local: true
     note: "ddm1023 — YouTube/555电影/小红书等 Advertising 仓库补充"
-
-  - name: fmz200-XWebAds
-    cache: fmz200-XWebAds.module
-    role: supplement
-    upstream: https://raw.githubusercontent.com/fmz200/wool_scripts/refs/heads/main/Surge/module/XWebAds.module
-    note: "奶思 — X(Twitter) 网页版去广告"
-
-  - name: fmz200-weibo
-    cache: fmz200-weibo.module
-    role: supplement
-    upstream: https://raw.githubusercontent.com/fmz200/wool_scripts/main/Surge/module/weibo.module
-    note: "奶思 — 微博去广告"
-
-  - name: fmz200-RedditTranslation
-    cache: fmz200-RedditTranslation.module
-    role: supplement
-    upstream: https://raw.githubusercontent.com/fmz200/wool_scripts/main/Surge/module/RedditTranslation.module
-    note: "奶思 — Reddit 翻译"
-
-  - name: fmz200-cookies
-    cache: fmz200-cookies.module
-    role: supplement
-    upstream: https://raw.githubusercontent.com/fmz200/wool_scripts/main/Surge/module/cookies.module
-    note: "奶思 — Cookie 相关工具"
 
   - name: tencent-sports-adblock
     cache: TencentSportsAdBlock.sgmodule
