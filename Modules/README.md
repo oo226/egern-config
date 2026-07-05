@@ -18,7 +18,7 @@
 | 邮储银行 | 补 MITM 子域 + 升级弹窗拦截（开屏见奶思合集） |
 | 动卡空间 | 开屏接口重写 |
 | 电子税务局 | `bypass` / `skip-proxy` 直连，降低 VPN 检测 |
-| NB全能助手 | 拦截 nbtool8 广告接口 + 穿山甲/广点通等 SDK |
+| NB全能助手 | 拦截 nbtool8 广告接口 + 8ziben/快手/广点通等 SDK 域名 + 穿山甲 SDK |
 
 改完后 `git push` 即可，不经过 Actions 同步。
 

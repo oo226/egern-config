@@ -10,6 +10,18 @@ skip-proxy = %APPEND% *.chinatax.gov.cn, chinatax.gov.cn, etax.chinatax.gov.cn, 
 [MITM]
 hostname = %APPEND% static.psbc.com, mcc.psbc.com, static.mobile-bank.psbc.com, d.psbc.com, mobile-bank.psbc.com, nbtool8.com, api.nbtool8.com, www.nbtool8.com, app.nbtool8.com
 
+[Rule]
+# NB助手 — 广告 SDK 域名
+DOMAIN,api-dsp.8ziben.com,REJECT,pre-matching
+DOMAIN,sdk.zhangyuyidong.cn,REJECT,pre-matching
+DOMAIN,open.e.kuaishou.cn,REJECT,pre-matching
+DOMAIN,v66-ad.ndcjl.com,REJECT,pre-matching
+DOMAIN,api-events.8ziben.com,REJECT,pre-matching
+DOMAIN-SUFFIX,yximgs.com,REJECT,pre-matching
+DOMAIN-SUFFIX,adkwai.com,REJECT,pre-matching
+# NB助手 — 去开屏
+DOMAIN-SUFFIX,static.fliduo.cn,REJECT,pre-matching
+
 [URL Rewrite]
 # 邮储银行（与奶思合集互补，确保子域 MITM 生效）
 ^https?:\/\/static\.mobile-bank\.psbc\.com\/mgs - reject
