@@ -10,7 +10,7 @@ import urllib.request
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from paths import CHXM1023_SCRIPT_REWRITES, MANIFEST, MODULES, UPSTREAM_CACHE
+from paths import MANIFEST, MIRRORED_SCRIPT_REWRITES, MODULES, UPSTREAM_CACHE
 
 try:
     import yaml
@@ -47,8 +47,8 @@ def apply_script_url_fixes(text: str, fixes: dict[str, str]) -> str:
     return text
 
 
-def mirror_chxm1023_script_paths(text: str) -> str:
-    for old, new in CHXM1023_SCRIPT_REWRITES:
+def mirror_script_paths(text: str) -> str:
+    for old, new in MIRRORED_SCRIPT_REWRITES:
         if old in text:
             text = text.replace(old, new)
     return text
@@ -324,7 +324,7 @@ def main() -> None:
             cache_path = UPSTREAM_CACHE / cache_name
             text = fetch(item["upstream"])
             text = apply_script_url_fixes(text, script_url_fixes)
-            text = mirror_chxm1023_script_paths(text)
+            text = mirror_script_paths(text)
             cache_path.write_text(text, encoding="utf-8")
             print(f"OK upstream {name} -> {cache_path.name}")
         loaded.append((name, item.get("role", "supplement"), text))
@@ -338,7 +338,7 @@ def main() -> None:
         primary[2], supplements, header_lines=header_lines, primary_desc=primary_desc
     )
     merged = apply_script_url_fixes(merged, script_url_fixes)
-    merged = mirror_chxm1023_script_paths(merged)
+    merged = mirror_script_paths(merged)
     output_path.write_text(merged, encoding="utf-8")
     print(f"wrote {output_path.name} ({len(merged.splitlines())} lines)")
 

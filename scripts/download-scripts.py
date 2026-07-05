@@ -60,6 +60,7 @@ def main() -> None:
             data_bytes = fetch(item["upstream"])
             if not is_valid_script(data_bytes):
                 raise ValueError("upstream returned empty or HTML instead of script")
+            out.parent.mkdir(parents=True, exist_ok=True)
             out.write_bytes(data_bytes)
             print(f"OK script {item['file']} ({len(data_bytes)} bytes)")
             ok += 1

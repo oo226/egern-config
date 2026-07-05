@@ -61,3 +61,15 @@ modules:
     role: supplement
     local: true
     note: "ddm1023 — YouTube/555电影/小红书等 Advertising 仓库补充"
+
+  - name: fmz200-XWebAds
+    cache: fmz200-XWebAds.module
+    role: supplement
+    upstream: https://raw.githubusercontent.com/fmz200/wool_scripts/refs/heads/main/Surge/module/XWebAds.module
+    note: "奶思 — X(Twitter) 网页版去广告"
+
+  - name: tencent-sports-adblock
+    cache: TencentSportsAdBlock.sgmodule
+    role: supplement
+    upstream: https://raw.githubusercontent.com/Hey-sayiwanna/TencentSports-Surge/main/TencentSportsAdBlock.sgmodule
+    note: "腾讯体育去广告"

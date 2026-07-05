@@ -93,3 +93,38 @@ scripts:
     cron: "0 8 * * *"
     timeout: 60
     note: "喜马拉雅"
+
+  - name: 麻溜快跑
+    file: mlkp.js
+    upstream: https://raw.githubusercontent.com/WeiGiegie/666/main/mlkp.js
+    note: "微信小程序麻溜快跑 WeiGiegie/666"
+
+  - name: 无痕改字
+    file: wuhen.js
+    upstream: https://raw.githubusercontent.com/liul0ng/quanx/refs/heads/main/wuhen.js
+    note: "无痕改字 liul0ng"
+
+  - name: ShortcutStudio-request
+    file: yu9191/request.js
+    upstream: https://raw.githubusercontent.com/Yu9191/shortcutstudio-rewrite/refs/heads/baby/dist/request.js
+    note: "Yu9191 ShortcutStudio 请求脚本"
+
+  - name: ShortcutStudio-response
+    file: yu9191/response.js
+    upstream: https://raw.githubusercontent.com/Yu9191/shortcutstudio-rewrite/refs/heads/baby/dist/response.js
+    note: "Yu9191 ShortcutStudio 响应脚本"
+
+  - name: X网页去广告
+    file: fmz200/X_ads.js
+    upstream: https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/X/X_ads.js
+    note: "奶思 X(Twitter) 网页去广告脚本"
+
+  - name: 腾讯体育去广告
+    file: tencent-sports/TencentSportsAdBlock.js
+    upstream: https://raw.githubusercontent.com/Hey-sayiwanna/TencentSports-Surge/main/TencentSportsAdBlock.js
+    note: "腾讯体育去广告主脚本"
+
+  - name: 腾讯体育悬浮
+    file: tencent-sports/TencentSportsFloatBlock.js
+    upstream: https://raw.githubusercontent.com/Hey-sayiwanna/TencentSports-Surge/main/TencentSportsFloatBlock.js
+    note: "腾讯体育悬浮/弹层去广告"

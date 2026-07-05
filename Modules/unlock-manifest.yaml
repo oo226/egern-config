@@ -9,7 +9,7 @@ merge:
     - "# 类型: 模块 — 解锁/增强（链接解锁、Spotify、跳过代理检测、屏蔽更新等）"
     - "# Do not edit manually. Updated by GitHub Actions after upstream sync."
     - "#"
-    - "# Sources: mieqq, QingRex/LoonKissSurge(可莉系), chxm1023/ddm1023, miranquil, iEwha, ddgksf2013, local patches"
+    - "# Sources: mieqq, QingRex(可莉), chxm1023/ddm1023, Yu9191, miranquil, iEwha, ddgksf2013, WeiGiegie, liul0ng, local patches"
     - ""
 
 modules:
@@ -60,6 +60,18 @@ modules:
     role: supplement
     upstream: https://raw.githubusercontent.com/chxm1023/Script_X/main/Collections.sgmodule
     note: "ddm1023/chxm1023 — App解锁合集（彩云/扫描王/Emby/百度网盘等，2026-04 更新）"
+
+  - name: yu9191-shortcutstudio
+    cache: yu9191-ShortcutStudio.sgmodule
+    role: supplement
+    upstream: https://raw.githubusercontent.com/Yu9191/shortcutstudio-rewrite/refs/heads/baby/modules/ShortcutStudio.sgmodule
+    note: "Yu9191 — ShortcutStudio 增强/额度"
+
+  - name: patches-minigame-unlock
+    cache: patches-minigame-unlock.sgmodule
+    role: supplement
+    local: true
+    note: "WeiGiegie 麻溜快跑 + liul0ng 无痕改字"
 
   - name: patches-alicloud
     cache: patches-alicloud.sgmodule

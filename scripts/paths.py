@@ -23,6 +23,8 @@ UNLOCK_MODULE = MODULES / "unlock-collection.module"
 CUSTOM_APPS = MODULES / "custom-apps.sgmodule"
 PATCHES_UNLOCK = MODULES / "patches-unlock.sgmodule"
 PATCHES_ALICLOUD = MODULES / "patches-alicloud.sgmodule"
+PATCHES_MINIGAME = MODULES / "patches-minigame-unlock.sgmodule"
+YU9191_SCRIPTS = SIGNIN_SCRIPTS / "yu9191"
 MANIFEST = MODULES / "manifest.yaml"
 UNLOCK_MANIFEST = MODULES / "unlock-manifest.yaml"
 UPSTREAM_CACHE = MODULES / "_upstream"
@@ -40,3 +42,29 @@ CHXM1023_SCRIPT_REWRITES = (
         f"{GITHUB_RAW_MAIN}/Scripts/chxm1023/advertising/",
     ),
 )
+
+# Other mirrored third-party script URLs rewritten during module merge.
+EXTRA_SCRIPT_REWRITES = (
+    (
+        "https://raw.githubusercontent.com/Yu9191/shortcutstudio-rewrite/refs/heads/baby/dist/",
+        f"{GITHUB_RAW_MAIN}/Scripts/yu9191/",
+    ),
+    (
+        "https://raw.githubusercontent.com/WeiGiegie/666/main/mlkp.js",
+        f"{GITHUB_RAW_MAIN}/Scripts/mlkp.js",
+    ),
+    (
+        "https://raw.githubusercontent.com/liul0ng/quanx/refs/heads/main/wuhen.js",
+        f"{GITHUB_RAW_MAIN}/Scripts/wuhen.js",
+    ),
+    (
+        "https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/X/X_ads.js",
+        f"{GITHUB_RAW_MAIN}/Scripts/fmz200/X_ads.js",
+    ),
+    (
+        "https://raw.githubusercontent.com/Hey-sayiwanna/TencentSports-Surge/main/",
+        f"{GITHUB_RAW_MAIN}/Scripts/tencent-sports/",
+    ),
+)
+
+MIRRORED_SCRIPT_REWRITES = CHXM1023_SCRIPT_REWRITES + EXTRA_SCRIPT_REWRITES
