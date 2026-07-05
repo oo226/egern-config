@@ -57,7 +57,7 @@ scripts:
     upstream: https://raw.githubusercontent.com/Yuheng0101/X/main/Tasks/QDReader/qdreader.js
     cron: "11 2 * * *"
     timeout: 60
-    note: "起点读书 Yuheng0101/X, 需配置 Cookie"
+    note: "起点读书 Yuheng0101/X；上游发布为压缩混淆单行版（~550KB），属正常"
 
   - name: 电信营业厅
     file: dianxin10000.js

@@ -33,6 +33,15 @@ def fetch(url: str) -> bytes:
             return resp.read()
 
 
+def is_valid_script(data: bytes) -> bool:
+    if len(data) < 32:
+        return False
+    text = data[:512].lstrip()
+    if text.startswith(b"<!DOCTYPE") or text.startswith(b"<html"):
+        return False
+    return True
+
+
 def load_manifest() -> dict:
     text = MANIFEST.read_text(encoding="utf-8")
     if yaml:
@@ -44,18 +53,25 @@ def main() -> None:
     data = load_manifest()
     SIGNIN_SCRIPTS.mkdir(parents=True, exist_ok=True)
 
-    ok = fail = 0
+    ok = fail = skip = 0
     for item in data.get("scripts", []):
         out = SIGNIN_SCRIPTS / item["file"]
         try:
-            out.write_bytes(fetch(item["upstream"]))
-            print(f"OK script {item['file']}")
+            data_bytes = fetch(item["upstream"])
+            if not is_valid_script(data_bytes):
+                raise ValueError("upstream returned empty or HTML instead of script")
+            out.write_bytes(data_bytes)
+            print(f"OK script {item['file']} ({len(data_bytes)} bytes)")
             ok += 1
         except Exception as exc:
-            print(f"FAIL script {item['file']}: {exc}")
-            fail += 1
+            if out.exists():
+                print(f"KEEP script {item['file']}: {exc} (retaining local copy)")
+                skip += 1
+            else:
+                print(f"FAIL script {item['file']}: {exc}")
+                fail += 1
 
-    print(f"summary ok={ok} fail={fail}")
+    print(f"summary ok={ok} kept={skip} fail={fail}")
 
 
 if __name__ == "__main__":
