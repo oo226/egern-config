@@ -1,22 +1,22 @@
 #!/usr/bin/env python3
-"""Download and merge multiple ad-block modules into adblock-collection.module."""
+"""Download and merge ad-block modules into 模块/去广告净化合集.module."""
 
 from __future__ import annotations
 
 import re
 import ssl
+import sys
 import urllib.request
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from paths import MANIFEST, MODULES, UPSTREAM_CACHE
 
 try:
     import yaml
 except ImportError:
     yaml = None  # type: ignore
 
-ROOT = Path(__file__).resolve().parent.parent
-MANIFEST = ROOT / "Modules" / "manifest.yaml"
-MODULES_DIR = ROOT / "Modules"
-CACHE_DIR = MODULES_DIR / "_upstream"
 CTX = ssl.create_default_context()
 MIRROR = "https://ghproxy.net/"
 
@@ -215,7 +215,8 @@ def build_merged_module(primary_text: str, supplements: list[tuple[str, str]]) -
 
     merge_header = [
         "# AUTO-MERGED by scripts/merge-adblock-modules.py",
-        "# Primary: fmz200/wool_scripts blockAds | Supplements: blackmatrix7/ios_rule_script",
+        "# 类型: 模块 — 去广告/去开屏/净化（URL Rewrite + MITM + Script）",
+        "# Primary: fmz200 blockAds | Supplements: blackmatrix7 + 本仓库 NB/银行补全",
         "# Do not edit manually. Updated by GitHub Actions after upstream sync.",
         "",
     ]
@@ -225,7 +226,7 @@ def build_merged_module(primary_text: str, supplements: list[tuple[str, str]]) -
     for line in primary_header:
         if line.startswith("#!desc="):
             refreshed_header.append(
-                "#!desc=多源合并去重：奶思 blockAds + blackmatrix7 去广告/开屏脚本（Actions 每日同步）"
+                "#!desc=多源合并去重：奶思 + blackmatrix7 + 银行税务NB（Actions 每日同步）"
             )
         else:
             refreshed_header.append(line)
@@ -263,27 +264,36 @@ def build_merged_module(primary_text: str, supplements: list[tuple[str, str]]) -
 def main() -> None:
     data = load_manifest()
     merge_cfg = data.get("merge") or {}
-    output_name = merge_cfg.get("output", "adblock-collection.module")
-    output_path = MODULES_DIR / output_name
+    output_name = merge_cfg.get("output", "去广告净化合集.module")
+    output_path = MODULES / output_name
 
-    CACHE_DIR.mkdir(parents=True, exist_ok=True)
+    UPSTREAM_CACHE.mkdir(parents=True, exist_ok=True)
 
     modules = data.get("modules", [])
     if not modules:
         raise SystemExit("no modules in manifest")
 
-    downloaded: list[tuple[str, str, str]] = []
+    loaded: list[tuple[str, str, str]] = []
     for item in modules:
         name = item["name"]
         cache_name = item.get("cache") or item.get("file") or f"{name}.module"
-        cache_path = CACHE_DIR / cache_name
-        text = fetch(item["upstream"])
-        cache_path.write_text(text, encoding="utf-8")
-        downloaded.append((name, item.get("role", "supplement"), text))
-        print(f"OK upstream {name} -> {cache_path.name}")
+        if item.get("local"):
+            local_path = MODULES / cache_name
+            if not local_path.exists():
+                raise SystemExit(f"missing local module {local_path}")
+            text = local_path.read_text(encoding="utf-8")
+            print(f"OK local {name} <- {local_path.name}")
+        else:
+            cache_path = UPSTREAM_CACHE / cache_name
+            text = fetch(item["upstream"])
+            cache_path.write_text(text, encoding="utf-8")
+            print(f"OK upstream {name} -> {cache_path.name}")
+        loaded.append((name, item.get("role", "supplement"), text))
 
-    primary = next((x for x in downloaded if x[1] == "primary"), downloaded[0])
-    supplements = [(n, t) for n, role, t in downloaded if (n, role, t) != primary and role != "skip"]
+    primary = next((x for x in loaded if x[1] == "primary"), loaded[0])
+    supplements = [
+        (n, t) for n, role, t in loaded if (n, role, t) != primary and role != "skip"
+    ]
 
     merged = build_merged_module(primary[2], supplements)
     output_path.write_text(merged, encoding="utf-8")

@@ -1,7 +1,7 @@
 name: Sync Egern Rules
 
-# Runs on GitHub cloud — no local PC needed.
-# Schedule: every day 11:00 Beijing time (03:00 UTC).
+# Integration branch: cursor/nb-rules-merge-ac83 (daily sync + merge)
+# Clean snapshot copied to main after each run.
 
 on:
   schedule:
@@ -15,13 +15,22 @@ concurrency:
   group: sync-rules
   cancel-in-progress: true
 
+env:
+  INTEGRATION_BRANCH: cursor/nb-rules-merge-ac83
+
 jobs:
   sync:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
+          ref: ${{ env.INTEGRATION_BRANCH }}
           token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Ensure integration branch
+        run: |
+          git fetch origin main ${{ env.INTEGRATION_BRANCH }} || true
+          git checkout ${{ env.INTEGRATION_BRANCH }} || git checkout -b ${{ env.INTEGRATION_BRANCH }}
 
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -31,13 +40,14 @@ jobs:
       - name: Install dependencies
         run: pip install pyyaml
 
-      - name: Download Repcz rules
+      - name: Download upstream rules
         run: |
           set -euo pipefail
-          mkdir -p Rules/skk
-          RULES=(
-            Reject ChinaDomain Lan Direct
-            WeChat Bilibili AppleCN ChinaIP ChinaASN
+          mkdir -p 分流/_upstream/skk 分流/国外
+          MERGE=(
+            Reject Direct WeChat Bilibili AppleCN ChinaDomain ChinaIP ChinaASN
+          )
+          FOREIGN=(
             AI Telegram Twitter TikTok
             YouTube Netflix Disney Spotify Emby
             Google Github Microsoft AppleServers
@@ -45,36 +55,53 @@ jobs:
           )
           BASE="https://raw.githubusercontent.com/Repcz/Tool/X/Egern/Rules"
           MIRROR="https://ghproxy.net/https://raw.githubusercontent.com/Repcz/Tool/X/Egern/Rules"
-          for name in "${RULES[@]}"; do
-            if ! curl -fsSL "${BASE}/${name}.yaml" -o "Rules/${name}.yaml"; then
-              curl -fsSL "${MIRROR}/${name}.yaml" -o "Rules/${name}.yaml"
+          for name in "${MERGE[@]}"; do
+            if ! curl -fsSL "${BASE}/${name}.yaml" -o "分流/_upstream/${name}.yaml"; then
+              curl -fsSL "${MIRROR}/${name}.yaml" -o "分流/_upstream/${name}.yaml"
             fi
-            echo "synced ${name}.yaml"
+            echo "synced upstream ${name}.yaml"
           done
-          if ! curl -fsSL "https://ruleset.skk.moe/List/domainset/reject.conf" -o "Rules/skk/reject.conf"; then
-            curl -fsSL "https://ghproxy.net/https://ruleset.skk.moe/List/domainset/reject.conf" -o "Rules/skk/reject.conf"
+          if ! curl -fsSL "${BASE}/Lan.yaml" -o "分流/局域网.yaml"; then
+            curl -fsSL "${MIRROR}/Lan.yaml" -o "分流/局域网.yaml"
+          fi
+          for name in "${FOREIGN[@]}"; do
+            if ! curl -fsSL "${BASE}/${name}.yaml" -o "分流/国外/${name}.yaml"; then
+              curl -fsSL "${MIRROR}/${name}.yaml" -o "分流/国外/${name}.yaml"
+            fi
+            echo "synced foreign ${name}.yaml"
+          done
+          if ! curl -fsSL "https://ruleset.skk.moe/List/domainset/reject.conf" -o "分流/_upstream/skk/reject.conf"; then
+            curl -fsSL "https://ghproxy.net/https://ruleset.skk.moe/List/domainset/reject.conf" -o "分流/_upstream/skk/reject.conf"
           fi
 
-      - name: Merge China direct rules
-        run: python scripts/merge-china-rules.py
-
-      - name: Merge ad reject rules
-        run: python scripts/merge-reject-rules.py
+      - name: Merge routing rules
+        run: |
+          python scripts/merge-china-rules.py
+          python scripts/merge-reject-rules.py
 
       - name: Sync sign-in scripts
         run: python scripts/download-scripts.py
 
-      - name: Merge adblock modules
+      - name: Merge adblock module
         run: python scripts/merge-adblock-modules.py
 
-      - name: Commit and push
+      - name: Commit integration branch
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add Rules/ scripts/*.js Modules/adblock-collection.module Modules/manifest.yaml
+          git add 分流/ 模块/ 脚本/ Egern.yaml README.md
           if git diff --staged --quiet; then
-            echo "No changes."
-            exit 0
+            echo "No changes on integration branch."
+          else
+            git commit -m "chore: sync upstream, merge routing/adblock rules"
+            git push origin ${{ env.INTEGRATION_BRANCH }}
           fi
-          git commit -m "chore: sync rules, merge China-Direct, update scripts"
-          git push
+
+      - name: Copy consolidated snapshot to main
+        run: |
+          git fetch origin main
+          git checkout main
+          git merge ${{ env.INTEGRATION_BRANCH }} -m "chore: sync consolidated rules from integration branch" || \
+            git reset --hard ${{ env.INTEGRATION_BRANCH }}
+          git push origin main
+          echo "main updated from ${{ env.INTEGRATION_BRANCH }}"

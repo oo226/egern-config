@@ -1,6 +1,6 @@
 #!name=银行·税务·NB助手补全
-#!desc=邮储/动卡 MITM 补全；税务局与邮储 bypass；NB全能助手去开屏与广告
-#!author=oo226/egern-config
+#!desc=邮储/动卡 MITM；税务局 bypass；NB助手 NBToolAds 去广告去开屏（合并进主合集前的本地源）
+#!author=oo226/egern-config + LYZIOS/NBToolAds
 #!category=自定义补全
 #!system=ios
 
@@ -11,16 +11,28 @@ skip-proxy = %APPEND% *.chinatax.gov.cn, chinatax.gov.cn, etax.chinatax.gov.cn, 
 hostname = %APPEND% static.psbc.com, mcc.psbc.com, static.mobile-bank.psbc.com, d.psbc.com, mobile-bank.psbc.com, nbtool8.com, api.nbtool8.com, www.nbtool8.com, app.nbtool8.com
 
 [Rule]
-# NB助手 — 广告 SDK 域名
-DOMAIN,api-dsp.8ziben.com,REJECT,pre-matching
-DOMAIN,sdk.zhangyuyidong.cn,REJECT,pre-matching
-DOMAIN,open.e.kuaishou.cn,REJECT,pre-matching
-DOMAIN,v66-ad.ndcjl.com,REJECT,pre-matching
-DOMAIN,api-events.8ziben.com,REJECT,pre-matching
-DOMAIN-SUFFIX,yximgs.com,REJECT,pre-matching
+# NB助手 / NBToolAds (LYZIOS) — 广告 SDK 域名
+DOMAIN-SUFFIX,adintl.cn,REJECT,pre-matching
 DOMAIN-SUFFIX,adkwai.com,REJECT,pre-matching
-# NB助手 — 去开屏
+DOMAIN-SUFFIX,adukwai.com,REJECT,pre-matching
+DOMAIN-SUFFIX,api-cfg.8ziben.com,REJECT,pre-matching
+DOMAIN-SUFFIX,api-dsp.8ziben.com,REJECT,pre-matching
+DOMAIN-SUFFIX,api-events.8ziben.com,REJECT,pre-matching
+DOMAIN-SUFFIX,bugly.qq.com,REJECT,pre-matching
+DOMAIN-SUFFIX,cdnhwc8.com,REJECT,pre-matching
+DOMAIN-SUFFIX,ctyunxs.cn,REJECT,pre-matching
+DOMAIN-SUFFIX,e.kuaishou.com,REJECT,pre-matching
+DOMAIN-SUFFIX,eos.huhehaote-8.cmecloud.cn,REJECT,pre-matching
+DOMAIN-SUFFIX,gepush.com,REJECT,pre-matching
+DOMAIN-SUFFIX,gifshow.com,REJECT,pre-matching
+DOMAIN-SUFFIX,static-dsp.8ziben.com,REJECT,pre-matching
 DOMAIN-SUFFIX,static.fliduo.cn,REJECT,pre-matching
+DOMAIN-SUFFIX,yximgs.com,REJECT,pre-matching
+DOMAIN-SUFFIX,yxings.com,REJECT,pre-matching
+DOMAIN-SUFFIX,zhangyuyidong.cn,REJECT,pre-matching
+DOMAIN,open.e.kuaishou.cn,REJECT,pre-matching
+DOMAIN,sdk.zhangyuyidong.cn,REJECT,pre-matching
+DOMAIN,v66-ad.ndcjl.com,REJECT,pre-matching
 
 [URL Rewrite]
 # 邮储银行（与奶思合集互补，确保子域 MITM 生效）

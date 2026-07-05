@@ -1,25 +1,30 @@
-# Mirrored ad-block sources, merged & deduplicated by Actions into adblock-collection.module.
-# Replaces many QingRex / kelee per-app modules.
+# Mirrored ad-block sources, merged & deduplicated by Actions.
+# Output: 模块/去广告净化合集.module (single module for 去广告+去开屏)
 
 merge:
-  output: adblock-collection.module
+  output: 去广告净化合集.module
 
 modules:
   - name: fmz200-blockAds
-    file: adblock-collection.module
     cache: fmz200-blockAds.module
     role: primary
     upstream: https://raw.githubusercontent.com/fmz200/wool_scripts/main/Surge/module/blockAds.module
-    note: "奶思 blockAds — App/小程序净化 + 去开屏 (~730 款，含原可莉/QingRex 常见项)"
+    note: "奶思 blockAds — App/小程序净化 + 去开屏 (~730 款)"
 
   - name: blackmatrix7-Advertising
     cache: blackmatrix7-Advertising.sgmodule
     role: supplement
     upstream: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rewrite/Surge/Advertising/Advertising.sgmodule
-    note: "blackmatrix7 去广告 URL Rewrite + MITM (~740 reject)"
+    note: "blackmatrix7 去广告 URL Rewrite + MITM"
 
   - name: blackmatrix7-AdvertisingScript
     cache: blackmatrix7-AdvertisingScript.sgmodule
     role: supplement
     upstream: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rewrite/Surge/AdvertisingScript/AdvertisingScript.sgmodule
-    note: "blackmatrix7 开屏脚本 + 补充 Rule/Script"
+    note: "blackmatrix7 开屏 Script + 补充 Rule"
+
+  - name: custom-apps
+    cache: custom-apps.sgmodule
+    role: supplement
+    local: true
+    note: "本仓库 — 银行/税务/NB助手 NBToolAds 补全"

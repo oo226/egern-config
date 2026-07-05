@@ -1,22 +1,23 @@
 #!/usr/bin/env python3
-"""Download sign-in scripts listed in scripts/manifest.yaml."""
+"""Download sign-in scripts into 脚本/."""
 
 from __future__ import annotations
 
 import ssl
+import sys
 import urllib.request
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from paths import SIGNIN_SCRIPTS
 
 try:
     import yaml
 except ImportError:
     yaml = None  # type: ignore
 
-ROOT = Path(__file__).resolve().parent.parent
 MANIFEST = Path(__file__).resolve().parent / "manifest.yaml"
-SCRIPTS_DIR = ROOT / "scripts"
 CTX = ssl.create_default_context()
-
 MIRROR = "https://ghproxy.net/"
 
 
@@ -41,11 +42,11 @@ def load_manifest() -> dict:
 
 def main() -> None:
     data = load_manifest()
-    SCRIPTS_DIR.mkdir(parents=True, exist_ok=True)
+    SIGNIN_SCRIPTS.mkdir(parents=True, exist_ok=True)
 
     ok = fail = 0
     for item in data.get("scripts", []):
-        out = SCRIPTS_DIR / item["file"]
+        out = SIGNIN_SCRIPTS / item["file"]
         try:
             out.write_bytes(fetch(item["upstream"]))
             print(f"OK script {item['file']}")

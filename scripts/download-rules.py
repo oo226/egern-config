@@ -1,24 +1,33 @@
+#!/usr/bin/env python3
+"""Download upstream routing rules into 分流/_upstream/ and 分流/国外/."""
+
+from __future__ import annotations
+
 import os
 import ssl
+import sys
 import urllib.request
 
-RULES = [
-    "Reject", "ChinaDomain", "Lan", "Direct",
-    "WeChat", "Bilibili", "AppleCN", "ChinaIP", "ChinaASN",
-    "AI", "Telegram", "Twitter", "TikTok",
+sys.path.insert(0, os.path.dirname(__file__))
+from paths import ROUTING_FOREIGN, ROUTING_UPSTREAM
+
+MERGE_SOURCES = [
+    "Reject", "Direct", "WeChat", "Bilibili", "AppleCN", "ChinaIP", "ChinaASN", "ChinaDomain",
+]
+FOREIGN_RULES = [
+    "Lan", "AI", "Telegram", "Twitter", "TikTok",
     "YouTube", "Netflix", "Disney", "Spotify", "Emby",
     "Google", "Github", "Microsoft", "AppleServers",
     "Game", "ProxyGFW", "Proxy",
 ]
-BASE_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), "Rules")
-SKK_DIR = os.path.join(BASE_DIR, "skk")
+SKK_DIR = ROUTING_UPSTREAM / "skk"
 os.makedirs(SKK_DIR, exist_ok=True)
+os.makedirs(ROUTING_FOREIGN, exist_ok=True)
 CTX = ssl.create_default_context()
 
 MIRRORS = [
     "https://raw.githubusercontent.com/Repcz/Tool/X/Egern/Rules/{name}.yaml",
     "https://ghproxy.net/https://raw.githubusercontent.com/Repcz/Tool/X/Egern/Rules/{name}.yaml",
-    "https://mirror.ghproxy.com/https://raw.githubusercontent.com/Repcz/Tool/X/Egern/Rules/{name}.yaml",
 ]
 
 
@@ -31,24 +40,45 @@ def fetch(url: str, out: str) -> int:
     return len(data)
 
 
+def download_yaml(name: str, out_dir: str) -> bool:
+    out = os.path.join(out_dir, f"{name}.yaml")
+    for tpl in MIRRORS:
+        url = tpl.format(name=name)
+        try:
+            size = fetch(url, out)
+            print(f"OK {name}.yaml ({size} bytes)")
+            return True
+        except Exception:
+            continue
+    print(f"FAIL {name}.yaml")
+    return False
+
+
 def main() -> None:
     ok = fail = 0
-    for name in RULES:
-        out = os.path.join(BASE_DIR, f"{name}.yaml")
-        done = False
-        for tpl in MIRRORS:
-            url = tpl.format(name=name)
-            try:
-                size = fetch(url, out)
-                host = url.split("/")[2]
-                print(f"OK {name}.yaml ({size} bytes) via {host}")
-                ok += 1
-                done = True
-                break
-            except Exception:
-                continue
-        if not done:
-            print(f"FAIL {name}.yaml")
+    for name in MERGE_SOURCES:
+        if download_yaml(name, str(ROUTING_UPSTREAM)):
+            ok += 1
+        else:
+            fail += 1
+
+    # Lan goes to 分流/局域网.yaml directly as upstream mirror
+    if download_yaml("Lan", str(ROUTING_UPSTREAM.parent)):
+        # move Lan to correct name 局域网.yaml - workflow handles this
+        lan_src = ROUTING_UPSTREAM.parent / "Lan.yaml"
+        lan_dst = ROUTING_UPSTREAM.parent / "局域网.yaml"
+        if lan_src.exists():
+            lan_src.replace(lan_dst)
+        ok += 1
+    else:
+        fail += 1
+
+    for name in FOREIGN_RULES:
+        if name == "Lan":
+            continue
+        if download_yaml(name, str(ROUTING_FOREIGN)):
+            ok += 1
+        else:
             fail += 1
 
     skk_urls = [
@@ -57,7 +87,7 @@ def main() -> None:
     ]
     for url in skk_urls:
         try:
-            size = fetch(url, os.path.join(SKK_DIR, "reject.conf"))
+            size = fetch(url, str(SKK_DIR / "reject.conf"))
             print(f"OK skk/reject.conf ({size} bytes)")
             break
         except Exception as exc:

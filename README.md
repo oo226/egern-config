@@ -1,122 +1,68 @@
 # egern-config
 
-个人 Egern（松鼠）配置文件与规则镜像仓库。
+个人 Egern（松鼠）配置 — **分流 / 模块 / 脚本** 分目录，整合结果每日同步到 `main`。
 
 [![Sync Rules](https://github.com/oo226/egern-config/actions/workflows/sync-rules.yml/badge.svg)](https://github.com/oo226/egern-config/actions/workflows/sync-rules.yml)
 
-## 自动同步（不依赖本地电脑）
-
-**GitHub Actions 会在云端自动运行**，你的电脑关机也没关系：
-
-| 触发方式 | 说明 |
-|---------|------|
-| **定时** | 每天 **11:00（北京时间）** 自动从上游拉取最新规则 |
-| **手动** | Actions 页 → Sync Egern Rules → Run workflow |
-
-规则自 [Repcz/Tool](https://github.com/Repcz/Tool/tree/X/Egern/Rules) 与 [skk.moe](https://ruleset.skk.moe) 同步到 `Rules/`，`Egern.yaml` 只引用本仓库链接。
-
-## Egern 导入地址
+## 导入地址
 
 ```
 https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Egern.yaml
 ```
 
-## 目录结构
+## 目录一览（看 main 分支即可）
 
 ```
 egern-config/
-├── Egern.yaml              # 主配置
-├── Rules/
-│   ├── China-Direct.yaml   # 国内规则合并去重 (Actions 自动生成，含来源标注)
-│   ├── Reject-Merged.yaml  # 去广告域名合并去重 (Repcz + Sukka)
-│   ├── Reject.yaml         # 上游镜像 (Repcz)
-│   └── skk/reject.conf     # 上游镜像 (Sukka)
-├── Modules/                # 去广告合集 adblock-collection.module (多源合并)
-├── scripts/                # 签到脚本镜像 + 同步工具
-└── .github/workflows/      # 每日自动同步
+├── Egern.yaml                 # 主配置
+├── 分流/                      # 分流规则（走哪个节点 / REJECT）
+│   ├── 国内直连.yaml          # 国内合并去重（一个文件）
+│   ├── 去广告.yaml            # 广告域名合并去重（一个文件）
+│   ├── 局域网.yaml
+│   └── 国外/                  # 国外按服务分开（节点不同）
+│       ├── AI.yaml
+│       ├── Telegram.yaml
+│       └── …
+├── 模块/                      # 去广告/去开屏/重写（一个合集）
+│   └── 去广告净化合集.module
+└── 脚本/                      # 签到脚本镜像
+    └── *.js
 ```
 
-## 国内规则合并
+## 三类文件怎么区分？
 
-`Rules/China-Direct.yaml` 由 Actions 自动合并以下上游文件并去重，**文件头标注各来源与去重统计**：
+| 目录 | 是什么 | 举例 |
+|------|--------|------|
+| **分流/** | 域名/IP 走直连、代理还是 REJECT | `国内直连.yaml`、`去广告.yaml`、`国外/AI.yaml` |
+| **模块/** | App 内 URL 重写、MITM、开屏脚本 | `去广告净化合集.module`（含 NB/银行补全） |
+| **脚本/** | Egern 定时/抓参签到 JS | `PingMe.js`、`mixc_signin.js` |
 
-Direct + WeChat + Bilibili + AppleCN + ChinaDomain + ChinaIP + ChinaASN
+## 分支说明
 
-`Egern.yaml` 只引用 `Lan.yaml` + `China-Direct.yaml`，上游更新后合并文件会自动刷新。
-
-## 去广告域名合并
-
-`Rules/Reject-Merged.yaml` 由 Actions 自动合并：
-
-- Repcz `Reject.yaml`（域名 / 后缀 / 关键词 / IP / UA）
-- Sukka `skk/reject.conf`（大规模广告域名集）
-
-合并去重后 **只引用一个文件**，避免 Egern 重复匹配两份 REJECT 列表。
-
-## 去广告 / 去开屏合集
-
-原先十几个 QingRex / 可莉 / 微信模块，已合并为 **一个多源合集**（每日自动去重）：
-
-| 文件 | 上游 | 说明 |
-|------|------|------|
-| `Modules/adblock-collection.module` | fmz200 奶思 blockAds + blackmatrix7 Advertising/Script | App/小程序净化 + 去开屏 |
-
-Egern 另保留 **HTTPDNS 拦截**、**BoxJs**（签到）、**跳过代理列表** 三个基础模块，以及 **银行税务NB补全**（邮储/税务局/NB助手）。
-
-分流：`Rules/China-Direct.yaml`；去广告域名：`Rules/Reject-Merged.yaml`。
-
-## 签到脚本
-
-`scripts/` 目录镜像签到脚本（ZenmoFeiShi / chavyleung / Yuheng0101 等，见 `scripts/manifest.yaml`）。Actions 每日自动同步。
-
-## 快速开始
-
-### 1. 创建 GitHub 仓库
-
-在 GitHub 新建仓库，例如 `egern-config`（Public）。
-
-### 2. 推送本目录
-
-```powershell
-cd C:\Users\Administrator\egern-config
-.\push-github.ps1
-```
-
-### 3. 规则自动更新
-
-**无需操作。** GitHub Actions 每天自动同步；也可在 Actions 页手动 Run workflow。
-
-### 4. 修改 Egern.yaml
-
-全局替换：
-
-- 配置已使用 GitHub 用户名 `oo226`（若 fork 请自行替换）
-- `https://你的订阅链接` → 机场订阅
-
-### 5. 导入 Egern
-
-iPhone 打开 raw 链接或 AirDrop 本地 `Egern.yaml`：
-
-```
-https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Egern.yaml
-```
-
-## 规则来源
-
-| 文件 | 上游 |
+| 分支 | 用途 |
 |------|------|
-| `Rules/*.yaml` | [Repcz/Tool/X/Egern/Rules](https://github.com/Repcz/Tool/tree/X/Egern/Rules) |
-| `Rules/skk/reject.conf` | [ruleset.skk.moe](https://ruleset.skk.moe/List/domainset/reject.conf) |
+| `main` | **你用这个** — 每日整合后的干净快照 |
+| `cursor/nb-rules-merge-ac83` | Actions 集成支 — 拉上游、合并、去重，完成后复制到 `main` |
+
+## 自动同步
+
+每天 **11:00 北京时间**，Actions 会：
+
+1. 在 `cursor/nb-rules-merge-ac83` 拉取 Repcz / Sukka / fmz200 / blackmatrix7 等上游
+2. 合并去重 → `分流/国内直连.yaml`、`分流/去广告.yaml`、`模块/去广告净化合集.module`
+3. 将结果同步到 **`main`**
 
 ## 本地手动同步
 
-```powershell
-.\scripts\sync-rules.ps1
-git add Rules/
-git commit -m "chore: manual rule sync"
-git push
+```bash
+python3 scripts/download-rules.py
+python3 scripts/merge-china-rules.py
+python3 scripts/merge-reject-rules.py
+python3 scripts/merge-adblock-modules.py
 ```
 
-## 许可说明
+`scripts/` 是开发/CI 工具目录，日常使用只看 `分流/`、`模块/`、`脚本/`。
 
-规则文件版权归各上游项目所有，本仓库仅作个人镜像与引用。
+## 许可
+
+规则与模块版权归各上游项目所有，本仓库仅作个人镜像与引用。
