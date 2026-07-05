@@ -57,7 +57,13 @@ def main() -> None:
     for item in data.get("scripts", []):
         out = SIGNIN_SCRIPTS / item["file"]
         try:
-            data_bytes = fetch(item["upstream"])
+            if item.get("mirror_from"):
+                src = SIGNIN_SCRIPTS / item["mirror_from"]
+                if not src.exists():
+                    raise FileNotFoundError(f"mirror missing {src}")
+                data_bytes = src.read_bytes()
+            else:
+                data_bytes = fetch(item["upstream"])
             if not is_valid_script(data_bytes):
                 raise ValueError("upstream returned empty or HTML instead of script")
             out.parent.mkdir(parents=True, exist_ok=True)

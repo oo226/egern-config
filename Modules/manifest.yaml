@@ -68,6 +68,24 @@ modules:
     upstream: https://raw.githubusercontent.com/fmz200/wool_scripts/refs/heads/main/Surge/module/XWebAds.module
     note: "奶思 — X(Twitter) 网页版去广告"
 
+  - name: fmz200-weibo
+    cache: fmz200-weibo.module
+    role: supplement
+    upstream: https://raw.githubusercontent.com/fmz200/wool_scripts/main/Surge/module/weibo.module
+    note: "奶思 — 微博去广告"
+
+  - name: fmz200-RedditTranslation
+    cache: fmz200-RedditTranslation.module
+    role: supplement
+    upstream: https://raw.githubusercontent.com/fmz200/wool_scripts/main/Surge/module/RedditTranslation.module
+    note: "奶思 — Reddit 翻译"
+
+  - name: fmz200-cookies
+    cache: fmz200-cookies.module
+    role: supplement
+    upstream: https://raw.githubusercontent.com/fmz200/wool_scripts/main/Surge/module/cookies.module
+    note: "奶思 — Cookie 相关工具"
+
   - name: tencent-sports-adblock
     cache: TencentSportsAdBlock.sgmodule
     role: supplement

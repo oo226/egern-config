@@ -1,0 +1,53 @@
+# Full-repo mirrors: scripts land under Scripts/<id>/, modules under Modules/_upstream/<id>/
+# merge-adblock-modules.py rewrites raw.githubusercontent.com/<github>/... to local Scripts/<id>/...
+
+repos:
+  - id: fmz200
+    github: fmz200/wool_scripts
+    branch: main
+    dest_scripts: fmz200
+    strip_script_prefixes:
+      - Scripts/
+    include_scripts:
+      - "^Scripts/.+\\.js$"
+    include_modules:
+      - "^Surge/module/.+\\.module$"
+
+  - id: weigiegie
+    github: WeiGiegie/666
+    branch: main
+    dest_scripts: weigiegie
+    include_scripts:
+      - "^[^/]+\\.js$"
+    generate_unlock: true
+
+  - id: liul0ng
+    github: liul0ng/quanx
+    branch: main
+    dest_scripts: liul0ng
+    include_scripts:
+      - "^[^/]+\\.js$"
+    generate_unlock: true
+
+  - id: yu9191
+    github: Yu9191/shortcutstudio-rewrite
+    branch: baby
+    dest_scripts: yu9191
+    strip_script_prefixes:
+      - dist/
+    include_scripts:
+      - "^dist/(request|response)\\.js$"
+
+  - id: tencent-sports
+    github: Hey-sayiwanna/TencentSports-Surge
+    branch: main
+    dest_scripts: tencent-sports
+    include_scripts:
+      - "^[^/]+\\.js$"
+
+  - id: zenmofeishi
+    github: ZenmoFeiShi/Qx
+    branch: main
+    dest_scripts: zenmofeishi
+    include_scripts:
+      - "^[^/]+\\.js$"

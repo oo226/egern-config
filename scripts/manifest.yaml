@@ -1,56 +1,51 @@
-# PingMe mirrors ZenmoFeiShi/Qx (NOT oo226/quanx, NOT fmz200)
+# Sign-in scripts: ZenmoFeiShi/chavyleung/Yuheng mirrored or synced by Actions.
+# Full author repos: scripts/author-repos.yaml + download-author-repos.py
 
 scripts:
   - name: PingMe
     file: PingMe.js
-    upstream: https://raw.githubusercontent.com/ZenmoFeiShi/Qx/refs/heads/main/PingMe.js
+    mirror_from: zenmofeishi/PingMe.js
     cron: "30 8,20 * * *"
     timeout: 300
     type: http_request
     match: ^https://api\.pingmeapp\.net/app/queryBalanceAndBonus
-    note: "PingMe 抓参+签到合一, 上游 ZenmoFeiShi/Qx (2026-06-28)"
+    note: "ZenmoFeiShi/Qx 全仓库镜像"
 
   - name: iios
     file: iios_checkin.js
-    upstream: https://raw.githubusercontent.com/ZenmoFeiShi/Qx/refs/heads/main/iios_checkin.js
+    mirror_from: zenmofeishi/iios_checkin.js
     cron: "30 8,20 * * *"
     timeout: 60
-    note: "iios 签到"
 
   - name: 一点万象
     file: mixc_signin.js
-    upstream: https://raw.githubusercontent.com/ZenmoFeiShi/Qx/refs/heads/main/mixc_signin.js
+    mirror_from: zenmofeishi/mixc_signin.js
     cron: "1 0 * * *"
     timeout: 60
-    note: "万象星 App 抓参+签到"
 
   - name: NodeSeek
     file: Nodeseek_NsCheckin.js
-    upstream: https://raw.githubusercontent.com/ZenmoFeiShi/Qx/refs/heads/main/Nodeseek_NsCheckin.js
+    mirror_from: zenmofeishi/Nodeseek_NsCheckin.js
     cron: "1 0 * * *"
     timeout: 60
-    note: "NodeSeek 论坛抓参+签到"
 
   - name: 来充
     file: LaiChong.js
-    upstream: https://raw.githubusercontent.com/ZenmoFeiShi/Qx/refs/heads/main/LaiChong.js
+    mirror_from: zenmofeishi/LaiChong.js
     cron: "50 9 * * *"
     timeout: 60
-    note: "来充小程序抓参+签到"
 
   - name: Soul唱歌
     file: SoulSing.js
-    upstream: https://raw.githubusercontent.com/ZenmoFeiShi/Qx/refs/heads/main/SoulSing.js
+    mirror_from: zenmofeishi/SoulSing.js
     cron: "50 9 * * *"
     timeout: 60
-    note: "Soul 唱歌签到"
 
   - name: 岁乐游
     file: SLY.js
-    upstream: https://raw.githubusercontent.com/ZenmoFeiShi/Qx/refs/heads/main/SLY.js
+    mirror_from: zenmofeishi/SLY.js
     cron: "1 0 * * *"
     timeout: 60
-    note: "岁乐游公众号抓参+签到"
 
   - name: 起点读书
     file: qdreader.js
@@ -64,67 +59,27 @@ scripts:
     upstream: https://raw.githubusercontent.com/chavyleung/scripts/master/10000/10000.js
     cron: "0 8 * * *"
     timeout: 60
-    note: "电信营业厅"
 
   - name: 贴吧
     file: tieba.js
     upstream: https://raw.githubusercontent.com/chavyleung/scripts/master/tieba/tieba.js
     cron: "0 8 * * *"
     timeout: 60
-    note: "百度贴吧"
 
   - name: 顺丰
     file: sfexpress.js
     upstream: https://raw.githubusercontent.com/chavyleung/scripts/master/sfexpress/sfexpress.js
     cron: "0 9 * * *"
     timeout: 60
-    note: "顺丰速运"
 
   - name: 网易严选
     file: yanxuan.js
     upstream: https://raw.githubusercontent.com/chavyleung/scripts/master/yanxuan/yanxuan.js
     cron: "0 8 * * *"
     timeout: 60
-    note: "网易严选"
 
   - name: 喜马拉雅
     file: ximalaya.js
     upstream: https://raw.githubusercontent.com/chavyleung/scripts/master/ximalaya/ximalaya.js
     cron: "0 8 * * *"
     timeout: 60
-    note: "喜马拉雅"
-
-  - name: 麻溜快跑
-    file: mlkp.js
-    upstream: https://raw.githubusercontent.com/WeiGiegie/666/main/mlkp.js
-    note: "微信小程序麻溜快跑 WeiGiegie/666"
-
-  - name: 无痕改字
-    file: wuhen.js
-    upstream: https://raw.githubusercontent.com/liul0ng/quanx/refs/heads/main/wuhen.js
-    note: "无痕改字 liul0ng"
-
-  - name: ShortcutStudio-request
-    file: yu9191/request.js
-    upstream: https://raw.githubusercontent.com/Yu9191/shortcutstudio-rewrite/refs/heads/baby/dist/request.js
-    note: "Yu9191 ShortcutStudio 请求脚本"
-
-  - name: ShortcutStudio-response
-    file: yu9191/response.js
-    upstream: https://raw.githubusercontent.com/Yu9191/shortcutstudio-rewrite/refs/heads/baby/dist/response.js
-    note: "Yu9191 ShortcutStudio 响应脚本"
-
-  - name: X网页去广告
-    file: fmz200/X_ads.js
-    upstream: https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/X/X_ads.js
-    note: "奶思 X(Twitter) 网页去广告脚本"
-
-  - name: 腾讯体育去广告
-    file: tencent-sports/TencentSportsAdBlock.js
-    upstream: https://raw.githubusercontent.com/Hey-sayiwanna/TencentSports-Surge/main/TencentSportsAdBlock.js
-    note: "腾讯体育去广告主脚本"
-
-  - name: 腾讯体育悬浮
-    file: tencent-sports/TencentSportsFloatBlock.js
-    upstream: https://raw.githubusercontent.com/Hey-sayiwanna/TencentSports-Surge/main/TencentSportsFloatBlock.js
-    note: "腾讯体育悬浮/弹层去广告"

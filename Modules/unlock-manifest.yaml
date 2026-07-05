@@ -25,6 +25,12 @@ modules:
     upstream: https://raw.githubusercontent.com/QingRex/LoonKissSurge/refs/heads/main/Surge/Beta/%E6%8B%A6%E6%88%AAHTTPDNS.beta.sgmodule
     note: "QingRex/可莉系 — 拦截 HTTPDNS"
 
+  - name: fmz200-blockHTTPDNS
+    cache: fmz200-blockHTTPDNS.module
+    role: supplement
+    upstream: https://raw.githubusercontent.com/fmz200/wool_scripts/main/Surge/module/blockHTTPDNS.module
+    note: "奶思 — 拦截 HTTPDNS 补充"
+
   - name: qingrex-wechat-unlock
     cache: qingrex-wechat-unlock.sgmodule
     role: supplement
@@ -65,13 +71,19 @@ modules:
     cache: yu9191-ShortcutStudio.sgmodule
     role: supplement
     upstream: https://raw.githubusercontent.com/Yu9191/shortcutstudio-rewrite/refs/heads/baby/modules/ShortcutStudio.sgmodule
-    note: "Yu9191 — ShortcutStudio 增强/额度"
+    note: "Yu9191 — ShortcutStudio 全仓库（脚本已镜像）"
 
-  - name: patches-minigame-unlock
-    cache: patches-minigame-unlock.sgmodule
+  - name: weigiegie-unlock
+    cache: weigiegie-unlock.sgmodule
     role: supplement
     local: true
-    note: "WeiGiegie 麻溜快跑 + liul0ng 无痕改字"
+    note: "WeiGiegie/666 全仓库解锁（自动生成）"
+
+  - name: liul0ng-unlock
+    cache: liul0ng-unlock.sgmodule
+    role: supplement
+    local: true
+    note: "liul0ng/quanx 全仓库解锁（自动生成）"
 
   - name: patches-alicloud
     cache: patches-alicloud.sgmodule
