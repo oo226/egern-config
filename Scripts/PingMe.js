@@ -230,7 +230,54 @@ function getEmail(acc) {
 
 function notify(title, body) {
   console.log(`【${scriptName} 通知】${title}\n${body}`);
-  $notify(scriptName, title, body);
+  if (typeof $notify === 'function') {
+    $notify(scriptName, title, body);
+  } else if (typeof $notification !== 'undefined' && $notification.post) {
+    $notification.post(scriptName, title, body);
+  }
+}
+
+function headersToMap(headers) {
+  const out = {};
+  if (!headers) return out;
+  if (typeof headers === 'object' && !headers.get && !headers.forEach) {
+    Object.keys(headers).forEach(k => { out[k] = headers[k]; });
+    return out;
+  }
+  if (typeof headers.forEach === 'function') {
+    headers.forEach((v, k) => { out[k] = v; });
+    return out;
+  }
+  if (typeof headers.entries === 'function') {
+    for (const [k, v] of headers.entries()) out[k] = v;
+    return out;
+  }
+  if (typeof headers.get === 'function') {
+    ['User-Agent', 'user-agent', 'Accept', 'Host', 'Connection'].forEach(name => {
+      const v = headers.get(name);
+      if (v) out[name] = v;
+    });
+  }
+  return out;
+}
+
+function httpFetch(options) {
+  if (typeof $task !== 'undefined') return $task.fetch(options);
+  if (typeof $httpClient !== 'undefined') {
+    return new Promise((resolve, reject) => {
+      const cb = (err, resp, body) => {
+        if (err) return reject({ error: String(err) });
+        resolve({
+          statusCode: (resp && (resp.status || resp.statusCode)) || 0,
+          body: body || ''
+        });
+      };
+      const method = String(options.method || 'GET').toUpperCase();
+      if (method === 'POST') $httpClient.post(options, cb);
+      else $httpClient.get(options, cb);
+    });
+  }
+  return Promise.reject({ error: 'HTTP client unavailable' });
 }
 
 function isDeregistered(msg) {
@@ -266,7 +313,7 @@ function runAccount(acc, index, total) {
 
   function fetchApi(path, useFakeId) {
     const overrideId = useFakeId ? fakeDeviceId : null;
-    const attempt = (n) => $task.fetch({ url: buildUrl(path, acc.capture, overrideId), method: 'GET', headers })
+    const attempt = (n) => httpFetch({ url: buildUrl(path, acc.capture, overrideId), method: 'GET', headers })
       .catch(err => {
         const m = err && (err.error || String(err));
         if (n < 3 && /SSL|SSLSessionState|timeout|timed out|reset|connection|network|stream closed|closed|EOF/i.test(m || '')) {
@@ -351,9 +398,13 @@ function runAccount(acc, index, total) {
   });
 }
 
-if (typeof $request !== 'undefined' && $request) {
-  const paramsRaw = parseRawQuery($request.url);
-  const headersMap = normalizeHeaderNameMap($request.headers || {});
+function isCaptureUrl(url) {
+  return typeof url === 'string' && /queryBalanceAndBonus/i.test(url);
+}
+
+function captureFromRequest(req) {
+  const paramsRaw = parseRawQuery(req.url);
+  const headersMap = normalizeHeaderNameMap(headersToMap(req.headers));
   let baseUA = '';
   Object.keys(headersMap).forEach(k => { if (k.toLowerCase() === 'user-agent') baseUA = headersMap[k]; });
 
@@ -372,7 +423,7 @@ if (typeof $request !== 'undefined' && $request) {
     email,
     uaSeed,
     baseUA,
-    capture: { url: $request.url, paramsRaw, headers: headersMap },
+    capture: { url: req.url, paramsRaw, headers: headersMap },
     createdAt: existed ? store.accounts[fp].createdAt : now,
     updatedAt: now
   };
@@ -382,40 +433,61 @@ if (typeof $request !== 'undefined' && $request) {
   const total = store.order.length;
   notify(existed ? '🔄 账号参数已更新' : '✅ 新账号已入库', `${alias}（id:${fp}）${email ? `\n📧 ${email}` : ''}\n当前账号总数：${total}`);
   console.log(`【${scriptName}】${existed ? 'update' : 'add'} account ${fp}\n${JSON.stringify(store.accounts[fp], null, 2)}`);
-  $done({});
-} else {
+}
+
+function runSchedule() {
   const store = loadStore();
   const ids = store.order.filter(id => store.accounts[id]);
   if (!ids.length) {
     notify('⚠️ 未抓到任何账号', '请先打开 PingMe 触发抓包');
-    $done();
+    if (typeof $done === 'function') $done();
+    return Promise.resolve();
+  }
+  const total = ids.length;
+  const results = [];
+  const deadIds = [];
+  let chain = Promise.resolve();
+  ids.forEach((id, idx) => {
+    chain = chain.then(() => runAccount(store.accounts[id], idx, total))
+      .then(r => {
+        results.push(r.text);
+        if (r.deregistered) deadIds.push(id);
+      })
+      .then(() => idx < ids.length - 1 ? sleep(ACCOUNT_GAP) : null);
+  });
+  return chain.then(() => {
+    let extra = '';
+    if (deadIds.length) {
+      const freshStore = loadStore();
+      const removed = removeAccounts(freshStore, deadIds);
+      saveStore(freshStore);
+      if (removed.length) extra = `\n———\n🗑 已移除注销账号：${removed.join('、')}（剩余${freshStore.order.length}个）`;
+    }
+    notify(`🎉 全部完成 (${total}个账号)`, results.join('\n———\n') + extra);
+  }).catch(err => {
+    notify('❌ 任务异常', results.join('\n———\n') + '\n' + (err.error || String(err)));
+  }).finally(() => {
+    if (typeof $done === 'function') $done();
+  });
+}
+
+// Egern：http_request / schedule 均走 export default（ctx.request 即抓参）
+export default async function (ctx) {
+  const url = ctx?.request?.url || '';
+  if (isCaptureUrl(url)) {
+    captureFromRequest({ url: String(url), headers: ctx.request.headers });
+    return;
+  }
+  await runSchedule();
+}
+
+// Quantumult X / Surge / Loon 兼容
+if (typeof Egern === 'undefined') {
+  if (typeof $request !== 'undefined' && $request && isCaptureUrl($request.url)) {
+    captureFromRequest($request);
+    if (typeof $done === 'function') $done({});
   } else {
-    const total = ids.length;
-    const results = [];
-    const deadIds = [];
-    let chain = Promise.resolve();
-    ids.forEach((id, idx) => {
-      chain = chain.then(() => runAccount(store.accounts[id], idx, total))
-        .then(r => {
-          results.push(r.text);
-          if (r.deregistered) deadIds.push(id);
-        })
-        .then(() => idx < ids.length - 1 ? sleep(ACCOUNT_GAP) : null);
-    });
-    chain.then(() => {
-      let extra = '';
-      if (deadIds.length) {
-        const freshStore = loadStore();
-        const removed = removeAccounts(freshStore, deadIds);
-        saveStore(freshStore);
-        if (removed.length) extra = `\n———\n🗑 已移除注销账号：${removed.join('、')}（剩余${freshStore.order.length}个）`;
-      }
-      notify(`🎉 全部完成 (${total}个账号)`, results.join('\n———\n') + extra);
-      $done();
-    }).catch(err => {
-      notify('❌ 任务异常', results.join('\n———\n') + '\n' + (err.error || String(err)));
-      $done();
-    });
+    runSchedule();
   }
 }
 

@@ -479,6 +479,7 @@ mitm:
   hostnames:
     includes:
       - api.pingmeapp.net
+      - "*.pingmeapp.net"
     excludes:
       - "*.wechat.com"
       - "*.weixin.qq.com"
@@ -499,8 +500,7 @@ mitm:
       - buy.itunes.apple.com
 
 scriptings:
-  # PingMe 抓参三步：① MITM 安装证书 ② 只开「PingMe参数」③ 打开 App 等通知「新账号已入库」→ 再开「PingMe签到」
-  # 仓库模板 ca_p12 为空，证书必须在 Egern App 里自己生成/导入，否则脚本收不到完整请求头
+  # PingMe 抓参：① MITM 必须 enabled:true + 系统信任证书 ② 只开「PingMe参数」③ 开 PingMe 刷新 ④ 看到「新账号已入库」再开签到
   - schedule:
       name: PingMe签到
       cron: "30 8,20 * * *"
@@ -514,6 +514,7 @@ scriptings:
       script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/PingMe.js
       update_interval: 86400
       timeout: 60
+      debug: true
       disabled: true
   - generic:
       name: 今日油价

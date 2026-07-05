@@ -4,7 +4,7 @@
 scripts:
   - name: PingMe
     file: PingMe.js
-    mirror_from: zenmofeishi/PingMe.js
+    note: "本地 Egern 适配版（export default + ctx.request）；勿 mirror 上游以免覆盖"
     cron: "30 8,20 * * *"
     timeout: 300
     type: http_request
