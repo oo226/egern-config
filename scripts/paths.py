@@ -11,6 +11,8 @@ ROUTING_UPSTREAM = ROUTING / "_upstream"
 ROUTING_FOREIGN = ROUTING / "Foreign"
 MODULES = ROOT / "Modules"
 SIGNIN_SCRIPTS = ROOT / "Scripts"
+CHXM1023_SCRIPTS = SIGNIN_SCRIPTS / "chxm1023"
+CHXM1023_AD_SCRIPTS = CHXM1023_SCRIPTS / "advertising"
 TOOLS = ROOT / "scripts"
 
 CHINA_DIRECT = ROUTING / "China-Direct.yaml"
@@ -27,4 +29,14 @@ UPSTREAM_CACHE = MODULES / "_upstream"
 
 GITHUB_RAW_MAIN = (
     "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main"
+)
+CHXM1023_SCRIPT_REWRITES = (
+    (
+        "https://raw.githubusercontent.com/chxm1023/Rewrite/main/",
+        f"{GITHUB_RAW_MAIN}/Scripts/chxm1023/",
+    ),
+    (
+        "https://raw.githubusercontent.com/chxm1023/Advertising/main/",
+        f"{GITHUB_RAW_MAIN}/Scripts/chxm1023/advertising/",
+    ),
 )

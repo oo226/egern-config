@@ -1,0 +1,34 @@
+#!name=ddm1023 去广告补全
+#!desc=YouTube 去广告、555电影等（chxm1023/Advertising 仓库补充，脚本镜像至本仓库）
+#!author=chxm1023/ddm1023 via oo226/egern-config
+#!category=去广告补全
+#!system=ios
+
+[URL Rewrite]
+# YouTube 视频广告（源自 chxm1023/Advertising/YouTube/YouTubeAD.conf）
+^https?:\/\/[\w-]+\.googlevideo\.com\/(?!(dclk_video_ads|videoplayback\?)).+&oad - reject-200
+^https?:\/\/(www|s)\.youtube\.com\/api\/stats\/ads - reject-200
+^https?:\/\/(www|s)\.youtube\.com\/(pagead|ptracking) - reject-200
+^https?:\/\/s\.youtube\.com\/api\/stats\/qoe\?adcontext - reject-200
+
+# 555电影
+^https?:\/\/vpic\.cms\.qq\.com\/nj_vpic\/.+ - reject
+
+[Script]
+# YouTube 瀑布流/搜索/播放页/短视频
+YouTube = type=http-response, pattern=^https:\/\/youtubei\.googleapis\.com\/youtubei\/v1\/(browse|next|player|search|reel\/reel_watch_sequence|guide|account\/get_setting), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/chxm1023/advertising/YouTube/YouTube.js, requires-body=true, max-size=-1, timeout=60
+
+# 555电影 / 电影猎手同类源
+555ad = type=http-response, pattern=^https?:\/\/.*\.(weilai555\.com:1000|ecoliving168\.com)\/api\/v\d\/movie\/(index_recommend.+|detail), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/chxm1023/advertising/555ad.js, requires-body=true, max-size=-1, timeout=60
+
+# 微信公众号文章去广告（Collections 亦有，此处作 Advertising 源备份）
+wxgzhad = type=http-response, pattern=^https?:\/\/mp\.weixin\.qq\.com\/mp\/getappmsgad, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/chxm1023/advertising/wxgzhad.js, requires-body=true, max-size=-1, timeout=60
+
+# 阿里云盘去广告（ddm1023 版）
+alidrive = type=http-response, pattern=^https?:\/\/api\.(aliyundrive|alipan)\.com, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/chxm1023/advertising/alidrive.js, requires-body=true, max-size=-1, timeout=60
+
+# 小红书开屏/首页
+xiaohongshu = type=http-response, pattern=^https?:\/\/edith\.xiaohongshu\.com\/api\/sns\/v\d\/(system_service\/splash_config|homefeed\?|system_service\/config\?), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/chxm1023/advertising/xiaohongshu.js, requires-body=true, max-size=-1, timeout=60
+
+[MITM]
+hostname = %APPEND% redirector.googlevideo.com, *.googlevideo.com, www.youtube.com, s.youtube.com, youtubei.googleapis.com, vpic.cms.qq.com, a.weilai555.com, app-v1.ecoliving168.com, mp.weixin.qq.com, api.aliyundrive.com, api.alipan.com, edith.xiaohongshu.com

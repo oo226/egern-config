@@ -26,3 +26,5 @@ https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/unl
 ```
 
 改 `custom-apps.sgmodule` 后 push，Actions 下次运行会合并进 `adblock-collection.module`。
+
+**ddm1023（chxm1023）**：`Collections` + `AppAd` 已并入合集；`Scripts/chxm1023/` 每日镜像 Rewrite（318）+ Advertising（39）全部 JS，上游删库仍可用本仓库副本。

@@ -55,3 +55,9 @@ modules:
     role: supplement
     upstream: https://raw.githubusercontent.com/QingRex/LoonKissSurge/refs/heads/main/Surge/Beta/%E9%98%BF%E9%87%8C%E4%BA%91%E7%9B%98%E5%8E%BB%E5%B9%BF%E5%91%8A.beta.sgmodule
     note: "QingRex/可莉系 — 阿里云盘去广告"
+
+  - name: chxm1023-ad-supplement
+    cache: chxm1023-ad-supplement.sgmodule
+    role: supplement
+    local: true
+    note: "ddm1023 — YouTube/555电影/小红书等 Advertising 仓库补充"

@@ -82,6 +82,9 @@ jobs:
       - name: Sync sign-in scripts
         run: python scripts/download-scripts.py
 
+      - name: Mirror chxm1023/ddm1023 scripts
+        run: python3 scripts/download-chxm1023-scripts.py
+
       - name: Merge adblock module
         run: python scripts/merge-adblock-modules.py
 
