@@ -9,7 +9,7 @@ merge:
     - "# 类型: 模块 — 解锁/增强（链接解锁、Spotify、跳过代理检测、屏蔽更新等）"
     - "# Do not edit manually. Updated by GitHub Actions after upstream sync."
     - "#"
-    - "# Sources: mieqq, QingRex/LoonKissSurge(可莉系), miranquil, iEwha, local patches"
+    - "# Sources: mieqq, QingRex/LoonKissSurge(可莉系), chxm1023/ddm1023, miranquil, iEwha, ddgksf2013, local patches"
     - ""
 
 modules:
@@ -54,6 +54,18 @@ modules:
     role: supplement
     upstream: https://raw.githubusercontent.com/iEwha/Profiles/master/Surge/Script.sgmodule
     note: "iEwha — iOS 更新屏蔽、QUIC 屏蔽、B站换区等"
+
+  - name: chxm1023-collections
+    cache: chxm1023-Collections.sgmodule
+    role: supplement
+    upstream: https://raw.githubusercontent.com/chxm1023/Script_X/main/Collections.sgmodule
+    note: "ddm1023/chxm1023 — App解锁合集（彩云/扫描王/Emby/百度网盘等，2026-04 更新）"
+
+  - name: patches-alicloud
+    cache: patches-alicloud.sgmodule
+    role: supplement
+    local: true
+    note: "ddgksf2013 gist — 阿里云盘 VIP 倍速码率（替代 script.hub 链接）"
 
   - name: patches-unlock
     cache: patches-unlock.sgmodule

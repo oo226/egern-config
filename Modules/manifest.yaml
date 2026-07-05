@@ -37,3 +37,21 @@ modules:
     role: supplement
     upstream: https://raw.githubusercontent.com/limbopro/Adblock4limbo/main/Adblock4limbo.sgmodule
     note: "毒奶 网页去广告 (2026 仍活跃更新)"
+
+  - name: chxm1023-AppAd
+    cache: chxm1023-AppAd.sgmodule
+    role: supplement
+    upstream: https://raw.githubusercontent.com/chxm1023/Advertising/Shadowrocket/AppAd.sgmodule
+    note: "ddm1023/chxm1023 — App/小程序开屏去广告补充"
+
+  - name: qingrex-wechat-miniprogram
+    cache: qingrex-wechat-miniprogram.sgmodule
+    role: supplement
+    upstream: https://raw.githubusercontent.com/QingRex/LoonKissSurge/refs/heads/main/Surge/Beta/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%8E%BB%E5%B9%BF%E5%91%8A.beta.sgmodule
+    note: "QingRex/可莉系 — 微信小程序去广告（替代 script.hub 链接）"
+
+  - name: qingrex-alicloud-ad
+    cache: qingrex-alicloud-ad.sgmodule
+    role: supplement
+    upstream: https://raw.githubusercontent.com/QingRex/LoonKissSurge/refs/heads/main/Surge/Beta/%E9%98%BF%E9%87%8C%E4%BA%91%E7%9B%98%E5%8E%BB%E5%B9%BF%E5%91%8A.beta.sgmodule
+    note: "QingRex/可莉系 — 阿里云盘去广告"
