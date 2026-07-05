@@ -83,9 +83,13 @@ jobs:
 
       - name: Merge routing rules
         run: |
+          python3 scripts/download-routing-supplements.py
           python scripts/merge-china-rules.py
           python scripts/merge-reject-rules.py
           python scripts/merge-ai-rules.py
+          python3 scripts/convert-app-rules.py
+          python3 scripts/publish-unbreak-rules.py
+          python3 scripts/mirror-semporia-icons.py
 
       - name: Mirror author repositories (full-repo)
         run: |

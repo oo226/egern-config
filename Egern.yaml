@@ -1,4 +1,5 @@
 BASE: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main
+ICON: https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Universal
 
 ipv6: false
 http_port: 3080
@@ -45,6 +46,8 @@ real_ip_domains:
   - lancache.steamcontent.com
   - "*.msftconnecttest.com"
   - "*.msftncsi.com"
+  - msftncsi.com
+  - msftconnecttest.com
   - "*.srv.nintendo.net"
   - "*.stun.playstation.net"
   - xbox.*.microsoft.com
@@ -52,6 +55,10 @@ real_ip_domains:
   - stun.l.google.com
   - "*.prod.cloud.netflix.com"
   - appboot.netflix.com
+  - "*.battle.net"
+  - "*.blzstatic.cn"
+  - "*.battlenet.com"
+  - "*.battlenet.com.cn"
 
 dns:
   bootstrap:
@@ -80,6 +87,8 @@ dns:
         match: '*'
         value: 国外
   hosts:
+    iosapps.itunes.apple.com:
+      - iosapps.itunes.apple.com.download.ks-cdn.com
     dns.google:
       - 8.8.8.8, 8.8.4.4
     cloudflare-dns.com:
@@ -111,13 +120,14 @@ policy_groups:
       interval: 300
       tolerance: 50
       timeout: 5
+      icon: https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Universal/Available.png
 
   - auto_test:
       name: 香港节点
       policies:
         - 节点订阅
       flatten: true
-      filter: 🇭🇰|香港|Hong Kong|HongKong|\bHK\b|\bHKG\b
+      filter: 🇭🇰|香港|Hong Kong|HongKong|\bHK\b|\bHKG\b|(?i)Hong
       interval: 300
       tolerance: 50
       timeout: 5
@@ -150,7 +160,7 @@ policy_groups:
       policies:
         - 节点订阅
       flatten: true
-      filter: 🇯🇵|日本|Japan|\bJP\b|\bJPN\b
+      filter: 🇯🇵|日本|Japan|\bJP\b|\bJPN\b|东京|大阪|(?i)Japan
       interval: 300
       tolerance: 50
       timeout: 5
@@ -161,7 +171,7 @@ policy_groups:
       policies:
         - 节点订阅
       flatten: true
-      filter: 🇺🇸|美国|United States|USA|\bUS\b
+      filter: 🇺🇸|美国|United States|USA|\bUS\b|洛杉矶|硅谷|西雅图|芝加哥|纽约|旧金山|(?i)States
       interval: 300
       tolerance: 50
       timeout: 5
@@ -189,6 +199,7 @@ policy_groups:
         - 美国节点
         - 韩国节点
         - 节点订阅
+      icon: https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Universal/Final.png
 
   - select:
       name: ChatGPT
@@ -197,13 +208,93 @@ policy_groups:
         - 日本节点
         - 新加坡节点
         - 自动选择
+      icon: https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Universal/Available.png
 
   - select:
-      name: Telegram
+      name: 微信消息
+      policies:
+        - DIRECT
+        - 香港节点
+        - 台湾节点
+        - 新加坡节点
+      icon: https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Universal/WeChat.png
+
+  - select:
+      name: 微博服务
+      policies:
+        - 香港节点
+        - 台湾节点
+        - 日本节点
+        - 新加坡节点
+        - 自动选择
+        - DIRECT
+
+  - select:
+      name: 哔哩哔哩
+      policies:
+        - 香港节点
+        - 台湾节点
+        - 自动选择
+
+  - select:
+      name: 大陆抖音
+      policies:
+        - 台湾节点
+        - 日本节点
+        - 韩国节点
+        - 新加坡节点
+        - 美国节点
+        - DIRECT
+      icon: https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Universal/TikTok.png
+
+  - select:
+      name: 海外抖音
+      policies:
+        - 香港节点
+        - 台湾节点
+        - 日本节点
+        - 韩国节点
+        - 新加坡节点
+        - 美国节点
+      icon: https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Universal/TikTok.png
+
+  - select:
+      name: 小红书
+      policies:
+        - 新加坡节点
+        - 香港节点
+        - 台湾节点
+        - 自动选择
+
+  - select:
+      name: 快手
       policies:
         - 新加坡节点
         - 香港节点
         - 自动选择
+
+  - select:
+      name: 苹果服务
+      policies:
+        - DIRECT
+        - 香港节点
+        - 新加坡节点
+        - 自动选择
+      icon: https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Social_Media/Apple.png
+
+  - select:
+      name: Soul
+      policies:
+        - 台湾节点
+        - 香港节点
+        - 自动选择
+
+  - select:
+      policies:
+        - 新加坡节点
+        - 香港节点
+        - 自动选择
+      icon: https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Universal/Telegram.png
 
   - select:
       name: GitHub
@@ -219,6 +310,7 @@ policy_groups:
         - 香港节点
         - 美国节点
         - 日本节点
+      icon: https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Universal/Google.png
 
   - select:
       name: 流媒体
@@ -229,14 +321,17 @@ policy_groups:
         - 新加坡节点
         - 美国节点
         - 日本节点
+      icon: https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Universal/YouTube.png
 
   - select:
       name: 微软服务
       policies:
+        - DIRECT
         - 自动选择
         - 香港节点
         - 美国节点
         - 新加坡节点
+      icon: https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Universal/Microsoft.png
 
   - select:
       name: 社交媒体
@@ -267,11 +362,13 @@ policy_groups:
         - 美国节点
         - 自动选择
       hidden: true
+      icon: https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Universal/Spotify.png
 
   - select:
       name: 国内直连
       policies:
         - DIRECT
+      icon: https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Universal/Map.png
 
 rules:
   - domain:
@@ -287,6 +384,54 @@ rules:
   - rule_set:
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Lan.yaml
       policy: DIRECT
+      update_interval: 86400
+
+  # Unbreak：避免误杀（须在 Reject / 大陆规则之前）
+  - rule_set:
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Unbreak.yaml
+      policy: DIRECT
+      update_interval: 86400
+
+  # 分应用精细分流（须在 China-Direct 之前，否则会被大陆直连吞掉）
+  - rule_set:
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/App/WeChat.yaml
+      policy: 微信消息
+      update_interval: 86400
+  - rule_set:
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/App/Weibo.yaml
+      policy: 微博服务
+      update_interval: 86400
+  - rule_set:
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/App/Bilibili.yaml
+      policy: 哔哩哔哩
+      update_interval: 86400
+  - rule_set:
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/App/Douyin.yaml
+      policy: 大陆抖音
+      update_interval: 86400
+  - rule_set:
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/App/TikTok.yaml
+      policy: 海外抖音
+      update_interval: 86400
+  - rule_set:
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/App/RedBook.yaml
+      policy: 小红书
+      update_interval: 86400
+  - rule_set:
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/App/KuaiShou.yaml
+      policy: 快手
+      update_interval: 86400
+  - rule_set:
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/App/Soul.yaml
+      policy: Soul
+      update_interval: 86400
+  - rule_set:
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/App/Line.yaml
+      policy: 社交媒体
+      update_interval: 86400
+  - rule_set:
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/App/TestFlight.yaml
+      policy: 苹果服务
       update_interval: 86400
 
   - rule_set:
@@ -382,9 +527,17 @@ url_rewrites:
   - match: ^https?://(.*?L[.])?(?:glgoogle).cn
     location: https://$1google.com
     status_code: 302
+  - match: ^https?://(www\.)?(g|google)\.cn
+    location: https://www.google.com
+    status_code: 302
 
 mitm:
   enabled: true
+  ca_passphrase: ""
+  ca_p12: ""
+  ca_url: ""
+  quic: true
+  tcp: true
   hostnames:
     includes:
       - api.pingmeapp.net
@@ -395,6 +548,23 @@ mitm:
       - m.suileyoo.com
       - m.qidian.com
       - qidian.com
+    excludes:
+      - "*.wechat.com"
+      - "*.weixin.qq.com"
+      - "*.alipay.com"
+      - "*.alipayobjects.com"
+      - "*.microsoft.com"
+      - "*.microsoftonline.com"
+      - "*.live.com"
+      - "*.office.com"
+      - "*.office365.com"
+      - "*.windows.net"
+      - "*.windows.com"
+      - "*.azure.com"
+      - "*.apple.com"
+      - "*.icloud.com"
+      - "*.cdn-apple.com"
+      - "*.mzstatic.com"
 
 scriptings:
   # PingMe: 镜像自 ZenmoFeiShi/Qx (Actions 每日同步, 同一脚本抓参+签到)
