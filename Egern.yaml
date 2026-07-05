@@ -8,6 +8,7 @@ http_port: 3080
 socks_port: 3090
 allow_external_connections: true
 vif_only: true
+# 路由兼容模式与 hide_vpn_icon 冲突：App 内打开「路由兼容」后状态栏 VPN 图标无法隐藏
 compat_route: false
 block_quic: true
 hide_vpn_icon: true
@@ -292,28 +293,11 @@ rules:
       policy: DIRECT
       update_interval: 86400
 
-  # 直连：无需面板（奶思 / 自用）
+  # 微信/苹果/微软/TestFlight/PingMe 等 — 合并为一条，须在 Proxy 规则之前
   - rule_set:
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/App/WeChat.yaml
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Direct-Priority.yaml
       policy: DIRECT
       update_interval: 86400
-  - rule_set:
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/Microsoft.yaml
-      policy: DIRECT
-      update_interval: 86400
-  - rule_set:
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/AppleServers.yaml
-      policy: DIRECT
-      update_interval: 86400
-  - rule_set:
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/App/TestFlight.yaml
-      policy: DIRECT
-      update_interval: 86400
-
-  # PingMe：API 仅 api.pingmeapp.net（签到脚本同域，直连不影响抓参）
-  - domain_suffix:
-      match: pingmeapp.net
-      policy: DIRECT
 
   - rule_set:
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Reject-Merged.yaml

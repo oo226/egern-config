@@ -8,6 +8,7 @@ ROOT = Path(__file__).resolve().parent.parent
 
 ROUTING = ROOT / "Routing"
 UNBREAK_RULES = ROUTING / "Unbreak.yaml"
+DIRECT_PRIORITY = ROUTING / "Direct-Priority.yaml"
 ROUTING_UPSTREAM = ROUTING / "_upstream"
 ROUTING_FOREIGN = ROUTING / "Foreign"
 WIDGETS = ROOT / "Widgets"

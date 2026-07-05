@@ -89,6 +89,7 @@ jobs:
           python scripts/merge-ai-rules.py
           python3 scripts/convert-app-rules.py
           python3 scripts/publish-unbreak-rules.py
+          python3 scripts/publish-direct-priority.py
           python3 scripts/mirror-semporia-icons.py
 
       - name: Mirror author repositories (full-repo)
