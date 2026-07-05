@@ -3,12 +3,6 @@
 # 图标：地区池 iili.io + lige47；PingMe 走 pingme.yaml 模块；规则收拢为 rule_set
 BASE: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main
 
-# 从 GitHub 自动拉取整份配置（规则/模块/脚本仍各有 update_interval）
-# 订阅链接、MITM 证书请在 App 内填写，勿提交到仓库
-auto_update:
-  url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Egern.yaml
-  interval: 86400
-
 ipv6: true
 http_port: 3080
 socks_port: 3090
