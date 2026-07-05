@@ -131,8 +131,51 @@ function fingerprintOf(paramsRaw) {
   return MD5(base).slice(0, 12);
 }
 
+let __egernStorage = null;
+
+function bindStorage(ctx) {
+  __egernStorage = ctx?.storage || null;
+}
+
+function readRaw(key) {
+  if (__egernStorage) {
+    if (typeof __egernStorage.getJSON === 'function') {
+      const obj = __egernStorage.getJSON(key);
+      return obj == null ? '' : JSON.stringify(obj);
+    }
+    const v = __egernStorage.get(key);
+    return v == null ? '' : String(v);
+  }
+  if (typeof $prefs !== 'undefined') return $prefs.valueForKey(key) || '';
+  if (typeof $persistentStore !== 'undefined') return $persistentStore.read(key) || '';
+  return '';
+}
+
+function writeRaw(key, val) {
+  if (__egernStorage) {
+    if (typeof __egernStorage.setJSON === 'function') {
+      try {
+        __egernStorage.setJSON(key, typeof val === 'string' ? JSON.parse(val) : val);
+        return;
+      } catch (e) {
+        if (typeof __egernStorage.set === 'function') __egernStorage.set(key, val);
+        return;
+      }
+    }
+    if (typeof __egernStorage.set === 'function') __egernStorage.set(key, val);
+    return;
+  }
+  if (typeof $prefs !== 'undefined') {
+    $prefs.setValueForKey(val, key);
+    return;
+  }
+  if (typeof $persistentStore !== 'undefined') {
+    $persistentStore.write(val, key);
+  }
+}
+
 function loadStore() {
-  const raw = $prefs.valueForKey(storeKey);
+  const raw = readRaw(storeKey);
   if (!raw) return { version: 1, accounts: {}, order: [] };
   try {
     const obj = JSON.parse(raw);
@@ -145,7 +188,7 @@ function loadStore() {
 }
 
 function saveStore(store) {
-  $prefs.setValueForKey(JSON.stringify(store), storeKey);
+  writeRaw(storeKey, JSON.stringify(store));
 }
 
 function pickItem(arr, seed) {
@@ -473,6 +516,7 @@ function runSchedule() {
 
 // Egern：http_request / schedule 均走 export default（ctx.request 即抓参）
 export default async function (ctx) {
+  bindStorage(ctx);
   const url = ctx?.request?.url || '';
   if (isCaptureUrl(url)) {
     captureFromRequest({ url: String(url), headers: ctx.request.headers });
