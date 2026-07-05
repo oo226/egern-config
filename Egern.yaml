@@ -1,12 +1,14 @@
+# oo226 最强懒人配置 — 融合自用 + fmz200 + Matrix + vulnnull + IBL3ND
+# 原则：规则能 DIRECT/REJECT 就不上策略组；面板只留常用手动项
+# 模块/脚本/小组件请在本机 Egern 按需添加，勿全塞进此文件
 BASE: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main
-ICON: https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Universal
 
-ipv6: false
+ipv6: true
 http_port: 3080
 socks_port: 3090
-allow_external_connections: false
+allow_external_connections: true
 vif_only: true
-compat_route: true
+compat_route: false
 block_quic: true
 hide_vpn_icon: true
 include_all_networks: false
@@ -20,7 +22,6 @@ bypass_tunnel_proxy:
   - "192.168.0.0/16"
   - "10.0.0.0/8"
   - "172.16.0.0/12"
-  # 税务局 / 邮储：绕过 VPN 隧道，避免检测代理
   - "*.chinatax.gov.cn"
   - "chinatax.gov.cn"
   - "etax.chinatax.gov.cn"
@@ -32,12 +33,14 @@ bypass_tunnel_proxy:
   - "d.psbc.com"
 
 hijack_dns:
-  - '*:53'
+  - "*:53"
+  - 8.8.8.8
+  - 114.114.114.114
 
 geoip_db_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Assets/geoip/Country-without-asn.mmdb
 asn_db_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Assets/geoip/GeoLite2-ASN.mmdb
-proxy_latency_test_url: http://1.1.1.1/generate_204
-direct_latency_test_url: http://wifi.vivo.com.cn/generate_204
+proxy_latency_test_url: https://www.apple.com/library/test/success.html
+direct_latency_test_url: http://connectivitycheck.gstatic.com/generate_204
 
 real_ip_domains:
   - "*.lan"
@@ -66,14 +69,28 @@ dns:
     - 223.5.5.5
     - 119.29.29.29
   upstreams:
-    国内:
-      - 223.5.5.5
-      - 119.29.29.29
-      - https://dns.alidns.com/dns-query
-      - https://doh.pub/dns-query
+    谷歌:
+      - tls://dns.google
+      - https://8.8.8.8/dns-query
     国外:
-      - https://cloudflare-dns.com/dns-query
-      - https://dns.google/dns-query
+      - tls://1.1.1.1
+      - tls://dns.google
+      - https://8.8.8.8/dns-query
+      - https://1.1.1.1/dns-query
+    国内:
+      - tls://dot.pub
+      - tls://dns.alidns.com
+      - https://doh.pub/dns-query
+      - https://dns.alidns.com/dns-query
+    腾讯:
+      - tls://dot.pub
+      - https://doh.pub/dns-query
+    阿里:
+      - tls://dns.alidns.com
+      - https://dns.alidns.com/dns-query
+    字节:
+      - 180.184.2.2
+      - 180.184.1.1
     广告:
       - https://dns.adguard-dns.com/dns-query
   forward:
@@ -81,10 +98,34 @@ dns:
         match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Reject-Merged.yaml
         value: 广告
     - proxy_rule_set:
+        match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/YouTube.yaml
+        value: 谷歌
+    - proxy_rule_set:
+        match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/Google.yaml
+        value: 谷歌
+    - proxy_rule_set:
+        match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/App/Douyin.yaml
+        value: 字节
+    - proxy_rule_set:
+        match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/App/TestFlight.yaml
+        value: 国外
+    - proxy_rule_set:
+        match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/AppleServers.yaml
+        value: 国内
+    - proxy_rule_set:
+        match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/Microsoft.yaml
+        value: 国内
+    - proxy_rule_set:
         match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/China-Direct.yaml
         value: 国内
+    - proxy_rule_set:
+        match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/ProxyGFW.yaml
+        value: 国外
+    - proxy_rule_set:
+        match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/Proxy.yaml
+        value: 国外
     - domain_wildcard:
-        match: '*'
+        match: "*"
         value: 国外
   hosts:
     iosapps.itunes.apple.com:
@@ -102,30 +143,30 @@ dns:
     - 119.29.29.29
   public_ip_lookup_url: https://ifconfig.me/ip
 
+# 面板：只留订阅 + 兜底 + 地区池 + 少数常调服务
 policy_groups:
   - external:
       name: 节点订阅
       type: select
       urls:
         - https://你的订阅链接
-      filter: '^((?!Remain|Expired|官网|如需|套餐|去除|剩余|距离|Reset|重置|流量).)+$'
+      filter: '^((?!Remain|Expired|官网|如需|套餐|去除|剩余|距离|Reset|重置|流量|倍率).)+$'
       update_interval: 86400
       hidden: true
 
   - auto_test:
-      name: 自动选择
+      name: 兜底
       policies:
         - 节点订阅
       flatten: true
       interval: 300
       tolerance: 50
       timeout: 5
-      icon: https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Universal/Available.png
 
   - auto_test:
       name: 香港节点
       policies:
-        - 节点订阅
+        - 兜底
       flatten: true
       filter: 🇭🇰|香港|Hong Kong|HongKong|\bHK\b|\bHKG\b|(?i)Hong
       interval: 300
@@ -134,31 +175,32 @@ policy_groups:
       hidden: true
 
   - auto_test:
-      name: 新加坡节点
+      name: 新国节点
       policies:
-        - 节点订阅
+        - 兜底
       flatten: true
-      filter: 🇸🇬|新加坡|Singapore|\bSG\b|\bSGP\b
-      interval: 300
-      tolerance: 50
-      timeout: 5
+      filter: 🇸🇬|新加坡|Singapore|\bSG\b|\bSGP\b|狮城
+      interval: 60
+      tolerance: 5
+      timeout: 3
+      block_quic: true
       hidden: true
 
   - auto_test:
       name: 台湾节点
       policies:
-        - 节点订阅
+        - 兜底
       flatten: true
       filter: 🇹🇼|台湾|Taiwan|\bTW\b|\bTWN\b
-      interval: 300
-      tolerance: 50
-      timeout: 5
+      interval: 60
+      tolerance: 5
+      timeout: 3
       hidden: true
 
   - auto_test:
       name: 日本节点
       policies:
-        - 节点订阅
+        - 兜底
       flatten: true
       filter: 🇯🇵|日本|Japan|\bJP\b|\bJPN\b|东京|大阪|(?i)Japan
       interval: 300
@@ -167,9 +209,20 @@ policy_groups:
       hidden: true
 
   - auto_test:
+      name: 韩国节点
+      policies:
+        - 兜底
+      flatten: true
+      filter: 🇰🇷|韩国|Korea|\bKR\b|\bKOR\b
+      interval: 300
+      tolerance: 50
+      timeout: 5
+      hidden: true
+
+  - auto_test:
       name: 美国节点
       policies:
-        - 节点订阅
+        - 兜底
       flatten: true
       filter: 🇺🇸|美国|United States|USA|\bUS\b|洛杉矶|硅谷|西雅图|芝加哥|纽约|旧金山|(?i)States
       interval: 300
@@ -178,198 +231,45 @@ policy_groups:
       hidden: true
 
   - auto_test:
-      name: 韩国节点
+      name: ChatGPT
       policies:
-        - 节点订阅
-      flatten: true
-      filter: 🇰🇷|韩国|Korea|\bKR\b|\bKOR\b
+        - 新国节点
+        - 日本节点
+        - 韩国节点
+        - 美国节点
+      flatten: false
       interval: 300
       tolerance: 50
       timeout: 5
-      hidden: true
-
-  - select:
-      name: 兜底分流
-      policies:
-        - 自动选择
-        - 香港节点
-        - 新加坡节点
-        - 台湾节点
-        - 日本节点
-        - 美国节点
-        - 韩国节点
-        - 节点订阅
-      icon: https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Universal/Final.png
-
-  - select:
-      name: ChatGPT
-      policies:
-        - 美国节点
-        - 日本节点
-        - 新加坡节点
-        - 自动选择
-      icon: https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Universal/Available.png
-
-  - select:
-      name: 微信消息
-      policies:
-        - DIRECT
-        - 香港节点
-        - 台湾节点
-        - 新加坡节点
-      icon: https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Universal/WeChat.png
-
-  - select:
-      name: 微博服务
-      policies:
-        - 香港节点
-        - 台湾节点
-        - 日本节点
-        - 新加坡节点
-        - 自动选择
-        - DIRECT
-
-  - select:
-      name: 哔哩哔哩
-      policies:
-        - 香港节点
-        - 台湾节点
-        - 自动选择
-
-  - select:
-      name: 大陆抖音
-      policies:
-        - 台湾节点
-        - 日本节点
-        - 韩国节点
-        - 新加坡节点
-        - 美国节点
-        - DIRECT
-      icon: https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Universal/TikTok.png
-
-  - select:
-      name: 海外抖音
-      policies:
-        - 香港节点
-        - 台湾节点
-        - 日本节点
-        - 韩国节点
-        - 新加坡节点
-        - 美国节点
-      icon: https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Universal/TikTok.png
-
-  - select:
-      name: 小红书
-      policies:
-        - 新加坡节点
-        - 香港节点
-        - 台湾节点
-        - 自动选择
-
-  - select:
-      name: 快手
-      policies:
-        - 新加坡节点
-        - 香港节点
-        - 自动选择
-
-  - select:
-      name: 苹果服务
-      policies:
-        - DIRECT
-        - 香港节点
-        - 新加坡节点
-        - 自动选择
-      icon: https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Social_Media/Apple.png
-
-  - select:
-      name: Soul
-      policies:
-        - 台湾节点
-        - 香港节点
-        - 自动选择
 
   - select:
       name: Telegram
       policies:
-        - 新加坡节点
+        - 新国节点
         - 香港节点
-        - 自动选择
-      icon: https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Universal/Telegram.png
+        - 兜底
 
   - select:
       name: GitHub
       policies:
         - 日本节点
         - 美国节点
-        - 自动选择
+        - 兜底
 
   - select:
-      name: 谷歌服务
+      name: Spotify
       policies:
-        - 自动选择
-        - 香港节点
-        - 美国节点
         - 日本节点
-      icon: https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Universal/Google.png
-
-  - select:
-      name: 流媒体
-      policies:
-        - 自动选择
         - 香港节点
-        - 台湾节点
-        - 新加坡节点
-        - 美国节点
-        - 日本节点
-      icon: https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Universal/YouTube.png
-
-  - select:
-      name: 微软服务
-      policies:
         - DIRECT
-        - 自动选择
-        - 香港节点
-        - 美国节点
-        - 新加坡节点
-      icon: https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Universal/Microsoft.png
-
-  - select:
-      name: 社交媒体
-      policies:
-        - 自动选择
-        - 香港节点
-        - 日本节点
-        - 美国节点
-
-  - select:
-      name: 游戏平台
-      policies:
-        - 自动选择
-        - 香港节点
-        - 日本节点
         - 美国节点
 
   - select:
       name: Emby
       policies:
-        - 兜底分流
+        - 兜底
         - 节点订阅
       hidden: true
-
-  - select:
-      name: Spotify
-      policies:
-        - 美国节点
-        - 自动选择
-      hidden: true
-      icon: https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Universal/Spotify.png
-
-  - select:
-      name: 国内直连
-      policies:
-        - DIRECT
-      icon: https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Universal/Map.png
 
 rules:
   - domain:
@@ -387,52 +287,27 @@ rules:
       policy: DIRECT
       update_interval: 86400
 
-  # Unbreak：避免误杀（须在 Reject / 大陆规则之前）
   - rule_set:
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Unbreak.yaml
       policy: DIRECT
       update_interval: 86400
 
-  # 分应用精细分流（须在 China-Direct 之前，否则会被大陆直连吞掉）
+  # 直连：无需面板（奶思 / 自用）
   - rule_set:
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/App/WeChat.yaml
-      policy: 微信消息
+      policy: DIRECT
       update_interval: 86400
   - rule_set:
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/App/Weibo.yaml
-      policy: 微博服务
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/Microsoft.yaml
+      policy: DIRECT
       update_interval: 86400
   - rule_set:
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/App/Bilibili.yaml
-      policy: 哔哩哔哩
-      update_interval: 86400
-  - rule_set:
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/App/Douyin.yaml
-      policy: 大陆抖音
-      update_interval: 86400
-  - rule_set:
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/App/TikTok.yaml
-      policy: 海外抖音
-      update_interval: 86400
-  - rule_set:
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/App/RedBook.yaml
-      policy: 小红书
-      update_interval: 86400
-  - rule_set:
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/App/KuaiShou.yaml
-      policy: 快手
-      update_interval: 86400
-  - rule_set:
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/App/Soul.yaml
-      policy: Soul
-      update_interval: 86400
-  - rule_set:
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/App/Line.yaml
-      policy: 社交媒体
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/AppleServers.yaml
+      policy: DIRECT
       update_interval: 86400
   - rule_set:
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/App/TestFlight.yaml
-      policy: 苹果服务
+      policy: DIRECT
       update_interval: 86400
 
   - rule_set:
@@ -442,36 +317,22 @@ rules:
   - domain_wildcard:
       match: stun.*
       policy: REJECT
+  - domain_suffix:
+      match: webrtc.org
+      policy: REJECT
 
+  # 需手动的少数服务
   - rule_set:
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/AI-Merged.yaml
       policy: ChatGPT
       update_interval: 86400
-
   - rule_set:
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/Telegram.yaml
       policy: Telegram
       update_interval: 86400
   - rule_set:
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/Twitter.yaml
-      policy: 社交媒体
-      update_interval: 86400
-  - rule_set:
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/TikTok.yaml
-      policy: 社交媒体
-      update_interval: 86400
-
-  - rule_set:
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/YouTube.yaml
-      policy: 流媒体
-      update_interval: 86400
-  - rule_set:
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/Netflix.yaml
-      policy: 流媒体
-      update_interval: 86400
-  - rule_set:
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/Disney.yaml
-      policy: 流媒体
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/Github.yaml
+      policy: GitHub
       update_interval: 86400
   - rule_set:
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/Spotify.yaml
@@ -482,47 +343,87 @@ rules:
       policy: Emby
       update_interval: 86400
 
+  # 流媒体 / 社交：直接指定节点，不上面板
+  - rule_set:
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/YouTube.yaml
+      policy: 兜底
+      update_interval: 86400
+  - rule_set:
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/Netflix.yaml
+      policy: 兜底
+      update_interval: 86400
+  - rule_set:
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/Disney.yaml
+      policy: 兜底
+      update_interval: 86400
+  - rule_set:
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/Twitter.yaml
+      policy: 美国节点
+      update_interval: 86400
   - rule_set:
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/Google.yaml
-      policy: 谷歌服务
+      policy: 兜底
+      update_interval: 86400
+
+  # 分应用：奶思习惯，规则写死节点
+  - rule_set:
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/App/Bilibili.yaml
+      policy: 香港节点
       update_interval: 86400
   - rule_set:
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/Github.yaml
-      policy: GitHub
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/App/Douyin.yaml
+      policy: 台湾节点
       update_interval: 86400
   - rule_set:
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/Microsoft.yaml
-      policy: 微软服务
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/App/TikTok.yaml
+      policy: 台湾节点
       update_interval: 86400
   - rule_set:
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/AppleServers.yaml
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/App/RedBook.yaml
+      policy: 新国节点
+      update_interval: 86400
+  - rule_set:
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/App/KuaiShou.yaml
+      policy: 新国节点
+      update_interval: 86400
+  - rule_set:
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/App/Soul.yaml
+      policy: 台湾节点
+      update_interval: 86400
+  - rule_set:
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/App/Weibo.yaml
+      policy: 香港节点
+      update_interval: 86400
+  - rule_set:
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/App/Line.yaml
       policy: 香港节点
       update_interval: 86400
 
   - rule_set:
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/Game.yaml
-      policy: 游戏平台
+      policy: 兜底
       update_interval: 86400
   - rule_set:
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/ProxyGFW.yaml
-      policy: 兜底分流
+      policy: 兜底
       update_interval: 86400
   - rule_set:
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/Proxy.yaml
-      policy: 兜底分流
+      policy: 兜底
       update_interval: 86400
 
   - rule_set:
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/China-Direct.yaml
-      policy: 国内直连
+      policy: DIRECT
       update_interval: 86400
 
   - geoip:
       match: CN
       policy: DIRECT
       no_resolve: true
+
   - default:
-      policy: 兜底分流
+      policy: 兜底
 
 url_rewrites:
   - match: ^https?://(.*?L[.])?(?:glgoogle).cn
@@ -532,6 +433,12 @@ url_rewrites:
     location: https://www.google.com
     status_code: 302
 
+body_rewrites:
+  - request_jq:
+      match: ^https?://testflight\.apple\.com/v\d/accounts/.+?/install$
+      filter: .storefrontId = "143441-19,29"
+      disabled: true
+
 mitm:
   enabled: true
   ca_passphrase: ""
@@ -540,15 +447,6 @@ mitm:
   quic: true
   tcp: true
   hostnames:
-    includes:
-      - api.pingmeapp.net
-      - app.mixcapp.com
-      - www.nodeseek.com
-      - shop.laichon.com
-      - increase-openapi.soulapp.cn
-      - m.suileyoo.com
-      - m.qidian.com
-      - qidian.com
     excludes:
       - "*.wechat.com"
       - "*.weixin.qq.com"
@@ -566,174 +464,21 @@ mitm:
       - "*.icloud.com"
       - "*.cdn-apple.com"
       - "*.mzstatic.com"
+      - buy.itunes.apple.com
 
-scriptings:
-  # PingMe: 镜像自 ZenmoFeiShi/Qx (Actions 每日同步, 同一脚本抓参+签到)
-  - schedule:
-      name: PingMe签到
-      cron: "30 8,20 * * *"
-      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/PingMe.js
-      update_interval: 86400
-      timeout: 300
-      disabled: true
-  - http_request:
-      name: PingMe参数
-      match: ^https://api\.pingmeapp\.net/app/queryBalanceAndBonus
-      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/PingMe.js
-      update_interval: 86400
-      timeout: 60
-      disabled: true
-  - schedule:
-      name: iios签到
-      cron: "30 8,20 * * *"
-      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/iios_checkin.js
-      timeout: 60
-      disabled: true
-  - schedule:
-      name: 起点签到
-      cron: "11 2 * * *"
-      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/qdreader.js
-      timeout: 60
-      disabled: true
-  - schedule:
-      name: 电信签到
-      cron: "0 8 * * *"
-      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/dianxin10000.js
-      timeout: 60
-      disabled: true
-  - schedule:
-      name: 贴吧签到
-      cron: "0 8 * * *"
-      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/tieba.js
-      timeout: 60
-      disabled: true
-  - schedule:
-      name: 顺丰签到
-      cron: "0 9 * * *"
-      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/sfexpress.js
-      timeout: 60
-      disabled: true
-  - schedule:
-      name: 严选签到
-      cron: "0 8 * * *"
-      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/yanxuan.js
-      timeout: 60
-      disabled: true
-  - schedule:
-      name: 喜马拉雅签到
-      cron: "0 8 * * *"
-      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/ximalaya.js
-      timeout: 60
-      disabled: true
-  # ZenmoFeiShi: 一点万象
-  - schedule:
-      name: 万象签到
-      cron: "1 0 * * *"
-      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/mixc_signin.js
-      update_interval: 86400
-      timeout: 60
-      disabled: true
-  - http_request:
-      name: 万象参数
-      match: ^https?:\/\/app\.mixcapp\.com\/mixc\/gateway
-      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/mixc_signin.js
-      body_required: true
-      update_interval: 86400
-      timeout: 60
-      disabled: true
-  # ZenmoFeiShi: NodeSeek
-  - schedule:
-      name: NodeSeek签到
-      cron: "1 0 * * *"
-      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/Nodeseek_NsCheckin.js
-      update_interval: 86400
-      timeout: 60
-      disabled: true
-  - http_request:
-      name: NodeSeek参数
-      match: ^https:\/\/www\.nodeseek\.com\/api\/account\/getInfo\/\d+\?readme=1$
-      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/Nodeseek_NsCheckin.js
-      update_interval: 86400
-      timeout: 60
-      disabled: true
-  # ZenmoFeiShi: 来充
-  - schedule:
-      name: 来充签到
-      cron: "50 9 * * *"
-      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/LaiChong.js
-      update_interval: 86400
-      timeout: 60
-      disabled: true
-  - http_request:
-      name: 来充参数
-      match: ^https://shop\.laichon\.com/api/v1/member/userinfo
-      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/LaiChong.js
-      update_interval: 86400
-      timeout: 60
-      disabled: true
-  # ZenmoFeiShi: Soul 唱歌
-  - schedule:
-      name: Soul唱歌签到
-      cron: "50 9 * * *"
-      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/SoulSing.js
-      update_interval: 86400
-      timeout: 60
-      disabled: true
-  - http_request:
-      name: Soul唱歌参数
-      match: ^https://increase-openapi\.soulapp\.cn/increase/sign/userSign
-      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/SoulSing.js
-      update_interval: 86400
-      timeout: 60
-      disabled: true
-  # ZenmoFeiShi: 岁乐游
-  - schedule:
-      name: 岁乐游签到
-      cron: "1 0 * * *"
-      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/SLY.js
-      update_interval: 86400
-      timeout: 60
-      disabled: true
-  - http_request:
-      name: 岁乐游参数
-      match: ^https://m\.suileyoo\.com/api/user/profile
-      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/SLY.js
-      update_interval: 86400
-      timeout: 60
-      disabled: true
-
+# 本地合集；其余模块 / 脚本 / 小组件请在手机 Egern 里按需添加
 modules:
-  # 去广告/去开屏/净化 — 单模块（奶思+blackmatrix7+网页去广告+银行税务NB，Actions 每日合并去重）
   - name: 去广告净化合集
     url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/adblock-collection.module
     update_interval: 86400
     enabled: true
-  # 解锁/增强 — 单模块（跳过代理、链接解锁、Spotify、VIP、屏蔽更新等，Actions 每日合并去重）
   - name: 解锁增强合集
     url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/unlock-collection.module
     update_interval: 86400
     enabled: true
-  #  iRingo（NSRingo）— 与去广告/解锁合集分开，按需启用
-  - name: " iRingo 地图"
-    url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/iringo-maps.sgmodule
-    update_interval: 86400
+  - name: 插件跳转 Egern
+    url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/ibl3nd-plugin-hub.yaml
     enabled: false
-  - name: " iRingo 天气"
-    url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/iringo-weather.sgmodule
-    update_interval: 86400
-    enabled: false
-  - name: " iRingo 定位"
-    url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/iringo-location.sgmodule
-    update_interval: 86400
-    enabled: false
-  - name: " iRingo 其他"
-    url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/iringo-others.sgmodule
-    update_interval: 86400
-    enabled: false
-  # 基础
-  - name: BoxJs
-    url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/boxjs.sgmodule
-    enabled: true
 
 default_subscription_group: 节点订阅
-default_proxy_group: 节点订阅
+default_proxy_group: 兜底
