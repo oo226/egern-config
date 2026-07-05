@@ -685,18 +685,18 @@ Protobuf = type=http-response, pattern=^https:\/\/(?:\w+-spclient|spclient\.wg)\
 
 
 # >>> merged from miranquil-qq-unlock (unique only)
-c-pc-page = type=http-request,pattern=^https:\/\/c\.pc\.qq\.com\/,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/miranquil/surge-scripts/main/tencent/c-pc-page/script.js
+c-pc-page = type=http-request,pattern=^https:\/\/c\.pc\.qq\.com\/,requires-body=1,max-size=0,script-path=https://github.com/miranquil/surge-scripts/raw/main/tencent/c-pc-page/script.js
 
 
 # >>> merged from iewha-unlock (unique only)
 # > PS Express解锁高级订阅
-PS Express= type=http-response,pattern=^https:\/\/.*\.adobe\..*\/mobile_profile\/nul\/v\d$, requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/iEwha/Profiles/master/Script/photoshop.js
+PS Express= type=http-response,pattern=^https:\/\/.*\.adobe\..*\/mobile_profile\/nul\/v\d$, requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/iEwha/Profiles/master/Script/photoshop.js
 # > Emby解锁
-Emby= type=http-response,pattern=^https?:\/\/mb3admin.com\/admin\/service\/registration\/validateDevice, requires-body=1,script-path= https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/iEwha/Profiles/master/Surge/Scripts/EmbyPremiere.js
+Emby= type=http-response,pattern=^https?:\/\/mb3admin.com\/admin\/service\/registration\/validateDevice, requires-body=1,script-path= https://raw.githubusercontent.com/iEwha/Profiles/master/Surge/Scripts/EmbyPremiere.js
 # > Adguardpremium
-AdGuard=type=http-response,pattern=^https?:\/\/mobile-api\.adguard\.org\/api\/.+\/ios_validate_receipt,requires-body=1,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/iEwha/Profiles/master/Script/adguard.js
+AdGuard=type=http-response,pattern=^https?:\/\/mobile-api\.adguard\.org\/api\/.+\/ios_validate_receipt,requires-body=1,script-path=https://raw.githubusercontent.com/iEwha/Profiles/master/Script/adguard.js
 # > 小影 解锁高级功能
-小影 = type=http-response,pattern=^https:\/\/api-chn\.rthdo\.com\/api\/rest\/u\/vipVerifyReceipt, requires-body=1,max-size=0,script-path= https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/iEwha/Profiles/master/Script/vivavideo.js
+小影 = type=http-response,pattern=^https:\/\/api-chn\.rthdo\.com\/api\/rest\/u\/vipVerifyReceipt, requires-body=1,max-size=0,script-path= https://raw.githubusercontent.com/iEwha/Profiles/master/Script/vivavideo.js
 # > Spotify 部分解锁premium 
 spotify-json = type=http-request,type=http-request,pattern=^https:\/\/spclient\.wg\.spotify\.com\/(artistview\/v1\/artist|album-entity-view\/v2\/album)\/,requires-body=0,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/app2smile/rules/master/js/spotify-json.js
 spotify-proto = type=http-response,pattern=^https:\/\/spclient\.wg\.spotify\.com\/(bootstrap\/v1\/bootstrap|user-customization-service\/v1\/customize)$,requires-body=1,binary-body-mode=1,max-size=0,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/app2smile/rules/master/js/spotify-proto.js,script-update-interval=0
@@ -704,16 +704,16 @@ spotify-proto = type=http-response,pattern=^https:\/\/spclient\.wg\.spotify\.com
 
 # >>> merged from iewha-script (unique only)
 # > bilbii换区,评分
-换区 = type=http-response,pattern=^https:\/\/ap(p|i)\.bili(bili|api)\.(com|net)\/(pgc\/view\/v\d\/app\/season|x\/offline\/version)\?,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/NobyDa/Script/master/Surge/JS/Bili_Auto_Regions.js
-搜索 = type=http-request,pattern=^https:\/\/ap(p|i)\.bili(bili|api)\.(com|net)\/x\/v\d\/search(\/type)?\?.+?%20(%E6%B8%AF|%E5%8F%B0|%E4%B8%AD)&,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/NobyDa/Script/master/Surge/JS/Bili_Auto_Regions.js
+换区 = type=http-response,pattern=^https:\/\/ap(p|i)\.bili(bili|api)\.(com|net)\/(pgc\/view\/v\d\/app\/season|x\/offline\/version)\?,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/NobyDa/Script/master/Surge/JS/Bili_Auto_Regions.js
+搜索 = type=http-request,pattern=^https:\/\/ap(p|i)\.bili(bili|api)\.(com|net)\/x\/v\d\/search(\/type)?\?.+?%20(%E6%B8%AF|%E5%8F%B0|%E4%B8%AD)&,script-path=https://raw.githubusercontent.com/NobyDa/Script/master/Surge/JS/Bili_Auto_Regions.js
 
 # > Boxjs 
 boxjs = type=http-request,pattern=https?:\/\/boxjs\.(com|net),script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/chavyleung/scripts/master/box/chavy.boxjs.js, requires-body=true, timeout=120
 
 # > Sub-Store
-Sub-Store Core=type=http-request,pattern=^https?:\/\/sub\.store\/((download)|api\/(preview|sync|(utils\/node-info))),script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/sub-store-org/Sub-Store/release/sub-store-1.min.js,requires-body=true,timeout=120
-Sub-Store Simple=type=http-request,pattern=^https?:\/\/sub\.store,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/sub-store-org/Sub-Store/release/sub-store-0.min.js,requires-body=true,timeout=120
-Sub-Store Sync=type=cron,cronexp=55 22 * * *,wake-system=1,timeout=120,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/sub-store-org/Sub-Store/release/cron-sync-artifacts.min.js
+Sub-Store Core=type=http-request,pattern=^https?:\/\/sub\.store\/((download)|api\/(preview|sync|(utils\/node-info))),script-path=https://raw.githubusercontent.com/sub-store-org/Sub-Store/release/sub-store-1.min.js,requires-body=true,timeout=120
+Sub-Store Simple=type=http-request,pattern=^https?:\/\/sub\.store,script-path=https://raw.githubusercontent.com/sub-store-org/Sub-Store/release/sub-store-0.min.js,requires-body=true,timeout=120
+Sub-Store Sync=type=cron,cronexp=55 22 * * *,wake-system=1,timeout=120,script-path=https://raw.githubusercontent.com/sub-store-org/Sub-Store/release/cron-sync-artifacts.min.js
 
 
 
@@ -990,10 +990,10 @@ koan = type=http-response, pattern=^https?:\/\/koan\.bopulab\.cn\/(user\/getBrie
 yifeijizhang = type=http-response, pattern=^https?:\/\/jz\.jarstones\.com\/api, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/chxm1023/yifeijizhang.js, requires-body=true, max-size=-1, timeout=60
 
 #恋小语-VIP显示
-lxy = type=http-response, pattern=^http:\/\/api\.love\.823123\.com\/facades\/account\.show$, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/wf021325/qx/master/js/lxy.js, requires-body=true, max-size=-1, timeout=60
+lxy = type=http-response, pattern=^http:\/\/api\.love\.823123\.com\/facades\/account\.show$, script-path=https://raw.githubusercontent.com/wf021325/qx/master/js/lxy.js, requires-body=true, max-size=-1, timeout=60
 
 #恋小语-小恋老师，键盘-回复它-开场白
-lxy = type=http-request, pattern=^http:\/\/api\.love\.823123\.com\/(facades\/open\.chat_stream|v1\/discovery\/query), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/wf021325/qx/master/js/lxy.js, timeout=60
+lxy = type=http-request, pattern=^http:\/\/api\.love\.823123\.com\/(facades\/open\.chat_stream|v1\/discovery\/query), script-path=https://raw.githubusercontent.com/wf021325/qx/master/js/lxy.js, timeout=60
 
 #Drafts hostname = backend.getdrafts.com
 Drafts = type=http-response, pattern=^https?:\/\/backend\.getdrafts\.com\/api\/v\d\/verification\/(account_status|verify_receipt), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/chxm1023/Drafts.js, requires-body=true, max-size=-1, timeout=60
@@ -1005,7 +1005,7 @@ yueqi = type=http-response, pattern=^https:\/\/.*api\.quthing\.com\/(.+\/vip|vip
 Hydra = type=http-response, pattern=^https?:\/\/creaceed\.com\/apis\/appstore\/verifyreceipt, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/chxm1023/Hydra.js, requires-body=true, max-size=-1, timeout=60
 
 #Scientific_American杂志 hostname = main-sciam-nature.content.pugpig.com
-sa = type=http-response, pattern=^https:\/\/main-sciam-nature\.content\.pugpig\.com\/subs\/(itunes_store|pianomediaoauth_subs)\/verify_subscription, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/leey668/pyer/main/sa.js, requires-body=true, max-size=-1, timeout=60
+sa = type=http-response, pattern=^https:\/\/main-sciam-nature\.content\.pugpig\.com\/subs\/(itunes_store|pianomediaoauth_subs)\/verify_subscription, script-path=https://raw.githubusercontent.com/leey668/pyer/main/sa.js, requires-body=true, max-size=-1, timeout=60
 
 #DayMore-时尚日记本 hostname = *.execute-api.ap-northeast-2.amazonaws.com
 daymore = type=http-response, pattern=^https?:\/\/.*\.execute-api\.ap-northeast-2\.amazonaws\.com\/product\/apple\/receipt, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/chxm1023/daymore.js, requires-body=true, max-size=-1, timeout=60
@@ -1041,7 +1041,7 @@ Vista = type=http-response, pattern=^https?:\/\/open3\.vistastory\.com\/v\d\/api
 baozouptu = type=http-response, pattern=^https?:\/\/api\.intelimeditor\.com\/user\/loginByThirdPlatformApp, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/chxm1023/baozouptu.js, requires-body=true, max-size=-1, timeout=60
 
 #Glass:摄影社区 hostname = glass.photo
-glass = type=http-response, pattern=^https:\/\/glass\.photo\/api\/(v2\/users\/[0-9a-zA-Z-]+$|v1\/account$|v3\/token$), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/leey668/pyer/main/glass.js, requires-body=true, max-size=-1, timeout=60
+glass = type=http-response, pattern=^https:\/\/glass\.photo\/api\/(v2\/users\/[0-9a-zA-Z-]+$|v1\/account$|v3\/token$), script-path=https://raw.githubusercontent.com/leey668/pyer/main/glass.js, requires-body=true, max-size=-1, timeout=60
 
 #MIX-滤镜大师 hostname = cdn-bm.camera360.com
 mix = type=http-response, pattern=^https?:\/\/cdn-bm\.camera360\.com\/api\/(mix\/(getinfo|purchase|recovery)|iap\/check-receipt), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/chxm1023/mix.js, requires-body=true, max-size=-1, timeout=60
@@ -1093,7 +1093,7 @@ TenPercent = type=http-response, pattern=^https:\/\/api\.changecollective\.com\/
 luyinzhuanjia = type=http-response, pattern=^http:\/\/luyintu\.cushuikeji\.cn\/tuv2\.(user\/info|order\/comboDuration|home\/activityAlert), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/chxm1023/luyinzhuanjia.js, requires-body=true, max-size=-1, timeout=60
 
 #众山小读书 hostname = umeecorn.com
-notebook = type=http-response, pattern=^https:\/\/umeecorn\.com\/notebook\/(loginedUser\/(info|tier|balance)|user\/(login|loginApple)), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/leey668/pyer/main/notebook.js, requires-body=true, max-size=-1, timeout=60
+notebook = type=http-response, pattern=^https:\/\/umeecorn\.com\/notebook\/(loginedUser\/(info|tier|balance)|user\/(login|loginApple)), script-path=https://raw.githubusercontent.com/leey668/pyer/main/notebook.js, requires-body=true, max-size=-1, timeout=60
 
 #万年历 hostname = *.jiemengjia.com
 wannianli = type=http-response, pattern=^https?:\/\/.*\.jiemengjia\.com\/(member\/(member_info|pay_verify_new|create_order)|dialogue\/adspace), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/chxm1023/wannianli.js, requires-body=true, max-size=-1, timeout=60

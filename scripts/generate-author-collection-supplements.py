@@ -47,7 +47,23 @@ UNLOCK_KEYWORDS = (
 FMZ200_SKIP_ADBLOCK = frozenset(
     {
         "blockAds.module",
+        "cookies.module",
     }
+)
+
+FMZ200_COOKIE = frozenset(
+    {
+        "cookies.module",
+    }
+)
+
+COOKIE_KEYWORDS = (
+    "cookie",
+    "cookies",
+    "get_cookie",
+    "getcookie",
+    "抓参",
+    "抓ck",
 )
 
 FMZ200_UNLOCK = frozenset(
@@ -89,6 +105,8 @@ def module_kind(filename: str) -> str:
     name = filename.lower()
     if any(k.lower() in name for k in UNLOCK_KEYWORDS):
         return "unlock"
+    if filename in FMZ200_COOKIE or any(k in name for k in COOKIE_KEYWORDS):
+        return "cookie"
     return "adblock"
 
 
@@ -194,18 +212,29 @@ def generate_fmz200() -> None:
         return
 
     unlock = [(n, t) for n, t in modules if n in FMZ200_UNLOCK or module_kind(n) == "unlock"]
+    cookie = [(n, t) for n, t in modules if module_kind(n) == "cookie" and n not in FMZ200_COOKIE]
     adblock = [
         (n, t)
         for n, t in modules
-        if n not in FMZ200_UNLOCK and n not in FMZ200_SKIP_ADBLOCK and module_kind(n) == "adblock"
+        if module_kind(n) == "adblock"
+        and n not in FMZ200_UNLOCK
+        and n not in FMZ200_SKIP_ADBLOCK
+        and n not in FMZ200_COOKIE
     ]
 
     adblock_text = merge_modules(
         "奶思补充合集",
-        "奶思 fmz200 全仓库单 App 模块合并去重（blockAds 主模块之外的补充）",
+        "奶思 fmz200 全仓库单 App 模块合并去重（blockAds / cookies 之外的补充）",
         adblock,
     )
     write_if_content(MODULES / "fmz200-extra.sgmodule", adblock_text)
+
+    cookie_text = merge_modules(
+        "奶思抓参补充",
+        "奶思 fmz200 抓参/Cookie 模块补充（cookies.module 之外的合并去重）",
+        cookie,
+    )
+    write_if_content(MODULES / "fmz200-cookie-extra.sgmodule", cookie_text)
 
     unlock_text = merge_modules(
         "奶思解锁补充",

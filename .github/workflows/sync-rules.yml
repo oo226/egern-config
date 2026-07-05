@@ -110,6 +110,9 @@ jobs:
       - name: Merge unlock module
         run: python scripts/merge-adblock-modules.py Modules/unlock-manifest.yaml
 
+      - name: Merge cookie capture module
+        run: python scripts/merge-adblock-modules.py Modules/cookie-manifest.yaml
+
       - name: Mirror external module scripts and rewrite collections
         run: python3 scripts/mirror-external-scripts.py
 

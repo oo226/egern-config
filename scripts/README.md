@@ -20,8 +20,8 @@
 
 Egern 里默认全部 `disabled: true`。启用步骤：
 
-1. 需要抓参的脚本：先开 MITM + 对应「参数」http_request，打开 App 触发一次
-2. chavyleung 脚本需同时启用 **BoxJs** 模块
-3. 再启用对应「签到」schedule
+1. **ZenmoFeiShi 二合一脚本**（PingMe 等）：开 MITM + `http_request` 抓参 → 打开 App 一次 → 再开 `schedule` 签到
+2. **chavyleung 脚本**（贴吧/电信/喜马拉雅等）：启用 **抓参 Cookie 合集**（默认关）+ **BoxJs** → 打开 App 抓 ck → **抓完关闭抓参合集** → 再开签到 `schedule`
+3. 去广告/解锁与抓参已拆分，日常不必开着抓参模块
 
 新增脚本：编辑 `scripts/manifest.yaml` 后 push，Actions 会自动下载。
