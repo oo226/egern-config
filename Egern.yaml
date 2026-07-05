@@ -310,6 +310,11 @@ rules:
       policy: DIRECT
       update_interval: 86400
 
+  # PingMe：API 仅 api.pingmeapp.net（签到脚本同域，直连不影响抓参）
+  - domain_suffix:
+      match: pingmeapp.net
+      policy: DIRECT
+
   - rule_set:
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Reject-Merged.yaml
       policy: REJECT
