@@ -66,6 +66,29 @@ COOKIE_KEYWORDS = (
     "抓ck",
 )
 
+SIGNIN_KEYWORDS = (
+    "签到",
+    "Sub-Store",
+    "联通余量",
+    "WPS每日",
+    "书香门第",
+)
+
+SIGNIN_SKIP_FILES = frozenset(
+    {
+        "Official/⭐️ Sub-Store.official.sgmodule",
+        "Official/联通余量.official.sgmodule",
+        "Official/Follow每日签到.official.sgmodule",
+        "Official/哔哩漫画签到.official.sgmodule",
+        "Official/哔哩漫画抢券.official.sgmodule",
+        "Official/巴哈姆特签到.official.sgmodule",
+        "Official/快看漫画签到.official.sgmodule",
+        "Official/携程旅行签到.official.sgmodule",
+        "Official/爱奇艺会员签到.official.sgmodule",
+        "Official/百度贴吧签到.official.sgmodule",
+    }
+)
+
 FMZ200_UNLOCK = frozenset(
     {
         "blockHTTPDNS.module",
@@ -103,6 +126,8 @@ def load_config() -> dict:
 
 def module_kind(filename: str) -> str:
     name = filename.lower()
+    if filename in SIGNIN_SKIP_FILES or any(k in filename for k in SIGNIN_KEYWORDS):
+        return "signin"
     if any(k.lower() in name for k in UNLOCK_KEYWORDS):
         return "unlock"
     if filename in FMZ200_COOKIE or any(k in name for k in COOKIE_KEYWORDS):
@@ -144,6 +169,7 @@ def merge_modules(
     modules: list[tuple[str, str]],
     *,
     primary_name: str | None = None,
+    exclude_cron_scripts: bool = False,
 ) -> str:
     if not modules:
         return ""
@@ -163,6 +189,7 @@ def merge_modules(
             "",
         ],
         primary_desc=desc,
+        exclude_cron_scripts=exclude_cron_scripts,
     )
     return mirror_script_paths(merged)
 
@@ -193,6 +220,7 @@ def generate_qingrex() -> None:
         "可莉去广告合集",
         "可莉/QingRex 全仓库去广告模块合并去重（本地镜像）",
         adblock,
+        exclude_cron_scripts=True,
     )
     write_if_content(MODULES / "qingrex-adblock.sgmodule", adblock_text)
 

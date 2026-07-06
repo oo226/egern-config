@@ -31,6 +31,22 @@ MERGE_SECTIONS = (
 
 HEADER_KEYS = ("#!name=", "#!desc=", "#!author=", "#!category=", "#!system=")
 
+# Sign-in / scheduled tasks belong in cookie-collection or scripts/manifest — not adblock merge.
+_CRON_SCRIPT_RE = re.compile(
+    r"type\s*=\s*cron|"
+    r"cronexp\s*=\s*[\"']?\{\{\{|"
+    r"cronexp\s*=\s*\{CRONEXP\}|"
+    r"^\s*\{\{\{[^=]+\}\}\}\s*=",
+    re.IGNORECASE,
+)
+_SIGNIN_SECTION_COMMENTS = frozenset(
+    {
+        "# 定时签到",
+        "# 签到",
+        "# Sub-Store",
+    }
+)
+
 # Fallback fixes when upstream modules reference deleted scripts
 DEFAULT_SCRIPT_URL_FIXES = {
     "https://raw.githubusercontent.com/limbopro/Adblock4limbo/main/Adguard/cnys.js": (
@@ -132,6 +148,25 @@ def rule_key(line: str) -> str | None:
     return stripped
 
 
+def is_cron_or_signin_script(line: str) -> bool:
+    stripped = line.strip()
+    if not stripped or stripped.startswith("#"):
+        return False
+    return bool(_CRON_SCRIPT_RE.search(stripped))
+
+
+def filter_cron_scripts(lines: list[str]) -> list[str]:
+    filtered: list[str] = []
+    for line in lines:
+        stripped = line.strip()
+        if stripped in _SIGNIN_SECTION_COMMENTS:
+            continue
+        if is_cron_or_signin_script(line):
+            continue
+        filtered.append(line)
+    return filtered
+
+
 def script_key(line: str) -> str | None:
     stripped = line.strip()
     if not stripped or stripped.startswith("#"):
@@ -187,6 +222,8 @@ def merge_section(
     section: str,
     primary_lines: list[str],
     supplement_blocks: list[tuple[str, list[str]]],
+    *,
+    exclude_cron_scripts: bool = False,
 ) -> list[str]:
     if section == "General":
         supp_lines = [lines for _, lines in supplement_blocks]
@@ -234,6 +271,9 @@ def merge_section(
             output.append(f"# >>> merged from {source_name} (unique only)")
             output.extend(unique)
 
+    if section == "Script" and exclude_cron_scripts:
+        output = filter_cron_scripts(output)
+
     return output
 
 
@@ -243,6 +283,7 @@ def build_merged_module(
     *,
     header_lines: list[str] | None = None,
     primary_desc: str | None = None,
+    exclude_cron_scripts: bool = False,
 ) -> str:
     primary_header, primary_sections = parse_module(primary_text)
 
@@ -300,7 +341,12 @@ def build_merged_module(
             for name, sections in supp_parsed
             if sections.get(section)
         ]
-        merged_lines = merge_section(section, primary_lines, supplement_blocks)
+        merged_lines = merge_section(
+            section,
+            primary_lines,
+            supplement_blocks,
+            exclude_cron_scripts=exclude_cron_scripts,
+        )
         if not merged_lines:
             continue
         out_lines.append(f"[{section}]")
@@ -321,6 +367,7 @@ def main() -> None:
     output_path = MODULES / output_name
     header_lines = merge_cfg.get("header_lines")
     primary_desc = merge_cfg.get("primary_desc")
+    exclude_cron_scripts = bool(merge_cfg.get("exclude_cron_scripts", False))
     script_url_fixes = {**DEFAULT_SCRIPT_URL_FIXES, **(merge_cfg.get("script_url_fixes") or {})}
 
     UPSTREAM_CACHE.mkdir(parents=True, exist_ok=True)
@@ -361,7 +408,11 @@ def main() -> None:
     ]
 
     merged = build_merged_module(
-        primary[2], supplements, header_lines=header_lines, primary_desc=primary_desc
+        primary[2],
+        supplements,
+        header_lines=header_lines,
+        primary_desc=primary_desc,
+        exclude_cron_scripts=exclude_cron_scripts,
     )
     merged = apply_script_url_fixes(merged, script_url_fixes)
     merged = mirror_script_paths(merged)

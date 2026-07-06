@@ -30,11 +30,6 @@ WARP Teams Response = type=http-response, pattern=^https?:\/\/(api|zero-trust-cl
 
 
 
-# >>> merged from Beta/书香门第每日签到.beta.sgmodule (unique only)
-# 定时签到
-书香门第每日签到 = type=cron, cronexp={CRONEXP}, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/bgvioletsky/ios_rule/refs/heads/main/Loon/Script/sxmd.js, timeout=120, argument="[{account},{password}]"
-
-
 # >>> merged from Official/1.1.1.1配置管理.official.sgmodule (unique only)
 # WARP Panel
 #!PROFILE-VERSION-REQUIRED 10 ☁ WARP Panel = type=generic, timeout=10, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/VirgilClyne/Cloudflare/main/js/1.1.1.1.panel.js
@@ -44,10 +39,6 @@ WARP Teams Response = type=http-response, pattern=^https?:\/\/(api|zero-trust-cl
 
 # >>> merged from Official/FlushDNS.official.sgmodule (unique only)
 FlushDNS = type=generic,timeout=10,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/Rabbit-Spec/Surge/Master/Module/Panel/Flush-DNS/Moore/Flush-DNS.js,argument=title={{{TITLE}}}&icon={{{ICON}}}&color={{{COLOR}}}&server=false
-
-# >>> merged from Official/Follow每日签到.sgmodule (unique only)
-# 定时签到
-Follow每日签到 = type=cron, cronexp="{{{cron}}}", script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/Sliverkiss/GoodNight/refs/heads/master/Script/follow.js, argument="follow_csrfToken={{{follow_csrfToken}}}&follow_cookie={{{follow_cookie}}}", timeout=1200
 
 # >>> merged from Official/GPT 可用检测-无 WARP.official.sgmodule (unique only)
 CFGPT = type=generic,timeout=6,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/getsomecat/GetSomeCats/Surge/modules/Panel/CFGPT/CFGPT_2_nowarp.js,argument=icon=lasso.and.sparkles&iconerr=xmark.seal.fill&icon-color=#336FA9&iconerr-color=#D65C51
@@ -64,7 +55,6 @@ K-Course = type=http-response,pattern=^https?:\/\/api\.gotokeep\.com\/athena\/v7
 
 # >>> merged from Official/SDGun 社区 Tablet 访问.sgmodule (unique only)
 
-{{{video}}} = type=http-request,pattern=^https?:\/\/picapp\.sdgun\.net\/video\/.*?\.mp4,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/xream/scripts/main/surge/modules/sdgun/sdgun_video.js,timeout=120
 
 
 # >>> merged from Official/Surge 启动时长.official.sgmodule (unique only)
@@ -98,27 +88,9 @@ Script Hub: 规则集转换 = type=http-request, pattern=^https?:\/\/script\.hub
 Script Hub: 脚本转换 = type=http-request, pattern=^https?:\/\/script\.hub\/convert\/, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/Script-Hub-Org/Script-Hub/main/script-converter.js, timeout=300
 
 
-# >>> merged from Official/⭐️ Sub-Store.official.sgmodule (unique only)
-Sub-Store Core=type=http-request,pattern=^https?:\/\/sub\.store\/((download)|api\/(preview|sync|(utils\/node-info))),script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/by-host/github.com/4f4ae3e60401/sub-store-1.min.js,requires-body=true,timeout={{{timeout}}},ability="{{{ability}}}",engine={{{engine}}},max-size={{{max_size}}}
-
-Sub-Store Simple=type=http-request,pattern=^https?:\/\/sub\.store,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/by-host/github.com/7b423cafc0af/sub-store-0.min.js,requires-body=true,timeout={{{timeout}}},engine={{{engine}}},max-size={{{max_size}}}
-
-{{{sync}}}=type=cron,cronexp="{{{cronexp}}}",wake-system=1,timeout={{{timeout}}},script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/by-host/github.com/8633115a6448/cron-sync-artifacts.min.js,engine={{{engine}}}
-
-{{{produce}}}=type=cron,cronexp="{{{produce_cronexp}}}",wake-system=1,timeout={{{timeout}}},script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/by-host/github.com/8633115a6448/cron-sync-artifacts.min.js,engine={{{engine}}},argument="sub={{{produce_sub}}}&col={{{produce_col}}}"
-
 # >>> merged from Official/哔哩哔哩去广告.official.sgmodule (unique only)
 bili-json = type=http-response,pattern=^https:\/\/app\.bilibili\.com\/x\/(v2\/(splash\/(list|show)|feed\/index\?)|resource\/show\/tab\/v2),requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/app2smile/rules/master/js/bilibili-json.js,script-update-interval=0
 bili-proto = type=http-response,pattern=^https:\/\/(grpc\.biliapi\.net|app\.bilibili\.com)\/bilibili\.app\.(viewunite\.v1\.View\/View|dynamic\.v2\.Dynamic\/DynAll)$,requires-body=1,binary-body-mode=1,max-size=0,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/app2smile/rules/master/js/bilibili-proto.js,script-update-interval=0
-
-# >>> merged from Official/哔哩漫画抢券.official.sgmodule (unique only)
-哔哩漫画[积分抢购] = type=cron,cronexp="{{{定时抢购}}}",script-update-interval=0,timeout=60,wake-system=1,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/NobyDa/Script/master/Bilibili-DailyBonus/ExchangePoints.js,argument="ProductName={{{商品名称}}}&ProductNum={{{抢购数量}}}&ExchangeNum={{{抢购次数}}}
-
-# >>> merged from Official/哔哩漫画签到.official.sgmodule (unique only)
-哔哩漫画[签到] = type=cron,cronexp="{{{定时签到}}}",wake-system=1,script-update-interval=0,timeout=60,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/NobyDa/Script/master/Bilibili-DailyBonus/Manga.js
-
-{{{禁用脚本}}} = type=http-request,pattern=^https:\/\/app\.bilibili\.com\/x\/v\d\/account\/myinfo,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/NobyDa/Script/master/Bilibili-DailyBonus/Manga.js
-
 
 # >>> merged from Official/实时油价面板.official.sgmodule (unique only)
 YJ = type=generic,timeout=5,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/getsomecat/GetSomeCats/Surge/script/youjia.js,argument=guangdong/guangzhou
@@ -129,9 +101,6 @@ SRSS.account = type=http-request,pattern=^https?:\/\/api\.x\.com\/1\.1\/account\
 SRSS.handler = type=http-request,pattern=^http:\/\/s.rss\/x\/.*,requires-body=0,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/Maasea/sgmodule/master/Script/SRSS/dist/srss.js
 
 
-# >>> merged from Official/巴哈姆特签到.official.sgmodule (unique only)
-巴哈姆特[签到] = type=cron,cronexp="{{{定时签到}}}",wake-system=1,script-update-interval=0,timeout=300,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/NobyDa/Script/master/Bahamut/BahamutDailyBonus.js
-
 # >>> merged from Official/广告联盟.official.sgmodule (unique only)
 广告联盟json = type=http-response,pattern=^https:\/\/((api-access\.pangolin-sdk-toutiao|is\.snssdk)\.com\/api\/ad\/union\/sdk\/get_ads|open\.e\.kuaishou\.com\/rest\/e\/v3\/open\/univ$|mi\.gdt\.qq\.com\/gdt_mview\.fcg\?),requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/app2smile/rules/master/js/adsense.js
 
@@ -139,43 +108,17 @@ SRSS.handler = type=http-request,pattern=^http:\/\/s.rss\/x\/.*,requires-body=0,
 WeRead = type=http-response,pattern=https:\/\/i\.weread\.qq\.com\/(book\/(reading[sS]tat|chapterReview)|user\/profile|groups\/readerEntrance|review\/list|mobileSync),requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/Maasea/sgmodule/master/Script/WeRead/weread.js
 
 
-# >>> merged from Official/快看漫画签到.official.sgmodule (unique only)
-快看漫画[签到] = type=cron,cronexp="{{{定时签到}}}",wake-system=1,script-update-interval=0,timeout=60,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/NobyDa/Script/master/KuaiKan-DailyBonus/KKMH.js
-
-{{{禁用脚本}}} = type=http-request,pattern=^https?:\/\/api\.kkmh\.com\/v\d\/passport\/user,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/NobyDa/Script/master/KuaiKan-DailyBonus/KKMH.js
-
-
-# >>> merged from Official/携程旅行签到.official.sgmodule (unique only)
-携程旅行[签到] = type=cron,cronexp="{{{定时签到}}}",wake-system=1,script-update-interval=0,timeout=300,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/NobyDa/Script/master/Ctrip-DailyBonus/Ctrip.js
-
-{{{禁用脚本}}} = type=http-response,pattern=^https:\/\/m\.ctrip\.com\/restapi\/soa2\/\d+\/[a-zA-Z]+Login(?:$|\?),requires-body=1,max-size=0,debug=0,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/NobyDa/Script/master/Ctrip-DailyBonus/Ctrip.js
-
-
 # >>> merged from Official/机场流量信息面板.official.sgmodule (unique only)
-{{{NAME}}}=type=generic,timeout=10,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/Rabbit-Spec/Surge/Master/Module/Panel/Sub-info/Moore/Sub-info.js,script-update-interval=0,argument=url={{{URL}}}&reset_day={{{RESET_Day}}}&title={{{NAME}}}&icon={{{ICON}}}&color={{{COLOR}}}
 
 # >>> merged from Official/流量统计.official.sgmodule (unique only)
 # > 流量统计 点击以切换网络界面
 TrafficStatistics = type=generic,timeout=10,script-path= https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/fishingworld/something/main/PanelScripts/trafficstatistics.js, argument=icon=bonjour&color=#007aff
-
-# >>> merged from Official/爱奇艺会员签到.official.sgmodule (unique only)
-爱奇艺[会员签到] = type=cron,cronexp="{{{定时签到}}}",wake-system=1,script-update-interval=0,timeout=60,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/NobyDa/Script/master/iQIYI-DailyBonus/iQIYI.js
-
-{{{禁用脚本}}} = type=http-request,pattern=^https:\/\/passport\.iqiyi\.com\/apis\/user\/,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/NobyDa/Script/master/iQIYI-DailyBonus/iQIYI.js
-
-
-# >>> merged from Official/百度贴吧签到.official.sgmodule (unique only)
-百度贴吧[签到] = type=cron,cronexp="{{{定时签到}}}",wake-system=1,script-update-interval=0,timeout=600,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/NobyDa/Script/master/BDTieBa-DailyBonus/TieBa.js
-
-{{{禁用脚本}}} = type=http-request,pattern=^https?:\/\/(c\.tieba|tiebac)\.baidu\.com\/c\/s\/login,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/NobyDa/Script/master/BDTieBa-DailyBonus/TieBa.js
-
 
 # >>> merged from Official/网易云音乐去广告.official.sgmodule (unique only)
 # mian | 热推、有话想说、分享一下、歌曲下的祝福等小提示去除 ｜ 评论区 乐迷、星评等级 关注 等 图标去除
 网易云音乐 = type=http-response,pattern=^https?:\/\/(ipv4|interface\d?)\.music\.163\.com\/e?api\/(batch|v\d\/resource\/comment\/floor\/get),requires-body=1,max-size=0,timeout=20,binary-body-mode=1,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/Keywos/rule/main/script/wy/js/wyres.js
 
 # 伪vip
-{{{脚本伪vip}}} = type=http-response,pattern=^https?:\/\/(ipv4|interface\d?)\.music\.163\.com\/e?api\/(music-vip-membership\/client\/vip\/info|vipnewcenter\/app\/resource\/newaccountpage),requires-body=1,max-size=0,timeout=20,binary-body-mode=1,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/Keywos/rule/main/script/wy/js/wyres.js
 
 # tab
 网易云音乐 = type=http-response,pattern=^https?:\/\/(ipv4|interface\d?)\.music\.163\.com\/e?api\/link\/home\/framework\/tab,requires-body=1,max-size=0,timeout=20,binary-body-mode=1,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/Keywos/rule/main/script/wy/js/wyres.js, argument="{"MY":"{{{漫游}}}","DT":"{{{笔记}}}","FX":"{{{发现}}}"}"
@@ -202,7 +145,6 @@ TrafficStatistics = type=generic,timeout=10,script-path= https://raw.githubuserc
 网络信息请求 = type=http-request,pattern=^https?:\/\/net-lsp-x\.com,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/xream/scripts/main/surge/modules/network-info/net-lsp-x.js,timeout=120
 
 # Event
-{{{EVENT_SCRIPT_NAME}}} = type=event,event-name=network-changed,timeout=120,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/xream/scripts/main/surge/modules/network-info/net-lsp-x.js,argument="TYPE=EVENT&icon={{{ICON}}}&icon-color={{{ICON-COLOR}}}&LAN={{{LAN}}}&SSID={{{SSID}}}&IPv6={{{IPv6}}}&MASK={{{MASK}}}&DOMESTIC_IPv4={{{DOMESTIC_IPv4}}}&DOMESTIC_IPv6={{{DOMESTIC_IPv6}}}&LANDING_IPv4={{{LANDING_IPv4}}}&LANDING_IPv6={{{LANDING_IPv6}}}&PRIVACY={{{PRIVACY}}}&FLAG={{{FLAG}}}&ENTRANCE_DELAY={{{ENTRANCE_DELAY}}}&TIMEOUT={{{TIMEOUT}}}&EVENT_DELAY={{{EVENT_DELAY}}}&RETRIES={{{RETRIES}}}&RETRY_DELAY={{{RETRY_DELAY}}}&ASN={{{ASN}}}&ORG={{{ORG}}}&DOMESTIC_IPv4_KEY={{{DOMESTIC_IPv4_KEY}}}&LANDING_IPv4_KEY={{{LANDING_IPv4_KEY}}}"
 
 # Panel
 网络信息面板 = type=generic,timeout=120,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/xream/scripts/main/surge/modules/network-info/net-lsp-x.js,argument="icon={{{ICON}}}&icon-color={{{ICON-COLOR}}}&LAN={{{LAN}}}&SSID={{{SSID}}}&IPv6={{{IPv6}}}&MASK={{{MASK}}}&DOMESTIC_IPv4={{{DOMESTIC_IPv4}}}&DOMESTIC_IPv6={{{DOMESTIC_IPv6}}}&LANDING_IPv4={{{LANDING_IPv4}}}&LANDING_IPv6={{{LANDING_IPv6}}}&PRIVACY={{{PRIVACY}}}&FLAG={{{FLAG}}}&ENTRANCE_DELAY={{{ENTRANCE_DELAY}}}&TIMEOUT={{{TIMEOUT}}}&EVENT_DELAY={{{EVENT_DELAY}}}&RETRIES={{{RETRIES}}}&RETRY_DELAY={{{RETRY_DELAY}}}&ASN={{{ASN}}}&ORG={{{ORG}}}&DOMESTIC_IPv4_KEY={{{DOMESTIC_IPv4_KEY}}}&LANDING_IPv4_KEY={{{LANDING_IPv4_KEY}}}"
@@ -211,20 +153,6 @@ TrafficStatistics = type=generic,timeout=10,script-path= https://raw.githubuserc
 # >>> merged from Official/网络连通性测试.official.sgmodule (unique only)
 
 Connectivity_Test = type=generic,timeout=3,script-path= https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/getsomecat/GetSomeCats/Surge/script/ConnectivityTest.js,argument=title=Connectivity Test&icon=icloud.and.arrow.down&color=#FF9F0A&server=false
-
-
-# >>> merged from Official/联通余量.official.sgmodule (unique only)
-# > Response
-{{{capture}}} = type=http-response,pattern=^https?:\/\/(m\.client|loginxhm)\.10010\.com\/mobileService\/onLine\.htm,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-releases/ChinaTelecomOperators/ChinaUnicom/Prerelease-Alpha/10010_capture.js,requires-body=true,max-size=0,timeout=120
-
-# > Cron
-{{{cron}}} = type=cron,cronexp="{{{cronexp}}}",timeout=120,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-releases/ChinaTelecomOperators/ChinaUnicom/Prerelease-Alpha/10010.js
-
-# > Request
-10010v4-request = type=http-request,pattern=^https?:\/\/10010v4\.com,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-releases/ChinaTelecomOperators/ChinaUnicom/Prerelease-Alpha/10010.js,requires-body=false,max-size=0,timeout=120
-
-# > Panel
-10010v4-panel = type=generic,timeout=120,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-releases/ChinaTelecomOperators/ChinaUnicom/Prerelease-Alpha/10010.js,argument=icon=arrow.up.arrow.down.circle&icon-color=#5d84f8
 
 
 # >>> merged from Official/腾讯新闻去广告.official.sgmodule (unique only)
@@ -478,13 +406,9 @@ Alidns = type=dns,engine=jsc,script-path=https://raw.githubusercontent.com/oo226
 🍿️ DualSubs.YouTubeMusic.Translate.Lyrics.response.proto = type=http-response, pattern=^https?:\/\/youtubei\.googleapis\.com\/youtubei\/v1\/browse\?(.*)subtype=Translate, requires-body=1, binary-body-mode=1, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/by-host/github.com/ab222890b43b/Translate.response.bundle.js, argument=Type="{{{Type}}}"&Types="{{{Types}}}"&AutoCC="{{{AutoCC}}}"&Position="{{{Position}}}"&Vendor="{{{Vendor}}}"&ShowOnly="{{{ShowOnly}}}"&LogLevel="{{{LogLevel}}}"
 
 
-# >>> merged from 书香门第每日签到.sgmodule (unique only)
-# 定时签到
-
-
 [MITM]
 
-hostname = %APPEND% %INSERT% -*.facebook.com, %INSERT% boxjs.com, %INSERT% gateway.icloud.com, *-discovery1.uplynk.com, *-pplus.cbs.com, *-vod.fubo.tv, *.airspace-*.cbsivideo.com, *.boxjs.com, *.boxjs.net, *.cdn.peacocktv.com, *.content.britbox.co.uk, *.cssott.com, *.gamersky.com, *.googlevideo.com, *.hbomaxcdn.com, *.hls.pv-cdn.net, *.hls.row.aiv-cdn.net, *.iqiyi.com, *.live.epix.services, *.mcdn.bilivideo.cn, *.media.dssott.com, *.media.starott.com, *.mubicdn.net, *.oca.nflxvideo.net, *.plutotv.net, *.pplus.paramount.tech, *.prd.media.h264.io, *.prd.media.max.com, *.prd.pluto.tv, *.prod.dssedge.com, *.prod.media.h264.io, *.prod.media.max.com, *.script.hub, *.stream.peacocktv.com, *avodhlss3ww-a.akamaihd.net, -*.instagram.com, -*.pstatp.com, -*.snssdk.com, -*.twitter.com, -i.vip.iqiyi.com, -redirector*.googlevideo.com, 10010v4.com, afd.baidu.com, amcplus-?.akamaized.net, ap-hls-live.cdn?.showtime.com, ap-hls-vod.dynamic.showtime.com, api-access.pangolin-sdk-toutiao.com, api-tx.dsocial.xyz, api.biliapi.net, api.bilibili.com, api.britbox.com, api.cloudflareclient.com, api.douban.com, api.fenxianglife.com, api.gotokeep.com, api.kkmh.com, api.live.bilibili.com, api.vc.bilibili.com, api.viki.io, api.weibo.cn, api.wxcjgg.cn, api.x.com, app.biliapi.net, app.bilibili.com, app.flymodem.com.cn, app.hbooker.com, ask.zhaopin.com, assets.huluim.com, assetshuluimcom-a.akamaihd.net, atv-ps-fe.primevideo.com, atv-ps.amazon.com, bbs.sdgun.com.cn, boxjs.net, buy.itunes.apple.com, c.tieba.baidu.com, capi.lkcoffee.com, cf-timedtext.aux.pv-cdn.net, cgate.zhaopin.com, cmds.omesoft.com, consumer.fcbox.com, content-discovery.uplynk.com, d1v5ir2lpwr8os.cloudfront.net, d22qjgkvxw22r6.cloudfront.net, d25xi40x97liuc.cloudfront.net, d27xxe7juh1us6.cloudfront.net, dmqdd6hw24ucf.cloudfront.net, dplus-ph-google-v2.prod-vod.h264.io, dplus-ph-prod-vod.akamaized.net, dsp.fcbox.com, ecom.map.baidu.com, epixhls.akamaized.net, frodo.douban.com, gateway.icloud.com.cn, gql-fed.reddit.com, gql.reddit.com, grpc.biliapi.net, hls-svod.itunes.apple.com, hls.itunes.apple.com, hls.ted.com, httpdns.n.netease.com, i.weread.qq.com, info.mina.xiaoaisound.com, interface.music.163.com, interface3.music.163.com, interface9.music.163.com, ios.chat.openai.com, ipv4.music.163.com, is.snssdk.com, kad.gotokeep.com, lanfanapp.com, link.theplatform.com, live-sc.hulustream.com, livemanifest-f.hulustream.com, loginxhm.10010.com, m.client.10010.com, m.ctrip.com, m.douban.com, m.youtube.com, mag1.sdgun.net, magev6.if.qidian.com, manga.bilibili.com, manifest-dp.hulustream.com, manifest-viki.viki.io, manifest.googlevideo.com, manifest.prod.boltdns.net, manifests.api.hbo.com, manifests.v2.api.hbo.com, mecdn?.starz.com, media-production.nebula.app, mi.gdt.qq.com, music.youtube.com, net-lsp-x.com, newapp2.szsmk.com, newclient.map.baidu.com, news.ssp.qq.com, open.e.kuaishou.com, passport.iqiyi.com, picapp.sdgun.net, pubads.g.doubleclick.net, r.inews.qq.com, redirector.playback.*.prod.deploys.brightcove.com, s3.amazonaws.com, script.hub, search.bilibili.com, ssaimanifest.prod.boltdns.net, sub.store, tiebac.baidu.com, true, tv.youtube.com, upos-*-mirrorakam.akamaized.net, upos-sz-mirror*bstar1.bilivideo.com, v.vrv.co, vod-*-live.akamaized.net, vod-*.cbsaavideo.com, vod-*.cbsivideo.com, vod-*.live.cf.md.bbci.co.uk, vod-*.tv.apple.com, vodmanifest.hulustream.com, weather-data.apple.com, weibointl.api.weibo.cn, www.bilibili.com, www.youtube.com, x-default-stgec.uplynk.com, yongche.baidu.com, youtubei.googleapis.com, zero-trust-client.cloudflareclient.com
+hostname = %APPEND% %INSERT% -*.facebook.com, %INSERT% boxjs.com, %INSERT% gateway.icloud.com, *-discovery1.uplynk.com, *-pplus.cbs.com, *-vod.fubo.tv, *.airspace-*.cbsivideo.com, *.boxjs.com, *.boxjs.net, *.cdn.peacocktv.com, *.content.britbox.co.uk, *.cssott.com, *.gamersky.com, *.googlevideo.com, *.hbomaxcdn.com, *.hls.pv-cdn.net, *.hls.row.aiv-cdn.net, *.iqiyi.com, *.live.epix.services, *.mcdn.bilivideo.cn, *.media.dssott.com, *.media.starott.com, *.mubicdn.net, *.oca.nflxvideo.net, *.plutotv.net, *.pplus.paramount.tech, *.prd.media.h264.io, *.prd.media.max.com, *.prd.pluto.tv, *.prod.dssedge.com, *.prod.media.h264.io, *.prod.media.max.com, *.script.hub, *.stream.peacocktv.com, *avodhlss3ww-a.akamaihd.net, -*.instagram.com, -*.pstatp.com, -*.snssdk.com, -*.twitter.com, -i.vip.iqiyi.com, -redirector*.googlevideo.com, afd.baidu.com, amcplus-?.akamaized.net, ap-hls-live.cdn?.showtime.com, ap-hls-vod.dynamic.showtime.com, api-access.pangolin-sdk-toutiao.com, api-tx.dsocial.xyz, api.biliapi.net, api.bilibili.com, api.britbox.com, api.cloudflareclient.com, api.douban.com, api.fenxianglife.com, api.gotokeep.com, api.live.bilibili.com, api.vc.bilibili.com, api.viki.io, api.weibo.cn, api.wxcjgg.cn, api.x.com, app.biliapi.net, app.bilibili.com, app.flymodem.com.cn, app.hbooker.com, ask.zhaopin.com, assets.huluim.com, assetshuluimcom-a.akamaihd.net, atv-ps-fe.primevideo.com, atv-ps.amazon.com, bbs.sdgun.com.cn, boxjs.net, buy.itunes.apple.com, capi.lkcoffee.com, cf-timedtext.aux.pv-cdn.net, cgate.zhaopin.com, cmds.omesoft.com, consumer.fcbox.com, content-discovery.uplynk.com, d1v5ir2lpwr8os.cloudfront.net, d22qjgkvxw22r6.cloudfront.net, d25xi40x97liuc.cloudfront.net, d27xxe7juh1us6.cloudfront.net, dmqdd6hw24ucf.cloudfront.net, dplus-ph-google-v2.prod-vod.h264.io, dplus-ph-prod-vod.akamaized.net, dsp.fcbox.com, ecom.map.baidu.com, epixhls.akamaized.net, frodo.douban.com, gateway.icloud.com.cn, gql-fed.reddit.com, gql.reddit.com, grpc.biliapi.net, hls-svod.itunes.apple.com, hls.itunes.apple.com, hls.ted.com, httpdns.n.netease.com, i.weread.qq.com, info.mina.xiaoaisound.com, interface.music.163.com, interface3.music.163.com, interface9.music.163.com, ios.chat.openai.com, ipv4.music.163.com, is.snssdk.com, kad.gotokeep.com, lanfanapp.com, link.theplatform.com, live-sc.hulustream.com, livemanifest-f.hulustream.com, m.client.10010.com, m.douban.com, m.youtube.com, mag1.sdgun.net, magev6.if.qidian.com, manga.bilibili.com, manifest-dp.hulustream.com, manifest-viki.viki.io, manifest.googlevideo.com, manifest.prod.boltdns.net, manifests.api.hbo.com, manifests.v2.api.hbo.com, mecdn?.starz.com, media-production.nebula.app, mi.gdt.qq.com, music.youtube.com, net-lsp-x.com, newapp2.szsmk.com, newclient.map.baidu.com, news.ssp.qq.com, open.e.kuaishou.com, picapp.sdgun.net, pubads.g.doubleclick.net, r.inews.qq.com, redirector.playback.*.prod.deploys.brightcove.com, s3.amazonaws.com, script.hub, search.bilibili.com, ssaimanifest.prod.boltdns.net, tiebac.baidu.com, true, tv.youtube.com, upos-*-mirrorakam.akamaized.net, upos-sz-mirror*bstar1.bilivideo.com, v.vrv.co, vod-*-live.akamaized.net, vod-*.cbsaavideo.com, vod-*.cbsivideo.com, vod-*.live.cf.md.bbci.co.uk, vod-*.tv.apple.com, vodmanifest.hulustream.com, weather-data.apple.com, weibointl.api.weibo.cn, www.bilibili.com, www.youtube.com, x-default-stgec.uplynk.com, yongche.baidu.com, youtubei.googleapis.com, zero-trust-client.cloudflareclient.com
 
 [Rule]
 
@@ -599,7 +523,7 @@ https://app.flymodem.com.cn/Appapi/Public/welecome - reject
 
 
 [General]
-force-http-engine-hosts = %APPEND% *.boxjs.com, *.boxjs.net, *.hls.pv-cdn.net, *.hls.row.aiv-cdn.net, *.script.hub, *:4480, *:4483, *:8000, *:8082, *:9102, *avodhlss3ww-a.akamaihd.net, 10010v4.com, api.fenxianglife.com, assets.huluim.com, boxjs.com, boxjs.net, cf-timedtext.aux.pv-cdn.net, cmds.omesoft.com, d1v5ir2lpwr8os.cloudfront.net, d22qjgkvxw22r6.cloudfront.net, d25xi40x97liuc.cloudfront.net, d27xxe7juh1us6.cloudfront.net, dmqdd6hw24ucf.cloudfront.net, gql-fed.reddit.com, gql.reddit.com, info.mina.xiaoaisound.com, m.client.10010.com, mag1.sdgun.net, newapp2.szsmk.com, s3.amazonaws.com, script.hub, vod-*-live.akamaized.net, vod-*.live.cf.md.bbci.co.uk
+force-http-engine-hosts = %APPEND% *.boxjs.com, *.boxjs.net, *.hls.pv-cdn.net, *.hls.row.aiv-cdn.net, *.script.hub, *:4480, *:4483, *:8000, *:8082, *:9102, *avodhlss3ww-a.akamaihd.net, api.fenxianglife.com, assets.huluim.com, boxjs.com, boxjs.net, cf-timedtext.aux.pv-cdn.net, cmds.omesoft.com, d1v5ir2lpwr8os.cloudfront.net, d22qjgkvxw22r6.cloudfront.net, d25xi40x97liuc.cloudfront.net, d27xxe7juh1us6.cloudfront.net, dmqdd6hw24ucf.cloudfront.net, gql-fed.reddit.com, gql.reddit.com, info.mina.xiaoaisound.com, m.client.10010.com, mag1.sdgun.net, newapp2.szsmk.com, s3.amazonaws.com, script.hub, vod-*-live.akamaized.net, vod-*.live.cf.md.bbci.co.uk
 skip-proxy = %INSERT% localhost, *.local, captive.apple.com, e.crashlytics.com, www.baidu.com, passenger.t3go.cn, yunbusiness.ccb.com, wxh.wo.cn, gate.lagou.com, www.abchina.com.cn, login-service.mobile-bank.psbc.com, mobile-bank.psbc.com, 10.0.0.0/8, 127.0.0.1/32, 172.16.0.0/12, 192.168.0.0/16, 192.168.122.1/32, 193.168.0.1/32, ::1/128, fe80::/10
 hide-vpn-icon = true
 use-local-host-item-for-proxy = true
