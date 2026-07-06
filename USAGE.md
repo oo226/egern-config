@@ -79,7 +79,35 @@ https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Egern.yaml
 
 ---
 
-## 七、修改习惯
+## 七、BoxJS（统一订阅）
+
+去广告合集里已带 BoxJS 引擎（访问 `http://boxjs.com`）。**只需添加下面这一条订阅**，即可配置本仓库里所有支持 BoxJS 的脚本（播放器、签到、抓参、Cookie 等）。
+
+**订阅链接（BoxJS → 应用订阅 → 添加）：**
+
+```
+https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/egern.boxjs.json
+```
+
+### 常用应用
+
+| 分类 | BoxJS 应用名 | 说明 |
+|------|-------------|------|
+| 播放器 | 妻友社区 / PearVideo / insav / porntube / xjh51 | 改播放器后保存，**不要**在 Egern 模块参数里填 |
+| 签到 | 百度签到、10000、顺丰、喜马拉雅、网易严选 | 配合 Cookie 合集抓参后使用 |
+| 抓参 | PingMe 抓参、一点万象、iios、来充、Soul 唱歌 | 先 MITM 抓参，再开签到任务 |
+| Cookie | 京东/美团/什么值得买 cookie、阿里云盘 cookie 等 | 配合 Cookie 合集 |
+| 青龙 | 青龙同步 BoxJS | 同步 BoxJS 键到青龙环境变量 |
+
+改完保存 → 完全退出相关 App 再开 → 测试。
+
+> 旧版 `yu9191-player.boxjs.json` 仍保留（仅播放器子集），新用户请直接用 `egern.boxjs.json`。
+
+签到流程详见 [Scripts/README.md](Scripts/README.md)。
+
+---
+
+## 八、修改习惯
 
 - **改自己的偏好**：直接改 `main` 上的 `Egern.yaml`（订阅、节点、策略组顺序）
 - **改去广告源**：在 `sync` 分支改 `scripts/`、`Modules/manifest.yaml`，等 Actions 发布到 `main`
