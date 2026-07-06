@@ -1,5 +1,7 @@
 # 模块（Modules）
 
+> 镜像合并自用，上游版权归原作者。不合理请联系删除，见 [DISCLAIMER.md](../DISCLAIMER.md)。
+
 目录名用英文，避免 raw 链接被 URL 编码。
 
 **模块**通过 URL Rewrite、MITM、Script 拦截 App 内广告和开屏。
