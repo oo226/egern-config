@@ -6,9 +6,9 @@ import json
 import re
 from pathlib import Path
 
-from paths import GITHUB_RAW_MAIN, MODULES
+from paths import GITHUB_RAW_MAIN, GITHUB_RAW_MAIN_BOXJS, MODULES
 
-YU9191_BOXJS_SUBSCRIPTION = f"{GITHUB_RAW_MAIN}/Modules/yu9191-player.boxjs.json"
+YU9191_BOXJS_SUBSCRIPTION = f"{GITHUB_RAW_MAIN_BOXJS}/Modules/yu9191-player.boxjs.json"
 YU9191_BOXJS_UPSTREAM = (
     "https://raw.githubusercontent.com/Yu9191/Rewrite/refs/heads/main/pear.boxjs.json"
 )

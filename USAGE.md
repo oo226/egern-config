@@ -86,7 +86,7 @@ https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Egern.yaml
 **订阅链接（BoxJS → 应用订阅 → 添加）：**
 
 ```
-https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/egern.boxjs.json
+https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json
 ```
 
 ### 常用应用

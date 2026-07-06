@@ -9,9 +9,9 @@ import urllib.request
 from pathlib import Path
 from urllib.parse import unquote
 
-from paths import GITHUB_RAW_MAIN, MIRRORED_SCRIPT_REWRITES, MODULES, ROOT, SIGNIN_SCRIPTS
+from paths import GITHUB_RAW_MAIN, GITHUB_RAW_MAIN_BOXJS, MIRRORED_SCRIPT_REWRITES, MODULES, ROOT, SIGNIN_SCRIPTS
 
-EGERN_BOXJS_SUBSCRIPTION = f"{GITHUB_RAW_MAIN}/Modules/egern.boxjs.json"
+EGERN_BOXJS_SUBSCRIPTION = f"{GITHUB_RAW_MAIN_BOXJS}/Modules/egern.boxjs.json"
 OUTPUT_PATH = MODULES / "egern.boxjs.json"
 
 UPSTREAM_SUBSCRIPTIONS: tuple[tuple[str, str], ...] = (

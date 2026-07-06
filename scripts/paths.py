@@ -42,6 +42,10 @@ UPSTREAM_CACHE = MODULES / "_upstream"
 GITHUB_RAW_MAIN = (
     "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main"
 )
+# BoxJS / 部分客户端拉新文件时 refs/heads/main 会 404，订阅链接用短路径。
+GITHUB_RAW_MAIN_BOXJS = (
+    "https://raw.githubusercontent.com/oo226/egern-config/main"
+)
 CHXM1023_SCRIPT_REWRITES = (
     (
         "https://raw.githubusercontent.com/chxm1023/Rewrite/main/",
