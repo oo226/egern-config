@@ -143,6 +143,15 @@ dns:
     - 119.29.29.29
   public_ip_lookup_url: https://ifconfig.me/ip
 
+# 追风挂机 — 途游小程序游戏辅助专用 HTTP 节点（与小火箭 zhuifeng 配置一致）
+# 配置源: http://116.198.150.190:8888/zhuifeng.yaml  手册: http://120.53.245.215:8788/onboarding/ios_new/
+proxies:
+  - http:
+      name: 追风
+      server: 120.53.245.215
+      port: 8688
+      tfo: false
+
 # 面板：只留订阅 + 兜底 + 地区池 + 少数常调服务
 policy_groups:
   - external:
@@ -153,6 +162,12 @@ policy_groups:
       filter: '^((?!Remain|Expired|官网|如需|套餐|去除|剩余|距离|Reset|重置|流量|倍率).)+$'
       update_interval: 86400
       icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/04ProxySoft/mega.png
+      hidden: true
+
+  - select:
+      name: 追风挂机
+      policies:
+        - 追风
       hidden: true
 
   - auto_test:
@@ -299,6 +314,12 @@ rules:
   - rule_set:
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Direct-Priority.yaml
       policy: DIRECT
+      update_interval: 86400
+
+  # ── 追风挂机：途游 sq-hlsg / open-hlsg 走专用节点 ──
+  - rule_set:
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Zhuifeng.yaml
+      policy: 追风挂机
       update_interval: 86400
 
   # ── 第 2 段：广告 / WebRTC 拦截 ──
