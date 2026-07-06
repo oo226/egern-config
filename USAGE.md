@@ -101,6 +101,8 @@ https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.js
 
 改完保存 → 完全退出相关 App 再开 → 测试。
 
+**若点击应用无反应（页面跳到顶部）**：删除旧订阅后重新添加上面的链接。早期版本应用 ID 带 `egern.` 前缀，与 BoxJS 路由不兼容，需重新订阅一次。
+
 > 旧版 `yu9191-player.boxjs.json` 仍保留（仅播放器子集），新用户请直接用 `egern.boxjs.json`。
 
 签到流程详见 [Scripts/README.md](Scripts/README.md)。

@@ -126,8 +126,11 @@ _LOG_LEVEL_ITEMS = [
 ]
 
 
+EGERN_AUTHOR = "egern-config"
+
+
 def _local_url(relative: str) -> str:
-    return f"{GITHUB_RAW_MAIN}/{relative.lstrip('/')}"
+    return f"{GITHUB_RAW_MAIN_BOXJS}/{relative.lstrip('/')}"
 
 
 def rewrite_script_url(url: str) -> str:
@@ -256,7 +259,7 @@ def _player_settings(prefix: str, *, jump: bool = True) -> list[dict]:
 def local_only_apps() -> list[dict]:
     return [
         {
-            "id": "egern.iios",
+            "id": "iios_checkin",
             "name": "iios 签到",
             "keys": [
                 "iios_login_accounts",
@@ -291,12 +294,12 @@ def local_only_apps() -> list[dict]:
                     "type": "text",
                 },
             ],
-            "author": "ZenmoFeiShi / egern-config",
+            "author": "egern-config",
             "repo": "https://github.com/oo226/egern-config",
             "script": _local_url("Scripts/iios_checkin.js"),
         },
         {
-            "id": "egern.mixc",
+            "id": "mixc_signin",
             "name": "一点万象签到",
             "keys": ["mixc_signin_params"],
             "settings": [
@@ -308,12 +311,12 @@ def local_only_apps() -> list[dict]:
                     "desc": "先开 MITM 抓参，保存后用于签到",
                 }
             ],
-            "author": "ZenmoFeiShi / egern-config",
+            "author": "egern-config",
             "repo": "https://github.com/oo226/egern-config",
             "script": _local_url("Scripts/mixc_signin.js"),
         },
         {
-            "id": "egern.pingme",
+            "id": "pingme_capture",
             "name": "PingMe 抓参",
             "keys": ["pingme_capture_v3"],
             "settings": [
@@ -325,12 +328,12 @@ def local_only_apps() -> list[dict]:
                     "desc": "一般由抓参脚本自动写入，也可手动粘贴",
                 }
             ],
-            "author": "ZenmoFeiShi / egern-config",
+            "author": "egern-config",
             "repo": "https://github.com/oo226/egern-config",
             "script": _local_url("Scripts/PingMe-capture.js"),
         },
         {
-            "id": "egern.soulsing",
+            "id": "soulsing_capture",
             "name": "Soul 唱歌抓参",
             "keys": ["soul_sign_url", "soul_sign_headers"],
             "settings": [
@@ -342,12 +345,12 @@ def local_only_apps() -> list[dict]:
                     "type": "textarea",
                 },
             ],
-            "author": "ZenmoFeiShi / egern-config",
+            "author": "egern-config",
             "repo": "https://github.com/oo226/egern-config",
             "script": _local_url("Scripts/SoulSing.js"),
         },
         {
-            "id": "egern.laichong",
+            "id": "laichong_capture",
             "name": "来充抓参",
             "keys": ["LaichongAuthList"],
             "settings": [
@@ -358,12 +361,12 @@ def local_only_apps() -> list[dict]:
                     "type": "textarea",
                 }
             ],
-            "author": "ZenmoFeiShi / egern-config",
+            "author": "egern-config",
             "repo": "https://github.com/oo226/egern-config",
             "script": _local_url("Scripts/LaiChong.js"),
         },
         {
-            "id": "egern.nseek",
+            "id": "nodeseek_capture",
             "name": "NodeSeek 抓参",
             "keys": ["NS_NodeseekHeaders"],
             "settings": [
@@ -374,12 +377,12 @@ def local_only_apps() -> list[dict]:
                     "type": "textarea",
                 }
             ],
-            "author": "ZenmoFeiShi / egern-config",
+            "author": "egern-config",
             "repo": "https://github.com/oo226/egern-config",
             "script": _local_url("Scripts/Nodeseek_NsCheckin.js"),
         },
         {
-            "id": "egern.xjh51",
+            "id": "xjh51_player",
             "name": "xjh51 播放器设置",
             "keys": [
                 "xjh51_player_select",
@@ -389,36 +392,21 @@ def local_only_apps() -> list[dict]:
                 "xjh51_log_level",
             ],
             "settings": _player_settings("xjh51"),
-            "author": "Yu9191 Rewrite / egern-config",
+            "author": "egern-config",
             "repo": "https://github.com/oo226/egern-config",
             "script": _local_url("Scripts/yu9191/rewrite/xjh51/dist/xjh51.js"),
         },
         {
-            "id": "egern.ql_sync",
+            "id": "ql_sync",
             "name": "青龙同步 BoxJS",
             "keys": ["#ql_sync_keys", "ql_sync_notify"],
-            "settings": [
-                {
-                    "id": "#ql_sync_keys",
-                    "name": "同步键名（逗号分隔）",
-                    "val": "",
-                    "type": "text",
-                    "desc": "例: CookiesJD,fmz200_weibo_token",
-                },
-                {
-                    "id": "ql_sync_notify",
-                    "name": "静默同步",
-                    "val": "false",
-                    "type": "boolean",
-                    "desc": "true 时不发送同步完成通知",
-                },
-            ],
-            "author": "fmz200 / egern-config",
+            "desc": "在 BoxJS「我的 → 数据」中编辑 #ql_sync_keys（逗号分隔键名）与 ql_sync_notify。",
+            "author": "egern-config",
             "repo": "https://github.com/oo226/egern-config",
             "script": _local_url("Scripts/fmz200/qinglong/ql_sync.js"),
         },
         {
-            "id": "egern.yanxuan",
+            "id": "yanxuan_signin",
             "name": "网易严选签到",
             "keys": ["chavy_cookie_yanxuan", "chavy_token_yanxuan"],
             "settings": [
@@ -435,7 +423,7 @@ def local_only_apps() -> list[dict]:
                     "type": "textarea",
                 },
             ],
-            "author": "chavyleung / egern-config",
+            "author": "egern-config",
             "repo": "https://github.com/oo226/egern-config",
             "script": _local_url("Scripts/yanxuan.js"),
         },
@@ -502,19 +490,51 @@ def _app_local_script(
     return None
 
 
-def _normalize_app(app: dict, *, source: str, local_script: str) -> dict:
+def _sanitize_app(app: dict) -> dict:
+    """Drop fields / ids that break BoxJS navigation or DOM bindings."""
+    app.pop("tasks", None)
+    app.pop("rewrites", None)
+    for key in list(app):
+        if key.startswith("desc") and key not in ("desc",):
+            app.pop(key, None)
+    settings = app.get("settings")
+    if isinstance(settings, list):
+        for setting in settings:
+            if not isinstance(setting, dict):
+                continue
+            sid = str(setting.get("id", ""))
+            # `#foo` is a valid persistent key but invalid as an HTML id in BoxJS UI.
+            if sid.startswith("#"):
+                setting["id"] = f"boxjs_{sid.lstrip('#')}"
+    return app
+
+
+def _normalize_app(
+    app: dict,
+    *,
+    source: str,
+    local_script: str,
+    used_ids: set[str],
+) -> dict:
     out = copy.deepcopy(app)
     out["script"] = local_script
     out["repo"] = "https://github.com/oo226/egern-config"
-    original_id = str(out.get("id", ""))
-    if not original_id.startswith("egern."):
-        out["id"] = f"egern.{source}.{original_id}"
-    author = out.get("author")
-    if isinstance(author, str) and author.strip():
-        out["author"] = f"{author} / egern-config"
-    else:
-        out["author"] = "egern-config"
-    return out
+    out["author"] = EGERN_AUTHOR
+
+    original_id = str(out.get("id", "")).strip()
+    # Drop legacy prefixed ids from earlier generator versions.
+    if original_id.startswith("egern."):
+        original_id = original_id.split(".")[-1]
+
+    app_id = original_id
+    if app_id in used_ids:
+        app_id = f"{source}_{original_id}"
+    if app_id in used_ids:
+        app_id = f"egern_{source}_{original_id}".replace(".", "_")
+
+    out["id"] = app_id
+    used_ids.add(app_id)
+    return _sanitize_app(out)
 
 
 def _should_skip_app(app: dict) -> bool:
@@ -529,6 +549,7 @@ def build_egern_boxjs() -> dict:
     referenced, local, _basename_to_rel = _script_index()
 
     merged: dict[str, dict] = {}
+    used_ids: set[str] = set()
     sources_meta: list[str] = []
 
     for source, url in UPSTREAM_SUBSCRIPTIONS:
@@ -552,22 +573,33 @@ def build_egern_boxjs() -> dict:
             )
             if not local_script:
                 continue
-            normalized = _normalize_app(app, source=source, local_script=local_script)
+            normalized = _normalize_app(
+                app,
+                source=source,
+                local_script=local_script,
+                used_ids=used_ids,
+            )
             merged[normalized["id"]] = normalized
             kept += 1
         sources_meta.append(f"{source}: {kept}/{len(apps)}")
 
     for app in local_only_apps():
+        app = _sanitize_app(copy.deepcopy(app))
+        app["author"] = EGERN_AUTHOR
+        app["repo"] = "https://github.com/oo226/egern-config"
+        if app["id"] in used_ids:
+            app["id"] = f"egern_{app['id']}"
+        used_ids.add(app["id"])
         merged[app["id"]] = app
 
-    # Prefer local insav script path used in unlock modules.
-    insav_id = "egern.yu9191_pear.InsavSettings"
-    if insav_id in merged:
-        merged[insav_id]["script"] = _local_url("Scripts/yu9191/rewrite/insav-tv/dist/insav.js")
+    if "InsavSettings" in merged:
+        merged["InsavSettings"]["script"] = _local_url(
+            "Scripts/yu9191/rewrite/insav-tv/dist/insav.js"
+        )
 
     apps_out = sorted(merged.values(), key=lambda item: str(item.get("name", "")))
     return {
-        "id": "egern.boxjs",
+        "id": "egern-config.sub",
         "name": "Egern Config 合集",
         "author": "oo226/egern-config",
         "icon": "https://raw.githubusercontent.com/chavyleung/scripts/master/box/box.png",
