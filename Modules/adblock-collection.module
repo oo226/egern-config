@@ -11462,7 +11462,7 @@ YouTube = type=http-response, pattern=^https:\/\/youtubei\.googleapis\.com\/yout
 # 微信公众号文章去广告（Collections 亦有，此处作 Advertising 源备份）
 
 # 阿里云盘去广告（ddm1023 版）
-alidrive = type=http-response, pattern=^https?:\/\/api\.(aliyundrive|alipan)\.com, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/chxm1023/advertising/alidrive.js, requires-body=true, max-size=-1, timeout=60
+alidrive = type=http-response, pattern=^https?:\/\/api\.(aliyundrive|alipan)\.com\/apps\/v\d\/users\/apps\/widgets$, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/chxm1023/advertising/alidrive.js, requires-body=true, max-size=-1, timeout=60
 
 # 小红书开屏/首页
 xiaohongshu = type=http-response, pattern=^https?:\/\/edith\.xiaohongshu\.com\/api\/sns\/v\d\/(system_service\/splash_config|homefeed\?|system_service\/config\?), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/chxm1023/advertising/xiaohongshu.js, requires-body=true, max-size=-1, timeout=60

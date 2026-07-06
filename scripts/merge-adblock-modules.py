@@ -72,11 +72,28 @@ DEFAULT_SCRIPT_URL_FIXES = {
     ),
 }
 
+# Narrow over-broad patterns that break unrelated API responses (e.g. alidrive vs device/session).
+DEFAULT_SCRIPT_PATTERN_FIXES = (
+    (
+        "pattern=^https?:\\/\\/api\\.(aliyundrive|alipan)\\.com, script-path="
+        f"{GITHUB_RAW_MAIN}/Scripts/chxm1023/advertising/alidrive.js",
+        "pattern=^https?:\\/\\/api\\.(aliyundrive|alipan)\\.com\\/apps\\/v\\d\\/users\\/apps\\/widgets$, script-path="
+        f"{GITHUB_RAW_MAIN}/Scripts/chxm1023/advertising/alidrive.js",
+    ),
+)
+
 
 def apply_script_url_fixes(text: str, fixes: dict[str, str]) -> str:
     if not fixes:
         return text
     for old, new in fixes.items():
+        if old in text:
+            text = text.replace(old, new)
+    return text
+
+
+def apply_script_pattern_fixes(text: str, fixes: tuple[tuple[str, str], ...]) -> str:
+    for old, new in fixes:
         if old in text:
             text = text.replace(old, new)
     return text
@@ -369,6 +386,7 @@ def main() -> None:
     primary_desc = merge_cfg.get("primary_desc")
     exclude_cron_scripts = bool(merge_cfg.get("exclude_cron_scripts", False))
     script_url_fixes = {**DEFAULT_SCRIPT_URL_FIXES, **(merge_cfg.get("script_url_fixes") or {})}
+    script_pattern_fixes = tuple(merge_cfg.get("script_pattern_fixes") or ()) + DEFAULT_SCRIPT_PATTERN_FIXES
 
     UPSTREAM_CACHE.mkdir(parents=True, exist_ok=True)
 
@@ -385,18 +403,21 @@ def main() -> None:
             if not local_path.exists():
                 raise SystemExit(f"missing local module {local_path}")
             text = local_path.read_text(encoding="utf-8")
+            text = apply_script_pattern_fixes(text, script_pattern_fixes)
             print(f"OK local {name} <- {local_path.name}")
         else:
             cache_path = UPSTREAM_CACHE / cache_name
             try:
                 text = fetch(item["upstream"])
                 text = apply_script_url_fixes(text, script_url_fixes)
+                text = apply_script_pattern_fixes(text, script_pattern_fixes)
                 text = mirror_script_paths(text)
                 cache_path.write_text(text, encoding="utf-8")
                 print(f"OK upstream {name} -> {cache_path.name}")
             except Exception as exc:
                 if cache_path.is_file():
                     text = cache_path.read_text(encoding="utf-8")
+                    text = apply_script_pattern_fixes(text, script_pattern_fixes)
                     print(f"KEEP upstream {name} <- cache ({exc})")
                 else:
                     raise SystemExit(f"upstream fetch failed for {name}: {exc}") from exc
@@ -415,6 +436,7 @@ def main() -> None:
         exclude_cron_scripts=exclude_cron_scripts,
     )
     merged = apply_script_url_fixes(merged, script_url_fixes)
+    merged = apply_script_pattern_fixes(merged, script_pattern_fixes)
     merged = mirror_script_paths(merged)
     output_path.write_text(merged, encoding="utf-8")
     print(f"wrote {output_path.name} ({len(merged.splitlines())} lines)")
