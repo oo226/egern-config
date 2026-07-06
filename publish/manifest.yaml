@@ -1,0 +1,74 @@
+# Curated paths copied from sync branch → main after daily upstream build.
+# Egern raw URLs under main/ must stay stable — edit with care.
+
+files:
+  - Egern.yaml
+  - README.md
+  - USAGE.md
+  - DISCLAIMER.md
+  - .github/workflows/sync-rules.yml
+
+directories:
+  - path: Routing
+    exclude_dirs: [_upstream]
+
+  - path: Modules
+    include_only:
+      - README.md
+      - adblock-collection.module
+      - unlock-collection.module
+      - cookie-collection.module
+      - ibl3nd-plugin-hub.yaml
+
+  - path: Scripts
+    exclude_dirs: [zenmofeishi]
+    include_root_glob: "*.js"
+    include_subdirs:
+      - _external
+      - _stubs
+      - fmz200
+      - chxm1023
+      - liul0ng
+      - tencent-sports
+      - weibo
+      - weigiegie
+      - xiaohongshu
+      - yu9191
+    extra_files:
+      - README.md
+
+  - path: Assets
+    include_subdirs:
+      - geoip
+      - icons
+
+  - path: Widgets
+    include_subdirs:
+      - IBL3ND
+
+# Removed from main on each publish (factory / CI-only on sync).
+prune_from_main:
+  - Routing/_upstream
+  - Modules/_upstream
+  - Modules/manifest.yaml
+  - Modules/unlock-manifest.yaml
+  - Modules/cookie-manifest.yaml
+  - Modules/qingrex-adblock.sgmodule
+  - Modules/qingrex-unlock.sgmodule
+  - Modules/fmz200-extra.sgmodule
+  - Modules/fmz200-unlock-extra.sgmodule
+  - Modules/custom-apps.sgmodule
+  - Modules/patches-unlock.sgmodule
+  - Modules/patches-alicloud.sgmodule
+  - Modules/boxjs.sgmodule
+  - Modules/chxm1023-ad-supplement.sgmodule
+  - Modules/iringo-location.sgmodule
+  - Modules/iringo-maps.sgmodule
+  - Modules/iringo-others.sgmodule
+  - Modules/iringo-weather.sgmodule
+  - Modules/liul0ng-unlock.sgmodule
+  - Modules/weigiegie-unlock.sgmodule
+  - scripts
+  - publish
+  - push-github.ps1
+  - 推送到GitHub.bat

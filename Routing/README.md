@@ -1,5 +1,7 @@
 # 分流规则（Routing）
 
+> 部分规则由上游镜像合并，仅供个人自用。见 [DISCLAIMER.md](../DISCLAIMER.md)。
+
 目录名用英文，避免 raw 链接被 URL 编码。中文说明见下表。
 
 **分流规则**决定流量走直连、代理还是 REJECT。与 `Modules/` 里的 URL 重写（去开屏）不是同一类东西。

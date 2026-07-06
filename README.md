@@ -1,51 +1,48 @@
 # egern-config
 
-个人 Egern 配置。**目录用英文命名**，避免 raw 链接出现 `%E6%...` 编码；中文说明见各目录 README。
+个人 Egern **自用** 配置仓库。目录英文命名，避免 raw 链接 URL 编码。
+
+> **搬运说明**：规则/模块/脚本来自公开上游镜像与合并，仅供个人学习使用。  
+> **版权**：版权归原作者及原项目；若认为不合理请 [联系删除](DISCLAIMER.md)。  
+> **怎么用**：请看 **[USAGE.md](USAGE.md)**（菜单） · **[DISCLAIMER.md](DISCLAIMER.md)**（免责）
 
 [![Sync Rules](https://github.com/oo226/egern-config/actions/workflows/sync-rules.yml/badge.svg)](https://github.com/oo226/egern-config/actions/workflows/sync-rules.yml)
 
-## 导入地址
+## 快速导入
 
 ```
 https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Egern.yaml
 ```
 
-## 目录一览（看 main 即可）
+## main 里有什么（一眼看懂）
 
 ```
-egern-config/
-├── Egern.yaml
-├── Routing/                   # 分流规则
-│   ├── China-Direct.yaml      # 国内直连（合并去重）
-│   ├── Reject-Merged.yaml     # 去广告域名（合并去重）
-│   ├── Lan.yaml               # 局域网
-│   └── Foreign/               # 国外按服务分开
-├── Modules/                   # 去广告/去开屏（一个合集）
-│   └── adblock-collection.module
-└── Scripts/                   # 签到脚本
-    └── *.js
+main/
+├── Egern.yaml              # 主配置模板
+├── USAGE.md                # ← 你要的链接菜单
+├── DISCLAIMER.md           # 搬运工免责 / 删除联系
+├── Routing/                # 分流成品（无 _upstream）
+├── Modules/                # 三个大合集 + 插件跳转
+├── Scripts/                # 签到 JS + 模块依赖镜像
+├── Assets/geoip/           # GeoIP 数据库
+└── Widgets/IBL3ND/         # 小组件脚本
 ```
 
-## 三类文件
-
-| 目录 | 中文 | 干什么 |
-|------|------|--------|
-| `Routing/` | 分流 | 域名走直连 / 代理 / REJECT |
-| `Modules/` | 模块 | App URL 重写、MITM、开屏脚本 |
-| `Scripts/` | 脚本 | 签到 JS |
+**不在 main**：`scripts/`（Python 工具）、`Modules/_upstream/`、`publish/` — 仅在 `sync` 分支。
 
 ## 分支
 
 | 分支 | 用途 |
 |------|------|
-| **`main`** | 你用这个 — 每日整合快照 |
-| `cursor/nb-rules-merge-ac83` | Actions 集成支 → 自动同步到 main |
+| **`main`** | 日常用 — Egern 拉这个 |
+| **`sync`** | Actions 每日上游同步，自动发布到 main |
 
-## 链接示例（干净、无中文编码）
+## 常用链接
 
 ```
 https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/adblock-collection.module
+https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/unlock-collection.module
 https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/China-Direct.yaml
 ```
 
-`scripts/` 是 CI 工具目录，日常使用可忽略。
+完整列表见 [USAGE.md](USAGE.md)。

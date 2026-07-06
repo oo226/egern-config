@@ -1,7 +1,7 @@
 name: Sync Egern Rules
 
-# Integration branch: cursor/nb-rules-merge-ac83 (daily sync + merge)
-# Clean snapshot copied to main after each run.
+# sync branch: daily upstream mirror + merge (factory)
+# main branch: curated publish only — see publish/manifest.yaml
 
 on:
   schedule:
@@ -16,7 +16,7 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  INTEGRATION_BRANCH: cursor/nb-rules-merge-ac83
+  SYNC_BRANCH: sync
 
 jobs:
   sync:
@@ -24,13 +24,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ env.INTEGRATION_BRANCH }}
+          ref: ${{ env.SYNC_BRANCH }}
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Ensure integration branch
+      - name: Ensure sync branch
         run: |
-          git fetch origin main ${{ env.INTEGRATION_BRANCH }} || true
-          git checkout ${{ env.INTEGRATION_BRANCH }} || git checkout -b ${{ env.INTEGRATION_BRANCH }}
+          git fetch origin main ${{ env.SYNC_BRANCH }} || true
+          git checkout ${{ env.SYNC_BRANCH }} || git checkout -b ${{ env.SYNC_BRANCH }}
 
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -123,23 +123,17 @@ jobs:
       - name: Mirror IBL3ND widgets
         run: python3 scripts/download-ibl3nd-widgets.py
 
-      - name: Commit integration branch
+      - name: Commit sync branch
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add Routing/ Modules/ Scripts/ Assets/ Widgets/ Egern.yaml scripts/external-script-rewrites.yaml README.md
+          git add -A
           if git diff --staged --quiet; then
-            echo "No changes on integration branch."
+            echo "No changes on sync branch."
           else
-            git commit -m "chore: sync upstream, merge routing/adblock rules"
-            git push origin ${{ env.INTEGRATION_BRANCH }}
+            git commit -m "chore: sync upstream on sync branch"
+            git push origin ${{ env.SYNC_BRANCH }}
           fi
 
-      - name: Copy consolidated snapshot to main
-        run: |
-          git fetch origin main
-          git checkout main
-          git merge ${{ env.INTEGRATION_BRANCH }} -m "chore: sync consolidated rules from integration branch" || \
-            git reset --hard ${{ env.INTEGRATION_BRANCH }}
-          git push origin main
-          echo "main updated from ${{ env.INTEGRATION_BRANCH }}"
+      - name: Publish curated snapshot to main
+        run: python3 scripts/publish-main.py

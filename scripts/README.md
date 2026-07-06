@@ -1,6 +1,7 @@
 # Scripts
 
-签到脚本镜像目录，由 GitHub Actions 自动从上游同步。
+签到脚本镜像目录（CI 工具链说明）。用户向文档见 `Scripts/README.md` 与 [USAGE.md](../USAGE.md)。  
+上游版权归原项目；侵权联系删除见 [DISCLAIMER.md](../DISCLAIMER.md)。
 
 | 脚本 | 来源 | 说明 |
 |------|------|------|
