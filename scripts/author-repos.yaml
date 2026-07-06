@@ -57,6 +57,9 @@ repos:
     dest_scripts: yu9191/rewrite
     include_scripts:
       - "^.+\\.js$"
+    include_modules:
+      - "^.+\\.sgmodule$"
+    generate_unlock_modules: true
 
   - id: tencent-sports
     github: Hey-sayiwanna/TencentSports-Surge

@@ -62,6 +62,7 @@ prune_from_main:
   - Modules/patches-alicloud.sgmodule
   - Modules/boxjs.sgmodule
   - Modules/chxm1023-ad-supplement.sgmodule
+  - Modules/yu9191-rewrite-unlock.sgmodule
   - Modules/iringo-location.sgmodule
   - Modules/iringo-maps.sgmodule
   - Modules/iringo-others.sgmodule

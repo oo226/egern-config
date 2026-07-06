@@ -135,6 +135,27 @@ def module_kind(filename: str) -> str:
     return "adblock"
 
 
+def module_kind_from_header(filename: str, text: str) -> str:
+    """Classify by filename and module header (#!name / #!desc / #!category)."""
+    kind = module_kind(filename)
+    if kind != "adblock":
+        return kind
+    header = text.split("[", 1)[0].lower()
+    unlock_markers = (
+        "解锁",
+        "vip",
+        "会员",
+        "18+",
+        "破解",
+        "订阅",
+        "subscription",
+        "premium",
+    )
+    if any(m in header for m in unlock_markers):
+        return "unlock"
+    return kind
+
+
 def read_modules(
     directory: Path,
     *,
@@ -232,6 +253,26 @@ def generate_qingrex() -> None:
     write_if_content(MODULES / "qingrex-unlock.sgmodule", unlock_text)
 
 
+def generate_yu9191_rewrite() -> None:
+    directory = UPSTREAM_CACHE / "yu9191-rewrite"
+    modules = read_modules(directory)
+    if not modules:
+        print("skip yu9191-rewrite: no mirrored modules")
+        return
+
+    unlock = [
+        (n, t)
+        for n, t in modules
+        if module_kind_from_header(n, t) == "unlock"
+    ]
+    unlock_text = merge_modules(
+        "Yu9191 Rewrite 解锁合集",
+        "Yu9191/Rewrite 仓库 sgmodule 解锁合并去重（幻宇星球等，脚本已镜像）",
+        unlock,
+    )
+    write_if_content(MODULES / "yu9191-rewrite-unlock.sgmodule", unlock_text)
+
+
 def generate_fmz200() -> None:
     directory = UPSTREAM_CACHE / "fmz200"
     modules = read_modules(directory)
@@ -275,6 +316,10 @@ def generate_fmz200() -> None:
 def main() -> None:
     data = load_config()
     for repo in data.get("repos", []):
+        if repo.get("generate_unlock_modules"):
+            if repo["id"] == "yu9191-rewrite":
+                generate_yu9191_rewrite()
+            continue
         if not repo.get("generate_collections") and repo["id"] != "fmz200":
             continue
         if repo["id"] == "qingrex":

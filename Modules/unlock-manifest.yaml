@@ -61,6 +61,12 @@ modules:
     upstream: https://raw.githubusercontent.com/Yu9191/shortcutstudio-rewrite/refs/heads/baby/modules/ShortcutStudio.sgmodule
     note: "Yu9191 — ShortcutStudio 全仓库（脚本已镜像）"
 
+  - name: yu9191-rewrite-unlock
+    cache: yu9191-rewrite-unlock.sgmodule
+    role: supplement
+    local: true
+    note: "Yu9191/Rewrite — sgmodule 解锁合集（幻宇星球等，脚本已镜像）"
+
   - name: weigiegie-unlock
     cache: weigiegie-unlock.sgmodule
     role: supplement
