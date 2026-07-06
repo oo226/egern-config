@@ -89,6 +89,27 @@ def main() -> None:
             print(f"skk fail {url}: {exc}")
 
     print(f"summary ok={ok} fail={fail}")
+    patch_google_rule_set()
+
+
+def patch_google_rule_set() -> None:
+    """Ensure google.com suffix matches play.google.com etc. (upstream has Google.com)."""
+    path = ROUTING_FOREIGN / "Google.yaml"
+    if not path.is_file():
+        return
+    text = path.read_text(encoding="utf-8")
+    if "\n  - google.com\n" in text:
+        return
+    if "  - Google.com\n" in text:
+        text = text.replace("  - Google.com\n", "  - google.com\n", 1)
+    else:
+        text = text.replace(
+            "domain_suffix_set:\n",
+            "domain_suffix_set:\n  - google.com\n",
+            1,
+        )
+    path.write_text(text, encoding="utf-8")
+    print("patched Google.yaml: added google.com suffix")
 
 
 if __name__ == "__main__":
