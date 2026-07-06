@@ -1,8 +1,8 @@
 # AUTO-PUBLISHED by scripts/publish-direct-priority.py
 # 类型: 分流规则 — 国内/系统服务优先直连（须在 Proxy 类规则之前匹配）
 # Do not edit manually. Updated by GitHub Actions after upstream sync.
-# Merged: WeChat.yaml, Microsoft.yaml, AppleServers.yaml, TestFlight.yaml + pingmeapp.net
-# Total unique entries: 723
+# Merged: WeChat.yaml, Microsoft.yaml, AppleServers.yaml, TestFlight.yaml
+# Total unique entries: 722
 
 no_resolve: true
 domain_set:
@@ -560,7 +560,6 @@ domain_suffix_set:
   - passport.net
   - pbiwebcontent.cn
   - phonefactor.net
-  - pingmeapp.net
   - pixapp.net
   - playfabapi.cn
   - playfabcn.com

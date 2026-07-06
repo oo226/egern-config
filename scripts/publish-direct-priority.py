@@ -20,7 +20,7 @@ SOURCES = [
     ROUTING_FOREIGN / "App" / "TestFlight.yaml",
 ]
 
-EXTRA_SUFFIXES = ("pingmeapp.net",)
+EXTRA_SUFFIXES: tuple[str, ...] = ()
 
 
 def main() -> None:
@@ -44,7 +44,7 @@ def main() -> None:
         "# AUTO-PUBLISHED by scripts/publish-direct-priority.py",
         "# 类型: 分流规则 — 国内/系统服务优先直连（须在 Proxy 类规则之前匹配）",
         "# Do not edit manually. Updated by GitHub Actions after upstream sync.",
-        f"# Merged: {', '.join(labels)} + {', '.join(EXTRA_SUFFIXES)}",
+        f"# Merged: {', '.join(labels)}",
     ]
     write_egern_sets(DEST, merged, header_lines=header)
     print(f"Direct-Priority total: {count_sets(merged)} entries")
