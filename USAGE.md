@@ -19,7 +19,7 @@ https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Egern.yaml
 | PingMe 抓参签到 | 模块 | 外部 `oo226/quanx` `pingme.yaml` | 不在本仓库 |
 | 插件跳转 Egern | 模块 | `.../Modules/ibl3nd-plugin-hub.yaml` | 默认开 |
 | 追风挂机 | 节点+规则 | `Egern.yaml` 内 `proxies` + `Routing/Zhuifeng.yaml` | 途游小程序专用 |
-| 今日油价 | 脚本/小组件 | `.../Widgets/IBL3ND/Oil_Widget.JS` | 见 `Egern.yaml` |
+| 今日油价 | 小组件 | `.../Widgets/IBL3ND/Oil_Widget.JS` | **仅 `widgets` 段**，勿加 `scriptings` |
 
 完整前缀：`https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main`
 

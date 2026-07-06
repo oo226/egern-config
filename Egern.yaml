@@ -483,15 +483,7 @@ mitm:
       - "*.mzstatic.com"
       - buy.itunes.apple.com
 
-scriptings:
-  - generic:
-      name: 今日油价
-      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/Oil_Widget.JS
-      update_interval: 86400
-      env:
-        region: zhejiang/ningbo
-        SHOW_TREND: "true"
-
+# 今日油价：仅 widgets，勿写 scriptings.generic（会随配置重载频繁执行）
 widgets:
   - name: 今日油价
     env:
