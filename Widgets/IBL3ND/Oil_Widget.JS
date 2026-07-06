@@ -87,12 +87,10 @@ export default async function (ctx) {
   };
 
   const CACHE_KEY = `qiyoujiage_oil_${regionParam}`;
-  const CACHE_TTL_MS = 6 * 60 * 60 * 1000;
   let prices = {p92:null, p95:null, p98:null, diesel:null};
   let regionName = "";
   let trendInfo = "";
   let hasCache = false;
-  let cacheFresh = false;
   
   try {
     const cached = ctx.storage.getJSON(CACHE_KEY);
@@ -101,16 +99,13 @@ export default async function (ctx) {
       regionName = cached.regionName || "";
       trendInfo = cached.trendInfo || "";
       hasCache = true;
-      if (cached.fetchedAt && Date.now() - cached.fetchedAt < CACHE_TTL_MS) {
-        cacheFresh = true;
-      }
     }
   } catch(_){}
 
   let fetchError = false;
   let errorMsg = "";
 
-  if (!cacheFresh) try {
+  try {
     const queryAddr = `http://m.qiyoujiage.com/${regionParam}.shtml`;
     
     const resp = await ctx.http.get(queryAddr, {
@@ -208,8 +203,8 @@ export default async function (ctx) {
         }
       }
 
-      // 缓存包含地区名（6 小时内复用，避免频繁请求）
-      ctx.storage.setJSON(CACHE_KEY, { prices, regionName, trendInfo, fetchedAt: Date.now() });
+      // 缓存包含地区名
+      ctx.storage.setJSON(CACHE_KEY, { prices, regionName, trendInfo });
       fetchError = false;
     } else {
       if (!hasCache) {
