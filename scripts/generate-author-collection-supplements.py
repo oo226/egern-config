@@ -8,6 +8,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+from boxjs_player import strip_boxjs_module_arguments
 from paths import MODULES, UPSTREAM_CACHE
 
 _merge_spec = importlib.util.spec_from_file_location(
@@ -212,7 +213,8 @@ def merge_modules(
         primary_desc=desc,
         exclude_cron_scripts=exclude_cron_scripts,
     )
-    return mirror_script_paths(merged)
+    merged = mirror_script_paths(merged)
+    return strip_boxjs_module_arguments(merged)
 
 
 def write_if_content(path: Path, content: str) -> None:

@@ -79,7 +79,29 @@ https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Egern.yaml
 
 ---
 
-## 七、修改习惯
+## 七、BoxJS（妻友社区等播放器）
+
+去广告合集里已带 BoxJS 引擎（访问 `http://boxjs.com`）。**妻友社区 / Pear / insav / porntube** 的播放器请在 BoxJS 里改，不要在 Egern 模块参数里填（模块参数会覆盖 BoxJS）。
+
+**订阅链接（添加到 BoxJS → 应用订阅）：**
+
+```
+https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/yu9191-player.boxjs.json
+```
+
+| BoxJS 应用 | 对应脚本 | 常用键名 |
+|-----------|---------|---------|
+| 妻友社区 播放器设置 | `qiyoushequ.js` | `qiyou_player_select`、`qiyou_custom_scheme`、`qiyou_player_jump` |
+| PearVideo 播放器设置 | `pear.js` | `pear_player_select`、`pear_custom_scheme` |
+| insav 播放器设置 | `insav.js` | `insav_player_select` 等 |
+
+改完保存 → 完全退出妻友社区 App 再开 → 点播放测试。
+
+签到类（贴吧、电信等）仍用 chavyleung 等原有 BoxJS 订阅 + Cookie 合集，见 [Scripts/README.md](Scripts/README.md)。
+
+---
+
+## 八、修改习惯
 
 - **改自己的偏好**：直接改 `main` 上的 `Egern.yaml`（订阅、节点、策略组顺序）
 - **改去广告源**：在 `sync` 分支改 `scripts/`、`Modules/manifest.yaml`，等 Actions 发布到 `main`

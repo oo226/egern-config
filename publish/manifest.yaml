@@ -19,6 +19,7 @@ directories:
       - unlock-collection.module
       - cookie-collection.module
       - ibl3nd-plugin-hub.yaml
+      - yu9191-player.boxjs.json
 
   - path: Scripts
     exclude_dirs: [zenmofeishi]
