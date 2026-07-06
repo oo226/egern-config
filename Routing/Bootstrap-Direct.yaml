@@ -1,15 +1,8 @@
-# 类型: 分流规则 — 系统测网 + 公共 DNS 直连（须在代理规则之前匹配）
-# 合并原 Egern.yaml 内 10 条散装 domain/ip 规则，App 规则页只显示一行 rule_set
+# 类型: 分流规则 — 系统联网检测直连（须在代理规则之前匹配）
+# 仅含测网/Captive Portal；勿将 dns.google / 8.8.8.8 / 1.1.1.1 钉死 DIRECT，
+# 否则国内解析走「谷歌/国外」上游时会直连超时（dns relay timeout）。
 
 domain_set:
   - connectivitycheck.gstatic.com
   - www.msftconnecttest.com
   - captive.apple.com
-  - dns.google
-  - cloudflare-dns.com
-  - one.one.one.one
-ip_cidr_set:
-  - 8.8.8.8/32
-  - 8.8.4.4/32
-  - 1.1.1.1/32
-  - 1.0.0.1/32
