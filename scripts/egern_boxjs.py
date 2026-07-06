@@ -43,6 +43,10 @@ UPSTREAM_SUBSCRIPTIONS: tuple[tuple[str, str], ...] = (
         "toulanboy",
         "https://raw.githubusercontent.com/toulanboy/scripts/master/toulanboy.boxjs.json",
     ),
+    (
+        "yuheng",
+        "https://raw.githubusercontent.com/Yuheng0101/X/refs/heads/main/Tasks/boxjs.json",
+    ),
 )
 
 _EXTRA_SCRIPT_REWRITES: tuple[tuple[str, str], ...] = (
@@ -82,6 +86,22 @@ _EXTRA_SCRIPT_REWRITES: tuple[tuple[str, str], ...] = (
         "https://raw.githubusercontent.com/ClydeTime/BiliBili/main/",
         f"{GITHUB_RAW_MAIN}/Scripts/_external/github-raw/ClydeTime/BiliBili/main/",
     ),
+    (
+        "https://raw.githubusercontent.com/Yuheng0101/X/main/Tasks/",
+        f"{GITHUB_RAW_MAIN_BOXJS}/Scripts/yuheng/Tasks/",
+    ),
+    (
+        "https://raw.githubusercontent.com/Yuheng0101/X/refs/heads/main/Tasks/",
+        f"{GITHUB_RAW_MAIN_BOXJS}/Scripts/yuheng/Tasks/",
+    ),
+    (
+        "https://raw.githubusercontent.com/Yuheng0101/X/main/",
+        f"{GITHUB_RAW_MAIN_BOXJS}/Scripts/yuheng/",
+    ),
+    (
+        "https://raw.githubusercontent.com/Yuheng0101/X/refs/heads/main/",
+        f"{GITHUB_RAW_MAIN_BOXJS}/Scripts/yuheng/",
+    ),
 )
 
 _SCRIPT_REWRITES = MIRRORED_SCRIPT_REWRITES + _EXTRA_SCRIPT_REWRITES
@@ -96,6 +116,7 @@ CHAVY_ROOT_SCRIPT_OVERRIDES: dict[str, str] = {
 
 SCRIPT_PATH_ALIASES: dict[str, str] = {
     "Scripts/yu9191/rewrite/insav.js": "Scripts/yu9191/rewrite/insav-tv/dist/insav.js",
+    "Scripts/yuheng/Tasks/QDReader/qdreader.js": "Scripts/qdreader.js",
 }
 
 # fmz200 / other apps with script=null — reserved for future explicit bindings.
@@ -133,6 +154,18 @@ def _local_url(relative: str) -> str:
     return f"{GITHUB_RAW_MAIN_BOXJS}/{relative.lstrip('/')}"
 
 
+def _rel_from_egern_url(url: str) -> str | None:
+    for marker in (
+        "egern-config/refs/heads/main/",
+        "egern-config/main/",
+        "oo226/egern-config/refs/heads/main/",
+        "oo226/egern-config/main/",
+    ):
+        if marker in url:
+            return url.split(marker, 1)[-1]
+    return None
+
+
 def rewrite_script_url(url: str) -> str:
     url = unquote(url.strip()).split("?")[0]
     if "github.com/" in url and "/blob/" in url:
@@ -157,6 +190,7 @@ def _collect_referenced_scripts() -> set[str]:
     scope_dirs = (
         SIGNIN_SCRIPTS / "fmz200",
         SIGNIN_SCRIPTS / "yu9191",
+        SIGNIN_SCRIPTS / "yuheng",
         SIGNIN_SCRIPTS / "zenmofeishi",
         SIGNIN_SCRIPTS / "chxm1023",
         SIGNIN_SCRIPTS / "weigiegie",
@@ -468,8 +502,8 @@ def _app_local_script(
     script = app.get("script")
     if isinstance(script, str) and script.strip():
         rewritten = rewrite_script_url(script)
-        if "egern-config" in rewritten:
-            rel = rewritten.split("egern-config/refs/heads/main/")[-1]
+        rel = _rel_from_egern_url(rewritten)
+        if rel:
             rel = _resolve_script_alias(rel)
             if rel in local and rel in referenced:
                 return _local_url(rel)
@@ -513,11 +547,14 @@ def _normalize_app(
     app: dict,
     *,
     source: str,
-    local_script: str,
+    local_script: str | None,
     used_ids: set[str],
 ) -> dict:
     out = copy.deepcopy(app)
-    out["script"] = local_script
+    if local_script:
+        out["script"] = local_script
+    else:
+        out.pop("script", None)
     out["repo"] = "https://github.com/oo226/egern-config"
     out["author"] = EGERN_AUTHOR
 
@@ -540,9 +577,35 @@ def _normalize_app(
 def _should_skip_app(app: dict) -> bool:
     name = str(app.get("name", "")).lower()
     app_id = str(app.get("id", "")).lower()
+    script = str(app.get("script", ""))
     if "demo" in name or "toolkitdemo" in app_id:
         return True
+    if any(host in script for host in ("192.168.", "127.0.0.1", "localhost")):
+        return True
     return False
+
+
+def _is_settings_only_app(app: dict) -> bool:
+    script = app.get("script")
+    if script is None:
+        return bool(app.get("settings"))
+    if isinstance(script, str) and not script.strip():
+        return bool(app.get("settings"))
+    return False
+
+
+def _can_include_without_script(
+    app: dict,
+    *,
+    source: str,
+    local_script: str | None,
+) -> bool:
+    if local_script or not app.get("settings"):
+        return False
+    if _is_settings_only_app(app):
+        return True
+    # Yuheng task file missing upstream — still expose settings (e.g. wsgw weapp.js 404).
+    return source == "yuheng"
 
 
 def build_egern_boxjs() -> dict:
@@ -571,7 +634,9 @@ def build_egern_boxjs() -> dict:
                 referenced=referenced,
                 local=local,
             )
-            if not local_script:
+            if not local_script and not _can_include_without_script(
+                app, source=source, local_script=local_script
+            ):
                 continue
             normalized = _normalize_app(
                 app,
@@ -604,7 +669,7 @@ def build_egern_boxjs() -> dict:
         "author": "oo226/egern-config",
         "icon": "https://raw.githubusercontent.com/chavyleung/scripts/master/box/box.png",
         "repo": "https://github.com/oo226/egern-config",
-        "desc": "本仓库脚本统一 BoxJS 订阅：播放器、签到、抓参、Cookie 相关配置。",
+        "desc": "本仓库脚本统一 BoxJS 订阅：播放器、签到、抓参、Cookie、Yuheng 等配置。",
         "sources": sources_meta,
         "apps": apps_out,
     }

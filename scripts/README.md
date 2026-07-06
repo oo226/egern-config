@@ -13,6 +13,8 @@
 | SoulSing.js | ZenmoFeiShi/Qx | Soul 唱歌抓参+签到 |
 | SLY.js | ZenmoFeiShi/Qx | 岁乐游抓参+签到 |
 | qdreader.js | Yuheng0101/X | 起点读书 |
+
+> Yuheng0101/X 的 BoxJS 任务脚本镜像在 `Scripts/yuheng/`，已并入 `egern.boxjs.json`。
 | dianxin10000.js | chavyleung | 电信营业厅 |
 | tieba.js | chavyleung | 百度贴吧 |
 | sfexpress.js | chavyleung | 顺丰速运 |

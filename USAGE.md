@@ -94,7 +94,8 @@ https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.js
 | 分类 | BoxJS 应用名 | 说明 |
 |------|-------------|------|
 | 播放器 | 妻友社区 / PearVideo / insav / porntube / xjh51 | 改播放器后保存，**不要**在 Egern 模块参数里填 |
-| 签到 | 百度签到、10000、顺丰、喜马拉雅、网易严选 | 配合 Cookie 合集抓参后使用 |
+| 签到 | 百度签到、10000、顺丰、喜马拉雅、网易严选、**起点读书** | 配合 Cookie 合集抓参后使用 |
+| Yuheng | **酷我音乐**、吾爱破解、4K世界、豆瓣、i茅台 等 | 已并入统一订阅，无需再单独加 Yuheng 订阅 |
 | 抓参 | PingMe 抓参、一点万象、iios、来充、Soul 唱歌 | 先 MITM 抓参，再开签到任务 |
 | Cookie | 京东/美团/什么值得买 cookie、阿里云盘 cookie 等 | 配合 Cookie 合集 |
 | 青龙 | 青龙同步 BoxJS | 同步 BoxJS 键到青龙环境变量 |

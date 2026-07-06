@@ -115,6 +115,14 @@ EXTRA_SCRIPT_REWRITES = (
         "https://raw.githubusercontent.com/Yu9191/Rewrite/main/",
         f"{GITHUB_RAW_MAIN}/Scripts/yu9191/rewrite/",
     ),
+    (
+        "https://raw.githubusercontent.com/Yuheng0101/X/main/",
+        f"{GITHUB_RAW_MAIN}/Scripts/yuheng/",
+    ),
+    (
+        "https://raw.githubusercontent.com/Yuheng0101/X/refs/heads/main/",
+        f"{GITHUB_RAW_MAIN}/Scripts/yuheng/",
+    ),
 )
 
 MIRRORED_SCRIPT_REWRITES = CHXM1023_SCRIPT_REWRITES + EXTRA_SCRIPT_REWRITES
