@@ -20,6 +20,7 @@ directories:
       - cookie-collection.module
       - ibl3nd-plugin-hub.yaml
       - yu9191-player.boxjs.json
+      - egern.boxjs.json
 
   - path: Scripts
     exclude_dirs: [zenmofeishi]

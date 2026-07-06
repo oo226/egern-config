@@ -79,25 +79,31 @@ https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Egern.yaml
 
 ---
 
-## 七、BoxJS（妻友社区等播放器）
+## 七、BoxJS（统一订阅）
 
-去广告合集里已带 BoxJS 引擎（访问 `http://boxjs.com`）。**妻友社区 / Pear / insav / porntube** 的播放器请在 BoxJS 里改，不要在 Egern 模块参数里填（模块参数会覆盖 BoxJS）。
+去广告合集里已带 BoxJS 引擎（访问 `http://boxjs.com`）。**只需添加下面这一条订阅**，即可配置本仓库里所有支持 BoxJS 的脚本（播放器、签到、抓参、Cookie 等）。
 
-**订阅链接（添加到 BoxJS → 应用订阅）：**
+**订阅链接（BoxJS → 应用订阅 → 添加）：**
 
 ```
-https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/yu9191-player.boxjs.json
+https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/egern.boxjs.json
 ```
 
-| BoxJS 应用 | 对应脚本 | 常用键名 |
-|-----------|---------|---------|
-| 妻友社区 播放器设置 | `qiyoushequ.js` | `qiyou_player_select`、`qiyou_custom_scheme`、`qiyou_player_jump` |
-| PearVideo 播放器设置 | `pear.js` | `pear_player_select`、`pear_custom_scheme` |
-| insav 播放器设置 | `insav.js` | `insav_player_select` 等 |
+### 常用应用
 
-改完保存 → 完全退出妻友社区 App 再开 → 点播放测试。
+| 分类 | BoxJS 应用名 | 说明 |
+|------|-------------|------|
+| 播放器 | 妻友社区 / PearVideo / insav / porntube / xjh51 | 改播放器后保存，**不要**在 Egern 模块参数里填 |
+| 签到 | 百度签到、10000、顺丰、喜马拉雅、网易严选 | 配合 Cookie 合集抓参后使用 |
+| 抓参 | PingMe 抓参、一点万象、iios、来充、Soul 唱歌 | 先 MITM 抓参，再开签到任务 |
+| Cookie | 京东/美团/什么值得买 cookie、阿里云盘 cookie 等 | 配合 Cookie 合集 |
+| 青龙 | 青龙同步 BoxJS | 同步 BoxJS 键到青龙环境变量 |
 
-签到类（贴吧、电信等）仍用 chavyleung 等原有 BoxJS 订阅 + Cookie 合集，见 [Scripts/README.md](Scripts/README.md)。
+改完保存 → 完全退出相关 App 再开 → 测试。
+
+> 旧版 `yu9191-player.boxjs.json` 仍保留（仅播放器子集），新用户请直接用 `egern.boxjs.json`。
+
+签到流程详见 [Scripts/README.md](Scripts/README.md)。
 
 ---
 

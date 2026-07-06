@@ -1,0 +1,3428 @@
+{
+  "id": "egern.boxjs",
+  "name": "Egern Config 合集",
+  "author": "oo226/egern-config",
+  "icon": "https://raw.githubusercontent.com/chavyleung/scripts/master/box/box.png",
+  "repo": "https://github.com/oo226/egern-config",
+  "desc": "本仓库脚本统一 BoxJS 订阅：播放器、签到、抓参、Cookie 相关配置。",
+  "apps": [
+    {
+      "id": "egern.chavy.10000",
+      "name": "10000",
+      "keys": [
+        "chavy_signheader_10000"
+      ],
+      "settings": [
+        {
+          "id": "chavy_mobile_10000",
+          "name": "手机号码",
+          "val": "",
+          "type": "textarea",
+          "placeholder": "18918920000,\n18918920000",
+          "autoGrow": true,
+          "rows": 5,
+          "desc": "以英文逗号分隔多个号码, 可加回车"
+        }
+      ],
+      "author": "@wangfei021325, @chavyleung / egern-config",
+      "repo": "https://github.com/oo226/egern-config",
+      "script": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/dianxin10000.js",
+      "icons": [
+        "https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/10000.png",
+        "https://raw.githubusercontent.com/Orz-3/mini/master/Color/10000.png"
+      ]
+    },
+    {
+      "id": "egern.chavy.10010",
+      "name": "10010",
+      "keys": [
+        "chavy_tokenurl_10010",
+        "chavy_tokenheader_10010",
+        "chavy_signurl_10010",
+        "chavy_signheader_10010",
+        "chavy_loginlotteryurl_10010",
+        "chavy_loginlotteryheader_10010",
+        "chavy_findlotteryurl_10010",
+        "chavy_findlotteryheader_10010"
+      ],
+      "settings": [
+        {
+          "id": "chavy_golottery_10010",
+          "name": "天天抽奖",
+          "val": true,
+          "type": "boolean",
+          "desc": "天天抽奖开关"
+        },
+        {
+          "id": "chavy_gosign_10010",
+          "name": "签到",
+          "val": true,
+          "type": "boolean",
+          "desc": "签到开关"
+        }
+      ],
+      "author": "@chavyleung / egern-config",
+      "repo": "https://github.com/oo226/egern-config",
+      "script": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/chavyleung/scripts/master/10010/10010.cookie.js",
+      "icons": [
+        "https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/10010.png",
+        "https://raw.githubusercontent.com/Orz-3/mini/master/Color/10010.png"
+      ]
+    },
+    {
+      "id": "egern.chavy.AcFun",
+      "name": "AcFun",
+      "keys": [
+        "chavy_cookie_acfun",
+        "chavy_token_acfun"
+      ],
+      "author": "@chavyleung / egern-config",
+      "repo": "https://github.com/oo226/egern-config",
+      "script": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/chavyleung/scripts/master/acfun/acfun.cookie.js",
+      "icons": [
+        "https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/acfun.png",
+        "https://raw.githubusercontent.com/Orz-3/mini/master/Color/acfun.png"
+      ]
+    },
+    {
+      "id": "egern.chavy.ApkTw",
+      "name": "ApkTw",
+      "keys": [
+        "chavy_cookie_apktw"
+      ],
+      "author": "@chavyleung / egern-config",
+      "repo": "https://github.com/oo226/egern-config",
+      "url": "https://apk.tw/",
+      "script": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/chavyleung/scripts/master/apktw/apktw.cookie.js",
+      "icons": [
+        "https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/apktw.png",
+        "https://raw.githubusercontent.com/Orz-3/mini/master/Color/apktw.png"
+      ],
+      "tasks": [
+        {
+          "cron": "3 0 * * *",
+          "script": "apktw.js"
+        }
+      ],
+      "rewrites": [
+        {
+          "type": "request",
+          "pattern": "^https://apk.tw/member.php(.*?)action=login",
+          "script": "apktw.cookie.js",
+          "body": true
+        }
+      ]
+    },
+    {
+      "id": "egern.lowking.lkBingPoint",
+      "name": "Bing积分",
+      "desc_html": "⚠️使用说明</br>详情【<a href='https://github.com/lowking/Scripts/blob/master/bing/bingPoint.js?raw=true'><font class='red--text'>点我查看</font></a>】",
+      "icons": [
+        "https://raw.githubusercontent.com/lowking/Scripts/master/doc/icon/bingPoint.png",
+        "https://raw.githubusercontent.com/lowking/Scripts/master/doc/icon/bingPoint.png"
+      ],
+      "keys": [
+        "bingIsExecUSKey",
+        "bingNicknameKey",
+        "bingPointCookieKey",
+        "bingResetHoursKey",
+        "bingSearchCookieMobileKey",
+        "bingSearchCookieKey",
+        "bingSearchRepeatKey",
+        "searchRepeatMobileKey",
+        "bingSearchPcCountKey",
+        "searchPcAmountKey",
+        "bingSearchMobileCountKey",
+        "searchMobileAmountKey",
+        "bingPointAppTokenKey",
+        "bingPointAppTokenTypeKey",
+        "bingPointAppRefreshTokenKey",
+        "bingPointAppClientIdKey",
+        "bingCachePointKey",
+        "bingIsContinueWhenZeroKey"
+      ],
+      "settings": [
+        {
+          "id": "lkIsEnableLogBingPoint",
+          "name": "开启/关闭日志",
+          "val": true,
+          "type": "boolean",
+          "desc": "默认开启"
+        },
+        {
+          "id": "lkNotifyOnlyFailBingPoint",
+          "name": "只当执行失败才通知",
+          "val": false,
+          "type": "boolean",
+          "desc": "默认关闭"
+        },
+        {
+          "id": "lkIsEnableTgNotifyBingPoint",
+          "name": "开启/关闭Telegram通知",
+          "val": false,
+          "type": "boolean",
+          "desc": "默认关闭"
+        },
+        {
+          "id": "lkTgNotifyUrlBingPoint",
+          "name": "Telegram通知地址",
+          "val": "",
+          "type": "text",
+          "desc": "Tg的通知地址，如：https://api.telegram.org/bot-token/sendMessage?chat_id=-100140&parse_mode=Markdown&text="
+        },
+        {
+          "id": "bingIsExecUSKey",
+          "name": "是否执行美区任务",
+          "val": false,
+          "type": "boolean",
+          "desc": "默认关闭"
+        },
+        {
+          "id": "bingNicknameKey",
+          "name": "昵称(随意设置)",
+          "val": "",
+          "type": "text",
+          "desc": ""
+        },
+        {
+          "id": "bingResetHoursKey",
+          "name": "Bing每日任务重置时间",
+          "val": 8,
+          "type": "number",
+          "desc": "写小时数，默认：8"
+        },
+        {
+          "id": "bingPointCookieKey",
+          "name": "Bing积分cookie",
+          "val": "",
+          "type": "text",
+          "desc": "Bing积分cookie"
+        },
+        {
+          "id": "bingSearchCookieMobileKey",
+          "name": "Bing每日搜索cookie(移动端)",
+          "val": "",
+          "type": "text",
+          "desc": "请使用手机打开https://cn.bing.com/search?q=test抓去对应请求的cookie"
+        },
+        {
+          "id": "bingSearchCookieKey",
+          "name": "Bing每日搜索cookie(PC)",
+          "val": "",
+          "type": "text",
+          "desc": "请使用电脑打开https://cn.bing.com/search?q=test抓去对应请求的cookie"
+        },
+        {
+          "id": "bingSearchRepeatKey",
+          "name": "Bing每日搜索重复执行校验日期存储(PC&Edge)",
+          "val": "",
+          "type": "text",
+          "desc": ""
+        },
+        {
+          "id": "searchRepeatMobileKey",
+          "name": "Bing每日搜索重复执行校验日期存储(移动端)",
+          "val": "",
+          "type": "text",
+          "desc": ""
+        },
+        {
+          "id": "bingSearchPcCountKey",
+          "name": "Bing每日搜索次数记录(PC)",
+          "val": 0,
+          "type": "number",
+          "desc": ""
+        },
+        {
+          "id": "searchPcAmountKey",
+          "name": "Bing每日搜索次数上限(PC)",
+          "val": 10,
+          "type": "number",
+          "desc": ""
+        },
+        {
+          "id": "bingSearchMobileCountKey",
+          "name": "Bing每日搜索次数记录(移动端)",
+          "val": 0,
+          "type": "number",
+          "desc": ""
+        },
+        {
+          "id": "searchMobileAmountKey",
+          "name": "Bing每日搜索次数上限(移动端)",
+          "val": 10,
+          "type": "number",
+          "desc": ""
+        },
+        {
+          "id": "bingPointAppTokenKey",
+          "name": "Bing App token",
+          "val": "",
+          "type": "text",
+          "desc": "请打开bing app获取token"
+        },
+        {
+          "id": "bingPointAppTokenTypeKey",
+          "name": "Bing App token type",
+          "val": "",
+          "type": "text",
+          "desc": "请打开bing app获取"
+        },
+        {
+          "id": "bingPointAppRefreshTokenKey",
+          "name": "Bing App refresh_token",
+          "val": "",
+          "type": "text",
+          "desc": "请打开bing app重新登录获取refresh_token"
+        },
+        {
+          "id": "bingPointAppClientIdKey",
+          "name": "Bing App client_id",
+          "val": "",
+          "type": "text",
+          "desc": "请打开bing app重新登录获取client_id"
+        },
+        {
+          "id": "bingCachePointKey",
+          "name": "缓存当前积分，用于计算增值",
+          "val": 0,
+          "type": "number",
+          "desc": ""
+        },
+        {
+          "id": "bingIsContinueWhenZeroKey",
+          "name": "缓存本次执行积分的增量(不懂不需要改)",
+          "val": 1,
+          "type": "number",
+          "desc": "为0时(积分没增加)，不再执行搜索，避免不必要的请求"
+        }
+      ],
+      "author": "@lowking / egern-config",
+      "repo": "https://github.com/oo226/egern-config",
+      "script": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/lowking/Scripts/master/bing/bingPoint.js",
+      "script_timeout": 180
+    },
+    {
+      "id": "egern.nseek",
+      "name": "NodeSeek 抓参",
+      "keys": [
+        "NS_NodeseekHeaders"
+      ],
+      "settings": [
+        {
+          "id": "NS_NodeseekHeaders",
+          "name": "请求头 JSON",
+          "val": "",
+          "type": "textarea"
+        }
+      ],
+      "author": "ZenmoFeiShi / egern-config",
+      "repo": "https://github.com/oo226/egern-config",
+      "script": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/Nodeseek_NsCheckin.js"
+    },
+    {
+      "id": "egern.yu9191_pear.PearVideoSettings",
+      "name": "PearVideo 播放器设置",
+      "keys": [
+        "pear_player_select",
+        "pear_custom_scheme",
+        "pear_url_encode"
+      ],
+      "settings": [
+        {
+          "id": "pear_player_select",
+          "name": "播放器选择",
+          "val": "lenna",
+          "type": "selects",
+          "items": [
+            {
+              "key": "lenna",
+              "label": "Lenna 视频库"
+            },
+            {
+              "key": "SenPlayer",
+              "label": "SenPlayer (播放)"
+            },
+            {
+              "key": "SenPlayer-dl",
+              "label": "SenPlayer (下载+命名.mp4)"
+            },
+            {
+              "key": "Infuse",
+              "label": "Infuse 播放器"
+            },
+            {
+              "key": "Fileball",
+              "label": "Fileball 文件管理"
+            },
+            {
+              "key": "VidHub",
+              "label": "VidHub 影库"
+            },
+            {
+              "key": "IINA",
+              "label": "IINA 播放器"
+            },
+            {
+              "key": "NPlayer",
+              "label": "nPlayer"
+            },
+            {
+              "key": "VLC",
+              "label": "VLC 播放器"
+            },
+            {
+              "key": "KMPlayer",
+              "label": "KMPlayer"
+            },
+            {
+              "key": "Alook",
+              "label": "Alook 浏览器"
+            },
+            {
+              "key": "Safari",
+              "label": "Safari 浏览器"
+            },
+            {
+              "key": "custom",
+              "label": "🛠 自定义播放器"
+            }
+          ],
+          "desc": "选择播放器（或使用自定义）"
+        },
+        {
+          "id": "pear_custom_scheme",
+          "name": "自定义 Scheme",
+          "val": "",
+          "type": "text",
+          "desc": "例如: nplayer-http:// 或 myplayer://x-callback-url/play?url= 记得点旁边的保存按钮",
+          "show": {
+            "pear_player_select": "custom"
+          }
+        },
+        {
+          "id": "pear_url_encode",
+          "name": "URL 编码",
+          "val": "auto",
+          "type": "selects",
+          "items": [
+            {
+              "key": "auto",
+              "label": "自动（推荐）"
+            },
+            {
+              "key": "yes",
+              "label": "强制编码"
+            },
+            {
+              "key": "no",
+              "label": "不编码"
+            }
+          ],
+          "desc": "是否对播放地址进行 URL 编码（大部分 x-callback-url 需要编码）"
+        }
+      ],
+      "author": "@Jsforbaby / egern-config",
+      "repo": "https://github.com/oo226/egern-config",
+      "icons": [
+        "https://raw.githubusercontent.com/sE7En0908/Icon/refs/heads/master/1818.png",
+        "https://raw.githubusercontent.com/sE7En0908/Icon/refs/heads/master/GitHub.png"
+      ],
+      "script": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/yu9191/rewrite/pear.js"
+    },
+    {
+      "id": "egern.pingme",
+      "name": "PingMe 抓参",
+      "keys": [
+        "pingme_capture_v3"
+      ],
+      "settings": [
+        {
+          "id": "pingme_capture_v3",
+          "name": "抓参缓存",
+          "val": "",
+          "type": "textarea",
+          "desc": "一般由抓参脚本自动写入，也可手动粘贴"
+        }
+      ],
+      "author": "ZenmoFeiShi / egern-config",
+      "repo": "https://github.com/oo226/egern-config",
+      "script": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/PingMe-capture.js"
+    },
+    {
+      "id": "egern.fmz200.fmz200_PingMe",
+      "name": "PingMe每日签到",
+      "keys": [
+        "pingme_capture_v3"
+      ],
+      "descs_html": [
+        "打开APP获取，可到代理工具脚本日志中查看获取到的数据"
+      ],
+      "settings": [
+        {
+          "id": "pingme_capture_v3",
+          "name": "",
+          "val": "",
+          "desc": "",
+          "type": "textarea",
+          "autoGrow": true,
+          "rows": 8
+        }
+      ],
+      "author": "@ZenmoFeiShi, @fmz200 / egern-config",
+      "repo": "https://github.com/oo226/egern-config",
+      "scripts": [
+        {
+          "name": "PingMe每日签到",
+          "script": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/PingMe/PingMeSignin.js"
+        }
+      ],
+      "icons": [
+        "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/PingMe.png",
+        "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/PingMe.png"
+      ],
+      "script": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/cookie/get_cookie.js"
+    },
+    {
+      "id": "egern.lowking.lk.qqvip",
+      "name": "QQ会员成长值签到",
+      "desc_html": "因为接口失效，列表点赞功能移除，只有签到</br>⚠️使用说明</br>详情【<a href='https://github.com/lowking/Scripts/blob/master/QQVip/qqVipCheckIn.js?raw=true'><font class='red--text'>点我查看</font></a>】",
+      "keys": [
+        "lkQQSignHeaderKey"
+      ],
+      "settings": [
+        {
+          "id": "lkIsEnableLogQQVipCheckIn",
+          "name": "开启/关闭日志",
+          "val": true,
+          "type": "boolean",
+          "desc": "默认开启"
+        },
+        {
+          "id": "lkNotifyOnlyFailQQVipCheckIn",
+          "name": "只当执行失败才通知",
+          "val": false,
+          "type": "boolean",
+          "desc": "默认关闭"
+        },
+        {
+          "id": "lkIsEnableTgNotifyQQVipCheckIn",
+          "name": "开启/关闭Telegram通知",
+          "val": false,
+          "type": "boolean",
+          "desc": "默认关闭"
+        },
+        {
+          "id": "lkTgNotifyUrlQQVipCheckIn",
+          "name": "Telegram通知地址",
+          "val": "",
+          "type": "text",
+          "desc": "Tg的通知地址，如：https://api.telegram.org/bot-token/sendMessage?chat_id=-100140&parse_mode=Markdown&text="
+        },
+        {
+          "id": "lkIsEnableNotifyForGetCookie",
+          "name": "开启/关闭获取Cookie时的通知",
+          "val": true,
+          "type": "boolean",
+          "desc": "默认开启"
+        },
+        {
+          "id": "lkIsDeleteAllCookie",
+          "name": "开启/关闭删除Cookie",
+          "val": false,
+          "type": "boolean",
+          "desc": "默认关闭"
+        },
+        {
+          "id": "lkIsEnableGetCookieQQVIP",
+          "name": "开启/关闭获取Cookie",
+          "val": true,
+          "type": "boolean",
+          "desc": "默认开启"
+        },
+        {
+          "id": "lkQQSignBlockListKey",
+          "name": "点赞黑名单列表",
+          "val": "",
+          "type": "text",
+          "desc": "数据结构看脚本"
+        }
+      ],
+      "author": "@lowking / egern-config",
+      "repo": "https://github.com/oo226/egern-config",
+      "script": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/lowking/Scripts/master/QQVip/qqVipCheckIn.js",
+      "icons": [
+        "https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/qqvip.png",
+        "https://raw.githubusercontent.com/Orz-3/mini/master/Color/qqvip.png"
+      ]
+    },
+    {
+      "id": "egern.soulsing",
+      "name": "Soul 唱歌抓参",
+      "keys": [
+        "soul_sign_url",
+        "soul_sign_headers"
+      ],
+      "settings": [
+        {
+          "id": "soul_sign_url",
+          "name": "签到 URL",
+          "val": "",
+          "type": "text"
+        },
+        {
+          "id": "soul_sign_headers",
+          "name": "请求头 JSON",
+          "val": "",
+          "type": "textarea"
+        }
+      ],
+      "author": "ZenmoFeiShi / egern-config",
+      "repo": "https://github.com/oo226/egern-config",
+      "script": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/SoulSing.js"
+    },
+    {
+      "id": "egern.fmz200.fmz200_testflight",
+      "name": "TF自动加入",
+      "keys": [
+        "fmz200_TF_notify",
+        "fmz200_TF_APP_ID",
+        "fmz200_TF_header"
+      ],
+      "settings": [
+        {
+          "id": "fmz200_TF_notify",
+          "name": "获取令牌成功通知",
+          "val": true,
+          "type": "boolean",
+          "desc": ""
+        },
+        {
+          "id": "fmz200_TF_APP_ID",
+          "name": "要加入的TF App",
+          "val": "",
+          "type": "textarea",
+          "placeholder": "示例：VCIvwk2g,1SyedSId",
+          "rows": 1,
+          "desc": "以英文逗号分隔多个key"
+        },
+        {
+          "id": "fmz200_TF_header",
+          "name": "TF账号令牌",
+          "val": "",
+          "type": "textarea",
+          "autoGrow": true,
+          "rows": 4,
+          "desc": "json格式存储，理论支持多账号"
+        }
+      ],
+      "author": "@fmz200 / egern-config",
+      "repo": "https://github.com/oo226/egern-config",
+      "icons": [
+        "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/TestFlight_03.png",
+        "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/TestFlight_03.png"
+      ],
+      "script": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/TestFlight/AutoJoinTF.js"
+    },
+    {
+      "id": "egern.fmz200.TestFlightAccount",
+      "name": "TF账户管理",
+      "keys": [
+        "TESTFLIGHT-ACCOUNT"
+      ],
+      "descs_html": [
+        "<h4 align=\"center\">脚本说明以及配置请查看<a href=\"https://raw.githubusercontent.com/NobyDa/Script/master/TestFlight/TestFlightAccount.js\">脚本注释</a></h4>"
+      ],
+      "settings": [
+        {
+          "id": "@TESTFLIGHT-ACCOUNT.Debug",
+          "name": "开发者模式",
+          "val": false,
+          "type": "boolean",
+          "desc": "用于调试脚本, 一般用户请勿开启."
+        },
+        {
+          "id": "TESTFLIGHT-ACCOUNT",
+          "name": "TF账户信息",
+          "type": "textarea",
+          "autoGrow": true,
+          "rows": 10,
+          "desc": "一般用户请勿修改"
+        }
+      ],
+      "author": "@NobyDa / egern-config",
+      "repo": "https://github.com/oo226/egern-config",
+      "icons": [
+        "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/TestFlight_01.png",
+        "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/TestFlight_01.png"
+      ],
+      "script": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/TestFlight/TestFlightAccount.js"
+    },
+    {
+      "id": "egern.fokit.tools",
+      "name": "Tools",
+      "author": "@FoKit / egern-config",
+      "descs_html": [
+        "自用工具"
+      ],
+      "icons": [
+        "https://raw.githubusercontent.com/FoKit/Scripts/main/images/debug.png",
+        "https://raw.githubusercontent.com/FoKit/Scripts/main/images/debug.png"
+      ],
+      "scripts": [
+        {
+          "name": "reRequest",
+          "script": "https://raw.githubusercontent.com/FoKit/Scripts/main/scripts/reRequest.js"
+        }
+      ],
+      "keys": [
+        "reRequest",
+        "_barkKey",
+        "is_debug"
+      ],
+      "settings": [
+        {
+          "id": "@reRequest.options",
+          "name": "请求信息",
+          "val": "",
+          "type": "textarea",
+          "autoGrow": true,
+          "rows": 1,
+          "desc": "Request options"
+        },
+        {
+          "id": "@reRequest.count",
+          "name": "请求次数",
+          "val": "100",
+          "type": "text",
+          "desc": "Request count"
+        },
+        {
+          "id": "@reRequest.wait",
+          "name": "请求间隔",
+          "val": "0",
+          "type": "text",
+          "desc": "Request wait (ms)"
+        },
+        {
+          "id": "@reRequest.timeout",
+          "name": "超时时间",
+          "val": "0",
+          "type": "text",
+          "desc": "Request timeout (ms)"
+        },
+        {
+          "id": "_barkKey",
+          "name": "Bark key",
+          "val": "",
+          "type": "text",
+          "placeholder": "",
+          "desc": "Bark 通知 key"
+        },
+        {
+          "id": "is_debug",
+          "name": "Debug",
+          "val": false,
+          "type": "boolean",
+          "desc": "Debug 模式"
+        }
+      ],
+      "script": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/gist/Sliverkiss/33800a98dcd029ba09f8b6fc6f0f5162/raw/aliyun.js",
+      "repo": "https://github.com/oo226/egern-config"
+    },
+    {
+      "id": "egern.chavy.V2EX",
+      "name": "V2EX",
+      "keys": [
+        "chavy_cookie_v2ex"
+      ],
+      "author": "@chavyleung / egern-config",
+      "repo": "https://github.com/oo226/egern-config",
+      "script": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/chavyleung/scripts/master/v2ex/quanx/v2ex.cookie.js",
+      "icons": [
+        "https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/v2ex.png",
+        "https://raw.githubusercontent.com/Orz-3/mini/master/Color/v2ex.png"
+      ]
+    },
+    {
+      "id": "egern.chavy.WPS",
+      "name": "WPS",
+      "keys": [
+        "chavy_signhomeurl_wps",
+        "chavy_signhomeheader_wps"
+      ],
+      "settings": [
+        {
+          "id": "CFG_wps_inviteTime",
+          "name": "邀请间隔 (毫秒)",
+          "val": 2000,
+          "type": "number",
+          "desc": "每次邀请间隔时间"
+        }
+      ],
+      "author": "@chavyleung / egern-config",
+      "repo": "https://github.com/oo226/egern-config",
+      "script": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/chavyleung/scripts/master/wps/wps.cookie.js",
+      "icons": [
+        "https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/wps.png",
+        "https://raw.githubusercontent.com/Orz-3/mini/master/Color/wps.png"
+      ]
+    },
+    {
+      "id": "egern.fmz200.fmz200_X_pinned_timelines",
+      "name": "X(Twitter)顶部标签页",
+      "keys": [
+        "X_web_pinned_timelines"
+      ],
+      "descs_html": [
+        "自定义X网页版顶部标签页，勾选需要显示的标签（多选）"
+      ],
+      "settings": [
+        {
+          "id": "X_web_pinned_timelines",
+          "name": "选择要显示的标签",
+          "val": "",
+          "desc": "勾选需要在X网页版顶部显示的标签页",
+          "type": "checkboxes",
+          "items": [
+            {
+              "key": "1925952771733262336",
+              "label": "政治"
+            },
+            {
+              "key": "1925952876284727296",
+              "label": "股票"
+            },
+            {
+              "key": "1925949659857530880",
+              "label": "商业"
+            },
+            {
+              "key": "1925949744683114496",
+              "label": "科学"
+            },
+            {
+              "key": "1925953013547450368",
+              "label": "AI"
+            },
+            {
+              "key": "1925949693290295298",
+              "label": "加密"
+            },
+            {
+              "key": "1925949634972626944",
+              "label": "新闻"
+            },
+            {
+              "key": "1925952988486447104",
+              "label": "金融"
+            },
+            {
+              "key": "1925953040130953216",
+              "label": "软件"
+            },
+            {
+              "key": "1925949452197478400",
+              "label": "体育"
+            },
+            {
+              "key": "1925949722688126976",
+              "label": "科技"
+            },
+            {
+              "key": "1925949898106540032",
+              "label": "艺术"
+            },
+            {
+              "key": "1925949788068909057",
+              "label": "电影与电视"
+            },
+            {
+              "key": "1925949766673797120",
+              "label": "游戏"
+            },
+            {
+              "key": "1925950554133446656",
+              "label": "美式橄榄球"
+            },
+            {
+              "key": "1925949503837798401",
+              "label": "动漫"
+            },
+            {
+              "key": "1925949812844769280",
+              "label": "旅行"
+            },
+            {
+              "key": "1925949835649126400",
+              "label": "美食"
+            },
+            {
+              "key": "1925950576740675584",
+              "label": "棒球"
+            },
+            {
+              "key": "1925950530842464256",
+              "label": "篮球"
+            },
+            {
+              "key": "1925950199861538818",
+              "label": "美妆"
+            },
+            {
+              "key": "1925950713982537888",
+              "label": "拳击"
+            },
+            {
+              "key": "1925950498420469760",
+              "label": "足球"
+            },
+            {
+              "key": "1925950361245786112",
+              "label": "职业"
+            },
+            {
+              "key": "1925950007624028160",
+              "label": "汽车"
+            },
+            {
+              "key": "1925950249245282304",
+              "label": "宠物"
+            },
+            {
+              "key": "1925949555071176704",
+              "label": "名人"
+            },
+            {
+              "key": "1925949604224196608",
+              "label": "音乐"
+            },
+            {
+              "key": "1925952353485602816",
+              "label": "乡村音乐"
+            },
+            {
+              "key": "1925950383899267072",
+              "label": "舞蹈"
+            },
+            {
+              "key": "1925950276835454977",
+              "label": "恋爱"
+            },
+            {
+              "key": "1925954681496322048",
+              "label": "设计"
+            },
+            {
+              "key": "1925950405709631490",
+              "label": "教育"
+            },
+            {
+              "key": "1925952257893257217",
+              "label": "电音"
+            },
+            {
+              "key": "1925952916411564032",
+              "label": "创业公司"
+            },
+            {
+              "key": "1925950783448576000",
+              "label": "电子竞技"
+            },
+            {
+              "key": "1925954059338493952",
+              "label": "家庭"
+            },
+            {
+              "key": "1925949932181082112",
+              "label": "时尚"
+            },
+            {
+              "key": "1925952179791151105",
+              "label": "流行音乐"
+            },
+            {
+              "key": "1925950690574180352",
+              "label": "高尔夫"
+            },
+            {
+              "key": "1925952056088530944",
+              "label": "韩流音乐"
+            },
+            {
+              "key": "1925949876694556672",
+              "label": "表情包"
+            },
+            {
+              "key": "1925949856834588672",
+              "label": "健康"
+            },
+            {
+              "key": "1925950600140718080",
+              "label": "摔跤"
+            },
+            {
+              "key": "1943810034309246976",
+              "label": "赛车"
+            },
+            {
+              "key": "1925950100397793280",
+              "label": "摩托车"
+            },
+            {
+              "key": "1925950228047216640",
+              "label": "自然"
+            },
+            {
+              "key": "1925950813043662848",
+              "label": "曲棍球"
+            },
+            {
+              "key": "1943811470724153345",
+              "label": "奥运会"
+            },
+            {
+              "key": "1925954143472017408",
+              "label": "摄影"
+            },
+            {
+              "key": "1925950433807175680",
+              "label": "播客"
+            },
+            {
+              "key": "1925952947197784064",
+              "label": "房地产"
+            },
+            {
+              "key": "1925953169307189248",
+              "label": "机器人"
+            },
+            {
+              "key": "1925952228818354177",
+              "label": "摇滚"
+            },
+            {
+              "key": "1925950895595876352",
+              "label": "橄榄球"
+            },
+            {
+              "key": "1925949979966701568",
+              "label": "购物"
+            },
+            {
+              "key": "1925950954962096130",
+              "label": "冰雪运动"
+            },
+            {
+              "key": "1925953141452718081",
+              "label": "太空"
+            },
+            {
+              "key": "1925950625835008001",
+              "label": "网球"
+            },
+            {
+              "key": "1925950341452845057",
+              "label": "家居园艺"
+            },
+            {
+              "key": "1925950653035151360",
+              "label": "板球"
+            },
+            {
+              "key": "1925950746756800513",
+              "label": "F1"
+            },
+            {
+              "key": "1925950926910582786",
+              "label": "骑行"
+            },
+            {
+              "key": "1925952123960709120",
+              "label": "J-Pop"
+            },
+            {
+              "key": "1925952145615974400",
+              "label": "音乐会"
+            },
+            {
+              "key": "1925952203962896384",
+              "label": "嘻哈"
+            },
+            {
+              "key": "1925952300213768192",
+              "label": "爵士乐"
+            },
+            {
+              "key": "1925952744239620096",
+              "label": "犯罪"
+            },
+            {
+              "key": "1925952820714332161",
+              "label": "选举"
+            },
+            {
+              "key": "1925953107038519296",
+              "label": "生物技术"
+            },
+            {
+              "key": "1925953421338726400",
+              "label": "心理健康"
+            },
+            {
+              "key": "1925954197326831616",
+              "label": "数字艺术"
+            }
+          ]
+        }
+      ],
+      "icons": [
+        "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/X.png",
+        "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/X.png"
+      ],
+      "author": "@fmz200 / egern-config",
+      "repo": "https://github.com/oo226/egern-config",
+      "script": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/X/XWebEnhance.js"
+    },
+    {
+      "id": "egern.chavy.chavyleung.bilibili.live",
+      "name": "bilibili直播",
+      "keys": [
+        "chavy_cookie_bilibili"
+      ],
+      "author": "@chavyleung / egern-config",
+      "repo": "https://github.com/oo226/egern-config",
+      "script": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/chavyleung/scripts/master/bilibili/bilibili.cookie.js",
+      "icons": [
+        "https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/bilibili.png",
+        "https://raw.githubusercontent.com/Orz-3/mini/master/Color/bilibili.png"
+      ]
+    },
+    {
+      "id": "egern.lowking.lkHifiniSignIn",
+      "name": "hifini签到",
+      "desc_html": "⚠️使用说明</br>详情【<a href='https://github.com/lowking/Scripts/blob/master/hifini/hifiniSign.js?raw=true'><font class='red--text'>点我查看</font></a>】",
+      "icons": [
+        "https://raw.githubusercontent.com/lowking/Scripts/master/doc/icon/hifinisignin-dark.png",
+        "https://raw.githubusercontent.com/lowking/Scripts/master/doc/icon/hifinisignin.png"
+      ],
+      "keys": [
+        "lkHifiniCookieKey"
+      ],
+      "settings": [
+        {
+          "id": "lkIsEnableLogHifiniSignIn",
+          "name": "开启/关闭日志",
+          "val": true,
+          "type": "boolean",
+          "desc": "默认开启"
+        },
+        {
+          "id": "lkNotifyOnlyFailHifiniSignIn",
+          "name": "只当执行失败才通知",
+          "val": false,
+          "type": "boolean",
+          "desc": "默认关闭"
+        },
+        {
+          "id": "lkIsEnableTgNotifyHifiniSignIn",
+          "name": "开启/关闭Telegram通知",
+          "val": false,
+          "type": "boolean",
+          "desc": "默认关闭"
+        },
+        {
+          "id": "lkTgNotifyUrlHifiniSignIn",
+          "name": "Telegram通知地址",
+          "val": "",
+          "type": "text",
+          "desc": "Tg的通知地址，如：https://api.telegram.org/bot-token/sendMessage?chat_id=-100140&parse_mode=Markdown&text="
+        },
+        {
+          "id": "lkHifiniCookieKey",
+          "name": "hifini cookie",
+          "val": "",
+          "type": "text",
+          "desc": "hifini cookie"
+        },
+        {
+          "id": "lkHifiniIsTakeTheFirst",
+          "name": "是否抢签到第一",
+          "val": false,
+          "type": "boolean",
+          "desc": "默认关闭"
+        },
+        {
+          "id": "lkHifiniTakeTheFirstCount",
+          "name": "抢签到第一并发数",
+          "val": 20,
+          "type": "number",
+          "desc": "默认20"
+        },
+        {
+          "id": "lkHifiniSec",
+          "name": "抢签到等待至xx秒",
+          "val": 59,
+          "type": "number",
+          "desc": "默认59s"
+        },
+        {
+          "id": "lkHifiniMsec",
+          "name": "抢签到等待至xxx毫秒",
+          "val": 0,
+          "type": "number",
+          "desc": "默认0ms"
+        },
+        {
+          "id": "lkHifiniTimeInterval",
+          "name": "设定固定时间间隔",
+          "val": 100,
+          "type": "number",
+          "desc": "默认100ms"
+        },
+        {
+          "id": "lkHifiniRunType",
+          "name": "运行脚本方式",
+          "val": "1",
+          "type": "radios",
+          "items": [
+            {
+              "key": "1",
+              "label": "并发执行"
+            },
+            {
+              "key": "2",
+              "label": "顺序执行"
+            },
+            {
+              "key": "3",
+              "label": "固定时间间隔顺序执行"
+            }
+          ],
+          "desc": "默认并发执行"
+        }
+      ],
+      "author": "@lowking / egern-config",
+      "repo": "https://github.com/oo226/egern-config",
+      "script": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/lowking/Scripts/master/hifini/hifiniSign.js"
+    },
+    {
+      "id": "egern.iios",
+      "name": "iios 签到",
+      "keys": [
+        "iios_login_accounts",
+        "iios_login_email",
+        "iios_login_password",
+        "iios_client_id"
+      ],
+      "settings": [
+        {
+          "id": "iios_login_accounts",
+          "name": "多账号 JSON",
+          "val": "[]",
+          "type": "textarea",
+          "desc": "例: [{\"email\":\"a@b.com\",\"password\":\"***\",\"client_id\":\"...\"}]"
+        },
+        {
+          "id": "iios_login_email",
+          "name": "单账号邮箱",
+          "val": "",
+          "type": "text"
+        },
+        {
+          "id": "iios_login_password",
+          "name": "单账号密码",
+          "val": "",
+          "type": "text"
+        },
+        {
+          "id": "iios_client_id",
+          "name": "client_id",
+          "val": "",
+          "type": "text"
+        }
+      ],
+      "author": "ZenmoFeiShi / egern-config",
+      "repo": "https://github.com/oo226/egern-config",
+      "script": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/iios_checkin.js"
+    },
+    {
+      "id": "egern.yu9191_pear.InsavSettings",
+      "name": "insav 播放器设置",
+      "keys": [
+        "insav_player_select",
+        "insav_custom_scheme",
+        "insav_url_encode",
+        "insav_log_level"
+      ],
+      "settings": [
+        {
+          "id": "insav_player_select",
+          "name": "播放器选择",
+          "val": "lenna",
+          "type": "selects",
+          "items": [
+            {
+              "key": "lenna",
+              "label": "Lenna 视频库"
+            },
+            {
+              "key": "SenPlayer",
+              "label": "SenPlayer (播放)"
+            },
+            {
+              "key": "SenPlayer-dl",
+              "label": "SenPlayer (下载+命名.mp4)"
+            },
+            {
+              "key": "Infuse",
+              "label": "Infuse 播放器"
+            },
+            {
+              "key": "Fileball",
+              "label": "Fileball 文件管理"
+            },
+            {
+              "key": "VidHub",
+              "label": "VidHub 影库"
+            },
+            {
+              "key": "IINA",
+              "label": "IINA 播放器"
+            },
+            {
+              "key": "NPlayer",
+              "label": "nPlayer"
+            },
+            {
+              "key": "VLC",
+              "label": "VLC 播放器"
+            },
+            {
+              "key": "KMPlayer",
+              "label": "KMPlayer"
+            },
+            {
+              "key": "Alook",
+              "label": "Alook 浏览器"
+            },
+            {
+              "key": "Safari",
+              "label": "Safari 浏览器"
+            },
+            {
+              "key": "custom",
+              "label": "🛠 自定义播放器"
+            }
+          ],
+          "desc": "选择播放器（或使用自定义）"
+        },
+        {
+          "id": "insav_custom_scheme",
+          "name": "自定义 Scheme",
+          "val": "",
+          "type": "text",
+          "desc": "例如: nplayer-http:// 或 myplayer://x-callback-url/play?url= 记得点旁边的保存按钮",
+          "show": {
+            "insav_player_select": "custom"
+          }
+        },
+        {
+          "id": "insav_url_encode",
+          "name": "URL 编码",
+          "val": "auto",
+          "type": "selects",
+          "items": [
+            {
+              "key": "auto",
+              "label": "自动（推荐）"
+            },
+            {
+              "key": "yes",
+              "label": "强制编码"
+            },
+            {
+              "key": "no",
+              "label": "不编码"
+            }
+          ],
+          "desc": "是否对播放地址进行 URL 编码（大部分 x-callback-url 需要编码）"
+        },
+        {
+          "id": "insav_log_level",
+          "name": "日志级别",
+          "val": "info",
+          "type": "selects",
+          "items": [
+            {
+              "key": "off",
+              "label": "off (静默)"
+            },
+            {
+              "key": "error",
+              "label": "error"
+            },
+            {
+              "key": "warn",
+              "label": "warn"
+            },
+            {
+              "key": "info",
+              "label": "info (默认)"
+            },
+            {
+              "key": "debug",
+              "label": "debug"
+            },
+            {
+              "key": "all",
+              "label": "all"
+            }
+          ],
+          "desc": "脚本日志输出级别（影响代理工具的日志面板）"
+        }
+      ],
+      "author": "@Jsforbaby / egern-config",
+      "repo": "https://github.com/oo226/egern-config",
+      "icons": [
+        "https://raw.githubusercontent.com/Yu9191/Rewrite/refs/heads/main/insav-tv/modules/insav.png"
+      ],
+      "script": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/yu9191/rewrite/insav-tv/dist/insav.js"
+    },
+    {
+      "id": "egern.fmz200.fmz200_macat_signin",
+      "name": "macat.vip网站签到",
+      "keys": [
+        "fmz200.macat_loginBody"
+      ],
+      "settings": [
+        {
+          "id": "fmz200.macat_loginBody",
+          "name": "登录网站的body",
+          "val": "",
+          "desc": "",
+          "type": "textarea",
+          "autoGrow": true,
+          "rows": 2
+        }
+      ],
+      "author": "@fmz200 / egern-config",
+      "repo": "https://github.com/oo226/egern-config",
+      "icons": [
+        "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/Macat.png",
+        "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/Macat.png"
+      ],
+      "script": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/macat/macat_signin.js"
+    },
+    {
+      "id": "egern.yu9191_pear.PorntubeSettings",
+      "name": "porntube 设置",
+      "keys": [
+        "porntube_player_select",
+        "porntube_custom_scheme",
+        "porntube_url_encode",
+        "porntube_log_level",
+        "porntube_player_jump"
+      ],
+      "settings": [
+        {
+          "id": "porntube_player_select",
+          "name": "播放器选择",
+          "val": "lenna",
+          "type": "selects",
+          "items": [
+            {
+              "key": "lenna",
+              "label": "Lenna 视频库"
+            },
+            {
+              "key": "SenPlayer",
+              "label": "SenPlayer (播放)"
+            },
+            {
+              "key": "SenPlayer-dl",
+              "label": "SenPlayer (下载+命名.mp4)"
+            },
+            {
+              "key": "Infuse",
+              "label": "Infuse 播放器"
+            },
+            {
+              "key": "Fileball",
+              "label": "Fileball 文件管理"
+            },
+            {
+              "key": "VidHub",
+              "label": "VidHub 影库"
+            },
+            {
+              "key": "IINA",
+              "label": "IINA 播放器"
+            },
+            {
+              "key": "NPlayer",
+              "label": "nPlayer"
+            },
+            {
+              "key": "VLC",
+              "label": "VLC 播放器"
+            },
+            {
+              "key": "KMPlayer",
+              "label": "KMPlayer"
+            },
+            {
+              "key": "Alook",
+              "label": "Alook 浏览器"
+            },
+            {
+              "key": "Safari",
+              "label": "Safari 浏览器"
+            },
+            {
+              "key": "custom",
+              "label": "🛠 自定义播放器"
+            }
+          ],
+          "desc": "选择播放器（或使用自定义）"
+        },
+        {
+          "id": "porntube_custom_scheme",
+          "name": "自定义 Scheme",
+          "val": "",
+          "type": "text",
+          "desc": "例如: nplayer-http:// 或 myplayer://x-callback-url/play?url= 记得点旁边的保存按钮",
+          "show": {
+            "porntube_player_select": "custom"
+          }
+        },
+        {
+          "id": "porntube_url_encode",
+          "name": "URL 编码",
+          "val": "auto",
+          "type": "selects",
+          "items": [
+            {
+              "key": "auto",
+              "label": "自动（推荐）"
+            },
+            {
+              "key": "yes",
+              "label": "强制编码"
+            },
+            {
+              "key": "no",
+              "label": "不编码"
+            }
+          ],
+          "desc": "是否对播放地址进行 URL 编码（大部分 x-callback-url 需要编码）"
+        },
+        {
+          "id": "porntube_log_level",
+          "name": "日志级别",
+          "val": "info",
+          "type": "selects",
+          "items": [
+            {
+              "key": "off",
+              "label": "off (静默)"
+            },
+            {
+              "key": "error",
+              "label": "error"
+            },
+            {
+              "key": "warn",
+              "label": "warn"
+            },
+            {
+              "key": "info",
+              "label": "info (默认)"
+            },
+            {
+              "key": "debug",
+              "label": "debug"
+            },
+            {
+              "key": "all",
+              "label": "all"
+            }
+          ],
+          "desc": "脚本日志输出级别（影响代理工具的日志面板）"
+        },
+        {
+          "id": "porntube_player_jump",
+          "name": "播放器跳转",
+          "val": "no",
+          "type": "selects",
+          "items": [
+            {
+              "key": "no",
+              "label": "关闭（默认）"
+            },
+            {
+              "key": "yes",
+              "label": "开启"
+            }
+          ],
+          "desc": "开启后播放视频时通知跳转外部播放器"
+        }
+      ],
+      "author": "Yu9191 Rewrite / egern-config",
+      "repo": "https://github.com/oo226/egern-config",
+      "icons": [
+        "https://raw.githubusercontent.com/fishdown/Icon/master/app/porntube.png"
+      ],
+      "script": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/yu9191/rewrite/porntube/dist/porntube.js"
+    },
+    {
+      "id": "egern.xjh51",
+      "name": "xjh51 播放器设置",
+      "keys": [
+        "xjh51_player_select",
+        "xjh51_custom_scheme",
+        "xjh51_url_encode",
+        "xjh51_player_jump",
+        "xjh51_log_level"
+      ],
+      "settings": [
+        {
+          "id": "xjh51_player_select",
+          "name": "播放器选择",
+          "val": "lenna",
+          "type": "selects",
+          "items": [
+            {
+              "key": "lenna",
+              "label": "Lenna 视频库"
+            },
+            {
+              "key": "SenPlayer",
+              "label": "SenPlayer (播放)"
+            },
+            {
+              "key": "SenPlayer-dl",
+              "label": "SenPlayer (下载+命名.mp4)"
+            },
+            {
+              "key": "Infuse",
+              "label": "Infuse 播放器"
+            },
+            {
+              "key": "Fileball",
+              "label": "Fileball 文件管理"
+            },
+            {
+              "key": "VidHub",
+              "label": "VidHub 影库"
+            },
+            {
+              "key": "IINA",
+              "label": "IINA 播放器"
+            },
+            {
+              "key": "NPlayer",
+              "label": "nPlayer"
+            },
+            {
+              "key": "VLC",
+              "label": "VLC 播放器"
+            },
+            {
+              "key": "KMPlayer",
+              "label": "KMPlayer"
+            },
+            {
+              "key": "Alook",
+              "label": "Alook 浏览器"
+            },
+            {
+              "key": "Safari",
+              "label": "Safari 浏览器"
+            },
+            {
+              "key": "custom",
+              "label": "🛠 自定义播放器"
+            }
+          ],
+          "desc": "选择播放器（或使用自定义）"
+        },
+        {
+          "id": "xjh51_custom_scheme",
+          "name": "自定义 Scheme",
+          "val": "",
+          "type": "text",
+          "desc": "例如: nplayer-http:// 或 myplayer://x-callback-url/play?url= 记得点旁边的保存按钮",
+          "show": {
+            "xjh51_player_select": "custom"
+          }
+        },
+        {
+          "id": "xjh51_url_encode",
+          "name": "URL 编码",
+          "val": "auto",
+          "type": "selects",
+          "items": [
+            {
+              "key": "auto",
+              "label": "自动（推荐）"
+            },
+            {
+              "key": "yes",
+              "label": "强制编码"
+            },
+            {
+              "key": "no",
+              "label": "不编码"
+            }
+          ],
+          "desc": "是否对播放地址进行 URL 编码（大部分 x-callback-url 需要编码）"
+        },
+        {
+          "id": "xjh51_player_jump",
+          "name": "播放器跳转",
+          "val": "yes",
+          "type": "selects",
+          "items": [
+            {
+              "key": "yes",
+              "label": "通知并跳转外部播放器"
+            },
+            {
+              "key": "no",
+              "label": "不通知、不跳转"
+            }
+          ],
+          "desc": "关闭后仅修改接口响应，不发送播放器跳转通知"
+        },
+        {
+          "id": "xjh51_log_level",
+          "name": "日志级别",
+          "val": "info",
+          "type": "selects",
+          "items": [
+            {
+              "key": "off",
+              "label": "off (静默)"
+            },
+            {
+              "key": "error",
+              "label": "error"
+            },
+            {
+              "key": "warn",
+              "label": "warn"
+            },
+            {
+              "key": "info",
+              "label": "info (默认)"
+            },
+            {
+              "key": "debug",
+              "label": "debug"
+            },
+            {
+              "key": "all",
+              "label": "all"
+            }
+          ],
+          "desc": "脚本日志输出级别（影响代理工具的日志面板）"
+        }
+      ],
+      "author": "Yu9191 Rewrite / egern-config",
+      "repo": "https://github.com/oo226/egern-config",
+      "script": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/yu9191/rewrite/xjh51/dist/xjh51.js"
+    },
+    {
+      "id": "egern.mixc",
+      "name": "一点万象签到",
+      "keys": [
+        "mixc_signin_params"
+      ],
+      "settings": [
+        {
+          "id": "mixc_signin_params",
+          "name": "抓参数据 JSON",
+          "val": "",
+          "type": "textarea",
+          "desc": "先开 MITM 抓参，保存后用于签到"
+        }
+      ],
+      "author": "ZenmoFeiShi / egern-config",
+      "repo": "https://github.com/oo226/egern-config",
+      "script": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/mixc_signin.js"
+    },
+    {
+      "id": "egern.fokit.china_telecom",
+      "name": "中国电信",
+      "author": "@FoKit / egern-config",
+      "descs_html": [
+        "中国电信 Cookie"
+      ],
+      "icons": [
+        "https://raw.githubusercontent.com/FoKit/Scripts/main/images/china_telecom.png",
+        "https://raw.githubusercontent.com/FoKit/Scripts/main/images/china_telecom.png"
+      ],
+      "keys": [
+        "china_telecom_cookie",
+        "china_telecom_login_url"
+      ],
+      "settings": [
+        {
+          "id": "china_telecom_cookie",
+          "name": "Cookie",
+          "val": "",
+          "type": "text",
+          "desc": ""
+        },
+        {
+          "id": "china_telecom_login_url",
+          "name": "Login_url",
+          "val": "",
+          "type": "text",
+          "desc": ""
+        }
+      ],
+      "script": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/FoKit/Scripts/main/scripts/get_10000_cookie.js",
+      "repo": "https://github.com/oo226/egern-config"
+    },
+    {
+      "id": "egern.fmz200.fmz200_smzdm",
+      "name": "什么值得买cookie",
+      "keys": [
+        "SMZDM_COOKIE",
+        "fmz200_smzdm_cookie"
+      ],
+      "descs_html": [
+        "填写cookie，有两种不同的存储方式"
+      ],
+      "settings": [
+        {
+          "id": "SMZDM_COOKIE",
+          "name": "什么值得买cookie，多账号用英文逗号(@)分隔",
+          "val": "",
+          "type": "textarea",
+          "autoGrow": false,
+          "rows": 8,
+          "desc": ""
+        },
+        {
+          "id": "fmz200_smzdm_cookie",
+          "name": "什么值得买cookie，多账号使用JSON存储",
+          "val": "",
+          "type": "textarea",
+          "autoGrow": false,
+          "rows": 8,
+          "desc": ""
+        }
+      ],
+      "icons": [
+        "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/smzdm.png",
+        "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/smzdm.png"
+      ],
+      "author": "@fmz200 / egern-config",
+      "repo": "https://github.com/oo226/egern-config",
+      "script": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/cookie/get_cookie.js"
+    },
+    {
+      "id": "egern.chavy.qmkg",
+      "name": "全民K歌",
+      "keys": [
+        "senku_signurl_qmkg",
+        "senku_signheader_qmkg",
+        "senku_signbody_qmkg"
+      ],
+      "author": "@gideonsenku / egern-config",
+      "repo": "https://github.com/oo226/egern-config",
+      "script": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/chavyleung/scripts/master/qmkg/qmkg.cookie.js",
+      "icons": [
+        "https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/qmkg.png",
+        "https://raw.githubusercontent.com/Orz-3/mini/master/Color/qmkg.png"
+      ]
+    },
+    {
+      "id": "egern.chavy.gdoil",
+      "name": "加油广东",
+      "keys": [
+        "chavy_signurl_gdoil",
+        "chavy_signheader_gdoil"
+      ],
+      "author": "@chavyleung / egern-config",
+      "repo": "https://github.com/oo226/egern-config",
+      "script": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/chavyleung/scripts/master/gdoil/gdoil.cookie.js",
+      "icons": [
+        "https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/gdoil.png",
+        "https://raw.githubusercontent.com/Orz-3/mini/master/Color/gdoil.png"
+      ]
+    },
+    {
+      "id": "egern.lowking.lkBilibiliPrivilegeReceive",
+      "name": "哔哩哔哩大会员特权领取",
+      "desc_html": "⚠️使用说明</br>详情【<a href='https://github.com/lowking/Scripts/blob/master/bilibili/privilegeReceive.js?raw=true'><font class='red--text'>点我查看</font></a>】",
+      "icons": [
+        "https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/bilibili.png",
+        "https://raw.githubusercontent.com/Orz-3/mini/master/Color/bilibili.png"
+      ],
+      "keys": [
+        "lkBilibiliPrivilegeReceiveRequestHeaders"
+      ],
+      "settings": [
+        {
+          "id": "lkIsEnableLogBilibiliPrivilegeReceive",
+          "name": "开启/关闭日志",
+          "val": true,
+          "type": "boolean",
+          "desc": "默认开启"
+        },
+        {
+          "id": "lkNotifyOnlyFailBilibiliPrivilegeReceive",
+          "name": "只当执行失败才通知",
+          "val": false,
+          "type": "boolean",
+          "desc": "默认关闭"
+        },
+        {
+          "id": "lkIsEnableTgNotifyBilibiliPrivilegeReceive",
+          "name": "开启/关闭Telegram通知",
+          "val": false,
+          "type": "boolean",
+          "desc": "默认关闭"
+        },
+        {
+          "id": "lkTgNotifyUrlBilibiliPrivilegeReceive",
+          "name": "Telegram通知地址",
+          "val": "",
+          "type": "text",
+          "desc": "Tg的通知地址，如：https://api.telegram.org/bot-token/sendMessage?chat_id=-100140&parse_mode=Markdown&text="
+        },
+        {
+          "id": "lkBilibiliPrivilegeReceiveRequestHeaders",
+          "name": "哔哩哔哩大会员特权领取Headers",
+          "val": "",
+          "type": "text",
+          "desc": "哔哩哔哩大会员特权领取Headers"
+        },
+        {
+          "id": "lkIsEnableNotifyForGetCookieBilibiliPrivilegeReceive",
+          "name": "开启/关闭获取Cookie时的通知",
+          "val": true,
+          "type": "boolean",
+          "desc": "默认开启"
+        }
+      ],
+      "author": "@lowking / egern-config",
+      "repo": "https://github.com/oo226/egern-config",
+      "script": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/lowking/Scripts/master/bilibili/privilegeReceive.js"
+    },
+    {
+      "id": "egern.lowking.lkBilibiliBangumiMonitor",
+      "name": "哔哩哔哩番剧监控",
+      "desc_html": "⚠️使用说明</br>详情【<a href='https://github.com/lowking/Scripts/blob/master/bilibili/bangumiMonitor.js?raw=true'><font class='red--text'>点我查看</font></a>】",
+      "icons": [
+        "https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/bilibili.png",
+        "https://raw.githubusercontent.com/Orz-3/mini/master/Color/bilibili.png"
+      ],
+      "keys": [
+        "lkVmidBilibiliBangumiMonitor",
+        "lkBilibiliBangumiList0",
+        "lkBilibiliBangumiList1",
+        "lkBilibiliBangumiList2",
+        "lkBilibiliBangumiList3"
+      ],
+      "settings": [
+        {
+          "id": "lkIsEnableLogBilibiliBangumiMonitor",
+          "name": "开启/关闭日志",
+          "val": true,
+          "type": "boolean",
+          "desc": "默认开启"
+        },
+        {
+          "id": "lkNotifyOnlyFailBilibiliBangumiMonitor",
+          "name": "只当有番剧更新了才通知",
+          "val": false,
+          "type": "boolean",
+          "desc": "默认关闭"
+        },
+        {
+          "id": "lkIsEnableTgNotifyBilibiliBangumiMonitor",
+          "name": "开启/关闭Telegram通知",
+          "val": false,
+          "type": "boolean",
+          "desc": "默认关闭"
+        },
+        {
+          "id": "lkTgNotifyUrlBilibiliBangumiMonitor",
+          "name": "Telegram通知地址",
+          "val": "",
+          "type": "text",
+          "desc": "Tg的通知地址，如：https://api.telegram.org/bot-token/sendMessage?chat_id=-100140&parse_mode=Markdown&text="
+        },
+        {
+          "id": "lkBilibiliBangumiPageSize",
+          "name": "页大小",
+          "val": 15,
+          "type": "number",
+          "desc": "每次请求番剧数量，避免数据太大导致错误"
+        },
+        {
+          "id": "lkBilibiliBangumiLimitNo",
+          "name": "番剧异常通知限制数量",
+          "val": 10,
+          "type": "number",
+          "desc": "有时候B站番剧会更新数据，导致大量番剧更新，设置一个数字，番剧更新数量超过这个数字不通知"
+        },
+        {
+          "id": "lkBilibiliBangumiFollowStatus",
+          "name": "追番筛选",
+          "val": "2",
+          "type": "radios",
+          "items": [
+            {
+              "key": "0",
+              "label": "全部"
+            },
+            {
+              "key": "1",
+              "label": "想看"
+            },
+            {
+              "key": "2",
+              "label": "在看"
+            },
+            {
+              "key": "3",
+              "label": "看过"
+            }
+          ],
+          "desc": "默认-在看"
+        }
+      ],
+      "author": "@lowking / egern-config",
+      "repo": "https://github.com/oo226/egern-config",
+      "script": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/lowking/Scripts/master/bilibili/bangumiMonitor.js"
+    },
+    {
+      "id": "egern.chavy.ximalaya",
+      "name": "喜马拉雅",
+      "keys": [
+        "chavy_cookie_ximalaya"
+      ],
+      "author": "@chavyleung / egern-config",
+      "repo": "https://github.com/oo226/egern-config",
+      "icons": [
+        "https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/ximalaya.png",
+        "https://raw.githubusercontent.com/Orz-3/mini/master/Color/ximalaya.png"
+      ],
+      "script": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/ximalaya.js"
+    },
+    {
+      "id": "egern.fmz200.fmz200_chery_account",
+      "name": "奇瑞汽车App签到",
+      "keys": [
+        "fmz200_chery_account"
+      ],
+      "descs_html": [
+        "打开APP点击“我的”页面获取，可到代理工具脚本日志中查看token"
+      ],
+      "settings": [
+        {
+          "id": "fmz200_chery_account",
+          "name": "",
+          "val": "",
+          "desc": "",
+          "type": "textarea",
+          "autoGrow": true,
+          "rows": 8
+        }
+      ],
+      "author": "@fmz200 / egern-config",
+      "repo": "https://github.com/oo226/egern-config",
+      "scripts": [
+        {
+          "name": "奇瑞汽车App签到",
+          "script": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/chery/cheryAppSignin.js"
+        }
+      ],
+      "icons": [
+        "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/chery.png",
+        "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/chery.png"
+      ],
+      "script": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/cookie/get_cookie.js"
+    },
+    {
+      "id": "egern.yu9191_pear.QiyouShequSettings",
+      "name": "妻友社区 播放器设置",
+      "keys": [
+        "qiyou_player_select",
+        "qiyou_custom_scheme",
+        "qiyou_url_encode",
+        "qiyou_player_jump",
+        "qiyou_log_level"
+      ],
+      "settings": [
+        {
+          "id": "qiyou_player_select",
+          "name": "播放器选择",
+          "val": "lenna",
+          "type": "selects",
+          "items": [
+            {
+              "key": "lenna",
+              "label": "Lenna 视频库"
+            },
+            {
+              "key": "SenPlayer",
+              "label": "SenPlayer (播放)"
+            },
+            {
+              "key": "SenPlayer-dl",
+              "label": "SenPlayer (下载+命名.mp4)"
+            },
+            {
+              "key": "Infuse",
+              "label": "Infuse 播放器"
+            },
+            {
+              "key": "Fileball",
+              "label": "Fileball 文件管理"
+            },
+            {
+              "key": "VidHub",
+              "label": "VidHub 影库"
+            },
+            {
+              "key": "IINA",
+              "label": "IINA 播放器"
+            },
+            {
+              "key": "NPlayer",
+              "label": "nPlayer"
+            },
+            {
+              "key": "VLC",
+              "label": "VLC 播放器"
+            },
+            {
+              "key": "KMPlayer",
+              "label": "KMPlayer"
+            },
+            {
+              "key": "Alook",
+              "label": "Alook 浏览器"
+            },
+            {
+              "key": "Safari",
+              "label": "Safari 浏览器"
+            },
+            {
+              "key": "custom",
+              "label": "🛠 自定义播放器"
+            }
+          ],
+          "desc": "选择播放器（或使用自定义）"
+        },
+        {
+          "id": "qiyou_custom_scheme",
+          "name": "自定义 Scheme",
+          "val": "",
+          "type": "text",
+          "desc": "例如: nplayer-http:// 或 myplayer://x-callback-url/play?url= 记得点旁边的保存按钮",
+          "show": {
+            "qiyou_player_select": "custom"
+          }
+        },
+        {
+          "id": "qiyou_url_encode",
+          "name": "URL 编码",
+          "val": "auto",
+          "type": "selects",
+          "items": [
+            {
+              "key": "auto",
+              "label": "自动（推荐）"
+            },
+            {
+              "key": "yes",
+              "label": "强制编码"
+            },
+            {
+              "key": "no",
+              "label": "不编码"
+            }
+          ],
+          "desc": "是否对播放地址进行 URL 编码（大部分 x-callback-url 需要编码）"
+        },
+        {
+          "id": "qiyou_player_jump",
+          "name": "播放器跳转",
+          "val": "yes",
+          "type": "selects",
+          "items": [
+            {
+              "key": "yes",
+              "label": "通知并跳转外部播放器"
+            },
+            {
+              "key": "no",
+              "label": "不通知、不跳转"
+            }
+          ],
+          "desc": "关闭后仅修改接口响应，不发送播放器跳转通知"
+        },
+        {
+          "id": "qiyou_log_level",
+          "name": "日志级别",
+          "val": "info",
+          "type": "selects",
+          "items": [
+            {
+              "key": "off",
+              "label": "off (静默)"
+            },
+            {
+              "key": "error",
+              "label": "error"
+            },
+            {
+              "key": "warn",
+              "label": "warn"
+            },
+            {
+              "key": "info",
+              "label": "info (默认)"
+            },
+            {
+              "key": "debug",
+              "label": "debug"
+            },
+            {
+              "key": "all",
+              "label": "all"
+            }
+          ],
+          "desc": "脚本日志输出级别（影响代理工具的日志面板）"
+        }
+      ],
+      "author": "Yu9191 Rewrite / egern-config",
+      "repo": "https://github.com/oo226/egern-config",
+      "icons": [
+        "https://raw.githubusercontent.com/Yu9191/-/main/qiyou.png"
+      ],
+      "script": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/yu9191/rewrite/qiyoushe/dist/qiyoushequ.js"
+    },
+    {
+      "id": "egern.fmz200.fmz200_xiaohongshu",
+      "name": "小红书功能增强",
+      "keys": [
+        "fmz200.xiaohongshu.imageQuality"
+      ],
+      "descs_html": [
+        "可选图片质量，保存无水印图片和视频"
+      ],
+      "settings": [
+        {
+          "id": "fmz200.xiaohongshu.imageQuality",
+          "name": "小红书无水印图片保存质量",
+          "val": "highPixels",
+          "type": "selects",
+          "items": [
+            {
+              "key": "original",
+              "label": "原始分辨率 (图片占用空间大)"
+            },
+            {
+              "key": "highPixels",
+              "label": "高像素输出 (图片占用空间小)"
+            },
+            {
+              "key": "highQuality",
+              "label": "高质量压缩"
+            },
+            {
+              "key": "medium",
+              "label": "平衡配置"
+            }
+          ],
+          "desc": "图片质量可选：原始分辨率PNG，高像素输出HEIF，高质量压缩，平衡配置"
+        }
+      ],
+      "icons": [
+        "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/xiaohongshu.png",
+        "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/xiaohongshu.png"
+      ],
+      "author": "@fmz200 / egern-config",
+      "repo": "https://github.com/oo226/egern-config",
+      "script": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/fmz200/wool_scripts/main/Scripts/xiaohongshu/xiaohongshu.js"
+    },
+    {
+      "id": "egern.fokit.jhsh",
+      "name": "建行生活",
+      "author": "@FoKit / egern-config",
+      "script": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/FoKit/Scripts/main/scripts/jhsh_checkIn.js",
+      "descs_html": [
+        ""
+      ],
+      "icons": [
+        "https://raw.githubusercontent.com/FoKit/Scripts/main/images/jhsh.png",
+        "https://raw.githubusercontent.com/FoKit/Scripts/main/images/jhsh.png"
+      ],
+      "keys": [
+        "JHSH_GIFT",
+        "JHSH_BODY",
+        "JHSH_LOGIN_INFO",
+        "JHSH_VERSION",
+        "JHSH_SKIPDAY"
+      ],
+      "settings": [
+        {
+          "id": "JHSH_GIFT",
+          "name": "奖励类型",
+          "val": "2",
+          "type": "radios",
+          "desc": "选择连续签到奖励类型, 优先领取建行信用卡优惠券",
+          "items": [
+            {
+              "key": "1",
+              "label": "打车券"
+            },
+            {
+              "key": "2",
+              "label": "外卖券"
+            },
+            {
+              "key": "3",
+              "label": "骑行券"
+            }
+          ]
+        },
+        {
+          "id": "JHSH_SKIPDAY",
+          "name": "断签日",
+          "val": "-1",
+          "type": "selects",
+          "items": [
+            {
+              "key": "-1",
+              "label": "不断签"
+            },
+            {
+              "key": "0",
+              "label": "周日"
+            },
+            {
+              "key": "1",
+              "label": "周一"
+            },
+            {
+              "key": "2",
+              "label": "周二"
+            },
+            {
+              "key": "3",
+              "label": "周三"
+            },
+            {
+              "key": "4",
+              "label": "周四"
+            },
+            {
+              "key": "5",
+              "label": "周五"
+            },
+            {
+              "key": "6",
+              "label": "周六"
+            }
+          ],
+          "desc": "断签日不执行签到任务"
+        },
+        {
+          "id": "JHSH_BODY",
+          "name": "签到数据",
+          "val": "",
+          "type": "textarea",
+          "autoGrow": true,
+          "rows": 1,
+          "desc": ""
+        },
+        {
+          "id": "JHSH_LOGIN_INFO",
+          "name": "登录数据",
+          "val": "",
+          "type": "textarea",
+          "autoGrow": true,
+          "rows": 1,
+          "desc": ""
+        },
+        {
+          "id": "JHSH_VERSION",
+          "name": "版本号",
+          "val": "",
+          "type": "text",
+          "desc": ""
+        }
+      ],
+      "repo": "https://github.com/oo226/egern-config"
+    },
+    {
+      "id": "egern.fmz200.fmz200_CCB_life",
+      "name": "建行生活签到",
+      "keys": [
+        "JHSH_BODY",
+        "JHSH_LOGIN_INFO",
+        "JHSH_SKIPDAY",
+        "JHSH_VERSION",
+        "JHSH_GIFT"
+      ],
+      "descs_html": [
+        "单账号签到，使用方法详见脚本内说明"
+      ],
+      "settings": [
+        {
+          "id": "JHSH_BODY",
+          "name": "签到的body",
+          "val": "",
+          "desc": "",
+          "type": "textarea",
+          "autoGrow": false,
+          "rows": 4
+        },
+        {
+          "id": "JHSH_LOGIN_INFO",
+          "name": "签到的登录信息",
+          "val": "",
+          "desc": "",
+          "type": "textarea",
+          "autoGrow": false,
+          "rows": 4
+        },
+        {
+          "id": "JHSH_SKIPDAY",
+          "name": "断签信息",
+          "val": "",
+          "desc": "",
+          "type": "text"
+        },
+        {
+          "id": "JHSH_VERSION",
+          "name": "版本号",
+          "val": "",
+          "desc": "",
+          "type": "text"
+        },
+        {
+          "id": "JHSH_GIFT",
+          "name": "需要领取的奖励，1：打车，2：外卖，3：骑行。默认2",
+          "val": "",
+          "desc": "",
+          "type": "text"
+        }
+      ],
+      "author": "@fmz200 / egern-config",
+      "repo": "https://github.com/oo226/egern-config",
+      "scripts": [
+        {
+          "name": "建行生活签到",
+          "script": "https://raw.githubusercontent.com/FoKit/Scripts/main/scripts/jhsh_checkIn.js"
+        }
+      ],
+      "icons": [
+        "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/ccbLife.jpg",
+        "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/ccbLife.jpg"
+      ],
+      "script": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/FoKit/Scripts/main/scripts/jhsh_checkIn.js"
+    },
+    {
+      "id": "egern.fmz200.fmz200_weibo_token",
+      "name": "微博每日签到token",
+      "keys": [
+        "fmz200_weibo_token"
+      ],
+      "descs_html": [
+        "打开微博会随缘获取，暂时不知道触发条件"
+      ],
+      "settings": [
+        {
+          "id": "fmz200_weibo_token",
+          "name": "",
+          "val": "",
+          "desc": "",
+          "type": "textarea",
+          "autoGrow": true,
+          "rows": 8
+        }
+      ],
+      "author": "@fmz200 / egern-config",
+      "repo": "https://github.com/oo226/egern-config",
+      "scripts": [
+        {
+          "name": "微博每日签到",
+          "script": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/weibo/weibo_signin.js"
+        }
+      ],
+      "icons": [
+        "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/Weibo-00.png",
+        "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/Weibo-00.png"
+      ],
+      "script": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/cookie/get_cookie.js"
+    },
+    {
+      "id": "egern.toulanboy.weibotalk",
+      "name": "微博超话",
+      "keys": [
+        "evil_tokenurl",
+        "evil_tokencheckinurl",
+        "evil_tokenheaders",
+        "evil_tokencheckinheaders",
+        "evil_tokenurl2",
+        "evil_tokencheckinurl2",
+        "evil_tokenheaders2",
+        "evil_tokencheckinheaders2"
+      ],
+      "settings": [
+        {
+          "id": "wb_delete_cookie",
+          "name": "打开清空cookie功能",
+          "val": false,
+          "type": "boolean",
+          "desc": ""
+        },
+        {
+          "id": "wb_msg_max_num",
+          "name": "每个通知显示超话数",
+          "val": 30,
+          "type": "number",
+          "desc": "每页最显示多少个超话"
+        },
+        {
+          "id": "wb_request_time",
+          "name": "签到间隔 (毫秒)",
+          "val": 700,
+          "type": "number",
+          "desc": "每个超话签到的间隔（超话大于50个的，建议填1000以上）"
+        }
+      ],
+      "author": "@toulanboy, @evilbutcher / egern-config",
+      "repo": "https://github.com/oo226/egern-config",
+      "icons": [
+        "https://raw.githubusercontent.com/Orz-3/mini/master/weibo.png",
+        "https://raw.githubusercontent.com/Orz-3/task/master/weibo.png"
+      ],
+      "script": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/weibo/weibotalk.cookie.js"
+    },
+    {
+      "id": "egern.fmz200.fmz200_weibo_talk",
+      "name": "微博超话签到",
+      "desc_html": "⚠️使用说明</br>详情【<a href='https://github.com/toulanboy/scripts/blob/master/weibo/weibotalk.js'><font class='red--text'>点我查看</font></a>】",
+      "keys": [
+        "wb_delete_cookie",
+        "wb_msg_max_num",
+        "wb_request_time",
+        "fmz200_weibotalk_token"
+      ],
+      "settings": [
+        {
+          "id": "wb_delete_cookie",
+          "name": "是否清空cookie",
+          "val": false,
+          "type": "boolean",
+          "desc": "默认关闭"
+        },
+        {
+          "id": "wb_msg_max_num",
+          "name": "一个通知显示30个超话的签到情况",
+          "val": "",
+          "type": "text",
+          "desc": ""
+        },
+        {
+          "id": "wb_request_time",
+          "name": "签到间隔",
+          "val": "",
+          "type": "text",
+          "desc": "【签到间隔，单位ms】，若超话过多，建议填1000ms以上。"
+        },
+        {
+          "id": "fmz200_weibotalk_token",
+          "name": "多账号token",
+          "val": "",
+          "type": "textarea",
+          "autoGrow": true,
+          "rows": 4
+        }
+      ],
+      "author": "@toulanboy, @fmz200 / egern-config",
+      "repo": "https://github.com/oo226/egern-config",
+      "script": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/weibo/weibotalk_signin.js",
+      "icons": [
+        "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/WeiboTalk.png",
+        "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/WeiboTalk.png"
+      ]
+    },
+    {
+      "id": "egern.fmz200.fmz200_ks_fruit",
+      "name": "快手果园",
+      "keys": [
+        "kscookies"
+      ],
+      "descs_html": [
+        "(正在计划多账号支持)填写cookie,多账号用英文逗号(@)分开"
+      ],
+      "settings": [
+        {
+          "id": "kscookies",
+          "name": "kscookies",
+          "val": "",
+          "type": "textarea",
+          "autoGrow": true,
+          "rows": 8,
+          "desc": "kscookies"
+        }
+      ],
+      "icons": [
+        "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/kuaishou.png",
+        "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/kuaishou.png"
+      ],
+      "author": "@passerby-b / egern-config",
+      "repo": "https://github.com/oo226/egern-config",
+      "script": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/kuaishou/ks_fruit.js"
+    },
+    {
+      "id": "egern.fmz200.fmz200_pdd_fruit",
+      "name": "拼多多果园token",
+      "keys": [
+        "ddgyck",
+        "fmz200_pdd_token"
+      ],
+      "descs_html": [
+        "(正在计划多账号支持)小程序或APP 进果园一圈（批量浇水），在请求头中搜索AccessToken"
+      ],
+      "settings": [
+        {
+          "id": "ddgyck",
+          "name": "拼多多果园token",
+          "val": "",
+          "type": "textarea",
+          "autoGrow": false,
+          "rows": 4,
+          "desc": "多个账号用@分割：tk1@tk2"
+        },
+        {
+          "id": "fmz200_pdd_token",
+          "name": "拼多多果园token",
+          "val": "",
+          "type": "textarea",
+          "autoGrow": false,
+          "rows": 8,
+          "desc": "多个账号用@分割：tk1@tk2"
+        }
+      ],
+      "author": "@fmz200 / egern-config",
+      "repo": "https://github.com/oo226/egern-config",
+      "script": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/pinduoduo/pdd_guoyuan.js",
+      "icons": [
+        "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/pinduoduo.png",
+        "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/pinduoduo.png"
+      ]
+    },
+    {
+      "id": "egern.fmz200.fmz200_douyuYubaSign",
+      "name": "斗鱼鱼吧签到",
+      "desc_html": "⚠️使用说明</br>详情【<a href='https://github.com/fmz200/wool_scripts/raw/main/Scripts/douyu/yubaSign.js'><font class='red--text'>点我查看</font></a>】",
+      "keys": [
+        "CookieDY",
+        "GroupDY"
+      ],
+      "settings": [
+        {
+          "id": "lkIsEnableLogDouyuYubaSign",
+          "name": "开启/关闭日志",
+          "val": true,
+          "type": "boolean",
+          "desc": "默认开启"
+        },
+        {
+          "id": "lkNotifyOnlyFailDouyuYubaSign",
+          "name": "只当执行失败才通知",
+          "val": false,
+          "type": "boolean",
+          "desc": "默认关闭"
+        },
+        {
+          "id": "lkIsEnableTgNotifyDouyuYubaSign",
+          "name": "开启/关闭Telegram通知",
+          "val": false,
+          "type": "boolean",
+          "desc": "默认关闭"
+        },
+        {
+          "id": "lkTgNotifyUrlDouyuYubaSign",
+          "name": "Telegram通知地址",
+          "val": "",
+          "type": "text",
+          "desc": "Tg的通知地址，如：https://api.telegram.org/bot-token/sendMessage?chat_id=-100140&parse_mode=Markdown&text="
+        },
+        {
+          "id": "CookieDY",
+          "name": "Cookie",
+          "val": "",
+          "desc": "",
+          "type": "textarea",
+          "autoGrow": false,
+          "rows": 4
+        },
+        {
+          "id": "GroupDY",
+          "name": "签到分组",
+          "val": "",
+          "desc": "",
+          "type": "textarea",
+          "autoGrow": false,
+          "rows": 4
+        }
+      ],
+      "author": "@demo2099, @lowking, @fmz200 / egern-config",
+      "repo": "https://github.com/oo226/egern-config",
+      "script": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/douyu/yubaSign.js",
+      "icons": [
+        "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/douyu.png",
+        "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/douyu.png"
+      ]
+    },
+    {
+      "id": "egern.fokit.weibo",
+      "name": "新浪微博",
+      "author": "@sunert / egern-config",
+      "descs_html": [
+        "<h4 align=\"center\">获取Cookie以及脚本配置请查看<a href=\"https://raw.githubusercontent.com/FoKit/Scripts/main/scripts/weibo_sign.js\">配置说明</a></h4>",
+        "<br />",
+        "<p>其中<font color='#FF0000',font-weight: bold>wb_nick</font>为账号昵称, 无需另外获取, 脚本运行可自动生成, wb_cookie为任务红包余额, 获取后方可显示, 可选, sy_token_wb为微博签到token, 必选</p>"
+      ],
+      "icons": [
+        "https://cdn.jsdelivr.net/gh/Orz-3/mini@master/Alpha/weibo.png",
+        "https://cdn.jsdelivr.net/gh/Orz-3/mini@master/Color/weibo.png"
+      ],
+      "script": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/FoKit/Scripts/main/scripts/weibo_sign.js",
+      "keys": [
+        "sy_token_wb",
+        "wb_cookie",
+        "wb_nick"
+      ],
+      "settings": [
+        {
+          "id": "sy_token_wb",
+          "name": "Token",
+          "val": "",
+          "type": "text",
+          "desc": "微博Token"
+        },
+        {
+          "id": "wb_cookie",
+          "name": "Cookie",
+          "val": "",
+          "type": "text",
+          "desc": "微博Cookie"
+        },
+        {
+          "id": "wb_nick",
+          "name": "昵称",
+          "val": "",
+          "type": "text",
+          "desc": "微博昵称"
+        }
+      ],
+      "repo": "https://github.com/oo226/egern-config"
+    },
+    {
+      "id": "egern.chavy.everphoto",
+      "name": "时光相册",
+      "keys": [
+        "chavy_sign_url_everphoto",
+        "chavy_sign_header_everphoto"
+      ],
+      "author": "@chavyleung / egern-config",
+      "repo": "https://github.com/oo226/egern-config",
+      "icons": [
+        "https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/everphoto.png",
+        "https://raw.githubusercontent.com/Orz-3/mini/master/Color/everphoto.png"
+      ],
+      "script": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/chavyleung/scripts/master/everphoto/everphoto.cookie.js"
+    },
+    {
+      "id": "egern.fmz200.fmz200_xxyx_token",
+      "name": "晓晓优选token",
+      "keys": [
+        "fmz200_xxyx_token",
+        "xxyx_data"
+      ],
+      "descs_html": [
+        "打开APP点击“我的”页面获取，可到代理工具脚本日志中查看token"
+      ],
+      "settings": [
+        {
+          "id": "fmz200_xxyx_token",
+          "name": "",
+          "val": "",
+          "desc": "",
+          "type": "textarea",
+          "autoGrow": true,
+          "rows": 8
+        },
+        {
+          "id": "xxyx_data",
+          "name": "",
+          "val": "",
+          "desc": "",
+          "type": "textarea",
+          "autoGrow": true,
+          "rows": 8
+        }
+      ],
+      "author": "@fmz200 / egern-config",
+      "repo": "https://github.com/oo226/egern-config",
+      "scripts": [
+        {
+          "name": "晓晓优选每日任务",
+          "script": "https://raw.githubusercontent.com/fmz200/wool_scripts/Scripts/xxyx/xxyx_signin.js"
+        }
+      ],
+      "icons": [
+        "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/xxyx_01.png",
+        "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/xxyx_01.png"
+      ],
+      "script": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/cookie/get_cookie.js"
+    },
+    {
+      "id": "egern.chavy.zxhc",
+      "name": "智行火车票",
+      "keys": [
+        "senku_signurl_zxhc",
+        "senku_signheader_zxhc",
+        "senku_signbody_zxhc"
+      ],
+      "author": "@gideonsenku / egern-config",
+      "repo": "https://github.com/oo226/egern-config",
+      "script": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/chavyleung/scripts/master/zxhc/zxhc.cookie.js",
+      "icons": [
+        "https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/zxhc.png",
+        "https://raw.githubusercontent.com/Orz-3/mini/master/Color/zxhc.png"
+      ]
+    },
+    {
+      "id": "egern.lowking.lkPuPuCheckIn",
+      "name": "朴朴签到",
+      "desc_html": "⚠️使用说明</br>详情【<a href='https://github.com/lowking/Scripts/blob/master/pupu/pupuCheckIn.js?raw=true'><font class='red--text'>点我查看</font></a>】",
+      "icons": [
+        "https://raw.githubusercontent.com/lowking/Scripts/master/doc/icon/pupua.png",
+        "https://raw.githubusercontent.com/lowking/Scripts/master/doc/icon/pupu.png"
+      ],
+      "keys": [
+        "lkPuPuTokenKey",
+        "lkPuPuRefreshTokenKey"
+      ],
+      "settings": [
+        {
+          "id": "lkIsEnableLogPuPuCheckIn",
+          "name": "开启/关闭日志",
+          "val": true,
+          "type": "boolean",
+          "desc": "默认开启"
+        },
+        {
+          "id": "lkNotifyOnlyFailPuPuCheckIn",
+          "name": "只当执行失败才通知",
+          "val": false,
+          "type": "boolean",
+          "desc": "默认关闭"
+        },
+        {
+          "id": "lkIsEnableTgNotifyPuPuCheckIn",
+          "name": "开启/关闭Telegram通知",
+          "val": false,
+          "type": "boolean",
+          "desc": "默认关闭"
+        },
+        {
+          "id": "lkTgNotifyUrlPuPuCheckIn",
+          "name": "Telegram通知地址",
+          "val": "",
+          "type": "text",
+          "desc": "Tg的通知地址，如：https://api.telegram.org/bot-token/sendMessage?chat_id=-100140&parse_mode=Markdown&text="
+        },
+        {
+          "id": "lkPuPuTokenKey",
+          "name": "朴朴token",
+          "val": "",
+          "type": "text",
+          "desc": "朴朴token"
+        },
+        {
+          "id": "lkPuPuRefreshTokenKey",
+          "name": "朴朴refresh_token",
+          "val": "",
+          "type": "text",
+          "desc": "朴朴refresh_token"
+        },
+        {
+          "id": "lkPuPuSec",
+          "name": "抢券等待至xx秒",
+          "val": 59,
+          "type": "number",
+          "desc": "默认59s"
+        },
+        {
+          "id": "lkPuPuMsec",
+          "name": "抢券等待至xxx毫秒",
+          "val": 0,
+          "type": "number",
+          "desc": "默认0ms"
+        },
+        {
+          "id": "pupuRunCount",
+          "name": "抢签到第一并发数",
+          "val": 2,
+          "type": "number",
+          "desc": "默认2"
+        }
+      ],
+      "author": "@lowking / egern-config",
+      "repo": "https://github.com/oo226/egern-config",
+      "script": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/lowking/Scripts/master/pupu/pupuCheckIn.js"
+    },
+    {
+      "id": "egern.laichong",
+      "name": "来充抓参",
+      "keys": [
+        "LaichongAuthList"
+      ],
+      "settings": [
+        {
+          "id": "LaichongAuthList",
+          "name": "账号列表 JSON",
+          "val": "[]",
+          "type": "textarea"
+        }
+      ],
+      "author": "ZenmoFeiShi / egern-config",
+      "repo": "https://github.com/oo226/egern-config",
+      "script": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/LaiChong.js"
+    },
+    {
+      "id": "egern.chavy.fandeng",
+      "name": "樊登读书",
+      "keys": [
+        "senku_signurl_pandeng",
+        "senku_signheader_pandeng",
+        "senku_signbody_pandeng"
+      ],
+      "author": "@gideonsenku / egern-config",
+      "repo": "https://github.com/oo226/egern-config",
+      "script": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/chavyleung/scripts/master/fandeng/fandeng.cookie.js",
+      "icons": [
+        "https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/fandeng.png",
+        "https://raw.githubusercontent.com/Orz-3/mini/master/Color/fandeng.png"
+      ]
+    },
+    {
+      "id": "egern.fmz200.fmz200_wmbwc_data",
+      "name": "歪麦霸王餐签到",
+      "keys": [
+        "wmbwc_data"
+      ],
+      "descs_html": [
+        "打开app，进入我的页面获取token"
+      ],
+      "settings": [
+        {
+          "id": "wmbwc_data",
+          "name": "",
+          "val": "",
+          "desc": "",
+          "type": "textarea",
+          "autoGrow": true,
+          "rows": 4
+        }
+      ],
+      "author": "@Sliverkiss / egern-config",
+      "repo": "https://github.com/oo226/egern-config",
+      "scripts": [
+        {
+          "name": "歪麦霸王餐每日任务",
+          "script": "https://gist.githubusercontent.com/Sliverkiss/49a9ffb2169a2becc33bf4fdbf6eb99a/raw/wmbwc.js"
+        }
+      ],
+      "icons": [
+        "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/wmbwc.png",
+        "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/wmbwc.png"
+      ],
+      "script": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/gist/Sliverkiss/49a9ffb2169a2becc33bf4fdbf6eb99a/raw/wmbwc.js"
+    },
+    {
+      "id": "egern.fmz200.fmz200_didi_fruit",
+      "name": "滴滴橙心果园",
+      "keys": [
+        "ddgyToken",
+        "fmz200_didi_fruit"
+      ],
+      "descs_html": [
+        "多账号换行或者@隔开，格式uid&token。uid不可随便填，会根据uid更新数据"
+      ],
+      "settings": [
+        {
+          "id": "ddgyToken",
+          "name": "token",
+          "val": "",
+          "type": "textarea",
+          "autoGrow": true,
+          "rows": 8,
+          "desc": "token"
+        },
+        {
+          "id": "fmz200_didi_fruit",
+          "name": "token",
+          "val": "",
+          "type": "textarea",
+          "autoGrow": true,
+          "rows": 8,
+          "desc": "token"
+        }
+      ],
+      "icons": [
+        "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/didi.png",
+        "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/didi.png"
+      ],
+      "author": "@passerby-b / egern-config",
+      "repo": "https://github.com/oo226/egern-config",
+      "script": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/cookie/get_cookie.js"
+    },
+    {
+      "id": "egern.chavy.BAIDU",
+      "name": "百度签到",
+      "keys": [
+        "chavy_cookie_tieba"
+      ],
+      "settings": [
+        {
+          "id": "CFG_tieba_isOrderBars",
+          "name": "按连签排序",
+          "val": false,
+          "type": "boolean",
+          "desc": "默认按经验排序"
+        },
+        {
+          "id": "CFG_tieba_maxShowBars",
+          "name": "每页显示数",
+          "val": 15,
+          "type": "number",
+          "desc": "每页最显示多少个吧信息"
+        },
+        {
+          "id": "CFG_tieba_maxSignBars",
+          "name": "每次并发",
+          "val": 5,
+          "type": "number",
+          "desc": "每次并发签到多少个吧"
+        },
+        {
+          "id": "CFG_tieba_signWaitTime",
+          "name": "并发间隔 (毫秒)",
+          "val": 2000,
+          "type": "number",
+          "desc": "每次并发间隔时间"
+        }
+      ],
+      "author": "@chavyleung / egern-config",
+      "repo": "https://github.com/oo226/egern-config",
+      "script": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/tieba.js",
+      "icons": [
+        "https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/baidu.png",
+        "https://raw.githubusercontent.com/Orz-3/mini/master/Color/baidu.png"
+      ]
+    },
+    {
+      "id": "egern.yanxuan",
+      "name": "网易严选签到",
+      "keys": [
+        "chavy_cookie_yanxuan",
+        "chavy_token_yanxuan"
+      ],
+      "settings": [
+        {
+          "id": "chavy_cookie_yanxuan",
+          "name": "Cookie",
+          "val": "",
+          "type": "textarea"
+        },
+        {
+          "id": "chavy_token_yanxuan",
+          "name": "Token",
+          "val": "",
+          "type": "textarea"
+        }
+      ],
+      "author": "chavyleung / egern-config",
+      "repo": "https://github.com/oo226/egern-config",
+      "script": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/yanxuan.js"
+    },
+    {
+      "id": "egern.chavy.NeteaseMusic",
+      "name": "网易云音乐",
+      "keys": [
+        "chavy_cookie_neteasemusic"
+      ],
+      "settings": [
+        {
+          "id": "CFG_neteasemusic_retryCnt",
+          "name": "重试次数",
+          "val": 10,
+          "type": "text",
+          "desc": "一直尝试签到直至出现“重复签到”标识!"
+        },
+        {
+          "id": "CFG_neteasemusic_retryInterval",
+          "name": "重试间隔 (毫秒)",
+          "val": 500,
+          "type": "text",
+          "desc": "每次重试间隔时间 (毫秒)！"
+        }
+      ],
+      "author": "@chavyleung / egern-config",
+      "repo": "https://github.com/oo226/egern-config",
+      "script": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/chavyleung/scripts/master/neteasemusic/quanx/neteasemusic.cookie.js",
+      "icons": [
+        "https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/neteasemusic.png",
+        "https://raw.githubusercontent.com/Orz-3/mini/master/Color/neteasemusic.png"
+      ]
+    },
+    {
+      "id": "egern.chavy.NeteaseNews",
+      "name": "网易新闻",
+      "keys": [
+        "chavy_cookie_neteasenews",
+        "chavy_body_neteasenews"
+      ],
+      "author": "@chavyleung / egern-config",
+      "repo": "https://github.com/oo226/egern-config",
+      "script": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/chavyleung/scripts/master/neteasenews/neteasenews.cookie.js",
+      "icons": [
+        "https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/neteasenews.png",
+        "https://raw.githubusercontent.com/Orz-3/mini/master/Color/neteasenews.png"
+      ]
+    },
+    {
+      "id": "egern.fmz200.fmz200_mt_token",
+      "name": "美团token",
+      "keys": [
+        "meituanCookie",
+        "fmz200_meituan_cookie"
+      ],
+      "descs_html": [
+        "打开美团查看个人资料，在请求头中搜索token\n如果要获取多账号更新，点击完善资料进入页面获取[不需要真编辑]"
+      ],
+      "settings": [
+        {
+          "id": "meituanCookie",
+          "name": "美团token",
+          "val": "",
+          "desc": "多账号换行或者@隔开。例如：token1@token2",
+          "type": "textarea",
+          "autoGrow": true,
+          "rows": 8
+        },
+        {
+          "id": "fmz200_meituan_cookie",
+          "name": "美团token-json格式",
+          "val": "",
+          "desc": "多账号用JSON格式存储",
+          "type": "textarea",
+          "autoGrow": true,
+          "rows": 8
+        }
+      ],
+      "author": "@fmz200 / egern-config",
+      "repo": "https://github.com/oo226/egern-config",
+      "icons": [
+        "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/meituan.png",
+        "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/meituan.png"
+      ],
+      "script": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/cookie/get_cookie.js"
+    },
+    {
+      "id": "egern.chavy.videoqq",
+      "name": "腾讯视频",
+      "keys": [
+        "chavy_cookie_videoqq",
+        "chavy_auth_url_videoqq",
+        "chavy_auth_header_videoqq",
+        "chavy_msign_url_videoqq",
+        "chavy_msign_header_videoqq"
+      ],
+      "author": "@chavyleung / egern-config",
+      "repo": "https://github.com/oo226/egern-config",
+      "script": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/chavyleung/scripts/master/videoqq/videoqq.cookie.js",
+      "icons": [
+        "https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/videoqq.png",
+        "https://raw.githubusercontent.com/Orz-3/mini/master/Color/videoqq.png"
+      ]
+    },
+    {
+      "id": "egern.chavy.chavyleung.mgtv",
+      "name": "芒果TV",
+      "keys": [
+        "chavy_signurl_mgtv",
+        "chavy_signheader_mgtv"
+      ],
+      "author": "@chavyleung / egern-config",
+      "repo": "https://github.com/oo226/egern-config",
+      "script": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/chavyleung/scripts/master/mgtv/mgtv.cookie.js",
+      "icons": [
+        "https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/mgtv.png",
+        "https://raw.githubusercontent.com/Orz-3/mini/master/Color/mgtv.png"
+      ]
+    },
+    {
+      "id": "egern.fokit.huachenghui",
+      "name": "花城汇",
+      "author": "@FoKit / egern-config",
+      "script": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/zZPiglet/Task/master/asset/UnblockURLinWeChat.js",
+      "repo": "https://github.com/oo226/egern-config",
+      "icons": [
+        "https://raw.githubusercontent.com/FoKit/Scripts/main/images/hch.png",
+        "https://raw.githubusercontent.com/FoKit/Scripts/main/images/hch.png"
+      ],
+      "descs_html": [],
+      "keys": [
+        "hch"
+      ],
+      "settings": [
+        {
+          "id": "@hch.userid",
+          "name": "userId",
+          "val": "",
+          "type": "text",
+          "desc": "花城汇小程序 userId, 以数组形式保存"
+        }
+      ]
+    },
+    {
+      "id": "egern.chavy.chavyleung.suning",
+      "name": "苏宁易购",
+      "settings": [
+        {
+          "id": "chavy_logflag_suning",
+          "name": "响应日志",
+          "val": false,
+          "type": "boolean",
+          "desc": "是否输出响应返回体"
+        }
+      ],
+      "keys": [
+        "chavy_login_url_suning",
+        "chavy_login_body_suning",
+        "chavy_login_header_suning",
+        "chavy_sign_url_suning",
+        "chavy_sign_header_suning",
+        "chavy_signweb_url_suning",
+        "snyg_userTokenKey",
+        "chavy_signweb_header_suning",
+        "chavy_signgame_url_suning",
+        "chavy_signgame_header_suning",
+        "chavy_signgetgame_url_suning",
+        "chavy_signgetgame_header_suning"
+      ],
+      "author": "@chavyleung / egern-config",
+      "repo": "https://github.com/oo226/egern-config",
+      "script": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/chavyleung/scripts/master/suning/suning.cookie.js",
+      "icons": [
+        "https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/suning.png",
+        "https://raw.githubusercontent.com/Orz-3/mini/master/Color/suning.png"
+      ]
+    },
+    {
+      "id": "egern.yu9191_scheme.video",
+      "name": "选择你喜欢的播放器",
+      "keys": [
+        "scheme_select",
+        "scheme_custom"
+      ],
+      "settings": [
+        {
+          "id": "scheme_select",
+          "name": "播放器选择",
+          "val": "SenPlayer",
+          "type": "selects",
+          "items": [
+            {
+              "key": "Safari",
+              "label": "Safari"
+            },
+            {
+              "key": "SenPlayer",
+              "label": "SenPlayer"
+            },
+            {
+              "key": "nPlayer",
+              "label": "nPlayer"
+            },
+            {
+              "key": "Infuse",
+              "label": "Infuse"
+            },
+            {
+              "key": "自定义",
+              "label": "🛠 自定义播放器"
+            }
+          ],
+          "desc": "选择播放器（或使用自定义）"
+        },
+        {
+          "id": "scheme_custom",
+          "name": "自定义 Scheme",
+          "val": "",
+          "type": "text",
+          "desc": "如：nplayer-http:// 或 myplayer://x-callback-url/play?url= 记得点旁边的保存按钮",
+          "show": {
+            "scheme_select": "自定义"
+          }
+        }
+      ],
+      "author": "@baby / egern-config",
+      "script": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/yu9191/rewrite/kdf.js",
+      "icons": [
+        "https://raw.githubusercontent.com/Yu9191/-/main/dingdangmao.jpg",
+        "https://raw.githubusercontent.com/Yu9191/-/main/dingdangmao.jpg"
+      ],
+      "repo": "https://github.com/oo226/egern-config"
+    },
+    {
+      "id": "egern.fmz200.fmz200_aliyun",
+      "name": "阿里云盘cookie",
+      "keys": [
+        "aliyun_data"
+      ],
+      "descs_html": [
+        "填写cookie,多账号用英文逗号(@)分开"
+      ],
+      "settings": [
+        {
+          "id": "aliyun_data",
+          "name": "阿里云盘cookie",
+          "val": "",
+          "type": "textarea",
+          "autoGrow": true,
+          "rows": 8,
+          "desc": "阿里云盘cookie"
+        }
+      ],
+      "icons": [
+        "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/AliYunDrive.png",
+        "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/AliYunDrive.png"
+      ],
+      "author": "@fmz200 / egern-config",
+      "repo": "https://github.com/oo226/egern-config",
+      "script": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/gist/Sliverkiss/33800a98dcd029ba09f8b6fc6f0f5162/raw/aliyun.js"
+    },
+    {
+      "id": "egern.lowking.lkAliYunPanCheckIn",
+      "name": "阿里云盘签到",
+      "desc_html": "⚠️使用说明</br>详情【<a href='https://github.com/lowking/Scripts/blob/master/ali/aliYunPanCheckIn.js?raw=true'><font class='red--text'>点我查看</font></a>】",
+      "icons": [
+        "https://raw.githubusercontent.com/lowking/Scripts/master/doc/icon/aliYunPana.png",
+        "https://raw.githubusercontent.com/lowking/Scripts/master/doc/icon/aliYunPan.png"
+      ],
+      "keys": [
+        "lkAliYunPanTokenKey",
+        "lkAliYunPanRefreshTokenKey"
+      ],
+      "settings": [
+        {
+          "id": "lkIsEnableLogAliYunPanCheckIn",
+          "name": "开启/关闭日志",
+          "val": true,
+          "type": "boolean",
+          "desc": "默认开启"
+        },
+        {
+          "id": "lkNotifyOnlyFailAliYunPanCheckIn",
+          "name": "只当执行失败才通知",
+          "val": false,
+          "type": "boolean",
+          "desc": "默认关闭"
+        },
+        {
+          "id": "lkIsEnableTgNotifyAliYunPanCheckIn",
+          "name": "开启/关闭Telegram通知",
+          "val": false,
+          "type": "boolean",
+          "desc": "默认关闭"
+        },
+        {
+          "id": "lkTgNotifyUrlAliYunPanCheckIn",
+          "name": "Telegram通知地址",
+          "val": "",
+          "type": "text",
+          "desc": "Tg的通知地址，如：https://api.telegram.org/bot-token/sendMessage?chat_id=-100140&parse_mode=Markdown&text="
+        },
+        {
+          "id": "lkAliYunPanTokenKey",
+          "name": "阿里云盘token",
+          "val": "",
+          "type": "text",
+          "desc": "阿里云盘token"
+        },
+        {
+          "id": "lkAliYunPanRefreshTokenKey",
+          "name": "阿里云盘refresh_token",
+          "val": "",
+          "type": "text",
+          "desc": "阿里云盘refresh_token"
+        }
+      ],
+      "author": "@lowking / egern-config",
+      "repo": "https://github.com/oo226/egern-config",
+      "script": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/lowking/Scripts/master/ali/aliYunPanCheckIn.js"
+    },
+    {
+      "id": "egern.ql_sync",
+      "name": "青龙同步 BoxJS",
+      "keys": [
+        "#ql_sync_keys",
+        "ql_sync_notify"
+      ],
+      "settings": [
+        {
+          "id": "#ql_sync_keys",
+          "name": "同步键名（逗号分隔）",
+          "val": "",
+          "type": "text",
+          "desc": "例: CookiesJD,fmz200_weibo_token"
+        },
+        {
+          "id": "ql_sync_notify",
+          "name": "静默同步",
+          "val": "false",
+          "type": "boolean",
+          "desc": "true 时不发送同步完成通知"
+        }
+      ],
+      "author": "fmz200 / egern-config",
+      "repo": "https://github.com/oo226/egern-config",
+      "script": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/qinglong/ql_sync.js"
+    },
+    {
+      "id": "egern.chavy.sfexpress",
+      "name": "顺丰速运",
+      "keys": [
+        "chavy_login_sfexpress"
+      ],
+      "author": "@wangfei021325, @chavyleung / egern-config",
+      "repo": "https://github.com/oo226/egern-config",
+      "script": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/sfexpress.js",
+      "icons": [
+        "https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/sfexpress.png",
+        "https://raw.githubusercontent.com/Orz-3/mini/master/Color/sfexpress.png"
+      ]
+    }
+  ]
+}
