@@ -47,6 +47,10 @@ UPSTREAM_SUBSCRIPTIONS: tuple[tuple[str, str], ...] = (
         "yuheng",
         "https://raw.githubusercontent.com/Yuheng0101/X/refs/heads/main/Tasks/boxjs.json",
     ),
+    (
+        "nsringo",
+        "https://github.com/NSRingo/BoxJs/raw/main/iRingo.BoxJs.json",
+    ),
 )
 
 _EXTRA_SCRIPT_REWRITES: tuple[tuple[str, str], ...] = (
@@ -113,6 +117,19 @@ CHAVY_ROOT_SCRIPT_OVERRIDES: dict[str, str] = {
     "sfexpress": "Scripts/sfexpress.js",
     "ximalaya": "Scripts/ximalaya.js",
 }
+
+# Per-app script bindings (avoid short-key collisions in _pick_script_for_keys).
+APP_SCRIPT_OVERRIDES: dict[str, str] = {
+    "huachenghui": "Scripts/_external/github-raw/FoKit/Scripts/main/scripts/hch_sign.js",
+    "UnblockURLinWeChat": (
+        "Scripts/_external/github-raw/zZPiglet/Task/master/asset/UnblockURLinWeChat.js"
+    ),
+}
+
+_DEFAULT_APP_ICONS = (
+    "https://raw.githubusercontent.com/chavyleung/scripts/master/box/box.png",
+    "https://raw.githubusercontent.com/chavyleung/scripts/master/box/box.png",
+)
 
 SCRIPT_PATH_ALIASES: dict[str, str] = {
     "Scripts/yu9191/rewrite/insav.js": "Scripts/yu9191/rewrite/insav-tv/dist/insav.js",
@@ -440,6 +457,48 @@ def local_only_apps() -> list[dict]:
             "script": _local_url("Scripts/fmz200/qinglong/ql_sync.js"),
         },
         {
+            "id": "UnblockURLinWeChat",
+            "name": "微信跳过中间界面",
+            "keys": ["UnblockURLinWeChat", "useCache", "forceRedirect", "wechatExportKey"],
+            "settings": [
+                {
+                    "id": "useCache",
+                    "name": "快照显示被封链接",
+                    "val": "false",
+                    "type": "selects",
+                    "items": [
+                        {"key": "true", "label": "开启"},
+                        {"key": "false", "label": "关闭"},
+                    ],
+                    "desc": "在微信内用网页快照显示被封禁的链接",
+                },
+                {
+                    "id": "forceRedirect",
+                    "name": "强制重定向",
+                    "val": "false",
+                    "type": "selects",
+                    "items": [
+                        {"key": "true", "label": "开启"},
+                        {"key": "false", "label": "关闭"},
+                    ],
+                    "desc": "在微信内进行强制重定向（可能出现循环）",
+                },
+                {
+                    "id": "wechatExportKey",
+                    "name": "微信 export key",
+                    "val": "",
+                    "type": "text",
+                    "desc": "macOS 微信跳转浏览器时可能缺失，一般留空",
+                },
+            ],
+            "author": "egern-config",
+            "repo": "https://github.com/oo226/egern-config",
+            "script": _local_url(
+                "Scripts/_external/github-raw/zZPiglet/Task/master/asset/UnblockURLinWeChat.js"
+            ),
+            "icons": list(_DEFAULT_APP_ICONS),
+        },
+        {
             "id": "yanxuan_signin",
             "name": "网易严选签到",
             "keys": ["chavy_cookie_yanxuan", "chavy_token_yanxuan"],
@@ -464,6 +523,26 @@ def local_only_apps() -> list[dict]:
     ]
 
 
+def _key_in_script(key: str, text: str) -> bool:
+    key = str(key)
+    if len(key) < 4:
+        patterns = (
+            f'"{key}"',
+            f"'{key}'",
+            f'read("{key}")',
+            f"read('{key}')",
+            f"getdata('@{key}.",
+            f'getdata("@{key}.',
+            f"@{key}.",
+            f"@{key}'",
+            f'@{key}"',
+            f"chavy_cookie_{key}",
+            f"chavy_token_{key}",
+        )
+        return any(pattern in text for pattern in patterns)
+    return key in text
+
+
 def _pick_script_for_keys(
     keys: list[str],
     *,
@@ -477,7 +556,7 @@ def _pick_script_for_keys(
             text = (ROOT / rel).read_text(encoding="utf-8", errors="replace")
         except OSError:
             continue
-        if any(str(key) in text for key in keys):
+        if any(_key_in_script(str(key), text) for key in keys):
             candidates.append(rel)
     if not candidates:
         return None
@@ -495,6 +574,10 @@ def _app_local_script(
     local: set[str],
 ) -> str | None:
     app_id = str(app.get("id", ""))
+    if app_id in APP_SCRIPT_OVERRIDES:
+        rel = APP_SCRIPT_OVERRIDES[app_id]
+        return _local_url(rel) if rel in local else None
+
     if source == "chavy" and app_id in CHAVY_ROOT_SCRIPT_OVERRIDES:
         rel = CHAVY_ROOT_SCRIPT_OVERRIDES[app_id]
         return _local_url(rel) if rel in local else None
@@ -529,8 +612,11 @@ def _sanitize_app(app: dict) -> dict:
     app.pop("tasks", None)
     app.pop("rewrites", None)
     for key in list(app):
-        if key.startswith("desc") and key not in ("desc",):
+        if re.fullmatch(r"desc\d+", key):
             app.pop(key, None)
+    icons = app.get("icons")
+    if not isinstance(icons, list) or len(icons) < 2:
+        app["icons"] = list(_DEFAULT_APP_ICONS)
     settings = app.get("settings")
     if isinstance(settings, list):
         for setting in settings:
@@ -604,8 +690,8 @@ def _can_include_without_script(
         return False
     if _is_settings_only_app(app):
         return True
-    # Yuheng task file missing upstream — still expose settings (e.g. wsgw weapp.js 404).
-    return source == "yuheng"
+    # Yuheng / iRingo: settings-only apps (no bundled task script in subscription).
+    return source in ("yuheng", "nsringo")
 
 
 def build_egern_boxjs() -> dict:
@@ -669,7 +755,7 @@ def build_egern_boxjs() -> dict:
         "author": "oo226/egern-config",
         "icon": "https://raw.githubusercontent.com/chavyleung/scripts/master/box/box.png",
         "repo": "https://github.com/oo226/egern-config",
-        "desc": "本仓库脚本统一 BoxJS 订阅：播放器、签到、抓参、Cookie、Yuheng 等配置。",
+        "desc": "本仓库脚本统一 BoxJS 订阅：播放器、签到、抓参、Cookie、Yuheng、iRingo 等配置。",
         "sources": sources_meta,
         "apps": apps_out,
     }

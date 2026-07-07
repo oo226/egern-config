@@ -94,13 +94,17 @@ https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.js
 | 分类 | BoxJS 应用名 | 说明 |
 |------|-------------|------|
 | 播放器 | 妻友社区 / PearVideo / insav / porntube / xjh51 | 改播放器后保存，**不要**在 Egern 模块参数里填 |
-| 签到 | 百度签到、10000、顺丰、喜马拉雅、网易严选、**起点读书** | 配合 Cookie 合集抓参后使用 |
+| 微信 | **微信跳过中间界面** | 解除微信内打开链接的中间确认页 |
+| iRingo | **WeatherKit / 定位服务 / 地图** 等 | 地图天气定位增强系列，已并入统一订阅 |
+| 签到 | 百度签到、10000、顺丰、喜马拉雅、网易严选、**起点读书**、花城汇 | 配合 Cookie 合集抓参后使用 |
 | Yuheng | **酷我音乐**、吾爱破解、4K世界、豆瓣、i茅台 等 | 已并入统一订阅，无需再单独加 Yuheng 订阅 |
 | 抓参 | PingMe 抓参、一点万象、iios、来充、Soul 唱歌 | 先 MITM 抓参，再开签到任务 |
 | Cookie | 京东/美团/什么值得买 cookie、阿里云盘 cookie 等 | 配合 Cookie 合集 |
 | 青龙 | 青龙同步 BoxJS | 同步 BoxJS 键到青龙环境变量 |
 
 改完保存 → 完全退出相关 App 再开 → 测试。
+
+**Relay 客户端**：若日志出现 `Key 'icons' not found` 或订阅解析失败，请删除旧订阅后重新添加上面的链接（新版已为每个应用补齐 `icons`）。后端地址请用 **`http://boxjs.com`**（不要用 https），并确保 Egern 代理已开启。
 
 **若点击应用无反应（页面跳到顶部）**：删除旧订阅后重新添加上面的链接。早期版本应用 ID 带 `egern.` 前缀，与 BoxJS 路由不兼容，需重新订阅一次。
 
