@@ -6,9 +6,9 @@
 #   Repcz-AI     — Repcz/Tool — AI.yaml (50 entries)
 #   VPSDance     — VPSDance/ai-proxy-rules — egern/all.yaml (282 entries)
 #   Sukka-ai     — Sukka ruleset.skk.moe — non_ip/ai.conf (48 entries)
-#   local        — oo226/egern-config — AI-supplement.yaml (86 entries)
+#   local        — oo226/egern-config — AI-supplement.yaml (83 entries)
 # Overlap removed: 119
-# Total unique entries: 347
+# Total unique entries: 344
 
 no_resolve: true
 domain_set:
@@ -79,9 +79,7 @@ domain_set:
   - location.microsoft.com
   - notebooklm-pa.googleapis.com
   - notebooklm.googleapis.com
-  - notifications-pa.googleapis.com
   - oaiusercontent.com
-  - oauth2.googleapis.com
   - oauthaccountmanager.googleapis.com
   - odc.officeapps.live.com
   - openai-api.arkoselabs.com
@@ -101,7 +99,6 @@ domain_set:
   - signaler-pa.googleapis.com
   - static.cloudflareinsights.com
   - storage.googleapis.com
-  - subscriptionsfirstparty-pa.googleapis.com
   - sydney.bing.com
   - webchannel-alkalimakersuite-pa.clients6.google.com
 domain_suffix_set:
