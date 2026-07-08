@@ -30,8 +30,8 @@ def is_active_rule_line(line: str) -> bool:
 
 def main() -> None:
     # DEBUG slice: comment out active URL Rewrite rules in [start, start+n)
-    debug_id = 4
-    start = 60  # skip first 60 active rules (debug-1/2/3), disable the next 20
+    debug_id = 5
+    start = 80  # skip first 80 active rules (debug-1..4), disable the next 20
     n = 20
     out = ROOT / "Modules" / f"adblock-collection.debug-{debug_id}.module"
 
