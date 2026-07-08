@@ -125,9 +125,11 @@ dns:
     - proxy_rule_set:
         match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/Proxy.yaml
         value: 国外
+    # 未命中上述名单的域名：DNS 走国内（阿里/腾讯 DoH），避免个人站/中小 CDN 用国外 DNS 解析异常。
+    # 分流仍由 rules 段 geoip:CN→DIRECT、default→兜底 决定，与 DNS 策略分离。
     - domain_wildcard:
         match: "*"
-        value: 国外
+        value: 国内
   hosts:
     iosapps.itunes.apple.com:
       - iosapps.itunes.apple.com.download.ks-cdn.com
