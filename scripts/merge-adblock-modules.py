@@ -82,6 +82,14 @@ DEFAULT_SCRIPT_PATTERN_FIXES = (
     ),
 )
 
+# MITM on iCloud gateway breaks Files/iCloud sync — keep routing DIRECT, no TLS intercept.
+DEFAULT_MITM_HOSTNAME_EXCLUDES = frozenset(
+    {
+        "gateway.icloud.com",
+        "gateway.icloud.com.cn",
+    }
+)
+
 
 def apply_script_url_fixes(text: str, fixes: dict[str, str]) -> str:
     if not fixes:
@@ -202,6 +210,19 @@ def parse_hostnames(line: str) -> list[str]:
     return [h.strip() for h in rhs.split(",") if h.strip()]
 
 
+def normalize_mitm_hostname(host: str) -> str:
+    return host.replace("%INSERT%", "").strip()
+
+
+def filter_mitm_hostnames(hosts: set[str], excludes: frozenset[str]) -> set[str]:
+    exclude_norm = {h.lower() for h in excludes}
+    return {
+        host
+        for host in hosts
+        if normalize_mitm_hostname(host).lower() not in exclude_norm
+    }
+
+
 def format_hostnames(hosts: set[str]) -> str:
     ordered = sorted(hosts, key=str.lower)
     return "hostname = %APPEND% " + ", ".join(ordered)
@@ -241,6 +262,7 @@ def merge_section(
     supplement_blocks: list[tuple[str, list[str]]],
     *,
     exclude_cron_scripts: bool = False,
+    mitm_hostname_excludes: frozenset[str] = DEFAULT_MITM_HOSTNAME_EXCLUDES,
 ) -> list[str]:
     if section == "General":
         supp_lines = [lines for _, lines in supplement_blocks]
@@ -261,6 +283,9 @@ def merge_section(
                 hosts.update(parse_hostnames(line))
         if not hosts:
             return primary_lines
+        hosts = filter_mitm_hostnames(hosts, mitm_hostname_excludes)
+        if not hosts:
+            return comments
         return comments + [format_hostnames(hosts)]
 
     seen: set[str] = set()
@@ -301,6 +326,7 @@ def build_merged_module(
     header_lines: list[str] | None = None,
     primary_desc: str | None = None,
     exclude_cron_scripts: bool = False,
+    mitm_hostname_excludes: frozenset[str] = DEFAULT_MITM_HOSTNAME_EXCLUDES,
 ) -> str:
     primary_header, primary_sections = parse_module(primary_text)
 
@@ -363,6 +389,7 @@ def build_merged_module(
             primary_lines,
             supplement_blocks,
             exclude_cron_scripts=exclude_cron_scripts,
+            mitm_hostname_excludes=mitm_hostname_excludes,
         )
         if not merged_lines:
             continue
@@ -385,6 +412,9 @@ def main() -> None:
     header_lines = merge_cfg.get("header_lines")
     primary_desc = merge_cfg.get("primary_desc")
     exclude_cron_scripts = bool(merge_cfg.get("exclude_cron_scripts", False))
+    mitm_hostname_excludes = frozenset(
+        merge_cfg.get("mitm_hostname_excludes") or DEFAULT_MITM_HOSTNAME_EXCLUDES
+    )
     script_url_fixes = {**DEFAULT_SCRIPT_URL_FIXES, **(merge_cfg.get("script_url_fixes") or {})}
     script_pattern_fixes = tuple(merge_cfg.get("script_pattern_fixes") or ()) + DEFAULT_SCRIPT_PATTERN_FIXES
 
@@ -434,6 +464,7 @@ def main() -> None:
         header_lines=header_lines,
         primary_desc=primary_desc,
         exclude_cron_scripts=exclude_cron_scripts,
+        mitm_hostname_excludes=mitm_hostname_excludes,
     )
     merged = apply_script_url_fixes(merged, script_url_fixes)
     merged = apply_script_pattern_fixes(merged, script_pattern_fixes)

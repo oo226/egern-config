@@ -4,6 +4,9 @@
 merge:
   output: adblock-collection.module
   exclude_cron_scripts: true
+  mitm_hostname_excludes:
+    - gateway.icloud.com
+    - gateway.icloud.com.cn
   script_url_fixes:
     # limbopro 上游 cnys.js 已从仓库删除，回退到通用脚本
     "https://raw.githubusercontent.com/limbopro/Adblock4limbo/main/Adguard/cnys.js": "https://raw.githubusercontent.com/limbopro/Adblock4limbo/main/Adguard/Adblock4limbo.js"
