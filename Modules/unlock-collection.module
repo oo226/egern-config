@@ -460,8 +460,6 @@ DOMAIN,app-site-association.cdn-apple.com,REJECT
 # > Block iOS Update
 DOMAIN,gdmf.apple.com,REJECT
 DOMAIN,mesu.apple.com,REJECT
-# > 屏蔽HTTP3/QUIC协议 
-AND,((PROTOCOL,UDP),(DEST-PORT,443)),REJECT-NO-DROP
 # > 屏蔽YouTube的UDP
 AND,((PROTOCOL,UDP),(DOMAIN-SUFFIX,googlevideo.com)),REJECT-NO-DROP
 # > 微信
