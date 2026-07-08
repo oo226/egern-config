@@ -10,6 +10,10 @@ domain_set:
   - auth0.openai.com
   - oaiusercontent.com
   - files.oaiusercontent.com
+  # Gemini app endpoints (missing from upstream merged sources)
+  - oauthaccountmanager.googleapis.com
+  - play.googleapis.com
+  - signaler-pa.googleapis.com
   - api.mistral.ai
   - console.mistral.ai
   - api.deepseek.com
