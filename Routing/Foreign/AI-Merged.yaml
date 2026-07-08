@@ -6,9 +6,9 @@
 #   Repcz-AI     — Repcz/Tool — AI.yaml (50 entries)
 #   VPSDance     — VPSDance/ai-proxy-rules — egern/all.yaml (282 entries)
 #   Sukka-ai     — Sukka ruleset.skk.moe — non_ip/ai.conf (48 entries)
-#   local        — oo226/egern-config — AI-supplement.yaml (83 entries)
+#   local        — oo226/egern-config — AI-supplement.yaml (80 entries)
 # Overlap removed: 119
-# Total unique entries: 344
+# Total unique entries: 341
 
 no_resolve: true
 domain_set:
@@ -80,7 +80,6 @@ domain_set:
   - notebooklm-pa.googleapis.com
   - notebooklm.googleapis.com
   - oaiusercontent.com
-  - oauthaccountmanager.googleapis.com
   - odc.officeapps.live.com
   - openai-api.arkoselabs.com
   - openaiassets.blob.core.windows.net
@@ -88,7 +87,6 @@ domain_set:
   - openaicomproductionae4b.blob.core.windows.net
   - openrouter.ai
   - platform.openai.com
-  - play.googleapis.com
   - ppl-ai-file-upload.s3.amazonaws.com
   - pplx-res.cloudinary.com
   - production-openaicom-storage.azureedge.net
@@ -96,7 +94,6 @@ domain_set:
   - robinfrontend-pa.googleapis.com
   - self.events.data.microsoft.com
   - servd-anthropic-website.b-cdn.net
-  - signaler-pa.googleapis.com
   - static.cloudflareinsights.com
   - storage.googleapis.com
   - sydney.bing.com
