@@ -98,6 +98,7 @@ def main() -> None:
     )
     # Variant 1/2: add back half to bisect quickly
     half = len(GOOGLEISH_HOSTS) // 2
+    q = len(GOOGLEISH_HOSTS) // 4
     v1 = Variant(
         name="mitm-g01",
         keep_googleish=set(GOOGLEISH_HOSTS[:half]),
@@ -111,7 +112,38 @@ def main() -> None:
         desc="调试版：在 G00 基础上，仅加回后半（8条）Google 相关 MITM，用于二分定位",
     )
 
-    outs = [build_variant(v) for v in (v0, v1, v2)]
+    # Round 2: since G01/G02 both work but full set fails, test cross-half combinations.
+    # Base on G01 (first 8), add 4 from second half (bisect).
+    second = GOOGLEISH_HOSTS[half:]
+    v3 = Variant(
+        name="mitm-g03",
+        keep_googleish=set(GOOGLEISH_HOSTS[:half] + second[:q]),
+        title="MITM 调试 G03：前半 + 后半前4条",
+        desc="调试版：在 G01 基础上，加回后半前 4 条（跨半区二分定位）",
+    )
+    v4 = Variant(
+        name="mitm-g04",
+        keep_googleish=set(GOOGLEISH_HOSTS[:half] + second[q:]),
+        title="MITM 调试 G04：前半 + 后半后4条",
+        desc="调试版：在 G01 基础上，加回后半后 4 条（跨半区二分定位）",
+    )
+
+    # Symmetric: base on G02 (last 8), add 4 from first half.
+    first = GOOGLEISH_HOSTS[:half]
+    v5 = Variant(
+        name="mitm-g05",
+        keep_googleish=set(GOOGLEISH_HOSTS[half:] + first[:q]),
+        title="MITM 调试 G05：后半 + 前半前4条",
+        desc="调试版：在 G02 基础上，加回前半前 4 条（跨半区二分定位）",
+    )
+    v6 = Variant(
+        name="mitm-g06",
+        keep_googleish=set(GOOGLEISH_HOSTS[half:] + first[q:]),
+        title="MITM 调试 G06：后半 + 前半后4条",
+        desc="调试版：在 G02 基础上，加回前半后 4 条（跨半区二分定位）",
+    )
+
+    outs = [build_variant(v) for v in (v0, v1, v2, v3, v4, v5, v6)]
     for p in outs:
         print("wrote", p)
 
