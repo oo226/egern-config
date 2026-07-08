@@ -7,6 +7,11 @@ merge:
   mitm_hostname_excludes:
     - gateway.icloud.com
     - gateway.icloud.com.cn
+    - weather-data.apple.com
+    - buy.itunes.apple.com
+    - ios.chat.openai.com
+    - "*.icloud.com"
+    - "*.icloud-content.com"
   script_url_fixes:
     # limbopro 上游 cnys.js 已从仓库删除，回退到通用脚本
     "https://raw.githubusercontent.com/limbopro/Adblock4limbo/main/Adguard/cnys.js": "https://raw.githubusercontent.com/limbopro/Adblock4limbo/main/Adguard/Adblock4limbo.js"

@@ -82,11 +82,37 @@ DEFAULT_SCRIPT_PATTERN_FIXES = (
     ),
 )
 
-# MITM on iCloud gateway breaks Files/iCloud sync — keep routing DIRECT, no TLS intercept.
+# MITM on Apple/iCloud infra breaks Files sync (spinning/timeouts). Not ad targets.
 DEFAULT_MITM_HOSTNAME_EXCLUDES = frozenset(
     {
         "gateway.icloud.com",
         "gateway.icloud.com.cn",
+        "weather-data.apple.com",
+        "buy.itunes.apple.com",
+        "ios.chat.openai.com",
+        "*.icloud.com",
+        "*.icloud-content.com",
+    }
+)
+
+# *.cloudfront.net MITM is too broad — keep only hosts referenced by merged scripts.
+CLOUDFRONT_MITM_HOSTS = frozenset(
+    {
+        "d1skbu98kuldnf.cloudfront.net",
+        "dnt92ffcqr0xu.cloudfront.net",
+        "d1v5ir2lpwr8os.cloudfront.net",
+        "d22qjgkvxw22r6.cloudfront.net",
+        "d25xi40x97liuc.cloudfront.net",
+        "d27xxe7juh1us6.cloudfront.net",
+        "dmqdd6hw24ucf.cloudfront.net",
+    }
+)
+
+# Blocking Apple metrics can make iCloud / App Store hang retrying analytics.
+RULE_REJECT_DOMAIN_EXCLUDES = frozenset(
+    {
+        "metrics.apple.com",
+        "securemetrics.apple.com",
     }
 )
 
@@ -214,13 +240,54 @@ def normalize_mitm_hostname(host: str) -> str:
     return host.replace("%INSERT%", "").strip()
 
 
+def host_matches_exclude(host: str, exclude: str) -> bool:
+    norm = normalize_mitm_hostname(host).lower()
+    ex = exclude.lower().strip()
+    if ex.startswith("*."):
+        suffix = ex[1:]
+        return norm.endswith(suffix) or norm == ex[2:]
+    return norm == ex
+
+
 def filter_mitm_hostnames(hosts: set[str], excludes: frozenset[str]) -> set[str]:
-    exclude_norm = {h.lower() for h in excludes}
     return {
         host
         for host in hosts
-        if normalize_mitm_hostname(host).lower() not in exclude_norm
+        if not any(host_matches_exclude(host, ex) for ex in excludes)
     }
+
+
+def narrow_cloudfront_mitm(hosts: set[str]) -> set[str]:
+    if "*.cloudfront.net" not in hosts:
+        return hosts
+    hosts.discard("*.cloudfront.net")
+    hosts.update(CLOUDFRONT_MITM_HOSTS)
+    return hosts
+
+
+def parse_mitm_hosts_from_line(line: str) -> tuple[set[str], set[str]]:
+    """Return (active_hosts, disabled_hosts) from a MITM hostname line."""
+    stripped = line.strip()
+    lower = stripped.lower()
+    if lower.startswith("hostname-disabled"):
+        return set(), set(parse_hostnames(stripped))
+    if lower.startswith("hostname"):
+        return set(parse_hostnames(stripped)), set()
+    return set(), set()
+
+
+def is_excluded_reject_rule(line: str, excludes: frozenset[str] = RULE_REJECT_DOMAIN_EXCLUDES) -> bool:
+    stripped = line.strip()
+    if not stripped or stripped.startswith("#"):
+        return False
+    upper = stripped.upper()
+    if ",REJECT" not in upper and ",REJECT-" not in upper:
+        return False
+    parts = stripped.split(",")
+    if len(parts) < 2:
+        return False
+    domain = parts[1].strip().lower()
+    return domain in {d.lower() for d in excludes}
 
 
 def format_hostnames(hosts: set[str]) -> str:
@@ -270,20 +337,29 @@ def merge_section(
 
     if section == "MITM":
         hosts: set[str] = set()
+        disabled_hosts: set[str] = set()
         comments: list[str] = []
         for line in primary_lines:
             if line.strip().startswith("#") or not line.strip():
                 comments.append(line)
-            else:
-                hosts.update(parse_hostnames(line))
+                continue
+            active, disabled = parse_mitm_hosts_from_line(line)
+            hosts.update(active)
+            disabled_hosts.update(disabled)
         for _, lines in supplement_blocks:
             for line in lines:
                 if line.strip().startswith("#") or not line.strip():
                     continue
-                hosts.update(parse_hostnames(line))
+                active, disabled = parse_mitm_hosts_from_line(line)
+                hosts.update(active)
+                disabled_hosts.update(disabled)
         if not hosts:
             return primary_lines
-        hosts = filter_mitm_hostnames(hosts, mitm_hostname_excludes)
+        effective_excludes = mitm_hostname_excludes | {
+            normalize_mitm_hostname(h) for h in disabled_hosts
+        }
+        hosts = narrow_cloudfront_mitm(hosts)
+        hosts = filter_mitm_hostnames(hosts, effective_excludes)
         if not hosts:
             return comments
         return comments + [format_hostnames(hosts)]
@@ -292,6 +368,8 @@ def merge_section(
     output: list[str] = []
 
     for line in primary_lines:
+        if section == "Rule" and is_excluded_reject_rule(line):
+            continue
         key = rule_key(line) if section != "Script" else script_key(line)
         if key:
             seen.add(key)
@@ -300,6 +378,8 @@ def merge_section(
     for source_name, lines in supplement_blocks:
         unique: list[str] = []
         for line in lines:
+            if section == "Rule" and is_excluded_reject_rule(line):
+                continue
             key = rule_key(line) if section != "Script" else script_key(line)
             if not key:
                 unique.append(line)
