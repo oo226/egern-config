@@ -99,6 +99,9 @@ dns:
         match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Reject-Merged.yaml
         value: 广告
     - proxy_rule_set:
+        match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/Gemini.yaml
+        value: 国外
+    - proxy_rule_set:
         match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/AI-Merged.yaml
         value: 国外
     - proxy_rule_set:
@@ -373,6 +376,10 @@ rules:
       update_interval: 86400
 
   # ── 第 4 段：面板可手动的服务 ──
+  - rule_set:
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/Gemini.yaml
+      policy: ChatGPT
+      update_interval: 86400
   - rule_set:
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/AI-Merged.yaml
       policy: ChatGPT
