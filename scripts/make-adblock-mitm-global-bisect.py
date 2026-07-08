@@ -72,6 +72,9 @@ def main() -> None:
     half = n // 2
     h1 = hosts_sorted[:half]
     h2 = hosts_sorted[half:]
+    q = half // 2
+    h1a = h1[:q]
+    h1b = h1[q:]
 
     v1 = Variant(
         name="mitm-h1",
@@ -86,7 +89,20 @@ def main() -> None:
         desc="调试版：仅保留 MITM hostnames 后半（按字母排序），用于全量二分定位 Gemini 误伤",
     )
 
-    for v in (v1, v2):
+    v3 = Variant(
+        name="mitm-h1a",
+        keep=set(h1a),
+        title=f"MITM 四分 H1A：保留前1/4（{len(h1a)}/{n}）",
+        desc="调试版：已知 H1 异常，将 H1 再二分；本模块仅保留 MITM hostnames 前1/4",
+    )
+    v4 = Variant(
+        name="mitm-h1b",
+        keep=set(h1b),
+        title=f"MITM 四分 H1B：保留第2/4（{len(h1b)}/{n}）",
+        desc="调试版：已知 H1 异常，将 H1 再二分；本模块仅保留 MITM hostnames 第2/4",
+    )
+
+    for v in (v1, v2, v3, v4):
         p = build_variant(v, base_lines, idx, hosts_sorted)
         print("wrote", p)
 
