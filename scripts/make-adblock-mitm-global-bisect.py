@@ -84,6 +84,9 @@ def main() -> None:
     t = s // 2
     h1a1a1 = h1a1a[:t]
     h1a1a2 = h1a1a[t:]
+    u = t // 2
+    h1a1a1a = h1a1a1[:u]
+    h1a1a1b = h1a1a1[u:]
 
     v1 = Variant(
         name="mitm-h1",
@@ -146,8 +149,20 @@ def main() -> None:
         title=f"MITM 三十二分 H1A1A2：保留第2/32（{len(h1a1a2)}/{n}）",
         desc="调试版：已知 H1A1A 异常，将 H1A1A 再二分；本模块仅保留 MITM hostnames 第2/32",
     )
+    v11 = Variant(
+        name="mitm-h1a1a1a",
+        keep=set(h1a1a1a),
+        title=f"MITM 六十四分 H1A1A1A：保留第1/64（{len(h1a1a1a)}/{n}）",
+        desc="调试版：已知 H1A1A1 异常，将 H1A1A1 再二分；本模块仅保留 MITM hostnames 第1/64",
+    )
+    v12 = Variant(
+        name="mitm-h1a1a1b",
+        keep=set(h1a1a1b),
+        title=f"MITM 六十四分 H1A1A1B：保留第2/64（{len(h1a1a1b)}/{n}）",
+        desc="调试版：已知 H1A1A1 异常，将 H1A1A1 再二分；本模块仅保留 MITM hostnames 第2/64",
+    )
 
-    for v in (v1, v2, v3, v4, v5, v6, v7, v8, v9, v10):
+    for v in (v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12):
         p = build_variant(v, base_lines, idx, hosts_sorted)
         print("wrote", p)
 
