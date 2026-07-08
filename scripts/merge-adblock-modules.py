@@ -47,6 +47,41 @@ _SIGNIN_SECTION_COMMENTS = frozenset(
     }
 )
 
+# Upstream includes some extremely broad Google URL rewrite patterns like:
+#   ^https?://.+\.googleapis.com/.+log_event ...
+# These can break non-ad Google APIs (e.g. Gemini) once *.googleapis.com is MITM'd.
+_GOOGLEAPIS_URL_REWRITE_BLOCKLIST_RE = re.compile(
+    r"googleapis\.com/.*(ad_break|log_event|adsmeasurement)",
+    re.IGNORECASE,
+)
+
+
+def filter_url_rewrite_lines(lines: list[str]) -> list[str]:
+    """Remove known-bad rewrite patterns that break unrelated APIs."""
+    out: list[str] = []
+    for line in lines:
+        stripped = line.strip()
+        if stripped and not stripped.startswith("#") and _GOOGLEAPIS_URL_REWRITE_BLOCKLIST_RE.search(
+            stripped
+        ):
+            continue
+        out.append(line)
+    return out
+
+
+def filter_bad_rewrites_in_module(text: str) -> str:
+    """Last-resort safety filter applied to final merged module text."""
+    lines = text.splitlines()
+    kept: list[str] = []
+    for line in lines:
+        stripped = line.strip()
+        if stripped and not stripped.startswith("#") and _GOOGLEAPIS_URL_REWRITE_BLOCKLIST_RE.search(
+            stripped
+        ):
+            continue
+        kept.append(line)
+    return "\n".join(kept) + ("\n" if text.endswith("\n") else "")
+
 # Fallback fixes when upstream modules reference deleted scripts
 DEFAULT_SCRIPT_URL_FIXES = {
     "https://raw.githubusercontent.com/limbopro/Adblock4limbo/main/Adguard/cnys.js": (
@@ -337,6 +372,8 @@ def merge_section(
 
     if section == "Script" and exclude_cron_scripts:
         output = filter_cron_scripts(output)
+    if section == "URL Rewrite":
+        output = filter_url_rewrite_lines(output)
 
     return output
 
@@ -488,6 +525,7 @@ def main() -> None:
         exclude_cron_scripts=exclude_cron_scripts,
         mitm_hostname_excludes=mitm_hostname_excludes,
     )
+    merged = filter_bad_rewrites_in_module(merged)
     merged = apply_script_url_fixes(merged, script_url_fixes)
     merged = apply_script_pattern_fixes(merged, script_pattern_fixes)
     merged = mirror_script_paths(merged)
