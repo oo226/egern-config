@@ -29,11 +29,15 @@ def is_active_rule_line(line: str) -> bool:
 
 
 def main() -> None:
-    out = ROOT / "Modules" / "adblock-collection.debug-1.module"
+    # DEBUG slice: comment out active URL Rewrite rules in [start, start+n)
+    debug_id = 2
+    start = 20  # skip first 20 active rules (debug-1), disable the next 20
     n = 20
+    out = ROOT / "Modules" / f"adblock-collection.debug-{debug_id}.module"
 
     lines = SRC.read_text(encoding="utf-8", errors="replace").splitlines()
     in_url_rewrite = False
+    active_seen = 0
     commented = 0
     new_lines: list[str] = []
 
@@ -45,19 +49,23 @@ def main() -> None:
         if in_url_rewrite and line.startswith("[") and line.endswith("]"):
             in_url_rewrite = False
 
-        if in_url_rewrite and commented < n and is_active_rule_line(line):
-            new_lines.append(f"# DEBUG-OFF({commented+1}): {line}")
-            commented += 1
+        if in_url_rewrite and is_active_rule_line(line):
+            if start <= active_seen < start + n:
+                new_lines.append(f"# DEBUG{debug_id}-OFF({active_seen+1}): {line}")
+                commented += 1
+            else:
+                new_lines.append(line)
+            active_seen += 1
         else:
             new_lines.append(line)
 
     # tweak metadata for clarity
     for i, line in enumerate(new_lines[:200]):
         if line.startswith("#!name="):
-            new_lines[i] = "#!name=广告拦截&净化合集（DEBUG 1：URL Rewrite 前20条关闭）"
+            new_lines[i] = f"#!name=广告拦截&净化合集（DEBUG {debug_id}：URL Rewrite 关闭第{start+1}-{start+n}条）"
         elif line.startswith("#!desc="):
             new_lines[i] = (
-                "#!desc=调试版：自动注释 [URL Rewrite] 中前 20 条有效规则，用于定位 Gemini 误伤"
+                f"#!desc=调试版：自动注释 [URL Rewrite] 中第 {start+1}-{start+n} 条有效规则，用于定位 Gemini 误伤"
             )
 
     out.write_text("\n".join(new_lines) + "\n", encoding="utf-8")
