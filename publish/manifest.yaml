@@ -16,6 +16,7 @@ directories:
     include_only:
       - README.md
       - adblock-collection.module
+      - adblock-collection.debug-1.module
       - unlock-collection.module
       - cookie-collection.module
       - ibl3nd-plugin-hub.yaml
