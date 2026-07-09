@@ -10,10 +10,10 @@
 #   ChinaDomain    — Repcz/Tool — 国内域名 (867 entries)
 #   ChinaIP        — Repcz/Tool — 国内 IP (5752 entries)
 #   ChinaASN       — Repcz/Tool — 国内 ASN (5076 entries)
-#   Rabbit-China   — Rabbit-Spec — China.list (3759 entries)
+#   Rabbit-China   — Rabbit-Spec — China.list (3760 entries)
 #   Rabbit-CIDR    — Rabbit-Spec — ChinaCIDR.list (5766 entries)
 # Overlap removed: 6306
-# Total unique entries: 15476
+# Total unique entries: 15477
 
 no_resolve: true
 domain_set:
@@ -4526,6 +4526,7 @@ domain_keyword_set:
   - beplay
   - microsoft
   - officecdn
+  - sleep.pokemon
   - taobao
 domain_wildcard_set:
   - "*.qhimgs?.com"
