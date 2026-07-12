@@ -30,6 +30,7 @@ https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Egern.yaml
 | 名称 | raw 链接 | 何时开 |
 |------|----------|--------|
 | 抓参 Cookie 合集 | `.../Modules/cookie-collection.module` | 签到前抓 ck，**抓完关掉**省电 |
+|  iRingo 地图/天气/定位/其他 | `.../Modules/iringo-*.sgmodule` | 按需开；**勿**在 MITM 排除里写 `*.apple.com` |
 | 追风 mitm 证书 | 系统设置 → 证书信任 | 仅挂机时段开信任，平时关 |
 
 ---
@@ -103,6 +104,13 @@ https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.js
 | 青龙 | 青龙同步 BoxJS | 同步 BoxJS 键到青龙环境变量 |
 
 改完保存 → 完全退出相关 App 再开 → 测试。
+
+###  iRingo 不生效？
+
+1. **模块要手动开启**：`Egern.yaml` 里 iRingo 四项默认 `enabled: false`，在 Egern → 模块里打开需要的项。
+2. **MITM 不能排除 `*.apple.com`**：天气/地图/定位依赖解密 `weatherkit.apple.com`、`configuration.ls.apple.com`、`gspe*.ls.apple.com` 等域名。主配置已改为精确排除（iCloud/登录/更新），不再整域屏蔽 Apple。
+3. **更新后重启天气 App**：完全退出「天气」再打开；配 Apple Watch 的话手表也要装同一 MITM 证书。
+4. **API 可留空**：默认彩云数据源，Token 不填也能用基础功能。
 
 **Relay 客户端**：若日志出现 `Key 'icons' not found` 或订阅解析失败，请删除旧订阅后重新添加上面的链接（新版已为每个应用补齐 `icons`）。后端地址请用 **`http://boxjs.com`**（不要用 https），并确保 Egern 代理已开启。
 
