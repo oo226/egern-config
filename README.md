@@ -6,7 +6,8 @@
 > **版权**：版权归原作者及原项目；若认为不合理请 [联系删除](DISCLAIMER.md)。  
 > **怎么用**：请看 **[USAGE.md](USAGE.md)**（菜单） · **[DISCLAIMER.md](DISCLAIMER.md)**（免责）
 
-[![Sync Rules](https://github.com/oo226/egern-config/actions/workflows/sync-rules.yml/badge.svg)](https://github.com/oo226/egern-config/actions/workflows/sync-rules.yml)
+[![Sync Rules](https://github.com/oo226/egern-config/actions/workflows/sync-rules.yml/badge.svg?branch=sync)](https://github.com/oo226/egern-config/actions/workflows/sync-rules.yml)
+[![Catalog Health](https://github.com/oo226/egern-config/actions/workflows/sync-rules.yml/badge.svg?branch=sync&label=catalog%20health)](https://github.com/oo226/egern-config/actions/workflows/sync-rules.yml)
 
 ## 快速导入
 
