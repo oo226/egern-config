@@ -1,9 +1,12 @@
 name: " iRingo MITM 域名"
-description: 为 iRingo 天气/地图/定位补充 Egern 原生 MITM 解密域名。与 iringo-*.sgmodule 配套启用。
+description: 为 iRingo 天气/地图/定位补充 Egern 原生 MITM 解密域名（仅 6 个精确主机名，与 iringo-*.sgmodule 配套启用）。
 icon: https://developer.apple.com/assets/elements/icons/maps/maps-128x128.png
 homepage: https://NSRingo.github.io/
 mitm:
   hostnames:
-    - "*.ls.apple.com"
     - weatherkit.apple.com
+    - configuration.ls.apple.com
+    - gspe35-ssl.ls.apple.com
+    - gspe35-ssl.ls.apple.cn
+    - gspe1-ssl.ls.apple.com
     - dispatcher.is.autonavi.com

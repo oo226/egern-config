@@ -464,9 +464,12 @@ mitm:
     includes:
       - api.pingmeapp.net
       - "*.pingmeapp.net"
-      #  iRingo — 天气/地图/定位模块依赖 MITM（勿用 *.apple.com 整域排除）
-      - "*.ls.apple.com"
+      #  iRingo — 仅精确域名，不用 *.apple.com / *.ls.apple.com 整域
       - weatherkit.apple.com
+      - configuration.ls.apple.com
+      - gspe35-ssl.ls.apple.com
+      - gspe35-ssl.ls.apple.cn
+      - gspe1-ssl.ls.apple.com
       - dispatcher.is.autonavi.com
     excludes:
       - "*.wechat.com"

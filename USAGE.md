@@ -108,9 +108,8 @@ https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.js
 ###  iRingo 不生效？
 
 1. **四个模块都要开**：` iRingo MITM 域名` + 地图/天气/定位（按需）。
-2. **MITM 不能排除 `*.apple.com`**：主配置已改为精确排除。若你用的是自己改过的配置，检查 `mitm.hostnames.excludes` 里是否还有 `*.apple.com`，有就删掉。
-3. **更新配置后重载**：Egern → 配置 → 更新/重载，然后完全退出「天气」「地图」再开。
-4. **API 可留空**：默认彩云数据源，Token 不填也能用基础功能。
+2. **MITM 不能排除 `*.apple.com`**：删掉这行是对的——否则 iRingo 无法解密。但**不会**因此解密所有 Apple 域名；只有 `includes` 里列出的 + 去广告/解锁模块各自声明的域名才会 MITM。iCloud（`*.icloud.com`）、Apple 登录（`idmsa`/`appleid`）、系统更新（`mesu`/`gdmf`）仍在 excludes 里。
+3. **iRingo 仅 6 个精确 MITM 域名**：`weatherkit.apple.com`、`configuration.ls.apple.com`、`gspe35-ssl.ls.apple.com`、`gspe35-ssl.ls.apple.cn`、`gspe1-ssl.ls.apple.com`、`dispatcher.is.autonavi.com`——不含 `gspe19` 瓦片等。
 
 **连接日志怎么判断：**
 

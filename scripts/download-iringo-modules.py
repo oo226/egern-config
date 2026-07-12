@@ -75,8 +75,8 @@ def patch_mitm_hostnames(text: str, extra_hosts: str) -> str:
 
 
 IRINGO_MITM_PATCHES = {
-    "iringo-maps.sgmodule": "*.ls.apple.com, gspe35-ssl.ls.apple.cn",
-    "iringo-location.sgmodule": "*.ls.apple.com",
+    "iringo-maps.sgmodule": "gspe35-ssl.ls.apple.cn",
+    "iringo-location.sgmodule": "",
 }
 
 
