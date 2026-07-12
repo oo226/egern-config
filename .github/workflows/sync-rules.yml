@@ -91,6 +91,7 @@ jobs:
           python3 scripts/publish-unbreak-rules.py
           python3 scripts/publish-direct-priority.py
           python3 scripts/mirror-semporia-icons.py
+          python3 scripts/generate-catalog.py
 
       - name: Mirror author repositories (full-repo)
         run: |

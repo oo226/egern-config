@@ -14,6 +14,8 @@
 https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Egern.yaml
 ```
 
+**模块中心（网页浏览 / 一键添加）：** https://oo226.github.io/egern-config/
+
 ## main 里有什么（一眼看懂）
 
 ```

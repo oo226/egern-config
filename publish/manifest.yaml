@@ -7,6 +7,9 @@ files:
   - USAGE.md
   - DISCLAIMER.md
   - .github/workflows/sync-rules.yml
+  - .github/workflows/pages.yml
+  - site/index.html
+  - site/catalog.json
 
 directories:
   - path: Routing

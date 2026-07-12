@@ -1,0 +1,129 @@
+# Human metadata for the main-branch module hub (site/catalog.json).
+# Only items that need extra labels beyond auto-parsing.
+
+config:
+  - id: egern-main
+    name: 主配置 Egern.yaml
+    desc: 一键导入完整配置：节点策略、分流规则、默认模块、小组件等。
+    path: Egern.yaml
+    icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/02ProxySoftLogo/quanx.png
+
+routing:
+  Routing/Bootstrap-Direct.yaml:
+    name: 系统测网直连
+    desc: Captive / 联网检测域名直连（不含公共 DNS IP）。
+  Routing/China-Direct.yaml:
+    name: 国内直连大合集
+    desc: Direct + 微信/B站/苹果中国 + 国内域名 IP/ASN + 视频资源站 + 网盘点播，合并去重。
+  Routing/Reject-Merged.yaml:
+    name: 去广告域名
+    desc: Repcz Reject + Sukka 广告域名集，合并去重。
+  Routing/Direct-Priority.yaml:
+    name: 优先直连
+    desc: 须在 ProxyGFW/China-Direct 之前直连的服务域。
+  Routing/Unbreak.yaml:
+    name: Unbreak 直连
+    desc: Matrix-io Unbreak 规则，避免部分国内服务被误代理。
+  Routing/Lan.yaml:
+    name: 局域网
+    desc: 局域网 IP 段直连。
+  Routing/Privacy-Reject.yaml:
+    name: WebRTC 防护
+    desc: STUN / webrtc.org 拦截。
+  Routing/Zhuifeng.yaml:
+    name: 追风挂机
+    desc: 途游 sq-hlsg / open-hlsg 专用代理规则。
+  Routing/Foreign/AI-Merged.yaml:
+    name: AI 分流（合并）
+    desc: VPSDance + Sukka AI 域名，合并去重。Egern.yaml 默认引用此项。
+  Routing/Foreign/AI.yaml:
+    name: AI 分流（Repcz）
+    desc: Repcz/Tool 原版 AI 规则。
+  Routing/Foreign/AI-supplement.yaml:
+    name: AI 分流（补充）
+    desc: AI 规则补充集。
+  Routing/Foreign/ProxyGFW.yaml:
+    name: GFW 列表
+    desc: 被墙域名兜底代理。
+  Routing/Foreign/Proxy.yaml:
+    name: 国外兜底
+    desc: 国外流量兜底代理。
+  Routing/Foreign/YouTube.yaml:
+    name: YouTube
+  Routing/Foreign/Netflix.yaml:
+    name: Netflix
+  Routing/Foreign/Disney.yaml:
+    name: Disney+
+  Routing/Foreign/Spotify.yaml:
+    name: Spotify
+  Routing/Foreign/Telegram.yaml:
+    name: Telegram
+  Routing/Foreign/Twitter.yaml:
+    name: Twitter / X
+  Routing/Foreign/TikTok.yaml:
+    name: TikTok
+  Routing/Foreign/Google.yaml:
+    name: Google
+  Routing/Foreign/Github.yaml:
+    name: GitHub
+  Routing/Foreign/Microsoft.yaml:
+    name: Microsoft
+  Routing/Foreign/AppleServers.yaml:
+    name: Apple 服务
+  Routing/Foreign/Game.yaml:
+    name: 游戏
+  Routing/Foreign/Emby.yaml:
+    name: Emby
+
+modules:
+  adblock-collection.module:
+    group: 合集
+    default_enabled: true
+    tags: [去广告, 开屏, 净化]
+  unlock-collection.module:
+    group: 合集
+    default_enabled: true
+    tags: [解锁, 流媒体]
+  cookie-collection.module:
+    group: 合集
+    default_enabled: false
+    tags: [抓参, Cookie, 签到]
+  ibl3nd-plugin-hub.yaml:
+    group: 工具
+    default_enabled: true
+    tags: [插件中心, kelee, qingr]
+  iringo-mitm.yaml:
+    group: iRingo
+    default_enabled: false
+    requires: [iringo-maps, iringo-weather, iringo-location]
+    tags: [MITM, 天气, 地图]
+  iringo-maps.sgmodule:
+    group: iRingo
+    default_enabled: false
+    tags: [地图]
+  iringo-weather.sgmodule:
+    group: iRingo
+    default_enabled: false
+    tags: [天气]
+  iringo-location.sgmodule:
+    group: iRingo
+    default_enabled: false
+    tags: [定位]
+  iringo-others.sgmodule:
+    group: iRingo
+    default_enabled: false
+    tags: [TestFlight, TV, News]
+
+boxjs:
+  egern.boxjs.json:
+    name: 统一 BoxJS 订阅
+    desc: 播放器、签到、抓参、Cookie、Yuheng、iRingo 等全部 BoxJS 应用配置。
+    icon: https://raw.githubusercontent.com/chavyleung/scripts/master/box/chavy.boxjs.png
+
+external_modules:
+  - id: pingme-quanx
+    name: PingMe 抓参签到
+    desc: 外部 oo226/quanx pingme.yaml，不在本仓库。
+    url: https://raw.githubusercontent.com/oo226/quanx/main/pingme.yaml
+    group: 外部
+    default_enabled: true
