@@ -1,5 +1,5 @@
-const CACHE = "egern-hub-v5";
-const ASSETS = ["./", "./index.html", "./styles.css", "./catalog.json", "./disclaimer.html", "./manifest.webmanifest"];
+const CACHE = "egern-hub-v6";
+const ASSETS = ["./", "./index.html", "./styles.css", "./catalog.json", "./disclaimer.html", "./manifest.webmanifest", "./robots.txt"];
 
 self.addEventListener("install", (e) => {
   e.waitUntil(caches.open(CACHE).then((c) => c.addAll(ASSETS)).then(() => self.skipWaiting()));

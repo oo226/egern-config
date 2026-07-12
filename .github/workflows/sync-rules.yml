@@ -10,6 +10,7 @@ on:
 
 permissions:
   contents: write
+  issues: write
 
 concurrency:
   group: sync-rules
@@ -131,9 +132,28 @@ jobs:
         run: python3 scripts/download-ibl3nd-widgets.py
 
       - name: Regenerate catalog and check link health
+        id: health
         run: |
           python3 scripts/generate-catalog.py
-          python3 scripts/check-catalog-health.py --strict --report
+          python3 scripts/check-catalog-health.py --strict --report | tee health-report.txt
+
+      - name: Open issue on catalog health failure
+        if: failure() && steps.health.outcome == 'failure'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          TITLE="catalog health: broken links detected"
+          if gh issue list --label "catalog-health" --state open --json title --jq '.[].title' | grep -Fq "$TITLE"; then
+            gh issue comment "$(gh issue list --label catalog-health --state open --json number --jq '.[0].number')" \
+              --body "Recurring failure in run ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+
+          $(cat health-report.txt)"
+            echo "Updated existing catalog-health issue"
+          else
+            gh issue create --title "$TITLE" --label "catalog-health" --body "$(cat health-report.txt)
+
+          Actions run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          fi
 
       - name: Commit sync branch
         run: |
