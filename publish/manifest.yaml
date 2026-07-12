@@ -19,6 +19,10 @@ directories:
       - unlock-collection.module
       - cookie-collection.module
       - ibl3nd-plugin-hub.yaml
+      - iringo-maps.sgmodule
+      - iringo-weather.sgmodule
+      - iringo-location.sgmodule
+      - iringo-others.sgmodule
       - yu9191-player.boxjs.json
       - egern.boxjs.json
 
@@ -66,10 +70,6 @@ prune_from_main:
   - Modules/boxjs.sgmodule
   - Modules/chxm1023-ad-supplement.sgmodule
   - Modules/yu9191-rewrite-unlock.sgmodule
-  - Modules/iringo-location.sgmodule
-  - Modules/iringo-maps.sgmodule
-  - Modules/iringo-others.sgmodule
-  - Modules/iringo-weather.sgmodule
   - Modules/liul0ng-unlock.sgmodule
   - Modules/weigiegie-unlock.sgmodule
   - scripts
