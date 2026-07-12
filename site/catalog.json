@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-12T08:14:55Z",
+  "generated_at": "2026-07-12T08:27:17Z",
   "branch": "main",
   "repo": "oo226/egern-config",
   "raw_base": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main",
@@ -202,17 +202,22 @@
   ],
   "sync_digest": {
     "commit": {
-      "hash": "82f63a8",
-      "subject": "feat(site): QR codes, share links, BoxJS featured, upstream health",
+      "hash": "97d6645",
+      "subject": "feat(site): noindex, health badge, light-mode buttons, dead-link issues",
       "date": "2026-07-12"
     },
     "summary": [
       "模块站 更新 4 个文件",
       "国内直连 15496 条"
     ],
-    "files_changed": 6
+    "files_changed": 8
   },
   "changelog": [
+    {
+      "hash": "2911d5e",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-07-12"
+    },
     {
       "hash": "cf046b6",
       "subject": "chore: publish curated snapshot from sync",
@@ -245,11 +250,6 @@
     },
     {
       "hash": "23f7037",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-07-12"
-    },
-    {
-      "hash": "b04d4d5",
       "subject": "chore: publish curated snapshot from sync",
       "date": "2026-07-12"
     }
