@@ -9,17 +9,29 @@
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
   <link rel="stylesheet" href="styles.css">
+  <script>
+    (function () {
+      var saved = localStorage.getItem('egern-hub-theme');
+      var light = saved === 'light' || (!saved && window.matchMedia('(prefers-color-scheme: light)').matches);
+      if (light) document.documentElement.dataset.theme = 'light';
+    })();
+  </script>
 </head>
 <body>
   <header class="hero">
     <div class="hero-inner">
-      <button class="theme-toggle" id="theme-toggle" type="button" title="切换主题">🌙</button>
+      <button class="theme-toggle" id="theme-toggle" type="button" title="切换主题" aria-label="切换主题">
+        <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+      </button>
       <h1>⚡ egern-config 模块中心</h1>
       <p>仅展示 <strong>main</strong> 分支稳定内容 — 点击即可添加模块，或复制 raw 链接</p>
       <div class="notice">本站内容为个人镜像整理，仅供学习交流与个人设备使用。详见 <a href="disclaimer.html">免责声明</a>。</div>
       <span class="badge" id="updated">加载中…</span>
     </div>
   </header>
+
+  <div class="health-banner" id="health-banner" hidden></div>
 
   <div class="toolbar">
     <input class="search" id="search" type="search" placeholder="搜索名称、说明、标签…" autocomplete="off">
@@ -268,6 +280,82 @@
         }
         sec.appendChild(grid);
         if (qrRow.childElementCount) sec.appendChild(qrRow);
+        el.appendChild(sec);
+      }
+
+      if (catalog.onboarding?.length) {
+        const sec = document.createElement('section');
+        sec.className = 'quick-section';
+        sec.innerHTML = '<div class="section-title">🧭 新手引导</div>';
+        const ol = document.createElement('ol');
+        ol.className = 'onboarding-steps';
+        for (const step of catalog.onboarding) {
+          const li = document.createElement('li');
+          li.innerHTML = `<strong>${step.title}</strong> — ${step.desc || ''}`;
+          if (step.add_url) {
+            const a = document.createElement('a');
+            a.href = step.add_url;
+            a.target = '_blank';
+            a.textContent = ' 一键添加';
+            a.style.marginLeft = '0.35rem';
+            li.appendChild(a);
+          } else if (step.url) {
+            const btn = document.createElement('button');
+            btn.className = 'btn';
+            btn.style.marginLeft = '0.35rem';
+            btn.style.padding = '0.2rem 0.5rem';
+            btn.style.fontSize = '0.75rem';
+            btn.textContent = '复制链接';
+            btn.onclick = () => copyText(step.url);
+            li.appendChild(btn);
+          }
+          ol.appendChild(li);
+        }
+        sec.appendChild(ol);
+        el.appendChild(sec);
+      }
+
+      if (catalog.signin_bundle) {
+        const b = catalog.signin_bundle;
+        const sec = document.createElement('section');
+        sec.className = 'bundle-section';
+        sec.innerHTML = '<div class="section-title">📅 签到脚本包</div>';
+        const row = document.createElement('div');
+        row.className = 'bundle-row';
+        const scripts = (b.scripts || []).join('、');
+        row.innerHTML = `<div class="bundle-info"><strong>${b.name}</strong><p>${b.desc || ''}${scripts ? `<br>包含：${scripts}` : ''}</p></div>`;
+        const copyYaml = document.createElement('button');
+        copyYaml.className = 'btn btn-primary';
+        copyYaml.textContent = '复制 scriptings YAML';
+        copyYaml.onclick = () => copyText(b.scripting_yaml);
+        row.appendChild(copyYaml);
+        sec.appendChild(row);
+        el.appendChild(sec);
+      }
+
+      if (catalog.sync_digest?.summary?.length) {
+        const d = catalog.sync_digest;
+        const sec = document.createElement('section');
+        sec.className = 'changelog-section';
+        const commit = d.commit;
+        const title = commit
+          ? `📊 同步摘要 · ${commit.date} <code style="font-size:0.78rem">${commit.hash}</code>`
+          : '📊 同步摘要';
+        sec.innerHTML = `<div class="section-title">${title}</div>`;
+        if (commit?.subject) {
+          const p = document.createElement('p');
+          p.style.cssText = 'font-size:0.82rem;color:var(--muted);margin-bottom:0.35rem';
+          p.textContent = commit.subject;
+          sec.appendChild(p);
+        }
+        const ul = document.createElement('ul');
+        ul.className = 'digest-list';
+        for (const line of d.summary) {
+          const li = document.createElement('li');
+          li.textContent = line;
+          ul.appendChild(li);
+        }
+        sec.appendChild(ul);
         el.appendChild(sec);
       }
 
@@ -543,19 +631,47 @@
       throw new Error('catalog load failed');
     }
 
+    function renderHealthBanner() {
+      const el = $('#health-banner');
+      if (!catalog) { el.hidden = true; return; }
+      const localBroken = (catalog.items || []).filter(i => i.health === 'fail');
+      const upstreamBroken = catalog.upstream_health?.broken || [];
+      const localFail = localBroken.length;
+      const upstreamFail = catalog.upstream_health?.fail || 0;
+      if (!localFail && !upstreamFail) {
+        el.hidden = true;
+        el.innerHTML = '';
+        return;
+      }
+      el.hidden = false;
+      const parts = [];
+      if (localFail) parts.push(`${localFail} 个本地 raw 链接异常`);
+      if (upstreamFail) parts.push(`${upstreamFail} 个上游脚本链接异常`);
+      let html = `<div class="health-warn"><strong>⚠️ 链接健康告警</strong> — ${parts.join('，')}（每日 sync 检测）`;
+      if (localBroken.length) {
+        html += `<ul>${localBroken.slice(0, 8).map(i => `<li>${i.name} — ${i.url}</li>`).join('')}</ul>`;
+      }
+      if (upstreamBroken.length && !localBroken.length) {
+        html += `<ul>${upstreamBroken.slice(0, 5).map(b => `<li>${b.url}</li>`).join('')}</ul>`;
+      }
+      html += '</div>';
+      el.innerHTML = html;
+    }
+
     function initTheme() {
-      const saved = localStorage.getItem('egern-hub-theme');
-      const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
-      const theme = saved || (prefersLight ? 'light' : 'dark');
-      document.documentElement.dataset.theme = theme === 'light' ? 'light' : '';
       const btn = $('#theme-toggle');
-      btn.textContent = theme === 'light' ? '🌙' : '☀️';
+      const applyMeta = () => {
+        const light = document.documentElement.dataset.theme === 'light';
+        document.querySelector('meta[name="theme-color"]').content = light ? '#4a6cf7' : '#6c8cff';
+      };
+      applyMeta();
       btn.onclick = () => {
-        const next = document.documentElement.dataset.theme === 'light' ? 'dark' : 'light';
-        document.documentElement.dataset.theme = next === 'light' ? 'light' : '';
+        const light = document.documentElement.dataset.theme === 'light';
+        const next = light ? 'dark' : 'light';
+        if (next === 'light') document.documentElement.dataset.theme = 'light';
+        else delete document.documentElement.dataset.theme;
         localStorage.setItem('egern-hub-theme', next);
-        btn.textContent = next === 'light' ? '🌙' : '☀️';
-        document.querySelector('meta[name="theme-color"]').content = next === 'light' ? '#4a6cf7' : '#6c8cff';
+        applyMeta();
       };
     }
 
@@ -576,6 +692,7 @@
       renderPresets(catalog.presets);
       renderFilters(catalog.categories || []);
       renderBoxjsGroups(catalog.items);
+      renderHealthBanner();
       renderExtras();
       renderGrid();
       const hashId = parseHashId();

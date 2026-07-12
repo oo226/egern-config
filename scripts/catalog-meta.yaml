@@ -162,3 +162,25 @@ featured_boxjs:
   - pingme_capture
   - ximalaya
   - lkBingPoint
+
+signin_bundle:
+  name: 常用签到脚本包
+  desc: 先开 Cookie 合集抓参（如需），再整段粘贴到 Egern.yaml → scriptings
+  script_ids:
+    - script-tieba
+    - script-ximalaya
+    - script-dianxin10000
+    - script-sfexpress
+    - script-yanxuan
+    - script-qdreader
+
+onboarding:
+  - title: 导入主配置
+    desc: 添加 Egern.yaml 订阅，或扫二维码导入
+    ref: egern-main
+  - title: 确认默认模块
+    desc: 去广告合集 + 解锁合集 + 插件跳转（Egern.yaml 里默认已开）
+    ref: adblock-collection
+  - title: 按需扩展
+    desc: BoxJS 统一订阅 · iRingo 套装 · 签到脚本包
+    ref: egern-boxjs

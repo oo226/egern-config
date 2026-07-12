@@ -575,6 +575,107 @@ def build_quick_start(meta_cfg: dict, items_by_id: dict[str, dict]) -> list[dict
     return out
 
 
+def git_sync_digest() -> dict:
+    """Summarize latest sync commit file changes."""
+    try:
+        proc = subprocess.run(
+            ["git", "log", "-1", "--pretty=format:%h|%s|%cs", "HEAD"],
+            cwd=ROOT,
+            capture_output=True,
+            text=True,
+            timeout=15,
+        )
+        head = proc.stdout.strip().split("|", 2) if proc.returncode == 0 else []
+        diff = subprocess.run(
+            ["git", "diff", "--name-only", "HEAD~1", "HEAD"],
+            cwd=ROOT,
+            capture_output=True,
+            text=True,
+            timeout=15,
+        )
+        files = [f for f in (diff.stdout or "").splitlines() if f.strip()]
+    except Exception as exc:
+        return {"summary": [], "commit": None, "error": str(exc)}
+
+    buckets: dict[str, list[str]] = {}
+    for f in files:
+        top = f.split("/", 1)[0]
+        buckets.setdefault(top, []).append(f)
+
+    summary: list[str] = []
+    labels = {
+        "Routing": "分流规则",
+        "Modules": "模块",
+        "Scripts": "脚本",
+        "site": "模块站",
+        "Egern.yaml": "主配置",
+    }
+    for key, label in labels.items():
+        if key in buckets:
+            summary.append(f"{label} 更新 {len(buckets[key])} 个文件")
+        elif any(f.startswith(key + "/") or f == key for f in files):
+            summary.append(f"{label} 有变更")
+
+    china = ROOT / "Routing" / "China-Direct.yaml"
+    if china.is_file():
+        for line in china.read_text(encoding="utf-8", errors="replace").splitlines()[:25]:
+            if line.startswith("# Total unique entries:"):
+                summary.append(f"国内直连 {line.split(':', 1)[1].strip()} 条")
+                break
+
+    if not summary and files:
+        summary.append(f"共 {len(files)} 个文件变更")
+
+    commit = None
+    if len(head) == 3:
+        commit = {"hash": head[0], "subject": head[1], "date": head[2]}
+
+    return {"commit": commit, "summary": summary[:8], "files_changed": len(files)}
+
+
+def build_signin_bundle(meta_cfg: dict, items_by_id: dict[str, dict]) -> dict | None:
+    cfg = meta_cfg.get("signin_bundle")
+    if not cfg:
+        return None
+    blocks: list[str] = ["# 粘贴到 Egern.yaml 的 scriptings 段", "scriptings:"]
+    names: list[str] = []
+    for sid in cfg.get("script_ids") or []:
+        item = items_by_id.get(sid)
+        if not item or not item.get("scripting_yaml"):
+            continue
+        names.append(item["name"])
+        for line in item["scripting_yaml"].splitlines():
+            if line.startswith("#") or line == "scriptings:":
+                continue
+            blocks.append(line)
+    if len(blocks) <= 2:
+        return None
+    return {
+        "id": "signin-bundle",
+        "name": cfg.get("name", "签到脚本包"),
+        "desc": cfg.get("desc", ""),
+        "scripts": names,
+        "scripting_yaml": "\n".join(blocks) + "\n",
+    }
+
+
+def build_onboarding(meta_cfg: dict, items_by_id: dict[str, dict]) -> list[dict]:
+    out: list[dict] = []
+    for i, step in enumerate(meta_cfg.get("onboarding") or [], start=1):
+        ref = step.get("ref")
+        item = items_by_id.get(ref) if ref else None
+        out.append(
+            {
+                "step": i,
+                "title": step.get("title", ""),
+                "desc": step.get("desc", ""),
+                "url": item.get("url") if item else "",
+                "add_url": item.get("add_url") if item else "",
+            }
+        )
+    return out
+
+
 def build_bundles(meta_cfg: dict, items_by_id: dict[str, dict]) -> list[dict]:
     bundles: list[dict] = []
     for b in meta_cfg.get("bundles") or []:
@@ -619,6 +720,8 @@ def build_catalog() -> dict:
     attach_share_urls(items)
     apply_health_checks(items)
     upstream_health = check_upstream_script_urls()
+    local_broken = [i["id"] for i in items if i.get("health") == "fail"]
+    local_health = {"checked": sum(1 for i in items if i.get("health")), "fail": len(local_broken), "broken_ids": local_broken[:20]}
 
     categories = [
         {"id": "config", "name": "主配置", "icon": "⚙️"},
@@ -645,7 +748,11 @@ def build_catalog() -> dict:
         "quick_start": build_quick_start(meta_cfg, items_by_id),
         "featured_boxjs": build_featured_boxjs(meta_cfg, items_by_id),
         "bundles": build_bundles(meta_cfg, items_by_id),
+        "signin_bundle": build_signin_bundle(meta_cfg, items_by_id),
+        "onboarding": build_onboarding(meta_cfg, items_by_id),
+        "sync_digest": git_sync_digest(),
         "changelog": git_changelog(),
+        "local_health": local_health,
         "upstream_health": upstream_health,
         "categories": [{**c, "count": counts[c["id"]]} for c in categories],
         "items": items,

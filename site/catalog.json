@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-12T07:58:15Z",
+  "generated_at": "2026-07-12T08:14:55Z",
   "branch": "main",
   "repo": "oo226/egern-config",
   "raw_base": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main",
@@ -163,7 +163,61 @@
       "modules_yaml": "# 粘贴到 Egern.yaml 的 modules 段\nmodules:\n  - name: \" iRingo MITM 域名\"\n    url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/iringo-mitm.yaml\n    enabled: false\n  - name: \" iRingo: 🗺️ Maps\"\n    url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/iringo-maps.sgmodule\n    update_interval: 86400\n    enabled: false\n  - name: \" iRingo: 🌤 WeatherKit\"\n    url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/iringo-weather.sgmodule\n    update_interval: 86400\n    enabled: false\n  - name: \" iRingo: 📍 LocationService\"\n    url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/iringo-location.sgmodule\n    update_interval: 86400\n    enabled: false\n  - name: \" iRingo: 📺 TV app\"\n    url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/iringo-others.sgmodule\n    update_interval: 86400\n    enabled: false\n"
     }
   ],
+  "signin_bundle": {
+    "id": "signin-bundle",
+    "name": "常用签到脚本包",
+    "desc": "先开 Cookie 合集抓参（如需），再整段粘贴到 Egern.yaml → scriptings",
+    "scripts": [
+      "贴吧",
+      "喜马拉雅",
+      "电信营业厅",
+      "顺丰",
+      "网易严选",
+      "起点读书"
+    ],
+    "scripting_yaml": "# 粘贴到 Egern.yaml 的 scriptings 段\nscriptings:\n  - name: 贴吧\n    type: schedule\n    cron: \"0 8 * * *\"\n    script: https://raw.githubusercontent.com/oo226/egern-config/main/Scripts/tieba.js\n    enabled: true\n  - name: 喜马拉雅\n    type: schedule\n    cron: \"0 8 * * *\"\n    script: https://raw.githubusercontent.com/oo226/egern-config/main/Scripts/ximalaya.js\n    enabled: true\n  - name: 电信营业厅\n    type: schedule\n    cron: \"0 8 * * *\"\n    script: https://raw.githubusercontent.com/oo226/egern-config/main/Scripts/dianxin10000.js\n    enabled: true\n  - name: 顺丰\n    type: schedule\n    cron: \"0 9 * * *\"\n    script: https://raw.githubusercontent.com/oo226/egern-config/main/Scripts/sfexpress.js\n    enabled: true\n  - name: 网易严选\n    type: schedule\n    cron: \"0 8 * * *\"\n    script: https://raw.githubusercontent.com/oo226/egern-config/main/Scripts/yanxuan.js\n    enabled: true\n  - name: 起点读书\n    type: schedule\n    cron: \"11 2 * * *\"\n    script: https://raw.githubusercontent.com/oo226/egern-config/main/Scripts/qdreader.js\n    enabled: true\n"
+  },
+  "onboarding": [
+    {
+      "step": 1,
+      "title": "导入主配置",
+      "desc": "添加 Egern.yaml 订阅，或扫二维码导入",
+      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Egern.yaml",
+      "add_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Egern.yaml"
+    },
+    {
+      "step": 2,
+      "title": "确认默认模块",
+      "desc": "去广告合集 + 解锁合集 + 插件跳转（Egern.yaml 里默认已开）",
+      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/adblock-collection.module",
+      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Fadblock-collection.module"
+    },
+    {
+      "step": 3,
+      "title": "按需扩展",
+      "desc": "BoxJS 统一订阅 · iRingo 套装 · 签到脚本包",
+      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
+      "add_url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json"
+    }
+  ],
+  "sync_digest": {
+    "commit": {
+      "hash": "82f63a8",
+      "subject": "feat(site): QR codes, share links, BoxJS featured, upstream health",
+      "date": "2026-07-12"
+    },
+    "summary": [
+      "模块站 更新 4 个文件",
+      "国内直连 15496 条"
+    ],
+    "files_changed": 6
+  },
   "changelog": [
+    {
+      "hash": "cf046b6",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-07-12"
+    },
     {
       "hash": "9475faa",
       "subject": "chore: publish curated snapshot from sync",
@@ -198,13 +252,13 @@
       "hash": "b04d4d5",
       "subject": "chore: publish curated snapshot from sync",
       "date": "2026-07-12"
-    },
-    {
-      "hash": "3c974e9",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-07-12"
     }
   ],
+  "local_health": {
+    "checked": 103,
+    "fail": 0,
+    "broken_ids": []
+  },
   "upstream_health": {
     "total_unique": 6,
     "checked": 6,

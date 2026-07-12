@@ -1,4 +1,4 @@
-const CACHE = "egern-hub-v4";
+const CACHE = "egern-hub-v5";
 const ASSETS = ["./", "./index.html", "./styles.css", "./catalog.json", "./disclaimer.html", "./manifest.webmanifest"];
 
 self.addEventListener("install", (e) => {
