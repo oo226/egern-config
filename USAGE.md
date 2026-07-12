@@ -30,7 +30,7 @@ https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Egern.yaml
 | 名称 | raw 链接 | 何时开 |
 |------|----------|--------|
 | 抓参 Cookie 合集 | `.../Modules/cookie-collection.module` | 签到前抓 ck，**抓完关掉**省电 |
-|  iRingo 地图/天气/定位/其他 | `.../Modules/iringo-*.sgmodule` | 按需开；**勿**在 MITM 排除里写 `*.apple.com` |
+|  iRingo 地图/天气/定位/其他 | `.../Modules/iringo-*.sgmodule` | 按需开；**同时开** `iringo-mitm.yaml` |
 | 追风 mitm 证书 | 系统设置 → 证书信任 | 仅挂机时段开信任，平时关 |
 
 ---
@@ -107,10 +107,22 @@ https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.js
 
 ###  iRingo 不生效？
 
-1. **模块要手动开启**：`Egern.yaml` 里 iRingo 四项默认 `enabled: false`，在 Egern → 模块里打开需要的项。
-2. **MITM 不能排除 `*.apple.com`**：天气/地图/定位依赖解密 `weatherkit.apple.com`、`configuration.ls.apple.com`、`gspe*.ls.apple.com` 等域名。主配置已改为精确排除（iCloud/登录/更新），不再整域屏蔽 Apple。
-3. **更新后重启天气 App**：完全退出「天气」再打开；配 Apple Watch 的话手表也要装同一 MITM 证书。
+1. **四个模块都要开**：` iRingo MITM 域名` + 地图/天气/定位（按需）。
+2. **MITM 不能排除 `*.apple.com`**：主配置已改为精确排除。若你用的是自己改过的配置，检查 `mitm.hostnames.excludes` 里是否还有 `*.apple.com`，有就删掉。
+3. **更新配置后重载**：Egern → 配置 → 更新/重载，然后完全退出「天气」「地图」再开。
 4. **API 可留空**：默认彩云数据源，Token 不填也能用基础功能。
+
+**连接日志怎么判断：**
+
+| 域名 | 正常表现 | 说明 |
+|------|----------|------|
+| `gspe19-cn-ssl.ls.apple.com` | DIRECT + TLS | 地图瓦片流量，**不需要 MITM**，看到 TLS 是正常的 |
+| `configuration.ls.apple.com` | 应被解密/已修改 | 地图模块核心，必须 MITM |
+| `gspe35-ssl.ls.apple.com` | 应被解密/已修改 | 地图动态配置，必须 MITM |
+| `gspe1-ssl.ls.apple.com` | 应被解密/已修改 | 定位地区检测，必须 MITM |
+| `weatherkit.apple.com` | 应被解密/已修改 | 天气模块核心，必须 MITM |
+
+冷启动地图 App 后，在分析页搜索 `configuration` 或 `gspe35`，不应再是纯 TLS 直连。
 
 **Relay 客户端**：若日志出现 `Key 'icons' not found` 或订阅解析失败，请删除旧订阅后重新添加上面的链接（新版已为每个应用补齐 `icons`）。后端地址请用 **`http://boxjs.com`**（不要用 https），并确保 Egern 代理已开启。
 
