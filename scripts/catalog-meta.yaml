@@ -127,3 +127,24 @@ external_modules:
     url: https://raw.githubusercontent.com/oo226/quanx/main/pingme.yaml
     group: 外部
     default_enabled: true
+
+quick_start:
+  - egern-main
+  - adblock-collection
+  - unlock-collection
+  - ibl3nd-plugin-hub
+  - egern-boxjs
+
+bundles:
+  - id: iringo-full
+    name: " iRingo 全套（5 模块）"
+    desc: 先 MITM，再按需开地图/天气/定位/其他；复制 YAML 可整段粘贴到 Egern.yaml modules 段。
+    item_ids:
+      - iringo-mitm
+      - iringo-maps
+      - iringo-weather
+      - iringo-location
+      - iringo-others
+
+featured_widgets:
+  - widget-oil_widget

@@ -6,7 +6,9 @@ from __future__ import annotations
 import html
 import json
 import re
+import subprocess
 import sys
+import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
 from urllib.parse import quote
@@ -425,6 +427,114 @@ def published_includes(name: str) -> bool:
     return False
 
 
+    return False
+
+
+def git_changelog(limit: int = 8) -> list[dict]:
+    try:
+        proc = subprocess.run(
+            ["git", "log", f"-{limit}", "--pretty=format:%h|%s|%cs", "origin/main"],
+            cwd=ROOT,
+            capture_output=True,
+            text=True,
+            timeout=15,
+        )
+        if proc.returncode != 0:
+            proc = subprocess.run(
+                ["git", "log", f"-{limit}", "--pretty=format:%h|%s|%cs", "main"],
+                cwd=ROOT,
+                capture_output=True,
+                text=True,
+                timeout=15,
+            )
+        entries: list[dict] = []
+        for line in (proc.stdout or "").splitlines():
+            parts = line.split("|", 2)
+            if len(parts) == 3:
+                entries.append({"hash": parts[0], "subject": parts[1], "date": parts[2]})
+        return entries
+    except Exception as exc:
+        print(f"skip changelog: {exc}")
+        return []
+
+
+def check_url_ok(url: str) -> bool:
+    if not url.startswith("https://raw.githubusercontent.com/oo226/egern-config"):
+        return True
+    try:
+        req = urllib.request.Request(url, method="HEAD", headers={"User-Agent": "egern-catalog-check/1.0"})
+        with urllib.request.urlopen(req, timeout=12) as resp:
+            return 200 <= resp.status < 400
+    except Exception:
+        try:
+            req = urllib.request.Request(url, headers={"User-Agent": "egern-catalog-check/1.0"})
+            with urllib.request.urlopen(req, timeout=12) as resp:
+                return 200 <= resp.status < 400
+        except Exception:
+            return False
+
+
+def apply_health_checks(items: list[dict]) -> None:
+    checked = 0
+    for item in items:
+        if item.get("kind") not in {"module", "config", "rule", "boxjs", "script", "widget"}:
+            continue
+        url = item.get("url") or ""
+        if not url.startswith("https://raw.githubusercontent.com/oo226/egern-config"):
+            continue
+        item["health"] = "ok" if check_url_ok(url) else "fail"
+        checked += 1
+    print(f"health-checked {checked} local raw URLs")
+
+
+def build_modules_yaml_bundle(item_ids: list[str], items_by_id: dict[str, dict]) -> str:
+    lines = ["# 粘贴到 Egern.yaml 的 modules 段", "modules:"]
+    for iid in item_ids:
+        item = items_by_id.get(iid)
+        if not item:
+            continue
+        lines.append(f"  - name: \"{item['name']}\"")
+        lines.append(f"    url: {item['url']}")
+        if item.get("kind") == "module" and not item["id"].endswith("-mitm"):
+            lines.append("    update_interval: 86400")
+        lines.append("    enabled: false")
+    return "\n".join(lines) + "\n"
+
+
+def build_quick_start(meta_cfg: dict, items_by_id: dict[str, dict]) -> list[dict]:
+    out: list[dict] = []
+    for iid in meta_cfg.get("quick_start") or []:
+        item = items_by_id.get(iid)
+        if item:
+            out.append({"id": iid, "name": item["name"], "desc": item.get("desc", "")[:80], "add_url": item.get("add_url"), "url": item.get("url"), "kind": item.get("kind")})
+    return out
+
+
+def build_bundles(meta_cfg: dict, items_by_id: dict[str, dict]) -> list[dict]:
+    bundles: list[dict] = []
+    for b in meta_cfg.get("bundles") or []:
+        ids = b.get("item_ids") or []
+        add_urls = [items_by_id[i]["add_url"] for i in ids if i in items_by_id and items_by_id[i].get("add_url")]
+        bundles.append(
+            {
+                "id": b["id"],
+                "name": b["name"],
+                "desc": b.get("desc", ""),
+                "item_ids": ids,
+                "add_urls": add_urls,
+                "modules_yaml": build_modules_yaml_bundle(ids, items_by_id),
+            }
+        )
+    return bundles
+
+
+def mark_featured(meta_cfg: dict, items: list[dict]) -> None:
+    featured = set(meta_cfg.get("featured_widgets") or [])
+    for item in items:
+        if item["id"] in featured:
+            item["featured"] = True
+
+
 def build_catalog() -> dict:
     meta_cfg = load_yaml(CATALOG_META) if CATALOG_META.is_file() else {}
     egern_defaults = load_egern_module_defaults()
@@ -439,6 +549,9 @@ def build_catalog() -> dict:
     items.extend(boxjs_items(meta_cfg))
     items.extend(script_items())
     items.extend(widget_items())
+    mark_featured(meta_cfg, items)
+    items_by_id = {i["id"]: i for i in items}
+    apply_health_checks(items)
 
     categories = [
         {"id": "config", "name": "主配置", "icon": "⚙️"},
@@ -462,6 +575,9 @@ def build_catalog() -> dict:
             {"id": "daily", "name": "默认开启", "icon": "✅", "usage_tier": "daily", "count": daily_count},
             {"id": "optional", "name": "按需开启", "icon": "🔧", "usage_tier": "optional", "count": optional_count},
         ],
+        "quick_start": build_quick_start(meta_cfg, items_by_id),
+        "bundles": build_bundles(meta_cfg, items_by_id),
+        "changelog": git_changelog(),
         "categories": [{**c, "count": counts[c["id"]]} for c in categories],
         "items": items,
         "total": len(items),
