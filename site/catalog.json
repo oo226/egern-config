@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-12T07:51:32Z",
+  "generated_at": "2026-07-12T07:54:24Z",
   "branch": "main",
   "repo": "oo226/egern-config",
   "raw_base": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main",
@@ -18,6 +18,112 @@
       "icon": "🔧",
       "usage_tier": "optional",
       "count": 173
+    }
+  ],
+  "quick_start": [
+    {
+      "id": "egern-main",
+      "name": "主配置 Egern.yaml",
+      "desc": "一键导入完整配置：节点策略、分流规则、默认模块、小组件等。",
+      "add_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Egern.yaml",
+      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Egern.yaml",
+      "kind": "config"
+    },
+    {
+      "id": "adblock-collection",
+      "name": "广告拦截&净化合集",
+      "desc": "多源合并去重：奶思 + blackmatrix7 + 银行税务NB（Actions 每日同步）",
+      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Fadblock-collection.module",
+      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/adblock-collection.module",
+      "kind": "module"
+    },
+    {
+      "id": "unlock-collection",
+      "name": "Skip Proxy And Real-IP Lists",
+      "desc": "多源合并去重：跳过代理检测 + 链接解锁 + Spotify + VIP解锁 + 屏蔽更新（Actions 每日同步）",
+      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Funlock-collection.module",
+      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/unlock-collection.module",
+      "kind": "module"
+    },
+    {
+      "id": "ibl3nd-plugin-hub",
+      "name": "插件模块跳转",
+      "desc": "IBL3ND — Loon/Surge 插件中心一键跳转 Egern（镜像自 IBL3ND/module）",
+      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Fibl3nd-plugin-hub.yaml",
+      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/ibl3nd-plugin-hub.yaml",
+      "kind": "module"
+    },
+    {
+      "id": "egern-boxjs",
+      "name": "统一 BoxJS 订阅",
+      "desc": "播放器、签到、抓参、Cookie、Yuheng、iRingo 等全部 BoxJS 应用配置。",
+      "add_url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
+      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
+      "kind": "boxjs"
+    }
+  ],
+  "bundles": [
+    {
+      "id": "iringo-full",
+      "name": " iRingo 全套（5 模块）",
+      "desc": "先 MITM，再按需开地图/天气/定位/其他；复制 YAML 可整段粘贴到 Egern.yaml modules 段。",
+      "item_ids": [
+        "iringo-mitm",
+        "iringo-maps",
+        "iringo-weather",
+        "iringo-location",
+        "iringo-others"
+      ],
+      "add_urls": [
+        "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Firingo-mitm.yaml",
+        "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Firingo-maps.sgmodule",
+        "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Firingo-weather.sgmodule",
+        "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Firingo-location.sgmodule",
+        "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Firingo-others.sgmodule"
+      ],
+      "modules_yaml": "# 粘贴到 Egern.yaml 的 modules 段\nmodules:\n  - name: \" iRingo MITM 域名\"\n    url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/iringo-mitm.yaml\n    enabled: false\n  - name: \" iRingo: 🗺️ Maps\"\n    url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/iringo-maps.sgmodule\n    update_interval: 86400\n    enabled: false\n  - name: \" iRingo: 🌤 WeatherKit\"\n    url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/iringo-weather.sgmodule\n    update_interval: 86400\n    enabled: false\n  - name: \" iRingo: 📍 LocationService\"\n    url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/iringo-location.sgmodule\n    update_interval: 86400\n    enabled: false\n  - name: \" iRingo: 📺 TV app\"\n    url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/iringo-others.sgmodule\n    update_interval: 86400\n    enabled: false\n"
+    }
+  ],
+  "changelog": [
+    {
+      "hash": "e60834b",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-07-12"
+    },
+    {
+      "hash": "796039d",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-07-12"
+    },
+    {
+      "hash": "1ff9a73",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-07-12"
+    },
+    {
+      "hash": "0e6c5b4",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-07-12"
+    },
+    {
+      "hash": "23f7037",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-07-12"
+    },
+    {
+      "hash": "b04d4d5",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-07-12"
+    },
+    {
+      "hash": "3c974e9",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-07-12"
+    },
+    {
+      "hash": "2ad9a56",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-07-12"
     }
   ],
   "categories": [
@@ -75,7 +181,8 @@
         "Egern",
         "订阅",
         "默认开启"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "adblock-collection",
@@ -99,7 +206,8 @@
         "净化",
         "fmz200",
         "奶思"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "unlock-collection",
@@ -120,7 +228,8 @@
       "tags": [
         "解锁",
         "流媒体"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "cookie-collection",
@@ -143,7 +252,8 @@
         "Cookie",
         "签到",
         "fmz200"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "ibl3nd-plugin-hub",
@@ -165,7 +275,8 @@
         "插件中心",
         "kelee",
         "qingr"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "iringo-mitm",
@@ -191,7 +302,8 @@
         "MITM",
         "天气",
         "地图"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "iringo-maps",
@@ -211,7 +323,8 @@
       "hint": "⚠️ 请先添加并启用「 iRingo MITM 域名」模块，否则无法解密 Apple 地图 API。",
       "tags": [
         "地图"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "iringo-weather",
@@ -231,7 +344,8 @@
       "hint": "⚠️ 请先添加并启用「 iRingo MITM 域名」模块，否则 weatherkit 无法解密。",
       "tags": [
         "天气"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "iringo-location",
@@ -251,7 +365,8 @@
       "hint": "⚠️ 请先添加并启用「 iRingo MITM 域名」模块，否则定位增强不生效。",
       "tags": [
         "定位"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "iringo-others",
@@ -273,7 +388,8 @@
         "TestFlight",
         "TV",
         "News"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "pingme-quanx",
@@ -307,7 +423,8 @@
       "tags": [
         "分流",
         "rule_set"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "Routing-China-Direct",
@@ -324,7 +441,8 @@
       "tags": [
         "分流",
         "rule_set"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "Routing-Direct-Priority",
@@ -341,7 +459,8 @@
       "tags": [
         "分流",
         "rule_set"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "Routing-Foreign-AI-Merged",
@@ -358,7 +477,8 @@
       "tags": [
         "分流",
         "rule_set"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "Routing-Foreign-AI-supplement",
@@ -375,7 +495,8 @@
       "tags": [
         "分流",
         "rule_set"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "Routing-Foreign-AI",
@@ -392,7 +513,8 @@
       "tags": [
         "分流",
         "rule_set"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "Routing-Foreign-App-Bilibili",
@@ -409,7 +531,8 @@
       "tags": [
         "分流",
         "rule_set"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "Routing-Foreign-App-Douyin",
@@ -426,7 +549,8 @@
       "tags": [
         "分流",
         "rule_set"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "Routing-Foreign-App-KuaiShou",
@@ -443,7 +567,8 @@
       "tags": [
         "分流",
         "rule_set"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "Routing-Foreign-App-Line",
@@ -460,7 +585,8 @@
       "tags": [
         "分流",
         "rule_set"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "Routing-Foreign-App-RedBook",
@@ -477,7 +603,8 @@
       "tags": [
         "分流",
         "rule_set"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "Routing-Foreign-App-Soul",
@@ -494,7 +621,8 @@
       "tags": [
         "分流",
         "rule_set"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "Routing-Foreign-App-TestFlight",
@@ -511,7 +639,8 @@
       "tags": [
         "分流",
         "rule_set"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "Routing-Foreign-App-TikTok",
@@ -528,7 +657,8 @@
       "tags": [
         "分流",
         "rule_set"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "Routing-Foreign-App-WeChat",
@@ -545,7 +675,8 @@
       "tags": [
         "分流",
         "rule_set"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "Routing-Foreign-App-Weibo",
@@ -562,7 +693,8 @@
       "tags": [
         "分流",
         "rule_set"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "Routing-Foreign-AppleServers",
@@ -579,7 +711,8 @@
       "tags": [
         "分流",
         "rule_set"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "Routing-Foreign-Disney",
@@ -596,7 +729,8 @@
       "tags": [
         "分流",
         "rule_set"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "Routing-Foreign-Emby",
@@ -613,7 +747,8 @@
       "tags": [
         "分流",
         "rule_set"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "Routing-Foreign-Game",
@@ -630,7 +765,8 @@
       "tags": [
         "分流",
         "rule_set"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "Routing-Foreign-Github",
@@ -647,7 +783,8 @@
       "tags": [
         "分流",
         "rule_set"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "Routing-Foreign-Google",
@@ -664,7 +801,8 @@
       "tags": [
         "分流",
         "rule_set"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "Routing-Foreign-Microsoft",
@@ -681,7 +819,8 @@
       "tags": [
         "分流",
         "rule_set"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "Routing-Foreign-Netflix",
@@ -698,7 +837,8 @@
       "tags": [
         "分流",
         "rule_set"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "Routing-Foreign-Proxy",
@@ -715,7 +855,8 @@
       "tags": [
         "分流",
         "rule_set"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "Routing-Foreign-ProxyGFW",
@@ -732,7 +873,8 @@
       "tags": [
         "分流",
         "rule_set"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "Routing-Foreign-Spotify",
@@ -749,7 +891,8 @@
       "tags": [
         "分流",
         "rule_set"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "Routing-Foreign-Telegram",
@@ -766,7 +909,8 @@
       "tags": [
         "分流",
         "rule_set"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "Routing-Foreign-TikTok",
@@ -783,7 +927,8 @@
       "tags": [
         "分流",
         "rule_set"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "Routing-Foreign-Twitter",
@@ -800,7 +945,8 @@
       "tags": [
         "分流",
         "rule_set"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "Routing-Foreign-YouTube",
@@ -817,7 +963,8 @@
       "tags": [
         "分流",
         "rule_set"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "Routing-Lan",
@@ -834,7 +981,8 @@
       "tags": [
         "分流",
         "rule_set"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "Routing-Privacy-Reject",
@@ -851,7 +999,8 @@
       "tags": [
         "分流",
         "rule_set"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "Routing-Reject-Merged",
@@ -868,7 +1017,8 @@
       "tags": [
         "分流",
         "rule_set"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "Routing-Unbreak",
@@ -885,7 +1035,8 @@
       "tags": [
         "分流",
         "rule_set"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "Routing-Zhuifeng",
@@ -902,7 +1053,8 @@
       "tags": [
         "分流",
         "rule_set"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "egern-boxjs",
@@ -921,7 +1073,8 @@
         "BoxJS",
         "配置",
         "默认开启"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "boxjs-10000",
@@ -2829,7 +2982,8 @@
         "脚本",
         "工具",
         "按需开启"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "script-PingMe-signin",
@@ -2850,7 +3004,8 @@
         "脚本",
         "签到",
         "按需开启"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "script-PingMe",
@@ -2871,7 +3026,8 @@
         "脚本",
         "签到",
         "按需开启"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "script-iios_checkin",
@@ -2892,7 +3048,8 @@
         "脚本",
         "签到",
         "按需开启"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "script-mixc_signin",
@@ -2913,7 +3070,8 @@
         "脚本",
         "签到",
         "按需开启"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "script-Nodeseek_NsCheckin",
@@ -2934,7 +3092,8 @@
         "脚本",
         "签到",
         "按需开启"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "script-LaiChong",
@@ -2955,7 +3114,8 @@
         "脚本",
         "签到",
         "按需开启"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "script-SoulSing",
@@ -2976,7 +3136,8 @@
         "脚本",
         "签到",
         "按需开启"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "script-SLY",
@@ -2997,7 +3158,8 @@
         "脚本",
         "签到",
         "按需开启"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "script-qdreader",
@@ -3018,7 +3180,8 @@
         "脚本",
         "签到",
         "按需开启"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "script-dianxin10000",
@@ -3039,7 +3202,8 @@
         "脚本",
         "签到",
         "按需开启"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "script-tieba",
@@ -3060,7 +3224,8 @@
         "脚本",
         "签到",
         "按需开启"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "script-sfexpress",
@@ -3081,7 +3246,8 @@
         "脚本",
         "签到",
         "按需开启"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "script-yanxuan",
@@ -3102,7 +3268,8 @@
         "脚本",
         "签到",
         "按需开启"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "script-ximalaya",
@@ -3123,7 +3290,8 @@
         "脚本",
         "签到",
         "按需开启"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "widget-2026fifa-widget",
@@ -3142,7 +3310,8 @@
         "小组件",
         "Widget",
         "按需开启"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "widget-aaa",
@@ -3161,7 +3330,8 @@
         "小组件",
         "Widget",
         "按需开启"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "widget-almanac_widget",
@@ -3180,7 +3350,8 @@
         "小组件",
         "Widget",
         "按需开启"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "widget-app_store_widget",
@@ -3199,7 +3370,8 @@
         "小组件",
         "Widget",
         "按需开启"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "widget-cbn_widget",
@@ -3218,7 +3390,8 @@
         "小组件",
         "Widget",
         "按需开启"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "widget-cls_widget",
@@ -3237,7 +3410,8 @@
         "小组件",
         "Widget",
         "按需开启"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "widget-cn_cal",
@@ -3256,7 +3430,8 @@
         "小组件",
         "Widget",
         "按需开启"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "widget-csg_widget",
@@ -3275,7 +3450,8 @@
         "小组件",
         "Widget",
         "按需开启"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "widget-ct_widget",
@@ -3294,7 +3470,8 @@
         "小组件",
         "Widget",
         "按需开启"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "widget-chatgpt",
@@ -3313,7 +3490,8 @@
         "小组件",
         "Widget",
         "按需开启"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "widget-crypto_widget",
@@ -3332,7 +3510,8 @@
         "小组件",
         "Widget",
         "按需开启"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "widget-fx_rate",
@@ -3351,7 +3530,8 @@
         "小组件",
         "Widget",
         "按需开启"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "widget-gold_widgets",
@@ -3370,7 +3550,8 @@
         "小组件",
         "Widget",
         "按需开启"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "widget-hsw_widget",
@@ -3389,7 +3570,8 @@
         "小组件",
         "Widget",
         "按需开启"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "widget-holiday_countdown",
@@ -3408,7 +3590,8 @@
         "小组件",
         "Widget",
         "按需开启"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "widget-ip_clean",
@@ -3427,7 +3610,8 @@
         "小组件",
         "Widget",
         "按需开启"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "widget-ip_str_widget",
@@ -3446,7 +3630,8 @@
         "小组件",
         "Widget",
         "按需开启"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "widget-lottery-widget",
@@ -3465,7 +3650,8 @@
         "小组件",
         "Widget",
         "按需开启"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "widget-netspeed",
@@ -3484,7 +3670,8 @@
         "小组件",
         "Widget",
         "按需开启"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "widget-netspeed_widget",
@@ -3503,7 +3690,8 @@
         "小组件",
         "Widget",
         "按需开启"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "widget-net_info",
@@ -3522,7 +3710,8 @@
         "小组件",
         "Widget",
         "按需开启"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "widget-nodeunlockdetection",
@@ -3541,7 +3730,8 @@
         "小组件",
         "Widget",
         "按需开启"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "widget-oil-price",
@@ -3560,7 +3750,8 @@
         "小组件",
         "Widget",
         "按需开启"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "widget-oil_widget",
@@ -3579,7 +3770,9 @@
         "小组件",
         "Widget",
         "按需开启"
-      ]
+      ],
+      "featured": true,
+      "health": "ok"
     },
     {
       "id": "widget-proxy_check",
@@ -3598,7 +3791,8 @@
         "小组件",
         "Widget",
         "按需开启"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "widget-sub_widget",
@@ -3617,7 +3811,8 @@
         "小组件",
         "Widget",
         "按需开启"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "widget-testflight",
@@ -3636,7 +3831,8 @@
         "小组件",
         "Widget",
         "按需开启"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "widget-tgredirect",
@@ -3655,7 +3851,8 @@
         "小组件",
         "Widget",
         "按需开启"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "widget-unicom_widget",
@@ -3674,7 +3871,8 @@
         "小组件",
         "Widget",
         "按需开启"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "widget-unlock-detection_widget",
@@ -3693,7 +3891,8 @@
         "小组件",
         "Widget",
         "按需开启"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "widget-user-agent",
@@ -3712,7 +3911,8 @@
         "小组件",
         "Widget",
         "按需开启"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "widget-weather_widget",
@@ -3731,7 +3931,8 @@
         "小组件",
         "Widget",
         "按需开启"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "widget-airport_widget",
@@ -3750,7 +3951,8 @@
         "小组件",
         "Widget",
         "按需开启"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "widget-crypto",
@@ -3769,7 +3971,8 @@
         "小组件",
         "Widget",
         "按需开启"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "widget-itunes",
@@ -3788,7 +3991,8 @@
         "小组件",
         "Widget",
         "按需开启"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "widget-netinfo",
@@ -3807,7 +4011,8 @@
         "小组件",
         "Widget",
         "按需开启"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "widget-subscription-info",
@@ -3826,7 +4031,8 @@
         "小组件",
         "Widget",
         "按需开启"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "widget-today_almanac",
@@ -3845,7 +4051,8 @@
         "小组件",
         "Widget",
         "按需开启"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "widget-weather",
@@ -3864,7 +4071,8 @@
         "小组件",
         "Widget",
         "按需开启"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "widget-xiaohongshu",
@@ -3883,7 +4091,8 @@
         "小组件",
         "Widget",
         "按需开启"
-      ]
+      ],
+      "health": "ok"
     },
     {
       "id": "widget-xiaohongshu1",
@@ -3902,7 +4111,8 @@
         "小组件",
         "Widget",
         "按需开启"
-      ]
+      ],
+      "health": "ok"
     }
   ],
   "total": 215

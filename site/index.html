@@ -13,6 +13,7 @@
 <body>
   <header class="hero">
     <div class="hero-inner">
+      <button class="theme-toggle" id="theme-toggle" type="button" title="切换主题">🌙</button>
       <h1>⚡ egern-config 模块中心</h1>
       <p>仅展示 <strong>main</strong> 分支稳定内容 — 点击即可添加模块，或复制 raw 链接</p>
       <div class="notice">本站内容为个人镜像整理，仅供学习交流与个人设备使用。详见 <a href="disclaimer.html">免责声明</a>。</div>
@@ -27,6 +28,7 @@
   </div>
 
   <main>
+    <div id="extras"></div>
     <div class="stats" id="stats"></div>
     <div class="grid" id="grid"></div>
     <div class="empty" id="empty" hidden>没有匹配的项目</div>
@@ -147,9 +149,96 @@
       for (const g of groups) mk(g, g);
     }
 
+    function isBrowsingAll() {
+      const q = $('#search').value.trim();
+      return !q && activeCategory === 'all' && activePreset === 'all';
+    }
+
+    function renderExtras() {
+      const el = $('#extras');
+      el.innerHTML = '';
+      if (!isBrowsingAll() || !catalog) return;
+
+      if (catalog.quick_start?.length) {
+        const sec = document.createElement('section');
+        sec.className = 'quick-section';
+        sec.innerHTML = '<div class="section-title">🚀 快速入口</div>';
+        const grid = document.createElement('div');
+        grid.className = 'quick-grid';
+        for (const q of catalog.quick_start) {
+          const a = document.createElement('a');
+          a.className = 'quick-chip';
+          if (q.kind === 'module') {
+            a.href = q.add_url;
+            a.target = '_blank';
+          } else {
+            a.href = '#';
+            a.onclick = (e) => { e.preventDefault(); copyText(q.url); };
+          }
+          a.innerHTML = `<strong>${q.name}</strong><small>${q.desc || '点击添加'}</small>`;
+          grid.appendChild(a);
+        }
+        sec.appendChild(grid);
+        el.appendChild(sec);
+      }
+
+      if (catalog.bundles?.length) {
+        const sec = document.createElement('section');
+        sec.className = 'bundle-section';
+        sec.innerHTML = '<div class="section-title">📦 模块套装</div>';
+        for (const b of catalog.bundles) {
+          const row = document.createElement('div');
+          row.className = 'bundle-row';
+          row.innerHTML = `<div class="bundle-info"><strong>${b.name}</strong><p>${b.desc || ''}</p></div>`;
+          const addFirst = document.createElement('a');
+          addFirst.className = 'btn btn-primary';
+          addFirst.textContent = '添加 MITM';
+          addFirst.href = b.add_urls?.[0] || '#';
+          addFirst.target = '_blank';
+          const copyYaml = document.createElement('button');
+          copyYaml.className = 'btn';
+          copyYaml.textContent = '复制 modules YAML';
+          copyYaml.onclick = () => copyText(b.modules_yaml);
+          const copyUrls = document.createElement('button');
+          copyUrls.className = 'btn';
+          copyUrls.textContent = '复制全部链接';
+          copyUrls.onclick = () => copyText((b.add_urls || []).join('\n'));
+          row.append(addFirst, copyYaml, copyUrls);
+          sec.appendChild(row);
+        }
+        el.appendChild(sec);
+      }
+
+      if (catalog.changelog?.length) {
+        const sec = document.createElement('section');
+        sec.className = 'changelog-section';
+        const head = document.createElement('div');
+        head.className = 'collapsible-head section-title';
+        head.innerHTML = '<span>📝 最近更新（main）</span><span id="changelog-arrow">▼</span>';
+        const body = document.createElement('div');
+        body.className = 'collapsible-body';
+        body.hidden = true;
+        const ul = document.createElement('ul');
+        ul.className = 'changelog-list';
+        for (const c of catalog.changelog) {
+          const li = document.createElement('li');
+          li.innerHTML = `<code>${c.date}</code> ${c.subject} <code>${c.hash}</code>`;
+          ul.appendChild(li);
+        }
+        body.appendChild(ul);
+        head.onclick = () => {
+          body.hidden = !body.hidden;
+          document.getElementById('changelog-arrow').textContent = body.hidden ? '▼' : '▲';
+        };
+        sec.append(head, body);
+        el.appendChild(sec);
+      }
+    }
+
     function setPreset(id) {
       activePreset = id;
       document.querySelectorAll('#presets .filter-btn').forEach(b => b.classList.toggle('active', b.dataset.preset === id));
+      renderExtras();
       renderGrid();
     }
 
@@ -157,6 +246,7 @@
       activeCategory = cat;
       document.querySelectorAll('#filters .filter-btn').forEach(b => b.classList.toggle('active', b.dataset.cat === cat));
       renderBoxjsGroups(catalog?.items || []);
+      renderExtras();
       renderGrid();
     }
 
@@ -225,6 +315,18 @@
         span.textContent = '按需开启';
         tags.appendChild(span);
       }
+      if (item.featured) {
+        const span = document.createElement('span');
+        span.className = 'tag star';
+        span.textContent = '常用';
+        tags.appendChild(span);
+      }
+      if (item.health === 'fail') {
+        const span = document.createElement('span');
+        span.className = 'tag bad';
+        span.textContent = '链接异常';
+        tags.appendChild(span);
+      }
       for (const t of (item.tags || []).slice(0, 5)) {
         const span = document.createElement('span');
         span.className = 'tag';
@@ -283,6 +385,7 @@
 
     function renderGrid() {
       const q = $('#search').value.trim().toLowerCase();
+      renderExtras();
       const items = (catalog?.items || []).filter(i => matches(i, q));
       $('#grid').innerHTML = '';
       $('#empty').hidden = items.length > 0;
@@ -301,7 +404,24 @@
       throw new Error('catalog load failed');
     }
 
+    function initTheme() {
+      const saved = localStorage.getItem('egern-hub-theme');
+      const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+      const theme = saved || (prefersLight ? 'light' : 'dark');
+      document.documentElement.dataset.theme = theme === 'light' ? 'light' : '';
+      const btn = $('#theme-toggle');
+      btn.textContent = theme === 'light' ? '🌙' : '☀️';
+      btn.onclick = () => {
+        const next = document.documentElement.dataset.theme === 'light' ? 'dark' : 'light';
+        document.documentElement.dataset.theme = next === 'light' ? 'light' : '';
+        localStorage.setItem('egern-hub-theme', next);
+        btn.textContent = next === 'light' ? '🌙' : '☀️';
+        document.querySelector('meta[name="theme-color"]').content = next === 'light' ? '#4a6cf7' : '#6c8cff';
+      };
+    }
+
     async function init() {
+      initTheme();
       try {
         catalog = await loadCatalog();
       } catch {
@@ -317,6 +437,7 @@
       renderPresets(catalog.presets);
       renderFilters(catalog.categories || []);
       renderBoxjsGroups(catalog.items);
+      renderExtras();
       renderGrid();
       if ('serviceWorker' in navigator) {
         navigator.serviceWorker.register('sw.js').catch(() => {});
