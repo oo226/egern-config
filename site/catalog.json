@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-12T07:54:24Z",
+  "generated_at": "2026-07-12T07:58:15Z",
   "branch": "main",
   "repo": "oo226/egern-config",
   "raw_base": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main",
@@ -27,7 +27,8 @@
       "desc": "一键导入完整配置：节点策略、分流规则、默认模块、小组件等。",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Egern.yaml",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Egern.yaml",
-      "kind": "config"
+      "kind": "config",
+      "qr_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Egern.yaml"
     },
     {
       "id": "adblock-collection",
@@ -35,7 +36,8 @@
       "desc": "多源合并去重：奶思 + blackmatrix7 + 银行税务NB（Actions 每日同步）",
       "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Fadblock-collection.module",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/adblock-collection.module",
-      "kind": "module"
+      "kind": "module",
+      "qr_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Fadblock-collection.module"
     },
     {
       "id": "unlock-collection",
@@ -43,7 +45,8 @@
       "desc": "多源合并去重：跳过代理检测 + 链接解锁 + Spotify + VIP解锁 + 屏蔽更新（Actions 每日同步）",
       "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Funlock-collection.module",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/unlock-collection.module",
-      "kind": "module"
+      "kind": "module",
+      "qr_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Funlock-collection.module"
     },
     {
       "id": "ibl3nd-plugin-hub",
@@ -51,7 +54,8 @@
       "desc": "IBL3ND — Loon/Surge 插件中心一键跳转 Egern（镜像自 IBL3ND/module）",
       "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Fibl3nd-plugin-hub.yaml",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/ibl3nd-plugin-hub.yaml",
-      "kind": "module"
+      "kind": "module",
+      "qr_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Fibl3nd-plugin-hub.yaml"
     },
     {
       "id": "egern-boxjs",
@@ -59,7 +63,82 @@
       "desc": "播放器、签到、抓参、Cookie、Yuheng、iRingo 等全部 BoxJS 应用配置。",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "kind": "boxjs"
+      "kind": "boxjs",
+      "qr_url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json"
+    }
+  ],
+  "featured_boxjs": [
+    {
+      "id": "UnblockURLinWeChat",
+      "name": "微信跳过中间界面",
+      "group": "工具",
+      "add_url": "http://boxjs.com/#/app/UnblockURLinWeChat"
+    },
+    {
+      "id": "PearVideoSettings",
+      "name": "PearVideo 播放器设置",
+      "group": "播放器",
+      "add_url": "http://boxjs.com/#/app/PearVideoSettings"
+    },
+    {
+      "id": "QiyouShequSettings",
+      "name": "妻友社区 播放器设置",
+      "group": "播放器",
+      "add_url": "http://boxjs.com/#/app/QiyouShequSettings"
+    },
+    {
+      "id": "InsavSettings",
+      "name": "insav 播放器设置",
+      "group": "播放器",
+      "add_url": "http://boxjs.com/#/app/InsavSettings"
+    },
+    {
+      "id": "PorntubeSettings",
+      "name": "porntube 设置",
+      "group": "播放器",
+      "add_url": "http://boxjs.com/#/app/PorntubeSettings"
+    },
+    {
+      "id": "xjh51_player",
+      "name": "xjh51 播放器设置",
+      "group": "播放器",
+      "add_url": "http://boxjs.com/#/app/xjh51_player"
+    },
+    {
+      "id": "iRingo.WeatherKit",
+      "name": "🌤 WeatherKit",
+      "group": "iRingo",
+      "add_url": "http://boxjs.com/#/app/iRingo.WeatherKit"
+    },
+    {
+      "id": "iRingo.Maps",
+      "name": "🗺️ 地图",
+      "group": "iRingo",
+      "add_url": "http://boxjs.com/#/app/iRingo.Maps"
+    },
+    {
+      "id": "iRingo.LocationService",
+      "name": "📍 定位服务",
+      "group": "iRingo",
+      "add_url": "http://boxjs.com/#/app/iRingo.LocationService"
+    },
+    {
+      "id": "pingme_capture",
+      "name": "PingMe 抓参",
+      "group": "签到 / 抓参",
+      "add_url": "http://boxjs.com/#/app/pingme_capture"
+    },
+    {
+      "id": "ximalaya",
+      "name": "喜马拉雅",
+      "group": "其他",
+      "add_url": "http://boxjs.com/#/app/ximalaya"
+    },
+    {
+      "id": "lkBingPoint",
+      "name": "Bing积分",
+      "group": "其他",
+      "add_url": "http://boxjs.com/#/app/lkBingPoint"
     }
   ],
   "bundles": [
@@ -85,6 +164,11 @@
     }
   ],
   "changelog": [
+    {
+      "hash": "9475faa",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-07-12"
+    },
     {
       "hash": "e60834b",
       "subject": "chore: publish curated snapshot from sync",
@@ -119,13 +203,16 @@
       "hash": "3c974e9",
       "subject": "chore: publish curated snapshot from sync",
       "date": "2026-07-12"
-    },
-    {
-      "hash": "2ad9a56",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-07-12"
     }
   ],
+  "upstream_health": {
+    "total_unique": 6,
+    "checked": 6,
+    "ok": 6,
+    "fail": 0,
+    "broken": [],
+    "truncated": false
+  },
   "categories": [
     {
       "id": "config",
@@ -182,6 +269,7 @@
         "订阅",
         "默认开启"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=egern-main",
       "health": "ok"
     },
     {
@@ -207,6 +295,7 @@
         "fmz200",
         "奶思"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=adblock-collection",
       "health": "ok"
     },
     {
@@ -229,6 +318,7 @@
         "解锁",
         "流媒体"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=unlock-collection",
       "health": "ok"
     },
     {
@@ -253,6 +343,7 @@
         "签到",
         "fmz200"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=cookie-collection",
       "health": "ok"
     },
     {
@@ -276,6 +367,7 @@
         "kelee",
         "qingr"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=ibl3nd-plugin-hub",
       "health": "ok"
     },
     {
@@ -303,6 +395,7 @@
         "天气",
         "地图"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=iringo-mitm",
       "health": "ok"
     },
     {
@@ -324,6 +417,7 @@
       "tags": [
         "地图"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=iringo-maps",
       "health": "ok"
     },
     {
@@ -345,6 +439,7 @@
       "tags": [
         "天气"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=iringo-weather",
       "health": "ok"
     },
     {
@@ -366,6 +461,7 @@
       "tags": [
         "定位"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=iringo-location",
       "health": "ok"
     },
     {
@@ -389,6 +485,7 @@
         "TV",
         "News"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=iringo-others",
       "health": "ok"
     },
     {
@@ -406,7 +503,8 @@
       "usage_tier": "daily",
       "tags": [
         "外部"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=pingme-quanx"
     },
     {
       "id": "Routing-Bootstrap-Direct",
@@ -424,6 +522,7 @@
         "分流",
         "rule_set"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=Routing-Bootstrap-Direct",
       "health": "ok"
     },
     {
@@ -442,6 +541,7 @@
         "分流",
         "rule_set"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=Routing-China-Direct",
       "health": "ok"
     },
     {
@@ -460,6 +560,7 @@
         "分流",
         "rule_set"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=Routing-Direct-Priority",
       "health": "ok"
     },
     {
@@ -478,6 +579,7 @@
         "分流",
         "rule_set"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=Routing-Foreign-AI-Merged",
       "health": "ok"
     },
     {
@@ -496,6 +598,7 @@
         "分流",
         "rule_set"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=Routing-Foreign-AI-supplement",
       "health": "ok"
     },
     {
@@ -514,6 +617,7 @@
         "分流",
         "rule_set"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=Routing-Foreign-AI",
       "health": "ok"
     },
     {
@@ -532,6 +636,7 @@
         "分流",
         "rule_set"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=Routing-Foreign-App-Bilibili",
       "health": "ok"
     },
     {
@@ -550,6 +655,7 @@
         "分流",
         "rule_set"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=Routing-Foreign-App-Douyin",
       "health": "ok"
     },
     {
@@ -568,6 +674,7 @@
         "分流",
         "rule_set"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=Routing-Foreign-App-KuaiShou",
       "health": "ok"
     },
     {
@@ -586,6 +693,7 @@
         "分流",
         "rule_set"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=Routing-Foreign-App-Line",
       "health": "ok"
     },
     {
@@ -604,6 +712,7 @@
         "分流",
         "rule_set"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=Routing-Foreign-App-RedBook",
       "health": "ok"
     },
     {
@@ -622,6 +731,7 @@
         "分流",
         "rule_set"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=Routing-Foreign-App-Soul",
       "health": "ok"
     },
     {
@@ -640,6 +750,7 @@
         "分流",
         "rule_set"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=Routing-Foreign-App-TestFlight",
       "health": "ok"
     },
     {
@@ -658,6 +769,7 @@
         "分流",
         "rule_set"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=Routing-Foreign-App-TikTok",
       "health": "ok"
     },
     {
@@ -676,6 +788,7 @@
         "分流",
         "rule_set"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=Routing-Foreign-App-WeChat",
       "health": "ok"
     },
     {
@@ -694,6 +807,7 @@
         "分流",
         "rule_set"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=Routing-Foreign-App-Weibo",
       "health": "ok"
     },
     {
@@ -712,6 +826,7 @@
         "分流",
         "rule_set"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=Routing-Foreign-AppleServers",
       "health": "ok"
     },
     {
@@ -730,6 +845,7 @@
         "分流",
         "rule_set"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=Routing-Foreign-Disney",
       "health": "ok"
     },
     {
@@ -748,6 +864,7 @@
         "分流",
         "rule_set"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=Routing-Foreign-Emby",
       "health": "ok"
     },
     {
@@ -766,6 +883,7 @@
         "分流",
         "rule_set"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=Routing-Foreign-Game",
       "health": "ok"
     },
     {
@@ -784,6 +902,7 @@
         "分流",
         "rule_set"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=Routing-Foreign-Github",
       "health": "ok"
     },
     {
@@ -802,6 +921,7 @@
         "分流",
         "rule_set"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=Routing-Foreign-Google",
       "health": "ok"
     },
     {
@@ -820,6 +940,7 @@
         "分流",
         "rule_set"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=Routing-Foreign-Microsoft",
       "health": "ok"
     },
     {
@@ -838,6 +959,7 @@
         "分流",
         "rule_set"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=Routing-Foreign-Netflix",
       "health": "ok"
     },
     {
@@ -856,6 +978,7 @@
         "分流",
         "rule_set"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=Routing-Foreign-Proxy",
       "health": "ok"
     },
     {
@@ -874,6 +997,7 @@
         "分流",
         "rule_set"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=Routing-Foreign-ProxyGFW",
       "health": "ok"
     },
     {
@@ -892,6 +1016,7 @@
         "分流",
         "rule_set"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=Routing-Foreign-Spotify",
       "health": "ok"
     },
     {
@@ -910,6 +1035,7 @@
         "分流",
         "rule_set"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=Routing-Foreign-Telegram",
       "health": "ok"
     },
     {
@@ -928,6 +1054,7 @@
         "分流",
         "rule_set"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=Routing-Foreign-TikTok",
       "health": "ok"
     },
     {
@@ -946,6 +1073,7 @@
         "分流",
         "rule_set"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=Routing-Foreign-Twitter",
       "health": "ok"
     },
     {
@@ -964,6 +1092,7 @@
         "分流",
         "rule_set"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=Routing-Foreign-YouTube",
       "health": "ok"
     },
     {
@@ -982,6 +1111,7 @@
         "分流",
         "rule_set"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=Routing-Lan",
       "health": "ok"
     },
     {
@@ -1000,6 +1130,7 @@
         "分流",
         "rule_set"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=Routing-Privacy-Reject",
       "health": "ok"
     },
     {
@@ -1018,6 +1149,7 @@
         "分流",
         "rule_set"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=Routing-Reject-Merged",
       "health": "ok"
     },
     {
@@ -1036,6 +1168,7 @@
         "分流",
         "rule_set"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=Routing-Unbreak",
       "health": "ok"
     },
     {
@@ -1054,6 +1187,7 @@
         "分流",
         "rule_set"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=Routing-Zhuifeng",
       "health": "ok"
     },
     {
@@ -1074,6 +1208,7 @@
         "配置",
         "默认开启"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=egern-boxjs",
       "health": "ok"
     },
     {
@@ -1091,7 +1226,8 @@
       "tags": [
         "BoxJS",
         "其他"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-10000"
     },
     {
       "id": "boxjs-10010",
@@ -1108,7 +1244,8 @@
       "tags": [
         "BoxJS",
         "其他"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-10010"
     },
     {
       "id": "boxjs-yuheng.4ksj",
@@ -1125,7 +1262,8 @@
       "tags": [
         "BoxJS",
         "签到 / 抓参"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-yuheng.4ksj"
     },
     {
       "id": "boxjs-AcFun",
@@ -1142,7 +1280,8 @@
       "tags": [
         "BoxJS",
         "其他"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-AcFun"
     },
     {
       "id": "boxjs-ApkTw",
@@ -1159,7 +1298,8 @@
       "tags": [
         "BoxJS",
         "其他"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-ApkTw"
     },
     {
       "id": "boxjs-lkBingPoint",
@@ -1176,7 +1316,8 @@
       "tags": [
         "BoxJS",
         "其他"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-lkBingPoint"
     },
     {
       "id": "boxjs-WxCode",
@@ -1193,7 +1334,8 @@
       "tags": [
         "BoxJS",
         "其他"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-WxCode"
     },
     {
       "id": "boxjs-yuheng.eshop",
@@ -1210,7 +1352,8 @@
       "tags": [
         "BoxJS",
         "Yuheng"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-yuheng.eshop"
     },
     {
       "id": "boxjs-Geocaching",
@@ -1227,7 +1370,8 @@
       "tags": [
         "BoxJS",
         "其他"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-Geocaching"
     },
     {
       "id": "boxjs-nodeseek_capture",
@@ -1244,7 +1388,8 @@
       "tags": [
         "BoxJS",
         "签到 / 抓参"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-nodeseek_capture"
     },
     {
       "id": "boxjs-pp_parking",
@@ -1261,7 +1406,8 @@
       "tags": [
         "BoxJS",
         "其他"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-pp_parking"
     },
     {
       "id": "boxjs-PearVideoSettings",
@@ -1278,7 +1424,8 @@
       "tags": [
         "BoxJS",
         "播放器"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-PearVideoSettings"
     },
     {
       "id": "boxjs-pingme_capture",
@@ -1295,7 +1442,8 @@
       "tags": [
         "BoxJS",
         "签到 / 抓参"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-pingme_capture"
     },
     {
       "id": "boxjs-fmz200_PingMe",
@@ -1312,7 +1460,8 @@
       "tags": [
         "BoxJS",
         "签到 / 抓参"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-fmz200_PingMe"
     },
     {
       "id": "boxjs-lk.qqvip",
@@ -1329,7 +1478,8 @@
       "tags": [
         "BoxJS",
         "签到 / 抓参"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-lk.qqvip"
     },
     {
       "id": "boxjs-soulsing_capture",
@@ -1346,7 +1496,8 @@
       "tags": [
         "BoxJS",
         "签到 / 抓参"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-soulsing_capture"
     },
     {
       "id": "boxjs-fmz200_testflight",
@@ -1363,7 +1514,8 @@
       "tags": [
         "BoxJS",
         "其他"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-fmz200_testflight"
     },
     {
       "id": "boxjs-TestFlightAccount",
@@ -1380,7 +1532,8 @@
       "tags": [
         "BoxJS",
         "其他"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-TestFlightAccount"
     },
     {
       "id": "boxjs-yuheng.testflight.autoJoin",
@@ -1397,7 +1550,8 @@
       "tags": [
         "BoxJS",
         "Yuheng"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-yuheng.testflight.autoJoin"
     },
     {
       "id": "boxjs-tools",
@@ -1414,7 +1568,8 @@
       "tags": [
         "BoxJS",
         "其他"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-tools"
     },
     {
       "id": "boxjs-V2EX",
@@ -1431,7 +1586,8 @@
       "tags": [
         "BoxJS",
         "其他"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-V2EX"
     },
     {
       "id": "boxjs-WPS",
@@ -1448,7 +1604,8 @@
       "tags": [
         "BoxJS",
         "其他"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-WPS"
     },
     {
       "id": "boxjs-lk.wifi.assistant",
@@ -1465,7 +1622,8 @@
       "tags": [
         "BoxJS",
         "其他"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-lk.wifi.assistant"
     },
     {
       "id": "boxjs-fmz200_X_pinned_timelines",
@@ -1482,7 +1640,8 @@
       "tags": [
         "BoxJS",
         "其他"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-fmz200_X_pinned_timelines"
     },
     {
       "id": "boxjs-chavyleung.bilibili.live",
@@ -1499,7 +1658,8 @@
       "tags": [
         "BoxJS",
         "其他"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-chavyleung.bilibili.live"
     },
     {
       "id": "boxjs-lkHifiniSignIn",
@@ -1516,7 +1676,8 @@
       "tags": [
         "BoxJS",
         "签到 / 抓参"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-lkHifiniSignIn"
     },
     {
       "id": "boxjs-iios_checkin",
@@ -1533,7 +1694,8 @@
       "tags": [
         "BoxJS",
         "签到 / 抓参"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-iios_checkin"
     },
     {
       "id": "boxjs-InsavSettings",
@@ -1550,7 +1712,8 @@
       "tags": [
         "BoxJS",
         "播放器"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-InsavSettings"
     },
     {
       "id": "boxjs-iMaoTai",
@@ -1567,7 +1730,8 @@
       "tags": [
         "BoxJS",
         "Yuheng"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-iMaoTai"
     },
     {
       "id": "boxjs-yuheng.imaotai.v1.5",
@@ -1584,7 +1748,8 @@
       "tags": [
         "BoxJS",
         "Yuheng"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-yuheng.imaotai.v1.5"
     },
     {
       "id": "boxjs-fmz200_macat_signin",
@@ -1601,7 +1766,8 @@
       "tags": [
         "BoxJS",
         "签到 / 抓参"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-fmz200_macat_signin"
     },
     {
       "id": "boxjs-PorntubeSettings",
@@ -1618,7 +1784,8 @@
       "tags": [
         "BoxJS",
         "播放器"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-PorntubeSettings"
     },
     {
       "id": "boxjs-xjh51_player",
@@ -1635,7 +1802,8 @@
       "tags": [
         "BoxJS",
         "播放器"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-xjh51_player"
     },
     {
       "id": "boxjs-iRingo.Watch",
@@ -1652,7 +1820,8 @@
       "tags": [
         "BoxJS",
         "iRingo"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-iRingo.Watch"
     },
     {
       "id": "boxjs-iRingo.TestFlight",
@@ -1669,7 +1838,8 @@
       "tags": [
         "BoxJS",
         "iRingo"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-iRingo.TestFlight"
     },
     {
       "id": "boxjs-iRingo.Siri",
@@ -1686,7 +1856,8 @@
       "tags": [
         "BoxJS",
         "iRingo"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-iRingo.Siri"
     },
     {
       "id": "boxjs-mixc_signin",
@@ -1703,7 +1874,8 @@
       "tags": [
         "BoxJS",
         "签到 / 抓参"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-mixc_signin"
     },
     {
       "id": "boxjs-china_telecom",
@@ -1720,7 +1892,8 @@
       "tags": [
         "BoxJS",
         "其他"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-china_telecom"
     },
     {
       "id": "boxjs-wskey",
@@ -1737,7 +1910,8 @@
       "tags": [
         "BoxJS",
         "其他"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-wskey"
     },
     {
       "id": "boxjs-fmz200_smzdm",
@@ -1754,7 +1928,8 @@
       "tags": [
         "BoxJS",
         "签到 / 抓参"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-fmz200_smzdm"
     },
     {
       "id": "boxjs-fmz200_oil_price",
@@ -1771,7 +1946,8 @@
       "tags": [
         "BoxJS",
         "其他"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-fmz200_oil_price"
     },
     {
       "id": "boxjs-qmkg",
@@ -1788,7 +1964,8 @@
       "tags": [
         "BoxJS",
         "其他"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-qmkg"
     },
     {
       "id": "boxjs-gdoil",
@@ -1805,7 +1982,8 @@
       "tags": [
         "BoxJS",
         "其他"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-gdoil"
     },
     {
       "id": "boxjs-yuheng.wuai",
@@ -1822,7 +2000,8 @@
       "tags": [
         "BoxJS",
         "Yuheng"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-yuheng.wuai"
     },
     {
       "id": "boxjs-lkBilibiliPrivilegeReceive",
@@ -1839,7 +2018,8 @@
       "tags": [
         "BoxJS",
         "其他"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-lkBilibiliPrivilegeReceive"
     },
     {
       "id": "boxjs-lkBilibiliBangumiMonitor",
@@ -1856,7 +2036,8 @@
       "tags": [
         "BoxJS",
         "其他"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-lkBilibiliBangumiMonitor"
     },
     {
       "id": "boxjs-ximalaya",
@@ -1873,7 +2054,8 @@
       "tags": [
         "BoxJS",
         "其他"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-ximalaya"
     },
     {
       "id": "boxjs-fmz200_chery_account",
@@ -1890,7 +2072,8 @@
       "tags": [
         "BoxJS",
         "签到 / 抓参"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-fmz200_chery_account"
     },
     {
       "id": "boxjs-yuheng.ncsp",
@@ -1907,7 +2090,8 @@
       "tags": [
         "BoxJS",
         "Yuheng"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-yuheng.ncsp"
     },
     {
       "id": "boxjs-QiyouShequSettings",
@@ -1924,7 +2108,8 @@
       "tags": [
         "BoxJS",
         "播放器"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-QiyouShequSettings"
     },
     {
       "id": "boxjs-string_replace",
@@ -1941,7 +2126,8 @@
       "tags": [
         "BoxJS",
         "其他"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-string_replace"
     },
     {
       "id": "boxjs-yuheng.mi.step",
@@ -1958,7 +2144,8 @@
       "tags": [
         "BoxJS",
         "Yuheng"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-yuheng.mi.step"
     },
     {
       "id": "boxjs-MiSport",
@@ -1975,7 +2162,8 @@
       "tags": [
         "BoxJS",
         "其他"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-MiSport"
     },
     {
       "id": "boxjs-fmz200_xiaohongshu",
@@ -1992,7 +2180,8 @@
       "tags": [
         "BoxJS",
         "其他"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-fmz200_xiaohongshu"
     },
     {
       "id": "boxjs-yuheng.javbus",
@@ -2009,7 +2198,8 @@
       "tags": [
         "BoxJS",
         "签到 / 抓参"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-yuheng.javbus"
     },
     {
       "id": "boxjs-jhsh",
@@ -2026,7 +2216,8 @@
       "tags": [
         "BoxJS",
         "其他"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-jhsh"
     },
     {
       "id": "boxjs-fmz200_CCB_life",
@@ -2043,7 +2234,8 @@
       "tags": [
         "BoxJS",
         "签到 / 抓参"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-fmz200_CCB_life"
     },
     {
       "id": "boxjs-UnblockURLinWeChat",
@@ -2060,7 +2252,8 @@
       "tags": [
         "BoxJS",
         "工具"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-UnblockURLinWeChat"
     },
     {
       "id": "boxjs-fmz200_weibo_token",
@@ -2077,7 +2270,8 @@
       "tags": [
         "BoxJS",
         "签到 / 抓参"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-fmz200_weibo_token"
     },
     {
       "id": "boxjs-weibotalk",
@@ -2094,7 +2288,8 @@
       "tags": [
         "BoxJS",
         "其他"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-weibotalk"
     },
     {
       "id": "boxjs-fmz200_weibo_talk",
@@ -2111,7 +2306,8 @@
       "tags": [
         "BoxJS",
         "签到 / 抓参"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-fmz200_weibo_talk"
     },
     {
       "id": "boxjs-fmz200_ks_fruit",
@@ -2128,7 +2324,8 @@
       "tags": [
         "BoxJS",
         "其他"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-fmz200_ks_fruit"
     },
     {
       "id": "boxjs-fmz200_pdd_fruit",
@@ -2145,7 +2342,8 @@
       "tags": [
         "BoxJS",
         "其他"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-fmz200_pdd_fruit"
     },
     {
       "id": "boxjs-yuheng.moyu",
@@ -2162,7 +2360,8 @@
       "tags": [
         "BoxJS",
         "Yuheng"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-yuheng.moyu"
     },
     {
       "id": "boxjs-ql",
@@ -2179,7 +2378,8 @@
       "tags": [
         "BoxJS",
         "其他"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-ql"
     },
     {
       "id": "boxjs-fmz200_douyuYubaSign",
@@ -2196,7 +2396,8 @@
       "tags": [
         "BoxJS",
         "签到 / 抓参"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-fmz200_douyuYubaSign"
     },
     {
       "id": "boxjs-weibo",
@@ -2213,7 +2414,8 @@
       "tags": [
         "BoxJS",
         "其他"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-weibo"
     },
     {
       "id": "boxjs-everphoto",
@@ -2230,7 +2432,8 @@
       "tags": [
         "BoxJS",
         "其他"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-everphoto"
     },
     {
       "id": "boxjs-fmz200_xxyx_token",
@@ -2247,7 +2450,8 @@
       "tags": [
         "BoxJS",
         "其他"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-fmz200_xxyx_token"
     },
     {
       "id": "boxjs-zxhc",
@@ -2264,7 +2468,8 @@
       "tags": [
         "BoxJS",
         "其他"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-zxhc"
     },
     {
       "id": "boxjs-lkPuPuCheckIn",
@@ -2281,7 +2486,8 @@
       "tags": [
         "BoxJS",
         "签到 / 抓参"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-lkPuPuCheckIn"
     },
     {
       "id": "boxjs-laichong_capture",
@@ -2298,7 +2504,8 @@
       "tags": [
         "BoxJS",
         "签到 / 抓参"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-laichong_capture"
     },
     {
       "id": "boxjs-yuheng.1024",
@@ -2315,7 +2522,8 @@
       "tags": [
         "BoxJS",
         "Yuheng"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-yuheng.1024"
     },
     {
       "id": "boxjs-fandeng",
@@ -2332,7 +2540,8 @@
       "tags": [
         "BoxJS",
         "其他"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-fandeng"
     },
     {
       "id": "boxjs-fmz200_wmbwc_data",
@@ -2349,7 +2558,8 @@
       "tags": [
         "BoxJS",
         "签到 / 抓参"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-fmz200_wmbwc_data"
     },
     {
       "id": "boxjs-yuheng.60s",
@@ -2366,7 +2576,8 @@
       "tags": [
         "BoxJS",
         "Yuheng"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-yuheng.60s"
     },
     {
       "id": "boxjs-yuheng.bdyy",
@@ -2383,7 +2594,8 @@
       "tags": [
         "BoxJS",
         "签到 / 抓参"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-yuheng.bdyy"
     },
     {
       "id": "boxjs-fmz200_didi_fruit",
@@ -2400,7 +2612,8 @@
       "tags": [
         "BoxJS",
         "其他"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-fmz200_didi_fruit"
     },
     {
       "id": "boxjs-yuheng.top",
@@ -2417,7 +2630,8 @@
       "tags": [
         "BoxJS",
         "Yuheng"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-yuheng.top"
     },
     {
       "id": "boxjs-BAIDU",
@@ -2434,7 +2648,8 @@
       "tags": [
         "BoxJS",
         "签到 / 抓参"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-BAIDU"
     },
     {
       "id": "boxjs-10086_coupons",
@@ -2451,7 +2666,8 @@
       "tags": [
         "BoxJS",
         "其他"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-10086_coupons"
     },
     {
       "id": "boxjs-yuheng.cache",
@@ -2468,7 +2684,8 @@
       "tags": [
         "BoxJS",
         "Yuheng"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-yuheng.cache"
     },
     {
       "id": "boxjs-yuheng.95598.web",
@@ -2485,7 +2702,8 @@
       "tags": [
         "BoxJS",
         "Yuheng"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-yuheng.95598.web"
     },
     {
       "id": "boxjs-yuheng.wsgw",
@@ -2502,7 +2720,8 @@
       "tags": [
         "BoxJS",
         "Yuheng"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-yuheng.wsgw"
     },
     {
       "id": "boxjs-yanxuan_signin",
@@ -2519,7 +2738,8 @@
       "tags": [
         "BoxJS",
         "签到 / 抓参"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-yanxuan_signin"
     },
     {
       "id": "boxjs-NeteaseMusic",
@@ -2536,7 +2756,8 @@
       "tags": [
         "BoxJS",
         "其他"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-NeteaseMusic"
     },
     {
       "id": "boxjs-NeteaseNews",
@@ -2553,7 +2774,8 @@
       "tags": [
         "BoxJS",
         "其他"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-NeteaseNews"
     },
     {
       "id": "boxjs-fmz200_mt_token",
@@ -2570,7 +2792,8 @@
       "tags": [
         "BoxJS",
         "其他"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-fmz200_mt_token"
     },
     {
       "id": "boxjs-yuheng.meitu",
@@ -2587,7 +2810,8 @@
       "tags": [
         "BoxJS",
         "Yuheng"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-yuheng.meitu"
     },
     {
       "id": "boxjs-videoqq",
@@ -2604,7 +2828,8 @@
       "tags": [
         "BoxJS",
         "播放器"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-videoqq"
     },
     {
       "id": "boxjs-chavyleung.mgtv",
@@ -2621,7 +2846,8 @@
       "tags": [
         "BoxJS",
         "其他"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-chavyleung.mgtv"
     },
     {
       "id": "boxjs-huachenghui",
@@ -2638,7 +2864,8 @@
       "tags": [
         "BoxJS",
         "其他"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-huachenghui"
     },
     {
       "id": "boxjs-chavyleung.suning",
@@ -2655,7 +2882,8 @@
       "tags": [
         "BoxJS",
         "其他"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-chavyleung.suning"
     },
     {
       "id": "boxjs-yuheng.huluwa",
@@ -2672,7 +2900,8 @@
       "tags": [
         "BoxJS",
         "Yuheng"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-yuheng.huluwa"
     },
     {
       "id": "boxjs-yuheng.douban",
@@ -2689,7 +2918,8 @@
       "tags": [
         "BoxJS",
         "Yuheng"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-yuheng.douban"
     },
     {
       "id": "boxjs-buy_helper",
@@ -2706,7 +2936,8 @@
       "tags": [
         "BoxJS",
         "其他"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-buy_helper"
     },
     {
       "id": "boxjs-yuheng.qdreader",
@@ -2723,7 +2954,8 @@
       "tags": [
         "BoxJS",
         "签到 / 抓参"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-yuheng.qdreader"
     },
     {
       "id": "boxjs-video",
@@ -2740,7 +2972,8 @@
       "tags": [
         "BoxJS",
         "播放器"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-video"
     },
     {
       "id": "boxjs-yuheng.kuwo",
@@ -2757,7 +2990,8 @@
       "tags": [
         "BoxJS",
         "Yuheng"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-yuheng.kuwo"
     },
     {
       "id": "boxjs-fmz200_aliyun",
@@ -2774,7 +3008,8 @@
       "tags": [
         "BoxJS",
         "签到 / 抓参"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-fmz200_aliyun"
     },
     {
       "id": "boxjs-lkAliYunPanCheckIn",
@@ -2791,7 +3026,8 @@
       "tags": [
         "BoxJS",
         "签到 / 抓参"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-lkAliYunPanCheckIn"
     },
     {
       "id": "boxjs-ql_sync",
@@ -2808,7 +3044,8 @@
       "tags": [
         "BoxJS",
         "其他"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-ql_sync"
     },
     {
       "id": "boxjs-yuheng.qinglong",
@@ -2825,7 +3062,8 @@
       "tags": [
         "BoxJS",
         "Yuheng"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-yuheng.qinglong"
     },
     {
       "id": "boxjs-sfexpress",
@@ -2842,7 +3080,8 @@
       "tags": [
         "BoxJS",
         "其他"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-sfexpress"
     },
     {
       "id": "boxjs-yuheng.javday",
@@ -2859,7 +3098,8 @@
       "tags": [
         "BoxJS",
         "Yuheng"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-yuheng.javday"
     },
     {
       "id": "boxjs-yuheng.zippo",
@@ -2876,7 +3116,8 @@
       "tags": [
         "BoxJS",
         "签到 / 抓参"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-yuheng.zippo"
     },
     {
       "id": "boxjs-iRingo.WeatherKit",
@@ -2893,7 +3134,8 @@
       "tags": [
         "BoxJS",
         "iRingo"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-iRingo.WeatherKit"
     },
     {
       "id": "boxjs-iRingo.LocationService",
@@ -2910,7 +3152,8 @@
       "tags": [
         "BoxJS",
         "iRingo"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-iRingo.LocationService"
     },
     {
       "id": "boxjs-iRingo.News",
@@ -2927,7 +3170,8 @@
       "tags": [
         "BoxJS",
         "iRingo"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-iRingo.News"
     },
     {
       "id": "boxjs-iRingo.TV",
@@ -2944,7 +3188,8 @@
       "tags": [
         "BoxJS",
         "iRingo"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-iRingo.TV"
     },
     {
       "id": "boxjs-iRingo.Maps",
@@ -2961,7 +3206,8 @@
       "tags": [
         "BoxJS",
         "iRingo"
-      ]
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-iRingo.Maps"
     },
     {
       "id": "script-PingMe-capture",
@@ -2983,6 +3229,7 @@
         "工具",
         "按需开启"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=script-PingMe-capture",
       "health": "ok"
     },
     {
@@ -3005,6 +3252,7 @@
         "签到",
         "按需开启"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=script-PingMe-signin",
       "health": "ok"
     },
     {
@@ -3027,6 +3275,7 @@
         "签到",
         "按需开启"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=script-PingMe",
       "health": "ok"
     },
     {
@@ -3049,6 +3298,7 @@
         "签到",
         "按需开启"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=script-iios_checkin",
       "health": "ok"
     },
     {
@@ -3071,6 +3321,7 @@
         "签到",
         "按需开启"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=script-mixc_signin",
       "health": "ok"
     },
     {
@@ -3093,6 +3344,7 @@
         "签到",
         "按需开启"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=script-Nodeseek_NsCheckin",
       "health": "ok"
     },
     {
@@ -3115,6 +3367,7 @@
         "签到",
         "按需开启"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=script-LaiChong",
       "health": "ok"
     },
     {
@@ -3137,6 +3390,7 @@
         "签到",
         "按需开启"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=script-SoulSing",
       "health": "ok"
     },
     {
@@ -3159,6 +3413,7 @@
         "签到",
         "按需开启"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=script-SLY",
       "health": "ok"
     },
     {
@@ -3181,6 +3436,7 @@
         "签到",
         "按需开启"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=script-qdreader",
       "health": "ok"
     },
     {
@@ -3203,6 +3459,7 @@
         "签到",
         "按需开启"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=script-dianxin10000",
       "health": "ok"
     },
     {
@@ -3225,6 +3482,7 @@
         "签到",
         "按需开启"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=script-tieba",
       "health": "ok"
     },
     {
@@ -3247,6 +3505,7 @@
         "签到",
         "按需开启"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=script-sfexpress",
       "health": "ok"
     },
     {
@@ -3269,6 +3528,7 @@
         "签到",
         "按需开启"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=script-yanxuan",
       "health": "ok"
     },
     {
@@ -3291,6 +3551,7 @@
         "签到",
         "按需开启"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=script-ximalaya",
       "health": "ok"
     },
     {
@@ -3311,6 +3572,7 @@
         "Widget",
         "按需开启"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=widget-2026fifa-widget",
       "health": "ok"
     },
     {
@@ -3331,6 +3593,7 @@
         "Widget",
         "按需开启"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=widget-aaa",
       "health": "ok"
     },
     {
@@ -3351,6 +3614,7 @@
         "Widget",
         "按需开启"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=widget-almanac_widget",
       "health": "ok"
     },
     {
@@ -3371,6 +3635,7 @@
         "Widget",
         "按需开启"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=widget-app_store_widget",
       "health": "ok"
     },
     {
@@ -3391,6 +3656,7 @@
         "Widget",
         "按需开启"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=widget-cbn_widget",
       "health": "ok"
     },
     {
@@ -3411,6 +3677,7 @@
         "Widget",
         "按需开启"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=widget-cls_widget",
       "health": "ok"
     },
     {
@@ -3431,6 +3698,7 @@
         "Widget",
         "按需开启"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=widget-cn_cal",
       "health": "ok"
     },
     {
@@ -3451,6 +3719,7 @@
         "Widget",
         "按需开启"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=widget-csg_widget",
       "health": "ok"
     },
     {
@@ -3471,6 +3740,7 @@
         "Widget",
         "按需开启"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=widget-ct_widget",
       "health": "ok"
     },
     {
@@ -3491,6 +3761,7 @@
         "Widget",
         "按需开启"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=widget-chatgpt",
       "health": "ok"
     },
     {
@@ -3511,6 +3782,7 @@
         "Widget",
         "按需开启"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=widget-crypto_widget",
       "health": "ok"
     },
     {
@@ -3531,6 +3803,7 @@
         "Widget",
         "按需开启"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=widget-fx_rate",
       "health": "ok"
     },
     {
@@ -3551,6 +3824,7 @@
         "Widget",
         "按需开启"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=widget-gold_widgets",
       "health": "ok"
     },
     {
@@ -3571,6 +3845,7 @@
         "Widget",
         "按需开启"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=widget-hsw_widget",
       "health": "ok"
     },
     {
@@ -3591,6 +3866,7 @@
         "Widget",
         "按需开启"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=widget-holiday_countdown",
       "health": "ok"
     },
     {
@@ -3611,6 +3887,7 @@
         "Widget",
         "按需开启"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=widget-ip_clean",
       "health": "ok"
     },
     {
@@ -3631,6 +3908,7 @@
         "Widget",
         "按需开启"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=widget-ip_str_widget",
       "health": "ok"
     },
     {
@@ -3651,6 +3929,7 @@
         "Widget",
         "按需开启"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=widget-lottery-widget",
       "health": "ok"
     },
     {
@@ -3671,6 +3950,7 @@
         "Widget",
         "按需开启"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=widget-netspeed",
       "health": "ok"
     },
     {
@@ -3691,6 +3971,7 @@
         "Widget",
         "按需开启"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=widget-netspeed_widget",
       "health": "ok"
     },
     {
@@ -3711,6 +3992,7 @@
         "Widget",
         "按需开启"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=widget-net_info",
       "health": "ok"
     },
     {
@@ -3731,6 +4013,7 @@
         "Widget",
         "按需开启"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=widget-nodeunlockdetection",
       "health": "ok"
     },
     {
@@ -3751,6 +4034,7 @@
         "Widget",
         "按需开启"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=widget-oil-price",
       "health": "ok"
     },
     {
@@ -3772,6 +4056,7 @@
         "按需开启"
       ],
       "featured": true,
+      "share_url": "https://oo226.github.io/egern-config/#id=widget-oil_widget",
       "health": "ok"
     },
     {
@@ -3792,6 +4077,7 @@
         "Widget",
         "按需开启"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=widget-proxy_check",
       "health": "ok"
     },
     {
@@ -3812,6 +4098,7 @@
         "Widget",
         "按需开启"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=widget-sub_widget",
       "health": "ok"
     },
     {
@@ -3832,6 +4119,7 @@
         "Widget",
         "按需开启"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=widget-testflight",
       "health": "ok"
     },
     {
@@ -3852,6 +4140,7 @@
         "Widget",
         "按需开启"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=widget-tgredirect",
       "health": "ok"
     },
     {
@@ -3872,6 +4161,7 @@
         "Widget",
         "按需开启"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=widget-unicom_widget",
       "health": "ok"
     },
     {
@@ -3892,6 +4182,7 @@
         "Widget",
         "按需开启"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=widget-unlock-detection_widget",
       "health": "ok"
     },
     {
@@ -3912,6 +4203,7 @@
         "Widget",
         "按需开启"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=widget-user-agent",
       "health": "ok"
     },
     {
@@ -3932,6 +4224,7 @@
         "Widget",
         "按需开启"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=widget-weather_widget",
       "health": "ok"
     },
     {
@@ -3952,6 +4245,7 @@
         "Widget",
         "按需开启"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=widget-airport_widget",
       "health": "ok"
     },
     {
@@ -3972,6 +4266,7 @@
         "Widget",
         "按需开启"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=widget-crypto",
       "health": "ok"
     },
     {
@@ -3992,6 +4287,7 @@
         "Widget",
         "按需开启"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=widget-itunes",
       "health": "ok"
     },
     {
@@ -4012,6 +4308,7 @@
         "Widget",
         "按需开启"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=widget-netinfo",
       "health": "ok"
     },
     {
@@ -4032,6 +4329,7 @@
         "Widget",
         "按需开启"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=widget-subscription-info",
       "health": "ok"
     },
     {
@@ -4052,6 +4350,7 @@
         "Widget",
         "按需开启"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=widget-today_almanac",
       "health": "ok"
     },
     {
@@ -4072,6 +4371,7 @@
         "Widget",
         "按需开启"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=widget-weather",
       "health": "ok"
     },
     {
@@ -4092,6 +4392,7 @@
         "Widget",
         "按需开启"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=widget-xiaohongshu",
       "health": "ok"
     },
     {
@@ -4112,6 +4413,7 @@
         "Widget",
         "按需开启"
       ],
+      "share_url": "https://oo226.github.io/egern-config/#id=widget-xiaohongshu1",
       "health": "ok"
     }
   ],

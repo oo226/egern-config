@@ -206,6 +206,33 @@ main, .page-body { max-width: 1100px; margin: 0 auto; padding: 1.25rem; }
 }
 .collapsible-body { margin-top: 0.5rem; }
 .collapsible-body[hidden] { display: none; }
+.featured-boxjs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 0.45rem;
+}
+.featured-boxjs-grid .quick-chip { font-size: 0.78rem; padding: 0.55rem; }
+.health-warn {
+  font-size: 0.82rem; color: #ffb4b4;
+  background: rgba(255, 107, 107, 0.08);
+  border: 1px solid rgba(255, 107, 107, 0.25);
+  border-radius: 8px; padding: 0.55rem 0.65rem; margin-top: 0.5rem;
+}
+.health-warn ul { margin: 0.35rem 0 0 1rem; font-size: 0.75rem; word-break: break-all; }
+.card.highlight { border-color: var(--accent); box-shadow: 0 0 0 2px rgba(108, 140, 255, 0.35); }
+.modal-overlay {
+  position: fixed; inset: 0; background: rgba(0, 0, 0, 0.65);
+  display: grid; place-items: center; z-index: 200; padding: 1rem;
+}
+.modal-overlay[hidden] { display: none; }
+.modal {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 1.25rem; max-width: 320px; width: 100%;
+  text-align: center; box-shadow: var(--shadow);
+}
+.modal h3 { font-size: 1rem; margin-bottom: 0.75rem; }
+.modal img { width: 200px; height: 200px; border-radius: 8px; background: #fff; }
+.modal-actions { display: flex; gap: 0.5rem; justify-content: center; margin-top: 1rem; flex-wrap: wrap; }
 .actions { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-top: auto; padding-top: 0.25rem; }
 .btn {
   font-size: 0.8rem; padding: 0.45rem 0.75rem; border-radius: 8px;

@@ -14,6 +14,7 @@ from pathlib import Path
 from urllib.parse import quote
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+from external_script_utils import extract_script_urls, is_local_url, should_skip_mirror
 from paths import GITHUB_RAW_MAIN, GITHUB_RAW_MAIN_BOXJS, MODULES, ROOT, ROUTING, SIGNIN_SCRIPTS, WIDGETS
 
 try:
@@ -33,6 +34,7 @@ BOXJS_PATH = MODULES / "egern.boxjs.json"
 EGERN_YAML = ROOT / "Egern.yaml"
 
 GITHUB_PAGES = "https://oo226.github.io/egern-config"
+UPSTREAM_CHECK_LIMIT = 80
 
 IRINGO_HINTS = {
     "iringo-mitm": "与地图 / 天气 / 定位模块配套；启用 iRingo 时建议同时开启。",
@@ -501,12 +503,75 @@ def build_modules_yaml_bundle(item_ids: list[str], items_by_id: dict[str, dict])
     return "\n".join(lines) + "\n"
 
 
+def check_upstream_script_urls() -> dict:
+    """HEAD-check external script-path URLs in published modules."""
+    urls: set[str] = set()
+    for name in published_module_files():
+        path = MODULES / name
+        if path.is_file():
+            urls.update(extract_script_urls(path.read_text(encoding="utf-8", errors="replace")))
+    for name in ("adblock-collection.module", "unlock-collection.module", "cookie-collection.module"):
+        path = MODULES / name
+        if path.is_file():
+            urls.update(extract_script_urls(path.read_text(encoding="utf-8", errors="replace")))
+
+    external = sorted(u for u in urls if u.startswith("http") and not is_local_url(u) and not should_skip_mirror(u))
+    checked = external[:UPSTREAM_CHECK_LIMIT]
+    broken: list[dict] = []
+    ok = 0
+    for url in checked:
+        if check_url_ok(url):
+            ok += 1
+        else:
+            broken.append({"url": url})
+    print(f"upstream scripts: {len(external)} unique, checked {len(checked)}, fail {len(broken)}")
+    return {
+        "total_unique": len(external),
+        "checked": len(checked),
+        "ok": ok,
+        "fail": len(broken),
+        "broken": broken[:15],
+        "truncated": len(external) > UPSTREAM_CHECK_LIMIT,
+    }
+
+
+def build_featured_boxjs(meta_cfg: dict, items_by_id: dict[str, dict]) -> list[dict]:
+    out: list[dict] = []
+    for app_id in meta_cfg.get("featured_boxjs") or []:
+        item = items_by_id.get(f"boxjs-{app_id}")
+        if item:
+            out.append(
+                {
+                    "id": app_id,
+                    "name": item["name"],
+                    "group": item.get("group", ""),
+                    "add_url": item.get("add_url"),
+                }
+            )
+    return out
+
+
+def attach_share_urls(items: list[dict]) -> None:
+    for item in items:
+        item["share_url"] = f"{GITHUB_PAGES}/#id={item['id']}"
+
+
 def build_quick_start(meta_cfg: dict, items_by_id: dict[str, dict]) -> list[dict]:
     out: list[dict] = []
     for iid in meta_cfg.get("quick_start") or []:
         item = items_by_id.get(iid)
         if item:
-            out.append({"id": iid, "name": item["name"], "desc": item.get("desc", "")[:80], "add_url": item.get("add_url"), "url": item.get("url"), "kind": item.get("kind")})
+            out.append(
+                {
+                    "id": iid,
+                    "name": item["name"],
+                    "desc": item.get("desc", "")[:80],
+                    "add_url": item.get("add_url"),
+                    "url": item.get("url"),
+                    "kind": item.get("kind"),
+                    "qr_url": item.get("url") if item.get("kind") != "module" else item.get("add_url"),
+                }
+            )
     return out
 
 
@@ -551,7 +616,9 @@ def build_catalog() -> dict:
     items.extend(widget_items())
     mark_featured(meta_cfg, items)
     items_by_id = {i["id"]: i for i in items}
+    attach_share_urls(items)
     apply_health_checks(items)
+    upstream_health = check_upstream_script_urls()
 
     categories = [
         {"id": "config", "name": "主配置", "icon": "⚙️"},
@@ -576,8 +643,10 @@ def build_catalog() -> dict:
             {"id": "optional", "name": "按需开启", "icon": "🔧", "usage_tier": "optional", "count": optional_count},
         ],
         "quick_start": build_quick_start(meta_cfg, items_by_id),
+        "featured_boxjs": build_featured_boxjs(meta_cfg, items_by_id),
         "bundles": build_bundles(meta_cfg, items_by_id),
         "changelog": git_changelog(),
+        "upstream_health": upstream_health,
         "categories": [{**c, "count": counts[c["id"]]} for c in categories],
         "items": items,
         "total": len(items),
