@@ -39,6 +39,8 @@ SOURCE_LABELS = {
     "ChinaASN": "Repcz/Tool — 国内 ASN",
     "Rabbit-China": "Rabbit-Spec — China.list",
     "Rabbit-CIDR": "Rabbit-Spec — ChinaCIDR.list",
+    "ResourceSite": "eulac-dev/Proxy — 视频资源站",
+    "PanVod": "eulac-dev/Proxy — 网盘点播",
 }
 
 
@@ -71,6 +73,17 @@ def merge_sources() -> tuple[dict[str, set[str]], list[tuple[str, int]], int]:
         part = parse_surge_list(rabbit_cidr.read_text(encoding="utf-8", errors="replace"))
         count = count_sets(part)
         source_stats.append(("Rabbit-CIDR", count))
+        raw_total += count
+        parts.append(part)
+
+    for name in ("ResourceSite", "PanVod"):
+        path = ROUTING_UPSTREAM / "eulac" / f"{name}.lsr"
+        if not path.is_file():
+            print(f"skip missing eulac/{name}.lsr")
+            continue
+        part = parse_surge_list(path.read_text(encoding="utf-8", errors="replace"))
+        count = count_sets(part)
+        source_stats.append((name, count))
         raw_total += count
         parts.append(part)
 

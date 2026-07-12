@@ -19,6 +19,12 @@ MATRIX_UNBREAK = (
     "https://raw.githubusercontent.com/Centralmatrix3/Matrix-io/master/Egern/Ruleset/Unbreak.yaml"
 )
 
+EULAC_BASE = "https://raw.githubusercontent.com/eulac-dev/Proxy/refs/heads/main/Loon/Rules"
+EULAC_LISTS = {
+    "ResourceSite": f"{EULAC_BASE}/ResourceSite.lsr",
+    "PanVod": f"{EULAC_BASE}/PanVod.lsr",
+}
+
 APP_LISTS = {
     "WeChat": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/WeChat/WeChat.list",
     "Weibo": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/Weibo/Weibo.list",
@@ -68,6 +74,20 @@ def main() -> None:
         dest = rabbit_dir / name
         status = mirror_file(f"{RABBIT_BASE}/{name}", dest)
         _tally(status, name, ok, keep, fail)
+
+    eulac_dir = ROUTING_UPSTREAM / "eulac"
+    for name, url in EULAC_LISTS.items():
+        dest = eulac_dir / f"{name}.lsr"
+        status = mirror_file(url, dest)
+        if status == "ok":
+            ok += 1
+            print(f"OK eulac/{name}.lsr")
+        elif status.startswith("keep"):
+            keep += 1
+            print(f"KEEP eulac/{name}.lsr {status}")
+        else:
+            fail += 1
+            print(f"FAIL eulac/{name}.lsr {status}")
 
     dest = ROUTING_UPSTREAM / "matrix" / "Unbreak.yaml"
     status = mirror_file(MATRIX_UNBREAK, dest)
