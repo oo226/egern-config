@@ -130,6 +130,11 @@ jobs:
       - name: Mirror IBL3ND widgets
         run: python3 scripts/download-ibl3nd-widgets.py
 
+      - name: Regenerate catalog and check link health
+        run: |
+          python3 scripts/generate-catalog.py
+          python3 scripts/check-catalog-health.py --strict --report
+
       - name: Commit sync branch
         run: |
           git config user.name "github-actions[bot]"
