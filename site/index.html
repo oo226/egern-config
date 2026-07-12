@@ -46,14 +46,77 @@
 
   <div class="toast" id="toast">已复制</div>
 
+  <div class="modal-overlay" id="qr-modal" hidden>
+    <div class="modal">
+      <h3 id="qr-title">二维码</h3>
+      <img id="qr-image" alt="QR code" width="200" height="200">
+      <div class="modal-actions">
+        <button class="btn" type="button" id="qr-copy">复制链接</button>
+        <button class="btn" type="button" id="qr-close">关闭</button>
+      </div>
+    </div>
+  </div>
+
   <script>
     const CATEGORY_ICONS = { config: '⚙️', modules: '🧩', routing: '🔀', boxjs: '📦', scripts: '📅', widgets: '📱' };
     let catalog = null;
     let activeCategory = 'all';
     let activePreset = 'all';
     let activeBoxjsGroup = 'all';
+    let highlightId = null;
+    let qrCurrentUrl = '';
 
     const $ = (sel) => document.querySelector(sel);
+
+    function showQr(url, title) {
+      qrCurrentUrl = url;
+      $('#qr-title').textContent = title || '扫码导入';
+      $('#qr-image').src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(url)}`;
+      $('#qr-modal').hidden = false;
+    }
+
+    $('#qr-close').onclick = () => { $('#qr-modal').hidden = true; };
+    $('#qr-modal').onclick = (e) => { if (e.target.id === 'qr-modal') $('#qr-modal').hidden = true; };
+    $('#qr-copy').onclick = () => copyText(qrCurrentUrl);
+
+    async function shareItem(item) {
+      const url = item.share_url || `${location.origin}${location.pathname}#id=${item.id}`;
+      const text = `${item.name} — egern-config 模块中心`;
+      if (navigator.share) {
+        try {
+          await navigator.share({ title: item.name, text, url });
+          return;
+        } catch (_) {}
+      }
+      await copyText(url);
+      showToast('分享链接已复制');
+    }
+
+    function parseHashId() {
+      const m = location.hash.match(/^#id=(.+)$/);
+      return m ? decodeURIComponent(m[1]) : null;
+    }
+
+    function focusItemById(id) {
+      if (!id) return;
+      highlightId = id;
+      activeCategory = 'all';
+      activePreset = 'all';
+      $('#search').value = '';
+      document.querySelectorAll('#filters .filter-btn, #presets .filter-btn').forEach(b => {
+        b.classList.toggle('active', b.dataset.cat === 'all' || b.dataset.preset === 'all');
+      });
+      renderExtras();
+      renderGrid();
+      requestAnimationFrame(() => {
+        const el = document.querySelector(`[data-item-id="${CSS.escape(id)}"]`);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          el.classList.add('highlight');
+          setTimeout(() => el.classList.remove('highlight'), 3200);
+        }
+      });
+    }
 
     function showToast(msg) {
       const t = $('#toast');
@@ -166,6 +229,8 @@
         const grid = document.createElement('div');
         grid.className = 'quick-grid';
         for (const q of catalog.quick_start) {
+          const wrap = document.createElement('div');
+          wrap.style.display = 'contents';
           const a = document.createElement('a');
           a.className = 'quick-chip';
           if (q.kind === 'module') {
@@ -176,6 +241,48 @@
             a.onclick = (e) => { e.preventDefault(); copyText(q.url); };
           }
           a.innerHTML = `<strong>${q.name}</strong><small>${q.desc || '点击添加'}</small>`;
+          wrap.appendChild(a);
+          grid.appendChild(wrap);
+        }
+        const qrRow = document.createElement('div');
+        qrRow.style.gridColumn = '1 / -1';
+        qrRow.style.display = 'flex';
+        qrRow.style.gap = '0.45rem';
+        qrRow.style.flexWrap = 'wrap';
+        qrRow.style.marginTop = '0.35rem';
+        const egernCfg = catalog.quick_start.find(q => q.id === 'egern-main');
+        const boxjsSub = catalog.quick_start.find(q => q.id === 'egern-boxjs');
+        if (egernCfg) {
+          const b = document.createElement('button');
+          b.className = 'btn';
+          b.textContent = '📱 主配置二维码';
+          b.onclick = () => showQr(egernCfg.url, 'Egern.yaml');
+          qrRow.appendChild(b);
+        }
+        if (boxjsSub) {
+          const b = document.createElement('button');
+          b.className = 'btn';
+          b.textContent = '📱 BoxJS 订阅二维码';
+          b.onclick = () => showQr(boxjsSub.url, 'BoxJS 订阅');
+          qrRow.appendChild(b);
+        }
+        sec.appendChild(grid);
+        if (qrRow.childElementCount) sec.appendChild(qrRow);
+        el.appendChild(sec);
+      }
+
+      if (catalog.featured_boxjs?.length) {
+        const sec = document.createElement('section');
+        sec.className = 'quick-section';
+        sec.innerHTML = '<div class="section-title">⭐ BoxJS 常用应用</div>';
+        const grid = document.createElement('div');
+        grid.className = 'featured-boxjs-grid';
+        for (const app of catalog.featured_boxjs) {
+          const a = document.createElement('a');
+          a.className = 'quick-chip';
+          a.href = app.add_url;
+          a.target = '_blank';
+          a.innerHTML = `<strong>${app.name}</strong><small>${app.group || 'BoxJS'}</small>`;
           grid.appendChild(a);
         }
         sec.appendChild(grid);
@@ -205,6 +312,23 @@
           copyUrls.onclick = () => copyText((b.add_urls || []).join('\n'));
           row.append(addFirst, copyYaml, copyUrls);
           sec.appendChild(row);
+        }
+        el.appendChild(sec);
+      }
+
+      const uh = catalog.upstream_health;
+      if (uh && uh.checked) {
+        const sec = document.createElement('section');
+        sec.className = 'changelog-section';
+        const ok = uh.fail === 0;
+        sec.innerHTML = `<div class="section-title">🔗 上游脚本检测 · ${uh.ok}/${uh.checked} 可用${uh.truncated ? '（抽样）' : ''}</div>`;
+        if (!ok && uh.broken?.length) {
+          const warn = document.createElement('div');
+          warn.className = 'health-warn';
+          warn.innerHTML = `<strong>${uh.fail} 个上游脚本链接异常</strong>（模块内 script-path，每日 sync 检测）<ul>${uh.broken.map(b => `<li>${b.url}</li>`).join('')}</ul>`;
+          sec.appendChild(warn);
+        } else if (ok) {
+          sec.innerHTML += '<p style="font-size:0.82rem;color:var(--muted);margin-top:0.35rem">已检测的模块外部脚本链接均可访问。</p>';
         }
         el.appendChild(sec);
       }
@@ -262,6 +386,7 @@
     function renderCard(item) {
       const card = document.createElement('article');
       card.className = 'card';
+      card.dataset.itemId = item.id;
 
       const head = document.createElement('div');
       head.className = 'card-head';
@@ -355,6 +480,20 @@
       copyBtn.onclick = () => copyText(item.url);
       actions.appendChild(copyBtn);
 
+      const shareBtn = document.createElement('button');
+      shareBtn.className = 'btn';
+      shareBtn.textContent = '分享';
+      shareBtn.onclick = () => shareItem(item);
+      actions.appendChild(shareBtn);
+
+      if (['config', 'boxjs'].includes(item.kind) || item.id === 'egern-boxjs') {
+        const qrBtn = document.createElement('button');
+        qrBtn.className = 'btn';
+        qrBtn.textContent = '二维码';
+        qrBtn.onclick = () => showQr(item.url, item.name);
+        actions.appendChild(qrBtn);
+      }
+
       if (item.scripting_yaml) {
         const yamlBtn = document.createElement('button');
         yamlBtn.className = 'btn';
@@ -439,12 +578,15 @@
       renderBoxjsGroups(catalog.items);
       renderExtras();
       renderGrid();
+      const hashId = parseHashId();
+      if (hashId) focusItemById(hashId);
       if ('serviceWorker' in navigator) {
         navigator.serviceWorker.register('sw.js').catch(() => {});
       }
     }
 
     $('#search').addEventListener('input', renderGrid);
+    window.addEventListener('hashchange', () => focusItemById(parseHashId()));
     init();
   </script>
 </body>
