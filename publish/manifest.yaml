@@ -10,6 +10,10 @@ files:
   - .github/workflows/pages.yml
   - site/index.html
   - site/catalog.json
+  - site/disclaimer.html
+  - site/styles.css
+  - site/manifest.webmanifest
+  - site/sw.js
 
 directories:
   - path: Routing

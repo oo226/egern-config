@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
-"""Build site/catalog.json — main-branch module hub index."""
+"""Build site/catalog.json and site/disclaimer.html — main-branch module hub."""
 
 from __future__ import annotations
 
+import html
 import json
 import re
 import sys
@@ -22,12 +23,22 @@ PUBLISH_MANIFEST = ROOT / "publish" / "manifest.yaml"
 CATALOG_META = Path(__file__).with_name("catalog-meta.yaml")
 SITE_DIR = ROOT / "site"
 CATALOG_OUT = SITE_DIR / "catalog.json"
+DISCLAIMER_OUT = SITE_DIR / "disclaimer.html"
+DISCLAIMER_MD = ROOT / "DISCLAIMER.md"
 WIDGET_MANIFEST = WIDGETS / "IBL3ND" / "manifest.yaml"
 SCRIPTS_MANIFEST = Path(__file__).with_name("manifest.yaml")
 BOXJS_PATH = MODULES / "egern.boxjs.json"
 EGERN_YAML = ROOT / "Egern.yaml"
 
 GITHUB_PAGES = "https://oo226.github.io/egern-config"
+
+IRINGO_HINTS = {
+    "iringo-mitm": "与地图 / 天气 / 定位模块配套；启用 iRingo 时建议同时开启。",
+    "iringo-maps": "⚠️ 请先添加并启用「 iRingo MITM 域名」模块，否则无法解密 Apple 地图 API。",
+    "iringo-weather": "⚠️ 请先添加并启用「 iRingo MITM 域名」模块，否则 weatherkit 无法解密。",
+    "iringo-location": "⚠️ 请先添加并启用「 iRingo MITM 域名」模块，否则定位增强不生效。",
+    "iringo-others": "TestFlight / TV / News 等；若涉及 Apple API，请同时开 MITM 模块。",
+}
 
 
 def load_yaml(path: Path) -> dict:
@@ -64,7 +75,84 @@ def parse_egern_yaml_module(path: Path) -> dict[str, str]:
     }
 
 
-def module_item(filename: str, meta_cfg: dict) -> dict:
+def load_egern_module_defaults() -> dict[str, bool]:
+    """Map Modules/filename -> enabled from Egern.yaml."""
+    if not EGERN_YAML.is_file():
+        return {}
+    data = load_yaml(EGERN_YAML)
+    out: dict[str, bool] = {}
+    for mod in data.get("modules") or []:
+        url = str(mod.get("url") or "")
+        enabled = bool(mod.get("enabled", False))
+        if "/Modules/" in url:
+            name = url.rsplit("/Modules/", 1)[-1].split("?")[0]
+            out[name] = enabled
+    return out
+
+
+def usage_tier(default_enabled: bool | None, kind: str, category: str) -> str:
+    if default_enabled is True:
+        return "daily"
+    if default_enabled is False:
+        return "optional"
+    if kind == "config":
+        return "daily"
+    if category == "scripts":
+        return "optional"
+    if kind == "boxjs" and category == "boxjs":
+        return "optional"
+    return "neutral"
+
+
+def boxjs_group(app_id: str, name: str) -> str:
+    aid = (app_id or "").lower()
+    nm = (name or "").lower()
+    if aid.startswith("iringo") or "iringo" in nm:
+        return "iRingo"
+    if any(k in aid + nm for k in ("sign", "checkin", "签到", "cookie", "capture", "抓参")):
+        return "签到 / 抓参"
+    if any(k in aid + nm for k in ("player", "播放", "pear", "video", "insav", "porntube")):
+        return "播放器"
+    if "cookie" in aid or "cookie" in nm:
+        return "Cookie"
+    if any(k in aid + nm for k in ("yuheng", "酷我", "豆瓣", "茅台")):
+        return "Yuheng"
+    if "微信" in name or "wechat" in aid:
+        return "工具"
+    return "其他"
+
+
+def build_scripting_yaml(entry: dict, url: str) -> str:
+    name = entry.get("name") or Path(entry.get("file", "script")).stem
+    cron = entry.get("cron") or "0 8 * * *"
+    script_type = entry.get("type") or "schedule"
+    lines = ["# 粘贴到 Egern.yaml 的 scriptings 段", "scriptings:"]
+    if script_type == "http_request" and entry.get("match"):
+        lines.extend(
+            [
+                f"  - name: {name}",
+                "    type: http_request",
+                f"    match: {entry['match']}",
+                f"    script: {url}",
+                "    enabled: true",
+            ]
+        )
+    else:
+        if not entry.get("cron"):
+            lines.append(f"  # {name} — 请自行填写 cron 或改用 BoxJS 配置")
+        lines.extend(
+            [
+                f"  - name: {name}",
+                "    type: schedule",
+                f"    cron: \"{cron}\"",
+                f"    script: {url}",
+                "    enabled: true",
+            ]
+        )
+    return "\n".join(lines) + "\n"
+
+
+def module_item(filename: str, meta_cfg: dict, egern_defaults: dict[str, bool]) -> dict:
     path = MODULES / filename
     if not path.is_file():
         return {}
@@ -87,8 +175,10 @@ def module_item(filename: str, meta_cfg: dict) -> dict:
 
     tags = list(dict.fromkeys([*(override.get("tags") or []), *tags]))
     url = raw_url(f"Modules/{filename}")
+    default_enabled = egern_defaults.get(filename, override.get("default_enabled"))
+    item_id = path.stem
     return {
-        "id": path.stem,
+        "id": item_id,
         "kind": "module",
         "category": "modules",
         "group": override.get("group", "其他"),
@@ -99,8 +189,10 @@ def module_item(filename: str, meta_cfg: dict) -> dict:
         "path": f"Modules/{filename}",
         "url": url,
         "add_url": module_add_url(url),
-        "default_enabled": override.get("default_enabled"),
+        "default_enabled": default_enabled,
+        "usage_tier": usage_tier(default_enabled, "module", "modules"),
         "requires": override.get("requires") or [],
+        "hint": IRINGO_HINTS.get(item_id) or override.get("hint", ""),
         "tags": tags,
     }
 
@@ -122,7 +214,8 @@ def config_items(meta_cfg: dict) -> list[dict]:
                 "path": path,
                 "url": url,
                 "add_url": url,
-                "tags": ["Egern", "订阅"],
+                "usage_tier": "daily",
+                "tags": ["Egern", "订阅", "默认开启"],
             }
         )
     return items
@@ -131,8 +224,7 @@ def config_items(meta_cfg: dict) -> list[dict]:
 def routing_items(meta_cfg: dict) -> list[dict]:
     routing_meta = meta_cfg.get("routing") or {}
     items: list[dict] = []
-    paths = sorted(ROUTING.rglob("*.yaml"))
-    for path in paths:
+    for path in sorted(ROUTING.rglob("*.yaml")):
         if "_upstream" in path.parts:
             continue
         rel = path.relative_to(ROOT).as_posix()
@@ -158,6 +250,7 @@ def routing_items(meta_cfg: dict) -> list[dict]:
                 "path": rel,
                 "url": url,
                 "add_url": url,
+                "usage_tier": "neutral",
                 "tags": ["分流", "rule_set"],
             }
         )
@@ -167,13 +260,7 @@ def routing_items(meta_cfg: dict) -> list[dict]:
 def boxjs_items(meta_cfg: dict) -> list[dict]:
     items: list[dict] = []
     boxjs_meta = meta_cfg.get("boxjs") or {}
-    publish = load_yaml(PUBLISH_MANIFEST)
-    module_files = (
-        (publish.get("directories") or [{}])[1].get("include_only") or []
-        if len(publish.get("directories") or []) > 1
-        else []
-    )
-    if "egern.boxjs.json" not in module_files or not BOXJS_PATH.is_file():
+    if not published_includes("egern.boxjs.json") or not BOXJS_PATH.is_file():
         return items
 
     sub_meta = boxjs_meta.get("egern.boxjs.json") or {}
@@ -190,7 +277,9 @@ def boxjs_items(meta_cfg: dict) -> list[dict]:
             "path": "Modules/egern.boxjs.json",
             "url": sub_url,
             "add_url": sub_url,
-            "tags": ["BoxJS", "配置"],
+            "usage_tier": "daily",
+            "hint": "BoxJS 应用内添加此订阅链接；后端地址用 http://boxjs.com",
+            "tags": ["BoxJS", "配置", "默认开启"],
         }
     )
 
@@ -199,23 +288,25 @@ def boxjs_items(meta_cfg: dict) -> list[dict]:
         app_id = app.get("id") or app.get("name")
         if not app_id:
             continue
+        app_name = app.get("name") or app_id
         icons = app.get("icons") or []
-        icon = icons[0] if icons else ""
+        group = boxjs_group(str(app_id), str(app_name))
         items.append(
             {
                 "id": f"boxjs-{app_id}",
                 "kind": "boxjs-app",
                 "category": "boxjs",
-                "group": "应用",
-                "name": app.get("name") or app_id,
-                "desc": " ".join(app.get("descs") or app.get("desc") or [])[:200]
+                "group": group,
+                "name": app_name,
+                "desc": " ".join(app.get("descs") or [])[:200]
                 if isinstance(app.get("descs"), list)
                 else str(app.get("desc") or "")[:200],
-                "icon": icon,
+                "icon": icons[0] if icons else "",
                 "path": f"Modules/egern.boxjs.json#{app_id}",
                 "url": sub_url,
                 "add_url": f"http://boxjs.com/#/app/{app_id}",
-                "tags": ["BoxJS"],
+                "usage_tier": "optional",
+                "tags": ["BoxJS", group],
             }
         )
     return items
@@ -230,8 +321,7 @@ def script_items() -> list[dict]:
         filename = entry.get("file")
         if not filename:
             continue
-        path = SIGNIN_SCRIPTS / filename
-        if not path.is_file():
+        if not (SIGNIN_SCRIPTS / filename).is_file():
             continue
         note = entry.get("note") or ""
         if isinstance(note, list):
@@ -251,7 +341,10 @@ def script_items() -> list[dict]:
                 "url": url,
                 "add_url": url,
                 "cron": cron,
-                "tags": ["脚本", "签到" if "签到" in str(note) or cron else "工具"],
+                "usage_tier": "optional",
+                "scripting_yaml": build_scripting_yaml(entry, url),
+                "hint": "先开 Cookie 合集抓参（如需），再粘贴下方 YAML 到 Egern scriptings 段" if "签到" in str(note) or cron else "",
+                "tags": ["脚本", "签到" if "签到" in str(note) or cron else "工具", "按需开启"],
             }
         )
     return items
@@ -278,7 +371,9 @@ def widget_items() -> list[dict]:
                 "path": w.get("file", ""),
                 "url": url,
                 "add_url": url,
-                "tags": ["小组件", "Widget"],
+                "usage_tier": "optional",
+                "hint": "Oil 等常用：写入 Egern.yaml → widgets，不要写进 scriptings",
+                "tags": ["小组件", "Widget", "按需开启"],
             }
         )
     return items
@@ -288,6 +383,7 @@ def external_module_items(meta_cfg: dict) -> list[dict]:
     items: list[dict] = []
     for entry in meta_cfg.get("external_modules") or []:
         url = entry["url"]
+        default_enabled = entry.get("default_enabled")
         items.append(
             {
                 "id": entry["id"],
@@ -300,7 +396,8 @@ def external_module_items(meta_cfg: dict) -> list[dict]:
                 "path": url,
                 "url": url,
                 "add_url": module_add_url(url),
-                "default_enabled": entry.get("default_enabled"),
+                "default_enabled": default_enabled,
+                "usage_tier": usage_tier(default_enabled, "module", "modules"),
                 "tags": entry.get("tags") or ["外部"],
             }
         )
@@ -320,12 +417,21 @@ def published_module_files() -> list[str]:
     return []
 
 
+def published_includes(name: str) -> bool:
+    data = load_yaml(PUBLISH_MANIFEST)
+    for spec in data.get("directories") or []:
+        if spec.get("path") == "Modules":
+            return name in (spec.get("include_only") or [])
+    return False
+
+
 def build_catalog() -> dict:
     meta_cfg = load_yaml(CATALOG_META) if CATALOG_META.is_file() else {}
+    egern_defaults = load_egern_module_defaults()
     items: list[dict] = []
     items.extend(config_items(meta_cfg))
     for filename in published_module_files():
-        item = module_item(filename, meta_cfg)
+        item = module_item(filename, meta_cfg, egern_defaults)
         if item:
             items.append(item)
     items.extend(external_module_items(meta_cfg))
@@ -343,6 +449,8 @@ def build_catalog() -> dict:
         {"id": "widgets", "name": "小组件", "icon": "📱"},
     ]
     counts = {c["id"]: sum(1 for i in items if i.get("category") == c["id"]) for c in categories}
+    daily_count = sum(1 for i in items if i.get("usage_tier") == "daily")
+    optional_count = sum(1 for i in items if i.get("usage_tier") == "optional")
 
     return {
         "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
@@ -350,20 +458,114 @@ def build_catalog() -> dict:
         "repo": "oo226/egern-config",
         "raw_base": GITHUB_RAW_MAIN,
         "pages_url": GITHUB_PAGES,
+        "presets": [
+            {"id": "daily", "name": "默认开启", "icon": "✅", "usage_tier": "daily", "count": daily_count},
+            {"id": "optional", "name": "按需开启", "icon": "🔧", "usage_tier": "optional", "count": optional_count},
+        ],
         "categories": [{**c, "count": counts[c["id"]]} for c in categories],
         "items": items,
         "total": len(items),
     }
 
 
+def md_to_html_body(text: str) -> str:
+    lines = text.splitlines()
+    out: list[str] = []
+    in_ul = False
+    in_table = False
+
+    def close_ul() -> None:
+        nonlocal in_ul
+        if in_ul:
+            out.append("</ul>")
+            in_ul = False
+
+    for line in lines:
+        stripped = line.strip()
+        if not stripped:
+            close_ul()
+            if in_table:
+                out.append("</tbody></table>")
+                in_table = False
+            continue
+        if stripped.startswith("# "):
+            close_ul()
+            out.append(f"<h2>{html.escape(stripped[2:])}</h2>")
+        elif stripped.startswith("## "):
+            close_ul()
+            out.append(f"<h2>{html.escape(stripped[3:])}</h2>")
+        elif stripped.startswith("### "):
+            close_ul()
+            out.append(f"<h3>{html.escape(stripped[4:])}</h3>")
+        elif stripped.startswith("- "):
+            if not in_ul:
+                out.append("<ul>")
+                in_ul = True
+            content = stripped[2:]
+            content = re.sub(r"\[([^\]]+)\]\(([^)]+)\)", r'<a href="\2">\1</a>', content)
+            content = re.sub(r"`([^`]+)`", r"<code>\1</code>", content)
+            out.append(f"<li>{content}</li>")
+        elif stripped.startswith("|") and "|" in stripped[1:]:
+            close_ul()
+            cells = [c.strip() for c in stripped.strip("|").split("|")]
+            if not in_table:
+                out.append("<table><thead><tr>" + "".join(f"<th>{html.escape(c)}</th>" for c in cells) + "</tr></thead><tbody>")
+                in_table = True
+            else:
+                out.append("<tr>" + "".join(f"<td>{html.escape(c)}</td>" for c in cells) + "</tr>")
+        elif stripped.startswith("*") and stripped.endswith("*"):
+            close_ul()
+            out.append(f"<p><em>{html.escape(stripped.strip('*'))}</em></p>")
+        else:
+            close_ul()
+            esc = html.escape(stripped)
+            esc = re.sub(r"`([^`]+)`", r"<code>\1</code>", esc)
+            out.append(f"<p>{esc}</p>")
+
+    close_ul()
+    if in_table:
+        out.append("</tbody></table>")
+    return "\n".join(out)
+
+
+def generate_disclaimer_html() -> None:
+    body = md_to_html_body(DISCLAIMER_MD.read_text(encoding="utf-8"))
+    page = f"""<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>免责声明 — egern-config</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="manifest" href="manifest.webmanifest">
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-inner">
+      <a class="back-link" href="index.html">← 返回模块中心</a>
+      <h1>免责声明</h1>
+      <p>个人自用镜像整理 · 上游版权归原作者</p>
+    </div>
+  </header>
+  <main class="page-body">
+    {body}
+  </main>
+  <footer class="page-footer">
+    <p>完整 Markdown：<a href="https://github.com/oo226/egern-config/blob/main/DISCLAIMER.md">DISCLAIMER.md</a></p>
+  </footer>
+</body>
+</html>
+"""
+    DISCLAIMER_OUT.write_text(page, encoding="utf-8")
+    print(f"wrote {DISCLAIMER_OUT.relative_to(ROOT)}")
+
+
 def main() -> None:
     catalog = build_catalog()
     SITE_DIR.mkdir(parents=True, exist_ok=True)
-    CATALOG_OUT.write_text(
-        json.dumps(catalog, ensure_ascii=False, indent=2) + "\n",
-        encoding="utf-8",
-    )
+    CATALOG_OUT.write_text(json.dumps(catalog, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(f"wrote {CATALOG_OUT.relative_to(ROOT)}: {catalog['total']} items")
+    generate_disclaimer_html()
 
 
 if __name__ == "__main__":

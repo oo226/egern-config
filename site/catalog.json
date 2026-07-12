@@ -1,9 +1,25 @@
 {
-  "generated_at": "2026-07-12T07:40:30Z",
+  "generated_at": "2026-07-12T07:51:32Z",
   "branch": "main",
   "repo": "oo226/egern-config",
   "raw_base": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main",
   "pages_url": "https://oo226.github.io/egern-config",
+  "presets": [
+    {
+      "id": "daily",
+      "name": "默认开启",
+      "icon": "✅",
+      "usage_tier": "daily",
+      "count": 6
+    },
+    {
+      "id": "optional",
+      "name": "按需开启",
+      "icon": "🔧",
+      "usage_tier": "optional",
+      "count": 173
+    }
+  ],
   "categories": [
     {
       "id": "config",
@@ -54,9 +70,11 @@
       "path": "Egern.yaml",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Egern.yaml",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Egern.yaml",
+      "usage_tier": "daily",
       "tags": [
         "Egern",
-        "订阅"
+        "订阅",
+        "默认开启"
       ]
     },
     {
@@ -72,7 +90,9 @@
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/adblock-collection.module",
       "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Fadblock-collection.module",
       "default_enabled": true,
+      "usage_tier": "daily",
       "requires": [],
+      "hint": "",
       "tags": [
         "去广告",
         "开屏",
@@ -94,7 +114,9 @@
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/unlock-collection.module",
       "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Funlock-collection.module",
       "default_enabled": true,
+      "usage_tier": "daily",
       "requires": [],
+      "hint": "",
       "tags": [
         "解锁",
         "流媒体"
@@ -113,7 +135,9 @@
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/cookie-collection.module",
       "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Fcookie-collection.module",
       "default_enabled": false,
+      "usage_tier": "optional",
       "requires": [],
+      "hint": "",
       "tags": [
         "抓参",
         "Cookie",
@@ -134,7 +158,9 @@
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/ibl3nd-plugin-hub.yaml",
       "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Fibl3nd-plugin-hub.yaml",
       "default_enabled": true,
+      "usage_tier": "daily",
       "requires": [],
+      "hint": "",
       "tags": [
         "插件中心",
         "kelee",
@@ -154,11 +180,13 @@
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/iringo-mitm.yaml",
       "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Firingo-mitm.yaml",
       "default_enabled": false,
+      "usage_tier": "optional",
       "requires": [
         "iringo-maps",
         "iringo-weather",
         "iringo-location"
       ],
+      "hint": "与地图 / 天气 / 定位模块配套；启用 iRingo 时建议同时开启。",
       "tags": [
         "MITM",
         "天气",
@@ -178,7 +206,9 @@
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/iringo-maps.sgmodule",
       "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Firingo-maps.sgmodule",
       "default_enabled": false,
+      "usage_tier": "optional",
       "requires": [],
+      "hint": "⚠️ 请先添加并启用「 iRingo MITM 域名」模块，否则无法解密 Apple 地图 API。",
       "tags": [
         "地图"
       ]
@@ -196,7 +226,9 @@
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/iringo-weather.sgmodule",
       "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Firingo-weather.sgmodule",
       "default_enabled": false,
+      "usage_tier": "optional",
       "requires": [],
+      "hint": "⚠️ 请先添加并启用「 iRingo MITM 域名」模块，否则 weatherkit 无法解密。",
       "tags": [
         "天气"
       ]
@@ -214,7 +246,9 @@
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/iringo-location.sgmodule",
       "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Firingo-location.sgmodule",
       "default_enabled": false,
+      "usage_tier": "optional",
       "requires": [],
+      "hint": "⚠️ 请先添加并启用「 iRingo MITM 域名」模块，否则定位增强不生效。",
       "tags": [
         "定位"
       ]
@@ -232,7 +266,9 @@
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/iringo-others.sgmodule",
       "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Firingo-others.sgmodule",
       "default_enabled": false,
+      "usage_tier": "optional",
       "requires": [],
+      "hint": "TestFlight / TV / News 等；若涉及 Apple API，请同时开 MITM 模块。",
       "tags": [
         "TestFlight",
         "TV",
@@ -251,6 +287,7 @@
       "url": "https://raw.githubusercontent.com/oo226/quanx/main/pingme.yaml",
       "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fquanx%2Fmain%2Fpingme.yaml",
       "default_enabled": true,
+      "usage_tier": "daily",
       "tags": [
         "外部"
       ]
@@ -266,6 +303,7 @@
       "path": "Routing/Bootstrap-Direct.yaml",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Bootstrap-Direct.yaml",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Bootstrap-Direct.yaml",
+      "usage_tier": "neutral",
       "tags": [
         "分流",
         "rule_set"
@@ -282,6 +320,7 @@
       "path": "Routing/China-Direct.yaml",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/China-Direct.yaml",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/China-Direct.yaml",
+      "usage_tier": "neutral",
       "tags": [
         "分流",
         "rule_set"
@@ -298,6 +337,7 @@
       "path": "Routing/Direct-Priority.yaml",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Direct-Priority.yaml",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Direct-Priority.yaml",
+      "usage_tier": "neutral",
       "tags": [
         "分流",
         "rule_set"
@@ -314,6 +354,7 @@
       "path": "Routing/Foreign/AI-Merged.yaml",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/AI-Merged.yaml",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/AI-Merged.yaml",
+      "usage_tier": "neutral",
       "tags": [
         "分流",
         "rule_set"
@@ -330,6 +371,7 @@
       "path": "Routing/Foreign/AI-supplement.yaml",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/AI-supplement.yaml",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/AI-supplement.yaml",
+      "usage_tier": "neutral",
       "tags": [
         "分流",
         "rule_set"
@@ -346,6 +388,7 @@
       "path": "Routing/Foreign/AI.yaml",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/AI.yaml",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/AI.yaml",
+      "usage_tier": "neutral",
       "tags": [
         "分流",
         "rule_set"
@@ -362,6 +405,7 @@
       "path": "Routing/Foreign/App/Bilibili.yaml",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/App/Bilibili.yaml",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/App/Bilibili.yaml",
+      "usage_tier": "neutral",
       "tags": [
         "分流",
         "rule_set"
@@ -378,6 +422,7 @@
       "path": "Routing/Foreign/App/Douyin.yaml",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/App/Douyin.yaml",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/App/Douyin.yaml",
+      "usage_tier": "neutral",
       "tags": [
         "分流",
         "rule_set"
@@ -394,6 +439,7 @@
       "path": "Routing/Foreign/App/KuaiShou.yaml",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/App/KuaiShou.yaml",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/App/KuaiShou.yaml",
+      "usage_tier": "neutral",
       "tags": [
         "分流",
         "rule_set"
@@ -410,6 +456,7 @@
       "path": "Routing/Foreign/App/Line.yaml",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/App/Line.yaml",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/App/Line.yaml",
+      "usage_tier": "neutral",
       "tags": [
         "分流",
         "rule_set"
@@ -426,6 +473,7 @@
       "path": "Routing/Foreign/App/RedBook.yaml",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/App/RedBook.yaml",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/App/RedBook.yaml",
+      "usage_tier": "neutral",
       "tags": [
         "分流",
         "rule_set"
@@ -442,6 +490,7 @@
       "path": "Routing/Foreign/App/Soul.yaml",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/App/Soul.yaml",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/App/Soul.yaml",
+      "usage_tier": "neutral",
       "tags": [
         "分流",
         "rule_set"
@@ -458,6 +507,7 @@
       "path": "Routing/Foreign/App/TestFlight.yaml",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/App/TestFlight.yaml",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/App/TestFlight.yaml",
+      "usage_tier": "neutral",
       "tags": [
         "分流",
         "rule_set"
@@ -474,6 +524,7 @@
       "path": "Routing/Foreign/App/TikTok.yaml",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/App/TikTok.yaml",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/App/TikTok.yaml",
+      "usage_tier": "neutral",
       "tags": [
         "分流",
         "rule_set"
@@ -490,6 +541,7 @@
       "path": "Routing/Foreign/App/WeChat.yaml",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/App/WeChat.yaml",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/App/WeChat.yaml",
+      "usage_tier": "neutral",
       "tags": [
         "分流",
         "rule_set"
@@ -506,6 +558,7 @@
       "path": "Routing/Foreign/App/Weibo.yaml",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/App/Weibo.yaml",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/App/Weibo.yaml",
+      "usage_tier": "neutral",
       "tags": [
         "分流",
         "rule_set"
@@ -522,6 +575,7 @@
       "path": "Routing/Foreign/AppleServers.yaml",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/AppleServers.yaml",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/AppleServers.yaml",
+      "usage_tier": "neutral",
       "tags": [
         "分流",
         "rule_set"
@@ -538,6 +592,7 @@
       "path": "Routing/Foreign/Disney.yaml",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/Disney.yaml",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/Disney.yaml",
+      "usage_tier": "neutral",
       "tags": [
         "分流",
         "rule_set"
@@ -554,6 +609,7 @@
       "path": "Routing/Foreign/Emby.yaml",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/Emby.yaml",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/Emby.yaml",
+      "usage_tier": "neutral",
       "tags": [
         "分流",
         "rule_set"
@@ -570,6 +626,7 @@
       "path": "Routing/Foreign/Game.yaml",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/Game.yaml",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/Game.yaml",
+      "usage_tier": "neutral",
       "tags": [
         "分流",
         "rule_set"
@@ -586,6 +643,7 @@
       "path": "Routing/Foreign/Github.yaml",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/Github.yaml",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/Github.yaml",
+      "usage_tier": "neutral",
       "tags": [
         "分流",
         "rule_set"
@@ -602,6 +660,7 @@
       "path": "Routing/Foreign/Google.yaml",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/Google.yaml",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/Google.yaml",
+      "usage_tier": "neutral",
       "tags": [
         "分流",
         "rule_set"
@@ -618,6 +677,7 @@
       "path": "Routing/Foreign/Microsoft.yaml",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/Microsoft.yaml",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/Microsoft.yaml",
+      "usage_tier": "neutral",
       "tags": [
         "分流",
         "rule_set"
@@ -634,6 +694,7 @@
       "path": "Routing/Foreign/Netflix.yaml",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/Netflix.yaml",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/Netflix.yaml",
+      "usage_tier": "neutral",
       "tags": [
         "分流",
         "rule_set"
@@ -650,6 +711,7 @@
       "path": "Routing/Foreign/Proxy.yaml",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/Proxy.yaml",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/Proxy.yaml",
+      "usage_tier": "neutral",
       "tags": [
         "分流",
         "rule_set"
@@ -666,6 +728,7 @@
       "path": "Routing/Foreign/ProxyGFW.yaml",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/ProxyGFW.yaml",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/ProxyGFW.yaml",
+      "usage_tier": "neutral",
       "tags": [
         "分流",
         "rule_set"
@@ -682,6 +745,7 @@
       "path": "Routing/Foreign/Spotify.yaml",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/Spotify.yaml",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/Spotify.yaml",
+      "usage_tier": "neutral",
       "tags": [
         "分流",
         "rule_set"
@@ -698,6 +762,7 @@
       "path": "Routing/Foreign/Telegram.yaml",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/Telegram.yaml",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/Telegram.yaml",
+      "usage_tier": "neutral",
       "tags": [
         "分流",
         "rule_set"
@@ -714,6 +779,7 @@
       "path": "Routing/Foreign/TikTok.yaml",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/TikTok.yaml",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/TikTok.yaml",
+      "usage_tier": "neutral",
       "tags": [
         "分流",
         "rule_set"
@@ -730,6 +796,7 @@
       "path": "Routing/Foreign/Twitter.yaml",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/Twitter.yaml",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/Twitter.yaml",
+      "usage_tier": "neutral",
       "tags": [
         "分流",
         "rule_set"
@@ -746,6 +813,7 @@
       "path": "Routing/Foreign/YouTube.yaml",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/YouTube.yaml",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/YouTube.yaml",
+      "usage_tier": "neutral",
       "tags": [
         "分流",
         "rule_set"
@@ -762,6 +830,7 @@
       "path": "Routing/Lan.yaml",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Lan.yaml",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Lan.yaml",
+      "usage_tier": "neutral",
       "tags": [
         "分流",
         "rule_set"
@@ -778,6 +847,7 @@
       "path": "Routing/Privacy-Reject.yaml",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Privacy-Reject.yaml",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Privacy-Reject.yaml",
+      "usage_tier": "neutral",
       "tags": [
         "分流",
         "rule_set"
@@ -794,6 +864,7 @@
       "path": "Routing/Reject-Merged.yaml",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Reject-Merged.yaml",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Reject-Merged.yaml",
+      "usage_tier": "neutral",
       "tags": [
         "分流",
         "rule_set"
@@ -810,6 +881,7 @@
       "path": "Routing/Unbreak.yaml",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Unbreak.yaml",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Unbreak.yaml",
+      "usage_tier": "neutral",
       "tags": [
         "分流",
         "rule_set"
@@ -826,6 +898,7 @@
       "path": "Routing/Zhuifeng.yaml",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Zhuifeng.yaml",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Zhuifeng.yaml",
+      "usage_tier": "neutral",
       "tags": [
         "分流",
         "rule_set"
@@ -842,1674 +915,1899 @@
       "path": "Modules/egern.boxjs.json",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
+      "usage_tier": "daily",
+      "hint": "BoxJS 应用内添加此订阅链接；后端地址用 http://boxjs.com",
       "tags": [
         "BoxJS",
-        "配置"
+        "配置",
+        "默认开启"
       ]
     },
     {
       "id": "boxjs-10000",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "其他",
       "name": "10000",
       "desc": "",
       "icon": "https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/10000.png",
       "path": "Modules/egern.boxjs.json#10000",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/10000",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "其他"
       ]
     },
     {
       "id": "boxjs-10010",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "其他",
       "name": "10010",
       "desc": "",
       "icon": "https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/10010.png",
       "path": "Modules/egern.boxjs.json#10010",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/10010",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "其他"
       ]
     },
     {
       "id": "boxjs-yuheng.4ksj",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "签到 / 抓参",
       "name": "4K世界自动签到",
       "desc": "",
       "icon": "https://raw.githubusercontent.com/Yuheng0101/X/main/Assets/4ksj.png",
       "path": "Modules/egern.boxjs.json#yuheng.4ksj",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/yuheng.4ksj",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "签到 / 抓参"
       ]
     },
     {
       "id": "boxjs-AcFun",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "其他",
       "name": "AcFun",
       "desc": "",
       "icon": "https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/acfun.png",
       "path": "Modules/egern.boxjs.json#AcFun",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/AcFun",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "其他"
       ]
     },
     {
       "id": "boxjs-ApkTw",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "其他",
       "name": "ApkTw",
       "desc": "",
       "icon": "https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/apktw.png",
       "path": "Modules/egern.boxjs.json#ApkTw",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/ApkTw",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "其他"
       ]
     },
     {
       "id": "boxjs-lkBingPoint",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "其他",
       "name": "Bing积分",
       "desc": "",
       "icon": "https://raw.githubusercontent.com/lowking/Scripts/master/doc/icon/bingPoint.png",
       "path": "Modules/egern.boxjs.json#lkBingPoint",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/lkBingPoint",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "其他"
       ]
     },
     {
       "id": "boxjs-WxCode",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "其他",
       "name": "Code Server",
       "desc": "",
       "icon": "https://raw.githubusercontent.com/FoKit/Scripts/main/images/WeChat.png",
       "path": "Modules/egern.boxjs.json#WxCode",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/WxCode",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "其他"
       ]
     },
     {
       "id": "boxjs-yuheng.eshop",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "Yuheng",
       "name": "Eshop打折监控",
       "desc": "",
       "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple112/v4/71/e3/98/71e39886-3a94-fb5d-e15b-45beadd64ac0/AppIcon-1x_U007emarketing-0-5-0-85-220.jpeg/144x144.png",
       "path": "Modules/egern.boxjs.json#yuheng.eshop",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/yuheng.eshop",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "Yuheng"
       ]
     },
     {
       "id": "boxjs-Geocaching",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "其他",
       "name": "Geocaching",
       "desc": "",
       "icon": "https://raw.githubusercontent.com/FoKit/Scripts/main/images/geocaching.png",
       "path": "Modules/egern.boxjs.json#Geocaching",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/Geocaching",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "其他"
       ]
     },
     {
       "id": "boxjs-nodeseek_capture",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "签到 / 抓参",
       "name": "NodeSeek 抓参",
       "desc": "",
       "icon": "https://raw.githubusercontent.com/chavyleung/scripts/master/box/box.png",
       "path": "Modules/egern.boxjs.json#nodeseek_capture",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/nodeseek_capture",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "签到 / 抓参"
       ]
     },
     {
       "id": "boxjs-pp_parking",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "其他",
       "name": "PP 停车",
       "desc": "",
       "icon": "https://raw.githubusercontent.com/FoKit/Scripts/main/images/pp_parking.png",
       "path": "Modules/egern.boxjs.json#pp_parking",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/pp_parking",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "其他"
       ]
     },
     {
       "id": "boxjs-PearVideoSettings",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "播放器",
       "name": "PearVideo 播放器设置",
       "desc": "",
       "icon": "https://raw.githubusercontent.com/sE7En0908/Icon/refs/heads/master/1818.png",
       "path": "Modules/egern.boxjs.json#PearVideoSettings",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/PearVideoSettings",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "播放器"
       ]
     },
     {
       "id": "boxjs-pingme_capture",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "签到 / 抓参",
       "name": "PingMe 抓参",
       "desc": "",
       "icon": "https://raw.githubusercontent.com/chavyleung/scripts/master/box/box.png",
       "path": "Modules/egern.boxjs.json#pingme_capture",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/pingme_capture",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "签到 / 抓参"
       ]
     },
     {
       "id": "boxjs-fmz200_PingMe",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "签到 / 抓参",
       "name": "PingMe每日签到",
       "desc": "",
       "icon": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/PingMe.png",
       "path": "Modules/egern.boxjs.json#fmz200_PingMe",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/fmz200_PingMe",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "签到 / 抓参"
       ]
     },
     {
       "id": "boxjs-lk.qqvip",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "签到 / 抓参",
       "name": "QQ会员成长值签到",
       "desc": "",
       "icon": "https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/qqvip.png",
       "path": "Modules/egern.boxjs.json#lk.qqvip",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/lk.qqvip",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "签到 / 抓参"
       ]
     },
     {
       "id": "boxjs-soulsing_capture",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "签到 / 抓参",
       "name": "Soul 唱歌抓参",
       "desc": "",
       "icon": "https://raw.githubusercontent.com/chavyleung/scripts/master/box/box.png",
       "path": "Modules/egern.boxjs.json#soulsing_capture",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/soulsing_capture",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "签到 / 抓参"
       ]
     },
     {
       "id": "boxjs-fmz200_testflight",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "其他",
       "name": "TF自动加入",
       "desc": "",
       "icon": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/TestFlight_03.png",
       "path": "Modules/egern.boxjs.json#fmz200_testflight",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/fmz200_testflight",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "其他"
       ]
     },
     {
       "id": "boxjs-TestFlightAccount",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "其他",
       "name": "TF账户管理",
       "desc": "",
       "icon": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/TestFlight_01.png",
       "path": "Modules/egern.boxjs.json#TestFlightAccount",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/TestFlightAccount",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "其他"
       ]
     },
     {
       "id": "boxjs-yuheng.testflight.autoJoin",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "Yuheng",
       "name": "TestFlight公测自动加入",
       "desc": "",
       "icon": "https://raw.githubusercontent.com/githubdulong/Script/master/Images/testflight.png",
       "path": "Modules/egern.boxjs.json#yuheng.testflight.autoJoin",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/yuheng.testflight.autoJoin",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "Yuheng"
       ]
     },
     {
       "id": "boxjs-tools",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "其他",
       "name": "Tools",
       "desc": "",
       "icon": "https://raw.githubusercontent.com/FoKit/Scripts/main/images/debug.png",
       "path": "Modules/egern.boxjs.json#tools",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/tools",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "其他"
       ]
     },
     {
       "id": "boxjs-V2EX",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "其他",
       "name": "V2EX",
       "desc": "",
       "icon": "https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/v2ex.png",
       "path": "Modules/egern.boxjs.json#V2EX",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/V2EX",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "其他"
       ]
     },
     {
       "id": "boxjs-WPS",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "其他",
       "name": "WPS",
       "desc": "",
       "icon": "https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/wps.png",
       "path": "Modules/egern.boxjs.json#WPS",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/WPS",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "其他"
       ]
     },
     {
       "id": "boxjs-lk.wifi.assistant",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "其他",
       "name": "Wi-Fi助手（surge专用）",
       "desc": "",
       "icon": "https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/WIFI.png",
       "path": "Modules/egern.boxjs.json#lk.wifi.assistant",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/lk.wifi.assistant",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "其他"
       ]
     },
     {
       "id": "boxjs-fmz200_X_pinned_timelines",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "其他",
       "name": "X(Twitter)顶部标签页",
       "desc": "",
       "icon": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/X.png",
       "path": "Modules/egern.boxjs.json#fmz200_X_pinned_timelines",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/fmz200_X_pinned_timelines",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "其他"
       ]
     },
     {
       "id": "boxjs-chavyleung.bilibili.live",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "其他",
       "name": "bilibili直播",
       "desc": "",
       "icon": "https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/bilibili.png",
       "path": "Modules/egern.boxjs.json#chavyleung.bilibili.live",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/chavyleung.bilibili.live",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "其他"
       ]
     },
     {
       "id": "boxjs-lkHifiniSignIn",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "签到 / 抓参",
       "name": "hifini签到",
       "desc": "",
       "icon": "https://raw.githubusercontent.com/lowking/Scripts/master/doc/icon/hifinisignin-dark.png",
       "path": "Modules/egern.boxjs.json#lkHifiniSignIn",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/lkHifiniSignIn",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "签到 / 抓参"
       ]
     },
     {
       "id": "boxjs-iios_checkin",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "签到 / 抓参",
       "name": "iios 签到",
       "desc": "",
       "icon": "https://raw.githubusercontent.com/chavyleung/scripts/master/box/box.png",
       "path": "Modules/egern.boxjs.json#iios_checkin",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/iios_checkin",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "签到 / 抓参"
       ]
     },
     {
       "id": "boxjs-InsavSettings",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "播放器",
       "name": "insav 播放器设置",
       "desc": "",
       "icon": "https://raw.githubusercontent.com/chavyleung/scripts/master/box/box.png",
       "path": "Modules/egern.boxjs.json#InsavSettings",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/InsavSettings",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "播放器"
       ]
     },
     {
       "id": "boxjs-iMaoTai",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "Yuheng",
       "name": "i茅台",
       "desc": "",
       "icon": "https://raw.githubusercontent.com/FoKit/Scripts/main/images/iMaoTai.png",
       "path": "Modules/egern.boxjs.json#iMaoTai",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/iMaoTai",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "Yuheng"
       ]
     },
     {
       "id": "boxjs-yuheng.imaotai.v1.5",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "Yuheng",
       "name": "i茅台预约",
       "desc": "",
       "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple116/v4/ae/f4/18/aef41811-955e-e6b0-5d23-6763c2eef1ab/AppIcon-0-0-1x_U007emarketing-0-0-0-7-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/144x144.png",
       "path": "Modules/egern.boxjs.json#yuheng.imaotai.v1.5",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/yuheng.imaotai.v1.5",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "Yuheng"
       ]
     },
     {
       "id": "boxjs-fmz200_macat_signin",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "签到 / 抓参",
       "name": "macat.vip网站签到",
       "desc": "",
       "icon": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/Macat.png",
       "path": "Modules/egern.boxjs.json#fmz200_macat_signin",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/fmz200_macat_signin",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "签到 / 抓参"
       ]
     },
     {
       "id": "boxjs-PorntubeSettings",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "播放器",
       "name": "porntube 设置",
       "desc": "",
       "icon": "https://raw.githubusercontent.com/chavyleung/scripts/master/box/box.png",
       "path": "Modules/egern.boxjs.json#PorntubeSettings",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/PorntubeSettings",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "播放器"
       ]
     },
     {
       "id": "boxjs-xjh51_player",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "播放器",
       "name": "xjh51 播放器设置",
       "desc": "",
       "icon": "https://raw.githubusercontent.com/chavyleung/scripts/master/box/box.png",
       "path": "Modules/egern.boxjs.json#xjh51_player",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/xjh51_player",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "播放器"
       ]
     },
     {
       "id": "boxjs-iRingo.Watch",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "iRingo",
       "name": "⌚️ WATCH",
       "desc": "",
       "icon": "https://developer.apple.com/assets/elements/icons/apple-watch-app/apple-watch-app-128x128.png",
       "path": "Modules/egern.boxjs.json#iRingo.Watch",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/iRingo.Watch",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "iRingo"
       ]
     },
     {
       "id": "boxjs-iRingo.TestFlight",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "iRingo",
       "name": "✈ TestFlight",
       "desc": "",
       "icon": "https://developer.apple.com/assets/elements/icons/testflight/testflight-128x128.png",
       "path": "Modules/egern.boxjs.json#iRingo.TestFlight",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/iRingo.TestFlight",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "iRingo"
       ]
     },
     {
       "id": "boxjs-iRingo.Siri",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "iRingo",
       "name": "⭕ Siri",
       "desc": "",
       "icon": "https://developer.apple.com/assets/elements/icons/siri/siri-128x128.png",
       "path": "Modules/egern.boxjs.json#iRingo.Siri",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/iRingo.Siri",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "iRingo"
       ]
     },
     {
       "id": "boxjs-mixc_signin",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "签到 / 抓参",
       "name": "一点万象签到",
       "desc": "",
       "icon": "https://raw.githubusercontent.com/chavyleung/scripts/master/box/box.png",
       "path": "Modules/egern.boxjs.json#mixc_signin",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/mixc_signin",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "签到 / 抓参"
       ]
     },
     {
       "id": "boxjs-china_telecom",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "其他",
       "name": "中国电信",
       "desc": "",
       "icon": "https://raw.githubusercontent.com/FoKit/Scripts/main/images/china_telecom.png",
       "path": "Modules/egern.boxjs.json#china_telecom",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/china_telecom",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "其他"
       ]
     },
     {
       "id": "boxjs-wskey",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "其他",
       "name": "京东WSKEY",
       "desc": "",
       "icon": "https://raw.githubusercontent.com/FoKit/Scripts/main/images/jdjoy.png",
       "path": "Modules/egern.boxjs.json#wskey",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/wskey",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "其他"
       ]
     },
     {
       "id": "boxjs-fmz200_smzdm",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "签到 / 抓参",
       "name": "什么值得买cookie",
       "desc": "",
       "icon": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/smzdm.png",
       "path": "Modules/egern.boxjs.json#fmz200_smzdm",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/fmz200_smzdm",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "签到 / 抓参"
       ]
     },
     {
       "id": "boxjs-fmz200_oil_price",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "其他",
       "name": "今日油价",
       "desc": "",
       "icon": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/oil.png",
       "path": "Modules/egern.boxjs.json#fmz200_oil_price",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/fmz200_oil_price",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "其他"
       ]
     },
     {
       "id": "boxjs-qmkg",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "其他",
       "name": "全民K歌",
       "desc": "",
       "icon": "https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/qmkg.png",
       "path": "Modules/egern.boxjs.json#qmkg",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/qmkg",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "其他"
       ]
     },
     {
       "id": "boxjs-gdoil",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "其他",
       "name": "加油广东",
       "desc": "",
       "icon": "https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/gdoil.png",
       "path": "Modules/egern.boxjs.json#gdoil",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/gdoil",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "其他"
       ]
     },
     {
       "id": "boxjs-yuheng.wuai",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "Yuheng",
       "name": "吾爱破解",
       "desc": "",
       "icon": "https://raw.githubusercontent.com/Yuheng0101/X/main/Assets/52pojie.png",
       "path": "Modules/egern.boxjs.json#yuheng.wuai",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/yuheng.wuai",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "Yuheng"
       ]
     },
     {
       "id": "boxjs-lkBilibiliPrivilegeReceive",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "其他",
       "name": "哔哩哔哩大会员特权领取",
       "desc": "",
       "icon": "https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/bilibili.png",
       "path": "Modules/egern.boxjs.json#lkBilibiliPrivilegeReceive",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/lkBilibiliPrivilegeReceive",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "其他"
       ]
     },
     {
       "id": "boxjs-lkBilibiliBangumiMonitor",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "其他",
       "name": "哔哩哔哩番剧监控",
       "desc": "",
       "icon": "https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/bilibili.png",
       "path": "Modules/egern.boxjs.json#lkBilibiliBangumiMonitor",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/lkBilibiliBangumiMonitor",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "其他"
       ]
     },
     {
       "id": "boxjs-ximalaya",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "其他",
       "name": "喜马拉雅",
       "desc": "",
       "icon": "https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/ximalaya.png",
       "path": "Modules/egern.boxjs.json#ximalaya",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/ximalaya",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "其他"
       ]
     },
     {
       "id": "boxjs-fmz200_chery_account",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "签到 / 抓参",
       "name": "奇瑞汽车App签到",
       "desc": "",
       "icon": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/chery.png",
       "path": "Modules/egern.boxjs.json#fmz200_chery_account",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/fmz200_chery_account",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "签到 / 抓参"
       ]
     },
     {
       "id": "boxjs-yuheng.ncsp",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "Yuheng",
       "name": "奶茶视频 VIP 解锁",
       "desc": "",
       "icon": "https://raw.githubusercontent.com/Yuheng0101/X/main/Assets/ncsp.png",
       "path": "Modules/egern.boxjs.json#yuheng.ncsp",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/yuheng.ncsp",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "Yuheng"
       ]
     },
     {
       "id": "boxjs-QiyouShequSettings",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "播放器",
       "name": "妻友社区 播放器设置",
       "desc": "",
       "icon": "https://raw.githubusercontent.com/chavyleung/scripts/master/box/box.png",
       "path": "Modules/egern.boxjs.json#QiyouShequSettings",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/QiyouShequSettings",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "播放器"
       ]
     },
     {
       "id": "boxjs-string_replace",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "其他",
       "name": "字符串替换",
       "desc": "",
       "icon": "https://raw.githubusercontent.com/FoKit/Scripts/main/images/default.png",
       "path": "Modules/egern.boxjs.json#string_replace",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/string_replace",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "其他"
       ]
     },
     {
       "id": "boxjs-yuheng.mi.step",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "Yuheng",
       "name": "小米刷步",
       "desc": "",
       "icon": "https://raw.githubusercontent.com/Yuheng0101/X/main/Tasks/mi/mini.png",
       "path": "Modules/egern.boxjs.json#yuheng.mi.step",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/yuheng.mi.step",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "Yuheng"
       ]
     },
     {
       "id": "boxjs-MiSport",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "其他",
       "name": "小米运动",
       "desc": "",
       "icon": "https://raw.githubusercontent.com/FoKit/Scripts/main/images/mi_sport.png",
       "path": "Modules/egern.boxjs.json#MiSport",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/MiSport",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "其他"
       ]
     },
     {
       "id": "boxjs-fmz200_xiaohongshu",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "其他",
       "name": "小红书功能增强",
       "desc": "",
       "icon": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/xiaohongshu.png",
       "path": "Modules/egern.boxjs.json#fmz200_xiaohongshu",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/fmz200_xiaohongshu",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "其他"
       ]
     },
     {
       "id": "boxjs-yuheng.javbus",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "签到 / 抓参",
       "name": "巴士论坛签到",
       "desc": "",
       "icon": "https://raw.githubusercontent.com/Yuheng0101/X/main/Assets/bus.png",
       "path": "Modules/egern.boxjs.json#yuheng.javbus",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/yuheng.javbus",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "签到 / 抓参"
       ]
     },
     {
       "id": "boxjs-jhsh",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "其他",
       "name": "建行生活",
       "desc": "",
       "icon": "https://raw.githubusercontent.com/FoKit/Scripts/main/images/jhsh.png",
       "path": "Modules/egern.boxjs.json#jhsh",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/jhsh",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "其他"
       ]
     },
     {
       "id": "boxjs-fmz200_CCB_life",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "签到 / 抓参",
       "name": "建行生活签到",
       "desc": "",
       "icon": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/ccbLife.jpg",
       "path": "Modules/egern.boxjs.json#fmz200_CCB_life",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/fmz200_CCB_life",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "签到 / 抓参"
       ]
     },
     {
       "id": "boxjs-UnblockURLinWeChat",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "工具",
       "name": "微信跳过中间界面",
       "desc": "",
       "icon": "https://raw.githubusercontent.com/chavyleung/scripts/master/box/box.png",
       "path": "Modules/egern.boxjs.json#UnblockURLinWeChat",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/UnblockURLinWeChat",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "工具"
       ]
     },
     {
       "id": "boxjs-fmz200_weibo_token",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "签到 / 抓参",
       "name": "微博每日签到token",
       "desc": "",
       "icon": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/Weibo-00.png",
       "path": "Modules/egern.boxjs.json#fmz200_weibo_token",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/fmz200_weibo_token",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "签到 / 抓参"
       ]
     },
     {
       "id": "boxjs-weibotalk",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "其他",
       "name": "微博超话",
       "desc": "",
       "icon": "https://raw.githubusercontent.com/Orz-3/mini/master/weibo.png",
       "path": "Modules/egern.boxjs.json#weibotalk",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/weibotalk",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "其他"
       ]
     },
     {
       "id": "boxjs-fmz200_weibo_talk",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "签到 / 抓参",
       "name": "微博超话签到",
       "desc": "",
       "icon": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/WeiboTalk.png",
       "path": "Modules/egern.boxjs.json#fmz200_weibo_talk",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/fmz200_weibo_talk",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "签到 / 抓参"
       ]
     },
     {
       "id": "boxjs-fmz200_ks_fruit",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "其他",
       "name": "快手果园",
       "desc": "",
       "icon": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/kuaishou.png",
       "path": "Modules/egern.boxjs.json#fmz200_ks_fruit",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/fmz200_ks_fruit",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "其他"
       ]
     },
     {
       "id": "boxjs-fmz200_pdd_fruit",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "其他",
       "name": "拼多多果园token",
       "desc": "",
       "icon": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/pinduoduo.png",
       "path": "Modules/egern.boxjs.json#fmz200_pdd_fruit",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/fmz200_pdd_fruit",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "其他"
       ]
     },
     {
       "id": "boxjs-yuheng.moyu",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "Yuheng",
       "name": "摸鱼",
       "desc": "",
       "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/67/04/ff/6704ff4c-b49b-de91-70ac-201c62d5296f/AppIcon-0-0-1x_U007emarketing-0-0-0-5-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/144x144bb.png",
       "path": "Modules/egern.boxjs.json#yuheng.moyu",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/yuheng.moyu",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "Yuheng"
       ]
     },
     {
       "id": "boxjs-ql",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "其他",
       "name": "数据同步",
       "desc": "",
       "icon": "https://raw.githubusercontent.com/FoKit/Scripts/main/images/sync.png",
       "path": "Modules/egern.boxjs.json#ql",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/ql",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "其他"
       ]
     },
     {
       "id": "boxjs-fmz200_douyuYubaSign",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "签到 / 抓参",
       "name": "斗鱼鱼吧签到",
       "desc": "",
       "icon": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/douyu.png",
       "path": "Modules/egern.boxjs.json#fmz200_douyuYubaSign",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/fmz200_douyuYubaSign",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "签到 / 抓参"
       ]
     },
     {
       "id": "boxjs-weibo",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "其他",
       "name": "新浪微博",
       "desc": "",
       "icon": "https://cdn.jsdelivr.net/gh/Orz-3/mini@master/Alpha/weibo.png",
       "path": "Modules/egern.boxjs.json#weibo",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/weibo",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "其他"
       ]
     },
     {
       "id": "boxjs-everphoto",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "其他",
       "name": "时光相册",
       "desc": "",
       "icon": "https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/everphoto.png",
       "path": "Modules/egern.boxjs.json#everphoto",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/everphoto",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "其他"
       ]
     },
     {
       "id": "boxjs-fmz200_xxyx_token",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "其他",
       "name": "晓晓优选token",
       "desc": "",
       "icon": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/xxyx_01.png",
       "path": "Modules/egern.boxjs.json#fmz200_xxyx_token",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/fmz200_xxyx_token",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "其他"
       ]
     },
     {
       "id": "boxjs-zxhc",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "其他",
       "name": "智行火车票",
       "desc": "",
       "icon": "https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/zxhc.png",
       "path": "Modules/egern.boxjs.json#zxhc",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/zxhc",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "其他"
       ]
     },
     {
       "id": "boxjs-lkPuPuCheckIn",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "签到 / 抓参",
       "name": "朴朴签到",
       "desc": "",
       "icon": "https://raw.githubusercontent.com/lowking/Scripts/master/doc/icon/pupua.png",
       "path": "Modules/egern.boxjs.json#lkPuPuCheckIn",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/lkPuPuCheckIn",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "签到 / 抓参"
       ]
     },
     {
       "id": "boxjs-laichong_capture",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "签到 / 抓参",
       "name": "来充抓参",
       "desc": "",
       "icon": "https://raw.githubusercontent.com/chavyleung/scripts/master/box/box.png",
       "path": "Modules/egern.boxjs.json#laichong_capture",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/laichong_capture",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "签到 / 抓参"
       ]
     },
     {
       "id": "boxjs-yuheng.1024",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "Yuheng",
       "name": "某榴最新技術推送",
       "desc": "",
       "icon": "https://raw.githubusercontent.com/Yuheng0101/X/main/Assets/1024.png",
       "path": "Modules/egern.boxjs.json#yuheng.1024",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/yuheng.1024",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "Yuheng"
       ]
     },
     {
       "id": "boxjs-fandeng",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "其他",
       "name": "樊登读书",
       "desc": "",
       "icon": "https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/fandeng.png",
       "path": "Modules/egern.boxjs.json#fandeng",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/fandeng",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "其他"
       ]
     },
     {
       "id": "boxjs-fmz200_wmbwc_data",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "签到 / 抓参",
       "name": "歪麦霸王餐签到",
       "desc": "",
       "icon": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/wmbwc.png",
       "path": "Modules/egern.boxjs.json#fmz200_wmbwc_data",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/fmz200_wmbwc_data",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "签到 / 抓参"
       ]
     },
     {
       "id": "boxjs-yuheng.60s",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "Yuheng",
       "name": "每天60秒读懂世界",
       "desc": "",
       "icon": "https://raw.githubusercontent.com/Yuheng0101/X/main/Assets/60s.png",
       "path": "Modules/egern.boxjs.json#yuheng.60s",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/yuheng.60s",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "Yuheng"
       ]
     },
     {
       "id": "boxjs-yuheng.bdyy",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "签到 / 抓参",
       "name": "波点音乐自动签到",
       "desc": "",
       "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/05/b9/57/05b9577c-3773-cd2b-5a99-49c0dc3f331d/AppIcon-0-0-1x_U007emarketing-0-0-0-7-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/144x144.png",
       "path": "Modules/egern.boxjs.json#yuheng.bdyy",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/yuheng.bdyy",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "签到 / 抓参"
       ]
     },
     {
       "id": "boxjs-fmz200_didi_fruit",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "其他",
       "name": "滴滴橙心果园",
       "desc": "",
       "icon": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/didi.png",
       "path": "Modules/egern.boxjs.json#fmz200_didi_fruit",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/fmz200_didi_fruit",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "其他"
       ]
     },
     {
       "id": "boxjs-yuheng.top",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "Yuheng",
       "name": "热搜聚合",
       "desc": "",
       "icon": "https://is3-ssl.mzstatic.com/image/thumb/Purple126/v4/9a/d8/77/9ad877c6-e3d7-61a1-3911-5036239a41a6/AppIcon-1x_U007emarketing-0-7-0-0-sRGB-85-220.png/144x144bb.png",
       "path": "Modules/egern.boxjs.json#yuheng.top",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/yuheng.top",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "Yuheng"
       ]
     },
     {
       "id": "boxjs-BAIDU",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "签到 / 抓参",
       "name": "百度签到",
       "desc": "",
       "icon": "https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/baidu.png",
       "path": "Modules/egern.boxjs.json#BAIDU",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/BAIDU",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "签到 / 抓参"
       ]
     },
     {
       "id": "boxjs-10086_coupons",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "其他",
       "name": "移动话费券",
       "desc": "",
       "icon": "https://raw.githubusercontent.com/FoKit/Scripts/main/images/10086.png",
       "path": "Modules/egern.boxjs.json#10086_coupons",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/10086_coupons",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "其他"
       ]
     },
     {
       "id": "boxjs-yuheng.cache",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "Yuheng",
       "name": "第三方库缓存查看",
       "desc": "",
       "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/0d/31/0b/0d310b25-aa91-99c5-b23b-af1e8753c4d0/AppIcon-0-1x_U007emarketing-0-7-0-85-220.png/144x144.png",
       "path": "Modules/egern.boxjs.json#yuheng.cache",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/yuheng.cache",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "Yuheng"
       ]
     },
     {
       "id": "boxjs-yuheng.95598.web",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "Yuheng",
       "name": "网上国网",
       "desc": "",
       "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple116/v4/83/d8/8a/83d88a92-5a4d-7a2f-118c-80d795e7a9f6/AppIcon-0-0-1x_U007emarketing-0-5-0-0-sRGB-85-220.png/144x144.png",
       "path": "Modules/egern.boxjs.json#yuheng.95598.web",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/yuheng.95598.web",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "Yuheng"
       ]
     },
     {
       "id": "boxjs-yuheng.wsgw",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "Yuheng",
       "name": "网上国网小程序",
       "desc": "",
       "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple116/v4/83/d8/8a/83d88a92-5a4d-7a2f-118c-80d795e7a9f6/AppIcon-0-0-1x_U007emarketing-0-5-0-0-sRGB-85-220.png/144x144.png",
       "path": "Modules/egern.boxjs.json#yuheng.wsgw",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/yuheng.wsgw",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "Yuheng"
       ]
     },
     {
       "id": "boxjs-yanxuan_signin",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "签到 / 抓参",
       "name": "网易严选签到",
       "desc": "",
       "icon": "https://raw.githubusercontent.com/chavyleung/scripts/master/box/box.png",
       "path": "Modules/egern.boxjs.json#yanxuan_signin",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/yanxuan_signin",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "签到 / 抓参"
       ]
     },
     {
       "id": "boxjs-NeteaseMusic",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "其他",
       "name": "网易云音乐",
       "desc": "",
       "icon": "https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/neteasemusic.png",
       "path": "Modules/egern.boxjs.json#NeteaseMusic",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/NeteaseMusic",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "其他"
       ]
     },
     {
       "id": "boxjs-NeteaseNews",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "其他",
       "name": "网易新闻",
       "desc": "",
       "icon": "https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/neteasenews.png",
       "path": "Modules/egern.boxjs.json#NeteaseNews",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/NeteaseNews",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "其他"
       ]
     },
     {
       "id": "boxjs-fmz200_mt_token",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "其他",
       "name": "美团token",
       "desc": "",
       "icon": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/meituan.png",
       "path": "Modules/egern.boxjs.json#fmz200_mt_token",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/fmz200_mt_token",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "其他"
       ]
     },
     {
       "id": "boxjs-yuheng.meitu",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "Yuheng",
       "name": "美图鉴赏",
       "desc": "",
       "icon": "https://raw.githubusercontent.com/Yuheng0101/X/main/Assets/meitu.png",
       "path": "Modules/egern.boxjs.json#yuheng.meitu",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/yuheng.meitu",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "Yuheng"
       ]
     },
     {
       "id": "boxjs-videoqq",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "播放器",
       "name": "腾讯视频",
       "desc": "",
       "icon": "https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/videoqq.png",
       "path": "Modules/egern.boxjs.json#videoqq",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/videoqq",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "播放器"
       ]
     },
     {
       "id": "boxjs-chavyleung.mgtv",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "其他",
       "name": "芒果TV",
       "desc": "",
       "icon": "https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/mgtv.png",
       "path": "Modules/egern.boxjs.json#chavyleung.mgtv",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/chavyleung.mgtv",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "其他"
       ]
     },
     {
       "id": "boxjs-huachenghui",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "其他",
       "name": "花城汇",
       "desc": "",
       "icon": "https://raw.githubusercontent.com/FoKit/Scripts/main/images/hch.png",
       "path": "Modules/egern.boxjs.json#huachenghui",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/huachenghui",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "其他"
       ]
     },
     {
       "id": "boxjs-chavyleung.suning",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "其他",
       "name": "苏宁易购",
       "desc": "",
       "icon": "https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/suning.png",
       "path": "Modules/egern.boxjs.json#chavyleung.suning",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/chavyleung.suning",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "其他"
       ]
     },
     {
       "id": "boxjs-yuheng.huluwa",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "Yuheng",
       "name": "葫芦娃预约",
       "desc": "",
       "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple116/v4/70/a4/56/70a456c9-4df9-3bdb-03b6-ecf99f13e7c1/AppIcon-1x_U007epad-0-10-0-85-220.png/144x144bb.png",
       "path": "Modules/egern.boxjs.json#yuheng.huluwa",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/yuheng.huluwa",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "Yuheng"
       ]
     },
     {
       "id": "boxjs-yuheng.douban",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "Yuheng",
       "name": "豆瓣电影日历",
       "desc": "",
       "icon": "https://is3-ssl.mzstatic.com/image/thumb/Purple126/v4/90/5d/f8/905df82a-0e2e-5a2c-2be6-cc690fb0bec0/AppIcon-0-0-1x_U007emarketing-0-0-0-6-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/144x144bb.png",
       "path": "Modules/egern.boxjs.json#yuheng.douban",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/yuheng.douban",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "Yuheng"
       ]
     },
     {
       "id": "boxjs-buy_helper",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "其他",
       "name": "购物助手",
       "desc": "",
       "icon": "https://raw.githubusercontent.com/FoKit/Scripts/main/images/jingfen.png",
       "path": "Modules/egern.boxjs.json#buy_helper",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/buy_helper",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "其他"
       ]
     },
     {
       "id": "boxjs-yuheng.qdreader",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "签到 / 抓参",
       "name": "起点读书自动签到",
       "desc": "",
       "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/97/40/5e/97405e49-87bb-3f0a-bf3a-91cf8fdf99a0/AppIcon-0-0-1x_U007epad-0-1-0-0-sRGB-GLES2_U002c0-85-220.png/144x144.png",
       "path": "Modules/egern.boxjs.json#yuheng.qdreader",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/yuheng.qdreader",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "签到 / 抓参"
       ]
     },
     {
       "id": "boxjs-video",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "播放器",
       "name": "选择你喜欢的播放器",
       "desc": "",
       "icon": "https://raw.githubusercontent.com/Yu9191/-/main/dingdangmao.jpg",
       "path": "Modules/egern.boxjs.json#video",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/video",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "播放器"
       ]
     },
     {
       "id": "boxjs-yuheng.kuwo",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "Yuheng",
       "name": "酷我音乐",
       "desc": "",
       "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/4c/a1/f9/4ca1f959-ec03-5080-c142-c059a6ed844c/AppIcon-1x_U007emarketing-0-7-0-0-sRGB-85-220-0.png/144x144.png",
       "path": "Modules/egern.boxjs.json#yuheng.kuwo",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/yuheng.kuwo",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "Yuheng"
       ]
     },
     {
       "id": "boxjs-fmz200_aliyun",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "签到 / 抓参",
       "name": "阿里云盘cookie",
       "desc": "",
       "icon": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/AliYunDrive.png",
       "path": "Modules/egern.boxjs.json#fmz200_aliyun",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/fmz200_aliyun",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "签到 / 抓参"
       ]
     },
     {
       "id": "boxjs-lkAliYunPanCheckIn",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "签到 / 抓参",
       "name": "阿里云盘签到",
       "desc": "",
       "icon": "https://raw.githubusercontent.com/lowking/Scripts/master/doc/icon/aliYunPana.png",
       "path": "Modules/egern.boxjs.json#lkAliYunPanCheckIn",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/lkAliYunPanCheckIn",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "签到 / 抓参"
       ]
     },
     {
       "id": "boxjs-ql_sync",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "其他",
       "name": "青龙同步 BoxJS",
       "desc": "在 BoxJS「我的 → 数据」中编辑 #ql_sync_keys（逗号分隔键名）与 ql_sync_notify。",
       "icon": "https://raw.githubusercontent.com/chavyleung/scripts/master/box/box.png",
       "path": "Modules/egern.boxjs.json#ql_sync",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/ql_sync",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "其他"
       ]
     },
     {
       "id": "boxjs-yuheng.qinglong",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "Yuheng",
       "name": "青龙面板",
       "desc": "",
       "icon": "https://raw.githubusercontent.com/Yuheng0101/X/main/Assets/ql.png",
       "path": "Modules/egern.boxjs.json#yuheng.qinglong",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/yuheng.qinglong",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "Yuheng"
       ]
     },
     {
       "id": "boxjs-sfexpress",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "其他",
       "name": "顺丰速运",
       "desc": "",
       "icon": "https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/sfexpress.png",
       "path": "Modules/egern.boxjs.json#sfexpress",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/sfexpress",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "其他"
       ]
     },
     {
       "id": "boxjs-yuheng.javday",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "Yuheng",
       "name": "𝐉𝐀𝐕𝐃𝐚𝐲每日推荐",
       "desc": "",
       "icon": "https://raw.githubusercontent.com/Yuheng0101/X/main/Assets/javday.png",
       "path": "Modules/egern.boxjs.json#yuheng.javday",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/yuheng.javday",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "Yuheng"
       ]
     },
     {
       "id": "boxjs-yuheng.zippo",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "签到 / 抓参",
       "name": "𝐙𝐈𝐏𝐏𝐎会员中心签到",
       "desc": "",
       "icon": "https://raw.githubusercontent.com/Yuheng0101/X/main/Assets/zippo.jpg",
       "path": "Modules/egern.boxjs.json#yuheng.zippo",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/yuheng.zippo",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "签到 / 抓参"
       ]
     },
     {
       "id": "boxjs-iRingo.WeatherKit",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "iRingo",
       "name": "🌤 WeatherKit",
       "desc": "",
       "icon": "https://developer.apple.com/assets/elements/icons/weatherkit/weatherkit-128x128.png",
       "path": "Modules/egern.boxjs.json#iRingo.WeatherKit",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/iRingo.WeatherKit",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "iRingo"
       ]
     },
     {
       "id": "boxjs-iRingo.LocationService",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "iRingo",
       "name": "📍 定位服务",
       "desc": "",
       "icon": "https://support.apple.com/library/content/dam/edam/applecare/images/en_US/iOS/ios15-location-arrow-status-icon.png",
       "path": "Modules/egern.boxjs.json#iRingo.LocationService",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/iRingo.LocationService",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "iRingo"
       ]
     },
     {
       "id": "boxjs-iRingo.News",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "iRingo",
       "name": "📰 News",
       "desc": "",
       "icon": "https://developer.apple.com/assets/elements/icons/news/news-128x128.png",
       "path": "Modules/egern.boxjs.json#iRingo.News",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/iRingo.News",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "iRingo"
       ]
     },
     {
       "id": "boxjs-iRingo.TV",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "iRingo",
       "name": "📺 TV",
       "desc": "",
       "icon": "https://developer.apple.com/assets/elements/icons/apple-tv/apple-tv-128x128.png",
       "path": "Modules/egern.boxjs.json#iRingo.TV",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/iRingo.TV",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "iRingo"
       ]
     },
     {
       "id": "boxjs-iRingo.Maps",
       "kind": "boxjs-app",
       "category": "boxjs",
-      "group": "应用",
+      "group": "iRingo",
       "name": "🗺️ 地图",
       "desc": "",
       "icon": "https://developer.apple.com/assets/elements/icons/maps/maps-128x128.png",
       "path": "Modules/egern.boxjs.json#iRingo.Maps",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "http://boxjs.com/#/app/iRingo.Maps",
+      "usage_tier": "optional",
       "tags": [
-        "BoxJS"
+        "BoxJS",
+        "iRingo"
       ]
     },
     {
@@ -2524,9 +2822,13 @@
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Scripts/PingMe-capture.js",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/main/Scripts/PingMe-capture.js",
       "cron": "",
+      "usage_tier": "optional",
+      "scripting_yaml": "# 粘贴到 Egern.yaml 的 scriptings 段\nscriptings:\n  # PingMe-capture — 请自行填写 cron 或改用 BoxJS 配置\n  - name: PingMe-capture\n    type: schedule\n    cron: \"0 8 * * *\"\n    script: https://raw.githubusercontent.com/oo226/egern-config/main/Scripts/PingMe-capture.js\n    enabled: true\n",
+      "hint": "",
       "tags": [
         "脚本",
-        "工具"
+        "工具",
+        "按需开启"
       ]
     },
     {
@@ -2541,9 +2843,13 @@
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Scripts/PingMe-signin.js",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/main/Scripts/PingMe-signin.js",
       "cron": "",
+      "usage_tier": "optional",
+      "scripting_yaml": "# 粘贴到 Egern.yaml 的 scriptings 段\nscriptings:\n  # PingMe-signin — 请自行填写 cron 或改用 BoxJS 配置\n  - name: PingMe-signin\n    type: schedule\n    cron: \"0 8 * * *\"\n    script: https://raw.githubusercontent.com/oo226/egern-config/main/Scripts/PingMe-signin.js\n    enabled: true\n",
+      "hint": "先开 Cookie 合集抓参（如需），再粘贴下方 YAML 到 Egern scriptings 段",
       "tags": [
         "脚本",
-        "签到"
+        "签到",
+        "按需开启"
       ]
     },
     {
@@ -2558,9 +2864,13 @@
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Scripts/PingMe.js",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/main/Scripts/PingMe.js",
       "cron": "30 8,20 * * *",
+      "usage_tier": "optional",
+      "scripting_yaml": "# 粘贴到 Egern.yaml 的 scriptings 段\nscriptings:\n  - name: PingMe\n    type: http_request\n    match: ^https://api\\.pingmeapp\\.net/app/queryBalanceAndBonus\n    script: https://raw.githubusercontent.com/oo226/egern-config/main/Scripts/PingMe.js\n    enabled: true\n",
+      "hint": "先开 Cookie 合集抓参（如需），再粘贴下方 YAML 到 Egern scriptings 段",
       "tags": [
         "脚本",
-        "签到"
+        "签到",
+        "按需开启"
       ]
     },
     {
@@ -2575,9 +2885,13 @@
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Scripts/iios_checkin.js",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/main/Scripts/iios_checkin.js",
       "cron": "30 8,20 * * *",
+      "usage_tier": "optional",
+      "scripting_yaml": "# 粘贴到 Egern.yaml 的 scriptings 段\nscriptings:\n  - name: iios\n    type: schedule\n    cron: \"30 8,20 * * *\"\n    script: https://raw.githubusercontent.com/oo226/egern-config/main/Scripts/iios_checkin.js\n    enabled: true\n",
+      "hint": "先开 Cookie 合集抓参（如需），再粘贴下方 YAML 到 Egern scriptings 段",
       "tags": [
         "脚本",
-        "签到"
+        "签到",
+        "按需开启"
       ]
     },
     {
@@ -2592,9 +2906,13 @@
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Scripts/mixc_signin.js",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/main/Scripts/mixc_signin.js",
       "cron": "1 0 * * *",
+      "usage_tier": "optional",
+      "scripting_yaml": "# 粘贴到 Egern.yaml 的 scriptings 段\nscriptings:\n  - name: 一点万象\n    type: schedule\n    cron: \"1 0 * * *\"\n    script: https://raw.githubusercontent.com/oo226/egern-config/main/Scripts/mixc_signin.js\n    enabled: true\n",
+      "hint": "先开 Cookie 合集抓参（如需），再粘贴下方 YAML 到 Egern scriptings 段",
       "tags": [
         "脚本",
-        "签到"
+        "签到",
+        "按需开启"
       ]
     },
     {
@@ -2609,9 +2927,13 @@
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Scripts/Nodeseek_NsCheckin.js",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/main/Scripts/Nodeseek_NsCheckin.js",
       "cron": "1 0 * * *",
+      "usage_tier": "optional",
+      "scripting_yaml": "# 粘贴到 Egern.yaml 的 scriptings 段\nscriptings:\n  - name: NodeSeek\n    type: schedule\n    cron: \"1 0 * * *\"\n    script: https://raw.githubusercontent.com/oo226/egern-config/main/Scripts/Nodeseek_NsCheckin.js\n    enabled: true\n",
+      "hint": "先开 Cookie 合集抓参（如需），再粘贴下方 YAML 到 Egern scriptings 段",
       "tags": [
         "脚本",
-        "签到"
+        "签到",
+        "按需开启"
       ]
     },
     {
@@ -2626,9 +2948,13 @@
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Scripts/LaiChong.js",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/main/Scripts/LaiChong.js",
       "cron": "50 9 * * *",
+      "usage_tier": "optional",
+      "scripting_yaml": "# 粘贴到 Egern.yaml 的 scriptings 段\nscriptings:\n  - name: 来充\n    type: schedule\n    cron: \"50 9 * * *\"\n    script: https://raw.githubusercontent.com/oo226/egern-config/main/Scripts/LaiChong.js\n    enabled: true\n",
+      "hint": "先开 Cookie 合集抓参（如需），再粘贴下方 YAML 到 Egern scriptings 段",
       "tags": [
         "脚本",
-        "签到"
+        "签到",
+        "按需开启"
       ]
     },
     {
@@ -2643,9 +2969,13 @@
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Scripts/SoulSing.js",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/main/Scripts/SoulSing.js",
       "cron": "50 9 * * *",
+      "usage_tier": "optional",
+      "scripting_yaml": "# 粘贴到 Egern.yaml 的 scriptings 段\nscriptings:\n  - name: Soul唱歌\n    type: schedule\n    cron: \"50 9 * * *\"\n    script: https://raw.githubusercontent.com/oo226/egern-config/main/Scripts/SoulSing.js\n    enabled: true\n",
+      "hint": "先开 Cookie 合集抓参（如需），再粘贴下方 YAML 到 Egern scriptings 段",
       "tags": [
         "脚本",
-        "签到"
+        "签到",
+        "按需开启"
       ]
     },
     {
@@ -2660,9 +2990,13 @@
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Scripts/SLY.js",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/main/Scripts/SLY.js",
       "cron": "1 0 * * *",
+      "usage_tier": "optional",
+      "scripting_yaml": "# 粘贴到 Egern.yaml 的 scriptings 段\nscriptings:\n  - name: 岁乐游\n    type: schedule\n    cron: \"1 0 * * *\"\n    script: https://raw.githubusercontent.com/oo226/egern-config/main/Scripts/SLY.js\n    enabled: true\n",
+      "hint": "先开 Cookie 合集抓参（如需），再粘贴下方 YAML 到 Egern scriptings 段",
       "tags": [
         "脚本",
-        "签到"
+        "签到",
+        "按需开启"
       ]
     },
     {
@@ -2677,9 +3011,13 @@
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Scripts/qdreader.js",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/main/Scripts/qdreader.js",
       "cron": "11 2 * * *",
+      "usage_tier": "optional",
+      "scripting_yaml": "# 粘贴到 Egern.yaml 的 scriptings 段\nscriptings:\n  - name: 起点读书\n    type: schedule\n    cron: \"11 2 * * *\"\n    script: https://raw.githubusercontent.com/oo226/egern-config/main/Scripts/qdreader.js\n    enabled: true\n",
+      "hint": "先开 Cookie 合集抓参（如需），再粘贴下方 YAML 到 Egern scriptings 段",
       "tags": [
         "脚本",
-        "签到"
+        "签到",
+        "按需开启"
       ]
     },
     {
@@ -2694,9 +3032,13 @@
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Scripts/dianxin10000.js",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/main/Scripts/dianxin10000.js",
       "cron": "0 8 * * *",
+      "usage_tier": "optional",
+      "scripting_yaml": "# 粘贴到 Egern.yaml 的 scriptings 段\nscriptings:\n  - name: 电信营业厅\n    type: schedule\n    cron: \"0 8 * * *\"\n    script: https://raw.githubusercontent.com/oo226/egern-config/main/Scripts/dianxin10000.js\n    enabled: true\n",
+      "hint": "先开 Cookie 合集抓参（如需），再粘贴下方 YAML 到 Egern scriptings 段",
       "tags": [
         "脚本",
-        "签到"
+        "签到",
+        "按需开启"
       ]
     },
     {
@@ -2711,9 +3053,13 @@
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Scripts/tieba.js",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/main/Scripts/tieba.js",
       "cron": "0 8 * * *",
+      "usage_tier": "optional",
+      "scripting_yaml": "# 粘贴到 Egern.yaml 的 scriptings 段\nscriptings:\n  - name: 贴吧\n    type: schedule\n    cron: \"0 8 * * *\"\n    script: https://raw.githubusercontent.com/oo226/egern-config/main/Scripts/tieba.js\n    enabled: true\n",
+      "hint": "先开 Cookie 合集抓参（如需），再粘贴下方 YAML 到 Egern scriptings 段",
       "tags": [
         "脚本",
-        "签到"
+        "签到",
+        "按需开启"
       ]
     },
     {
@@ -2728,9 +3074,13 @@
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Scripts/sfexpress.js",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/main/Scripts/sfexpress.js",
       "cron": "0 9 * * *",
+      "usage_tier": "optional",
+      "scripting_yaml": "# 粘贴到 Egern.yaml 的 scriptings 段\nscriptings:\n  - name: 顺丰\n    type: schedule\n    cron: \"0 9 * * *\"\n    script: https://raw.githubusercontent.com/oo226/egern-config/main/Scripts/sfexpress.js\n    enabled: true\n",
+      "hint": "先开 Cookie 合集抓参（如需），再粘贴下方 YAML 到 Egern scriptings 段",
       "tags": [
         "脚本",
-        "签到"
+        "签到",
+        "按需开启"
       ]
     },
     {
@@ -2745,9 +3095,13 @@
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Scripts/yanxuan.js",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/main/Scripts/yanxuan.js",
       "cron": "0 8 * * *",
+      "usage_tier": "optional",
+      "scripting_yaml": "# 粘贴到 Egern.yaml 的 scriptings 段\nscriptings:\n  - name: 网易严选\n    type: schedule\n    cron: \"0 8 * * *\"\n    script: https://raw.githubusercontent.com/oo226/egern-config/main/Scripts/yanxuan.js\n    enabled: true\n",
+      "hint": "先开 Cookie 合集抓参（如需），再粘贴下方 YAML 到 Egern scriptings 段",
       "tags": [
         "脚本",
-        "签到"
+        "签到",
+        "按需开启"
       ]
     },
     {
@@ -2762,9 +3116,13 @@
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Scripts/ximalaya.js",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/main/Scripts/ximalaya.js",
       "cron": "0 8 * * *",
+      "usage_tier": "optional",
+      "scripting_yaml": "# 粘贴到 Egern.yaml 的 scriptings 段\nscriptings:\n  - name: 喜马拉雅\n    type: schedule\n    cron: \"0 8 * * *\"\n    script: https://raw.githubusercontent.com/oo226/egern-config/main/Scripts/ximalaya.js\n    enabled: true\n",
+      "hint": "先开 Cookie 合集抓参（如需），再粘贴下方 YAML 到 Egern scriptings 段",
       "tags": [
         "脚本",
-        "签到"
+        "签到",
+        "按需开启"
       ]
     },
     {
@@ -2778,9 +3136,12 @@
       "path": "Widgets/IBL3ND/2026FIFA-Widget.js",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/2026FIFA-Widget.js",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/2026FIFA-Widget.js",
+      "usage_tier": "optional",
+      "hint": "Oil 等常用：写入 Egern.yaml → widgets，不要写进 scriptings",
       "tags": [
         "小组件",
-        "Widget"
+        "Widget",
+        "按需开启"
       ]
     },
     {
@@ -2794,9 +3155,12 @@
       "path": "Widgets/IBL3ND/AAA.js",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/AAA.js",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/AAA.js",
+      "usage_tier": "optional",
+      "hint": "Oil 等常用：写入 Egern.yaml → widgets，不要写进 scriptings",
       "tags": [
         "小组件",
-        "Widget"
+        "Widget",
+        "按需开启"
       ]
     },
     {
@@ -2810,9 +3174,12 @@
       "path": "Widgets/IBL3ND/Almanac_Widget.JS",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/Almanac_Widget.JS",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/Almanac_Widget.JS",
+      "usage_tier": "optional",
+      "hint": "Oil 等常用：写入 Egern.yaml → widgets，不要写进 scriptings",
       "tags": [
         "小组件",
-        "Widget"
+        "Widget",
+        "按需开启"
       ]
     },
     {
@@ -2826,9 +3193,12 @@
       "path": "Widgets/IBL3ND/App_Store_Widget.JS",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/App_Store_Widget.JS",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/App_Store_Widget.JS",
+      "usage_tier": "optional",
+      "hint": "Oil 等常用：写入 Egern.yaml → widgets，不要写进 scriptings",
       "tags": [
         "小组件",
-        "Widget"
+        "Widget",
+        "按需开启"
       ]
     },
     {
@@ -2842,9 +3212,12 @@
       "path": "Widgets/IBL3ND/CBN_Widget.JS",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/CBN_Widget.JS",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/CBN_Widget.JS",
+      "usage_tier": "optional",
+      "hint": "Oil 等常用：写入 Egern.yaml → widgets，不要写进 scriptings",
       "tags": [
         "小组件",
-        "Widget"
+        "Widget",
+        "按需开启"
       ]
     },
     {
@@ -2858,9 +3231,12 @@
       "path": "Widgets/IBL3ND/CLS_Widget.JS",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/CLS_Widget.JS",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/CLS_Widget.JS",
+      "usage_tier": "optional",
+      "hint": "Oil 等常用：写入 Egern.yaml → widgets，不要写进 scriptings",
       "tags": [
         "小组件",
-        "Widget"
+        "Widget",
+        "按需开启"
       ]
     },
     {
@@ -2874,9 +3250,12 @@
       "path": "Widgets/IBL3ND/CN_Cal.JS",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/CN_Cal.JS",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/CN_Cal.JS",
+      "usage_tier": "optional",
+      "hint": "Oil 等常用：写入 Egern.yaml → widgets，不要写进 scriptings",
       "tags": [
         "小组件",
-        "Widget"
+        "Widget",
+        "按需开启"
       ]
     },
     {
@@ -2890,9 +3269,12 @@
       "path": "Widgets/IBL3ND/CSG_Widget.JS",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/CSG_Widget.JS",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/CSG_Widget.JS",
+      "usage_tier": "optional",
+      "hint": "Oil 等常用：写入 Egern.yaml → widgets，不要写进 scriptings",
       "tags": [
         "小组件",
-        "Widget"
+        "Widget",
+        "按需开启"
       ]
     },
     {
@@ -2906,9 +3288,12 @@
       "path": "Widgets/IBL3ND/CT_Widget.JS",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/CT_Widget.JS",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/CT_Widget.JS",
+      "usage_tier": "optional",
+      "hint": "Oil 等常用：写入 Egern.yaml → widgets，不要写进 scriptings",
       "tags": [
         "小组件",
-        "Widget"
+        "Widget",
+        "按需开启"
       ]
     },
     {
@@ -2922,9 +3307,12 @@
       "path": "Widgets/IBL3ND/ChatGPT.js",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/ChatGPT.js",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/ChatGPT.js",
+      "usage_tier": "optional",
+      "hint": "Oil 等常用：写入 Egern.yaml → widgets，不要写进 scriptings",
       "tags": [
         "小组件",
-        "Widget"
+        "Widget",
+        "按需开启"
       ]
     },
     {
@@ -2938,9 +3326,12 @@
       "path": "Widgets/IBL3ND/Crypto_Widget.JS",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/Crypto_Widget.JS",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/Crypto_Widget.JS",
+      "usage_tier": "optional",
+      "hint": "Oil 等常用：写入 Egern.yaml → widgets，不要写进 scriptings",
       "tags": [
         "小组件",
-        "Widget"
+        "Widget",
+        "按需开启"
       ]
     },
     {
@@ -2954,9 +3345,12 @@
       "path": "Widgets/IBL3ND/FX_Rate.JS",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/FX_Rate.JS",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/FX_Rate.JS",
+      "usage_tier": "optional",
+      "hint": "Oil 等常用：写入 Egern.yaml → widgets，不要写进 scriptings",
       "tags": [
         "小组件",
-        "Widget"
+        "Widget",
+        "按需开启"
       ]
     },
     {
@@ -2970,9 +3364,12 @@
       "path": "Widgets/IBL3ND/Gold_Widgets.JS",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/Gold_Widgets.JS",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/Gold_Widgets.JS",
+      "usage_tier": "optional",
+      "hint": "Oil 等常用：写入 Egern.yaml → widgets，不要写进 scriptings",
       "tags": [
         "小组件",
-        "Widget"
+        "Widget",
+        "按需开启"
       ]
     },
     {
@@ -2986,9 +3383,12 @@
       "path": "Widgets/IBL3ND/HSW_Widget.JS",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/HSW_Widget.JS",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/HSW_Widget.JS",
+      "usage_tier": "optional",
+      "hint": "Oil 等常用：写入 Egern.yaml → widgets，不要写进 scriptings",
       "tags": [
         "小组件",
-        "Widget"
+        "Widget",
+        "按需开启"
       ]
     },
     {
@@ -3002,9 +3402,12 @@
       "path": "Widgets/IBL3ND/Holiday_Countdown.js",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/Holiday_Countdown.js",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/Holiday_Countdown.js",
+      "usage_tier": "optional",
+      "hint": "Oil 等常用：写入 Egern.yaml → widgets，不要写进 scriptings",
       "tags": [
         "小组件",
-        "Widget"
+        "Widget",
+        "按需开启"
       ]
     },
     {
@@ -3018,9 +3421,12 @@
       "path": "Widgets/IBL3ND/IP_Clean.JS",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/IP_Clean.JS",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/IP_Clean.JS",
+      "usage_tier": "optional",
+      "hint": "Oil 等常用：写入 Egern.yaml → widgets，不要写进 scriptings",
       "tags": [
         "小组件",
-        "Widget"
+        "Widget",
+        "按需开启"
       ]
     },
     {
@@ -3034,9 +3440,12 @@
       "path": "Widgets/IBL3ND/IP_STR_Widget.JS",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/IP_STR_Widget.JS",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/IP_STR_Widget.JS",
+      "usage_tier": "optional",
+      "hint": "Oil 等常用：写入 Egern.yaml → widgets，不要写进 scriptings",
       "tags": [
         "小组件",
-        "Widget"
+        "Widget",
+        "按需开启"
       ]
     },
     {
@@ -3050,9 +3459,12 @@
       "path": "Widgets/IBL3ND/Lottery-Widget.JS",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/Lottery-Widget.JS",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/Lottery-Widget.JS",
+      "usage_tier": "optional",
+      "hint": "Oil 等常用：写入 Egern.yaml → widgets，不要写进 scriptings",
       "tags": [
         "小组件",
-        "Widget"
+        "Widget",
+        "按需开启"
       ]
     },
     {
@@ -3066,9 +3478,12 @@
       "path": "Widgets/IBL3ND/NetSpeed.js",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/NetSpeed.js",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/NetSpeed.js",
+      "usage_tier": "optional",
+      "hint": "Oil 等常用：写入 Egern.yaml → widgets，不要写进 scriptings",
       "tags": [
         "小组件",
-        "Widget"
+        "Widget",
+        "按需开启"
       ]
     },
     {
@@ -3082,9 +3497,12 @@
       "path": "Widgets/IBL3ND/NetSpeed_Widget.JS",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/NetSpeed_Widget.JS",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/NetSpeed_Widget.JS",
+      "usage_tier": "optional",
+      "hint": "Oil 等常用：写入 Egern.yaml → widgets，不要写进 scriptings",
       "tags": [
         "小组件",
-        "Widget"
+        "Widget",
+        "按需开启"
       ]
     },
     {
@@ -3098,9 +3516,12 @@
       "path": "Widgets/IBL3ND/Net_Info.JS",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/Net_Info.JS",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/Net_Info.JS",
+      "usage_tier": "optional",
+      "hint": "Oil 等常用：写入 Egern.yaml → widgets，不要写进 scriptings",
       "tags": [
         "小组件",
-        "Widget"
+        "Widget",
+        "按需开启"
       ]
     },
     {
@@ -3114,9 +3535,12 @@
       "path": "Widgets/IBL3ND/NodeUnlockDetection.js",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/NodeUnlockDetection.js",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/NodeUnlockDetection.js",
+      "usage_tier": "optional",
+      "hint": "Oil 等常用：写入 Egern.yaml → widgets，不要写进 scriptings",
       "tags": [
         "小组件",
-        "Widget"
+        "Widget",
+        "按需开启"
       ]
     },
     {
@@ -3130,9 +3554,12 @@
       "path": "Widgets/IBL3ND/Oil-Price.js",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/Oil-Price.js",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/Oil-Price.js",
+      "usage_tier": "optional",
+      "hint": "Oil 等常用：写入 Egern.yaml → widgets，不要写进 scriptings",
       "tags": [
         "小组件",
-        "Widget"
+        "Widget",
+        "按需开启"
       ]
     },
     {
@@ -3146,9 +3573,12 @@
       "path": "Widgets/IBL3ND/Oil_Widget.JS",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/Oil_Widget.JS",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/Oil_Widget.JS",
+      "usage_tier": "optional",
+      "hint": "Oil 等常用：写入 Egern.yaml → widgets，不要写进 scriptings",
       "tags": [
         "小组件",
-        "Widget"
+        "Widget",
+        "按需开启"
       ]
     },
     {
@@ -3162,9 +3592,12 @@
       "path": "Widgets/IBL3ND/Proxy_Check.JS",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/Proxy_Check.JS",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/Proxy_Check.JS",
+      "usage_tier": "optional",
+      "hint": "Oil 等常用：写入 Egern.yaml → widgets，不要写进 scriptings",
       "tags": [
         "小组件",
-        "Widget"
+        "Widget",
+        "按需开启"
       ]
     },
     {
@@ -3178,9 +3611,12 @@
       "path": "Widgets/IBL3ND/Sub_Widget.JS",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/Sub_Widget.JS",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/Sub_Widget.JS",
+      "usage_tier": "optional",
+      "hint": "Oil 等常用：写入 Egern.yaml → widgets，不要写进 scriptings",
       "tags": [
         "小组件",
-        "Widget"
+        "Widget",
+        "按需开启"
       ]
     },
     {
@@ -3194,9 +3630,12 @@
       "path": "Widgets/IBL3ND/TestFlight.js",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/TestFlight.js",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/TestFlight.js",
+      "usage_tier": "optional",
+      "hint": "Oil 等常用：写入 Egern.yaml → widgets，不要写进 scriptings",
       "tags": [
         "小组件",
-        "Widget"
+        "Widget",
+        "按需开启"
       ]
     },
     {
@@ -3210,9 +3649,12 @@
       "path": "Widgets/IBL3ND/TgRedirect.js",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/TgRedirect.js",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/TgRedirect.js",
+      "usage_tier": "optional",
+      "hint": "Oil 等常用：写入 Egern.yaml → widgets，不要写进 scriptings",
       "tags": [
         "小组件",
-        "Widget"
+        "Widget",
+        "按需开启"
       ]
     },
     {
@@ -3226,9 +3668,12 @@
       "path": "Widgets/IBL3ND/Unicom_Widget.JS",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/Unicom_Widget.JS",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/Unicom_Widget.JS",
+      "usage_tier": "optional",
+      "hint": "Oil 等常用：写入 Egern.yaml → widgets，不要写进 scriptings",
       "tags": [
         "小组件",
-        "Widget"
+        "Widget",
+        "按需开启"
       ]
     },
     {
@@ -3242,9 +3687,12 @@
       "path": "Widgets/IBL3ND/Unlock-Detection_Widget.JS",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/Unlock-Detection_Widget.JS",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/Unlock-Detection_Widget.JS",
+      "usage_tier": "optional",
+      "hint": "Oil 等常用：写入 Egern.yaml → widgets，不要写进 scriptings",
       "tags": [
         "小组件",
-        "Widget"
+        "Widget",
+        "按需开启"
       ]
     },
     {
@@ -3258,9 +3706,12 @@
       "path": "Widgets/IBL3ND/User-Agent.js",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/User-Agent.js",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/User-Agent.js",
+      "usage_tier": "optional",
+      "hint": "Oil 等常用：写入 Egern.yaml → widgets，不要写进 scriptings",
       "tags": [
         "小组件",
-        "Widget"
+        "Widget",
+        "按需开启"
       ]
     },
     {
@@ -3274,9 +3725,12 @@
       "path": "Widgets/IBL3ND/Weather_Widget.JS",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/Weather_Widget.JS",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/Weather_Widget.JS",
+      "usage_tier": "optional",
+      "hint": "Oil 等常用：写入 Egern.yaml → widgets，不要写进 scriptings",
       "tags": [
         "小组件",
-        "Widget"
+        "Widget",
+        "按需开启"
       ]
     },
     {
@@ -3290,9 +3744,12 @@
       "path": "Widgets/IBL3ND/airport_widget.js",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/airport_widget.js",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/airport_widget.js",
+      "usage_tier": "optional",
+      "hint": "Oil 等常用：写入 Egern.yaml → widgets，不要写进 scriptings",
       "tags": [
         "小组件",
-        "Widget"
+        "Widget",
+        "按需开启"
       ]
     },
     {
@@ -3306,9 +3763,12 @@
       "path": "Widgets/IBL3ND/crypto.js",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/crypto.js",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/crypto.js",
+      "usage_tier": "optional",
+      "hint": "Oil 等常用：写入 Egern.yaml → widgets，不要写进 scriptings",
       "tags": [
         "小组件",
-        "Widget"
+        "Widget",
+        "按需开启"
       ]
     },
     {
@@ -3322,9 +3782,12 @@
       "path": "Widgets/IBL3ND/iTunes.js",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/iTunes.js",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/iTunes.js",
+      "usage_tier": "optional",
+      "hint": "Oil 等常用：写入 Egern.yaml → widgets，不要写进 scriptings",
       "tags": [
         "小组件",
-        "Widget"
+        "Widget",
+        "按需开启"
       ]
     },
     {
@@ -3338,9 +3801,12 @@
       "path": "Widgets/IBL3ND/netinfo.js",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/netinfo.js",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/netinfo.js",
+      "usage_tier": "optional",
+      "hint": "Oil 等常用：写入 Egern.yaml → widgets，不要写进 scriptings",
       "tags": [
         "小组件",
-        "Widget"
+        "Widget",
+        "按需开启"
       ]
     },
     {
@@ -3354,9 +3820,12 @@
       "path": "Widgets/IBL3ND/subscription-info.js",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/subscription-info.js",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/subscription-info.js",
+      "usage_tier": "optional",
+      "hint": "Oil 等常用：写入 Egern.yaml → widgets，不要写进 scriptings",
       "tags": [
         "小组件",
-        "Widget"
+        "Widget",
+        "按需开启"
       ]
     },
     {
@@ -3370,9 +3839,12 @@
       "path": "Widgets/IBL3ND/today_almanac.js",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/today_almanac.js",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/today_almanac.js",
+      "usage_tier": "optional",
+      "hint": "Oil 等常用：写入 Egern.yaml → widgets，不要写进 scriptings",
       "tags": [
         "小组件",
-        "Widget"
+        "Widget",
+        "按需开启"
       ]
     },
     {
@@ -3386,9 +3858,12 @@
       "path": "Widgets/IBL3ND/weather.js",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/weather.js",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/weather.js",
+      "usage_tier": "optional",
+      "hint": "Oil 等常用：写入 Egern.yaml → widgets，不要写进 scriptings",
       "tags": [
         "小组件",
-        "Widget"
+        "Widget",
+        "按需开启"
       ]
     },
     {
@@ -3402,9 +3877,12 @@
       "path": "Widgets/IBL3ND/xiaohongshu.js",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/xiaohongshu.js",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/xiaohongshu.js",
+      "usage_tier": "optional",
+      "hint": "Oil 等常用：写入 Egern.yaml → widgets，不要写进 scriptings",
       "tags": [
         "小组件",
-        "Widget"
+        "Widget",
+        "按需开启"
       ]
     },
     {
@@ -3418,9 +3896,12 @@
       "path": "Widgets/IBL3ND/xiaohongshu1.js",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/xiaohongshu1.js",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/xiaohongshu1.js",
+      "usage_tier": "optional",
+      "hint": "Oil 等常用：写入 Egern.yaml → widgets，不要写进 scriptings",
       "tags": [
         "小组件",
-        "Widget"
+        "Widget",
+        "按需开启"
       ]
     }
   ],
