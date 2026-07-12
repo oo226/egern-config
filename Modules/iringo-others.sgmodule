@@ -42,9 +42,9 @@ RULE-SET,https://github.com/NSRingo/News/releases/download/v3.2.1/News.list,{{{P
 
 
 # >>> merged from News (unique only)
-📰 News.v1.configs.request = type=http-request, pattern=^https?:\/\/news(-todayconfig)?-edge\.apple\.com\/v1\/configs, requires-body=1, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-releases/NSRingo/News/v3.2.1/request.bundle.js, argument=CountryCode="{{{CountryCode}}}"&NewsPlusUser="{{{NewsPlusUser}}}"&LogLevel="{{{LogLevel}}}"
-📰 News.analyticseventsv2.async.request = type=http-request, pattern=^https?:\/\/news(-sports)?-events\.apple\.com\/analyticseventsv2\/async, requires-body=1, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-releases/NSRingo/News/v3.2.1/request.bundle.js, argument=CountryCode="{{{CountryCode}}}"&NewsPlusUser="{{{NewsPlusUser}}}"&LogLevel="{{{LogLevel}}}"
-📰 News.v1.search.request = type=http-request, pattern=^https?:\/\/news-client-search\.apple\.com\/v1\/search, requires-body=0, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-releases/NSRingo/News/v3.2.1/request.bundle.js, argument=CountryCode="{{{CountryCode}}}"&NewsPlusUser="{{{NewsPlusUser}}}"&LogLevel="{{{LogLevel}}}"
+📰 News.v1.configs.request = type=http-request, pattern=^https?:\/\/news(-todayconfig)?-edge\.apple\.com\/v1\/configs, requires-body=1, script-path=https://github.com/NSRingo/News/releases/download/v3.2.1/request.bundle.js, argument=CountryCode="{{{CountryCode}}}"&NewsPlusUser="{{{NewsPlusUser}}}"&LogLevel="{{{LogLevel}}}"
+📰 News.analyticseventsv2.async.request = type=http-request, pattern=^https?:\/\/news(-sports)?-events\.apple\.com\/analyticseventsv2\/async, requires-body=1, script-path=https://github.com/NSRingo/News/releases/download/v3.2.1/request.bundle.js, argument=CountryCode="{{{CountryCode}}}"&NewsPlusUser="{{{NewsPlusUser}}}"&LogLevel="{{{LogLevel}}}"
+📰 News.v1.search.request = type=http-request, pattern=^https?:\/\/news-client-search\.apple\.com\/v1\/search, requires-body=0, script-path=https://github.com/NSRingo/News/releases/download/v3.2.1/request.bundle.js, argument=CountryCode="{{{CountryCode}}}"&NewsPlusUser="{{{NewsPlusUser}}}"&LogLevel="{{{LogLevel}}}"
 
 
 [MITM]
