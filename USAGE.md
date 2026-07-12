@@ -30,7 +30,6 @@ https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Egern.yaml
 | 名称 | raw 链接 | 何时开 |
 |------|----------|--------|
 | 抓参 Cookie 合集 | `.../Modules/cookie-collection.module` | 签到前抓 ck，**抓完关掉**省电 |
-|  iRingo 地图/天气/定位/其他 | `.../Modules/iringo-*.sgmodule` | 按需开；**同时开** `iringo-mitm.yaml` |
 | 追风 mitm 证书 | 系统设置 → 证书信任 | 仅挂机时段开信任，平时关 |
 
 ---
@@ -104,24 +103,6 @@ https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.js
 | 青龙 | 青龙同步 BoxJS | 同步 BoxJS 键到青龙环境变量 |
 
 改完保存 → 完全退出相关 App 再开 → 测试。
-
-###  iRingo 不生效？
-
-1. **四个模块都要开**：` iRingo MITM 域名` + 地图/天气/定位（按需）。
-2. **MITM 不能排除 `*.apple.com`**：删掉这行是对的——否则 iRingo 无法解密。但**不会**因此解密所有 Apple 域名；只有 `includes` 里列出的 + 去广告/解锁模块各自声明的域名才会 MITM。iCloud（`*.icloud.com`）、Apple 登录（`idmsa`/`appleid`）、系统更新（`mesu`/`gdmf`）仍在 excludes 里。
-3. **iRingo 仅 6 个精确 MITM 域名**：`weatherkit.apple.com`、`configuration.ls.apple.com`、`gspe35-ssl.ls.apple.com`、`gspe35-ssl.ls.apple.cn`、`gspe1-ssl.ls.apple.com`、`dispatcher.is.autonavi.com`——不含 `gspe19` 瓦片等。
-
-**连接日志怎么判断：**
-
-| 域名 | 正常表现 | 说明 |
-|------|----------|------|
-| `gspe19-cn-ssl.ls.apple.com` | DIRECT + TLS | 地图瓦片流量，**不需要 MITM**，看到 TLS 是正常的 |
-| `configuration.ls.apple.com` | 应被解密/已修改 | 地图模块核心，必须 MITM |
-| `gspe35-ssl.ls.apple.com` | 应被解密/已修改 | 地图动态配置，必须 MITM |
-| `gspe1-ssl.ls.apple.com` | 应被解密/已修改 | 定位地区检测，必须 MITM |
-| `weatherkit.apple.com` | 应被解密/已修改 | 天气模块核心，必须 MITM |
-
-冷启动地图 App 后，在分析页搜索 `configuration` 或 `gspe35`，不应再是纯 TLS 直连。
 
 **Relay 客户端**：若日志出现 `Key 'icons' not found` 或订阅解析失败，请删除旧订阅后重新添加上面的链接（新版已为每个应用补齐 `icons`）。后端地址请用 **`http://boxjs.com`**（不要用 https），并确保 Egern 代理已开启。
 

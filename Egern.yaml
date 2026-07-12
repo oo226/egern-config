@@ -464,13 +464,6 @@ mitm:
     includes:
       - api.pingmeapp.net
       - "*.pingmeapp.net"
-      #  iRingo — 仅精确域名，不用 *.apple.com / *.ls.apple.com 整域
-      - weatherkit.apple.com
-      - configuration.ls.apple.com
-      - gspe35-ssl.ls.apple.com
-      - gspe35-ssl.ls.apple.cn
-      - gspe1-ssl.ls.apple.com
-      - dispatcher.is.autonavi.com
     excludes:
       - "*.wechat.com"
       - "*.weixin.qq.com"
@@ -484,18 +477,11 @@ mitm:
       - "*.windows.net"
       - "*.windows.com"
       - "*.azure.com"
+      - "*.apple.com"
       - "*.icloud.com"
       - "*.cdn-apple.com"
       - "*.mzstatic.com"
       - buy.itunes.apple.com
-      # Apple 登录/更新/设备配置 — 排除 MITM，避免 iCloud 同步异常
-      - weather-data.apple.com
-      - idmsa.apple.com
-      - appleid.apple.com
-      - mesu.apple.com
-      - gdmf.apple.com
-      - swscan.apple.com
-      - configuration.apple.com
 
 # 今日油价：仅 widgets，勿写 scriptings.generic（会随配置重载频繁执行）
 widgets:
@@ -519,26 +505,6 @@ modules:
   - name: 插件跳转 Egern
     url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/ibl3nd-plugin-hub.yaml
     enabled: true
-  #  iRingo（NSRingo）— 与去广告/解锁合集分开，按需启用
-  - name: " iRingo MITM 域名"
-    url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/iringo-mitm.yaml
-    enabled: false
-  - name: " iRingo 地图"
-    url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/iringo-maps.sgmodule
-    update_interval: 86400
-    enabled: false
-  - name: " iRingo 天气"
-    url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/iringo-weather.sgmodule
-    update_interval: 86400
-    enabled: false
-  - name: " iRingo 定位"
-    url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/iringo-location.sgmodule
-    update_interval: 86400
-    enabled: false
-  - name: " iRingo 其他"
-    url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/iringo-others.sgmodule
-    update_interval: 86400
-    enabled: false
   - name: 抓参 Cookie 合集
     url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/cookie-collection.module
     update_interval: 86400

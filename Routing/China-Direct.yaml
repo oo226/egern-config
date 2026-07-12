@@ -12,11 +12,14 @@
 #   ChinaASN       — Repcz/Tool — 国内 ASN (5076 entries)
 #   Rabbit-China   — Rabbit-Spec — China.list (3760 entries)
 #   Rabbit-CIDR    — Rabbit-Spec — ChinaCIDR.list (5741 entries)
-# Overlap removed: 6281
-# Total unique entries: 15452
+#   ResourceSite   — eulac-dev/Proxy — 视频资源站 (25 entries)
+#   PanVod         — eulac-dev/Proxy — 网盘点播 (44 entries)
+# Overlap removed: 6306
+# Total unique entries: 15496
 
 no_resolve: true
 domain_set:
+  - 666.666291.xyz
   - acg.tv
   - alt1-mtalk.google.com
   - alt2-mtalk.google.com
@@ -43,6 +46,7 @@ domain_set:
   - btrace.qq.com
   - cdn.angruo.com
   - cdnstatic.tencentcs.com
+  - cf.aliyun.com
   - client.amplifi.com
   - clientservices.googleapis.com
   - cn.download.nvidia.com
@@ -56,9 +60,13 @@ domain_set:
   - dot.pub
   - download.jetbrains.com
   - download.microsoft.com
+  - duo.hidns.vip
   - fairplay.l.qq.com
+  - fhnfile.oss-cn-shenzhen.aliyuncs.com
+  - fmao.shop
   - gs-loc-cn.apple.com
   - gstore.val.manlaxy.com
+  - himg.bdimg.com
   - i.dell.com
   - ifconfig.me
   - images-cn.ssl-images-amazon.com
@@ -79,28 +87,46 @@ domain_set:
   - origin-a.akamaihd.net
   - redirector.gvt1.com
   - res.viayoo.com
+  - sd.sduc.site
   - slife.xy-asia.com
   - sms.imagetasks.com
   - soup.v.qq.com
+  - static.xbase.cloud
+  - staticiot.cdn.bcebos.com
   - steamcommunity-a.akamaihd.net
   - sycm.mmstat.com
+  - thumbnail0.baidupcs.com
+  - tv.214521.xyz
   - update.googleapis.com
   - upos-hz-mirrorakam.akamaized.net
   - url.cn
+  - ux.21cn.com
   - vd.l.qq.com
   - vi.l.qq.com
   - viayoo.com
   - vweixinf.tc.qq.com
   - weixin.com
   - weixin110.qq.com
+  - woog.nxog.eu.org
   - wup.imtt.qq.com
+  - www.123295.com
+  - www.123865.com
+  - www.123912.com
   - www.intel.cn
   - www.layuicdn.com
   - www.libvideo.com
+  - www.miqk.cc
+  - www.muou.asia
+  - www.muou.site
   - www.viayoo.com
   - www.yxssp.com
   - wx.tenpay.com
   - wxapp.tc.qq.com
+  - xhban.xyz
+  - xiaomi666.fun
+  - xsayang.fun
+  - ynuf.aliapp.org
+  - zhizhen1.top
 domain_suffix_set:
   - 00cdn.com
   - 0123456789.com
@@ -123,6 +149,7 @@ domain_suffix_set:
   - 115cdn.com
   - 115cdn.net
   - 115img.com
+  - 116cd.cn
   - 116cd.com
   - 116cd.net
   - 119you.com
@@ -407,6 +434,7 @@ domain_suffix_set:
   - 9xgame.com
   - 9xiu.com
   - 9xu.com
+  - a.88cdn.com
   - a1.mzstatic.com
   - a2.mzstatic.com
   - a3.mzstatic.com
@@ -1039,6 +1067,7 @@ domain_suffix_set:
   - citicsf.com
   - city8.com
   - ciweimao.com
+  - cjjd19.com
   - cjol.com
   - cjsc.com
   - cl1-cdn.origin-apple.com.akadns.net
@@ -1168,11 +1197,13 @@ domain_suffix_set:
   - cmcmcdn.com
   - cmct.tv
   - cmechina.net
+  - cmecloud.cn
   - cmf.biz
   - cmf.ltd
   - cmfchina.com
   - cmfu.com
   - cmfunds.cn
+  - cmicapm.com
   - cmpassport.com
   - cmvideo.cn
   - cn
@@ -1405,6 +1436,7 @@ domain_suffix_set:
   - dl.pinyuncloud.com
   - dler.cloud
   - dlgslb.net
+  - dlife.cn
   - dlnel.com
   - dlnel.org
   - dmzj.com
@@ -1786,6 +1818,8 @@ domain_suffix_set:
   - guaiguai.com
   - guanaitong.com
   - guancha.cn
+  - guangyacdn.com
+  - guangyapan.com
   - guanhaobio.com
   - gucheng.com
   - guigu.org
@@ -2708,6 +2742,7 @@ domain_suffix_set:
   - miguvideo.com
   - mihayo.com
   - mihayou.com
+  - mihdr.top
   - mihoyo.com
   - mihoyocg.com
   - mihoyogift.com
@@ -4478,6 +4513,8 @@ domain_keyword_set:
   - 221.181.99.
   - 223.166.152.
   - 27.19.222.
+  - 2xiaopan
+  - 2xiaozhan
   - 36.136.108.
   - 36.152.4.
   - 36.155.202.
@@ -4524,10 +4561,16 @@ domain_keyword_set:
   - aliyun
   - baidu
   - beplay
+  - erixaopan
+  - erxiaopan
+  - erxiaozhan
   - microsoft
   - officecdn
   - sleep.pokemon
   - taobao
+  - wexwp
+  - wogg
+  - yydsys
 domain_wildcard_set:
   - "*.qhimgs?.com"
 ip_cidr_set:
@@ -5173,6 +5216,7 @@ ip_cidr_set:
   - 103.44.80.0/22
   - 103.45.128.0/19
   - 103.45.160.0/22
+  - 103.45.162.207/32
   - 103.45.168.0/23
   - 103.45.171.0/24
   - 103.45.172.0/22
@@ -6689,6 +6733,8 @@ ip_cidr_set:
   - 153.36.0.0/15
   - 153.99.0.0/16
   - 154.18.212.240/32
+  - 154.201.83.50/32
+  - 154.222.27.33/32
   - 154.72.42.0/24
   - 154.72.44.0/24
   - 154.72.47.0/24

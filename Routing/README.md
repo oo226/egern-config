@@ -14,7 +14,7 @@
 | `Zhuifeng.yaml` | 追风挂机 | 途游 sq-hlsg / open-hlsg → 专用 HTTP 代理 |
 | `Privacy-Reject.yaml` | WebRTC 防护 | STUN / webrtc.org 拦截 |
 | `Lan.yaml` | 局域网 | 局域网直连 |
-| `China-Direct.yaml` | 国内直连 | **合并去重** — Direct+微信+B站+苹果中国+国内域名/IP/ASN |
+| `China-Direct.yaml` | 国内直连 | **合并去重** — Direct+微信+B站+苹果中国+国内域名/IP/ASN+视频资源站+网盘点播 |
 | `Reject-Merged.yaml` | 去广告 | **合并去重** — Repcz Reject + Sukka 广告域名集 |
 | `Foreign/*.yaml` | 国外分流 | **按服务分开** — AI/Telegram/流媒体/游戏/兜底等 |
 
