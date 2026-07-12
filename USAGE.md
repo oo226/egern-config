@@ -14,6 +14,12 @@ https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Egern.yaml
 https://oo226.github.io/egern-config/
 ```
 
+若 GitHub Pages 尚未开通，可直接用（无需设置）：
+
+```
+https://cdn.jsdelivr.net/gh/oo226/egern-config@main/site/index.html
+```
+
 ---
 
 ## 一、我每天开着的

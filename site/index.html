@@ -371,10 +371,24 @@
       for (const item of items) grid.appendChild(renderCard(item));
     }
 
+    async function loadCatalog() {
+      const bases = [
+        '',
+        'https://cdn.jsdelivr.net/gh/oo226/egern-config@main/site/',
+        'https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/site/',
+      ];
+      for (const base of bases) {
+        try {
+          const res = await fetch(`${base}catalog.json`);
+          if (res.ok) return res.json();
+        } catch (_) { /* try next */ }
+      }
+      throw new Error('catalog load failed');
+    }
+
     async function init() {
       try {
-        const res = await fetch('catalog.json');
-        catalog = await res.json();
+        catalog = await loadCatalog();
       } catch (e) {
         $('#stats').textContent = '加载 catalog.json 失败';
         return;
