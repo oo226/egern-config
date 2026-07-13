@@ -45,6 +45,28 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p Routing/_upstream/skk Routing/Foreign
+
+          curl_try() {
+            local out="$1"; shift
+            local url
+            for url in "$@"; do
+              for attempt in 1 2 3; do
+                if curl -fsSL --connect-timeout 30 --max-time 180 --retry 2 --retry-delay 5 "$url" -o "$out"; then
+                  echo "OK $out <- $url"
+                  return 0
+                fi
+                echo "attempt $attempt failed: $url"
+                sleep 3
+              done
+            done
+            if [[ -s "$out" ]]; then
+              echo "WARN: all mirrors failed, keeping cached $out"
+              return 0
+            fi
+            echo "ERROR: could not fetch $out and no cache exists"
+            return 1
+          }
+
           MERGE=(
             Reject Direct WeChat Bilibili AppleCN ChinaDomain ChinaIP ChinaASN
           )
@@ -57,30 +79,24 @@ jobs:
           BASE="https://raw.githubusercontent.com/Repcz/Tool/X/Egern/Rules"
           MIRROR="https://ghproxy.net/https://raw.githubusercontent.com/Repcz/Tool/X/Egern/Rules"
           for name in "${MERGE[@]}"; do
-            if ! curl -fsSL "${BASE}/${name}.yaml" -o "Routing/_upstream/${name}.yaml"; then
-              curl -fsSL "${MIRROR}/${name}.yaml" -o "Routing/_upstream/${name}.yaml"
-            fi
+            curl_try "Routing/_upstream/${name}.yaml" "${BASE}/${name}.yaml" "${MIRROR}/${name}.yaml"
             echo "synced upstream ${name}.yaml"
           done
-          if ! curl -fsSL "${BASE}/Lan.yaml" -o "Routing/Lan.yaml"; then
-            curl -fsSL "${MIRROR}/Lan.yaml" -o "Routing/Lan.yaml"
-          fi
+          curl_try "Routing/Lan.yaml" "${BASE}/Lan.yaml" "${MIRROR}/Lan.yaml"
           for name in "${FOREIGN[@]}"; do
-            if ! curl -fsSL "${BASE}/${name}.yaml" -o "Routing/Foreign/${name}.yaml"; then
-              curl -fsSL "${MIRROR}/${name}.yaml" -o "Routing/Foreign/${name}.yaml"
-            fi
+            curl_try "Routing/Foreign/${name}.yaml" "${BASE}/${name}.yaml" "${MIRROR}/${name}.yaml"
             echo "synced foreign ${name}.yaml"
           done
-          if ! curl -fsSL "https://ruleset.skk.moe/List/domainset/reject.conf" -o "Routing/_upstream/skk/reject.conf"; then
-            curl -fsSL "https://ghproxy.net/https://ruleset.skk.moe/List/domainset/reject.conf" -o "Routing/_upstream/skk/reject.conf"
-          fi
+          curl_try "Routing/_upstream/skk/reject.conf" \
+            "https://ruleset.skk.moe/List/domainset/reject.conf" \
+            "https://ghproxy.net/https://ruleset.skk.moe/List/domainset/reject.conf"
           mkdir -p Routing/_upstream/ai
-          if ! curl -fsSL "https://cdn.jsdelivr.net/gh/VPSDance/ai-proxy-rules@main/rules/egern/all.yaml" -o "Routing/_upstream/ai/vpsdance-all.yaml"; then
-            curl -fsSL "https://ghproxy.net/https://cdn.jsdelivr.net/gh/VPSDance/ai-proxy-rules@main/rules/egern/all.yaml" -o "Routing/_upstream/ai/vpsdance-all.yaml"
-          fi
-          if ! curl -fsSL "https://ruleset.skk.moe/List/non_ip/ai.conf" -o "Routing/_upstream/skk/ai.conf"; then
-            curl -fsSL "https://ghproxy.net/https://ruleset.skk.moe/List/non_ip/ai.conf" -o "Routing/_upstream/skk/ai.conf"
-          fi
+          curl_try "Routing/_upstream/ai/vpsdance-all.yaml" \
+            "https://cdn.jsdelivr.net/gh/VPSDance/ai-proxy-rules@main/rules/egern/all.yaml" \
+            "https://ghproxy.net/https://cdn.jsdelivr.net/gh/VPSDance/ai-proxy-rules@main/rules/egern/all.yaml"
+          curl_try "Routing/_upstream/skk/ai.conf" \
+            "https://ruleset.skk.moe/List/non_ip/ai.conf" \
+            "https://ghproxy.net/https://ruleset.skk.moe/List/non_ip/ai.conf"
 
       - name: Merge routing rules
         run: |
