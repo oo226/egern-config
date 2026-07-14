@@ -1,0 +1,13 @@
+# Tailscale 直连 — 与官方 App 并存时走 DIRECT
+# 用法：rules 最前引用本 rule_set；另需在 Egern.yaml 的
+# bypass_tunnel_proxy / real_ip_domains 保留对应条目（无法进 rule_set）
+
+no_resolve: true
+domain_suffix_set:
+  - ts.net
+  - tailscale.com
+  - tailscale.net
+ip_cidr_set:
+  - 100.64.0.0/10
+ip_cidr6_set:
+  - fd7a:115c:a1e0::/48

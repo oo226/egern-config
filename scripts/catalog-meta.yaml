@@ -26,7 +26,10 @@ routing:
     desc: Matrix-io Unbreak 规则，避免部分国内服务被误代理。
   Routing/Lan.yaml:
     name: 局域网
-    desc: 局域网 IP 段直连。
+    desc: 局域网 IP 段直连（含 CGNAT 100.64/10）。
+  Routing/Tailscale-Direct.yaml:
+    name: Tailscale 直连
+    desc: Tailscale 控制面域名 + 100.64/10 + fd7a::/48。与官方 App 并存时放最前。
   Routing/Privacy-Reject.yaml:
     name: WebRTC 防护
     desc: STUN / webrtc.org 拦截。

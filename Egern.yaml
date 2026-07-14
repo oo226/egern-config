@@ -19,6 +19,14 @@ include_cellular_services: false
 include_local_networks: false
 
 bypass_tunnel_proxy:
+  # Tailscale（域名/网段无法全部塞进 rule_set；隧道层必须在这里豁免）
+  - "*.ts.net"
+  - "tailscale.com"
+  - "*.tailscale.com"
+  - "tailscale.net"
+  - "*.tailscale.net"
+  - "100.64.0.0/10"
+  - "fd7a:115c:a1e0::/48"
   - "*.local"
   - "*.lan"
   - "192.168.0.0/16"
@@ -64,30 +72,34 @@ real_ip_domains:
   - "*.blzstatic.cn"
   - "*.battlenet.com"
   - "*.battlenet.com.cn"
+  - "*.ts.net"
+  - "tailscale.com"
+  - "*.tailscale.com"
+  - "tailscale.net"
+  - "*.tailscale.net"
 
 dns:
   bootstrap:
+    - system
     - 223.5.5.5
     - 119.29.29.29
   upstreams:
     谷歌:
-      - tls://dns.google
+      - https://1.1.1.1/dns-query
       - https://8.8.8.8/dns-query
     国外:
-      - tls://1.1.1.1
-      - tls://dns.google
-      - https://8.8.8.8/dns-query
       - https://1.1.1.1/dns-query
+      - https://dns.google/dns-query
+      - https://cloudflare-dns.com/dns-query
+      - https://dns.adguard.com/dns-query
     国内:
-      - tls://dot.pub
-      - tls://dns.alidns.com
+      - https://223.6.6.6/dns-query
+      - https://223.5.5.5/dns-query
       - https://doh.pub/dns-query
       - https://dns.alidns.com/dns-query
     腾讯:
-      - tls://dot.pub
       - https://doh.pub/dns-query
     阿里:
-      - tls://dns.alidns.com
       - https://dns.alidns.com/dns-query
     字节:
       - 180.184.2.2
@@ -127,7 +139,7 @@ dns:
         value: 国外
     - domain_wildcard:
         match: "*"
-        value: 国外
+        value: 国内
   hosts:
     iosapps.itunes.apple.com:
       - iosapps.itunes.apple.com.download.ks-cdn.com
@@ -299,6 +311,12 @@ policy_groups:
       icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/04ProxySoft/emby.png
 
 rules:
+  # ── Tailscale 直连（与官方 App 并存；明细见 Routing/Tailscale-Direct.yaml）──
+  - rule_set:
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Tailscale-Direct.yaml
+      policy: DIRECT
+      update_interval: 86400
+
   # ── 第 1 段：基础设施直连（测网 / DNS / 局域网 / 防断网 / 优先直连）──
   - rule_set:
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Bootstrap-Direct.yaml
@@ -328,6 +346,17 @@ rules:
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Reject-Merged.yaml
       policy: REJECT
       update_interval: 86400
+  # eulac 视频/网盘（默认关闭；需要时把 disabled 改 false）
+  - rule_set:
+      name: 视频规则
+      match: https://raw.githubusercontent.com/eulac-dev/Proxy/refs/heads/main/Loon/Rules/ResourceSite.lsr
+      policy: DIRECT
+      disabled: true
+  - rule_set:
+      name: 网盘规则
+      match: https://raw.githubusercontent.com/eulac-dev/Proxy/refs/heads/main/Loon/Rules/PanVod.lsr
+      policy: DIRECT
+      disabled: true
   - rule_set:
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Privacy-Reject.yaml
       policy: REJECT
@@ -392,7 +421,7 @@ rules:
   # ── 第 5 段：流媒体 / 社交（自动走兜底或指定地区）──
   - rule_set:
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/YouTube.yaml
-      policy: 兜底
+      policy: 新国节点
       update_interval: 86400
   - rule_set:
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/Netflix.yaml
@@ -408,7 +437,7 @@ rules:
       update_interval: 86400
   - rule_set:
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/Google.yaml
-      policy: 兜底
+      policy: 新国节点
       update_interval: 86400
   - rule_set:
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/Game.yaml
@@ -519,18 +548,18 @@ modules:
   - name: 插件跳转 Egern
     url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/ibl3nd-plugin-hub.yaml
     enabled: true
-  #  iRingo（NSRingo）— 与去广告/解锁合集分开，按需启用
+  #  iRingo — MITM 主机名在上方 mitm.hostnames；模块按需开关
   - name: " iRingo MITM 域名"
     url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/iringo-mitm.yaml
     enabled: false
   - name: " iRingo 地图"
     url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/iringo-maps.sgmodule
     update_interval: 86400
-    enabled: false
+    enabled: true
   - name: " iRingo 天气"
     url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/iringo-weather.sgmodule
     update_interval: 86400
-    enabled: false
+    enabled: true
   - name: " iRingo 定位"
     url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/iringo-location.sgmodule
     update_interval: 86400
@@ -538,6 +567,9 @@ modules:
   - name: " iRingo 其他"
     url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/iringo-others.sgmodule
     update_interval: 86400
+    enabled: false
+  - name: AntiRevoke（苹果证书）
+    url: https://raw.githubusercontent.com/salem-2007/apple-cert-block/main/AntiRevoke.plugin
     enabled: false
   - name: 抓参 Cookie 合集
     url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/cookie-collection.module
