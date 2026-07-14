@@ -120,6 +120,22 @@ https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.js
 
 改完保存 → 完全退出相关 App 再开 → 测试。
 
+### 银行 / 税务报 VPN、想缩短主配置？
+
+主配置已不再堆税局/邮储域名；请开模块：
+
+```
+Modules/bank-tax-bypass.yaml
+```
+
+含：电子税务局、邮储、动卡空间（中信官网域）、河南农信（`hnnx.com` 等试探域）的 `bypass_tunnel_proxy` + `real_ip_domains` + `DIRECT`。
+
+**不知道域名时：** Egern → 工具/分析 → 打开请求日志 → 启动目标 App → 记下反复出现的 `*.com` / `*.cn` → 发我或自己补进模块。
+
+**和去广告的关系：** 写进 `bypass_tunnel_proxy` 的主机，流量绕过隧道 HTTP 代理，**模块里的 MITM / 脚本去广告 / 去开屏通常不会再对该主机生效**。银行税务一般也不该 MITM。YouTube 等要去广告的域名 **不要** 放进豁免。
+
+**仍提示关闭 VPN：** 多半检测的是 VPN 开关本身，豁免不够，用该 App 时临时关 Egern。
+
 ###  iRingo 不生效？
 
 1. **四个模块都要开**：` iRingo MITM 域名` + 地图/天气/定位（按需）。

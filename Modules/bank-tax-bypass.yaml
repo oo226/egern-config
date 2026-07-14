@@ -1,0 +1,66 @@
+# 银行 / 税务 App 隧道豁免（Egern YAML 模块）
+# - 写入 bypass_tunnel_proxy + real_ip_domains + 顶栏级 DIRECT 规则
+# - 对这些主机名：MITM / 脚本去广告 / 去开屏通常会失效（见 USAGE）
+# - 未知域名请用 Egern「请求日志」打开 App 后再追加
+
+name: 银行税务隧道豁免
+description: >
+  电子税务局 / 邮储 / 动卡空间(中信) / 河南农信 等尽量走隧道绕过 + 真实 IP，
+  减轻「开了代理连不上」。若 App 检测的是 VPN 开关本身，仍可能要临时关 Egern。
+author: oo226
+homepage: https://github.com/oo226/egern-config
+
+bypass_tunnel_proxy:
+  # 电子税务局（原主配置）
+  - "*.chinatax.gov.cn"
+  - "chinatax.gov.cn"
+  - "etax.chinatax.gov.cn"
+  # 邮储手机银行（原主配置）
+  - "login-service.mobile-bank.psbc.com"
+  - "mobile-bank.psbc.com"
+  - "static.mobile-bank.psbc.com"
+  - "static.psbc.com"
+  - "mcc.psbc.com"
+  - "d.psbc.com"
+  - "*.psbc.com"
+  # 动卡空间（中信信用卡）— 官网域，建议用日志核对后再增删
+  - "*.ecitic.com"
+  - "*.citicbank.com"
+  - "*.citicbank.cn"
+  - "creditcard.ecitic.com"
+  - "creditcard.citicbank.cn"
+  # 河南农信 / 河南农商系 — 常见官方域，务必用日志核对
+  - "*.hnnx.com"
+  - "hnnx.com"
+
+real_ip_domains:
+  - "*.chinatax.gov.cn"
+  - "chinatax.gov.cn"
+  - "etax.chinatax.gov.cn"
+  - "*.psbc.com"
+  - "mobile-bank.psbc.com"
+  - "*.ecitic.com"
+  - "*.citicbank.com"
+  - "*.citicbank.cn"
+  - "*.hnnx.com"
+  - "hnnx.com"
+
+rules:
+  - domain_suffix:
+      match: chinatax.gov.cn
+      policy: DIRECT
+  - domain_suffix:
+      match: psbc.com
+      policy: DIRECT
+  - domain_suffix:
+      match: ecitic.com
+      policy: DIRECT
+  - domain_suffix:
+      match: citicbank.com
+      policy: DIRECT
+  - domain_suffix:
+      match: citicbank.cn
+      policy: DIRECT
+  - domain_suffix:
+      match: hnnx.com
+      policy: DIRECT
