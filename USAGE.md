@@ -65,10 +65,13 @@ https://cdn.jsdelivr.net/gh/oo226/egern-config@main/site/index.html
 | 文件 | 用途 |
 |------|------|
 | `Routing/Bootstrap-Direct.yaml` | 测网直连 |
+| `Routing/Tailscale-Direct.yaml` | Tailscale 域名 + `100.64/10` + `fd7a::/48`（规则层） |
 | `Routing/China-Direct.yaml` | 国内直连大合集 |
 | `Routing/Reject-Merged.yaml` | 去广告域名 |
 | `Routing/Zhuifeng.yaml` | 追风挂机两条域名 |
 | `Routing/Foreign/*` | 按服务分流（AI、TG、流媒体…） |
+
+与官方 Tailscale App 并存时：`rules` 引用 `Tailscale-Direct.yaml` **不够**，还须在主配置保留 `bypass_tunnel_proxy` / `real_ip_domains` 里的对应条目（隧道层豁免无法进 rule_set）。
 
 目录说明：[Routing/README.md](Routing/README.md)
 
