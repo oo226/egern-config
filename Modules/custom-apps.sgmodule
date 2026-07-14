@@ -1,11 +1,8 @@
-#!name=银行·税务·NB助手补全
-#!desc=邮储/动卡 MITM；税务局 bypass；NB助手 NBToolAds 去广告去开屏（合并进主合集前的本地源）
+#!name=银行·NB助手补全
+#!desc=邮储/动卡 MITM 去开屏；NB助手 NBToolAds（合并进去广告净化合集）。不含税务/邮储 skip-proxy（skip 会废 MITM）
 #!author=oo226/egern-config + LYZIOS/NBToolAds
 #!category=自定义补全
 #!system=ios
-
-[General]
-skip-proxy = %APPEND% *.chinatax.gov.cn, chinatax.gov.cn, etax.chinatax.gov.cn, login-service.mobile-bank.psbc.com, mobile-bank.psbc.com, static.mobile-bank.psbc.com, static.psbc.com, mcc.psbc.com, d.psbc.com
 
 [MITM]
 hostname = %APPEND% static.psbc.com, mcc.psbc.com, static.mobile-bank.psbc.com, d.psbc.com, mobile-bank.psbc.com, nbtool8.com, api.nbtool8.com, www.nbtool8.com, app.nbtool8.com

@@ -7,6 +7,18 @@ merge:
   # Avoid MITM on googleapis.com to prevent breaking Gemini (certificate pinning / sensitive APIs).
   mitm_hostname_excludes:
     - "*.googleapis.com"
+  # 邮储/税务勿 skip-proxy：否则合集内去开屏 MITM/Rewrite 不生效
+  skip_proxy_excludes:
+    - "*.chinatax.gov.cn"
+    - chinatax.gov.cn
+    - etax.chinatax.gov.cn
+    - login-service.mobile-bank.psbc.com
+    - mobile-bank.psbc.com
+    - static.mobile-bank.psbc.com
+    - static.psbc.com
+    - mcc.psbc.com
+    - d.psbc.com
+    - "*.psbc.com"
   script_url_fixes:
     # limbopro 上游 cnys.js 已从仓库删除，回退到通用脚本
     "https://raw.githubusercontent.com/limbopro/Adblock4limbo/main/Adguard/cnys.js": "https://raw.githubusercontent.com/limbopro/Adblock4limbo/main/Adguard/Adblock4limbo.js"

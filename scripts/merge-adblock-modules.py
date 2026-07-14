@@ -201,8 +201,28 @@ def parse_hostnames(line: str) -> list[str]:
     if "=" not in line:
         return []
     rhs = line.split("=", 1)[1].strip()
-    rhs = rhs.replace("%APPEND%", "").strip()
+    rhs = rhs.replace("%APPEND%", "").replace("%INSERT%", "").strip()
     return [h.strip() for h in rhs.split(",") if h.strip()]
+
+
+def filter_skip_proxy_line(line: str, excludes: frozenset[str]) -> str | None:
+    """Drop excluded hosts from a skip-proxy line; return None if empty."""
+    if not excludes or "=" not in line:
+        return line
+    prefix, rhs = line.split("=", 1)
+    mode = "%APPEND%"
+    raw = rhs.strip()
+    if raw.upper().startswith("%INSERT%"):
+        mode = "%INSERT%"
+        raw = raw[len("%INSERT%") :].strip()
+    elif raw.upper().startswith("%APPEND%"):
+        mode = "%APPEND%"
+        raw = raw[len("%APPEND%") :].strip()
+    hosts = [h.strip() for h in raw.split(",") if h.strip()]
+    kept = [h for h in hosts if not any(host_matches_exclude(h, ex) for ex in excludes)]
+    if not kept:
+        return None
+    return f"{prefix.strip()} = {mode} " + ", ".join(kept)
 
 
 def normalize_mitm_hostname(host: str) -> str:
@@ -242,7 +262,12 @@ def format_hostnames(hosts: set[str]) -> str:
     return "hostname = %APPEND% " + ", ".join(ordered)
 
 
-def merge_general_lines(primary: list[str], supplements: list[list[str]]) -> list[str]:
+def merge_general_lines(
+    primary: list[str],
+    supplements: list[list[str]],
+    *,
+    skip_proxy_excludes: frozenset[str] = frozenset(),
+) -> list[str]:
     force_hosts: set[str] = set()
     skip_proxy: list[str] = []
     other: list[str] = []
@@ -256,7 +281,9 @@ def merge_general_lines(primary: list[str], supplements: list[list[str]]) -> lis
             if lower.startswith("force-http-engine-hosts"):
                 force_hosts.update(parse_hostnames(stripped))
             elif lower.startswith("skip-proxy"):
-                skip_proxy.append(stripped)
+                filtered = filter_skip_proxy_line(stripped, skip_proxy_excludes)
+                if filtered:
+                    skip_proxy.append(filtered)
             else:
                 other.append(stripped)
 
@@ -277,10 +304,13 @@ def merge_section(
     *,
     exclude_cron_scripts: bool = False,
     mitm_hostname_excludes: frozenset[str] = DEFAULT_MITM_HOSTNAME_EXCLUDES,
+    skip_proxy_excludes: frozenset[str] = frozenset(),
 ) -> list[str]:
     if section == "General":
         supp_lines = [lines for _, lines in supplement_blocks]
-        return merge_general_lines(primary_lines, supp_lines)
+        return merge_general_lines(
+            primary_lines, supp_lines, skip_proxy_excludes=skip_proxy_excludes
+        )
 
     if section == "MITM":
         hosts: set[str] = set()
@@ -349,6 +379,7 @@ def build_merged_module(
     primary_desc: str | None = None,
     exclude_cron_scripts: bool = False,
     mitm_hostname_excludes: frozenset[str] = DEFAULT_MITM_HOSTNAME_EXCLUDES,
+    skip_proxy_excludes: frozenset[str] = frozenset(),
 ) -> str:
     primary_header, primary_sections = parse_module(primary_text)
 
@@ -412,6 +443,7 @@ def build_merged_module(
             supplement_blocks,
             exclude_cron_scripts=exclude_cron_scripts,
             mitm_hostname_excludes=mitm_hostname_excludes,
+            skip_proxy_excludes=skip_proxy_excludes,
         )
         if not merged_lines:
             continue
@@ -437,6 +469,7 @@ def main() -> None:
     mitm_hostname_excludes = frozenset(
         merge_cfg.get("mitm_hostname_excludes") or DEFAULT_MITM_HOSTNAME_EXCLUDES
     )
+    skip_proxy_excludes = frozenset(merge_cfg.get("skip_proxy_excludes") or ())
     script_url_fixes = {**DEFAULT_SCRIPT_URL_FIXES, **(merge_cfg.get("script_url_fixes") or {})}
     script_pattern_fixes = tuple(merge_cfg.get("script_pattern_fixes") or ()) + DEFAULT_SCRIPT_PATTERN_FIXES
 
@@ -487,6 +520,7 @@ def main() -> None:
         primary_desc=primary_desc,
         exclude_cron_scripts=exclude_cron_scripts,
         mitm_hostname_excludes=mitm_hostname_excludes,
+        skip_proxy_excludes=skip_proxy_excludes,
     )
     merged = apply_script_url_fixes(merged, script_url_fixes)
     merged = apply_script_pattern_fixes(merged, script_pattern_fixes)
