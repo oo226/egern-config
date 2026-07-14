@@ -1,7 +1,7 @@
 /*************************************
 
 项目名称：Revenuecat系列解锁合集
-更新日期：2026-07-04
+更新日期：2026-07-13
 脚本作者：@ddm1023
 电报频道：https://t.me/ddm1023
 使用声明：⚠️仅供参考，🈲转载与售卖！
@@ -29,6 +29,7 @@ if (forbiddenApps.some(app => (ua && ua.includes(app)) || ($request.body && $req
 }
 
 const bundle = {
+  'com.abighead.Widgets': { name: 'HiWidget.Pro', id: 'com.abighead.Widgets.LifetimePro', cm: 'sjb' },  //HillWidget - 纪念日,黑胶，日历，时钟小组件
   'com.qiqi1996.qi-watermark': { name: 'vip', id: 'com.qiqi1996.qi_watermark.yearly', cm: 'sjb' },  //Qi水印-QiWatermark
   'com.qiqi1996.pause-life': { name: 'vip', id: 'pause_life_lifetime', cm: 'sjb' },  //生活暂停器-Pause life
   'com.qiqi1996.app-poster': { name: 'vip', id: 'app_poster_lifetime', cm: 'sjb' },  //Qi应用海报-QiAppPoster
@@ -60,6 +61,7 @@ const bundle = {
 };
 
 const listua = {
+  'stufflog': { name: 'pro_access', id: 'com.dyl.thinglog.lifetime', cm: 'sjb' },  //衣记Thinglog-衣橱管理与穿搭管家
   'SwimApp': { name: 'pro_access', id: 'com.dyl.swimnote.lifetime', cm: 'sjb' },  //泳记-Swimlog
   'ReverseChallengeSwiftUI': { name: 'ReverseChallenge.Pro', id: 'com.abighead.ReverseChallenge.iap.pro', cm: 'sjb' },  //倒放挑战
   'Ticket%20Lover': { name: 'com.minardwu.ticketlover_lifetime', id: 'com.minardwu.ticketlover_lifetime', cm: 'sjb' },  //票恋-TicketLover
