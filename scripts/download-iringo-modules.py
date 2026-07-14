@@ -50,6 +50,36 @@ def latest_asset_url(repo: str, asset_name: str) -> str:
     raise RuntimeError(f"asset {asset_name} not found in latest release of {repo}")
 
 
+def patch_mitm_hostnames(text: str, extra_hosts: str) -> str:
+    """Ensure iRingo MITM hostnames cover CN ls.apple endpoints."""
+    import re
+
+    marker = "[MITM]"
+    if marker not in text:
+        return text
+    pattern = re.compile(
+        r"(hostname\s*=\s*%APPEND%\s*)(.+?)(\s*$)",
+        re.MULTILINE,
+    )
+
+    def repl(match: re.Match[str]) -> str:
+        prefix, hosts, suffix = match.groups()
+        items = [h.strip() for h in hosts.split(",") if h.strip()]
+        for host in extra_hosts.split(","):
+            host = host.strip()
+            if host and host not in items:
+                items.append(host)
+        return f"{prefix}{', '.join(items)}{suffix}"
+
+    return pattern.sub(repl, text, count=1)
+
+
+IRINGO_MITM_PATCHES = {
+    "iringo-maps.sgmodule": "gspe35-ssl.ls.apple.cn",
+    "iringo-location.sgmodule": "",
+}
+
+
 def download_module(repo: str, asset: str, dest: Path) -> None:
     url = latest_asset_url(repo, asset)
     data = fetch_bytes(url)
@@ -58,6 +88,9 @@ def download_module(repo: str, asset: str, dest: Path) -> None:
         raise ValueError(f"invalid payload from {url}")
     text = data.decode("utf-8", errors="replace")
     text = _merge.mirror_script_paths(text)
+    patch = IRINGO_MITM_PATCHES.get(dest.name)
+    if patch:
+        text = patch_mitm_hostnames(text, patch)
     dest.write_text(text, encoding="utf-8")
     print(f"OK {dest.name} <- {repo} ({len(data)} bytes)")
 
