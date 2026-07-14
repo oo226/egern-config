@@ -533,7 +533,7 @@ modules:
     url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/unlock-collection.module
     update_interval: 86400
     enabled: true
-  - name: 银行税务隧道豁免
+  - name: 税务邮储隧道豁免
     url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/bank-tax-bypass.yaml
     update_interval: 86400
     enabled: true
