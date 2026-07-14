@@ -1,21 +1,21 @@
-# 银行 / 税务 App 隧道豁免（Egern YAML 模块）
-# - 写入 bypass_tunnel_proxy + real_ip_domains + 顶栏级 DIRECT 规则
-# - 对这些主机名：MITM / 脚本去广告 / 去开屏通常会失效（见 USAGE）
-# - 未知域名请用 Egern「请求日志」打开 App 后再追加
+# 税务 / 邮储隧道豁免（Egern YAML 模块）
+# - 仅含「无开屏广告依赖、且易被代理影响」的域名
+# - 动卡空间 / 农商等需要去开屏的 App：不要写进 bypass（会废模块去广告）
+# - 对这些主机：MITM / 脚本去广告通常不生效（税务本就无广告）
 
-name: 银行税务隧道豁免
+name: 税务邮储隧道豁免
 description: >
-  电子税务局 / 邮储 / 动卡空间(中信) / 河南农信 等尽量走隧道绕过 + 真实 IP，
-  减轻「开了代理连不上」。若 App 检测的是 VPN 开关本身，仍可能要临时关 Egern。
+  电子税务局 + 邮储手机银行：bypass_tunnel_proxy + 真实 IP + DIRECT。
+  不含动卡空间/农商等要去开屏的 App。若仍提示关 VPN，用该 App 时临时关 Egern。
 author: oo226
 homepage: https://github.com/oo226/egern-config
 
 bypass_tunnel_proxy:
-  # 电子税务局（原主配置）
+  # 电子税务局
   - "*.chinatax.gov.cn"
   - "chinatax.gov.cn"
   - "etax.chinatax.gov.cn"
-  # 邮储手机银行（原主配置）
+  # 邮储手机银行（沿用原主配置豁免）
   - "login-service.mobile-bank.psbc.com"
   - "mobile-bank.psbc.com"
   - "static.mobile-bank.psbc.com"
@@ -23,15 +23,6 @@ bypass_tunnel_proxy:
   - "mcc.psbc.com"
   - "d.psbc.com"
   - "*.psbc.com"
-  # 动卡空间（中信信用卡）— 官网域，建议用日志核对后再增删
-  - "*.ecitic.com"
-  - "*.citicbank.com"
-  - "*.citicbank.cn"
-  - "creditcard.ecitic.com"
-  - "creditcard.citicbank.cn"
-  # 河南农信 / 河南农商系 — 常见官方域，务必用日志核对
-  - "*.hnnx.com"
-  - "hnnx.com"
 
 real_ip_domains:
   - "*.chinatax.gov.cn"
@@ -39,11 +30,6 @@ real_ip_domains:
   - "etax.chinatax.gov.cn"
   - "*.psbc.com"
   - "mobile-bank.psbc.com"
-  - "*.ecitic.com"
-  - "*.citicbank.com"
-  - "*.citicbank.cn"
-  - "*.hnnx.com"
-  - "hnnx.com"
 
 rules:
   - domain_suffix:
@@ -51,16 +37,4 @@ rules:
       policy: DIRECT
   - domain_suffix:
       match: psbc.com
-      policy: DIRECT
-  - domain_suffix:
-      match: ecitic.com
-      policy: DIRECT
-  - domain_suffix:
-      match: citicbank.com
-      policy: DIRECT
-  - domain_suffix:
-      match: citicbank.cn
-      policy: DIRECT
-  - domain_suffix:
-      match: hnnx.com
       policy: DIRECT
