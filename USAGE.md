@@ -120,19 +120,6 @@ https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.js
 
 改完保存 → 完全退出相关 App 再开 → 测试。
 
-### 税务 / 邮储报 VPN？
-
-主配置不再堆税局/邮储域名；请开模块「税务邮储隧道豁免」：
-
-```
-Modules/bank-tax-bypass.yaml
-```
-
-仅含：**电子税务局** + **邮储**（无开屏广告依赖）。  
-**动卡空间 / 农商等要去开屏的 App 不要写进 bypass**，否则模块去开屏容易失效；它们虽检测 VPN，但不影响使用时可忽略。
-
-**仍提示关闭 VPN：** 多半在查 VPN 开关，用该 App 时临时关 Egern。
-
 ###  iRingo 不生效？
 
 1. **四个模块都要开**：` iRingo MITM 域名` + 地图/天气/定位（按需）。
