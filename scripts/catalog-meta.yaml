@@ -87,6 +87,12 @@ modules:
     group: 合集
     default_enabled: true
     tags: [解锁, 流媒体]
+  bank-tax-bypass.yaml:
+    group: 豁免
+    default_enabled: true
+    name: 银行税务隧道豁免
+    desc: 税局/邮储/动卡空间/河南农信 — bypass + 真实 IP + DIRECT。豁免主机上模块去广告一般失效。
+    tags: [银行, 税务, 绕过检测]
   cookie-collection.module:
     group: 合集
     default_enabled: false

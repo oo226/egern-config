@@ -19,7 +19,7 @@ include_cellular_services: false
 include_local_networks: false
 
 bypass_tunnel_proxy:
-  # Tailscale（域名/网段无法全部塞进 rule_set；隧道层必须在这里豁免）
+  # Tailscale + 局域网（始终需要；银行/税务已挪到 Modules/bank-tax-bypass.yaml）
   - "*.ts.net"
   - "tailscale.com"
   - "*.tailscale.com"
@@ -32,15 +32,6 @@ bypass_tunnel_proxy:
   - "192.168.0.0/16"
   - "10.0.0.0/8"
   - "172.16.0.0/12"
-  - "*.chinatax.gov.cn"
-  - "chinatax.gov.cn"
-  - "etax.chinatax.gov.cn"
-  - "login-service.mobile-bank.psbc.com"
-  - "mobile-bank.psbc.com"
-  - "static.mobile-bank.psbc.com"
-  - "static.psbc.com"
-  - "mcc.psbc.com"
-  - "d.psbc.com"
 
 hijack_dns:
   - "*:53"
@@ -540,6 +531,10 @@ modules:
     enabled: true
   - name: 解锁增强合集
     url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/unlock-collection.module
+    update_interval: 86400
+    enabled: true
+  - name: 银行税务隧道豁免
+    url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/bank-tax-bypass.yaml
     update_interval: 86400
     enabled: true
   - name: PingMe 抓参签到
