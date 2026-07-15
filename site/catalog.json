@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-14T05:32:14Z",
+  "generated_at": "2026-07-15T05:26:13Z",
   "branch": "main",
   "repo": "oo226/egern-config",
   "raw_base": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main",
@@ -10,14 +10,14 @@
       "name": "默认开启",
       "icon": "✅",
       "usage_tier": "daily",
-      "count": 6
+      "count": 8
     },
     {
       "id": "optional",
       "name": "按需开启",
       "icon": "🔧",
       "usage_tier": "optional",
-      "count": 173
+      "count": 171
     }
   ],
   "quick_start": [
@@ -202,9 +202,9 @@
   ],
   "sync_digest": {
     "commit": {
-      "hash": "6d1b22e",
-      "subject": "fix(ci): retry upstream downloads and keep cached skk rules on failure",
-      "date": "2026-07-13"
+      "hash": "d29e101",
+      "subject": "fix(adblock): drop psbc/chinatax skip-proxy so splash MITM works",
+      "date": "2026-07-14"
     },
     "summary": [
       "国内直连 15496 条"
@@ -212,6 +212,36 @@
     "files_changed": 0
   },
   "changelog": [
+    {
+      "hash": "769a75c",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-07-14"
+    },
+    {
+      "hash": "10c4d44",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-07-14"
+    },
+    {
+      "hash": "e602006",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-07-14"
+    },
+    {
+      "hash": "a953652",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-07-14"
+    },
+    {
+      "hash": "33ab74c",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-07-14"
+    },
+    {
+      "hash": "7585164",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-07-14"
+    },
     {
       "hash": "aa19798",
       "subject": "chore: publish curated snapshot from sync",
@@ -221,40 +251,10 @@
       "hash": "726b9a0",
       "subject": "chore: publish curated snapshot from sync",
       "date": "2026-07-12"
-    },
-    {
-      "hash": "2911d5e",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-07-12"
-    },
-    {
-      "hash": "cf046b6",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-07-12"
-    },
-    {
-      "hash": "9475faa",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-07-12"
-    },
-    {
-      "hash": "e60834b",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-07-12"
-    },
-    {
-      "hash": "796039d",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-07-12"
-    },
-    {
-      "hash": "1ff9a73",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-07-12"
     }
   ],
   "local_health": {
-    "checked": 103,
+    "checked": 104,
     "fail": 0,
     "broken_ids": []
   },
@@ -283,7 +283,7 @@
       "id": "routing",
       "name": "分流规则",
       "icon": "🔀",
-      "count": 36
+      "count": 37
     },
     {
       "id": "boxjs",
@@ -463,8 +463,8 @@
       "path": "Modules/iringo-maps.sgmodule",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/iringo-maps.sgmodule",
       "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Firingo-maps.sgmodule",
-      "default_enabled": false,
-      "usage_tier": "optional",
+      "default_enabled": true,
+      "usage_tier": "daily",
       "requires": [],
       "hint": "⚠️ 请先添加并启用「 iRingo MITM 域名」模块，否则无法解密 Apple 地图 API。",
       "tags": [
@@ -485,8 +485,8 @@
       "path": "Modules/iringo-weather.sgmodule",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/iringo-weather.sgmodule",
       "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Firingo-weather.sgmodule",
-      "default_enabled": false,
-      "usage_tier": "optional",
+      "default_enabled": true,
+      "usage_tier": "daily",
       "requires": [],
       "hint": "⚠️ 请先添加并启用「 iRingo MITM 域名」模块，否则 weatherkit 无法解密。",
       "tags": [
@@ -1154,7 +1154,7 @@
       "category": "routing",
       "group": "国内/通用",
       "name": "局域网",
-      "desc": "局域网 IP 段直连。",
+      "desc": "局域网 IP 段直连（含 CGNAT 100.64/10）。",
       "icon": "",
       "path": "Routing/Lan.yaml",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Lan.yaml",
@@ -1203,6 +1203,25 @@
         "rule_set"
       ],
       "share_url": "https://oo226.github.io/egern-config/#id=Routing-Reject-Merged",
+      "health": "ok"
+    },
+    {
+      "id": "Routing-Tailscale-Direct",
+      "kind": "rule",
+      "category": "routing",
+      "group": "国内/通用",
+      "name": "Tailscale 直连",
+      "desc": "Tailscale 控制面域名 + 100.64/10 + fd7a::/48。与官方 App 并存时放最前。",
+      "icon": "",
+      "path": "Routing/Tailscale-Direct.yaml",
+      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Tailscale-Direct.yaml",
+      "add_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Tailscale-Direct.yaml",
+      "usage_tier": "neutral",
+      "tags": [
+        "分流",
+        "rule_set"
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=Routing-Tailscale-Direct",
       "health": "ok"
     },
     {
@@ -4470,5 +4489,5 @@
       "health": "ok"
     }
   ],
-  "total": 215
+  "total": 216
 }

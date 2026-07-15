@@ -4,11 +4,11 @@
 #
 # Sources:
 #   Repcz-AI     — Repcz/Tool — AI.yaml (50 entries)
-#   VPSDance     — VPSDance/ai-proxy-rules — egern/all.yaml (282 entries)
+#   VPSDance     — VPSDance/ai-proxy-rules — egern/all.yaml (283 entries)
 #   Sukka-ai     — Sukka ruleset.skk.moe — non_ip/ai.conf (48 entries)
 #   local        — oo226/egern-config — AI-supplement.yaml (80 entries)
 # Overlap removed: 119
-# Total unique entries: 341
+# Total unique entries: 342
 
 no_resolve: true
 domain_set:
@@ -141,6 +141,7 @@ domain_suffix_set:
   - chatbotclaude.com
   - chatgpt.com
   - chatgpt.livekit.cloud
+  - chatgpt.site
   - chutes.ai
   - cici.com
   - ciciai.com
