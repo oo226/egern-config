@@ -4,11 +4,11 @@
 #
 # Sources:
 #   Repcz-AI     — Repcz/Tool — AI.yaml (50 entries)
-#   VPSDance     — VPSDance/ai-proxy-rules — egern/all.yaml (283 entries)
+#   VPSDance     — VPSDance/ai-proxy-rules — egern/all.yaml (284 entries)
 #   Sukka-ai     — Sukka ruleset.skk.moe — non_ip/ai.conf (48 entries)
 #   local        — oo226/egern-config — AI-supplement.yaml (80 entries)
 # Overlap removed: 119
-# Total unique entries: 342
+# Total unique entries: 343
 
 no_resolve: true
 domain_set:
@@ -201,6 +201,7 @@ domain_suffix_set:
   - firefly.adobe.com
   - firefly.adobe.io
   - fireworks.ai
+  - flow.google
   - flowgpt.com
   - g.ai
   - gamma.app

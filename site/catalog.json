@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-15T05:26:13Z",
+  "generated_at": "2026-07-16T05:34:03Z",
   "branch": "main",
   "repo": "oo226/egern-config",
   "raw_base": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main",
@@ -202,16 +202,21 @@
   ],
   "sync_digest": {
     "commit": {
-      "hash": "d29e101",
-      "subject": "fix(adblock): drop psbc/chinatax skip-proxy so splash MITM works",
-      "date": "2026-07-14"
+      "hash": "624fd4f",
+      "subject": "chore: sync upstream on sync branch",
+      "date": "2026-07-15"
     },
     "summary": [
-      "国内直连 15496 条"
+      "国内直连 15663 条"
     ],
     "files_changed": 0
   },
   "changelog": [
+    {
+      "hash": "dcf2000",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-07-15"
+    },
     {
       "hash": "769a75c",
       "subject": "chore: publish curated snapshot from sync",
@@ -246,11 +251,6 @@
       "hash": "aa19798",
       "subject": "chore: publish curated snapshot from sync",
       "date": "2026-07-13"
-    },
-    {
-      "hash": "726b9a0",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-07-12"
     }
   ],
   "local_health": {
