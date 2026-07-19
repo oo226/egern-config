@@ -1,5 +1,7 @@
 name: Deploy module hub (GitHub Pages)
 
+# Daily sync pushes main with GITHUB_TOKEN, which does NOT trigger `on.push`.
+# Listen for Sync Egern Rules completion so the hub date stays current.
 on:
   push:
     branches: [main]
@@ -7,11 +9,15 @@ on:
       - site/**
       - .github/workflows/pages.yml
   workflow_dispatch:
+  workflow_run:
+    workflows: ["Sync Egern Rules"]
+    types: [completed]
 
 permissions:
   contents: read
   pages: write
   id-token: write
+  actions: read
 
 concurrency:
   group: pages
@@ -19,12 +25,16 @@ concurrency:
 
 jobs:
   deploy:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          # After sync, deploy the published main tip (not the sync-branch checkout).
+          ref: main
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
