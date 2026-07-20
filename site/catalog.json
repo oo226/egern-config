@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-19T05:45:47Z",
+  "generated_at": "2026-07-20T06:01:44Z",
   "branch": "main",
   "repo": "oo226/egern-config",
   "raw_base": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main",
@@ -202,9 +202,9 @@
   ],
   "sync_digest": {
     "commit": {
-      "hash": "461c5a3",
+      "hash": "a199d0f",
       "subject": "chore: sync upstream on sync branch",
-      "date": "2026-07-18"
+      "date": "2026-07-19"
     },
     "summary": [
       "国内直连 15583 条"
@@ -212,6 +212,21 @@
     "files_changed": 0
   },
   "changelog": [
+    {
+      "hash": "ddff689",
+      "subject": "Merge pull request #41 from oo226/cursor/fix-pages-auto-deploy-ac83",
+      "date": "2026-07-19"
+    },
+    {
+      "hash": "fdc678e",
+      "subject": "fix(pages): redeploy hub after daily sync",
+      "date": "2026-07-19"
+    },
+    {
+      "hash": "2dc4904",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-07-19"
+    },
     {
       "hash": "3ae81e6",
       "subject": "chore: publish curated snapshot from sync",
@@ -234,21 +249,6 @@
     },
     {
       "hash": "769a75c",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-07-14"
-    },
-    {
-      "hash": "10c4d44",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-07-14"
-    },
-    {
-      "hash": "e602006",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-07-14"
-    },
-    {
-      "hash": "a953652",
       "subject": "chore: publish curated snapshot from sync",
       "date": "2026-07-14"
     }
