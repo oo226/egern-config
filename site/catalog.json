@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-20T06:01:44Z",
+  "generated_at": "2026-07-21T05:48:53Z",
   "branch": "main",
   "repo": "oo226/egern-config",
   "raw_base": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main",
@@ -17,7 +17,7 @@
       "name": "按需开启",
       "icon": "🔧",
       "usage_tier": "optional",
-      "count": 171
+      "count": 170
     }
   ],
   "quick_start": [
@@ -202,9 +202,9 @@
   ],
   "sync_digest": {
     "commit": {
-      "hash": "a199d0f",
+      "hash": "260d844",
       "subject": "chore: sync upstream on sync branch",
-      "date": "2026-07-19"
+      "date": "2026-07-20"
     },
     "summary": [
       "国内直连 15583 条"
@@ -212,6 +212,11 @@
     "files_changed": 0
   },
   "changelog": [
+    {
+      "hash": "151b0a2",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-07-20"
+    },
     {
       "hash": "ddff689",
       "subject": "Merge pull request #41 from oo226/cursor/fix-pages-auto-deploy-ac83",
@@ -246,15 +251,10 @@
       "hash": "dcf2000",
       "subject": "chore: publish curated snapshot from sync",
       "date": "2026-07-15"
-    },
-    {
-      "hash": "769a75c",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-07-14"
     }
   ],
   "local_health": {
-    "checked": 104,
+    "checked": 103,
     "fail": 0,
     "broken_ids": []
   },
@@ -301,7 +301,7 @@
       "id": "widgets",
       "name": "小组件",
       "icon": "📱",
-      "count": 41
+      "count": 40
     }
   ],
   "items": [
@@ -3627,27 +3627,6 @@
       "health": "ok"
     },
     {
-      "id": "widget-2026fifa-widget",
-      "kind": "widget",
-      "category": "widgets",
-      "group": "IBL3ND",
-      "name": "2026FIFA-Widget",
-      "desc": "小组件脚本 — 仅写入 Egern widgets 段，勿加 scriptings。",
-      "icon": "",
-      "path": "Widgets/IBL3ND/2026FIFA-Widget.js",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/2026FIFA-Widget.js",
-      "add_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/2026FIFA-Widget.js",
-      "usage_tier": "optional",
-      "hint": "Oil 等常用：写入 Egern.yaml → widgets，不要写进 scriptings",
-      "tags": [
-        "小组件",
-        "Widget",
-        "按需开启"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=widget-2026fifa-widget",
-      "health": "ok"
-    },
-    {
       "id": "widget-aaa",
       "kind": "widget",
       "category": "widgets",
@@ -4489,5 +4468,5 @@
       "health": "ok"
     }
   ],
-  "total": 216
+  "total": 215
 }
