@@ -2,10 +2,6 @@ source: https://github.com/IBL3ND/module
 note: Each widget is a separate script — add individually in Egern, not as a merged
   module.
 widgets:
-- name: 2026FIFA-Widget.js
-  upstream: https://raw.githubusercontent.com/IBL3ND/module/main/2026FIFA-Widget.js
-  local_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/2026FIFA-Widget.js
-  file: Widgets/IBL3ND/2026FIFA-Widget.js
 - name: AAA.js
   upstream: https://raw.githubusercontent.com/IBL3ND/module/main/AAA.js
   local_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/AAA.js
