@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-23T05:47:53Z",
+  "generated_at": "2026-07-24T05:45:43Z",
   "branch": "main",
   "repo": "oo226/egern-config",
   "raw_base": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main",
@@ -17,7 +17,7 @@
       "name": "按需开启",
       "icon": "🔧",
       "usage_tier": "optional",
-      "count": 170
+      "count": 162
     }
   ],
   "quick_start": [
@@ -133,12 +133,6 @@
       "name": "喜马拉雅",
       "group": "其他",
       "add_url": "http://boxjs.com/#/app/ximalaya"
-    },
-    {
-      "id": "lkBingPoint",
-      "name": "Bing积分",
-      "group": "其他",
-      "add_url": "http://boxjs.com/#/app/lkBingPoint"
     }
   ],
   "bundles": [
@@ -202,16 +196,21 @@
   ],
   "sync_digest": {
     "commit": {
-      "hash": "32b81e8",
+      "hash": "97f22c1",
       "subject": "chore: sync upstream on sync branch",
-      "date": "2026-07-22"
+      "date": "2026-07-23"
     },
     "summary": [
-      "国内直连 15583 条"
+      "国内直连 15621 条"
     ],
     "files_changed": 0
   },
   "changelog": [
+    {
+      "hash": "7d75dc4",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-07-23"
+    },
     {
       "hash": "463dbb8",
       "subject": "chore: publish curated snapshot from sync",
@@ -246,11 +245,6 @@
       "hash": "3ae81e6",
       "subject": "chore: publish curated snapshot from sync",
       "date": "2026-07-18"
-    },
-    {
-      "hash": "dfa0f83",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-07-17"
     }
   ],
   "local_health": {
@@ -289,7 +283,7 @@
       "id": "boxjs",
       "name": "BoxJS",
       "icon": "📦",
-      "count": 112
+      "count": 104
     },
     {
       "id": "scripts",
@@ -1374,24 +1368,6 @@
       "share_url": "https://oo226.github.io/egern-config/#id=boxjs-ApkTw"
     },
     {
-      "id": "boxjs-lkBingPoint",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "其他",
-      "name": "Bing积分",
-      "desc": "",
-      "icon": "https://raw.githubusercontent.com/lowking/Scripts/master/doc/icon/bingPoint.png",
-      "path": "Modules/egern.boxjs.json#lkBingPoint",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/lkBingPoint",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "其他"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-lkBingPoint"
-    },
-    {
       "id": "boxjs-WxCode",
       "kind": "boxjs-app",
       "category": "boxjs",
@@ -1536,24 +1512,6 @@
       "share_url": "https://oo226.github.io/egern-config/#id=boxjs-fmz200_PingMe"
     },
     {
-      "id": "boxjs-lk.qqvip",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "签到 / 抓参",
-      "name": "QQ会员成长值签到",
-      "desc": "",
-      "icon": "https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/qqvip.png",
-      "path": "Modules/egern.boxjs.json#lk.qqvip",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/lk.qqvip",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "签到 / 抓参"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-lk.qqvip"
-    },
-    {
       "id": "boxjs-soulsing_capture",
       "kind": "boxjs-app",
       "category": "boxjs",
@@ -1680,24 +1638,6 @@
       "share_url": "https://oo226.github.io/egern-config/#id=boxjs-WPS"
     },
     {
-      "id": "boxjs-lk.wifi.assistant",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "其他",
-      "name": "Wi-Fi助手（surge专用）",
-      "desc": "",
-      "icon": "https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/WIFI.png",
-      "path": "Modules/egern.boxjs.json#lk.wifi.assistant",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/lk.wifi.assistant",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "其他"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-lk.wifi.assistant"
-    },
-    {
       "id": "boxjs-fmz200_X_pinned_timelines",
       "kind": "boxjs-app",
       "category": "boxjs",
@@ -1732,24 +1672,6 @@
         "其他"
       ],
       "share_url": "https://oo226.github.io/egern-config/#id=boxjs-chavyleung.bilibili.live"
-    },
-    {
-      "id": "boxjs-lkHifiniSignIn",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "签到 / 抓参",
-      "name": "hifini签到",
-      "desc": "",
-      "icon": "https://raw.githubusercontent.com/lowking/Scripts/master/doc/icon/hifinisignin-dark.png",
-      "path": "Modules/egern.boxjs.json#lkHifiniSignIn",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/lkHifiniSignIn",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "签到 / 抓参"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-lkHifiniSignIn"
     },
     {
       "id": "boxjs-iios_checkin",
@@ -2074,42 +1996,6 @@
         "Yuheng"
       ],
       "share_url": "https://oo226.github.io/egern-config/#id=boxjs-yuheng.wuai"
-    },
-    {
-      "id": "boxjs-lkBilibiliPrivilegeReceive",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "其他",
-      "name": "哔哩哔哩大会员特权领取",
-      "desc": "",
-      "icon": "https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/bilibili.png",
-      "path": "Modules/egern.boxjs.json#lkBilibiliPrivilegeReceive",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/lkBilibiliPrivilegeReceive",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "其他"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-lkBilibiliPrivilegeReceive"
-    },
-    {
-      "id": "boxjs-lkBilibiliBangumiMonitor",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "其他",
-      "name": "哔哩哔哩番剧监控",
-      "desc": "",
-      "icon": "https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/bilibili.png",
-      "path": "Modules/egern.boxjs.json#lkBilibiliBangumiMonitor",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/lkBilibiliBangumiMonitor",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "其他"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-lkBilibiliBangumiMonitor"
     },
     {
       "id": "boxjs-ximalaya",
@@ -2542,24 +2428,6 @@
         "其他"
       ],
       "share_url": "https://oo226.github.io/egern-config/#id=boxjs-zxhc"
-    },
-    {
-      "id": "boxjs-lkPuPuCheckIn",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "签到 / 抓参",
-      "name": "朴朴签到",
-      "desc": "",
-      "icon": "https://raw.githubusercontent.com/lowking/Scripts/master/doc/icon/pupua.png",
-      "path": "Modules/egern.boxjs.json#lkPuPuCheckIn",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/lkPuPuCheckIn",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "签到 / 抓参"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-lkPuPuCheckIn"
     },
     {
       "id": "boxjs-laichong_capture",
@@ -3082,24 +2950,6 @@
         "签到 / 抓参"
       ],
       "share_url": "https://oo226.github.io/egern-config/#id=boxjs-fmz200_aliyun"
-    },
-    {
-      "id": "boxjs-lkAliYunPanCheckIn",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "签到 / 抓参",
-      "name": "阿里云盘签到",
-      "desc": "",
-      "icon": "https://raw.githubusercontent.com/lowking/Scripts/master/doc/icon/aliYunPana.png",
-      "path": "Modules/egern.boxjs.json#lkAliYunPanCheckIn",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/lkAliYunPanCheckIn",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "签到 / 抓参"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-lkAliYunPanCheckIn"
     },
     {
       "id": "boxjs-ql_sync",
@@ -4468,5 +4318,5 @@
       "health": "ok"
     }
   ],
-  "total": 215
+  "total": 207
 }
