@@ -11,17 +11,6 @@ merge:
     - "#"
     - "# Sources: mieqq, QingRex(可莉), chxm1023/ddm1023, Yu9191, miranquil, iEwha, ddgksf2013, WeiGiegie, liul0ng, local patches"
     - ""
-  # WeChat HTTPDNS REJECT was meant to force system DNS for rewrite/unlock, but on
-  # cellular it makes WeChat hang (dns.weixin.qq.com.cn → REJECT). Keep HTTPDNS.
-  content_line_excludes:
-    - dns.weixin.qq.com
-    - dns.weixin.qq.com.cn
-    - aedns.weixin.qq.com
-    - udns.weixin.qq.com
-    - dns.wechat.com
-    - paydns.wechatpay.cn
-    - short.weixin.qq.com/cgi-bin/micromsg-bin/getcdndns
-    - hkextshort.weixin.qq.com/cgi-bin/micromsg-bin/getcdndns
 
 modules:
   - name: mieqq-skip-proxy
