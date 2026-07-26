@@ -325,6 +325,11 @@ rules:
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Direct-Priority.yaml
       policy: DIRECT
       update_interval: 86400
+  # 微信/公众号 CDN：必须在 Reject 之前，避免文章白屏
+  - rule_set:
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/WeChat-Direct.yaml
+      policy: DIRECT
+      update_interval: 86400
 
   # ── 追风挂机：途游 sq-hlsg / open-hlsg 走专用节点 ──
   - rule_set:
