@@ -26,7 +26,6 @@ IP-CIDR,8.134.241.67/32,REJECT,no-resolve,pre-matching
 DOMAIN,httpdns.volcengineapi.com,REJECT,extended-matching,pre-matching
 DOMAIN,dig.bdurl.net,REJECT,extended-matching,pre-matching
 DOMAIN,dig.zjurl.cn,REJECT,extended-matching,pre-matching
-DOMAIN,paydns.wechatpay.cn,REJECT,extended-matching,pre-matching
 IP-CIDR,39.156.140.30/32,REJECT,no-resolve,pre-matching
 IP-CIDR,39.156.140.47/32,REJECT,no-resolve,pre-matching
 IP-CIDR,39.156.140.245/32,REJECT,no-resolve,pre-matching
@@ -294,7 +293,6 @@ DOMAIN,httpdns.volcengineapi.com,REJECT
 DOMAIN,dig.bdurl.net,REJECT
 DOMAIN,dig.zjurl.cn,REJECT
 AND,((DOMAIN-KEYWORD,tnc),(AND,((OR,((DOMAIN-KEYWORD,-bjlgy),(DOMAIN-KEYWORD,-alisc),(DOMAIN-KEYWORD,-aliec),(DOMAIN-KEYWORD,-alisg))),(OR,((DOMAIN-SUFFIX,snssdk.com),(DOMAIN-SUFFIX,isnssdk.com),(DOMAIN-SUFFIX,toutiaoapi.com),(DOMAIN-SUFFIX,bytedance.com),(DOMAIN-SUFFIX,zijieapi.com)))))),REJECT
-DOMAIN,paydns.wechatpay.cn,REJECT
 IP-CIDR,39.156.140.30/32,REJECT,no-resolve
 IP-CIDR,39.156.140.47/32,REJECT,no-resolve
 IP-CIDR,39.156.140.245/32,REJECT,no-resolve

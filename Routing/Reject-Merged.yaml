@@ -5,8 +5,8 @@
 # Merged & deduplicated ad-blocking domain rules:
 #   Repcz/Reject.yaml — 6209 entries
 #   Sukka/reject.conf  — 116073 entries (1150 domains + 114923 suffixes)
-# Overlap removed: 3254
-# Total unique entries: 119028
+# Overlap removed: 3255
+# Total unique entries: 119027
 
 no_resolve: true
 domain_set:
@@ -552,7 +552,6 @@ domain_set:
   - dns.jd.com
   - dns.m.sm.cn
   - dns.qiyipic.iqiyi.com
-  - dns.wechat.com
   - dns.weibo.cn
   - dns.ximalaya.com
   - dns2.q2cdn.com

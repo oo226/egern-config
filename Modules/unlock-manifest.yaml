@@ -18,6 +18,8 @@ merge:
     - dns.weixin.qq.com.cn
     - aedns.weixin.qq.com
     - udns.weixin.qq.com
+    - dns.wechat.com
+    - paydns.wechatpay.cn
     - short.weixin.qq.com/cgi-bin/micromsg-bin/getcdndns
     - hkextshort.weixin.qq.com/cgi-bin/micromsg-bin/getcdndns
 
