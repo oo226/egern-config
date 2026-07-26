@@ -246,6 +246,29 @@ def filter_mitm_hostnames(hosts: set[str], excludes: frozenset[str]) -> set[str]
     }
 
 
+def line_matches_content_exclude(line: str, excludes: frozenset[str]) -> bool:
+    """True if a non-comment rule/rewrite line should be dropped (substring match)."""
+    stripped = line.strip()
+    if not stripped or stripped.startswith("#"):
+        return False
+    lower = stripped.lower()
+    # URL Rewrite often escapes dots (dns\.weixin\.qq\.com); match both forms.
+    unescaped = lower.replace("\\", "")
+    for ex in excludes:
+        needle = ex.lower().strip()
+        if not needle:
+            continue
+        if needle in lower or needle in unescaped:
+            return True
+    return False
+
+
+def filter_content_lines(lines: list[str], excludes: frozenset[str]) -> list[str]:
+    if not excludes:
+        return lines
+    return [line for line in lines if not line_matches_content_exclude(line, excludes)]
+
+
 def parse_mitm_hosts_from_line(line: str) -> tuple[set[str], set[str]]:
     """Return (active_hosts, disabled_hosts) from a MITM hostname line."""
     stripped = line.strip()
@@ -267,6 +290,7 @@ def merge_general_lines(
     supplements: list[list[str]],
     *,
     skip_proxy_excludes: frozenset[str] = frozenset(),
+    content_line_excludes: frozenset[str] = frozenset(),
 ) -> list[str]:
     force_hosts: set[str] = set()
     skip_proxy: list[str] = []
@@ -287,6 +311,14 @@ def merge_general_lines(
             else:
                 other.append(stripped)
 
+    if content_line_excludes:
+        force_hosts = {
+            h
+            for h in force_hosts
+            if not any(ex.lower() in h.lower() for ex in content_line_excludes if ex.strip())
+        }
+        other = filter_content_lines(other, content_line_excludes)
+
     merged: list[str] = []
     if force_hosts:
         merged.append(
@@ -305,11 +337,15 @@ def merge_section(
     exclude_cron_scripts: bool = False,
     mitm_hostname_excludes: frozenset[str] = DEFAULT_MITM_HOSTNAME_EXCLUDES,
     skip_proxy_excludes: frozenset[str] = frozenset(),
+    content_line_excludes: frozenset[str] = frozenset(),
 ) -> list[str]:
     if section == "General":
         supp_lines = [lines for _, lines in supplement_blocks]
         return merge_general_lines(
-            primary_lines, supp_lines, skip_proxy_excludes=skip_proxy_excludes
+            primary_lines,
+            supp_lines,
+            skip_proxy_excludes=skip_proxy_excludes,
+            content_line_excludes=content_line_excludes,
         )
 
     if section == "MITM":
@@ -342,6 +378,12 @@ def merge_section(
 
     seen: set[str] = set()
     output: list[str] = []
+    # Drop known-harmful reject/rewrite lines (e.g. WeChat HTTPDNS) before dedupe.
+    primary_lines = filter_content_lines(primary_lines, content_line_excludes)
+    supplement_blocks = [
+        (name, filter_content_lines(lines, content_line_excludes))
+        for name, lines in supplement_blocks
+    ]
 
     for line in primary_lines:
         key = rule_key(line) if section != "Script" else script_key(line)
@@ -380,6 +422,7 @@ def build_merged_module(
     exclude_cron_scripts: bool = False,
     mitm_hostname_excludes: frozenset[str] = DEFAULT_MITM_HOSTNAME_EXCLUDES,
     skip_proxy_excludes: frozenset[str] = frozenset(),
+    content_line_excludes: frozenset[str] = frozenset(),
 ) -> str:
     primary_header, primary_sections = parse_module(primary_text)
 
@@ -444,6 +487,7 @@ def build_merged_module(
             exclude_cron_scripts=exclude_cron_scripts,
             mitm_hostname_excludes=mitm_hostname_excludes,
             skip_proxy_excludes=skip_proxy_excludes,
+            content_line_excludes=content_line_excludes,
         )
         if not merged_lines:
             continue
@@ -470,6 +514,7 @@ def main() -> None:
         merge_cfg.get("mitm_hostname_excludes") or DEFAULT_MITM_HOSTNAME_EXCLUDES
     )
     skip_proxy_excludes = frozenset(merge_cfg.get("skip_proxy_excludes") or ())
+    content_line_excludes = frozenset(merge_cfg.get("content_line_excludes") or ())
     script_url_fixes = {**DEFAULT_SCRIPT_URL_FIXES, **(merge_cfg.get("script_url_fixes") or {})}
     script_pattern_fixes = tuple(merge_cfg.get("script_pattern_fixes") or ()) + DEFAULT_SCRIPT_PATTERN_FIXES
 
@@ -521,6 +566,7 @@ def main() -> None:
         exclude_cron_scripts=exclude_cron_scripts,
         mitm_hostname_excludes=mitm_hostname_excludes,
         skip_proxy_excludes=skip_proxy_excludes,
+        content_line_excludes=content_line_excludes,
     )
     merged = apply_script_url_fixes(merged, script_url_fixes)
     merged = apply_script_pattern_fixes(merged, script_pattern_fixes)
