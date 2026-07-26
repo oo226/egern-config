@@ -31,6 +31,8 @@ NEVER_REJECT_DOMAINS = frozenset(
         "dns.weixin.qq.com.cn",
         "aedns.weixin.qq.com",
         "udns.weixin.qq.com",
+        "dns.wechat.com",
+        "paydns.wechatpay.cn",
     }
 )
 
