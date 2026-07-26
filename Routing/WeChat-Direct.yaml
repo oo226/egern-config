@@ -1,0 +1,40 @@
+# 微信关键域名优先直连（须放在 Reject / Proxy 规则之前）
+# 避免 HTTPDNS/CDN 被误 REJECT 或落到兜底代理，导致公众号文章打不开。
+
+no_resolve: true
+domain_suffix_set:
+  - weixin.qq.com
+  - weixin.com
+  - wechat.com
+  - weixinbridge.com
+  - servicewechat.com
+  - wxs.qq.com
+  - qpic.cn
+  - qlogo.cn
+  - gtimg.cn
+  - gtimg.com
+  - idqqimg.com
+domain_set:
+  - mp.weixin.qq.com
+  - open.weixin.qq.com
+  - api.weixin.qq.com
+  - short.weixin.qq.com
+  - long.weixin.qq.com
+  - szshort.weixin.qq.com
+  - szminorshort.weixin.qq.com
+  - minorshort.weixin.qq.com
+  - extshort.weixin.qq.com
+  - hkextshort.weixin.qq.com
+  - dns.weixin.qq.com
+  - dns.weixin.qq.com.cn
+  - aedns.weixin.qq.com
+  - udns.weixin.qq.com
+  - dns.wechat.com
+  - paydns.wechatpay.cn
+  - res.wx.qq.com
+  - res2.wx.qq.com
+  - wx.qlogo.cn
+  - thirdwx.qlogo.cn
+  - mmbiz.qpic.cn
+  - mmbiz.qlogo.cn
+  - wap.mp.weixin.qq.com
