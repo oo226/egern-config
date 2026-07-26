@@ -24,20 +24,6 @@ SET_KEYS = (
     "user_agent_set",
 )
 
-# Never REJECT WeChat HTTPDNS — blocking it causes severe WeChat lag on cellular.
-NEVER_REJECT_DOMAINS = frozenset(
-    {
-        "dns.weixin.qq.com",
-        "dns.weixin.qq.com.cn",
-        "aedns.weixin.qq.com",
-        "udns.weixin.qq.com",
-        "dns.wechat.com",
-        "paydns.wechatpay.cn",
-        # WeChat 公众号文章 CDN；REJECT 会导致文章白屏/打不开，聊天却正常
-        "wxs.qq.com",
-    }
-)
-
 
 def parse_repcz(path: Path) -> dict[str, set[str]]:
     sets: dict[str, set[str]] = {k: set() for k in SET_KEYS}
@@ -85,15 +71,6 @@ def merge() -> tuple[dict[str, set[str]], dict[str, set[str]], set[str], set[str
     merged: dict[str, set[str]] = {k: set(repcz[k]) for k in SET_KEYS}
     merged["domain_set"].update(skk_domains)
     merged["domain_suffix_set"].update(skk_suffixes)
-
-    removed_keep = []
-    for key in ("domain_set", "domain_suffix_set"):
-        hit = merged[key] & NEVER_REJECT_DOMAINS
-        if hit:
-            merged[key] -= hit
-            removed_keep.extend(sorted(hit))
-    if removed_keep:
-        print("reject merge: kept WeChat HTTPDNS (not rejected): " + ", ".join(removed_keep))
 
     repcz_total = count_entries(repcz)
     skk_total = len(skk_domains) + len(skk_suffixes)
