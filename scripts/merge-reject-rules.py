@@ -33,6 +33,8 @@ NEVER_REJECT_DOMAINS = frozenset(
         "udns.weixin.qq.com",
         "dns.wechat.com",
         "paydns.wechatpay.cn",
+        # WeChat 公众号文章 CDN；REJECT 会导致文章白屏/打不开，聊天却正常
+        "wxs.qq.com",
     }
 )
 

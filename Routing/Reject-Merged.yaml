@@ -5,8 +5,8 @@
 # Merged & deduplicated ad-blocking domain rules:
 #   Repcz/Reject.yaml — 6209 entries
 #   Sukka/reject.conf  — 116073 entries (1150 domains + 114923 suffixes)
-# Overlap removed: 3255
-# Total unique entries: 119027
+# Overlap removed: 3256
+# Total unique entries: 119026
 
 no_resolve: true
 domain_set:
@@ -115863,7 +115863,6 @@ domain_suffix_set:
   - wxpdlopz.shoppo.se
   - wxqdcakvuv.com
   - wxqlynazgmk.com
-  - wxs.qq.com
   - wxstlzxmilqom.website
   - wxuorj.parfumswinkel.nl
   - wxwsmt.matsmart.fi
