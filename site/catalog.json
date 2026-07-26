@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-25T05:38:27Z",
+  "generated_at": "2026-07-26T06:02:03Z",
   "branch": "main",
   "repo": "oo226/egern-config",
   "raw_base": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main",
@@ -202,9 +202,9 @@
   ],
   "sync_digest": {
     "commit": {
-      "hash": "9df796a",
+      "hash": "f1a47e5",
       "subject": "chore: sync upstream on sync branch",
-      "date": "2026-07-24"
+      "date": "2026-07-25"
     },
     "summary": [
       "国内直连 15571 条"
@@ -212,6 +212,11 @@
     "files_changed": 0
   },
   "changelog": [
+    {
+      "hash": "c6c8d2d",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-07-25"
+    },
     {
       "hash": "992f5f1",
       "subject": "chore: publish curated snapshot from sync",
@@ -245,11 +250,6 @@
     {
       "hash": "fdc678e",
       "subject": "fix(pages): redeploy hub after daily sync",
-      "date": "2026-07-19"
-    },
-    {
-      "hash": "2dc4904",
-      "subject": "chore: publish curated snapshot from sync",
       "date": "2026-07-19"
     }
   ],
