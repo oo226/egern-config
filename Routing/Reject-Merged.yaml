@@ -5,8 +5,8 @@
 # Merged & deduplicated ad-blocking domain rules:
 #   Repcz/Reject.yaml — 6209 entries
 #   Sukka/reject.conf  — 116073 entries (1150 domains + 114923 suffixes)
-# Overlap removed: 3250
-# Total unique entries: 119032
+# Overlap removed: 3254
+# Total unique entries: 119028
 
 no_resolve: true
 domain_set:
@@ -300,7 +300,6 @@ domain_set:
   - adxapi.readgps.com
   - adxlog.vivo.com.cn
   - ae.bdstatic.com
-  - aedns.weixin.qq.com
   - afd.baidu.com
   - afdconf.baidu.com
   - affportal.bhphoto.com
@@ -555,8 +554,6 @@ domain_set:
   - dns.qiyipic.iqiyi.com
   - dns.wechat.com
   - dns.weibo.cn
-  - dns.weixin.qq.com
-  - dns.weixin.qq.com.cn
   - dns.ximalaya.com
   - dns2.q2cdn.com
   - doh.iqiyi.com
@@ -1248,7 +1245,6 @@ domain_set:
   - u1.img.mobile.sina.cn
   - ucstat.baidu.com
   - udata.namespace.so
-  - udns.weixin.qq.com
   - ulog.imap.baidu.com
   - ulogjs.gifshow.com
   - umami.diygod.dev
