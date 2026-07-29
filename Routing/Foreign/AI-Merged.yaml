@@ -4,11 +4,11 @@
 #
 # Sources:
 #   Repcz-AI     — Repcz/Tool — AI.yaml (50 entries)
-#   VPSDance     — VPSDance/ai-proxy-rules — egern/all.yaml (284 entries)
+#   VPSDance     — VPSDance/ai-proxy-rules — egern/all.yaml (285 entries)
 #   Sukka-ai     — Sukka ruleset.skk.moe — non_ip/ai.conf (48 entries)
 #   local        — oo226/egern-config — AI-supplement.yaml (80 entries)
 # Overlap removed: 119
-# Total unique entries: 343
+# Total unique entries: 344
 
 no_resolve: true
 domain_set:
@@ -218,6 +218,7 @@ domain_suffix_set:
   - grazie.aws.intellij.net
   - grok.com
   - grok.x.com
+  - grokipedia.com
   - groq.com
   - h2o.ai
   - hermes-agent.nousresearch.com
