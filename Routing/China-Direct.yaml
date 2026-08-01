@@ -6,19 +6,20 @@
 #   Direct         — Repcz/Tool — 通用直连 (35 entries)
 #   WeChat         — Repcz/Tool — 微信 (341 entries)
 #   Bilibili       — Repcz/Tool — 哔哩哔哩 (20 entries)
-#   AppleCN        — Repcz/Tool — 苹果中国 (166 entries)
-#   ChinaDomain    — Repcz/Tool — 国内域名 (867 entries)
+#   AppleCN        — Repcz/Tool — 苹果中国 (167 entries)
+#   ChinaDomain    — Repcz/Tool — 国内域名 (868 entries)
 #   ChinaIP        — Repcz/Tool — 国内 IP (5822 entries)
 #   ChinaASN       — Repcz/Tool — 国内 ASN (5076 entries)
-#   Rabbit-China   — Rabbit-Spec — China.list (3761 entries)
+#   Rabbit-China   — Rabbit-Spec — China.list (3762 entries)
 #   Rabbit-CIDR    — Rabbit-Spec — ChinaCIDR.list (5836 entries)
 #   ResourceSite   — eulac-dev/Proxy — 视频资源站 (22 entries)
 #   PanVod         — eulac-dev/Proxy — 网盘点播 (44 entries)
 # Overlap removed: 6402
-# Total unique entries: 15588
+# Total unique entries: 15591
 
 no_resolve: true
 domain_set:
+  - 7h15_ru1353t_1s_m4d3_by_5ukk4w.skk.moe
   - acg.tv
   - alt1-mtalk.google.com
   - alt2-mtalk.google.com
@@ -45,11 +46,13 @@ domain_set:
   - btrace.qq.com
   - cdn.angruo.com
   - cdnstatic.tencentcs.com
+  - cdp.cloud.unity3d.com
   - cf.aliyun.com
   - client.amplifi.com
   - clientservices.googleapis.com
   - cn.download.nvidia.com
   - config.ubnt.com
+  - config.uca.cloud.unity3d.com
   - dl.google.com
   - dl.l.google.com
   - dl.ubnt.com
