@@ -3,15 +3,16 @@
 # Do not edit manually. Updated by GitHub Actions after upstream sync.
 #
 # Sources:
-#   Repcz-AI     — Repcz/Tool — AI.yaml (50 entries)
+#   Repcz-AI     — Repcz/Tool — AI.yaml (51 entries)
 #   VPSDance     — VPSDance/ai-proxy-rules — egern/all.yaml (285 entries)
 #   Sukka-ai     — Sukka ruleset.skk.moe — non_ip/ai.conf (48 entries)
 #   local        — oo226/egern-config — AI-supplement.yaml (80 entries)
 # Overlap removed: 119
-# Total unique entries: 344
+# Total unique entries: 345
 
 no_resolve: true
 domain_set:
+  - 7h15_ru1353t_1s_m4d3_by_5ukk4w.skk.moe
   - ai.google.dev
   - ai.meta.com
   - aida.googleapis.com
