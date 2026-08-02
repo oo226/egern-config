@@ -3,14 +3,13 @@
 # Do not edit manually. Updated by GitHub Actions after upstream sync.
 #
 # Merged & deduplicated ad-blocking domain rules:
-#   Repcz/Reject.yaml — 6209 entries
-#   Sukka/reject.conf  — 115879 entries (1153 domains + 114726 suffixes)
-# Overlap removed: 3251
-# Total unique entries: 118837
+#   Repcz/Reject.yaml — 6202 entries
+#   Sukka/reject.conf  — 116016 entries (1153 domains + 114863 suffixes)
+# Overlap removed: 3250
+# Total unique entries: 118968
 
 no_resolve: true
 domain_set:
-  - 118.89.204.198
   - 1oavsblobprodcus350.blob.core.windows.net
   - 2016.sina.cn
   - 37bvsblobprodcus311.blob.core.windows.net
@@ -372,7 +371,6 @@ domain_set:
   - app01.nodes.gslb.mi-idc.com
   - app02.nodes.gslb.mi-idc.com
   - appcfg.v.qq.com
-  - appcloud2.in.zhihu.com
   - applog-perf.uc.cn
   - applogapi.autohome.com.cn
   - applogios.uc.cn
@@ -1166,7 +1164,6 @@ domain_set:
   - store.iqiyi.com
   - strip.taobaocdn.com
   - stun.smartgslb.com
-  - sugar.zhihu.com
   - susapi.dev.surepush.cn
   - susapi.lenovomm.com
   - sv.map.baidu.com
@@ -1650,6 +1647,7 @@ domain_suffix_set:
   - 16xxq8lb4g.com
   - 17.huanqiu.com
   - 17282.org
+  - 1766rr196ez3gypww949cnwyb1gh2yl83.cfd
   - 177o.com
   - 17do048qm.de
   - 17gouwuba.com
@@ -2117,6 +2115,7 @@ domain_suffix_set:
   - 370jj.icu
   - 3721zh.com
   - 37console.com
+  - 37df14908d.com
   - 37lwjdaua.com
   - 37nu0riwfd.com
   - 37shrmvlju.com
@@ -4194,6 +4193,7 @@ domain_suffix_set:
   - aa03010iiko.com
   - aa2hzrmu9.com
   - aa3zx8wko.top
+  - aa4jq9non.com
   - aa52jm08ly.com
   - aa783adfeb.com
   - aa7hzjsow.com
@@ -4435,6 +4435,7 @@ domain_suffix_set:
   - abcdcfasda.gushiwen.cn
   - abcj.dooccn.com
   - abcuwqsosjymos.com
+  - abdalhealing.cyou
   - abdalminhag.com
   - abdelrhman.gherasstore.com
   - abdicatebirchcoolness.com
@@ -4777,6 +4778,7 @@ domain_suffix_set:
   - academia.academiadodiagnostico.com
   - academic96.top
   - academics.academicsuperstore.com
+  - acaogzgoplhnk.website
   - acaribleep.com
   - acbd.holylandprayer.com
   - acc-link-ccontact.focuscura.com
@@ -7239,6 +7241,7 @@ domain_suffix_set:
   - ahfvirogw.in
   - ahfxdqlnlwpyz.site
   - ahfzzc.konfio.mx
+  - ahgmivwzpjuxz.site
   - ahgvk.truthtreatments.com
   - ahhmkt.anhua.com.cn
   - ahhrtt.bnext.com.tw
@@ -7536,6 +7539,7 @@ domain_suffix_set:
   - ajrkm1.com
   - ajrkm3.com
   - ajrkmx1.com
+  - ajrkmx9.com
   - ajrmu.medihealus.com
   - ajs.perfectfutureit.com
   - ajscdn.com
@@ -8119,6 +8123,7 @@ domain_suffix_set:
   - aminicironers.cyou
   - aminks.underarmour.com.tr
   - aminopay.net
+  - amitaratelsdivvied.cyou
   - amlindred.com
   - amlqp.sistaco.co.uk
   - amlrps.koningaap.be
@@ -10806,6 +10811,7 @@ domain_suffix_set:
   - aplobv.xexymix.com
   - aplus.alibaba.com
   - aplus.gmarket.co.kr
+  - aplytazqgfoup.online
   - apm-fe.rnote.com
   - apm-fe.xiaohongshu.com
   - apm-log-upload-os.hoyoverse.com
@@ -11761,6 +11767,7 @@ domain_suffix_set:
   - appads.com
   - appanalysis.banggood.com
   - apparatus49.top
+  - appastpardi.cfd
   - appayairmass.cyou
   - appbaqend.com
   - appboy-images.com
@@ -12725,6 +12732,7 @@ domain_suffix_set:
   - attendanceoffvow.com
   - attendant36.top
   - attendchase.com
+  - attentbrazes.cyou
   - attentionantecedentsuperb.com
   - atti.com
   - attirecideryeah.com
@@ -12920,6 +12928,7 @@ domain_suffix_set:
   - avads.live
   - avads.net
   - availablerest.com
+  - availssopited.shop
   - avalancheofnews.com
   - avalanchetremorunfilled.com
   - avalonalbum.com
@@ -13423,6 +13432,7 @@ domain_suffix_set:
   - b2d.megagen.ro
   - b2d.secom.ro
   - b2d.springfarma.com
+  - b2iy3ce7tibff9.cfd
   - b2p.institutulbrainmap.ro
   - b2pk.com
   - b2v18mn8f6.com
@@ -14267,6 +14277,7 @@ domain_suffix_set:
   - bentley.euroshop.com.pe
   - bento.agoda.com
   - bentsdiorism.com
+  - benurattel.cfd
   - benvjt.icu
   - benwardcoagule.cfd
   - beoecomapim.bang-olufsen.com
@@ -15264,6 +15275,7 @@ domain_suffix_set:
   - bodybossmotivate.com
   - bodygard.bismillahtek.com
   - boeely.silumen.com
+  - boegjyydektlx.online
   - boelsl.lastijerasmagicas.com
   - boewzj.meiji-jisho.com
   - bof8804jn.com
@@ -15353,6 +15365,7 @@ domain_suffix_set:
   - boob.sukaporn.com
   - boobausauhipsa.net
   - boobbounds.com
+  - boodkfcdgaaiy.website
   - boodper.com
   - booezozlvdg.com
   - book.londonsoundacademy.com
@@ -15770,6 +15783,7 @@ domain_suffix_set:
   - breadcrumb.bausinger.de
   - breadcrumb.oryoki.de
   - breadcrumb.wearezrcl.com
+  - breaghetembu.cyou
   - breakableinsurance.com
   - breakaxringatu.qpon
   - breakfastboat.com
@@ -16473,6 +16487,7 @@ domain_suffix_set:
   - by.dyq.cn
   - by.mywd.com
   - by2lc7429r.com
+  - by2oqlvofw3iuceu.rest
   - byardswaraj.qpon
   - byavfiawdxngd.online
   - byaylwyziadkn.space
@@ -16691,6 +16706,7 @@ domain_suffix_set:
   - c3q6l5oeq.com
   - c3vzqvifsn.com
   - c45cc75f.eulerian.io
+  - c45g38uu3ruk8ftb1bo3v.rest
   - c4dv.copinesdevoyage.com
   - c4fyt.tremblant.ca
   - c4ru5li2sa.com
@@ -16831,6 +16847,7 @@ domain_suffix_set:
   - caligoatabals.com
   - calistaadama.com
   - calistafunctor.cyou
+  - calkercutoffsrentree.cfd
   - call.kdlocksmithnyc.com
   - call.me.sel.sony.com
   - callalelel.info
@@ -16870,6 +16887,7 @@ domain_suffix_set:
   - cameluslupous.qpon
   - cameraeuntruth.shop
   - camerain.top
+  - caminomia.cyou
   - caminonattockdeturb.cfd
   - camiocw.com
   - cammpaign.com
@@ -17009,6 +17027,7 @@ domain_suffix_set:
   - canolamonthlyswapping.com
   - canstrm.com
   - cantdogtabanidcorers.cfd
+  - canterkuli.qpon
   - cantonsaunt.cfd
   - canttouchme.estagencymarbella.com
   - canularunseely.cyou
@@ -19500,6 +19519,7 @@ domain_suffix_set:
   - codesoftchina.com
   - codettegravid.cyou
   - coelinpinbush.shop
+  - coercesquashed.cfd
   - coeshoblob.cyou
   - coexumgabdghg.website
   - coffe.faynestudio.com.br
@@ -20029,6 +20049,7 @@ domain_suffix_set:
   - concession072925.shop
   - concierge.drroof.com
   - conciergeeccentricstrained.com
+  - concioferules.cfd
   - concludelivingshowman.com
   - concordphymasbaronet.cyou
   - concretemovie.com
@@ -21941,6 +21962,7 @@ domain_suffix_set:
   - cwigitapkvac.com
   - cwilmif.top
   - cwnlia.parfumdo.com
+  - cwnqfrehigqdb.online
   - cwnrdaqqalovh.website
   - cwolgn.hamocell.com
   - cwoolsmcagis.in
@@ -21993,6 +22015,7 @@ domain_suffix_set:
   - cydonialah.qpon
   - cydontopply.shop
   - cyeabs.luxyhair.com
+  - cyecmyrbfvvcy.website
   - cyezszhm.pammys.com
   - cyf9.destinia.cl
   - cygnus.com
@@ -27393,6 +27416,7 @@ domain_suffix_set:
   - dendrito.name
   - deng3rada.com
   - denialtransportationfair.com
+  - denpenkuneste.cyou
   - denpjz.jamesedition.com
   - dens1raec.com
   - denseceleryliver.com
@@ -27434,6 +27458,7 @@ domain_suffix_set:
   - derivalpalm.cfd
   - derivative10.top
   - derivative44.top
+  - derningparodus.qpon
   - derwbl.icu
   - desafiotk.comoeducarcommusica.com.br
   - desaguaro.saguaro.com
@@ -27725,6 +27750,7 @@ domain_suffix_set:
   - dhaicaecity.cfd
   - dhaka.elitemart.com.bd
   - dhannaq.com
+  - dharanibariasonable.qpon
   - dhauc.earthhero.com
   - dhawbu.crazyskin.co.kr
   - dhcjty.com
@@ -27964,6 +27990,7 @@ domain_suffix_set:
   - dimmerlingowashable.com
   - dimnessslatecosmetic.com
   - dimoo.monos.com
+  - dimplesredness.cyou
   - dimryaikxp.com
   - dinatoikw.com
   - dinernicknamestopwatch.com
@@ -29381,6 +29408,7 @@ domain_suffix_set:
   - duqblgmwtcizz.site
   - duqqrl.jefchaussures.com
   - duqxys.gino-rossi.com
+  - durawhoosh.shop
   - durchsichtig.xyz
   - durezzakobieddaic.qpon
   - durriegaging.cyou
@@ -29389,6 +29417,7 @@ domain_suffix_set:
   - dustydime.com
   - dustyhammer.com
   - dustyrender.com
+  - dutchedkaildil.cyou
   - dutchrelay.com
   - duthc.drshumardworkshop.com
   - dutifulmake.com
@@ -30441,6 +30470,7 @@ domain_suffix_set:
   - eeptoabs.com
   - eeqrfnqtnlcqi.space
   - eerfumerel.com
+  - eeriestcallboy.qpon
   - ees.employerservices.experian.com
   - eesexz.butyraj.pl
   - eessoong.com
@@ -30448,6 +30478,7 @@ domain_suffix_set:
   - eetspaae.net
   - eetzod.bemol.com.br
   - eevfstl1n.com
+  - eevzcz43grf22c7eko.cfd
   - eewdrt.fashiontofigure.com
   - eeydhnxxmruow.website
   - eeyuchchateus.qpon
@@ -31475,6 +31506,7 @@ domain_suffix_set:
   - enchantingdiscovery.com
   - enchantingtundra.com
   - enchantingvalley.com
+  - enchasepilon.qpon
   - encirclesheriffemit.com
   - encodediagnosisrelish.com
   - encompassreport.elliemae.com
@@ -31841,6 +31873,7 @@ domain_suffix_set:
   - epiv.cardlytics.com
   - epixkf.dentrodahistoria.com.br
   - eplgb.properhealth.com
+  - eplukorxrmfvy.site
   - epm.mailperformance.com
   - epmumb34x.top
   - epnfoq.cyberpowersystem.co.uk
@@ -33169,6 +33202,7 @@ domain_suffix_set:
   - f270fefbd3.com
   - f27tltnd.de
   - f2f89od5.eulerian.io
+  - f2litpxqilp4ieij5m5g9kn9j1p6kx2.rest
   - f30fpad7.xyz
   - f361.wvtm13.com
   - f362.nola.com
@@ -33742,6 +33776,7 @@ domain_suffix_set:
   - fellowshipvillage.fellowshiplifeinc.org
   - felor.xyz
   - felterprefet.qpon
+  - feltingguilfat.qpon
   - feltluteal.cyou
   - feltyrewoken.cfd
   - fem.gprod.postmedia.digital
@@ -34356,6 +34391,7 @@ domain_suffix_set:
   - fljaxb.chalktalksports.com
   - flkgjlfghm.com
   - flkupptocslqt.site
+  - flkycyeewfoea.space
   - fllilr.icu
   - flmb.cheapcaribbean.com
   - flncauuqak.com
@@ -34515,6 +34551,7 @@ domain_suffix_set:
   - fnlvhy.wowma.jp
   - fnmvok.aaaradiatory.cz
   - fnn.fazlaninaturesnest.com
+  - fnngskhkr.com
   - fnnpl.wineenthusiast.com
   - fnnxhg.qpsolutions.net
   - fnoamj.onsetfitness.com.br
@@ -34522,6 +34559,7 @@ domain_suffix_set:
   - fnopf.etrendygo.com
   - fnoqgg.roninwear.com
   - fnozzitywh.com
+  - fnqhhshfbpkwp.site
   - fntevbrdbjg.com
   - fnttu.addictivewellness.com
   - fnual.brooksbrothers.com
@@ -34744,6 +34782,7 @@ domain_suffix_set:
   - forwardemail.net
   - forwardslashetc.com
   - forzubatr.com
+  - fossaneduiker.cfd
   - fossesfyttes.qpon
   - fosshub.com
   - fossilzero.com
@@ -35012,6 +35051,7 @@ domain_suffix_set:
   - franeski.net
   - franken-analytics.makeup.global
   - franklycommission.com
+  - franklymikie.qpon
   - franksfloral.com
   - frankvehicle.com
   - franticallyplayedproclaim.com
@@ -35149,6 +35189,7 @@ domain_suffix_set:
   - frizzepigeal.shop
   - frkdu.minibardelivery.com
   - frmebf.fratelligiacomel.it
+  - frmorena.qpon
   - frms.fiserv.com
   - frnass.igluski.com
   - frnmtunhqvpon.website
@@ -35270,6 +35311,7 @@ domain_suffix_set:
   - ftecq.juicycouture.com
   - ftgba.etrendygo.com
   - ftgqp.mybeautyexchange.com
+  - ftgxpnpzdcuvi.website
   - ftjaehqgcpfjj.online
   - ftjcfx.com
   - ftlaunchpad.ai
@@ -35278,6 +35320,7 @@ domain_suffix_set:
   - ftmou.xvilatorre.com
   - ftmsyy.jbl.com.br
   - ftmvv.heydude.com
+  - ftnerrlavic.cyou
   - ftnnce.autodoc.dk
   - ftp.happ.social
   - ftpkovfdqwopv.space
@@ -35301,6 +35344,7 @@ domain_suffix_set:
   - fuck-dating.com
   - fuckthat.xyz
   - fucpa.sk-ii.com
+  - fudderresewn.cyou
   - fudezz.bolasport.com
   - fudezz.grid.id
   - fudezz.gridoto.com
@@ -35436,6 +35480,7 @@ domain_suffix_set:
   - fvfizj.icu
   - fvfxpkmo.icu
   - fvitteilse.com
+  - fvjjhpxpeaflj.space
   - fvk6k2jrdu.com
   - fvlqjw.top
   - fvmfdzpwbm.com
@@ -36134,6 +36179,7 @@ domain_suffix_set:
   - genesis.malwarebytes.com
   - genesismedia.com
   - genesjarveys.shop
+  - geneticallypineredden.com
   - geneticnormalthou.com
   - geniad.net
   - genieedmp.com
@@ -36700,6 +36746,7 @@ domain_suffix_set:
   - gift.skmshopbd.com
   - gift2pair.com
   - giftclothings.com
+  - gifted-dealer.pro
   - giftedhazelsecond.com
   - giftplanning.westmont.edu
   - giga-abs.de
@@ -42116,6 +42163,7 @@ domain_suffix_set:
   - gurgle.spiceworks.com
   - gurgleyodlers.cfd
   - gurglystannid.cyou
+  - gurugodlily.qpon
   - guruwittal.shop
   - gus.corinnavondermuehlen.de
   - gus.ihlenfeldt.de
@@ -43538,6 +43586,7 @@ domain_suffix_set:
   - hodor-collect.arabam.com
   - hodynx.top
   - hoebultow.cfd
+  - hoeg5rfqxvwlphpo95hh64k53.cfd
   - hoerenjs.b-cdn.net
   - hoggeekangla.qpon
   - hoglikepicasso.shop
@@ -43880,6 +43929,7 @@ domain_suffix_set:
   - hslkll.verkehrsuebungsplatz-info.de
   - hsprzf.shinhwaworld.com
   - hsrdkt.com
+  - hsrffnltjlzus.website
   - hssyje.theathletesfoot.com.au
   - hst.hey-sign.de
   - hst2-invite.ander.ai
@@ -43921,6 +43971,7 @@ domain_suffix_set:
   - htmgrl.jollyroom.no
   - htmonster.com
   - htnblk.kansascitysteaks.com
+  - htozqutwbhxkq.website
   - htplayground.com
   - htqfxh.vuch.cz
   - htrace.wetvinfo.com
@@ -44015,6 +44066,7 @@ domain_suffix_set:
   - humsoolt.net
   - hunchbackconebelfry.com
   - hundp.essential-watches.com
+  - hundredthsettling.com
   - hungary.inklabs.hu
   - hungry-exit.com
   - hunt-leads.com
@@ -44113,7 +44165,9 @@ domain_suffix_set:
   - hvrzig.e-domizil.ch
   - hvteqk.snowleader.com
   - hvuihu.undiz.com
+  - hvvmslekmyomk.site
   - hvwgbj.wikinger-reisen.de
+  - hvwsecjtqnbkv.online
   - hvxymx.tui.pl
   - hvzbn.humbler.com
   - hw-t.hypers.com.cn
@@ -44608,6 +44662,7 @@ domain_suffix_set:
   - iepfcy.farmandfleet.com
   - iepovvpyzudnn.online
   - ieqtogeunzhjz.site
+  - ierfncaroqaxp.site
   - iermahgynbwks.website
   - iesbpm.novasol.dk
   - iesopeaktracker.workbenchenergy.com
@@ -44696,8 +44751,10 @@ domain_suffix_set:
   - ignslkgs.com
   - igofvz.jdsports.at
   - igpnt.truereligion.com
+  - igpwtjptsdthn.space
   - igrid.org
   - igsev.stonewallkitchen.com
+  - igshhiazyqoxv.space
   - igstp.doorsplus.com.au
   - igtflg.honcierge.jp
   - igtgh.rejuvia.co
@@ -47824,6 +47881,7 @@ domain_suffix_set:
   - ixavsx.angela-bruderer.ch
   - ixba.fitsociety.nl
   - ixbua.xyz
+  - ixffxruloykhf.site
   - ixia-elq.keysight.com
   - ixia-lp.keysight.com
   - ixkrkjctoiggjc.com
@@ -48364,6 +48422,7 @@ domain_suffix_set:
   - jibyrm.jeep-official.it
   - jiciqm.antalyahomes.com
   - jidlu.kiarasky.com
+  - jidlvevpwezmu.online
   - jiebm.us.davines.com
   - jiegfigvhwish.online
   - jifflebreasts.com
@@ -48795,6 +48854,7 @@ domain_suffix_set:
   - jqezp.aroma360.nl
   - jqflf.homefurnitureandpatio.com
   - jqfuser.icu
+  - jqhxsrqhvztee.site
   - jqkquamet.com
   - jqlzwb.bauhaus.fi
   - jqmft.pyramidcollection.com
@@ -49073,6 +49133,7 @@ domain_suffix_set:
   - juryprefacereproach.com
   - jurysupposedshooter.com
   - juscoleracouldnt.qpon
+  - juslikpoulter.shop
   - just.playvici.com
   - justad.mobi
   - justconfig.com
@@ -49709,6 +49770,7 @@ domain_suffix_set:
   - khiurx.tigerdirect.com
   - khjppo.nominalia.com
   - khki.cn
+  - khmdqolkcxcha.website
   - khmqf.trapkaraoke.com
   - khngk.elaveskincare.com
   - khoagufhmp.com
@@ -49832,6 +49894,7 @@ domain_suffix_set:
   - kitmln.wb-fernstudium.de
   - kitt.tucsonsentinel.com
   - kittentacos.com
+  - kittlelivens.cfd
   - kittlybulgepep.cfd
   - kittultheeker.com
   - kittycatking.com
@@ -50071,6 +50134,7 @@ domain_suffix_set:
   - knutenegros.pro
   - knv.konovo.rs
   - knvyzx.h201shift.com
+  - knwfgadwqvenk.com
   - knwuamd.top
   - knwucnd.top
   - knymhv.ariat.com
@@ -50549,6 +50613,7 @@ domain_suffix_set:
   - kzw8q8wlms.com
   - kzwdefpmhdwct.online
   - kzwogbeq.astrocenter.co.il
+  - kzxk7xixz.com
   - kzxwkvkvdyzus.online
   - kzymlc.msccroisieres.fr
   - kzzuaq.liberotech.it
@@ -50745,6 +50810,7 @@ domain_suffix_set:
   - l4otxc.com
   - l4s.love4porn.com
   - l5id.com
+  - l5pv793tm.com
   - l5pzbzfnjm.com
   - l6906qxga.com
   - l6h17ybxe.com
@@ -50988,6 +51054,7 @@ domain_suffix_set:
   - layer-ad.org
   - layingframingcomrade.com
   - layout08062025.shop
+  - lazesheitelprawner.qpon
   - laziedqaidpavy.cfd
   - lazuliempall.com
   - lazy8krti.com
@@ -51068,6 +51135,7 @@ domain_suffix_set:
   - lcodff.uta-net.com
   - lcpmd.phoenixphaseconverters.com
   - lcqbi7nsv.com
+  - lcqwxswfgppbe.space
   - lcrbz.sterilybrasil.com
   - lcrft.comercialdelsol.com.do
   - lcs.modoo.at
@@ -51343,6 +51411,7 @@ domain_suffix_set:
   - letitredir.com
   - letmenowme.biz
   - letminimalvacancy.com
+  - letoffwhimper.qpon
   - lets-dev.irl.com
   - lets.engage.quad.com
   - lets.go.mcknightsnetwork.com
@@ -57867,6 +57936,7 @@ domain_suffix_set:
   - loobmf.hardloop.fr
   - loobyfleyed.com
   - looeysthirsts.shop
+  - loofiegentman.cyou
   - loohaiturigavik.net
   - looibkennqryb.space
   - look-ahead.nurturemarketing.com
@@ -57948,6 +58018,7 @@ domain_suffix_set:
   - lowrihouston.pro
   - lowtrainer.com
   - lowvolatilitysolutions.com
+  - loxicsprungdashpot.cyou
   - loxitdat.com
   - loxodo-analytics.ext.nile.works
   - loxodo-ct.ext.nile.works
@@ -58108,6 +58179,7 @@ domain_suffix_set:
   - lpbhnv.telemundosanantonio.com
   - lpbhnv.telemundowashingtondc.com
   - lpdbca.internetaptieka.lv
+  - lpdm1k14h.com
   - lpelu.fluxfootwear.com
   - lpfirw.kooding.com
   - lpfsex.fabiboutique.com
@@ -58417,6 +58489,7 @@ domain_suffix_set:
   - luteciaporkpen.qpon
   - luteousoecus.com
   - lutn.cn
+  - lutoseniches.shop
   - luttc.erogenos.com
   - luu39jmjcwu1j2uknv7e2bum.cfd
   - luuib.sillysanta.se
@@ -58602,6 +58675,7 @@ domain_suffix_set:
   - lzdub.horse.com
   - lzeku.almighty.tools
   - lzfgzs.acmedelavie.com
+  - lzhejqfkthmzn.space
   - lziqkx.countryoutfitter.com
   - lziri.lifeboostcoffee.com
   - lzjl.com
@@ -58947,6 +59021,7 @@ domain_suffix_set:
   - mahim.certifymeonline.net
   - mahin.brillondeco.com
   - mahin.mahinagro.com
+  - mahjongdrabspatia.qpon
   - mahjouwwbezzg.online
   - mahmud.menfabri.com
   - mahoesmot.cfd
@@ -60956,6 +61031,7 @@ domain_suffix_set:
   - masculine-employment.com
   - maserati.info
   - mashersjikungu.com
+  - mashrudramm.cyou
   - maskcubical.cfd
   - maskedpairedredsear.cyou
   - maskermixedlyglucid.qpon
@@ -64334,6 +64410,7 @@ domain_suffix_set:
   - midnightlotusgrove.com
   - midnightmead.com
   - midpopedge.com
+  - midriffdooli.qpon
   - midwaysunusualsmarmy.cfd
   - miefow.icu
   - miexgq.forevernew.co.nz
@@ -64361,6 +64438,7 @@ domain_suffix_set:
   - milanss.georgiadivorceonline.com
   - milanss.newyorkdivorceonline.com
   - milanss.texasdivorceonline.com
+  - mildersieging.cfd
   - mildgive.com
   - mile0tire.com
   - miles.mileshypotheken.nl
@@ -65179,6 +65257,7 @@ domain_suffix_set:
   - moreinfo.onnowdigital.com
   - moreinfo.powerpro360.com
   - moreinfo.sdmyers.com
+  - morespetrol.shop
   - morestamping.com
   - mormont.gamer-network.net
   - morordermal.com
@@ -65687,6 +65766,7 @@ domain_suffix_set:
   - muddy-match.com
   - mudflowstasesdiam.cyou
   - mueoh.besynchro.com
+  - muepkdedxoeik.space
   - muffishsharers.shop
   - muftilooms.qpon
   - mugapi.lazzarionline.com
@@ -65770,6 +65850,7 @@ domain_suffix_set:
   - murderassuredness.com
   - muridaeevans.qpon
   - murjz.consumerexaminer.com
+  - murkiervigasmurzim.cyou
   - murkymouse.online
   - murrybichord.shop
   - musangyacata.cyou
@@ -67146,6 +67227,7 @@ domain_suffix_set:
   - nialuk.dorifurniture.co.kr
   - niavz.monstersteamer.net
   - nibbanadesmid.qpon
+  - nibbedcorf.shop
   - nibbedizing.qpon
   - niblewren.co
   - nice3aiea.com
@@ -67824,6 +67906,7 @@ domain_suffix_set:
   - nsmeasure.jstor.org
   - nsmha.happymammoth.com
   - nsnnfzzd.com
+  - nsoelzvrhkmqd.space
   - nspcapi.nationalschoolspartnership.com
   - nspmotion.com
   - nspot.co
@@ -68347,6 +68430,7 @@ domain_suffix_set:
   - obviousestate.com
   - obvioushome.com
   - obvioussecretive.com
+  - obviousstupid.pro
   - obvvk.diyanu.com
   - obwojmsha.in
   - obyqyvxudpvnl.website
@@ -68717,6 +68801,7 @@ domain_suffix_set:
   - ojgot.solawave.co
   - ojh9bc9puh.com
   - ojhwie.dimanoinmano.it
+  - ojhximwiwx.in
   - ojiem.fabricmegastore.com
   - ojimtyk.top
   - ojixrv.recordrentacar.com
@@ -69334,6 +69419,7 @@ domain_suffix_set:
   - oo49r2qnh53vu7681ju8c3y61hn3.rest
   - oobja.madrinascoffee.com
   - oobtsfftqrjqy.website
+  - oocp55lpi7crjt75h7ljpe9nb.rest
   - oocrzh.byojet.com
   - ooezauvjhotal.website
   - oofmhbmqdn.com
@@ -69576,6 +69662,7 @@ domain_suffix_set:
   - oquassaclaroesjaegars.cfd
   - oquqydaouhgyb.online
   - oqvodgp36.com
+  - oqydwausasimd.online
   - oracle-netsuite-com-796203850.p04.elqsandbox.com
   - oracle.allbirds.ie
   - oracle.bankstelschoon.nl
@@ -69761,6 +69848,7 @@ domain_suffix_set:
   - oscnjc.035000.com
   - oscs.ecco.com
   - oscs.palazzolasvegas.com
+  - osculumsplurgy.cfd
   - osczsk.lampeetlumiere.be
   - osd.oxygem.it
   - osdqzaas.in
@@ -69920,6 +70008,7 @@ domain_suffix_set:
   - oufrqs.kunduz.com
   - oufuqh.kant.ru
   - ouhhc.frootbat.com
+  - ouhvwqdwqkkae.website
   - ouiokaq.top
   - oujudpodmnumr.space
   - ouk7.grantalexander.com
@@ -69966,6 +70055,7 @@ domain_suffix_set:
   - outdoorthingy.com
   - outelectrodean.com
   - outerwords.com
+  - outfallmegafog.qpon
   - outfit.wingsfit1.com
   - outgoeslyase.cfd
   - outgoingproblem.com
@@ -71245,6 +71335,7 @@ domain_suffix_set:
   - partypartners.com
   - partyroll.xyz
   - parves.doctorshopbd.com
+  - parviscostate.qpon
   - parvulephrenol.qpon
   - parzoom.com
   - pas-rahav.com
@@ -72324,6 +72415,7 @@ domain_suffix_set:
   - pkdimy.shoptime.com.br
   - pkdntb.emploi-pro.fr
   - pkdzd.kafibody.com
+  - pkek5th9bte1xnbpc.rest
   - pkg.balluff.com
   - pkgslichee.cfd
   - pkhevp.suplinx.com
@@ -72686,6 +72778,7 @@ domain_suffix_set:
   - pnovfl.karaca.com
   - pnpbjt.icu
   - pnperf.com
+  - pnpq9y4te.com
   - pnq.babcoxmediainc.com
   - pnsqsv.com
   - pntbrs.reflectwindow.com
@@ -74043,6 +74136,7 @@ domain_suffix_set:
   - punglehoist.shop
   - punkahsfinfoot.cfd
   - punkierdetruck.com
+  - punnagesceptrycalling.cfd
   - punnersloopier.cyou
   - punnetlambes.cyou
   - punoocke.com
@@ -74080,6 +74174,7 @@ domain_suffix_set:
   - purpleads.io
   - purpleflag.net
   - purplepatch.online
+  - purplesdramm.cyou
   - purpose.fressnapf.at
   - purpose.fressnapf.ch
   - purpose.fressnapf.de
@@ -74552,6 +74647,7 @@ domain_suffix_set:
   - qedgcxi.cn
   - qedlai.restplatzboerse.com
   - qeecl.bewegungsmeister.de
+  - qeegwhsxzwcdv.com
   - qefwqf.chungdamgirl.com
   - qegkek.icu
   - qeigr.luluandgeorgia.com
@@ -74644,6 +74740,7 @@ domain_suffix_set:
   - qhfvv.lomi.com
   - qhherqral.com
   - qhhse.themillionroses.com
+  - qhiajzlpo.in
   - qhihoins.com
   - qhiqk.eshopygoexpress.ro
   - qhirlilzda.com
@@ -78051,6 +78148,7 @@ domain_suffix_set:
   - ry0.rythmefm.com
   - ry51w.cn
   - ry7icaih0p.com
+  - rybbhembyqtm.com
   - rybbit.sg-app.com
   - rybfjx.sportscheck.com
   - ryd626moj.com
@@ -79601,6 +79699,7 @@ domain_suffix_set:
   - scoopedmalabarbhagat.cyou
   - scopesolion.cfd
   - scopingcopperscirculi.cfd
+  - scopsorioledeucing.cfd
   - scorchads.com
   - scoreaisle.com
   - scorecardresearch.com
@@ -80211,6 +80310,7 @@ domain_suffix_set:
   - seibc.ofirbeauty.com
   - seifst.seifenstars.de
   - seijlfsx.com
+  - seizoropiatic.cfd
   - sejdfu.coeur.de
   - sekaopi.nocre.jp
   - sekholwycyoey.com
@@ -80264,6 +80364,7 @@ domain_suffix_set:
   - sensibleexterminatorprivate.com
   - sensifyfugged.com
   - sensitiveclick.com
+  - sensizeranged.shop
   - sensor.aqhg.online
   - sensor.emolm.com
   - sensor.photogrid.app
@@ -85361,6 +85462,7 @@ domain_suffix_set:
   - sgudvf.hana-haru.com
   - sguuu.hucklebeefarms.com
   - sgvbga.musports.co.kr
+  - sgvrsqvhgovli.space
   - sgw-analytics.panasonic.com
   - sgw.alomgyar.hu
   - sgw.museummidtjylland.dk
@@ -85557,6 +85659,7 @@ domain_suffix_set:
   - she-want-fuck.com
   - sheafsozoner.cyou
   - sheargovernor.com
+  - sheathsgabfest.shop
   - shebudriftaiter.net
   - shebuzzier.qpon
   - shedranfd.com
@@ -85749,6 +85852,7 @@ domain_suffix_set:
   - shotgunchancecruel.com
   - shotmanwoodies.cyou
   - shoughpapaw.cyou
+  - shoughsluggerstyles.cyou
   - shouji.360.cn
   - shoukigaigoors.net
   - shouldercommandmentlimitless.com
@@ -87531,6 +87635,7 @@ domain_suffix_set:
   - spgtm.jogodeouro.bet.br
   - sphc.caring4cancer.com
   - spherepsoai.com
+  - spheretownish.cfd
   - sphidaphyps.com
   - spicatetalipesseis.cfd
   - spiceoptimistic.com
@@ -99234,6 +99339,7 @@ domain_suffix_set:
   - steun.touringcars.com
   - steun.variset.fi
   - steviaorchids.cyou
+  - stewardcashel.shop
   - stewardconvenienceslisp.com
   - stewartkassu.qpon
   - stfynw.esprit.be
@@ -100159,6 +100265,7 @@ domain_suffix_set:
   - suumghyll.cfd
   - suunta.visma.fi
   - suurl.nuudcare.de
+  - suutabsmjcya.com
   - suvgo.lacedhair.com
   - suwytid.com
   - suxqvc.pinksisly.com
@@ -103347,6 +103454,7 @@ domain_suffix_set:
   - tenxads.com
   - tepasricksvet.qpon
   - tepatonol.com
+  - tepid-gather.pro
   - tept2u94cwki42.cfd
   - tepwxt.bonescoffee.com
   - ter.centrodayuda.com
@@ -104038,6 +104146,7 @@ domain_suffix_set:
   - tjqonline.cn
   - tjquz.flor.com
   - tjqwbnhnazllz.online
+  - tjswoufpfcltp.online
   - tjumv.mindgamesfragrance.com
   - tjv250730ads.com
   - tjv251109ads.com
@@ -109459,6 +109568,7 @@ domain_suffix_set:
   - trueselfkeys.com
   - truffle.bid
   - truglechery.cyou
+  - truismlodge.cfd
   - truliantfcu.fmservice.com
   - trulysuitedcharges.com
   - trumpgorry.com
@@ -109618,6 +109728,7 @@ domain_suffix_set:
   - tshts.xaliorganics.com
   - tshuxi.bbqguys.com
   - tsj0.madeindesign.com
+  - tsjt0k8wa.com
   - tsliat.medme.pl
   - tslkd9ygnh.com
   - tsm.bitgild.com
@@ -109810,6 +109921,7 @@ domain_suffix_set:
   - tu4038097360.cc
   - tu6.icu
   - tu6767109513.cc
+  - tu72oelxu6wg3pnjfg.cfd
   - tuagol.gartenmoebel.de
   - tuanxue360.net
   - tubbeckcreels.qpon
@@ -109824,6 +109936,7 @@ domain_suffix_set:
   - tubexazimebeze.com
   - tubfulgaloshe.cfd
   - tubingacater.com
+  - tubyour.qpon
   - tucdj.trollcoclothing.ca
   - tuchitauld.qpon
   - tuckerclassesjackal.com
@@ -109871,6 +109984,7 @@ domain_suffix_set:
   - tungosraftageelk.cyou
   - tunion-api.m.taobao.com
   - tunisborax.cfd
+  - tunkajumping.cyou
   - tunneldata.arenahotel.com.br
   - tunneldata.atriohoteis.com.br
   - tunneldata.blueparkfoz.com.br
@@ -110800,6 +110914,7 @@ domain_suffix_set:
   - ukqitv.bizhint.jp
   - ukri.innovateuk.org
   - uks8suop4b.com
+  - uksxhozhhzyqc.site
   - uktgg.dev-tester.com
   - ukugcfyhfwzyc.space
   - ukuof.resthavenfuneral.com
@@ -110866,6 +110981,7 @@ domain_suffix_set:
   - ultravalid.com
   - ultund.misterspex.nl
   - ulutlv.esprit.fr
+  - uluuermktsbvb.online
   - ulwzinqlh0.com
   - ulx1cpf68.com
   - ulyfrf.dekruidenbaron.nl
@@ -111017,6 +111133,7 @@ domain_suffix_set:
   - unframesiberia.com
   - unfrillotters.shop
   - unfrizzpacinko.com
+  - unfumedaten.cfd
   - ungirdsgnawn.qpon
   - ungrandswopped.cyou
   - unhandseburine.cfd
@@ -111122,6 +111239,7 @@ domain_suffix_set:
   - unseenreport.com
   - unselfisheducation.com
   - unsettledradiator.com
+  - unseweduppuff.cfd
   - unshapeclaval.qpon
   - unshutcaitiff.com
   - unsightlyaffect.pro
@@ -111130,6 +111248,7 @@ domain_suffix_set:
   - unsmokyhashing.cfd
   - unstablesurroundingpowerfully.com
   - unstantleran.com
+  - unstopsstencil.qpon
   - unstripsawmont.com
   - unsubscirbe-email.stagemarketing.giftcards.com
   - unsubscribe.cp.pt
@@ -111702,6 +111821,7 @@ domain_suffix_set:
   - uxlog-api.danawa.com
   - uxlog.next.koapp.com
   - uxnsiyuew.com
+  - uxofowiuxrvgp.online
   - uxplora.davivienda.com
   - uxqzcu.raunt.com
   - uxrbpopdrkpiy.website
@@ -111956,6 +112076,7 @@ domain_suffix_set:
   - vbkqs.juiceplus.com
   - vbkryy.pasonacareer.jp
   - vbllxaaj.icu
+  - vbnritbsiqqar.online
   - vbphograewy.com
   - vbpnp.cledepeaubeaute.com
   - vbqoptujqmckd.website
@@ -112087,6 +112208,7 @@ domain_suffix_set:
   - vehohx.icu
   - veih8bee.xhcdn.com
   - veilengh.com
+  - veinagewabbles.cyou
   - veinteractive.com
   - veirkaey.com
   - vejrp6iq25.com
@@ -112280,6 +112402,7 @@ domain_suffix_set:
   - vgoicp.animaljob.jp
   - vgovvoinf.com
   - vgqhv.killcliff.com
+  - vgqnyyxv.xyz
   - vgragvory.com
   - vgrbvi.atncorp.com
   - vgs-collect-keeper.apps.verygood.systems
@@ -112719,6 +112842,7 @@ domain_suffix_set:
   - vksy.cn
   - vkur.cn
   - vkxn.cn
+  - vkxqimsuyxhmj.site
   - vkxyjj.g2a.com
   - vkyggjudgnsnhkr.com
   - vl3rw9roj.com
@@ -112736,6 +112860,7 @@ domain_suffix_set:
   - vljfo.lanimal.co
   - vljkjx.top
   - vllsuv.skatedeluxe.com
+  - vlmjm1.com
   - vlmmbr.4graph.it
   - vlnk.me
   - vlogerads.com
@@ -114568,6 +114693,7 @@ domain_suffix_set:
   - wgfebyyaqspid.space
   - wgflkd.gpasplus.com
   - wggiud.giordanovini.it
+  - wggnjdqbrnznde.com
   - wgkqywcf.com
   - wgmehvnnprma.com
   - wgnkupsbewuay.site
@@ -114961,6 +115087,7 @@ domain_suffix_set:
   - wlsmeu.soundpure.com
   - wlt-alice.de
   - wlt-jupiter.de
+  - wltvpgcwsvndn.online
   - wlwgloo.icu
   - wlwgloo.top
   - wlwtcr.toptoon.com
@@ -116716,6 +116843,7 @@ domain_suffix_set:
   - xzwtxo.nurse-senka.jp
   - xzxbep.plantei.com.br
   - xzxsflbzngfms.website
+  - xzzgndpecxrwj.online
   - y-t.topya.com
   - y.crazyporn.xxx
   - y.photoint.net
@@ -117389,6 +117517,7 @@ domain_suffix_set:
   - ypxnkgso.dagsmejan.ch
   - ypyr.cn
   - ypzktj.fly.pl
+  - ypztdrxavedah.space
   - yq1d0yvwx.com
   - yqaatqlisyrma.site
   - yqaxvu.leilian-online.com
@@ -117415,6 +117544,7 @@ domain_suffix_set:
   - yqxg4.compandsave.com
   - yr-names.click
   - yr2spd4ucy.com
+  - yr7unl1qs.com
   - yrepmy.jochen-schweizer.de
   - yrfyazdbylynj.space
   - yrgsqi0zc.com
@@ -117812,6 +117942,7 @@ domain_suffix_set:
   - zabpgtjh.icu
   - zacec.coverfx.com
   - zadlqwqemwhel.online
+  - zadqahwxhujgr.website
   - zaeqrath.com
   - zaffircream.shop
   - zaffresvo.shop
@@ -117990,6 +118121,7 @@ domain_suffix_set:
   - zdnqrwqawqqbs.space
   - zdnra.toddsnyder.com
   - zdpjg.tiffany.com
+  - zdpmdemowt.com
   - zdpsve.scrapbook.com
   - zdqdtgoydrlzw.site
   - zdqlel.restplatzboerse.at
@@ -118446,6 +118578,7 @@ domain_suffix_set:
   - zombieslayer.kano.link
   - zon-networks.com
   - zonewedgeshaft.com
+  - zongoraanighzogan.cfd
   - zononi.com
   - zonuretiglonsungodly.cfd
   - zoologicalmanufacture.com
@@ -118578,6 +118711,7 @@ domain_suffix_set:
   - zsnglvovwzepa.space
   - zsojxqnwplhim.online
   - zspph.ballerinafarm.com
+  - zspssmbjbp.com
   - zspza.snapsupplements.com
   - zsrda.snagtights.ca
   - zsseb.bioyouthlabs.com
@@ -118841,14 +118975,9 @@ ip_cidr_set:
   - 101.227.200.11/32
   - 101.227.200.28/32
   - 101.227.97.240/32
-  - 118.89.204.198/32
   - 124.192.153.42/32
   - 154.7.80.158/32
   - 194.59.220.161/32
   - 205.209.138.102/32
   - 23.231.151.252/32
   - 60.190.139.164/32
-ip_cidr6_set:
-  - "2402:4e00:1200:ed00:0:9089:6dac:96b6/128"
-user_agent_set:
-  - "AVOS*"
