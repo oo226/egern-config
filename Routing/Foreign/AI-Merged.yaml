@@ -4,11 +4,11 @@
 #
 # Sources:
 #   Repcz-AI     — Repcz/Tool — AI.yaml (51 entries)
-#   VPSDance     — VPSDance/ai-proxy-rules — egern/all.yaml (285 entries)
+#   VPSDance     — VPSDance/ai-proxy-rules — egern/all.yaml (286 entries)
 #   Sukka-ai     — Sukka ruleset.skk.moe — non_ip/ai.conf (48 entries)
 #   local        — oo226/egern-config — AI-supplement.yaml (80 entries)
 # Overlap removed: 119
-# Total unique entries: 345
+# Total unique entries: 346
 
 no_resolve: true
 domain_set:
@@ -269,6 +269,7 @@ domain_suffix_set:
   - modelcontextprotocol.org
   - moonshot.cn
   - muthos.com
+  - notebook.google.com
   - notebooklm.google
   - notebooklm.google.com
   - oaistatic.com
