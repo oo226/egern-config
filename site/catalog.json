@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-03T06:14:13Z",
+  "generated_at": "2026-08-04T05:44:46Z",
   "branch": "main",
   "repo": "oo226/egern-config",
   "raw_base": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main",
@@ -17,7 +17,7 @@
       "name": "按需开启",
       "icon": "🔧",
       "usage_tier": "optional",
-      "count": 170
+      "count": 171
     }
   ],
   "quick_start": [
@@ -202,9 +202,9 @@
   ],
   "sync_digest": {
     "commit": {
-      "hash": "9066260",
+      "hash": "540766f",
       "subject": "chore: sync upstream on sync branch",
-      "date": "2026-08-02"
+      "date": "2026-08-03"
     },
     "summary": [
       "国内直连 15591 条"
@@ -212,6 +212,11 @@
     "files_changed": 0
   },
   "changelog": [
+    {
+      "hash": "d886bff",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-08-03"
+    },
     {
       "hash": "b1ade2d",
       "subject": "chore: publish curated snapshot from sync",
@@ -246,11 +251,6 @@
       "hash": "6d2d3ca",
       "subject": "chore: publish curated snapshot from sync",
       "date": "2026-07-27"
-    },
-    {
-      "hash": "afbe347",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-07-26"
     }
   ],
   "local_health": {
@@ -289,7 +289,7 @@
       "id": "boxjs",
       "name": "BoxJS",
       "icon": "📦",
-      "count": 112
+      "count": 113
     },
     {
       "id": "scripts",
@@ -2128,6 +2128,24 @@
         "其他"
       ],
       "share_url": "https://oo226.github.io/egern-config/#id=boxjs-ximalaya"
+    },
+    {
+      "id": "boxjs-fmz200_dalanshu_authorization",
+      "kind": "boxjs-app",
+      "category": "boxjs",
+      "group": "签到 / 抓参",
+      "name": "大蓝树每日签到",
+      "desc": "",
+      "icon": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/dalanshu.png",
+      "path": "Modules/egern.boxjs.json#fmz200_dalanshu_authorization",
+      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
+      "add_url": "http://boxjs.com/#/app/fmz200_dalanshu_authorization",
+      "usage_tier": "optional",
+      "tags": [
+        "BoxJS",
+        "签到 / 抓参"
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-fmz200_dalanshu_authorization"
     },
     {
       "id": "boxjs-fmz200_chery_account",
@@ -4468,5 +4486,5 @@
       "health": "ok"
     }
   ],
-  "total": 215
+  "total": 216
 }
