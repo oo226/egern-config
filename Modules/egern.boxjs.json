@@ -3282,6 +3282,34 @@
       "script": "https://raw.githubusercontent.com/oo226/egern-config/main/Scripts/ximalaya.js"
     },
     {
+      "id": "fmz200_dalanshu_authorization",
+      "name": "大蓝树每日签到",
+      "keys": [
+        "fmz200_dalanshu_authorization"
+      ],
+      "descs_html": [
+        "填写签到authorization"
+      ],
+      "settings": [
+        {
+          "id": "fmz200_dalanshu_authorization",
+          "name": "签到authorization",
+          "val": "",
+          "type": "textarea",
+          "autoGrow": true,
+          "rows": 8,
+          "desc": "大蓝树每日签到authorization"
+        }
+      ],
+      "icons": [
+        "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/dalanshu.png",
+        "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/dalanshu.png"
+      ],
+      "author": "egern-config",
+      "repo": "https://github.com/oo226/egern-config",
+      "script": "https://raw.githubusercontent.com/oo226/egern-config/main/Scripts/fmz200/cookie/get_cookie.js"
+    },
+    {
       "id": "fmz200_chery_account",
       "name": "奇瑞汽车App签到",
       "keys": [
