@@ -429,9 +429,6 @@ def published_includes(name: str) -> bool:
     return False
 
 
-    return False
-
-
 def git_changelog(limit: int = 8) -> list[dict]:
     try:
         proc = subprocess.run(

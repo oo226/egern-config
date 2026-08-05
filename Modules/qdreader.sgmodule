@@ -1,0 +1,17 @@
+#!name=起点读书签到
+#!desc=Yuheng0101/X：抓 Cookie（h5.if.qidian.com）+ 定时签到；默认仅签到，更多任务请用 BoxJS「起点读书」开关。抓完 Cookie 可关掉本模块的 MITM/重写以省电。
+#!author=Yuheng0101[https://github.com/Yuheng0101]
+#!homepage=https://github.com/Yuheng0101/X
+#!category=签到
+#!system=ios
+#!tag=起点,签到,Cookie,Yuheng
+
+[Script]
+# 打开起点 App → 登录/进「我的」触发 getlogininfo，脚本写入 Cookie（BoxJS: yuheng.qdreader）
+起点读书获取Cookie = type=http-response,pattern=^https?:\/\/h5\.if\.qidian\.com\/argus\/api\/v1\/user\/getlogininfo,requires-body=1,max-size=-1,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/qdreader.js
+
+# 默认定时仅签到；激励/抽奖等任务在 BoxJS 中开启
+起点读书自动签到 = type=cron,cronexp=11 2 * * *,timeout=60,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/qdreader.js
+
+[MITM]
+hostname = %APPEND% h5.if.qidian.com

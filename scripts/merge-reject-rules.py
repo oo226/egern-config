@@ -24,6 +24,18 @@ SET_KEYS = (
     "user_agent_set",
 )
 
+# 上游广告表误杀：Spotify 播流 CDN 等（Reject 在分流表之前，会直接听不了）
+FALSE_POSITIVE_EXCLUDES = frozenset(
+    {
+        "audio-ak-spotify-com.akamaized.net",
+        "audio-ak.cdn.spotify.com",
+        "heads-fa.spotify.com",
+        "heads4-ak-spotify-com.akamaized.net",
+        "video-ak.cdn.spotify.com",
+        "spotify-com.akamaized.net",
+    }
+)
+
 
 def parse_repcz(path: Path) -> dict[str, set[str]]:
     sets: dict[str, set[str]] = {k: set() for k in SET_KEYS}
@@ -72,6 +84,12 @@ def merge() -> tuple[dict[str, set[str]], dict[str, set[str]], set[str], set[str
     merged["domain_set"].update(skk_domains)
     merged["domain_suffix_set"].update(skk_suffixes)
 
+    removed_fp = 0
+    for key in SET_KEYS:
+        before = len(merged[key])
+        merged[key] -= FALSE_POSITIVE_EXCLUDES
+        removed_fp += before - len(merged[key])
+
     repcz_total = count_entries(repcz)
     skk_total = len(skk_domains) + len(skk_suffixes)
     merged_total = count_entries(merged)
@@ -79,7 +97,8 @@ def merge() -> tuple[dict[str, set[str]], dict[str, set[str]], set[str], set[str
 
     print(
         f"reject merge: repcz={repcz_total}, skk={skk_total}, "
-        f"merged={merged_total}, overlap_removed={overlap}"
+        f"merged={merged_total}, overlap_removed={overlap}, "
+        f"false_positive_excluded={removed_fp}"
     )
     return merged, repcz, skk_domains, skk_suffixes, overlap
 

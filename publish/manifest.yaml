@@ -26,6 +26,7 @@ directories:
       - adblock-collection.module
       - unlock-collection.module
       - cookie-collection.module
+      - qdreader.sgmodule
       - ibl3nd-plugin-hub.yaml
       - iringo-mitm.yaml
       - iringo-maps.sgmodule
@@ -69,6 +70,7 @@ prune_from_main:
   - Modules/manifest.yaml
   - Modules/unlock-manifest.yaml
   - Modules/cookie-manifest.yaml
+  - Modules/qdreader-cookie-extra.sgmodule
   - Modules/qingrex-adblock.sgmodule
   - Modules/qingrex-unlock.sgmodule
   - Modules/fmz200-extra.sgmodule
