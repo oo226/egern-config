@@ -9,7 +9,7 @@ merge:
     - "# 类型: 模块 — 抓参/Cookie（MITM http-request，默认关闭）"
     - "# Do not edit manually. Updated by GitHub Actions after upstream sync."
     - "#"
-    - "# Sources: fmz200 cookies.module + chavyleung/lowking/NobyDa 等抓参脚本（本地镜像）"
+    - "# Sources: fmz200 cookies.module + Yuheng 起点抓参 + chavyleung/lowking/NobyDa 等（本地镜像）"
   script_url_fixes:
     "https://raw.githubusercontent.com/chavyleung/scripts/master/rrtv/rrtv.cookie.js": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_stubs/noop.js"
     "https://raw.githubusercontent.com/chavyleung/scripts/master/zimuzu/zimuzu.cookie.js": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_stubs/noop.js"
@@ -20,3 +20,9 @@ modules:
     role: primary
     upstream: https://raw.githubusercontent.com/fmz200/wool_scripts/main/Surge/module/cookies.module
     note: "奶思 cookies.module — 通用抓 Cookie/Token"
+
+  - name: qdreader-cookie
+    cache: qdreader-cookie-extra.sgmodule
+    role: supplement
+    local: true
+    note: "Yuheng0101/X 起点读书 getlogininfo 抓 Cookie（与 qdreader.sgmodule 同源）"

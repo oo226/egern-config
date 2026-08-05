@@ -1,0 +1,11 @@
+#!name=起点读书抓Cookie
+#!desc=Yuheng0101/X 起点读书 getlogininfo 抓参（并入 cookie-collection）
+#!author=Yuheng0101
+#!category=抓参
+
+[Script]
+# hostname = h5.if.qidian.com
+起点读书获取Cookie@Yuheng = type=http-response,pattern=^https?:\/\/h5\.if\.qidian\.com\/argus\/api\/v1\/user\/getlogininfo,requires-body=1,max-size=-1,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/qdreader.js,timeout=60
+
+[MITM]
+hostname = %APPEND% h5.if.qidian.com
