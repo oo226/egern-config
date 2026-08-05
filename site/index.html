@@ -10,12 +10,26 @@
   <meta name="theme-color" content="#6c8cff">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
   <link rel="stylesheet" href="styles.css">
   <script>
     (function () {
       var saved = localStorage.getItem('egern-hub-theme');
       var light = saved === 'light' || (!saved && window.matchMedia('(prefers-color-scheme: light)').matches);
       if (light) document.documentElement.dataset.theme = 'light';
+      // 每次打开页面清掉旧 SW 缓存，强制拉最新 catalog
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.getRegistrations().then(function (regs) {
+          regs.forEach(function (r) { r.update(); });
+        });
+        if (window.caches && caches.keys) {
+          caches.keys().then(function (keys) {
+            keys.filter(function (k) { return k.indexOf('egern-hub-') === 0 && k !== 'egern-hub-v7-force'; })
+              .forEach(function (k) { caches.delete(k); });
+          });
+        }
+      }
     })();
   </script>
 </head>
@@ -623,10 +637,11 @@
     }
 
     async function loadCatalog() {
+      const bust = `t=${Date.now()}`;
       const bases = ['', 'https://cdn.jsdelivr.net/gh/oo226/egern-config@main/site/', 'https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/site/'];
       for (const base of bases) {
         try {
-          const res = await fetch(`${base}catalog.json`);
+          const res = await fetch(`${base}catalog.json?${bust}`, { cache: 'no-store' });
           if (res.ok) return res.json();
         } catch (_) {}
       }
@@ -700,7 +715,7 @@
       const hashId = parseHashId();
       if (hashId) focusItemById(hashId);
       if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('sw.js').catch(() => {});
+        navigator.serviceWorker.register(`sw.js?v=7`).then((reg) => reg.update()).catch(() => {});
       }
     }
 

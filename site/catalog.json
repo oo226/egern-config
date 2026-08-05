@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-05T05:39:06Z",
+  "generated_at": "2026-08-05T12:22:07Z",
   "branch": "main",
   "repo": "oo226/egern-config",
   "raw_base": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main",
@@ -17,7 +17,7 @@
       "name": "按需开启",
       "icon": "🔧",
       "usage_tier": "optional",
-      "count": 171
+      "count": 172
     }
   ],
   "quick_start": [
@@ -202,16 +202,25 @@
   ],
   "sync_digest": {
     "commit": {
-      "hash": "b6cb92d",
+      "hash": "2e1e4a1",
       "subject": "chore: sync upstream on sync branch",
-      "date": "2026-08-04"
+      "date": "2026-08-05"
     },
     "summary": [
+      "分流规则 更新 8 个文件",
+      "模块 更新 1 个文件",
+      "脚本 更新 3 个文件",
+      "模块站 更新 1 个文件",
       "国内直连 26042 条"
     ],
-    "files_changed": 0
+    "files_changed": 14
   },
   "changelog": [
+    {
+      "hash": "ccf6652",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-08-05"
+    },
     {
       "hash": "94f096e",
       "subject": "chore: publish curated snapshot from sync",
@@ -246,17 +255,14 @@
       "hash": "0e68e96",
       "subject": "chore: publish curated snapshot from sync",
       "date": "2026-07-29"
-    },
-    {
-      "hash": "969d08e",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-07-28"
     }
   ],
   "local_health": {
-    "checked": 103,
-    "fail": 0,
-    "broken_ids": []
+    "checked": 104,
+    "fail": 1,
+    "broken_ids": [
+      "qdreader"
+    ]
   },
   "upstream_health": {
     "total_unique": 0,
@@ -277,7 +283,7 @@
       "id": "modules",
       "name": "模块",
       "icon": "🧩",
-      "count": 10
+      "count": 11
     },
     {
       "id": "routing",
@@ -398,6 +404,31 @@
       ],
       "share_url": "https://oo226.github.io/egern-config/#id=cookie-collection",
       "health": "ok"
+    },
+    {
+      "id": "qdreader",
+      "kind": "module",
+      "category": "modules",
+      "group": "签到",
+      "name": "起点读书签到",
+      "desc": "Yuheng0101/X：抓 Cookie（h5.if.qidian.com）+ 定时签到；默认仅签到，更多任务请用 BoxJS「起点读书」开关。抓完 Cookie 可关掉本模块的 MITM/重写以省电。",
+      "icon": "",
+      "homepage": "https://github.com/Yuheng0101/X",
+      "path": "Modules/qdreader.sgmodule",
+      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/qdreader.sgmodule",
+      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Fqdreader.sgmodule",
+      "default_enabled": false,
+      "usage_tier": "optional",
+      "requires": [],
+      "hint": "先开模块抓 Cookie（进起点「我的」），再等定时签到；或配合统一 BoxJS「起点读书」。",
+      "tags": [
+        "起点",
+        "签到",
+        "Cookie",
+        "Yuheng"
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=qdreader",
+      "health": "fail"
     },
     {
       "id": "ibl3nd-plugin-hub",
@@ -4486,5 +4517,5 @@
       "health": "ok"
     }
   ],
-  "total": 216
+  "total": 217
 }

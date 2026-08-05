@@ -332,6 +332,12 @@ rules:
       policy: 追风挂机
       update_interval: 86400
 
+  # ── Spotify 须在 Reject 之前（上游广告表误含播流 CDN，否则会听不了）──
+  - rule_set:
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/Spotify.yaml
+      policy: Spotify
+      update_interval: 86400
+
   # ── 第 2 段：广告 / WebRTC 拦截 ──
   - rule_set:
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Reject-Merged.yaml
@@ -399,10 +405,6 @@ rules:
   - rule_set:
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/Github.yaml
       policy: GitHub
-      update_interval: 86400
-  - rule_set:
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/Spotify.yaml
-      policy: Spotify
       update_interval: 86400
   - rule_set:
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/Emby.yaml

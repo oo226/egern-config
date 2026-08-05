@@ -1,5 +1,8 @@
 name: Deploy module hub (GitHub Pages)
 
+# main 上 site/** 变更会部署；每日 sync→publish-main 用 GITHUB_TOKEN 推送
+# 不会触发 on.push，故用 workflow_run 在 Sync 成功后强制部署。
+
 on:
   push:
     branches: [main]
@@ -7,6 +10,10 @@ on:
       - site/**
       - .github/workflows/pages.yml
   workflow_dispatch:
+  workflow_run:
+    workflows: ["Sync Egern Rules"]
+    types:
+      - completed
 
 permissions:
   contents: read
@@ -19,12 +26,18 @@ concurrency:
 
 jobs:
   deploy:
+    if: >-
+      github.event_name != 'workflow_run' ||
+      github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
+      # publish-main 写在 main；workflow_run 的默认 checkout 是触发方分支(sync)，必须显式拉 main
       - uses: actions/checkout@v4
+        with:
+          ref: main
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
