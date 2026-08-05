@@ -31,7 +31,6 @@ directories:
       - skip-proxy-collection.module
       - cookie-collection.module
       - spotify-unlock.sgmodule
-      - spotify-dualsubs.sgmodule
       - pingme.sgmodule
       - qdreader.sgmodule
       - ibl3nd-plugin-hub.yaml
@@ -81,6 +80,7 @@ prune_from_main:
   - Modules/_upstream
   - Modules/manifest.yaml
   - Modules/unlock-manifest.yaml
+  - Modules/spotify-dualsubs.sgmodule
   - Modules/cookie-manifest.yaml
   - Modules/qingrex-adblock.sgmodule
   - Modules/qingrex-unlock.sgmodule

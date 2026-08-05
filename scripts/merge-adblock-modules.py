@@ -82,6 +82,19 @@ DEFAULT_SCRIPT_PATTERN_FIXES = (
     ),
 )
 
+# DualSubs etc. lose #!arguments when merged into collections — bake official defaults.
+DEFAULT_ARGUMENT_PLACEHOLDER_FIXES = (
+    ('Types="{{{Types}}}"', 'Types="Translate,External"'),
+    ('Languages[0]="{{{Languages[0]}}}"', 'Languages[0]="AUTO"'),
+    ('Languages[1]="{{{Languages[1]}}}"', 'Languages[1]="ZH"'),
+    ('Vendor="{{{Vendor}}}"', 'Vendor="Google"'),
+    ('LrcVendor="{{{LrcVendor}}}"', 'LrcVendor="NeteaseMusic"'),
+    ('LogLevel="{{{LogLevel}}}"', 'LogLevel="WARN"'),
+    ('Type="{{{Type}}}"', 'Type="Translate"'),
+    ('Position="{{{Position}}}"', 'Position="Forward"'),
+    ('ShowOnly="{{{ShowOnly}}}"', 'ShowOnly="false"'),
+)
+
 # Optional extra MITM excludes (manifest). hostname-disabled from upstream is merged automatically.
 DEFAULT_MITM_HOSTNAME_EXCLUDES: frozenset[str] = frozenset()
 
@@ -516,7 +529,15 @@ def main() -> None:
     skip_proxy_excludes = frozenset(merge_cfg.get("skip_proxy_excludes") or ())
     content_line_excludes = frozenset(merge_cfg.get("content_line_excludes") or ())
     script_url_fixes = {**DEFAULT_SCRIPT_URL_FIXES, **(merge_cfg.get("script_url_fixes") or {})}
-    script_pattern_fixes = tuple(merge_cfg.get("script_pattern_fixes") or ()) + DEFAULT_SCRIPT_PATTERN_FIXES
+    script_pattern_fixes = (
+        tuple(merge_cfg.get("script_pattern_fixes") or ())
+        + DEFAULT_SCRIPT_PATTERN_FIXES
+        + DEFAULT_ARGUMENT_PLACEHOLDER_FIXES
+        + tuple(
+            (str(k), str(v))
+            for k, v in (merge_cfg.get("argument_placeholder_fixes") or {}).items()
+        )
+    )
 
     UPSTREAM_CACHE.mkdir(parents=True, exist_ok=True)
 

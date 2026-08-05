@@ -110,12 +110,7 @@ modules:
     group: 解锁
     default_enabled: false
     tags: [Spotify, VIP, Eevee]
-    hint: "单独 Spotify VIP（Eevee）；解锁合集已内含同款。"
-  spotify-dualsubs.sgmodule:
-    group: 解锁
-    default_enabled: false
-    tags: [Spotify, 双语歌词, DualSubs, 模版参数]
-    hint: "独立模块才有参数面板（Types/语言等）。解锁合集内嵌 DualSubs 无参数 UI。"
+    hint: "单独 Spotify VIP（Eevee）；解锁合集已内含同款。双语歌词默认已烘焙进解锁合集。"
   ibl3nd-plugin-hub.yaml:
     group: 工具
     default_enabled: true
