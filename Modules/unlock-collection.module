@@ -699,7 +699,6 @@ https://proxy.linearity.io/v1/receipts https://linearitcurve.lovebabyforever.wor
 
 
 # >>> merged from spotify-unlock (unique only)
-# 去掉缓存校验，避免 304 导致脚本拿不到 body
 ^https:\/\/(spclient\.wg\.spotify\.com|.*-spclient\.spotify\.com(:443)?)\/(bootstrap\/v1\/bootstrap|user-customization-service\/v1\/customize)$ header-del if-none-match
 ^https:\/\/(spclient\.wg\.spotify\.com|.*-spclient\.spotify\.com(:443)?)\/(bootstrap\/v1\/bootstrap|user-customization-service\/v1\/customize)$ header-del if-modified-since
 
@@ -2367,7 +2366,13 @@ zhenti_1 = type=http-response, pattern=^https?://newtest\.zoooy111\.com/mobilev4
 
 
 # >>> merged from spotify-unlock (unique only)
-# 请求阶段再剥一次缓存头（Egern 上比纯 URL Rewrite 更稳）
+# 与 app2smile QuanX 同款：请求头脚本删 If-None-Match，避免 304
 spotifyProto-nocache = type=http-request, pattern=^https:\/\/(spclient\.wg\.spotify\.com|.*-spclient\.spotify\.com(:443)?)\/(bootstrap\/v1\/bootstrap|user-customization-service\/v1\/customize)$, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/spotify-del-cache-headers.js, timeout=10
 
-# 唯一 VIP 解锁入口：Eevee spotifyProto（勿与旧 app2smile/Spotify.Crack 叠跑）
+
+
+[Header Rewrite]
+
+# >>> merged from spotify-unlock (unique only)
+http-request ^https:\/\/(spclient\.wg\.spotify\.com|.*-spclient\.spotify\.com(:443)?)\/(bootstrap\/v1\/bootstrap|user-customization-service\/v1\/customize)$ header-del If-None-Match
+http-request ^https:\/\/(spclient\.wg\.spotify\.com|.*-spclient\.spotify\.com(:443)?)\/(bootstrap\/v1\/bootstrap|user-customization-service\/v1\/customize)$ header-del If-Modified-Since
