@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-05T15:17:04Z",
+  "generated_at": "2026-08-05T15:20:15Z",
   "branch": "main",
   "repo": "oo226/egern-config",
   "raw_base": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main",
@@ -17,7 +17,7 @@
       "name": "按需开启",
       "icon": "🔧",
       "usage_tier": "optional",
-      "count": 176
+      "count": 175
     }
   ],
   "quick_start": [
@@ -202,18 +202,24 @@
   ],
   "sync_digest": {
     "commit": {
-      "hash": "e557621",
-      "subject": "Merge branch 'cursor/fix-spotify-unlock-ac83': Spotify Eevee unlock",
+      "hash": "2a13ce3",
+      "subject": "Merge branch 'cursor/pingme-args-dualsubs-ac83': PingMe args + DualSubs module",
       "date": "2026-08-05"
     },
     "summary": [
-      "模块 更新 5 个文件",
-      "脚本 更新 1 个文件",
+      "模块 更新 4 个文件",
+      "脚本 更新 2 个文件",
+      "模块站 更新 1 个文件",
       "国内直连 26042 条"
     ],
-    "files_changed": 8
+    "files_changed": 9
   },
   "changelog": [
+    {
+      "hash": "2e26f1e",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-08-05"
+    },
     {
       "hash": "3160f4a",
       "subject": "chore: publish curated snapshot from sync",
@@ -248,15 +254,10 @@
       "hash": "2ead236",
       "subject": "Merge pull request #54 from oo226/cursor/pages-health-fix-ac83",
       "date": "2026-08-05"
-    },
-    {
-      "hash": "2f0b242",
-      "subject": "chore: trigger pages after health-link fix",
-      "date": "2026-08-05"
     }
   ],
   "local_health": {
-    "checked": 123,
+    "checked": 122,
     "fail": 0,
     "broken_ids": []
   },
@@ -279,7 +280,7 @@
       "id": "modules",
       "name": "模块",
       "icon": "🧩",
-      "count": 29
+      "count": 28
     },
     {
       "id": "routing",
@@ -442,38 +443,13 @@
       "default_enabled": false,
       "usage_tier": "optional",
       "requires": [],
-      "hint": "单独 Spotify VIP（Eevee）；解锁合集已内含同款。",
+      "hint": "单独 Spotify VIP（Eevee）；解锁合集已内含同款。双语歌词默认已烘焙进解锁合集。",
       "tags": [
         "Spotify",
         "VIP",
         "Eevee"
       ],
       "share_url": "https://oo226.github.io/egern-config/#id=spotify-unlock",
-      "health": "ok"
-    },
-    {
-      "id": "spotify-dualsubs",
-      "kind": "module",
-      "category": "modules",
-      "group": "解锁",
-      "name": "🍿️ DualSubs: 🎵 Spotify",
-      "desc": "Spotify 双语歌词 / 翻译（单独模块才有参数面板；合进解锁合集会丢 #!arguments）",
-      "icon": "https://github.com/DualSubs/Spotify/raw/main/src/assets/icon_rounded.png",
-      "homepage": "https://DualSubs.github.io/guide/spotify",
-      "path": "Modules/spotify-dualsubs.sgmodule",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/spotify-dualsubs.sgmodule",
-      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Fspotify-dualsubs.sgmodule",
-      "default_enabled": false,
-      "usage_tier": "optional",
-      "requires": [],
-      "hint": "独立模块才有参数面板（Types/语言等）。解锁合集内嵌 DualSubs 无参数 UI。",
-      "tags": [
-        "Spotify",
-        "双语歌词",
-        "DualSubs",
-        "模版参数"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=spotify-dualsubs",
       "health": "ok"
     },
     {
@@ -4921,5 +4897,5 @@
       "health": "ok"
     }
   ],
-  "total": 235
+  "total": 234
 }
