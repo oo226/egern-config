@@ -2425,4 +2425,7 @@ zhenti_1 = type=http-response, pattern=^https?://newtest\.zoooy111\.com/mobilev4
 
 
 # >>> merged from spotify-unlock (unique only)
+# 请求阶段删缓存头（与 response 解锁脚本 pattern 相同但 type 不同，不会互相挤掉）
+spotifyProto-nocache = type=http-request, pattern=^https:\/\/(spclient\.wg\.spotify\.com|.*-spclient\.spotify\.com(:443)?)\/user-customization-service\/v1\/customize$, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/spotify-del-cache-headers.js, timeout=10
+
 spotifyProto = type=http-response, pattern=^https:\/\/(spclient\.wg\.spotify\.com|.*-spclient\.spotify\.com(:443)?)\/(bootstrap\/v1\/bootstrap|user-customization-service\/v1\/customize)$, requires-body=true, binary-body-mode=true, max-size=0, timeout=10, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/Amlabort/MY_clash/main/files/lpx/js/spot-proto-eevee.js
