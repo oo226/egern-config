@@ -37,9 +37,13 @@ directories:
       - iringo-others.sgmodule
       - yu9191-player.boxjs.json
       - egern.boxjs.json
+    # 逐个模块（保留 #!arguments，防删库镜像）
+    include_dirs:
+      - yuheng
+      - qingrex-signin
 
   - path: Scripts
-    exclude_dirs: [zenmofeishi]
+    exclude_dirs: []
     include_root_glob: "*.js"
     include_subdirs:
       - _external
@@ -53,6 +57,7 @@ directories:
       - xiaohongshu
       - yu9191
       - yuheng
+      - zenmofeishi
     extra_files:
       - README.md
 
@@ -72,7 +77,6 @@ prune_from_main:
   - Modules/manifest.yaml
   - Modules/unlock-manifest.yaml
   - Modules/cookie-manifest.yaml
-  - Modules/qdreader-cookie-extra.sgmodule
   - Modules/qingrex-adblock.sgmodule
   - Modules/qingrex-unlock.sgmodule
   - Modules/fmz200-extra.sgmodule
@@ -86,6 +90,7 @@ prune_from_main:
   - Modules/liul0ng-unlock.sgmodule
   - Modules/weigiegie-unlock.sgmodule
   - Modules/proxy-detect-extra.sgmodule
+  - Modules/qdreader-cookie-extra.sgmodule
   - scripts
   - publish
   - push-github.ps1

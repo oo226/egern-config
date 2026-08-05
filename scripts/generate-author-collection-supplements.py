@@ -203,6 +203,7 @@ def merge_modules(
     *,
     primary_name: str | None = None,
     exclude_cron_scripts: bool = False,
+    preserve_arguments: bool = False,
 ) -> str:
     if not modules:
         return ""
@@ -225,6 +226,8 @@ def merge_modules(
         exclude_cron_scripts=exclude_cron_scripts,
     )
     merged = mirror_script_paths(merged)
+    if preserve_arguments:
+        return merged
     return strip_boxjs_module_arguments(merged)
 
 
@@ -249,6 +252,7 @@ def generate_qingrex() -> None:
 
     adblock = [(n, t) for n, t in modules if module_kind(n) == "adblock"]
     unlock = [(n, t) for n, t in modules if module_kind(n) == "unlock"]
+    signin = [(n, t) for n, t in modules if module_kind(n) == "signin"]
 
     adblock_text = merge_modules(
         "可莉去广告合集",
@@ -264,6 +268,21 @@ def generate_qingrex() -> None:
         unlock,
     )
     write_if_content(MODULES / "qingrex-unlock.sgmodule", unlock_text)
+
+    # 签到类：逐个落盘，保留各自 #!arguments（Egern 模版参数），并镜像进本仓防删库
+    signin_dir = MODULES / "qingrex-signin"
+    if signin_dir.exists():
+        import shutil
+
+        shutil.rmtree(signin_dir)
+    signin_dir.mkdir(parents=True, exist_ok=True)
+    for name, text in signin:
+        text = mirror_script_paths(text)
+        # do NOT strip #!arguments
+        out_name = Path(name).name
+        (signin_dir / out_name).write_text(text, encoding="utf-8")
+        print(f"wrote qingrex-signin/{out_name}")
+    print(f"qingrex signin modules: {len(signin)}")
 
 
 def generate_yu9191_rewrite() -> None:

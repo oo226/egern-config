@@ -181,12 +181,25 @@ def module_item(filename: str, meta_cfg: dict, egern_defaults: dict[str, bool]) 
     tags = list(dict.fromkeys([*(override.get("tags") or []), *tags]))
     url = raw_url(f"Modules/{filename}")
     default_enabled = egern_defaults.get(filename, override.get("default_enabled"))
-    item_id = path.stem
+    # nested: yuheng/qdreader.sgmodule -> yuheng-qdreader
+    rel = Path(filename)
+    item_id = "-".join(rel.with_suffix("").parts)
+    group = override.get("group")
+    if not group:
+        if filename.startswith("yuheng/"):
+            group = "Yuheng签到"
+        elif filename.startswith("qingrex-signin/"):
+            group = "可莉签到"
+        else:
+            group = "其他"
+    if "#!arguments=" in path.read_text(encoding="utf-8", errors="replace")[:2000]:
+        if "模版参数" not in tags:
+            tags.append("模版参数")
     return {
         "id": item_id,
         "kind": "module",
         "category": "modules",
-        "group": override.get("group", "其他"),
+        "group": group,
         "name": name,
         "desc": desc,
         "icon": icon,
@@ -197,7 +210,13 @@ def module_item(filename: str, meta_cfg: dict, egern_defaults: dict[str, bool]) 
         "default_enabled": default_enabled,
         "usage_tier": usage_tier(default_enabled, "module", "modules"),
         "requires": override.get("requires") or [],
-        "hint": IRINGO_HINTS.get(item_id) or override.get("hint", ""),
+        "hint": IRINGO_HINTS.get(item_id)
+        or override.get("hint")
+        or (
+            "Egern 编辑模块 → 模版参数可调；与 BoxJS 联动。"
+            if "模版参数" in tags
+            else ""
+        ),
         "tags": tags,
     }
 
@@ -461,22 +480,36 @@ def proxy_detect_items() -> list[dict]:
 
 def published_module_files() -> list[str]:
     data = load_yaml(PUBLISH_MANIFEST)
+    names: list[str] = []
     for spec in data.get("directories") or []:
-        if spec.get("path") == "Modules":
-            return [
-                name
-                for name in spec.get("include_only") or []
-                if name not in {"README.md", "egern.boxjs.json", "yu9191-player.boxjs.json"}
-                and not name.endswith(".json")
-            ]
-    return []
+        if spec.get("path") != "Modules":
+            continue
+        for name in spec.get("include_only") or []:
+            if name in {"README.md", "egern.boxjs.json", "yu9191-player.boxjs.json"}:
+                continue
+            if name.endswith(".json"):
+                continue
+            names.append(name)
+        for dirname in spec.get("include_dirs") or []:
+            root = MODULES / dirname
+            if not root.is_dir():
+                continue
+            for path in sorted(root.rglob("*")):
+                if path.suffix.lower() in {".module", ".sgmodule", ".yaml"} and path.is_file():
+                    names.append(path.relative_to(MODULES).as_posix())
+    return names
 
 
 def published_includes(name: str) -> bool:
     data = load_yaml(PUBLISH_MANIFEST)
     for spec in data.get("directories") or []:
-        if spec.get("path") == "Modules":
-            return name in (spec.get("include_only") or [])
+        if spec.get("path") != "Modules":
+            continue
+        if name in (spec.get("include_only") or []):
+            return True
+        for d in spec.get("include_dirs") or []:
+            if name == d or name.startswith(f"{d}/"):
+                return True
     return False
 
 

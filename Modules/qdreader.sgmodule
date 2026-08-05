@@ -1,17 +1,17 @@
 #!name=起点读书签到
-#!desc=Yuheng0101/X：抓 Cookie（h5.if.qidian.com）+ 定时签到；默认仅签到，更多任务请用 BoxJS「起点读书」开关。抓完 Cookie 可关掉本模块的 MITM/重写以省电。
+#!desc=支持多账号对于"起点读书App"的签到功能，默认仅签到，其他任务需手动开启开关。脚本已镜像本仓（防删库）；Egern 模版参数 / BoxJS 可调。
 #!author=Yuheng0101[https://github.com/Yuheng0101]
 #!homepage=https://github.com/Yuheng0101/X
 #!category=签到
 #!system=ios
 #!tag=起点,签到,Cookie,Yuheng
+#!arguments=是否开启抓取重写:"起点读书", CRONEXP:"11 2 * * *",是否开启调试模式:false,TIMEOUT:60,是否开启激励任务:false,是否开启每日任务:false,是否开启每日抽奖:false,是否开启每周兑换:false,是否开启章节卡片:false,是否开启大咖荐书:false
+#!arguments-desc=- 是否开启抓取重写: ["起点读书","#"] \n\n- CRONEXP: 默认每天2点11分执行, 建议自行配置。\n\n- 是否开启调试模式: ["true","false"]\n\n - TIMEOUT: 脚本执行超时时间, 默认60秒。\n\n- 是否开启激励任务: ["true","false"]\n\n- 是否开启每日任务: ["true","false"]\n\n- 是否开启每日抽奖: ["true","false"]\n\n- 是否开启每周兑换: ["true","false"]\n\n- 是否开启章节卡片: ["true","false"]\n\n- 是否开启大咖荐书: ["true","false"]
 
 [Script]
-# 打开起点 App → 登录/进「我的」触发 getlogininfo，脚本写入 Cookie（BoxJS: yuheng.qdreader）
-起点读书获取Cookie = type=http-response,pattern=^https?:\/\/h5\.if\.qidian\.com\/argus\/api\/v1\/user\/getlogininfo,requires-body=1,max-size=-1,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/qdreader.js
+{{{是否开启抓取重写}}}获取Cookie = type=http-response,pattern=^https?:\/\/h5\.if\.qidian\.com\/argus\/api\/v1\/user\/getlogininfo,requires-body=1,max-size=-1,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/yuheng/Tasks/QDReader/qdreader.js,argument=QDREADER_DEBUG="{{{是否开启调试模式}}}"
 
-# 默认定时仅签到；激励/抽奖等任务在 BoxJS 中开启
-起点读书自动签到 = type=cron,cronexp=11 2 * * *,timeout=60,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/qdreader.js
+起点读书自动签到 = type=cron, cronexp="{{{CRONEXP}}}", script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/yuheng/Tasks/QDReader/qdreader.js, timeout={{{TIMEOUT}}},argument=QDREADER_DEBUG="{{{是否开启调试模式}}}"&QDREADER_ADV_JOB_ENABLE="{{{是否开启激励任务}}}"&QDREADER_EXTRA_ADV_JOB_ENABLE="{{{是否开启每日任务}}}"&QDREADER_LOTTERY_ENABLE="{{{是否开启每日抽奖}}}"&QDREADER_WEEKLY_EXCHANGE_ENABLE="{{{是否开启每周兑换}}}"&QDREADER_CHAPTER_CARD_ENABLE="{{{是否开启章节卡片}}}"&QDREADER_MESSAGE_BOX_ENABLE="{{{是否开启大咖荐书}}}"
 
 [MITM]
 hostname = %APPEND% h5.if.qidian.com

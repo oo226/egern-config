@@ -66,12 +66,20 @@ def publish_routing(spec: dict) -> None:
 
 def publish_modules(spec: dict) -> None:
     include_only = spec.get("include_only") or []
+    include_dirs = spec.get("include_dirs") or []
     dst_root = WORKTREE / "Modules"
     if dst_root.exists():
         shutil.rmtree(dst_root)
     dst_root.mkdir(parents=True, exist_ok=True)
     for name in include_only:
         copy_file(ROOT / "Modules" / name, dst_root / name)
+    for name in include_dirs:
+        src = ROOT / "Modules" / name
+        if src.is_dir():
+            shutil.copytree(src, dst_root / name)
+            print(f"copy tree Modules/{name}")
+        else:
+            print(f"skip missing dir Modules/{name}")
 
 
 def publish_scripts(spec: dict) -> None:

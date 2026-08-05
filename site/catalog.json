@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-05T12:52:56Z",
+  "generated_at": "2026-08-05T13:12:52Z",
   "branch": "main",
   "repo": "oo226/egern-config",
   "raw_base": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main",
@@ -202,20 +202,33 @@
   ],
   "sync_digest": {
     "commit": {
-      "hash": "fac73f9",
-      "subject": "Merge pull request #47 from oo226/cursor/qidian-ck-site-reload-ac83",
+      "hash": "759c410",
+      "subject": "Merge pull request #49 from oo226/cursor/skip-proxy-upstream-ac83",
       "date": "2026-08-05"
     },
     "summary": [
-      "分流规则 更新 1 个文件",
       "模块 更新 4 个文件",
       "模块站 更新 3 个文件",
-      "主配置 更新 1 个文件",
       "国内直连 26042 条"
     ],
     "files_changed": 14
   },
   "changelog": [
+    {
+      "hash": "34283b5",
+      "subject": "Merge pull request #50 from oo226/cursor/pages-proxy-detect-ac83",
+      "date": "2026-08-05"
+    },
+    {
+      "hash": "fb341c2",
+      "subject": "chore: trigger pages for proxy-detect upstream index",
+      "date": "2026-08-05"
+    },
+    {
+      "hash": "a5fc4da",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-08-05"
+    },
     {
       "hash": "cc53374",
       "subject": "Merge pull request #48 from oo226/cursor/force-pages-deploy-ac83",
@@ -240,32 +253,33 @@
       "hash": "94f096e",
       "subject": "chore: publish curated snapshot from sync",
       "date": "2026-08-04"
-    },
-    {
-      "hash": "d886bff",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-08-03"
-    },
-    {
-      "hash": "b1ade2d",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-08-02"
-    },
-    {
-      "hash": "42d09d9",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-08-01"
     }
   ],
   "local_health": {
-    "checked": 104,
-    "fail": 0,
-    "broken_ids": []
+    "checked": 119,
+    "fail": 15,
+    "broken_ids": [
+      "yuheng-bdyy",
+      "yuheng-cloud139",
+      "yuheng-meitu",
+      "yuheng-sgcc",
+      "qingrex-signin-Follow每日签到",
+      "qingrex-signin-WPS每日签到",
+      "qingrex-signin-⭐️ Sub-Store.official",
+      "qingrex-signin-书香门第每日签到",
+      "qingrex-signin-哔哩漫画签到.official",
+      "qingrex-signin-巴哈姆特签到.official",
+      "qingrex-signin-快看漫画签到.official",
+      "qingrex-signin-携程旅行签到.official",
+      "qingrex-signin-爱奇艺会员签到.official",
+      "qingrex-signin-百度贴吧签到.official",
+      "qingrex-signin-联通余量.official"
+    ]
   },
   "upstream_health": {
-    "total_unique": 10,
-    "checked": 10,
-    "ok": 10,
+    "total_unique": 23,
+    "checked": 23,
+    "ok": 23,
     "fail": 0,
     "broken": [],
     "truncated": false
@@ -281,7 +295,7 @@
       "id": "modules",
       "name": "模块",
       "icon": "🧩",
-      "count": 14
+      "count": 29
     },
     {
       "id": "routing",
@@ -344,13 +358,14 @@
       "default_enabled": true,
       "usage_tier": "daily",
       "requires": [],
-      "hint": "",
+      "hint": "Egern 编辑模块 → 模版参数可调；与 BoxJS 联动。",
       "tags": [
         "去广告",
         "开屏",
         "净化",
         "fmz200",
-        "奶思"
+        "奶思",
+        "模版参数"
       ],
       "share_url": "https://oo226.github.io/egern-config/#id=adblock-collection",
       "health": "ok"
@@ -409,7 +424,7 @@
       "category": "modules",
       "group": "签到",
       "name": "起点读书签到",
-      "desc": "Yuheng0101/X：抓 Cookie（h5.if.qidian.com）+ 定时签到；默认仅签到，更多任务请用 BoxJS「起点读书」开关。抓完 Cookie 可关掉本模块的 MITM/重写以省电。",
+      "desc": "支持多账号对于\"起点读书App\"的签到功能，默认仅签到，其他任务需手动开启开关。脚本已镜像本仓（防删库）；Egern 模版参数 / BoxJS 可调。",
       "icon": "",
       "homepage": "https://github.com/Yuheng0101/X",
       "path": "Modules/qdreader.sgmodule",
@@ -418,12 +433,13 @@
       "default_enabled": false,
       "usage_tier": "optional",
       "requires": [],
-      "hint": "先开模块抓 Cookie（进起点「我的」），再等定时签到；或配合统一 BoxJS「起点读书」。",
+      "hint": "Egern 模版参数可开抓写/激励/抽奖等；与 BoxJS yuheng.qdreader 联动。脚本已镜像本仓。",
       "tags": [
         "起点",
         "签到",
         "Cookie",
-        "Yuheng"
+        "Yuheng",
+        "模版参数"
       ],
       "share_url": "https://oo226.github.io/egern-config/#id=qdreader",
       "health": "ok"
@@ -569,6 +585,331 @@
       ],
       "share_url": "https://oo226.github.io/egern-config/#id=iringo-others",
       "health": "ok"
+    },
+    {
+      "id": "yuheng-bdyy",
+      "kind": "module",
+      "category": "modules",
+      "group": "Yuheng签到",
+      "name": "波点音乐签到",
+      "desc": "波点音乐获取Cookie",
+      "icon": "",
+      "homepage": "https://github.com/Yuheng0101/X",
+      "path": "Modules/yuheng/bdyy.sgmodule",
+      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/yuheng/bdyy.sgmodule",
+      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Fyuheng%2Fbdyy.sgmodule",
+      "default_enabled": null,
+      "usage_tier": "neutral",
+      "requires": [],
+      "hint": "",
+      "tags": [],
+      "share_url": "https://oo226.github.io/egern-config/#id=yuheng-bdyy",
+      "health": "fail"
+    },
+    {
+      "id": "yuheng-cloud139",
+      "kind": "module",
+      "category": "modules",
+      "group": "Yuheng签到",
+      "name": "中国移动云盘",
+      "desc": "中国移动云盘自动签到脚本",
+      "icon": "",
+      "homepage": "https://github.com/Yuheng0101/X/tree/main/Tasks/cloud139",
+      "path": "Modules/yuheng/cloud139.sgmodule",
+      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/yuheng/cloud139.sgmodule",
+      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Fyuheng%2Fcloud139.sgmodule",
+      "default_enabled": null,
+      "usage_tier": "neutral",
+      "requires": [],
+      "hint": "",
+      "tags": [],
+      "share_url": "https://oo226.github.io/egern-config/#id=yuheng-cloud139",
+      "health": "fail"
+    },
+    {
+      "id": "yuheng-meitu",
+      "kind": "module",
+      "category": "modules",
+      "group": "Yuheng签到",
+      "name": "美图欣赏",
+      "desc": "多看美图助于身心健康😊",
+      "icon": "",
+      "homepage": "https://github.com/Yuheng0101/X",
+      "path": "Modules/yuheng/meitu.sgmodule",
+      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/yuheng/meitu.sgmodule",
+      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Fyuheng%2Fmeitu.sgmodule",
+      "default_enabled": null,
+      "usage_tier": "neutral",
+      "requires": [],
+      "hint": "",
+      "tags": [],
+      "share_url": "https://oo226.github.io/egern-config/#id=yuheng-meitu",
+      "health": "fail"
+    },
+    {
+      "id": "yuheng-sgcc",
+      "kind": "module",
+      "category": "modules",
+      "group": "Yuheng签到",
+      "name": "网上国网",
+      "desc": "余量查询",
+      "icon": "",
+      "homepage": "",
+      "path": "Modules/yuheng/sgcc.sgmodule",
+      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/yuheng/sgcc.sgmodule",
+      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Fyuheng%2Fsgcc.sgmodule",
+      "default_enabled": null,
+      "usage_tier": "neutral",
+      "requires": [],
+      "hint": "Egern 编辑模块 → 模版参数可调；与 BoxJS 联动。",
+      "tags": [
+        "模版参数"
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=yuheng-sgcc",
+      "health": "fail"
+    },
+    {
+      "id": "qingrex-signin-Follow每日签到",
+      "kind": "module",
+      "category": "modules",
+      "group": "可莉签到",
+      "name": "Follow每日签到",
+      "desc": "Follow每日签到 by @gideonsenku",
+      "icon": "",
+      "homepage": "",
+      "path": "Modules/qingrex-signin/Follow每日签到.sgmodule",
+      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/qingrex-signin/Follow每日签到.sgmodule",
+      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Fqingrex-signin%2FFollow%E6%AF%8F%E6%97%A5%E7%AD%BE%E5%88%B0.sgmodule",
+      "default_enabled": null,
+      "usage_tier": "neutral",
+      "requires": [],
+      "hint": "Egern 编辑模块 → 模版参数可调；与 BoxJS 联动。",
+      "tags": [
+        "模版参数"
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=qingrex-signin-Follow每日签到",
+      "health": "fail"
+    },
+    {
+      "id": "qingrex-signin-WPS每日签到",
+      "kind": "module",
+      "category": "modules",
+      "group": "可莉签到",
+      "name": "WPS每日签到",
+      "desc": "WPS每日签到并兑换会员，需要进入此插件的主页链接，阅读使用说明操作。",
+      "icon": "https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/WPS.png",
+      "homepage": "https://github.com/luestr/ProxyResource/blob/main/Resource/Markdown/WPS/README.md",
+      "path": "Modules/qingrex-signin/WPS每日签到.sgmodule",
+      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/qingrex-signin/WPS每日签到.sgmodule",
+      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Fqingrex-signin%2FWPS%E6%AF%8F%E6%97%A5%E7%AD%BE%E5%88%B0.sgmodule",
+      "default_enabled": null,
+      "usage_tier": "neutral",
+      "requires": [],
+      "hint": "Egern 编辑模块 → 模版参数可调；与 BoxJS 联动。",
+      "tags": [
+        "签到",
+        "模版参数"
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=qingrex-signin-WPS每日签到",
+      "health": "fail"
+    },
+    {
+      "id": "qingrex-signin-⭐️ Sub-Store.official",
+      "kind": "module",
+      "category": "modules",
+      "group": "可莉签到",
+      "name": "Sub-Store",
+      "desc": "支持 Surge 正式版的参数设置功能. 测落地功能 ability: http-client-policy, 同步配置的定时 cronexp: 55 23 * * *",
+      "icon": "",
+      "homepage": "",
+      "path": "Modules/qingrex-signin/⭐️ Sub-Store.official.sgmodule",
+      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/qingrex-signin/⭐️ Sub-Store.official.sgmodule",
+      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Fqingrex-signin%2F%E2%AD%90%EF%B8%8F%20Sub-Store.official.sgmodule",
+      "default_enabled": null,
+      "usage_tier": "neutral",
+      "requires": [],
+      "hint": "Egern 编辑模块 → 模版参数可调；与 BoxJS 联动。",
+      "tags": [
+        "模版参数"
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=qingrex-signin-⭐️ Sub-Store.official",
+      "health": "fail"
+    },
+    {
+      "id": "qingrex-signin-书香门第每日签到",
+      "kind": "module",
+      "category": "modules",
+      "group": "可莉签到",
+      "name": "书香门第签到",
+      "desc": "请配置账号密码，默认签到时间为晚上0点0分。",
+      "icon": "https://raw.githubusercontent.com/bgvioletsky/ios_rule/refs/heads/main/src/src.png",
+      "homepage": "https://github.com/bgvioletsky/ios_rule/tree/main/Loon/plugin",
+      "path": "Modules/qingrex-signin/书香门第每日签到.sgmodule",
+      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/qingrex-signin/书香门第每日签到.sgmodule",
+      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Fqingrex-signin%2F%E4%B9%A6%E9%A6%99%E9%97%A8%E7%AC%AC%E6%AF%8F%E6%97%A5%E7%AD%BE%E5%88%B0.sgmodule",
+      "default_enabled": null,
+      "usage_tier": "neutral",
+      "requires": [],
+      "hint": "",
+      "tags": [
+        "签到"
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=qingrex-signin-书香门第每日签到",
+      "health": "fail"
+    },
+    {
+      "id": "qingrex-signin-哔哩漫画签到.official",
+      "kind": "module",
+      "category": "modules",
+      "group": "可莉签到",
+      "name": "🐻 哔哩哔哩漫画 [签到]",
+      "desc": "每日定时签到，模块参数可调整签到时间。 打开哔哩哔哩漫画APP点击\"我的\"即可获取cookie.",
+      "icon": "",
+      "homepage": "",
+      "path": "Modules/qingrex-signin/哔哩漫画签到.official.sgmodule",
+      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/qingrex-signin/哔哩漫画签到.official.sgmodule",
+      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Fqingrex-signin%2F%E5%93%94%E5%93%A9%E6%BC%AB%E7%94%BB%E7%AD%BE%E5%88%B0.official.sgmodule",
+      "default_enabled": null,
+      "usage_tier": "neutral",
+      "requires": [],
+      "hint": "Egern 编辑模块 → 模版参数可调；与 BoxJS 联动。",
+      "tags": [
+        "模版参数"
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=qingrex-signin-哔哩漫画签到.official",
+      "health": "fail"
+    },
+    {
+      "id": "qingrex-signin-巴哈姆特签到.official",
+      "kind": "module",
+      "category": "modules",
+      "group": "可莉签到",
+      "name": "🐻 巴哈姆特 [签到]",
+      "desc": "每日定时签到，包含主站签到、公会签到、动画疯答题等；模块参数可调整签到时间。 使用前需要进入BoxJs填写账号密码，BoxJs订阅链接可查看脚本注释。",
+      "icon": "",
+      "homepage": "",
+      "path": "Modules/qingrex-signin/巴哈姆特签到.official.sgmodule",
+      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/qingrex-signin/巴哈姆特签到.official.sgmodule",
+      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Fqingrex-signin%2F%E5%B7%B4%E5%93%88%E5%A7%86%E7%89%B9%E7%AD%BE%E5%88%B0.official.sgmodule",
+      "default_enabled": null,
+      "usage_tier": "neutral",
+      "requires": [],
+      "hint": "Egern 编辑模块 → 模版参数可调；与 BoxJS 联动。",
+      "tags": [
+        "模版参数"
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=qingrex-signin-巴哈姆特签到.official",
+      "health": "fail"
+    },
+    {
+      "id": "qingrex-signin-快看漫画签到.official",
+      "kind": "module",
+      "category": "modules",
+      "group": "可莉签到",
+      "name": "🐻 快看漫画 [签到]",
+      "desc": "每日定时签到，模块参数可调整签到时间。 打开快看漫画APP点击\"我的\"即可获取cookie.",
+      "icon": "",
+      "homepage": "",
+      "path": "Modules/qingrex-signin/快看漫画签到.official.sgmodule",
+      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/qingrex-signin/快看漫画签到.official.sgmodule",
+      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Fqingrex-signin%2F%E5%BF%AB%E7%9C%8B%E6%BC%AB%E7%94%BB%E7%AD%BE%E5%88%B0.official.sgmodule",
+      "default_enabled": null,
+      "usage_tier": "neutral",
+      "requires": [],
+      "hint": "Egern 编辑模块 → 模版参数可调；与 BoxJS 联动。",
+      "tags": [
+        "模版参数"
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=qingrex-signin-快看漫画签到.official",
+      "health": "fail"
+    },
+    {
+      "id": "qingrex-signin-携程旅行签到.official",
+      "kind": "module",
+      "category": "modules",
+      "group": "可莉签到",
+      "name": "🐻 携程旅行 [签到]",
+      "desc": "每日定时签到，支持多账号。 登陆\"携程旅行\"微信小程序或\"携程网页版\"(https://m.ctrip.com/)可获取账号授权，填写模块参数可禁用脚本。",
+      "icon": "",
+      "homepage": "",
+      "path": "Modules/qingrex-signin/携程旅行签到.official.sgmodule",
+      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/qingrex-signin/携程旅行签到.official.sgmodule",
+      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Fqingrex-signin%2F%E6%90%BA%E7%A8%8B%E6%97%85%E8%A1%8C%E7%AD%BE%E5%88%B0.official.sgmodule",
+      "default_enabled": null,
+      "usage_tier": "neutral",
+      "requires": [],
+      "hint": "Egern 编辑模块 → 模版参数可调；与 BoxJS 联动。",
+      "tags": [
+        "模版参数"
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=qingrex-signin-携程旅行签到.official",
+      "health": "fail"
+    },
+    {
+      "id": "qingrex-signin-爱奇艺会员签到.official",
+      "kind": "module",
+      "category": "modules",
+      "group": "可莉签到",
+      "name": "🐻 爱奇艺 [会员签到]",
+      "desc": "每日定时签到，模块参数可调整签到时间。 登陆爱奇艺网页版 https://m.ctrip.com/ 使用密码登录可获取签到Cookie.",
+      "icon": "",
+      "homepage": "",
+      "path": "Modules/qingrex-signin/爱奇艺会员签到.official.sgmodule",
+      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/qingrex-signin/爱奇艺会员签到.official.sgmodule",
+      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Fqingrex-signin%2F%E7%88%B1%E5%A5%87%E8%89%BA%E4%BC%9A%E5%91%98%E7%AD%BE%E5%88%B0.official.sgmodule",
+      "default_enabled": null,
+      "usage_tier": "neutral",
+      "requires": [],
+      "hint": "Egern 编辑模块 → 模版参数可调；与 BoxJS 联动。",
+      "tags": [
+        "模版参数"
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=qingrex-signin-爱奇艺会员签到.official",
+      "health": "fail"
+    },
+    {
+      "id": "qingrex-signin-百度贴吧签到.official",
+      "kind": "module",
+      "category": "modules",
+      "group": "可莉签到",
+      "name": "🐻 百度贴吧 [签到]",
+      "desc": "每日定时签到，模块参数可调整签到时间。 打开百度贴吧APP点击\"我的\"即可获取cookie.",
+      "icon": "",
+      "homepage": "",
+      "path": "Modules/qingrex-signin/百度贴吧签到.official.sgmodule",
+      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/qingrex-signin/百度贴吧签到.official.sgmodule",
+      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Fqingrex-signin%2F%E7%99%BE%E5%BA%A6%E8%B4%B4%E5%90%A7%E7%AD%BE%E5%88%B0.official.sgmodule",
+      "default_enabled": null,
+      "usage_tier": "neutral",
+      "requires": [],
+      "hint": "Egern 编辑模块 → 模版参数可调；与 BoxJS 联动。",
+      "tags": [
+        "模版参数"
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=qingrex-signin-百度贴吧签到.official",
+      "health": "fail"
+    },
+    {
+      "id": "qingrex-signin-联通余量.official",
+      "kind": "module",
+      "category": "modules",
+      "group": "可莉签到",
+      "name": "联通余量(v4)",
+      "desc": "定时查询, Panel 面板, 抓包",
+      "icon": "",
+      "homepage": "",
+      "path": "Modules/qingrex-signin/联通余量.official.sgmodule",
+      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/qingrex-signin/联通余量.official.sgmodule",
+      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Fqingrex-signin%2F%E8%81%94%E9%80%9A%E4%BD%99%E9%87%8F.official.sgmodule",
+      "default_enabled": null,
+      "usage_tier": "neutral",
+      "requires": [],
+      "hint": "Egern 编辑模块 → 模版参数可调；与 BoxJS 联动。",
+      "tags": [
+        "模版参数"
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=qingrex-signin-联通余量.official",
+      "health": "fail"
     },
     {
       "id": "pingme-quanx",
@@ -4584,5 +4925,5 @@
       "health": "ok"
     }
   ],
-  "total": 220
+  "total": 235
 }
