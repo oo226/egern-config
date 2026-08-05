@@ -105,7 +105,12 @@ modules:
     group: 签到
     default_enabled: false
     tags: [PingMe, 签到, 抓参, 模版参数]
-    hint: "模版参数「是否开启抓取重写」：PingMe抓参=开抓参，#=关。抓完务必改成 #。"
+    hint: "模块详情→参数。若无参数面板：删旧模块后重加；或改用 pingme.yaml（Egern 原生 compat_arguments）。"
+  pingme.yaml:
+    group: 签到
+    default_enabled: false
+    tags: [PingMe, 签到, 抓参, 模版参数, Egern]
+    hint: "Egern 原生 YAML 模版参数（compat_arguments），参数面板更稳。"
   spotify-unlock.sgmodule:
     group: 解锁
     default_enabled: false
