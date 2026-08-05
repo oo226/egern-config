@@ -13,17 +13,17 @@
 | `adblock-collection.module` | 去广告净化合集 | **唯一入口** — 奶思 + blackmatrix7 + 毒奶网页去广告 + 银行/NB 每日合并去重（**不含签到/cron**） |
 | `unlock-collection.module` | 解锁增强合集 | **唯一入口** — 跳过代理、链接解锁、Spotify、VIP、ddm1023、ShortcutStudio 等 |
 | `cookie-collection.module` | 抓参 Cookie 合集 | **按需启用** — 奶思 cookies.module，签到前抓 ck/token，抓完建议关闭 |
-| `qdreader.sgmodule` | 起点读书签到 | Yuheng 抓 Cookie + 定时签到 |
-| `custom-apps.sgmodule` | 本地补全源 | 银行/税务/NBToolAds，合并时自动并入去广告合集 |
-| `patches-unlock.sgmodule` | 本地解锁补全 | P12/OCSP、系统更新屏蔽，合并时自动并入解锁合集 |
+| `qdreader.sgmodule` | 起点读书签到 | Yuheng 镜像；**保留 Egern 模版参数**（抓写/激励/抽奖等） |
+| `Modules/yuheng/` | Yuheng 其它签到模块 | 全量 profiles 镜像，防删库 |
+| `Modules/qingrex-signin/` | 可莉签到模块 | 逐个镜像，保留参数 |
 
 ## 上游从哪来？
 
 完整清单：`scripts/upstream-sources.yaml`（每日同步写入 `site/upstreams.json`）。
 
-**代理检测（skip-proxy / always-real-ip）**：`scripts/discover-proxy-detect.py` 扫描监视仓，命中后写入 `site/upstream-proxy-detect.json`，模块中心用**上游原链**展示；同时合并进 `unlock-collection`。
+**原则：盯着的仓尽量全拉成本仓副本（防删库）；能进大合集的进合集；带 `#!arguments` 的签到模块单独保留，方便 Egern 里改模版参数。**
 
-要加新监视仓：改 `upstream-sources.yaml` → `proxy_detect.watch_repos` / `seeds`。
+**代理检测（skip-proxy / always-real-ip）**：`scripts/discover-proxy-detect.py` 扫描监视仓；中心页可挂上游原链，合集也会并一份。
 
 
 ## raw 链接
