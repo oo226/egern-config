@@ -1,0 +1,50 @@
+{
+  "generated_by": "scripts/discover-proxy-detect.py",
+  "count": 3,
+  "items": [
+    {
+      "id": "iamsweet-skip-proxy",
+      "name": "Skip Proxy Lists",
+      "kind": "module",
+      "url": "https://raw.githubusercontent.com/iamsweet/Surge-Skip-Proxy-Lists/main/skip-proxy-lists.sgmodule",
+      "homepage": "https://github.com/iamsweet/Surge-Skip-Proxy-Lists",
+      "tags": [
+        "代理检测",
+        "skip-proxy"
+      ],
+      "source": "seed",
+      "upstream": true,
+      "desc": "跳过部分应用的代理检测"
+    },
+    {
+      "id": "mieqq-skip-proxy",
+      "name": "Skip Proxy And Real-IP Lists",
+      "kind": "module",
+      "url": "https://raw.githubusercontent.com/mieqq/mieqq/master/skip-proxy-lists.sgmodule",
+      "homepage": "https://github.com/mieqq/mieqq",
+      "tags": [
+        "代理检测",
+        "skip-proxy",
+        "mieqq"
+      ],
+      "source": "seed",
+      "upstream": true,
+      "desc": "跳过部分应用的代理检测"
+    },
+    {
+      "id": "sukka-always-realip",
+      "name": "[Sukka] Always Real IP Plus",
+      "kind": "module",
+      "url": "https://ruleset.skk.moe/Modules/sukka_common_always_realip.sgmodule",
+      "homepage": "https://ruleset.skk.moe/",
+      "tags": [
+        "代理检测",
+        "always-real-ip",
+        "Sukka"
+      ],
+      "source": "seed",
+      "upstream": true,
+      "desc": "Last Updated: 2026-04-16T09:46:43.384Z"
+    }
+  ]
+}
