@@ -120,6 +120,9 @@ jobs:
           python3 scripts/sync-yuheng-scripts.py
           python3 scripts/sync-egern-boxjs.py
 
+      - name: Discover proxy-detect upstream modules
+        run: python3 scripts/discover-proxy-detect.py
+
       - name: Mirror chxm1023/ddm1023 scripts
         run: python3 scripts/download-chxm1023-scripts.py
 

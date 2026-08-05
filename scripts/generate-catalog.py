@@ -32,6 +32,7 @@ WIDGET_MANIFEST = WIDGETS / "IBL3ND" / "manifest.yaml"
 SCRIPTS_MANIFEST = Path(__file__).with_name("manifest.yaml")
 BOXJS_PATH = MODULES / "egern.boxjs.json"
 EGERN_YAML = ROOT / "Egern.yaml"
+PROXY_DETECT_INDEX = SITE_DIR / "upstream-proxy-detect.json"
 
 GITHUB_PAGES = "https://oo226.github.io/egern-config"
 UPSTREAM_CHECK_LIMIT = 80
@@ -397,14 +398,64 @@ def external_module_items(meta_cfg: dict) -> list[dict]:
                 "name": entry["name"],
                 "desc": entry.get("desc", ""),
                 "icon": entry.get("icon", ""),
+                "homepage": entry.get("homepage", ""),
                 "path": url,
                 "url": url,
                 "add_url": module_add_url(url),
                 "default_enabled": default_enabled,
                 "usage_tier": usage_tier(default_enabled, "module", "modules"),
                 "tags": entry.get("tags") or ["外部"],
+                "upstream": True,
             }
         )
+    return items
+
+
+def proxy_detect_items() -> list[dict]:
+    """Upstream skip-proxy / 代理检测 modules — subscribe via original repo URLs."""
+    if not PROXY_DETECT_INDEX.is_file():
+        return []
+    try:
+        data = json.loads(PROXY_DETECT_INDEX.read_text(encoding="utf-8"))
+    except Exception as exc:
+        print(f"skip proxy-detect index: {exc}")
+        return []
+    items: list[dict] = []
+    for entry in data.get("items") or []:
+        url = (entry.get("url") or "").strip()
+        if not url:
+            continue
+        kind = entry.get("kind") or "module"
+        item_id = entry.get("id") or f"proxy-detect-{len(items)}"
+        name = entry.get("name") or item_id
+        desc = entry.get("desc") or "上游代理检测相关（原链订阅）"
+        homepage = entry.get("homepage") or ""
+        tags = list(entry.get("tags") or [])
+        for t in ("代理检测", "上游原链"):
+            if t not in tags:
+                tags.append(t)
+        add = module_add_url(url) if kind == "module" else url
+        items.append(
+            {
+                "id": item_id,
+                "kind": "module" if kind == "module" else "rule",
+                "category": "modules" if kind == "module" else "routing",
+                "group": "代理检测·上游",
+                "name": name,
+                "desc": desc,
+                "icon": "",
+                "homepage": homepage,
+                "path": entry.get("path") or url,
+                "url": url,
+                "add_url": add,
+                "default_enabled": False,
+                "usage_tier": "optional",
+                "hint": "使用上游仓库原链；也可继续用本仓 unlock-collection 合集。",
+                "tags": tags,
+                "upstream": True,
+            }
+        )
+    print(f"proxy-detect catalog items: {len(items)}")
     return items
 
 
@@ -708,6 +759,13 @@ def build_catalog() -> dict:
         if item:
             items.append(item)
     items.extend(external_module_items(meta_cfg))
+    # proxy-detect 上游原链；与 external_modules 按 url 去重
+    seen_urls = {i.get("url") for i in items if i.get("url")}
+    for item in proxy_detect_items():
+        if item.get("url") in seen_urls:
+            continue
+        seen_urls.add(item.get("url"))
+        items.append(item)
     items.extend(routing_items(meta_cfg))
     items.extend(boxjs_items(meta_cfg))
     items.extend(script_items())

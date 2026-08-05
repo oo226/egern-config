@@ -9,7 +9,7 @@ merge:
     - "# 类型: 模块 — 解锁/增强（链接解锁、Spotify、跳过代理检测、屏蔽更新等）"
     - "# Do not edit manually. Updated by GitHub Actions after upstream sync."
     - "#"
-    - "# Sources: mieqq, QingRex(可莉), chxm1023/ddm1023, Yu9191, miranquil, iEwha, ddgksf2013, WeiGiegie, liul0ng, local patches"
+    - "# Sources: mieqq, Sukka RealIP, QingRex(可莉), chxm1023/ddm1023, Yu9191, miranquil, iEwha, ddgksf2013, WeiGiegie, liul0ng, proxy-detect scan, local patches"
     - ""
 
 modules:
@@ -18,6 +18,18 @@ modules:
     role: primary
     upstream: https://raw.githubusercontent.com/mieqq/mieqq/master/skip-proxy-lists.sgmodule
     note: "mieqq — 跳过国内 App 代理检测"
+
+  - name: sukka-always-realip
+    cache: sukka-always-realip.sgmodule
+    role: supplement
+    upstream: https://ruleset.skk.moe/Modules/sukka_common_always_realip.sgmodule
+    note: "Sukka — Always Real IP（上游原链同步）"
+
+  - name: proxy-detect-extra
+    cache: proxy-detect-extra.sgmodule
+    role: supplement
+    local: true
+    note: "discover-proxy-detect.py 扫描上游 skip-proxy/always-real-ip 合并补充"
 
   - name: qingrex-unlock
     cache: qingrex-unlock.sgmodule

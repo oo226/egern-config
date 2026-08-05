@@ -15,6 +15,8 @@ files:
   - site/manifest.webmanifest
   - site/sw.js
   - site/robots.txt
+  - site/upstream-proxy-detect.json
+  - site/upstreams.json
 
 directories:
   - path: Routing
@@ -83,6 +85,7 @@ prune_from_main:
   - Modules/yu9191-rewrite-unlock.sgmodule
   - Modules/liul0ng-unlock.sgmodule
   - Modules/weigiegie-unlock.sgmodule
+  - Modules/proxy-detect-extra.sgmodule
   - scripts
   - publish
   - push-github.ps1

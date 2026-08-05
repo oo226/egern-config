@@ -43,6 +43,12 @@ UNLOCK_KEYWORDS = (
     "拦截HTTPDNS",
     "歌词增强",
     "歌词翻译",
+    "代理检测",
+    "跳过代理",
+    "skip-proxy",
+    "always-real-ip",
+    "Skip Proxy",
+    "REAL-IP",
 )
 
 FMZ200_SKIP_ADBLOCK = frozenset(
@@ -151,6 +157,11 @@ def module_kind_from_header(filename: str, text: str) -> str:
         "订阅",
         "subscription",
         "premium",
+        "代理检测",
+        "跳过代理",
+        "skip-proxy",
+        "always-real-ip",
+        "skip proxy",
     )
     if any(m in header for m in unlock_markers):
         return "unlock"
