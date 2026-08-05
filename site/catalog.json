@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-05T13:37:34Z",
+  "generated_at": "2026-08-05T15:17:04Z",
   "branch": "main",
   "repo": "oo226/egern-config",
   "raw_base": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main",
@@ -10,14 +10,14 @@
       "name": "默认开启",
       "icon": "✅",
       "usage_tier": "daily",
-      "count": 8
+      "count": 7
     },
     {
       "id": "optional",
       "name": "按需开启",
       "icon": "🔧",
       "usage_tier": "optional",
-      "count": 173
+      "count": 176
     }
   ],
   "quick_start": [
@@ -202,17 +202,48 @@
   ],
   "sync_digest": {
     "commit": {
-      "hash": "ab8e5a2",
-      "subject": "Merge pull request #53 from oo226/cursor/fix-health-links-ac83",
+      "hash": "e557621",
+      "subject": "Merge branch 'cursor/fix-spotify-unlock-ac83': Spotify Eevee unlock",
       "date": "2026-08-05"
     },
     "summary": [
-      "模块站 更新 1 个文件",
+      "模块 更新 5 个文件",
+      "脚本 更新 1 个文件",
       "国内直连 26042 条"
     ],
-    "files_changed": 3
+    "files_changed": 8
   },
   "changelog": [
+    {
+      "hash": "3160f4a",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-08-05"
+    },
+    {
+      "hash": "8a866d6",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-08-05"
+    },
+    {
+      "hash": "910d067",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-08-05"
+    },
+    {
+      "hash": "6e20415",
+      "subject": "Merge pull request #56 from oo226/cursor/pages-skip-proxy-ac83",
+      "date": "2026-08-05"
+    },
+    {
+      "hash": "0caa865",
+      "subject": "chore: trigger pages after skip-proxy merge",
+      "date": "2026-08-05"
+    },
+    {
+      "hash": "816f1c4",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-08-05"
+    },
     {
       "hash": "2ead236",
       "subject": "Merge pull request #54 from oo226/cursor/pages-health-fix-ac83",
@@ -222,47 +253,17 @@
       "hash": "2f0b242",
       "subject": "chore: trigger pages after health-link fix",
       "date": "2026-08-05"
-    },
-    {
-      "hash": "3fd30a0",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-08-05"
-    },
-    {
-      "hash": "143c98a",
-      "subject": "Merge pull request #52 from oo226/cursor/pages-full-mirror-ac83",
-      "date": "2026-08-05"
-    },
-    {
-      "hash": "ad5beab",
-      "subject": "chore: trigger pages after full-mirror publish",
-      "date": "2026-08-05"
-    },
-    {
-      "hash": "b1ec9f8",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-08-05"
-    },
-    {
-      "hash": "34283b5",
-      "subject": "Merge pull request #50 from oo226/cursor/pages-proxy-detect-ac83",
-      "date": "2026-08-05"
-    },
-    {
-      "hash": "fb341c2",
-      "subject": "chore: trigger pages for proxy-detect upstream index",
-      "date": "2026-08-05"
     }
   ],
   "local_health": {
-    "checked": 120,
+    "checked": 123,
     "fail": 0,
     "broken_ids": []
   },
   "upstream_health": {
-    "total_unique": 23,
-    "checked": 23,
-    "ok": 23,
+    "total_unique": 16,
+    "checked": 16,
+    "ok": 16,
     "fail": 0,
     "broken": [],
     "truncated": false
@@ -278,7 +279,7 @@
       "id": "modules",
       "name": "模块",
       "icon": "🧩",
-      "count": 27
+      "count": 29
     },
     {
       "id": "routing",
@@ -424,6 +425,80 @@
         "fmz200"
       ],
       "share_url": "https://oo226.github.io/egern-config/#id=cookie-collection",
+      "health": "ok"
+    },
+    {
+      "id": "spotify-unlock",
+      "kind": "module",
+      "category": "modules",
+      "group": "解锁",
+      "name": "Spotify Unlock (Eevee)",
+      "desc": "部分解锁 Premium：去广告、歌手/专辑列表、去随机播放（对照 wesselyang/spotify.plugin 实测可用；音质勿设超高；登录后再开脚本并重启 App）",
+      "icon": "",
+      "homepage": "",
+      "path": "Modules/spotify-unlock.sgmodule",
+      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/spotify-unlock.sgmodule",
+      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Fspotify-unlock.sgmodule",
+      "default_enabled": false,
+      "usage_tier": "optional",
+      "requires": [],
+      "hint": "单独 Spotify VIP（Eevee）；解锁合集已内含同款。",
+      "tags": [
+        "Spotify",
+        "VIP",
+        "Eevee"
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=spotify-unlock",
+      "health": "ok"
+    },
+    {
+      "id": "spotify-dualsubs",
+      "kind": "module",
+      "category": "modules",
+      "group": "解锁",
+      "name": "🍿️ DualSubs: 🎵 Spotify",
+      "desc": "Spotify 双语歌词 / 翻译（单独模块才有参数面板；合进解锁合集会丢 #!arguments）",
+      "icon": "https://github.com/DualSubs/Spotify/raw/main/src/assets/icon_rounded.png",
+      "homepage": "https://DualSubs.github.io/guide/spotify",
+      "path": "Modules/spotify-dualsubs.sgmodule",
+      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/spotify-dualsubs.sgmodule",
+      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Fspotify-dualsubs.sgmodule",
+      "default_enabled": false,
+      "usage_tier": "optional",
+      "requires": [],
+      "hint": "独立模块才有参数面板（Types/语言等）。解锁合集内嵌 DualSubs 无参数 UI。",
+      "tags": [
+        "Spotify",
+        "双语歌词",
+        "DualSubs",
+        "模版参数"
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=spotify-dualsubs",
+      "health": "ok"
+    },
+    {
+      "id": "pingme",
+      "kind": "module",
+      "category": "modules",
+      "group": "签到",
+      "name": "PingMe 签到",
+      "desc": "PingMe 抓参 + 定时签到（对齐起点：可用模版参数开关抓参；抓完请关掉抓参再开签到）",
+      "icon": "",
+      "homepage": "https://github.com/oo226/egern-config",
+      "path": "Modules/pingme.sgmodule",
+      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/pingme.sgmodule",
+      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Fpingme.sgmodule",
+      "default_enabled": false,
+      "usage_tier": "optional",
+      "requires": [],
+      "hint": "模版参数「是否开启抓取重写」：PingMe抓参=开抓参，#=关。抓完务必改成 #。",
+      "tags": [
+        "PingMe",
+        "签到",
+        "抓参",
+        "模版参数"
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=pingme",
       "health": "ok"
     },
     {
@@ -918,26 +993,6 @@
       ],
       "share_url": "https://oo226.github.io/egern-config/#id=qingrex-signin-联通余量.official",
       "health": "ok"
-    },
-    {
-      "id": "pingme-quanx",
-      "kind": "module",
-      "category": "modules",
-      "group": "外部",
-      "name": "PingMe 抓参签到",
-      "desc": "外部 oo226/quanx pingme.yaml，不在本仓库。",
-      "icon": "",
-      "homepage": "",
-      "path": "https://raw.githubusercontent.com/oo226/quanx/main/pingme.yaml",
-      "url": "https://raw.githubusercontent.com/oo226/quanx/main/pingme.yaml",
-      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fquanx%2Fmain%2Fpingme.yaml",
-      "default_enabled": true,
-      "usage_tier": "daily",
-      "tags": [
-        "外部"
-      ],
-      "upstream": true,
-      "share_url": "https://oo226.github.io/egern-config/#id=pingme-quanx"
     },
     {
       "id": "Routing-Bootstrap-Direct",
@@ -4866,5 +4921,5 @@
       "health": "ok"
     }
   ],
-  "total": 233
+  "total": 235
 }
