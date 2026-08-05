@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-05T13:12:52Z",
+  "generated_at": "2026-08-05T13:26:33Z",
   "branch": "main",
   "repo": "oo226/egern-config",
   "raw_base": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main",
@@ -202,18 +202,34 @@
   ],
   "sync_digest": {
     "commit": {
-      "hash": "759c410",
-      "subject": "Merge pull request #49 from oo226/cursor/skip-proxy-upstream-ac83",
+      "hash": "91b0134",
+      "subject": "Merge pull request #51 from oo226/cursor/full-mirror-args-ac83",
       "date": "2026-08-05"
     },
     "summary": [
-      "模块 更新 4 个文件",
-      "模块站 更新 3 个文件",
+      "模块 更新 8 个文件",
+      "脚本 更新 4 个文件",
+      "模块站 更新 2 个文件",
       "国内直连 26042 条"
     ],
-    "files_changed": 14
+    "files_changed": 33
   },
   "changelog": [
+    {
+      "hash": "143c98a",
+      "subject": "Merge pull request #52 from oo226/cursor/pages-full-mirror-ac83",
+      "date": "2026-08-05"
+    },
+    {
+      "hash": "ad5beab",
+      "subject": "chore: trigger pages after full-mirror publish",
+      "date": "2026-08-05"
+    },
+    {
+      "hash": "b1ec9f8",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-08-05"
+    },
     {
       "hash": "34283b5",
       "subject": "Merge pull request #50 from oo226/cursor/pages-proxy-detect-ac83",
@@ -238,43 +254,12 @@
       "hash": "19dff5e",
       "subject": "chore: trigger pages deploy after qidian/spotify fix",
       "date": "2026-08-05"
-    },
-    {
-      "hash": "c9581a8",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-08-05"
-    },
-    {
-      "hash": "ccf6652",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-08-05"
-    },
-    {
-      "hash": "94f096e",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-08-04"
     }
   ],
   "local_health": {
     "checked": 119,
-    "fail": 15,
-    "broken_ids": [
-      "yuheng-bdyy",
-      "yuheng-cloud139",
-      "yuheng-meitu",
-      "yuheng-sgcc",
-      "qingrex-signin-Follow每日签到",
-      "qingrex-signin-WPS每日签到",
-      "qingrex-signin-⭐️ Sub-Store.official",
-      "qingrex-signin-书香门第每日签到",
-      "qingrex-signin-哔哩漫画签到.official",
-      "qingrex-signin-巴哈姆特签到.official",
-      "qingrex-signin-快看漫画签到.official",
-      "qingrex-signin-携程旅行签到.official",
-      "qingrex-signin-爱奇艺会员签到.official",
-      "qingrex-signin-百度贴吧签到.official",
-      "qingrex-signin-联通余量.official"
-    ]
+    "fail": 0,
+    "broken_ids": []
   },
   "upstream_health": {
     "total_unique": 23,
@@ -604,7 +589,7 @@
       "hint": "",
       "tags": [],
       "share_url": "https://oo226.github.io/egern-config/#id=yuheng-bdyy",
-      "health": "fail"
+      "health": "ok"
     },
     {
       "id": "yuheng-cloud139",
@@ -624,7 +609,7 @@
       "hint": "",
       "tags": [],
       "share_url": "https://oo226.github.io/egern-config/#id=yuheng-cloud139",
-      "health": "fail"
+      "health": "ok"
     },
     {
       "id": "yuheng-meitu",
@@ -644,7 +629,7 @@
       "hint": "",
       "tags": [],
       "share_url": "https://oo226.github.io/egern-config/#id=yuheng-meitu",
-      "health": "fail"
+      "health": "ok"
     },
     {
       "id": "yuheng-sgcc",
@@ -666,7 +651,7 @@
         "模版参数"
       ],
       "share_url": "https://oo226.github.io/egern-config/#id=yuheng-sgcc",
-      "health": "fail"
+      "health": "ok"
     },
     {
       "id": "qingrex-signin-Follow每日签到",
@@ -678,8 +663,8 @@
       "icon": "",
       "homepage": "",
       "path": "Modules/qingrex-signin/Follow每日签到.sgmodule",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/qingrex-signin/Follow每日签到.sgmodule",
-      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Fqingrex-signin%2FFollow%E6%AF%8F%E6%97%A5%E7%AD%BE%E5%88%B0.sgmodule",
+      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/qingrex-signin/Follow%E6%AF%8F%E6%97%A5%E7%AD%BE%E5%88%B0.sgmodule",
+      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Fqingrex-signin%2FFollow%25E6%25AF%258F%25E6%2597%25A5%25E7%25AD%25BE%25E5%2588%25B0.sgmodule",
       "default_enabled": null,
       "usage_tier": "neutral",
       "requires": [],
@@ -688,7 +673,7 @@
         "模版参数"
       ],
       "share_url": "https://oo226.github.io/egern-config/#id=qingrex-signin-Follow每日签到",
-      "health": "fail"
+      "health": "ok"
     },
     {
       "id": "qingrex-signin-WPS每日签到",
@@ -700,8 +685,8 @@
       "icon": "https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/WPS.png",
       "homepage": "https://github.com/luestr/ProxyResource/blob/main/Resource/Markdown/WPS/README.md",
       "path": "Modules/qingrex-signin/WPS每日签到.sgmodule",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/qingrex-signin/WPS每日签到.sgmodule",
-      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Fqingrex-signin%2FWPS%E6%AF%8F%E6%97%A5%E7%AD%BE%E5%88%B0.sgmodule",
+      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/qingrex-signin/WPS%E6%AF%8F%E6%97%A5%E7%AD%BE%E5%88%B0.sgmodule",
+      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Fqingrex-signin%2FWPS%25E6%25AF%258F%25E6%2597%25A5%25E7%25AD%25BE%25E5%2588%25B0.sgmodule",
       "default_enabled": null,
       "usage_tier": "neutral",
       "requires": [],
@@ -711,7 +696,7 @@
         "模版参数"
       ],
       "share_url": "https://oo226.github.io/egern-config/#id=qingrex-signin-WPS每日签到",
-      "health": "fail"
+      "health": "ok"
     },
     {
       "id": "qingrex-signin-⭐️ Sub-Store.official",
@@ -723,8 +708,8 @@
       "icon": "",
       "homepage": "",
       "path": "Modules/qingrex-signin/⭐️ Sub-Store.official.sgmodule",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/qingrex-signin/⭐️ Sub-Store.official.sgmodule",
-      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Fqingrex-signin%2F%E2%AD%90%EF%B8%8F%20Sub-Store.official.sgmodule",
+      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/qingrex-signin/%E2%AD%90%EF%B8%8F%20Sub-Store.official.sgmodule",
+      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Fqingrex-signin%2F%25E2%25AD%2590%25EF%25B8%258F%2520Sub-Store.official.sgmodule",
       "default_enabled": null,
       "usage_tier": "neutral",
       "requires": [],
@@ -733,7 +718,7 @@
         "模版参数"
       ],
       "share_url": "https://oo226.github.io/egern-config/#id=qingrex-signin-⭐️ Sub-Store.official",
-      "health": "fail"
+      "health": "ok"
     },
     {
       "id": "qingrex-signin-书香门第每日签到",
@@ -745,8 +730,8 @@
       "icon": "https://raw.githubusercontent.com/bgvioletsky/ios_rule/refs/heads/main/src/src.png",
       "homepage": "https://github.com/bgvioletsky/ios_rule/tree/main/Loon/plugin",
       "path": "Modules/qingrex-signin/书香门第每日签到.sgmodule",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/qingrex-signin/书香门第每日签到.sgmodule",
-      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Fqingrex-signin%2F%E4%B9%A6%E9%A6%99%E9%97%A8%E7%AC%AC%E6%AF%8F%E6%97%A5%E7%AD%BE%E5%88%B0.sgmodule",
+      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/qingrex-signin/%E4%B9%A6%E9%A6%99%E9%97%A8%E7%AC%AC%E6%AF%8F%E6%97%A5%E7%AD%BE%E5%88%B0.sgmodule",
+      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Fqingrex-signin%2F%25E4%25B9%25A6%25E9%25A6%2599%25E9%2597%25A8%25E7%25AC%25AC%25E6%25AF%258F%25E6%2597%25A5%25E7%25AD%25BE%25E5%2588%25B0.sgmodule",
       "default_enabled": null,
       "usage_tier": "neutral",
       "requires": [],
@@ -755,7 +740,7 @@
         "签到"
       ],
       "share_url": "https://oo226.github.io/egern-config/#id=qingrex-signin-书香门第每日签到",
-      "health": "fail"
+      "health": "ok"
     },
     {
       "id": "qingrex-signin-哔哩漫画签到.official",
@@ -767,8 +752,8 @@
       "icon": "",
       "homepage": "",
       "path": "Modules/qingrex-signin/哔哩漫画签到.official.sgmodule",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/qingrex-signin/哔哩漫画签到.official.sgmodule",
-      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Fqingrex-signin%2F%E5%93%94%E5%93%A9%E6%BC%AB%E7%94%BB%E7%AD%BE%E5%88%B0.official.sgmodule",
+      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/qingrex-signin/%E5%93%94%E5%93%A9%E6%BC%AB%E7%94%BB%E7%AD%BE%E5%88%B0.official.sgmodule",
+      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Fqingrex-signin%2F%25E5%2593%2594%25E5%2593%25A9%25E6%25BC%25AB%25E7%2594%25BB%25E7%25AD%25BE%25E5%2588%25B0.official.sgmodule",
       "default_enabled": null,
       "usage_tier": "neutral",
       "requires": [],
@@ -777,7 +762,7 @@
         "模版参数"
       ],
       "share_url": "https://oo226.github.io/egern-config/#id=qingrex-signin-哔哩漫画签到.official",
-      "health": "fail"
+      "health": "ok"
     },
     {
       "id": "qingrex-signin-巴哈姆特签到.official",
@@ -789,8 +774,8 @@
       "icon": "",
       "homepage": "",
       "path": "Modules/qingrex-signin/巴哈姆特签到.official.sgmodule",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/qingrex-signin/巴哈姆特签到.official.sgmodule",
-      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Fqingrex-signin%2F%E5%B7%B4%E5%93%88%E5%A7%86%E7%89%B9%E7%AD%BE%E5%88%B0.official.sgmodule",
+      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/qingrex-signin/%E5%B7%B4%E5%93%88%E5%A7%86%E7%89%B9%E7%AD%BE%E5%88%B0.official.sgmodule",
+      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Fqingrex-signin%2F%25E5%25B7%25B4%25E5%2593%2588%25E5%25A7%2586%25E7%2589%25B9%25E7%25AD%25BE%25E5%2588%25B0.official.sgmodule",
       "default_enabled": null,
       "usage_tier": "neutral",
       "requires": [],
@@ -799,7 +784,7 @@
         "模版参数"
       ],
       "share_url": "https://oo226.github.io/egern-config/#id=qingrex-signin-巴哈姆特签到.official",
-      "health": "fail"
+      "health": "ok"
     },
     {
       "id": "qingrex-signin-快看漫画签到.official",
@@ -811,8 +796,8 @@
       "icon": "",
       "homepage": "",
       "path": "Modules/qingrex-signin/快看漫画签到.official.sgmodule",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/qingrex-signin/快看漫画签到.official.sgmodule",
-      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Fqingrex-signin%2F%E5%BF%AB%E7%9C%8B%E6%BC%AB%E7%94%BB%E7%AD%BE%E5%88%B0.official.sgmodule",
+      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/qingrex-signin/%E5%BF%AB%E7%9C%8B%E6%BC%AB%E7%94%BB%E7%AD%BE%E5%88%B0.official.sgmodule",
+      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Fqingrex-signin%2F%25E5%25BF%25AB%25E7%259C%258B%25E6%25BC%25AB%25E7%2594%25BB%25E7%25AD%25BE%25E5%2588%25B0.official.sgmodule",
       "default_enabled": null,
       "usage_tier": "neutral",
       "requires": [],
@@ -821,7 +806,7 @@
         "模版参数"
       ],
       "share_url": "https://oo226.github.io/egern-config/#id=qingrex-signin-快看漫画签到.official",
-      "health": "fail"
+      "health": "ok"
     },
     {
       "id": "qingrex-signin-携程旅行签到.official",
@@ -833,8 +818,8 @@
       "icon": "",
       "homepage": "",
       "path": "Modules/qingrex-signin/携程旅行签到.official.sgmodule",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/qingrex-signin/携程旅行签到.official.sgmodule",
-      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Fqingrex-signin%2F%E6%90%BA%E7%A8%8B%E6%97%85%E8%A1%8C%E7%AD%BE%E5%88%B0.official.sgmodule",
+      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/qingrex-signin/%E6%90%BA%E7%A8%8B%E6%97%85%E8%A1%8C%E7%AD%BE%E5%88%B0.official.sgmodule",
+      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Fqingrex-signin%2F%25E6%2590%25BA%25E7%25A8%258B%25E6%2597%2585%25E8%25A1%258C%25E7%25AD%25BE%25E5%2588%25B0.official.sgmodule",
       "default_enabled": null,
       "usage_tier": "neutral",
       "requires": [],
@@ -843,7 +828,7 @@
         "模版参数"
       ],
       "share_url": "https://oo226.github.io/egern-config/#id=qingrex-signin-携程旅行签到.official",
-      "health": "fail"
+      "health": "ok"
     },
     {
       "id": "qingrex-signin-爱奇艺会员签到.official",
@@ -855,8 +840,8 @@
       "icon": "",
       "homepage": "",
       "path": "Modules/qingrex-signin/爱奇艺会员签到.official.sgmodule",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/qingrex-signin/爱奇艺会员签到.official.sgmodule",
-      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Fqingrex-signin%2F%E7%88%B1%E5%A5%87%E8%89%BA%E4%BC%9A%E5%91%98%E7%AD%BE%E5%88%B0.official.sgmodule",
+      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/qingrex-signin/%E7%88%B1%E5%A5%87%E8%89%BA%E4%BC%9A%E5%91%98%E7%AD%BE%E5%88%B0.official.sgmodule",
+      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Fqingrex-signin%2F%25E7%2588%25B1%25E5%25A5%2587%25E8%2589%25BA%25E4%25BC%259A%25E5%2591%2598%25E7%25AD%25BE%25E5%2588%25B0.official.sgmodule",
       "default_enabled": null,
       "usage_tier": "neutral",
       "requires": [],
@@ -865,7 +850,7 @@
         "模版参数"
       ],
       "share_url": "https://oo226.github.io/egern-config/#id=qingrex-signin-爱奇艺会员签到.official",
-      "health": "fail"
+      "health": "ok"
     },
     {
       "id": "qingrex-signin-百度贴吧签到.official",
@@ -877,8 +862,8 @@
       "icon": "",
       "homepage": "",
       "path": "Modules/qingrex-signin/百度贴吧签到.official.sgmodule",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/qingrex-signin/百度贴吧签到.official.sgmodule",
-      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Fqingrex-signin%2F%E7%99%BE%E5%BA%A6%E8%B4%B4%E5%90%A7%E7%AD%BE%E5%88%B0.official.sgmodule",
+      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/qingrex-signin/%E7%99%BE%E5%BA%A6%E8%B4%B4%E5%90%A7%E7%AD%BE%E5%88%B0.official.sgmodule",
+      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Fqingrex-signin%2F%25E7%2599%25BE%25E5%25BA%25A6%25E8%25B4%25B4%25E5%2590%25A7%25E7%25AD%25BE%25E5%2588%25B0.official.sgmodule",
       "default_enabled": null,
       "usage_tier": "neutral",
       "requires": [],
@@ -887,7 +872,7 @@
         "模版参数"
       ],
       "share_url": "https://oo226.github.io/egern-config/#id=qingrex-signin-百度贴吧签到.official",
-      "health": "fail"
+      "health": "ok"
     },
     {
       "id": "qingrex-signin-联通余量.official",
@@ -899,8 +884,8 @@
       "icon": "",
       "homepage": "",
       "path": "Modules/qingrex-signin/联通余量.official.sgmodule",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/qingrex-signin/联通余量.official.sgmodule",
-      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Fqingrex-signin%2F%E8%81%94%E9%80%9A%E4%BD%99%E9%87%8F.official.sgmodule",
+      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/qingrex-signin/%E8%81%94%E9%80%9A%E4%BD%99%E9%87%8F.official.sgmodule",
+      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Fqingrex-signin%2F%25E8%2581%2594%25E9%2580%259A%25E4%25BD%2599%25E9%2587%258F.official.sgmodule",
       "default_enabled": null,
       "usage_tier": "neutral",
       "requires": [],
@@ -909,7 +894,7 @@
         "模版参数"
       ],
       "share_url": "https://oo226.github.io/egern-config/#id=qingrex-signin-联通余量.official",
-      "health": "fail"
+      "health": "ok"
     },
     {
       "id": "pingme-quanx",
