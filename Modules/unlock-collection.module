@@ -4,13 +4,20 @@
 #
 # Sources: mieqq, Sukka RealIP, QingRex(可莉), chxm1023/ddm1023, Yu9191, miranquil, iEwha, ddgksf2013, WeiGiegie, liul0ng, proxy-detect scan, local patches
 
-#!name=Skip Proxy And Real-IP Lists
+#!name=解锁增强合集
 #!desc=多源合并去重：跳过代理检测 + 链接解锁 + Spotify + VIP解锁 + 屏蔽更新（Actions 每日同步）
+#!category=解锁
 
+
+[General]
+force-http-engine-hosts = %APPEND% 119.29.29.29:80, boxjs.com, boxjs.net, dns.weixin.qq.com:443, dns.weixin.qq.com:80, dns.weixin.qq.com:8080
+skip-proxy = %APPEND% yunbusiness.ccb.com, www.abchina.com.cn, login-service.mobile-bank.psbc.com, mobile-bank.psbc.com, www.baidu.com, wxh.wo.cn, gate.lagou.com, www.shanbay.com, id6.me, www.163.com
+always-real-ip = %APPEND% easy-login.10099.com.cn, *-update.xoyocdn.com, id6.me, open.e.189.cn, dns.msftncsi.com, *.srv.nintendo.net, *.stun.playstation.net, xbox.*.microsoft.com, *.xboxlive.com, *.turn.twilio.com, *.stun.twilio.com, stun.syncthing.net, stun.*, lancache.steamcontent.com
 
 [Rule]
-DOMAIN,msmp.abchina.com.cn,REJECT
 
+# >>> merged from skip-proxy-collection (unique only)
+DOMAIN,msmp.abchina.com.cn,REJECT
 
 # >>> merged from qingrex-unlock (unique only)
 
@@ -512,16 +519,6 @@ DOMAIN,swscan.apple.com,REJECT
 DOMAIN,swdist.apple.com,REJECT
 DOMAIN,swdownload.apple.com,REJECT
 
-
-[General]
-force-http-engine-hosts = %APPEND% 119.29.29.29:80, boxjs.com, boxjs.net, dns.weixin.qq.com:443, dns.weixin.qq.com:80, dns.weixin.qq.com:8080
-skip-proxy = %APPEND% www.baidu.com,yunbusiness.ccb.com,wxh.wo.cn,gate.lagou.com,www.abchina.com.cn,www.shanbay.com,login-service.mobile-bank.psbc.com,mobile-bank.psbc.com,id6.me,www.163.com
-skip-proxy = %APPEND% yunbusiness.ccb.com,www.abchina.com.cn,login-service.mobile-bank.psbc.com,mobile-bank.psbc.com
-skip-proxy = %APPEND% www.baidu.com,yunbusiness.ccb.com,wxh.wo.cn,gate.lagou.com,www.abchina.com.cn,www.shanbay.com,login-service.mobile-bank.psbc.com,mobile-bank.psbc.com,id6.me,www.163.com
-always-real-ip = %APPEND% easy-login.10099.com.cn,*-update.xoyocdn.com,id6.me,open.e.189.cn
-always-real-ip = %APPEND% dns.msftncsi.com, *.srv.nintendo.net, *.stun.playstation.net, xbox.*.microsoft.com, *.xboxlive.com, *.turn.twilio.com, *.stun.twilio.com, stun.syncthing.net, stun.*, lancache.steamcontent.com
-always-real-ip = %APPEND% easy-login.10099.com.cn,*-update.xoyocdn.com,id6.me,open.e.189.cn
-always-real-ip = %APPEND% dns.msftncsi.com, *.srv.nintendo.net, *.stun.playstation.net, xbox.*.microsoft.com, *.xboxlive.com, *.turn.twilio.com, *.stun.twilio.com, stun.syncthing.net, stun.*, lancache.steamcontent.com
 
 [URL Rewrite]
 
