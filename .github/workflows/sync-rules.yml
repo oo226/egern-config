@@ -144,6 +144,9 @@ jobs:
       - name: Mirror external module scripts and rewrite collections
         run: python3 scripts/mirror-external-scripts.py
 
+      - name: Diff upstream mega-collections and mirror missing scripts
+        run: python3 scripts/diff-upstream-collections.py
+
       - name: Mirror GeoIP databases
         run: python3 scripts/mirror-geoip.py
 
