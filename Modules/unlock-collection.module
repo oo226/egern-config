@@ -699,8 +699,7 @@ https://proxy.linearity.io/v1/receipts https://linearitcurve.lovebabyforever.wor
 
 
 # >>> merged from spotify-unlock (unique only)
-^https:\/\/(spclient\.wg\.spotify\.com|.*-spclient\.spotify\.com(:443)?)\/(bootstrap\/v1\/bootstrap|user-customization-service\/v1\/customize)$ header-del if-none-match
-^https:\/\/(spclient\.wg\.spotify\.com|.*-spclient\.spotify\.com(:443)?)\/(bootstrap\/v1\/bootstrap|user-customization-service\/v1\/customize)$ header-del if-modified-since
+^https:\/\/(spclient\.wg\.spotify\.com|.*-spclient\.spotify\.com(:443)?)\/user-customization-service\/v1\/customize$ header-del if-none-match
 
 
 [MITM]
@@ -772,6 +771,7 @@ Sub-Store Sync=type=cron,cronexp=55 22 * * *,wake-system=1,timeout=120,script-pa
 #Revenuecat-系列 hostname = api.revenuecat.com, api.rc-backup.com
 Reheji = type=http-response, engine=webview, pattern=^https:\/\/api\.(revenuecat|rc-backup)\.com\/.+\/(receipts$|subscribers\/?(.*?)*$), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/chxm1023/Reheji.js, requires-body=true, max-size=-1, timeout=60
 
+Reheji = type=http-request, pattern=^https:\/\/api\.(revenuecat|rc-backup)\.com\/.+\/(receipts$|subscribers\/?(.*?)*$), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/chxm1023/Reheji.js, timeout=60
 
 #iTunes-系列 hostname = buy.itunes.apple.com
 iTunes = type=http-response, engine=webview, pattern=^https?:\/\/buy\.itunes\.apple\.com\/verifyReceipt$, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/chxm1023/iTunes.js, requires-body=true, max-size=-1, timeout=60
@@ -1127,6 +1127,7 @@ bodian = type=http-response, pattern=^https:\/\/bd-api\.kuwo\.cn\/api\/(ucenter\
 #智能助手 hostname = www.kaolahome.com, cat-revenuecat-qscqkotbrh.cn-hongkong.fcapp.run
 zhinengzhushou = type=http-response, pattern=^https?:\/\/(www\.kaolahome\.com\/xunnews|cat-revenuecat-qscqkotbrh\.cn-hongkong\.fcapp\.run)\/.+\/(receipts$|subscribers\/?(.*?)*$), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/chxm1023/zhinengzhushou.js, requires-body=true, max-size=-1, timeout=60
 
+zhinengzhushou = type=http-request, pattern=^https?:\/\/(www\.kaolahome\.com\/xunnews|cat-revenuecat-qscqkotbrh\.cn-hongkong\.fcapp\.run)\/.+\/(receipts$|subscribers\/?(.*?)*$), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/chxm1023/zhinengzhushou.js, timeout=60
 
 #遥忘/薄荷壁纸 hostname = *.whalean.com
 yaowangbohe = type=http-response, pattern=^https?:\/\/.*\.whalean\.com\/(poseidon-service\/api\/user|member\/userMemberHomePageV2|hestia-service\/api\/wpUser\/getUserInfo), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/chxm1023/yaowangbohe.js, requires-body=true, max-size=-1, timeout=60
@@ -1290,6 +1291,7 @@ Nicegram = type=http-response, pattern=^https?:\/\/(nicegram\.cloud\/api\/v\d\/(
 #LinearityCurve - 平面设计 hostname = *.linearity.io
 LinearityCurve = type=http-response, pattern=^https?:\/\/.*\.linearity\.io\/.+\/(receipts$|subscribers\/?(.*?)*$), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/chxm1023/LinearityCurve.js, requires-body=true, max-size=-1, timeout=60
 
+LinearityCurve = type=http-request, pattern=^https?:\/\/.*\.linearity\.io\/.+\/(receipts$|subscribers\/?(.*?)*$), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/chxm1023/LinearityCurve.js, timeout=60
 
 #Mixgram-图片拼接 hostname = *.cloudfunctions.net, *.appsflyersdk.com
 Mixgram = type=http-response, pattern=^https?:\/\/.+\.cloudfunctions\.net\/validateSubscription, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/chxm1023/Mixgram.js, requires-body=true, max-size=-1, timeout=60
@@ -1305,6 +1307,7 @@ wenzhenbazi = type=http-response, pattern=^https?:\/\/bzpp3\.iwzbz\.com\/api\/.+
 #Context - 基于语境学英语AI工具 hostname = rc.visionarytech.ltd
 Context = type=http-response, pattern=^https?:\/\/rc\.visionarytech\.ltd\/.+\/(receipts$|subscribers\/?(.*?)*$), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/chxm1023/Context.js, requires-body=true, max-size=-1, timeout=60
 
+Context = type=http-request, pattern=^https?:\/\/rc\.visionarytech\.ltd\/.+\/(receipts$|subscribers\/?(.*?)*$), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/chxm1023/Context.js, timeout=60
 
 #智能抢答器 hostname = qdq.9sm.net
 znqdq = type=http-response, pattern=^https?:\/\/qdq\.9sm\.net\/api\/userInfo\/getUserInfo, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/chxm1023/znqdq.js, requires-body=true, max-size=-1, timeout=60
@@ -1337,6 +1340,7 @@ shimingshizhong = type=http-response, pattern=^https?:\/\/api\.alar\.my\/v\d\/su
 ShortcutStudio Generate = type=http-request, pattern="^https:\/\/api\.shortcutstudio\.app\/generate(?:[/?#]|$)", requires-body=1, max-size=0, timeout=30, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/yu9191/request.js, argument=thinkingMode={{{思考模式}}}&searchWebMode={{{搜索模式}}}&deviceIdReuseLimit={{{设备ID复用次数}}}&signRewrite={{{sign接口替换}}}&logLevel={{{日志级别}}}
 ShortcutStudio Limits = type=http-request, pattern="^https:\/\/api\.shortcutstudio\.app\/users\/me\/limits(?:[/?#]|$)", requires-body=0, max-size=0, timeout=30, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/yu9191/request.js, argument=thinkingMode={{{思考模式}}}&searchWebMode={{{搜索模式}}}&deviceIdReuseLimit={{{设备ID复用次数}}}&signRewrite={{{sign接口替换}}}&logLevel={{{日志级别}}}
 ShortcutStudio Sign = type=http-request, pattern="^https:\/\/api\.shortcutstudio\.app\/sign(?:[/?#]|$)", requires-body=0, max-size=0, timeout=30, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/yu9191/request.js, argument=thinkingMode={{{思考模式}}}&searchWebMode={{{搜索模式}}}&deviceIdReuseLimit={{{设备ID复用次数}}}&signRewrite={{{sign接口替换}}}&logLevel={{{日志级别}}}
+ShortcutStudio Limits Mock = type=http-response, pattern="^https:\/\/api\.shortcutstudio\.app\/users\/me\/limits(?:[/?#]|$)", requires-body=1, max-size=0, timeout=30, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/yu9191/response.js, argument=limitsMock={{{limits响应mock}}}&messagesLimit={{{消息额度}}}&downloadsLimit={{{下载额度}}}&searchesLimit={{{搜索额度}}}&uploadsLimit={{{上传额度}}}&marketplaceDownloadsLimit={{{市场下载额度}}}&chatInputCharsLimit={{{输入字数}}}&logLevel={{{日志级别}}}
 
 
 # >>> merged from yu9191-rewrite-unlock (unique only)
@@ -1560,6 +1564,7 @@ XV暗网 = type=http-response,pattern=^https:\/\/d18psf29jvwgay\.cloudfront\.net
 # --- 666.syh.js ---
 666.syh_1 = type=http-response, pattern=https?:\/\/app.666syh.com\/cloud\/api-(mall\/book\/(online\/getOnlineLearnDel|book\/getVideoDel)|member\/user\/memberDetail).*$ url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/666.syh.js, requires-body=true, max-size=-1, timeout=60
 # --- 666syh.js ---
+666syh_1 = type=http-response, pattern=https?:\/\/app.666syh.com\/cloud\/api-(mall\/book\/(online\/getOnlineLearnDel|book\/getVideoDel)|member\/user\/memberDetail).*$ url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/666syh.js, requires-body=true, max-size=-1, timeout=60
 # --- 7dong.js ---
 7dong_1 = type=http-response, pattern=^https?:\/\/pc7dong.com\/seveng.+api\/ url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/7dong.js, requires-body=true, max-size=-1, timeout=60
 # --- 7semao.js ---
@@ -1593,6 +1598,8 @@ LuckPik_1 = type=http-response, pattern=^https?:\/\/front-gw.luckpik.com\/produc
 MGYY2_1 = type=http-response, pattern=^https?:\/\/(u|c|app).(musicapp|(c|u).nf).migu.cn.+(user\/api|column\/startup|resource\/skin) url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/MGYY2.js, requires-body=true, max-size=-1, timeout=60
 MGYY2_2 = type=http-request, pattern=^https?:\/\/app.(c|pd).nf.migu.cn\/.*\/(listen-url|music\/batchQueryMusicPolicy|download-url).*$ url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/MGYY2.js, requires-body=true, max-size=-1, timeout=60
 # --- MGYY2CK.js ---
+MGYY2CK_1 = type=http-response, pattern=^https?:\/\/(u|c|app).(musicapp|(c|u).nf).migu.cn.+(user\/api|column\/startup|resource\/skin) url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/MGYY2CK.js, requires-body=true, max-size=-1, timeout=60
+MGYY2CK_2 = type=http-request, pattern=^https?:\/\/app.(c|pd).nf.migu.cn\/.*\/(listen-url|music\/batchQueryMusicPolicy|download-url).*$ url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/MGYY2CK.js, requires-body=true, max-size=-1, timeout=60
 # --- Mixgram.js ---
 Mixgram_1 = type=http-response, pattern=^https?:\/\/us-central1-project.+cloudfunctions.net\/validateSubscription url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/Mixgram.js, requires-body=true, max-size=-1, timeout=60
 # --- QDVIP.js ---
@@ -1604,6 +1611,7 @@ QQYD_2 = type=http-request, pattern=^https?:\/\/newminerva-tgw.reader.qq.com\/Ch
 # --- QuiCut.js ---
 QuiCut_1 = type=http-response, pattern=^https?:\/\/outcut.szsszykj.com\/ap\/OverseasPay\/GetVip url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/QuiCut.js, requires-body=true, max-size=-1, timeout=60
 # --- Retouch.js ---
+Retouch_1 = type=http-response, pattern=^https?:\/\/api.revenuecat.com\/v1\/receipts url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/Retouch.js, requires-body=true, max-size=-1, timeout=60
 # --- Shzb.js ---
 Shzb_1 = type=http-response, pattern=^https?:\/\/(gameapi.mma.dstor.cc|(pop|push).flare.com.51kuajing.net)\/index.php\/App\/(Account\/Login|User\/Info|Index\/Update).*$ url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/Shzb.js, requires-body=true, max-size=-1, timeout=60
 # --- aiaiwang.js ---
@@ -1625,6 +1633,7 @@ bdc_1 = type=http-response, pattern=^https:\/\/api-cn\.hellotalk8\.com\/hello_wo
 # --- bdyy.js ---
 bdyy_1 = type=http-response, pattern=^https?:\/\/(?:(?:bd-api|h5app|bodianyin|ab-bodian)\.kuwo\.cn\/(?:api\/(?:ucenter\/users\/(?:pub|login)|play\/(?:music\/v2\/(?:audioUrl|checkRight)|advert\/info)|service\/(?:music\/(?:info|download\/(?:info|config))|home\/module|global\/config\/(?:scene|vipEnter)|banner\/positions|advert\/config)|search\/topic\/word\/list|pay\/(?:vip\/(?:invitation\/(?:assist\/popup|swell)|lowPriceText)|sp\/actVip|audition\/url)|advert\/free\/config|popup\/start\/info|abtest\/ui\/info|rec\/feed)|abtest\/ui\/info)|us\.l\.qq\.com\/exapp|xs\.gdt\.qq\.com\/style_factory\/template_list) url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/bdyy.js, requires-body=true, max-size=-1, timeout=60
 # --- bdyybata1.js ---
+bdyybata1_1 = type=http-response, pattern=^https?:\/\/(?:(?:bd-api|h5app|bodianyin|ab-bodian)\.kuwo\.cn\/(?:api\/(?:ucenter\/users\/(?:pub|login)|play\/(?:music\/v2\/(?:audioUrl|checkRight)|advert\/info)|service\/(?:music\/(?:info|download\/(?:info|config))|home\/module|global\/config\/(?:scene|vipEnter)|banner\/positions|advert\/config)|search\/topic\/word\/list|pay\/(?:vip\/(?:invitation\/(?:assist\/popup|swell)|lowPriceText)|sp\/actVip|audition\/url)|advert\/free\/config|popup\/start\/info|abtest\/ui\/info|rec\/feed)|abtest\/ui\/info)|us\.l\.qq\.com\/exapp|xs\.gdt\.qq\.com\/style_factory\/template_list) url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/bdyybata1.js, requires-body=true, max-size=-1, timeout=60
 # --- bijia.js ---
 bijia_1 = type=http-response, pattern=^https?:\/\/in\.m\.jd\.com\/product\/graphext\/\d+\.html url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/bijia.js, requires-body=true, max-size=-1, timeout=60
 # --- bizhi.js ---
@@ -1647,6 +1656,7 @@ cake_1 = type=http-response, pattern=^https:\/\/api\.mycake\.me\/app\/start url,
 # --- catvpn_extract.js ---
 catvpn_extract_1 = type=http-response, pattern=^https?:\/\/firebaseremoteconfig\.googleapis\.com\/v1\/projects url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/catvpn_extract.js, requires-body=true, max-size=-1, timeout=60
 # --- cdsp.js ---
+cdsp_1 = type=http-response, pattern=^https?:\/\/appss.baomingding.com\/app\/account\/getAccountInfo url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/cdsp.js, requires-body=true, max-size=-1, timeout=60
 # --- chaozipai.js ---
 chaozipai_1 = type=http-response, pattern=^https?:\/\/.+meitu.com\/(v2\/user\/vip_info_by_group|filter\/timeline|v2\/user\/info_by_entrance).json url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/chaozipai.js, requires-body=true, max-size=-1, timeout=60
 # --- clj.js ---
@@ -1674,6 +1684,7 @@ djyyk_1 = type=http-response, pattern=^http:\/\/app-i.dj-5.com\/api\/User\/Info 
 # --- dkxjc.js ---
 dkxjc_1 = type=http-response, pattern=^https?:\/\/(videohub.xdplt|mv-ps.xdplt).com\/api\/v1\/(short\/play|payment\/apple\/pay\/verify\/info|user\/info) url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/dkxjc.js, requires-body=true, max-size=-1, timeout=60
 # --- dkxs.js ---
+dkxs_1 = type=http-response, pattern=^https?:\/\/(videohub.xdplt|mv-ps.xdplt).com\/api\/v1\/(short\/play|payment\/apple\/pay\/verify\/info|user\/info) url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/dkxs.js, requires-body=true, max-size=-1, timeout=60
 # --- dmx.js ---
 dmx_1 = type=http-response, pattern=^https?:\/\/appss.rhinox.cn\/app\/account\/getAccountInfo url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/dmx.js, requires-body=true, max-size=-1, timeout=60
 # --- dmxj.js ---
@@ -1684,6 +1695,7 @@ douhuayuedu_2 = type=http-request, pattern=^https?:\/\/api.douhuawenxue.com\/ind
 # --- dsb.js ---
 dsb_1 = type=http-response, pattern=^https:\/\/watch\.taotiangou\.cn\/prod-api\/watch\/insight\/userInfo\/getUserMemberInfo url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/dsb.js, requires-body=true, max-size=-1, timeout=60
 # --- dspjj.js ---
+dspjj_1 = type=http-response, pattern=^https?:\/\/appss.rhinox.cn\/app\/account\/getAccountInfo url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/dspjj.js, requires-body=true, max-size=-1, timeout=60
 # --- dtpk.js ---
 dtpk_1 = type=http-response, pattern=^https?:\/\/dtpkwx-prod-web\.gxpan\.cn\/api\/user\/user_other_save_read url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/dtpk.js, requires-body=true, max-size=-1, timeout=60
 # --- dzqj.js ---
@@ -1697,15 +1709,22 @@ fdds_1 = type=http-response, pattern=^https?:\/\/.+dushu365.com\/(sns-orchestrat
 fdds_2 = type=http-request, pattern=^https?:\/\/.+dushu365.com\/resource-orchestration-system\/book\/v101\/content url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/fdds.js, requires-body=true, max-size=-1, timeout=60
 # --- fdtk.js ---
 fdtk_1 = type=http-response, pattern=^https?:\/\/.+dushu365.com\/(sns-orchestration-system\/homePage\/api\/v100\/myPage|smart-orch\/program) url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/fdtk.js, requires-body=true, max-size=-1, timeout=60
+fdtk_2 = type=http-request, pattern=^https?:\/\/.+dushu365.com\/resource-orchestration-system\/book\/v101\/content url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/fdtk.js, requires-body=true, max-size=-1, timeout=60
 # --- felo.js ---
 felo_1 = type=http-response, pattern=^https?:\/\/(translator|accounts).felo.me\/api\/user.*$ url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/felo.js, requires-body=true, max-size=-1, timeout=60
 felo_2 = type=http-request, pattern=^https?:\/\/translator.felo.me\/api\/translation\/thirdToken\?token_channel url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/felo.js, requires-body=true, max-size=-1, timeout=60
 # --- felossfy.js ---
+felossfy_1 = type=http-response, pattern=^https?:\/\/(translator|accounts).felo.me\/api\/user.*$ url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/felossfy.js, requires-body=true, max-size=-1, timeout=60
+felossfy_2 = type=http-request, pattern=^https?:\/\/translator.felo.me\/api\/translation\/thirdToken\?token_channel url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/felossfy.js, requires-body=true, max-size=-1, timeout=60
 # --- felotk.js ---
+felotk_1 = type=http-response, pattern=^https?:\/\/(translator|accounts).felo.me\/api\/user.*$ url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/felotk.js, requires-body=true, max-size=-1, timeout=60
+felotk_2 = type=http-request, pattern=^https?:\/\/translator.felo.me\/api\/translation\/thirdToken\?token_channel url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/felotk.js, requires-body=true, max-size=-1, timeout=60
 # --- fengxingshipin.js ---
 fengxingshipin_1 = type=http-response, pattern=^http:\/\/pvip.funshion.com\/v1\/vip\/userinfo url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/fengxingshipin.js, requires-body=true, max-size=-1, timeout=60
 fengxingshipin_2 = type=http-request, pattern=^http:\/\/.+funshion.com\/.+\/(media\/play|vip\/playauth) url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/fengxingshipin.js, requires-body=true, max-size=-1, timeout=60
 # --- fengxingshipintk.js ---
+fengxingshipintk_1 = type=http-response, pattern=^http:\/\/pvip.funshion.com\/v1\/vip\/userinfo url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/fengxingshipintk.js, requires-body=true, max-size=-1, timeout=60
+fengxingshipintk_2 = type=http-request, pattern=^http:\/\/.+funshion.com\/.+\/(media\/play|vip\/playauth) url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/fengxingshipintk.js, requires-body=true, max-size=-1, timeout=60
 # --- ffxj.js ---
 ffxj_1 = type=http-response, pattern=^https?:\/\/api.revenuecat.com\/v1\/(receipts|subscribers\/\$RCAnonymousID) url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/ffxj.js, requires-body=true, max-size=-1, timeout=60
 # --- filmix.js ---
@@ -1733,6 +1752,7 @@ ghyw_1 = type=http-response, pattern=^https:\/\/app\.gaohaozuowen\.com\/index\.p
 # --- gps.js ---
 gps_1 = type=http-response, pattern=^^https:\/\/service\.gpstool\.com\/app\/index\/getUserInfo url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/gps.js, requires-body=true, max-size=-1, timeout=60
 # --- gszhgj.js ---
+gszhgj_1 = type=http-response, pattern=^https?:\/\/appss.rhinoxlab.com\/app\/account\/getAccountInfo url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/gszhgj.js, requires-body=true, max-size=-1, timeout=60
 # --- hbxs.js ---
 hbxs_1 = type=http-response, pattern=^https?:\/\/(api|user).ihuaben.com\/(user-ext|api\/userinfo\?tokenId).*$ url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/hbxs.js, requires-body=true, max-size=-1, timeout=60
 # --- hbxt.js ---
@@ -1746,6 +1766,8 @@ hdmh_2 = type=http-request, pattern=^https?:\/\/www.shutiaomh.com\/api\/\/(novel
 hdts_1 = type=http-response, pattern=^https?:\/\/md.liaoliaoy.com\/listen\/api\/getUserInfo url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/hdts.js, requires-body=true, max-size=-1, timeout=60
 hdts_2 = type=http-request, pattern=^https?:\/\/md.liaoliaoy.com\/listen\/api\/(buyBookInit|buyCard|batchBuyChapter|bookChapter|getNextChapter).*$ url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/hdts.js, requires-body=true, max-size=-1, timeout=60
 # --- hdtsck.js ---
+hdtsck_1 = type=http-response, pattern=^https?:\/\/md.liaoliaoy.com\/listen\/api\/getUserInfo url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/hdtsck.js, requires-body=true, max-size=-1, timeout=60
+hdtsck_2 = type=http-request, pattern=^https?:\/\/md.liaoliaoy.com\/listen\/api\/(buyBookInit|buyCard|batchBuyChapter|bookChapter|getNextChapter).*$ url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/hdtsck.js, requires-body=true, max-size=-1, timeout=60
 # --- hffkt.js ---
 hffkt_1 = type=http-response, pattern=^https?:\/\/wfjava.wfkids.net url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/hffkt.js, requires-body=true, max-size=-1, timeout=60
 # --- hhmh.js ---
@@ -1798,6 +1820,7 @@ jmshe_1 = type=http-request, pattern=https?:\/\/oxtoon.(cyou|work|monster|net)\/
 # --- jpfyg.js ---
 jpfyg_1 = type=http-response, pattern=^https?:\/\/mv-ps.xdplt.com\/api\/v1\/(user|payment\/apple\/pay\/verify)\/info url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/jpfyg.js, requires-body=true, max-size=-1, timeout=60
 # --- jpfygloon.js ---
+jpfygloon_1 = type=http-response, pattern=^https?:\/\/mv-ps.xdplt.com\/api\/v1\/(user|payment\/apple\/pay\/verify)\/info url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/jpfygloon.js, requires-body=true, max-size=-1, timeout=60
 # --- jrsypzxj.js ---
 jrsypzxj_1 = type=http-response, pattern=^https?:\/\/water-fst.yifanxinmei.com\/api\/guests\/login.*$ url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/jrsypzxj.js, requires-body=true, max-size=-1, timeout=60
 # --- jtsp.js ---
@@ -1808,6 +1831,7 @@ jttk_1 = type=http-response, pattern=^https?:\/\/.+\/shorter\/(video\/longvideoi
 # --- judu.js ---
 judu_1 = type=http-response, pattern=^^https?:\/\/judouapp.com\/api\/v2\/mine\/profile url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/judu.js, requires-body=true, max-size=-1, timeout=60
 # --- junwang.js ---
+junwang_1 = type=http-response, pattern=^https?:\/\/api.revenuecat.com\/v1\/receipts url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/junwang.js, requires-body=true, max-size=-1, timeout=60
 # --- jyh.js ---
 jyh_1 = type=http-response, pattern=^http:\/\/www\.mhzcookbook\.xyz\/app url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/jyh.js, requires-body=true, max-size=-1, timeout=60
 # --- jzj.js ---
@@ -1829,6 +1853,7 @@ kkxt_1 = type=http-response, pattern=^https?:\/\/cocamapi.imendon.com\/v2\/(purc
 # --- klbsq.js ---
 klbsq_1 = type=http-response, pattern=^https?:\/\/voiceapi.jimetec.com\/user\/myInfo\?sysOs url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/klbsq.js, requires-body=true, max-size=-1, timeout=60
 # --- kttx.js ---
+kttx_1 = type=http-response, pattern=^https?:\/\/appss.rhinoxlab.com\/app\/account\/getAccountInfo url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/kttx.js, requires-body=true, max-size=-1, timeout=60
 # --- kuaikanmanhua.js ---
 kuaikanmanhua_1 = type=http-response, pattern=^https?:\/\/.*kkmh.com\/v1\/vip\/me url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/kuaikanmanhua.js, requires-body=true, max-size=-1, timeout=60
 kuaikanmanhua_2 = type=http-request, pattern=^https?:\/\/.*kkmh.com\/v2\/comic\/detail\/get url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/kuaikanmanhua.js, requires-body=true, max-size=-1, timeout=60
@@ -1840,6 +1865,8 @@ kuqueshuiyin_1 = type=http-response, pattern=^https?:\/\/front-gw.kuque.com\/pro
 kuwo_1 = type=http-response, pattern=^https?:\/\/(?:musicpay|nmobi|vip1|audiobookpay|tingshu|anymatch|mobilebasedata|rich|mobilead|wapi)\.kuwo\.cn\/(?:music\.pay\?newver=\d+|mobi.s\?f=kwxs|vip\/(?:enc\/user\/vip\?op=ui&uid=|v2\/theme\?op=gd)|a\.p|v2\/api\/pay\/user\/info|api\/music\/info|AdService\/kaiping\/adinfo|EcomResourceServer\/(?:adEarnGuajian\/adinfo|getMotor\.do)|openapi\/v1\/(?:operate\/homePage|user\/freeMode\/h5\/text|operate\/message\/info|user\/dolby\/text)|commercia\/(?:vipTab\/myTab\/base|userAssets\/downloadCoupon\/reduce|recall\/pop\/jxhGearInfo|vip\/(?:dressCenter\/getResourceList|player\/getStyleListByModel))|api\/v2\/pay\/app\/getConfigInfo(?:\?configType)?|vip\/v2\/sysinfo|commercia\/recall\/pop\/jxhMultiGearInfo) url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/kuwo.js, requires-body=true, max-size=-1, timeout=60
 kuwo_2 = type=http-request, pattern=^https?:\/\/vip1\.kuwo\.cn\/commercia\/vip\/player\/getStyleListByModel url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/kuwo.js, requires-body=true, max-size=-1, timeout=60
 # --- kuwobata1.js ---
+kuwobata1_1 = type=http-response, pattern=^https?:\/\/(?:musicpay|nmobi|vip1|audiobookpay|tingshu|anymatch|mobilebasedata|rich|mobilead|wapi)\.kuwo\.cn\/(?:music\.pay\?newver=\d+|mobi.s\?f=kwxs|vip\/(?:enc\/user\/vip\?op=ui&uid=|v2\/theme\?op=gd)|a\.p|v2\/api\/pay\/user\/info|api\/music\/info|AdService\/kaiping\/adinfo|EcomResourceServer\/(?:adEarnGuajian\/adinfo|getMotor\.do)|openapi\/v1\/(?:operate\/homePage|user\/freeMode\/h5\/text|operate\/message\/info|user\/dolby\/text)|commercia\/(?:vipTab\/myTab\/base|userAssets\/downloadCoupon\/reduce|recall\/pop\/jxhGearInfo|vip\/(?:dressCenter\/getResourceList|player\/getStyleListByModel))|api\/v2\/pay\/app\/getConfigInfo(?:\?configType)?|vip\/v2\/sysinfo|commercia\/recall\/pop\/jxhMultiGearInfo) url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/kuwobata1.js, requires-body=true, max-size=-1, timeout=60
+kuwobata1_2 = type=http-request, pattern=^https?:\/\/vip1\.kuwo\.cn\/commercia\/vip\/player\/getStyleListByModel url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/kuwobata1.js, requires-body=true, max-size=-1, timeout=60
 # --- kyxq.js ---
 kyxq_1 = type=http-response, pattern=^https?:\/\/mapi\.kouyuxingqiu\.com\/api\/v2 url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/kyxq.js, requires-body=true, max-size=-1, timeout=60
 # --- leshi.js ---
@@ -1888,6 +1915,8 @@ memo_1 = type=http-response, pattern=^https?:\/\/www.40sishi.com\/memo\/user\/pr
 mgsp_1 = type=http-response, pattern=^https?:\/\/(play|dis).*miguvideo.com\/(play|dis)(url|play)\/.*$ url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/mgsp.js, requires-body=true, max-size=-1, timeout=60
 mgsp_2 = type=http-request, pattern=^https?:\/\/play.miguvideo.com\/playurl\/v1\/play\/playurl\?2Kvivid=true?.*=true$ url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/mgsp.js, requires-body=true, max-size=-1, timeout=60
 # --- mgspck.js ---
+mgspck_1 = type=http-response, pattern=^https?:\/\/(play|dis).*miguvideo.com\/(play|dis)(url|play)\/.*$ url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/mgspck.js, requires-body=true, max-size=-1, timeout=60
+mgspck_2 = type=http-request, pattern=^https?:\/\/play.miguvideo.com\/playurl\/v1\/play\/playurl\?2Kvivid=true?.*=true$ url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/mgspck.js, requires-body=true, max-size=-1, timeout=60
 # --- mgtv.js ---
 mgtv_1 = type=http-response, pattern=^https?:\/\/.*mgtv.com.*(GetUserInfo|module\/list\?_support|app\/bdboot|pullReleaseInfo|floor\/detail|video\/source|entry\?_support).*$ url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/mgtv.js, requires-body=true, max-size=-1, timeout=60
 mgtv_2 = type=http-request, pattern=^https?:\/\/mobile-stream\.api\.mgtv\.com\/v1\/video\/source\? url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/mgtv.js, requires-body=true, max-size=-1, timeout=60
@@ -1897,8 +1926,10 @@ mhlz_1 = type=http-response, pattern=^https?:\/\/ss\.landintheair\.com\/storage\
 mhy_1 = type=http-response, pattern=^http:\/\/aimanhua.meidanmh.com\/chunai\/web\/(member\/memberInfo\/getEntity|cartoon\/cartoonChapter\/needVip) url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/mhy.js, requires-body=true, max-size=-1, timeout=60
 # --- migu.js ---
 migu_1 = type=http-response, pattern=^https?:\/\/(u|c|app).(musicapp|c.nf).migu.cn.*(user\/(queryUserInfo.do|member\/center))|column\/(startup-pic-with-ad|marketing\/advertising).*$ url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/migu.js, requires-body=true, max-size=-1, timeout=60
+migu_2 = type=http-request, pattern=^https?:\/\/app.(c|pd).nf.migu.cn\/.*\/(listen-url|music\/batchQueryMusicPolicy|download-url).*$ url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/migu.js, requires-body=true, max-size=-1, timeout=60
 # --- miguyinyue.js ---
 miguyinyue_1 = type=http-response, pattern=^https?:\/\/(u|c|app).(musicapp|c.nf).migu.cn.*(user\/(queryUserInfo.do|member\/center))|(column\/(startup-pic-with-ad|marketing\/advertising)|\/resource\/skin\/list\/).*$ url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/miguyinyue.js, requires-body=true, max-size=-1, timeout=60
+miguyinyue_2 = type=http-request, pattern=^https?:\/\/app.(c|pd).nf.migu.cn\/.*\/(listen-url|music\/batchQueryMusicPolicy|download-url).*$ url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/miguyinyue.js, requires-body=true, max-size=-1, timeout=60
 # --- mimu.js ---
 mimu_1 = type=http-response, pattern=^https:\/\/api\.mimuapp\.com\/v2\/fm\/userInfo url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/mimu.js, requires-body=true, max-size=-1, timeout=60
 # --- mjgsad.js ---
@@ -1908,6 +1939,8 @@ mjgsad_2 = type=http-request, pattern=^https?:\/\/.+\.com\/api\/(comic|video|sho
 mjgshd_1 = type=http-response, pattern=^https:\/\/.+\.com\/(playerinfo|api\/get_advert|api\/home\/popup) url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/mjgshd.js, requires-body=true, max-size=-1, timeout=60
 mjgshd_2 = type=http-request, pattern=^https?:\/\/.+\.com\/api\/(comic|video|short_movie_info|novel) url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/mjgshd.js, requires-body=true, max-size=-1, timeout=60
 # --- mkztk.js ---
+mkztk_1 = type=http-response, pattern=^https?:\/\/(member|comic|base).mkzcdn.com\/(user|chapter\/buy\/add|vote\/add|gift\/play\/add|advert\/app\/(read|user|task)).*$ url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/mkztk.js, requires-body=true, max-size=-1, timeout=60
+mkztk_2 = type=http-request, pattern=^https?:\/\/(comic|story).mkzcdn.com\/chapter\/(content\/v1|read\/check).*$ url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/mkztk.js, requires-body=true, max-size=-1, timeout=60
 # --- mlkp.js ---
 mlkp_1 = type=http-response, pattern=^https?:\/\/udl.lesejie.com\/api\/game\/info url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/mlkp.js, requires-body=true, max-size=-1, timeout=60
 # --- motu.js ---
@@ -1916,12 +1949,16 @@ motu_1 = type=http-response, pattern=^https:\/\/motu\.motumap\.com\/v3\/user\/in
 mozhai_1 = type=http-response, pattern=^https?:\/\/api.juzikong.com\/mobi\/mooz\/am\/me\/meInfo url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/mozhai.js, requires-body=true, max-size=-1, timeout=60
 mozhai_2 = type=http-request, pattern=^https?:\/\/api.juzikong.com\/mobi\/mooz\/am\/(explore\/getTagCateConfig|music\/getBgmList) url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/mozhai.js, requires-body=true, max-size=-1, timeout=60
 # --- mozhaitk.js ---
+mozhaitk_1 = type=http-response, pattern=^https?:\/\/api.juzikong.com\/mobi\/mooz\/am\/me\/meInfo url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/mozhaitk.js, requires-body=true, max-size=-1, timeout=60
+mozhaitk_2 = type=http-request, pattern=^https?:\/\/api.juzikong.com\/mobi\/mooz\/am\/(explore\/getTagCateConfig|music\/getBgmList) url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/mozhaitk.js, requires-body=true, max-size=-1, timeout=60
 # --- mp3zh.js ---
 mp3zh_1 = type=http-response, pattern=^https?:\/\/audio.xinmengma.com\/api\/user url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/mp3zh.js, requires-body=true, max-size=-1, timeout=60
 # --- mpy.js ---
 mpy_1 = type=http-response, pattern=^https?:\/\/lc.i7play.com\/1.1\/classes\/_User\/ url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/mpy.js, requires-body=true, max-size=-1, timeout=60
 # --- mrdtbz.js ---
+mrdtbz_1 = type=http-response, pattern=^https?:\/\/standard.rhinoxlab.com\/standard\/account\/getAccountInfo url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/mrdtbz.js, requires-body=true, max-size=-1, timeout=60
 # --- mrsyxj.js ---
+mrsyxj_1 = type=http-response, pattern=^https?:\/\/appss.rhinoxlab.com\/\/app\/account\/getAccountInfo url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/mrsyxj.js, requires-body=true, max-size=-1, timeout=60
 # --- msdj.js ---
 msdj_1 = type=http-response, pattern=^https?:\/\/man.api.mansenwenhua77.com\/app\/(my-home\/user\/info|login\/apple) url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/msdj.js, requires-body=true, max-size=-1, timeout=60
 # --- mtddgs.js ---
@@ -1930,6 +1967,7 @@ mtddgs_1 = type=http-response, pattern=^https?:\/\/apipc01.gushi.cn\/(v9\/articl
 muogushipin_1 = type=http-response, pattern=^https?:\/\/.+\/api\/(ads|user\/info) url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/muogushipin.js, requires-body=true, max-size=-1, timeout=60
 muogushipin_2 = type=http-request, pattern=^https?:\/\/.+\/api\/vod\/vip\/ url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/muogushipin.js, requires-body=true, max-size=-1, timeout=60
 # --- mybsq.js ---
+mybsq_1 = type=http-response, pattern=^https?:\/\/appss.rhinoxlab.com\/app\/account\/getAccountInfo url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/mybsq.js, requires-body=true, max-size=-1, timeout=60
 # --- mydj.js ---
 mydj_1 = type=http-response, pattern=^https?:\/\/api.duoyolo.cn\/play\/app\/user\/v1\/userInfo url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/mydj.js, requires-body=true, max-size=-1, timeout=60
 # --- myt.js ---
@@ -1980,12 +2018,15 @@ py_1 = type=http-response, pattern=^https?:\/\/xihongshi.dicallapp.com\/SDGetMeC
 # --- pyjzp.js ---
 pyjzp_1 = type=http-response, pattern=^https:\/\/lentoapp\.com:8091\/getUserMemberShipInfo url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/pyjzp.js, requires-body=true, max-size=-1, timeout=60
 # --- pzst.js ---
+pzst_1 = type=http-response, pattern=^https?:\/\/appss.rhinoxlab.com\/app\/account\/getAccountInfo url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/pzst.js, requires-body=true, max-size=-1, timeout=60
 # --- pzsw.js ---
+pzsw_1 = type=http-response, pattern=^https?:\/\/standard.rhinoxlab.com\/standard\/account\/getAccountInfo url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/pzsw.js, requires-body=true, max-size=-1, timeout=60
 # --- qbxs.js ---
 qbxs_1 = type=http-response, pattern=^https?:\/\/t(f|y)book.taoyuewenhua.net\/(auth\/account\?adid|auth\/task_account_ios.do\?|wx_register.do\?|auth\/try_wx_bind\?).*$ url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/qbxs.js, requires-body=true, max-size=-1, timeout=60
 # --- qbyy.js ---
 qbyy_1 = type=http-response, pattern=^https?:\/\/www.helloshiyu.com\/voice\/user\/profile url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/qbyy.js, requires-body=true, max-size=-1, timeout=60
 # --- qddsvip.js ---
+qddsvip_1 = type=http-response, pattern=^https?:\/\/.+.qidian.com\/argus\/api\/v[0-9]\/(adv\/getadvlistbatch|user\/getaccountpage|subscription\/getvipprice|client\/getsplashscreen) url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/qddsvip.js, requires-body=true, max-size=-1, timeout=60
 qddsvip_2 = type=http-request, pattern=^https?:\/\/.+.qidian.com\/argus\/api\/v[0-9]\/(audio\/getTtsChapterAudio|bookcontent\/getvipcontent|audio\/getaudiochapter\?) url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/qddsvip.js, requires-body=true, max-size=-1, timeout=60
 # --- qifu.js ---
 qifu_1 = type=http-response, pattern=^https?:\/\/api.risingfalling.com\/api\/(vip\/detail|memberInfo\/myInfo) url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/qifu.js, requires-body=true, max-size=-1, timeout=60
@@ -2003,6 +2044,7 @@ qmjyzc_1 = type=http-response, pattern=^https?:\/\/res5.haotgame.com\/cu03\/stat
 qmxfs_1 = type=http-response, pattern=^https?:\/\/api\.qmxfs\.com\/v003\/(user\/queryAccountInfo|user\/userInfoNum|content).*$ url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/qmxfs.js, requires-body=true, max-size=-1, timeout=60
 qmxfs_2 = type=http-request, pattern=^https?:\/\/api\.qmxfs\.com\/v003\/subject\/subjectDetail\.json url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/qmxfs.js, requires-body=true, max-size=-1, timeout=60
 # --- qnsmw.js ---
+qnsmw_1 = type=http-response, pattern=^https?:\/\/appss.rhinoxlab.com\/\/app\/account\/getAccountInfo url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/qnsmw.js, requires-body=true, max-size=-1, timeout=60
 # --- qpy.js ---
 qpy_1 = type=http-response, pattern=^https:\/\/apis40\.qupeiyin\.com\/(course\/related_course|album\/course_list|member\/index|course\/detail_new) url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/qpy.js, requires-body=true, max-size=-1, timeout=60
 # --- qqcx.js ---
@@ -2024,6 +2066,7 @@ rbjm_1 = type=http-request, pattern=^https?:\/\/javcomics.(store|top)\/(buychapt
 rbjm_2 = type=http-response, pattern=^https?:\/\/javcomics.store\/ucenter url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/rbjm.js, requires-body=true, max-size=-1, timeout=60
 # --- rbjman.js ---
 rbjman_1 = type=http-request, pattern=^https?:\/\/javcomics.(store|top)\/(buychapter|ucenter|chapter\/\d+) url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/rbjman.js, requires-body=true, max-size=-1, timeout=60
+rbjman_2 = type=http-response, pattern=^https?:\/\/javcomics.store\/ucenter url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/rbjman.js, requires-body=true, max-size=-1, timeout=60
 # --- ryqpy.js ---
 ryqpy_1 = type=http-response, pattern=^https?:\/\/japaneselar.qupeiyin.com\/ url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/ryqpy.js, requires-body=true, max-size=-1, timeout=60
 # --- rysyxj.js ---
@@ -2034,6 +2077,8 @@ rzxj_1 = type=http-response, pattern=^https?:\/\/(rzres86|fz68res)api.imendon.co
 sdds_1 = type=http-response, pattern=^https?:\/\/api.read10.cn\/kt_server\/(audio_book|mine\/index|splash\/start_advertising).*$ url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/sdds.js, requires-body=true, max-size=-1, timeout=60
 sdds_2 = type=http-request, pattern=^https?:\/\/api.read10.cn\/kt_server\/(audio_book\/get_audio_book_catalogue|player\/detail) url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/sdds.js, requires-body=true, max-size=-1, timeout=60
 # --- sddstk.js ---
+sddstk_1 = type=http-response, pattern=^https?:\/\/api.read10.cn\/kt_server\/(audio_book|mine\/index|splash\/start_advertising).*$ url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/sddstk.js, requires-body=true, max-size=-1, timeout=60
+sddstk_2 = type=http-request, pattern=^https?:\/\/api.read10.cn\/kt_server\/(audio_book\/get_audio_book_catalogue|player\/detail) url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/sddstk.js, requires-body=true, max-size=-1, timeout=60
 # --- sdsy.js ---
 sdsy_1 = type=http-response, pattern=^https?:\/\/watershandiana.yunxiaoguo.cn\/user\/info url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/sdsy.js, requires-body=true, max-size=-1, timeout=60
 # --- sesedongman.js ---
@@ -2095,6 +2140,7 @@ toxx_1 = type=http-response, pattern=^https?:\/\/toxxres8api.wscreativity.com\/v
 # --- tpcl.js ---
 tpcl_1 = type=http-response, pattern=^https?:\/\/xpc.autvideo.com\/api\/user\/my url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/tpcl.js, requires-body=true, max-size=-1, timeout=60
 # --- tpkt.js ---
+tpkt_1 = type=http-response, pattern=^https?:\/\/ff.mofangzhice.com\/api\/client\/info url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/tpkt.js, requires-body=true, max-size=-1, timeout=60
 # --- tqjc.js ---
 tqjc_1 = type=http-response, pattern=^https?:\/\/quickapi.xiegangsir.com\/api\/app\/.+\/user\/viptime\/ url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/tqjc.js, requires-body=true, max-size=-1, timeout=60
 # --- tswz.js ---
@@ -2109,6 +2155,7 @@ tuu_1 = type=http-response, pattern=^https?:\/\/api.zuidie.net\/v1\/user\/info\/
 twxz_1 = type=http-response, pattern=^https:\/\/admin\.tanweixianzhi\.com\/prod\/api\/centre\/userInfo url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/twxz.js, requires-body=true, max-size=-1, timeout=60
 twxz_2 = type=http-response, pattern=^https:\/\/admin\.tanweixianzhi\.com\/prod\/api\/video\/info url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/twxz.js, requires-body=true, max-size=-1, timeout=60
 # --- tx.js ---
+tx_1 = type=http-response, pattern=^https?:\/\/([a-z0-9-]+\.)*tx[a-z0-9-]*\.com\/h5\/(user\/info|system\/info|movie\/(detail|block|search)) url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/tx.js, requires-body=true, max-size=-1, timeout=60
 # --- tyxj.js ---
 tyxj_1 = type=http-response, pattern=^https?:\/\/purchase-tianyan-api.tianyancam.com\/v1\/purchase\/subscription\/subscriber\/status url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/tyxj.js, requires-body=true, max-size=-1, timeout=60
 # --- vsco.js ---
@@ -2184,6 +2231,7 @@ xintiao_1 = type=http-response, pattern=^https:\/\/api\.train2win\.cn\/v1\/users
 # --- xinyutingshu.js ---
 xinyutingshu_1 = type=http-response, pattern=^https?:\/\/(api|i).xinyulib.com.*s url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/xinyutingshu.js, requires-body=true, max-size=-1, timeout=60
 # --- xiongman.js ---
+xiongman_1 = type=http-response, pattern=^https?:\/\/cb.uvogin.xyz\/(auth\/getUserByUserid|comic\/getComicDetialByid) url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/xiongman.js, requires-body=true, max-size=-1, timeout=60
 # --- xjdj.js ---
 xjdj_1 = type=http-response, pattern=^http:\/\/8.149.129.124:3000\/api\/account\/v1 url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/xjdj.js, requires-body=true, max-size=-1, timeout=60
 # --- xjsm.js ---
@@ -2204,6 +2252,7 @@ xmet_2 = type=http-request, pattern=^https?:\/\/((.+ximalaya.+)|(.+xmcdn.+))(que
 # --- xmk.js ---
 xmk_1 = type=http-response, pattern=^https:\/\/shopapi\.pandatrek\.cn\/tour\/remote\/storeUserMembership url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/xmk.js, requires-body=true, max-size=-1, timeout=60
 # --- xmly.js ---
+xmly_1 = type=http-response, pattern=^https?:\/\/.+((ximalaya)|(xmcdn)).+(mobile-user\/v2\/homePage|product\/detail\/v1|v1\/album\/track\/ts|mobile-playpage\/track\/v4\/baseInfo\/ts|mobile-playpage\/playpage\/tabs\/v2|mobile-playpage\/playpage\/track\/qualityAndEffect|mobile\/download\/v2\/track|mobile-user-grade\/decoratorV2\/decorationDetails\/page|mobile-album\/album\/plant\/grass) url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/xmly.js, requires-body=true, max-size=-1, timeout=60
 # --- xmlycs.js ---
 xmlycs_1 = type=http-response, pattern=^https?:\/\/.+((ximalaya)|(xmcdn)).+(mobile-user\/v2\/homePage|product\/detail\/v1|v1\/album\/track\/ts|mobile-playpage\/track\/v4\/baseInfo\/ts|mobile-playpage\/playpage\/tabs\/v2|mobile-playpage\/playpage\/track\/qualityAndEffect|mobile\/download\/v2\/track|mobile-user-grade\/decoratorV2\/decorationDetails\/page) url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/xmlycs.js, requires-body=true, max-size=-1, timeout=60
 # --- xmlywechatapp.js ---
@@ -2272,11 +2321,14 @@ yqbz_1 = type=http-response, pattern=^https:\/\/wallpaper\.soutushenqi\.com\/api
 # --- ysgs.js ---
 ysgs_1 = type=http-response, pattern=^https?:\/\/apps-api.lianaishouce.cn\/user\/(public\/loginByAnonymousDeviceId|getUserInfo) url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/ysgs.js, requires-body=true, max-size=-1, timeout=60
 # --- ystk.js ---
+ystk_1 = type=http-response, pattern=^https?:\/\/(gongdu|sc).youshu.cc\/(api\/v2\/user\/page_info|m\/page\/v2|m\/user\/more_list|m\/open_screen\/rec_list|app\/gongdu\/pack_list|mp\/item\/subpage_pack_list|mp\/item\/getItemInfo|m\/media\/play_list|m\/audio_book_page\/info|m\/plan_page\/info) url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/ystk.js, requires-body=true, max-size=-1, timeout=60
+ystk_2 = type=http-request, pattern=^https?:\/\/gongdu.youshu.cc\/m\/media\/media_info\? url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/ystk.js, requires-body=true, max-size=-1, timeout=60
 # --- yuyinzhuanhuanwenzi.js ---
 yuyinzhuanhuanwenzi_1 = type=http-response, pattern=^http:\/\/yyzwzsbios.softinto.com.+\/api\/(recharge|personal\/index|user\/visit) url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/yuyinzhuanhuanwenzi.js, requires-body=true, max-size=-1, timeout=60
 # --- yxsj.js ---
 yxsj_1 = type=http-response, pattern=^https?:\/\/app.yinxiang.com\/third\/tasks\/user\/info url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/yxsj.js, requires-body=true, max-size=-1, timeout=60
 # --- yyds.js ---
+yyds_1 = type=http-response, pattern=^https?:\/\/duoting.tatatimes.com\/tataeraapi\/api.s\?h=QueryVipUser url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/yyds.js, requires-body=true, max-size=-1, timeout=60
 # --- yyfy.js ---
 yyfy_1 = type=http-response, pattern=^https?:\/\/fy.yunmiao.tech\/api\/user\/index url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/yyfy.js, requires-body=true, max-size=-1, timeout=60
 # --- yyjz.js ---
@@ -2296,13 +2348,20 @@ zhengqi_1 = type=http-response, pattern=^https:\/\/(api|apio)\.zhengqi100\.com u
 zhihu_1 = type=http-response, pattern=^https?:\/\/((api|app|www).zhihu.com\/|.*resolv\?host)(unlimited\/go\/my_card|people\/self|bazaar\/vip_tab|sku\/reversion_sku|.*zhihu).*$ url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/zhihu.js, requires-body=true, max-size=-1, timeout=60
 zhihu_2 = type=http-request, pattern=^https?:\/\/((www)|(api)).zhihu.com\/(api\/v3\/books|market\/paid_magazine|market\/paid_column|market\/album|remix\/resource\/paid_magazine|appview\/v2\/answer).*$ url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/zhihu.js, requires-body=true, max-size=-1, timeout=60
 # --- zhihutk.js ---
+zhihutk_1 = type=http-response, pattern=^https?:\/\/((api|app|www).zhihu.com\/|.*resolv\?host)(unlimited\/go\/my_card|people\/self|bazaar\/vip_tab|sku\/reversion_sku|.*zhihu).*$ url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/zhihutk.js, requires-body=true, max-size=-1, timeout=60
+zhihutk_2 = type=http-request, pattern=^https?:\/\/((www)|(api)).zhihu.com\/(api\/v3\/books|market\/paid_magazine|market\/paid_column|market\/album|remix\/resource\/paid_magazine|appview\/v2\/answer).*$ url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/zhihutk.js, requires-body=true, max-size=-1, timeout=60
 # --- zhtk.js ---
+zhtk_1 = type=http-response, pattern=^https?:\/\/((api|app|www).zhihu.com\/|.*resolv\?host)(unlimited\/go\/my_card|people\/self|bazaar\/vip_tab|sku\/reversion_sku|.*zhihu).*$ url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/zhtk.js, requires-body=true, max-size=-1, timeout=60
+zhtk_2 = type=http-request, pattern=^https?:\/\/((www)|(api)).zhihu.com\/(api\/v3\/books|market\/paid_magazine|market\/paid_column|market\/album|remix\/resource\/paid_magazine|appview\/v2\/answer).*$ url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/zhtk.js, requires-body=true, max-size=-1, timeout=60
 # --- zhuanyexiangji.js ---
 zhuanyexiangji_1 = type=http-response, pattern=^http:\/\/ym.dreamyin.cn\/\/ym_user/IsVip\? url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/zhuanyexiangji.js, requires-body=true, max-size=-1, timeout=60
 # --- zhvip.js ---
+zhvip_1 = type=http-response, pattern=^https?:\/\/((api|app|www).zhihu.com\/|.*resolv\?host)(unlimited\/go\/my_card|people\/self|bazaar\/vip_tab|sku\/reversion_sku|.*zhihu).*$ url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/zhvip.js, requires-body=true, max-size=-1, timeout=60
+zhvip_2 = type=http-request, pattern=^https?:\/\/((www)|(api)).zhihu.com\/(api\/v3\/books|market\/paid_magazine|market\/paid_column|market\/album|remix\/resource\/paid_magazine|appview\/v2\/answer).*$ url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/zhvip.js, requires-body=true, max-size=-1, timeout=60
 # --- zjrl.js ---
 zjrl_1 = type=http-response, pattern=^https?:\/\/api.rc-backup.com\/v1\/subscribers\/identify url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/zjrl.js, requires-body=true, max-size=-1, timeout=60
 # --- zjzxg.js ---
+zjzxg_1 = type=http-response, pattern=^https?:\/\/appss.rhinoxlab.com\/app\/account\/getAccountInfo url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/zjzxg.js, requires-body=true, max-size=-1, timeout=60
 # --- zmfy.js ---
 zmfy_1 = type=http-response, pattern=^https?:\/\/zimu.yunmiaomiao.cn\/api\/user\/index url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/weigiegie/zmfy.js, requires-body=true, max-size=-1, timeout=60
 # --- zmxzj.js ---
@@ -2366,13 +2425,4 @@ zhenti_1 = type=http-response, pattern=^https?://newtest\.zoooy111\.com/mobilev4
 
 
 # >>> merged from spotify-unlock (unique only)
-# 与 app2smile QuanX 同款：请求头脚本删 If-None-Match，避免 304
-spotifyProto-nocache = type=http-request, pattern=^https:\/\/(spclient\.wg\.spotify\.com|.*-spclient\.spotify\.com(:443)?)\/(bootstrap\/v1\/bootstrap|user-customization-service\/v1\/customize)$, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/spotify-del-cache-headers.js, timeout=10
-
-
-
-[Header Rewrite]
-
-# >>> merged from spotify-unlock (unique only)
-http-request ^https:\/\/(spclient\.wg\.spotify\.com|.*-spclient\.spotify\.com(:443)?)\/(bootstrap\/v1\/bootstrap|user-customization-service\/v1\/customize)$ header-del If-None-Match
-http-request ^https:\/\/(spclient\.wg\.spotify\.com|.*-spclient\.spotify\.com(:443)?)\/(bootstrap\/v1\/bootstrap|user-customization-service\/v1\/customize)$ header-del If-Modified-Since
+spotifyProto = type=http-response, pattern=^https:\/\/(spclient\.wg\.spotify\.com|.*-spclient\.spotify\.com(:443)?)\/(bootstrap\/v1\/bootstrap|user-customization-service\/v1\/customize)$, requires-body=true, binary-body-mode=true, max-size=0, timeout=10, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/Amlabort/MY_clash/main/files/lpx/js/spot-proto-eevee.js

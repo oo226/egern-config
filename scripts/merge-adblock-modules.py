@@ -202,12 +202,22 @@ def filter_cron_scripts(lines: list[str]) -> list[str]:
 
 
 def script_key(line: str) -> str | None:
+    """Dedupe key: name + type + pattern (must not collapse request vs response)."""
     stripped = line.strip()
     if not stripped or stripped.startswith("#"):
         return None
-    match = re.search(r"pattern=(\"[^\"]+\"|'[^']+'|[^,]+)", stripped)
-    if match:
-        return match.group(1).strip("\"'")
+    name_m = re.match(r"^([^=]+?)\s*=", stripped)
+    type_m = re.search(r"type\s*=\s*([^,\s]+)", stripped, re.IGNORECASE)
+    pattern_m = re.search(r"pattern\s*=\s*(\"[^\"]+\"|'[^']+'|[^,]+)", stripped, re.IGNORECASE)
+    parts: list[str] = []
+    if name_m:
+        parts.append(name_m.group(1).strip().lower())
+    if type_m:
+        parts.append(type_m.group(1).strip().lower())
+    if pattern_m:
+        parts.append(pattern_m.group(1).strip("\"'"))
+    if len(parts) >= 2:
+        return "|".join(parts)
     return stripped
 
 
