@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-05T13:26:33Z",
+  "generated_at": "2026-08-05T13:37:34Z",
   "branch": "main",
   "repo": "oo226/egern-config",
   "raw_base": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main",
@@ -17,7 +17,7 @@
       "name": "按需开启",
       "icon": "🔧",
       "usage_tier": "optional",
-      "count": 175
+      "count": 173
     }
   ],
   "quick_start": [
@@ -41,7 +41,7 @@
     },
     {
       "id": "unlock-collection",
-      "name": "Skip Proxy And Real-IP Lists",
+      "name": "解锁增强合集",
       "desc": "多源合并去重：跳过代理检测 + 链接解锁 + Spotify + VIP解锁 + 屏蔽更新（Actions 每日同步）",
       "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Funlock-collection.module",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/unlock-collection.module",
@@ -202,19 +202,32 @@
   ],
   "sync_digest": {
     "commit": {
-      "hash": "91b0134",
-      "subject": "Merge pull request #51 from oo226/cursor/full-mirror-args-ac83",
+      "hash": "ab8e5a2",
+      "subject": "Merge pull request #53 from oo226/cursor/fix-health-links-ac83",
       "date": "2026-08-05"
     },
     "summary": [
-      "模块 更新 8 个文件",
-      "脚本 更新 4 个文件",
-      "模块站 更新 2 个文件",
+      "模块站 更新 1 个文件",
       "国内直连 26042 条"
     ],
-    "files_changed": 33
+    "files_changed": 3
   },
   "changelog": [
+    {
+      "hash": "2ead236",
+      "subject": "Merge pull request #54 from oo226/cursor/pages-health-fix-ac83",
+      "date": "2026-08-05"
+    },
+    {
+      "hash": "2f0b242",
+      "subject": "chore: trigger pages after health-link fix",
+      "date": "2026-08-05"
+    },
+    {
+      "hash": "3fd30a0",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-08-05"
+    },
     {
       "hash": "143c98a",
       "subject": "Merge pull request #52 from oo226/cursor/pages-full-mirror-ac83",
@@ -239,25 +252,10 @@
       "hash": "fb341c2",
       "subject": "chore: trigger pages for proxy-detect upstream index",
       "date": "2026-08-05"
-    },
-    {
-      "hash": "a5fc4da",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-08-05"
-    },
-    {
-      "hash": "cc53374",
-      "subject": "Merge pull request #48 from oo226/cursor/force-pages-deploy-ac83",
-      "date": "2026-08-05"
-    },
-    {
-      "hash": "19dff5e",
-      "subject": "chore: trigger pages deploy after qidian/spotify fix",
-      "date": "2026-08-05"
     }
   ],
   "local_health": {
-    "checked": 119,
+    "checked": 120,
     "fail": 0,
     "broken_ids": []
   },
@@ -280,7 +278,7 @@
       "id": "modules",
       "name": "模块",
       "icon": "🧩",
-      "count": 29
+      "count": 27
     },
     {
       "id": "routing",
@@ -360,7 +358,7 @@
       "kind": "module",
       "category": "modules",
       "group": "合集",
-      "name": "Skip Proxy And Real-IP Lists",
+      "name": "解锁增强合集",
       "desc": "多源合并去重：跳过代理检测 + 链接解锁 + Spotify + VIP解锁 + 屏蔽更新（Actions 每日同步）",
       "icon": "",
       "homepage": "",
@@ -376,6 +374,31 @@
         "流媒体"
       ],
       "share_url": "https://oo226.github.io/egern-config/#id=unlock-collection",
+      "health": "ok"
+    },
+    {
+      "id": "skip-proxy-collection",
+      "kind": "module",
+      "category": "modules",
+      "group": "合集",
+      "name": "跳过代理检测合集",
+      "desc": "mieqq + Sukka Always Real IP + iamsweet 等合并去重（每日扫描更新）。银行/交管等 App 跳过代理检测用这一份即可。",
+      "icon": "",
+      "homepage": "",
+      "path": "Modules/skip-proxy-collection.module",
+      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/skip-proxy-collection.module",
+      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Fskip-proxy-collection.module",
+      "default_enabled": false,
+      "usage_tier": "optional",
+      "requires": [],
+      "hint": "mieqq + Sukka RealIP + iamsweet 已合并成这一份；也可继续用解锁合集（已含同样内容）。",
+      "tags": [
+        "跳过代理",
+        "skip-proxy",
+        "合集",
+        "always-real-ip"
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=skip-proxy-collection",
       "health": "ok"
     },
     {
@@ -915,73 +938,6 @@
       ],
       "upstream": true,
       "share_url": "https://oo226.github.io/egern-config/#id=pingme-quanx"
-    },
-    {
-      "id": "mieqq-skip-proxy-upstream",
-      "kind": "module",
-      "category": "modules",
-      "group": "代理检测·上游",
-      "name": "mieqq 跳过代理检测（上游）",
-      "desc": "官方原链 — 跳过部分 App 的代理检测。合集 unlock-collection 已合并同内容。",
-      "icon": "",
-      "homepage": "https://github.com/mieqq/mieqq",
-      "path": "https://raw.githubusercontent.com/mieqq/mieqq/master/skip-proxy-lists.sgmodule",
-      "url": "https://raw.githubusercontent.com/mieqq/mieqq/master/skip-proxy-lists.sgmodule",
-      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Fmieqq%2Fmieqq%2Fmaster%2Fskip-proxy-lists.sgmodule",
-      "default_enabled": false,
-      "usage_tier": "optional",
-      "tags": [
-        "代理检测",
-        "skip-proxy",
-        "上游原链"
-      ],
-      "upstream": true,
-      "share_url": "https://oo226.github.io/egern-config/#id=mieqq-skip-proxy-upstream"
-    },
-    {
-      "id": "sukka-always-realip-upstream",
-      "kind": "module",
-      "category": "modules",
-      "group": "代理检测·上游",
-      "name": "Sukka Always Real IP（上游）",
-      "desc": "ruleset.skk.moe 原链 — always-real-ip 补充。",
-      "icon": "",
-      "homepage": "https://ruleset.skk.moe/",
-      "path": "https://ruleset.skk.moe/Modules/sukka_common_always_realip.sgmodule",
-      "url": "https://ruleset.skk.moe/Modules/sukka_common_always_realip.sgmodule",
-      "add_url": "egern:///modules/new?url=https%3A%2F%2Fruleset.skk.moe%2FModules%2Fsukka_common_always_realip.sgmodule",
-      "default_enabled": false,
-      "usage_tier": "optional",
-      "tags": [
-        "代理检测",
-        "always-real-ip",
-        "上游原链"
-      ],
-      "upstream": true,
-      "share_url": "https://oo226.github.io/egern-config/#id=sukka-always-realip-upstream"
-    },
-    {
-      "id": "iamsweet-skip-proxy",
-      "kind": "module",
-      "category": "modules",
-      "group": "代理检测·上游",
-      "name": "Skip Proxy Lists",
-      "desc": "跳过部分应用的代理检测",
-      "icon": "",
-      "homepage": "https://github.com/iamsweet/Surge-Skip-Proxy-Lists",
-      "path": "https://raw.githubusercontent.com/iamsweet/Surge-Skip-Proxy-Lists/main/skip-proxy-lists.sgmodule",
-      "url": "https://raw.githubusercontent.com/iamsweet/Surge-Skip-Proxy-Lists/main/skip-proxy-lists.sgmodule",
-      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Fiamsweet%2FSurge-Skip-Proxy-Lists%2Fmain%2Fskip-proxy-lists.sgmodule",
-      "default_enabled": false,
-      "usage_tier": "optional",
-      "hint": "使用上游仓库原链；也可继续用本仓 unlock-collection 合集。",
-      "tags": [
-        "代理检测",
-        "skip-proxy",
-        "上游原链"
-      ],
-      "upstream": true,
-      "share_url": "https://oo226.github.io/egern-config/#id=iamsweet-skip-proxy"
     },
     {
       "id": "Routing-Bootstrap-Direct",
@@ -4910,5 +4866,5 @@
       "health": "ok"
     }
   ],
-  "total": 235
+  "total": 233
 }

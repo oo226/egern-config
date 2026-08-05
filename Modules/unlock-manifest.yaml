@@ -13,23 +13,17 @@ merge:
     - ""
 
 modules:
-  - name: mieqq-skip-proxy
-    cache: mieqq-skip-proxy.sgmodule
+  - name: unlock-primary
+    cache: unlock-primary.sgmodule
     role: primary
-    upstream: https://raw.githubusercontent.com/mieqq/mieqq/master/skip-proxy-lists.sgmodule
-    note: "mieqq — 跳过国内 App 代理检测"
+    local: true
+    note: "合集标题壳；跳过代理等内容由 supplements 并入"
 
-  - name: sukka-always-realip
-    cache: sukka-always-realip.sgmodule
-    role: supplement
-    upstream: https://ruleset.skk.moe/Modules/sukka_common_always_realip.sgmodule
-    note: "Sukka — Always Real IP（上游原链同步）"
-
-  - name: proxy-detect-extra
-    cache: proxy-detect-extra.sgmodule
+  - name: skip-proxy-collection
+    cache: skip-proxy-collection.module
     role: supplement
     local: true
-    note: "discover-proxy-detect.py 扫描上游 skip-proxy/always-real-ip 合并补充"
+    note: "mieqq+Sukka+iamsweet 等跳过代理/RealIP 合并去重（唯一入口）"
 
   - name: qingrex-unlock
     cache: qingrex-unlock.sgmodule

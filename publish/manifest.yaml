@@ -27,6 +27,7 @@ directories:
       - README.md
       - adblock-collection.module
       - unlock-collection.module
+      - skip-proxy-collection.module
       - cookie-collection.module
       - qdreader.sgmodule
       - ibl3nd-plugin-hub.yaml
@@ -90,6 +91,7 @@ prune_from_main:
   - Modules/liul0ng-unlock.sgmodule
   - Modules/weigiegie-unlock.sgmodule
   - Modules/proxy-detect-extra.sgmodule
+  - Modules/unlock-primary.sgmodule
   - Modules/qdreader-cookie-extra.sgmodule
   - scripts
   - publish

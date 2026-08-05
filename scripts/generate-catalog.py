@@ -837,13 +837,7 @@ def build_catalog() -> dict:
         if item:
             items.append(item)
     items.extend(external_module_items(meta_cfg))
-    # proxy-detect 上游原链；与 external_modules 按 url 去重
-    seen_urls = {i.get("url") for i in items if i.get("url")}
-    for item in proxy_detect_items():
-        if item.get("url") in seen_urls:
-            continue
-        seen_urls.add(item.get("url"))
-        items.append(item)
+    # 跳过代理已合并为 skip-proxy-collection，不再把扫描到的多条上游原链铺到中心页
     items.extend(routing_items(meta_cfg))
     items.extend(boxjs_items(meta_cfg))
     items.extend(script_items())
