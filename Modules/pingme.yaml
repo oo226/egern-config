@@ -6,11 +6,9 @@ category: 签到
 compat_arguments:
   是否开启抓取重写: "PingMe抓参"
   CRONEXP: "30 8,20 * * *"
-  TIMEOUT: 300
 compat_arguments_desc: |
   是否开启抓取重写：填 PingMe抓参=开抓参；填 #=关（抓完务必改成 #）。
   CRONEXP：签到定时，默认 8:30 与 20:30。
-  TIMEOUT：签到超时秒数。
 scriptings:
   - http_request:
       name: "{{{是否开启抓取重写}}}获取参数"
@@ -22,7 +20,7 @@ scriptings:
       name: PingMe签到
       cron: "{{{CRONEXP}}}"
       script_url: "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/PingMe-signin.js"
-      timeout: {{{TIMEOUT}}}
+      timeout: 300
       enabled: true
 mitm:
   hostnames:
