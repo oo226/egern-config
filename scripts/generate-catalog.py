@@ -53,12 +53,32 @@ def load_yaml(path: Path) -> dict:
 
 
 def raw_url(rel: str, *, boxjs: bool = False) -> str:
+    """Build raw.githubusercontent.com URL with non-ASCII path segments encoded."""
     base = GITHUB_RAW_MAIN_BOXJS if boxjs else GITHUB_RAW_MAIN
-    return f"{base}/{rel.lstrip('/')}"
+    parts = [p for p in rel.lstrip("/").split("/") if p]
+    encoded = "/".join(quote(part, safe="") for part in parts)
+    return f"{base}/{encoded}"
+
+
+def encode_raw_url(url: str) -> str:
+    """Ensure a raw.githubusercontent.com URL has encoded path (idempotent)."""
+    from urllib.parse import unquote
+
+    prefix = "https://raw.githubusercontent.com/"
+    if not url.startswith(prefix):
+        return url
+    rest = url[len(prefix) :]
+    m = re.match(r"^([^/]+)/([^/]+)/(refs/heads/[^/]+|[^/]+)/(.*)$", rest)
+    if not m:
+        return url
+    owner, repo, ref, path = m.group(1), m.group(2), m.group(3), m.group(4)
+    # unquote first so repeated encode stays stable
+    encoded_path = "/".join(quote(unquote(p), safe="") for p in path.split("/") if p)
+    return f"{prefix}{owner}/{repo}/{ref}/{encoded_path}"
 
 
 def module_add_url(url: str) -> str:
-    return f"egern:///modules/new?url={quote(url, safe='')}"
+    return f"egern:///modules/new?url={quote(encode_raw_url(url), safe='')}"
 
 
 def parse_surge_header(text: str) -> dict[str, str]:
@@ -544,6 +564,7 @@ def git_changelog(limit: int = 8) -> list[dict]:
 def check_url_ok(url: str) -> bool:
     if not url.startswith("https://raw.githubusercontent.com/oo226/egern-config"):
         return True
+    url = encode_raw_url(url)
     try:
         req = urllib.request.Request(url, method="HEAD", headers={"User-Agent": "egern-catalog-check/1.0"})
         with urllib.request.urlopen(req, timeout=12) as resp:
@@ -557,7 +578,20 @@ def check_url_ok(url: str) -> bool:
             return False
 
 
+def local_file_for_item(item: dict) -> Path | None:
+    rel = (item.get("path") or "").split("#", 1)[0]
+    if not rel:
+        return None
+    path = ROOT / rel
+    return path if path.is_file() else None
+
+
 def apply_health_checks(items: list[dict]) -> None:
+    """Mark health for local raw URLs.
+
+    Prefer filesystem presence (sync 工厂在 publish 前跑，远程 main 可能还没有新文件)，
+    否则再 HEAD 远程；URL 一律百分号编码，避免中文路径误报。
+    """
     checked = 0
     for item in items:
         if item.get("kind") not in {"module", "config", "rule", "boxjs", "script", "widget"}:
@@ -565,7 +599,18 @@ def apply_health_checks(items: list[dict]) -> None:
         url = item.get("url") or ""
         if not url.startswith("https://raw.githubusercontent.com/oo226/egern-config"):
             continue
-        item["health"] = "ok" if check_url_ok(url) else "fail"
+        # keep stored url encoded so hub / Egern 能打开
+        item["url"] = encode_raw_url(url)
+        if item.get("add_url", "").startswith("egern:///"):
+            item["add_url"] = module_add_url(item["url"])
+        elif item.get("add_url", "").startswith("https://raw.githubusercontent.com/oo226/egern-config"):
+            item["add_url"] = encode_raw_url(item["add_url"])
+
+        local = local_file_for_item(item)
+        if local is not None:
+            item["health"] = "ok"
+        else:
+            item["health"] = "ok" if check_url_ok(item["url"]) else "fail"
         checked += 1
     print(f"health-checked {checked} local raw URLs")
 
