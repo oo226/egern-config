@@ -1,0 +1,161 @@
+# 本仓库每日 Sync 实际抓取的上游（机器+人工可读）
+# discover-proxy-detect.py / generate-catalog.py 会读取本文件。
+
+updated_note: "合集进 main；单仓模块多在 sync 镜像后合并。代理检测类优先保留上游 raw 链接供订阅。"
+
+# ── 已在同步流水线中的源 ──
+sources:
+  - id: repcz-rules
+    name: Repcz/Tool Egern 分流
+    github: Repcz/Tool
+    used_for: [分流]
+    note: "China/Reject/Foreign 等，每日 curl 进 Routing/"
+
+  - id: skk-reject
+    name: Sukka reject / AI
+    homepage: https://ruleset.skk.moe/
+    used_for: [分流]
+    note: "reject.conf + AI 并入 Reject-Merged / AI-Merged"
+
+  - id: vpsdance-ai
+    name: VPSDance AI rules
+    github: VPSDance/ai-proxy-rules
+    used_for: [分流]
+
+  - id: matrix-unbreak
+    name: Matrix-io Unbreak
+    used_for: [分流]
+    note: "Routing/Unbreak.yaml"
+
+  - id: mieqq-skip-proxy
+    name: mieqq 跳过代理检测
+    github: mieqq/mieqq
+    url: https://raw.githubusercontent.com/mieqq/mieqq/master/skip-proxy-lists.sgmodule
+    used_for: [代理检测, 模块]
+    note: "unlock-collection 主源"
+
+  - id: fmz200
+    name: 奶思 wool_scripts
+    github: fmz200/wool_scripts
+    used_for: [去广告, 解锁, 抓参, 脚本]
+    note: "author-repos 全量 Scripts/*.js + Surge/module"
+
+  - id: qingrex
+    name: 可莉 LoonKissSurge
+    github: QingRex/LoonKissSurge
+    used_for: [去广告, 解锁]
+    note: "全仓 sgmodule → 合集（签到类跳过）"
+
+  - id: chxm1023
+    name: chxm1023/ddm1023
+    github: chxm1023/Rewrite
+    used_for: [去广告, 解锁, 脚本]
+    note: "Rewrite+Advertising js；Collections/AppAd 进合集"
+
+  - id: weigiegie
+    name: WeiGiegie/666
+    github: WeiGiegie/666
+    used_for: [解锁, 脚本]
+
+  - id: liul0ng
+    name: liul0ng/quanx
+    github: liul0ng/quanx
+    used_for: [解锁, 脚本]
+
+  - id: yu9191
+    name: Yu9191 Rewrite / ShortcutStudio
+    github: Yu9191/Rewrite
+    used_for: [解锁, 脚本]
+
+  - id: yuheng
+    name: Yuheng0101/X
+    github: Yuheng0101/X
+    used_for: [签到, BoxJS]
+    note: "仅 boxjs.json 中带 script 的任务 + 起点模块"
+
+  - id: chavyleung
+    name: chavyleung/scripts
+    github: chavyleung/scripts
+    used_for: [签到, 抓参]
+    note: "白名单签到 + cookie 合集内嵌"
+
+  - id: iringo
+    name: NSRingo / iRingo
+    used_for: [模块]
+    note: "地图/天气/定位等独立模块"
+
+  - id: ibl3nd
+    name: IBL3ND widgets
+    used_for: [小组件]
+
+  - id: iewha
+    name: iEwha Profiles
+    github: iEwha/Profiles
+    used_for: [解锁]
+    note: "Unlock.sgmodule + Script.sgmodule 进 unlock 合集"
+
+  - id: miranquil
+    name: miranquil surge-scripts
+    github: miranquil/surge-scripts
+    used_for: [解锁]
+
+# ── 代理检测专项：每日扫描，命中则写入索引（订阅用上游原链）──
+proxy_detect:
+  keywords:
+    - skip-proxy
+    - always-real-ip
+    - 代理检测
+    - 跳过代理
+    - 检测代理
+    - Skip Proxy
+    - REAL-IP
+    - real-ip
+    - 绕过代理检测
+    - 防代理检测
+
+  # 固定种子（必收录，url 为用户应订阅的上游链接）
+  seeds:
+    - id: mieqq-skip-proxy
+      name: mieqq 跳过代理检测
+      kind: module
+      url: https://raw.githubusercontent.com/mieqq/mieqq/master/skip-proxy-lists.sgmodule
+      homepage: https://github.com/mieqq/mieqq
+      tags: [代理检测, skip-proxy, mieqq]
+
+    - id: sukka-always-realip
+      name: Sukka Always Real IP Plus
+      kind: module
+      url: https://ruleset.skk.moe/Modules/sukka_common_always_realip.sgmodule
+      homepage: https://ruleset.skk.moe/
+      tags: [代理检测, always-real-ip, Sukka]
+
+    - id: iamsweet-skip-proxy
+      name: iamsweet Skip Proxy Lists
+      kind: module
+      url: https://raw.githubusercontent.com/iamsweet/Surge-Skip-Proxy-Lists/main/skip-proxy-lists.sgmodule
+      homepage: https://github.com/iamsweet/Surge-Skip-Proxy-Lists
+      tags: [代理检测, skip-proxy]
+
+  # GitHub 仓：列 tree，文件名/路径命中关键词则整条收录（上游 raw）
+  watch_repos:
+    - github: mieqq/mieqq
+      branch: master
+      content_scan: true
+    - github: iamsweet/Surge-Skip-Proxy-Lists
+      branch: main
+      content_scan: true
+    - github: Rabbit-Spec/Surge
+      branch: Master
+      path_prefix: Module/Spec/Skip-Proxy/
+      content_scan: true
+    - github: fmz200/wool_scripts
+      branch: main
+      path_prefix: Surge/module/
+      # 大仓：只收文件名含 skip-proxy / 代理检测 的
+    - github: QingRex/LoonKissSurge
+      branch: main
+      path_prefix: Surge/
+      # 大仓：只收文件名命中
+
+  # 本地已镜像 Modules/_upstream/<id>/ 再扫一遍（作者仓下载后）
+  scan_local_upstream: true

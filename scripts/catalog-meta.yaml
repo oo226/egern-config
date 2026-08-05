@@ -136,6 +136,25 @@ external_modules:
     group: 外部
     default_enabled: true
 
+  # 代理检测种子也在 site/upstream-proxy-detect.json（每日扫描）；此处仅作兜底展示
+  - id: mieqq-skip-proxy-upstream
+    name: mieqq 跳过代理检测（上游）
+    desc: 官方原链 — 跳过部分 App 的代理检测。合集 unlock-collection 已合并同内容。
+    url: https://raw.githubusercontent.com/mieqq/mieqq/master/skip-proxy-lists.sgmodule
+    homepage: https://github.com/mieqq/mieqq
+    group: 代理检测·上游
+    default_enabled: false
+    tags: [代理检测, skip-proxy, 上游原链]
+
+  - id: sukka-always-realip-upstream
+    name: Sukka Always Real IP（上游）
+    desc: ruleset.skk.moe 原链 — always-real-ip 补充。
+    url: https://ruleset.skk.moe/Modules/sukka_common_always_realip.sgmodule
+    homepage: https://ruleset.skk.moe/
+    group: 代理检测·上游
+    default_enabled: false
+    tags: [代理检测, always-real-ip, 上游原链]
+
 quick_start:
   - egern-main
   - adblock-collection

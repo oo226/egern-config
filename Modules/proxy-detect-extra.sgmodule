@@ -1,0 +1,12 @@
+#!name=代理检测补充（上游扫描）
+#!desc=由 discover-proxy-detect.py 从上游 skip-proxy / always-real-ip 合并；订阅请优先用上游原链
+#!category=代理检测
+
+[General]
+skip-proxy = %APPEND% yunbusiness.ccb.com,www.abchina.com.cn,login-service.mobile-bank.psbc.com,mobile-bank.psbc.com
+skip-proxy = %APPEND% www.baidu.com,yunbusiness.ccb.com,wxh.wo.cn,gate.lagou.com,www.abchina.com.cn,www.shanbay.com,login-service.mobile-bank.psbc.com,mobile-bank.psbc.com,id6.me,www.163.com
+always-real-ip = %APPEND% easy-login.10099.com.cn,*-update.xoyocdn.com,id6.me,open.e.189.cn
+always-real-ip = %APPEND% dns.msftncsi.com, *.srv.nintendo.net, *.stun.playstation.net, xbox.*.microsoft.com, *.xboxlive.com, *.turn.twilio.com, *.stun.twilio.com, stun.syncthing.net, stun.*, lancache.steamcontent.com
+
+[Rule]
+DOMAIN,msmp.abchina.com.cn,REJECT

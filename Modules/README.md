@@ -13,8 +13,18 @@
 | `adblock-collection.module` | 去广告净化合集 | **唯一入口** — 奶思 + blackmatrix7 + 毒奶网页去广告 + 银行/NB 每日合并去重（**不含签到/cron**） |
 | `unlock-collection.module` | 解锁增强合集 | **唯一入口** — 跳过代理、链接解锁、Spotify、VIP、ddm1023、ShortcutStudio 等 |
 | `cookie-collection.module` | 抓参 Cookie 合集 | **按需启用** — 奶思 cookies.module，签到前抓 ck/token，抓完建议关闭 |
+| `qdreader.sgmodule` | 起点读书签到 | Yuheng 抓 Cookie + 定时签到 |
 | `custom-apps.sgmodule` | 本地补全源 | 银行/税务/NBToolAds，合并时自动并入去广告合集 |
 | `patches-unlock.sgmodule` | 本地解锁补全 | P12/OCSP、系统更新屏蔽，合并时自动并入解锁合集 |
+
+## 上游从哪来？
+
+完整清单：`scripts/upstream-sources.yaml`（每日同步写入 `site/upstreams.json`）。
+
+**代理检测（skip-proxy / always-real-ip）**：`scripts/discover-proxy-detect.py` 扫描监视仓，命中后写入 `site/upstream-proxy-detect.json`，模块中心用**上游原链**展示；同时合并进 `unlock-collection`。
+
+要加新监视仓：改 `upstream-sources.yaml` → `proxy_detect.watch_repos` / `seeds`。
+
 
 ## raw 链接
 

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-05T12:22:07Z",
+  "generated_at": "2026-08-05T12:52:56Z",
   "branch": "main",
   "repo": "oo226/egern-config",
   "raw_base": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main",
@@ -17,7 +17,7 @@
       "name": "按需开启",
       "icon": "🔧",
       "usage_tier": "optional",
-      "count": 172
+      "count": 175
     }
   ],
   "quick_start": [
@@ -202,20 +202,35 @@
   ],
   "sync_digest": {
     "commit": {
-      "hash": "2e1e4a1",
-      "subject": "chore: sync upstream on sync branch",
+      "hash": "fac73f9",
+      "subject": "Merge pull request #47 from oo226/cursor/qidian-ck-site-reload-ac83",
       "date": "2026-08-05"
     },
     "summary": [
-      "分流规则 更新 8 个文件",
-      "模块 更新 1 个文件",
-      "脚本 更新 3 个文件",
-      "模块站 更新 1 个文件",
+      "分流规则 更新 1 个文件",
+      "模块 更新 4 个文件",
+      "模块站 更新 3 个文件",
+      "主配置 更新 1 个文件",
       "国内直连 26042 条"
     ],
     "files_changed": 14
   },
   "changelog": [
+    {
+      "hash": "cc53374",
+      "subject": "Merge pull request #48 from oo226/cursor/force-pages-deploy-ac83",
+      "date": "2026-08-05"
+    },
+    {
+      "hash": "19dff5e",
+      "subject": "chore: trigger pages deploy after qidian/spotify fix",
+      "date": "2026-08-05"
+    },
+    {
+      "hash": "c9581a8",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-08-05"
+    },
     {
       "hash": "ccf6652",
       "subject": "chore: publish curated snapshot from sync",
@@ -240,34 +255,17 @@
       "hash": "42d09d9",
       "subject": "chore: publish curated snapshot from sync",
       "date": "2026-08-01"
-    },
-    {
-      "hash": "c2fc7db",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-07-31"
-    },
-    {
-      "hash": "11c2819",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-07-30"
-    },
-    {
-      "hash": "0e68e96",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-07-29"
     }
   ],
   "local_health": {
     "checked": 104,
-    "fail": 1,
-    "broken_ids": [
-      "qdreader"
-    ]
+    "fail": 0,
+    "broken_ids": []
   },
   "upstream_health": {
-    "total_unique": 0,
-    "checked": 0,
-    "ok": 0,
+    "total_unique": 10,
+    "checked": 10,
+    "ok": 10,
     "fail": 0,
     "broken": [],
     "truncated": false
@@ -283,7 +281,7 @@
       "id": "modules",
       "name": "模块",
       "icon": "🧩",
-      "count": 11
+      "count": 14
     },
     {
       "id": "routing",
@@ -428,7 +426,7 @@
         "Yuheng"
       ],
       "share_url": "https://oo226.github.io/egern-config/#id=qdreader",
-      "health": "fail"
+      "health": "ok"
     },
     {
       "id": "ibl3nd-plugin-hub",
@@ -580,6 +578,7 @@
       "name": "PingMe 抓参签到",
       "desc": "外部 oo226/quanx pingme.yaml，不在本仓库。",
       "icon": "",
+      "homepage": "",
       "path": "https://raw.githubusercontent.com/oo226/quanx/main/pingme.yaml",
       "url": "https://raw.githubusercontent.com/oo226/quanx/main/pingme.yaml",
       "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fquanx%2Fmain%2Fpingme.yaml",
@@ -588,7 +587,75 @@
       "tags": [
         "外部"
       ],
+      "upstream": true,
       "share_url": "https://oo226.github.io/egern-config/#id=pingme-quanx"
+    },
+    {
+      "id": "mieqq-skip-proxy-upstream",
+      "kind": "module",
+      "category": "modules",
+      "group": "代理检测·上游",
+      "name": "mieqq 跳过代理检测（上游）",
+      "desc": "官方原链 — 跳过部分 App 的代理检测。合集 unlock-collection 已合并同内容。",
+      "icon": "",
+      "homepage": "https://github.com/mieqq/mieqq",
+      "path": "https://raw.githubusercontent.com/mieqq/mieqq/master/skip-proxy-lists.sgmodule",
+      "url": "https://raw.githubusercontent.com/mieqq/mieqq/master/skip-proxy-lists.sgmodule",
+      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Fmieqq%2Fmieqq%2Fmaster%2Fskip-proxy-lists.sgmodule",
+      "default_enabled": false,
+      "usage_tier": "optional",
+      "tags": [
+        "代理检测",
+        "skip-proxy",
+        "上游原链"
+      ],
+      "upstream": true,
+      "share_url": "https://oo226.github.io/egern-config/#id=mieqq-skip-proxy-upstream"
+    },
+    {
+      "id": "sukka-always-realip-upstream",
+      "kind": "module",
+      "category": "modules",
+      "group": "代理检测·上游",
+      "name": "Sukka Always Real IP（上游）",
+      "desc": "ruleset.skk.moe 原链 — always-real-ip 补充。",
+      "icon": "",
+      "homepage": "https://ruleset.skk.moe/",
+      "path": "https://ruleset.skk.moe/Modules/sukka_common_always_realip.sgmodule",
+      "url": "https://ruleset.skk.moe/Modules/sukka_common_always_realip.sgmodule",
+      "add_url": "egern:///modules/new?url=https%3A%2F%2Fruleset.skk.moe%2FModules%2Fsukka_common_always_realip.sgmodule",
+      "default_enabled": false,
+      "usage_tier": "optional",
+      "tags": [
+        "代理检测",
+        "always-real-ip",
+        "上游原链"
+      ],
+      "upstream": true,
+      "share_url": "https://oo226.github.io/egern-config/#id=sukka-always-realip-upstream"
+    },
+    {
+      "id": "iamsweet-skip-proxy",
+      "kind": "module",
+      "category": "modules",
+      "group": "代理检测·上游",
+      "name": "Skip Proxy Lists",
+      "desc": "跳过部分应用的代理检测",
+      "icon": "",
+      "homepage": "https://github.com/iamsweet/Surge-Skip-Proxy-Lists",
+      "path": "https://raw.githubusercontent.com/iamsweet/Surge-Skip-Proxy-Lists/main/skip-proxy-lists.sgmodule",
+      "url": "https://raw.githubusercontent.com/iamsweet/Surge-Skip-Proxy-Lists/main/skip-proxy-lists.sgmodule",
+      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Fiamsweet%2FSurge-Skip-Proxy-Lists%2Fmain%2Fskip-proxy-lists.sgmodule",
+      "default_enabled": false,
+      "usage_tier": "optional",
+      "hint": "使用上游仓库原链；也可继续用本仓 unlock-collection 合集。",
+      "tags": [
+        "代理检测",
+        "skip-proxy",
+        "上游原链"
+      ],
+      "upstream": true,
+      "share_url": "https://oo226.github.io/egern-config/#id=iamsweet-skip-proxy"
     },
     {
       "id": "Routing-Bootstrap-Direct",
@@ -4517,5 +4584,5 @@
       "health": "ok"
     }
   ],
-  "total": 217
+  "total": 220
 }
