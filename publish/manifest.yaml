@@ -30,6 +30,7 @@ directories:
       - unlock-collection.module
       - skip-proxy-collection.module
       - cookie-collection.module
+      - spotify-unlock.sgmodule
       - qdreader.sgmodule
       - ibl3nd-plugin-hub.yaml
       - iringo-mitm.yaml

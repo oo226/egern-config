@@ -19,6 +19,10 @@ merge:
     - mcc.psbc.com
     - d.psbc.com
     - "*.psbc.com"
+  # Spotify VIP 解锁只走 unlock 合集的 Eevee，勿在去广告合集叠跑 Crack
+  content_line_excludes:
+    - "Spotify.Crack.Dev.js"
+    - "Spotify.Crack.js"
   script_url_fixes:
     # limbopro 上游 cnys.js 已从仓库删除，回退到通用脚本
     "https://raw.githubusercontent.com/limbopro/Adblock4limbo/main/Adguard/cnys.js": "https://raw.githubusercontent.com/limbopro/Adblock4limbo/main/Adguard/Adblock4limbo.js"
