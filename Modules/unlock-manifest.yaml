@@ -13,10 +13,13 @@ merge:
     - "# Spotify VIP: spotify-unlock.sgmodule (Eevee) — 排除旧 app2smile proto / Spotify.Crack 叠跑"
     - ""
   # 旧 Spotify 解锁脚本与实测可用的 Eevee 冲突，合并时剔除
+  # DualSubs Spotify 已拆成独立模块 spotify-dualsubs.sgmodule（保留 #!arguments）
   content_line_excludes:
     - "app2smile/rules/master/js/spotify-proto.js"
     - "Spotify.Crack.Dev.js"
     - "Spotify.Crack.js"
+    - "DualSubs.Spotify."
+
 
 modules:
   - name: unlock-primary
