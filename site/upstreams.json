@@ -112,9 +112,10 @@
       "github": "Yuheng0101/X",
       "used_for": [
         "签到",
-        "BoxJS"
+        "BoxJS",
+        "模块"
       ],
-      "note": "仅 boxjs.json 中带 script 的任务 + 起点模块"
+      "note": "全量镜像 Tasks 脚本 + profiles sgmodule（保留 #!arguments）；不是只拉白名单"
     },
     {
       "id": "chavyleung",
@@ -124,7 +125,7 @@
         "签到",
         "抓参"
       ],
-      "note": "白名单签到 + cookie 合集内嵌"
+      "note": "根目录 Scripts/*.js 的「常用签到包」是精选列表；cookie 合集另含更多 chavy 抓参。盯仓全量镜像以 author-repos 为准"
     },
     {
       "id": "iringo",
