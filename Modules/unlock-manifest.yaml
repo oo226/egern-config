@@ -10,7 +10,13 @@ merge:
     - "# Do not edit manually. Updated by GitHub Actions after upstream sync."
     - "#"
     - "# Sources: mieqq, Sukka RealIP, QingRex(可莉), chxm1023/ddm1023, Yu9191, miranquil, iEwha, ddgksf2013, WeiGiegie, liul0ng, proxy-detect scan, local patches"
+    - "# Spotify VIP: spotify-unlock.sgmodule (Eevee) — 排除旧 app2smile proto / Spotify.Crack 叠跑"
     - ""
+  # 旧 Spotify 解锁脚本与实测可用的 Eevee 冲突，合并时剔除
+  content_line_excludes:
+    - "app2smile/rules/master/js/spotify-proto.js"
+    - "Spotify.Crack.Dev.js"
+    - "Spotify.Crack.js"
 
 modules:
   - name: unlock-primary
@@ -96,3 +102,9 @@ modules:
     role: supplement
     local: true
     note: "本仓库 — P12/OCSP 屏蔽、系统更新屏蔽、skip-server-cert-verify"
+
+  - name: spotify-unlock
+    cache: spotify-unlock.sgmodule
+    role: supplement
+    local: true
+    note: "Spotify VIP（Eevee spot-proto-eevee）— 对照 wesselyang/spotify.plugin 实测可用"
