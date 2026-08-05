@@ -17,6 +17,7 @@ files:
   - site/robots.txt
   - site/upstream-proxy-detect.json
   - site/upstreams.json
+  - site/collection-diff.json
 
 directories:
   - path: Routing

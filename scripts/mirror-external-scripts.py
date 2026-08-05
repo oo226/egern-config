@@ -89,12 +89,14 @@ def discover_urls(extra_files: list[Path] | None = None) -> set[str]:
     return urls
 
 
-def write_rewrite_map(rewrites: dict[str, str]) -> None:
+def write_rewrite_map(rewrites: dict[str, str], *, merge: bool = True) -> None:
     if not yaml:
         raise SystemExit("PyYAML required")
+    final = dict(load_rewrite_map()) if merge else {}
+    final.update(rewrites)
     payload = {
         "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
-        "rewrites": dict(sorted(rewrites.items())),
+        "rewrites": dict(sorted(final.items())),
     }
     REWRITE_MAP.write_text(
         yaml.safe_dump(payload, allow_unicode=True, sort_keys=False),
@@ -108,6 +110,8 @@ def apply_collections(rewrites: dict[str, str]) -> None:
     targets = [
         MODULES / "adblock-collection.module",
         MODULES / "unlock-collection.module",
+        MODULES / "cookie-collection.module",
+        MODULES / "skip-proxy-collection.module",
         MODULES / "boxjs.sgmodule",
     ]
     targets.extend(MODULES.glob("iringo-*.sgmodule"))

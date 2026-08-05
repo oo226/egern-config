@@ -159,3 +159,27 @@ proxy_detect:
 
   # 本地已镜像 Modules/_upstream/<id>/ 再扫一遍（作者仓下载后）
   scan_local_upstream: true
+
+# ── 上游「大合集」差集检测（每日）：有我们没有的脚本就镜像进 _external 并改写合集链接 ──
+collection_watch:
+  - id: fmz200-blockAds
+    url: https://raw.githubusercontent.com/fmz200/wool_scripts/main/Surge/module/blockAds.module
+    group: adblock
+  - id: fmz200-cookies
+    url: https://raw.githubusercontent.com/fmz200/wool_scripts/main/Surge/module/cookies.module
+    group: cookie
+  - id: chxm1023-collections
+    url: https://raw.githubusercontent.com/chxm1023/Script_X/main/Collections.sgmodule
+    group: unlock
+  - id: iewha-unlock
+    url: https://raw.githubusercontent.com/iEwha/Profiles/master/Surge/Unlock.sgmodule
+    group: unlock
+  - id: iewha-script
+    url: https://raw.githubusercontent.com/iEwha/Profiles/master/Surge/Script.sgmodule
+    group: unlock
+  - id: blackmatrix7-advertising
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rewrite/Surge/Advertising/Advertising.sgmodule
+    group: adblock
+  - id: blackmatrix7-advertising-script
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rewrite/Surge/AdvertisingScript/AdvertisingScript.sgmodule
+    group: adblock
