@@ -86,7 +86,7 @@ DEFAULT_SCRIPT_PATTERN_FIXES = (
 DEFAULT_ARGUMENT_PLACEHOLDER_FIXES = (
     ('Types="{{{Types}}}"', 'Types="Translate,External"'),
     ('Languages[0]="{{{Languages[0]}}}"', 'Languages[0]="AUTO"'),
-    ('Languages[1]="{{{Languages[1]}}}"', 'Languages[1]="ZH"'),
+    ('Languages[1]="{{{Languages[1]}}}"', 'Languages[1]="ZH-HANS"'),
     ('Vendor="{{{Vendor}}}"', 'Vendor="Google"'),
     ('LrcVendor="{{{LrcVendor}}}"', 'LrcVendor="NeteaseMusic"'),
     ('LogLevel="{{{LogLevel}}}"', 'LogLevel="WARN"'),
