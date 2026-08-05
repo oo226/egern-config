@@ -1,5 +1,6 @@
 /**
- * Spotify：请求前去掉缓存校验头，避免 304 无 body（对齐 app2smile/spotify-qx-header.js）
+ * Spotify：customize 请求前去掉 If-None-Match，减少 304（无 body）日志。
+ * 解锁仍靠 spotifyProto 的 http-response；本脚本只改请求头。
  */
 (function () {
   const req = typeof $request !== "undefined" ? $request : null;
@@ -8,17 +9,14 @@
     return;
   }
   const headers = req.headers || {};
-  const drop = new Set(["if-none-match", "if-modified-since"]);
   for (const key of Object.keys(headers)) {
-    if (drop.has(String(key).toLowerCase())) {
+    const lower = String(key).toLowerCase();
+    if (lower === "if-none-match" || lower === "if-modified-since") {
       delete headers[key];
     }
   }
-  // 常见大小写再删一次
   delete headers["If-None-Match"];
   delete headers["If-Modified-Since"];
-  delete headers["if-none-match"];
-  delete headers["if-modified-since"];
-  console.log("spotifyProto-nocache: stripped If-None-Match / If-Modified-Since");
+  console.log("spotifyProto-nocache: stripped cache validators");
   $done({ headers });
 })();
