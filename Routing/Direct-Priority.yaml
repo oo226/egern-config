@@ -2,11 +2,10 @@
 # 类型: 分流规则 — 国内/系统服务优先直连（须在 Proxy 类规则之前匹配）
 # Do not edit manually. Updated by GitHub Actions after upstream sync.
 # Merged: WeChat.yaml, Microsoft.yaml, AppleServers.yaml, TestFlight.yaml
-# Total unique entries: 723
+# Total unique entries: 722
 
 no_resolve: true
 domain_set:
-  - 7h15_ru1353t_1s_m4d3_by_5ukk4w.skk.moe
   - apd-pcdnwxlogin.teg.tencent-cloud.net
   - beta.apple.com
   - btrace.qq.com

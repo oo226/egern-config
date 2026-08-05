@@ -3,16 +3,15 @@
 # Do not edit manually. Updated by GitHub Actions after upstream sync.
 #
 # Sources:
-#   Repcz-AI     — Repcz/Tool — AI.yaml (51 entries)
-#   VPSDance     — VPSDance/ai-proxy-rules — egern/all.yaml (286 entries)
+#   Repcz-AI     — Repcz/Tool — AI.yaml (50 entries)
+#   VPSDance     — VPSDance/ai-proxy-rules — egern/all.yaml (341 entries)
 #   Sukka-ai     — Sukka ruleset.skk.moe — non_ip/ai.conf (48 entries)
 #   local        — oo226/egern-config — AI-supplement.yaml (80 entries)
-# Overlap removed: 119
-# Total unique entries: 346
+# Overlap removed: 126
+# Total unique entries: 393
 
 no_resolve: true
 domain_set:
-  - 7h15_ru1353t_1s_m4d3_by_5ukk4w.skk.moe
   - ai.google.dev
   - ai.meta.com
   - aida.googleapis.com
@@ -34,9 +33,12 @@ domain_set:
   - api.fireworks.ai
   - api.github.com
   - api.githubcopilot.com
+  - api.hunyuan.cloud.tencent.com
   - api.jetbrains.ai
   - api.kimi.moonshot.cn
   - api.minimax.chat
+  - api.minimax.io
+  - api.minimaxi.com
   - api.mistral.ai
   - api.msn.com
   - api.openai.com
@@ -50,6 +52,7 @@ domain_set:
   - auth0.openai.com
   - aws-language-servers.us-east-1.amazonaws.com
   - aws-toolkit-language-servers.amazonaws.com
+  - bailian.console.aliyun.com
   - browser-intake-datadoghq.com
   - browser-intake-us5-datadoghq.com
   - cdn.growthbook.io
@@ -68,11 +71,14 @@ domain_set:
   - copilot.microsoft.com
   - copilotprodattachments.blob.core.windows.net
   - daily-cloudcode-pa.googleapis.com
+  - dashscope.aliyuncs.com
+  - ernie.baidu.com
   - file.oaiusercontent.com
   - files.oaiusercontent.com
   - gateway.ai.cloudflare.com
   - gateway.bingviz.microsoft.net
   - gateway.bingviz.microsoftapp.net
+  - hunyuan.tencentcloudapi.com
   - idetoolkits-hostedfiles.amazonaws.com
   - idetoolkits.amazonwebservices.com
   - in.appcenter.ms
@@ -92,6 +98,7 @@ domain_set:
   - pplx-res.cloudinary.com
   - production-openaicom-storage.azureedge.net
   - q-developer-integration.us-east-1.api.aws
+  - qianfan.baidubce.com
   - robinfrontend-pa.googleapis.com
   - self.events.data.microsoft.com
   - servd-anthropic-website.b-cdn.net
@@ -99,6 +106,7 @@ domain_set:
   - storage.googleapis.com
   - sydney.bing.com
   - webchannel-alkalimakersuite-pa.clients6.google.com
+  - yiyan.baidu.com
 domain_suffix_set:
   - abtestvm-sg.bytedance.com
   - ai.cloudflare.com
@@ -130,6 +138,7 @@ domain_suffix_set:
   - baichuan-ai.com
   - bard.google.com
   - bfl.ai
+  - bigmodel.cn
   - bing-shopping.microsoft-falcon.io
   - bolt.new
   - bytegate-sg.byteintlapi.com
@@ -140,6 +149,7 @@ domain_suffix_set:
   - character.ai
   - chat.com
   - chatbotclaude.com
+  - chatglm.cn
   - chatgpt.com
   - chatgpt.livekit.cloud
   - chatgpt.site
@@ -174,7 +184,16 @@ domain_suffix_set:
   - continue.dev
   - copilot.microsoft.com
   - copy.ai
+  - coze.cn
   - coze.com
+  - cozeapp.net
+  - cozebaas.cn
+  - cozebuild.com
+  - cozecdn.com
+  - cozedeploy.com
+  - cozefn.cn
+  - cozeide.cn
+  - cozesdk.com
   - crewai.com
   - crixet.com
   - cursor-cdn.com
@@ -191,6 +210,7 @@ domain_suffix_set:
   - diabrowser.engineering
   - dify.ai
   - doubao.com
+  - doudou.com
   - duck.ai
   - edgeservices.bing.com
   - eigent.ai
@@ -222,12 +242,14 @@ domain_suffix_set:
   - grokipedia.com
   - groq.com
   - h2o.ai
+  - hailuoai.com
   - hermes-agent.nousresearch.com
   - heygen.com
   - hf.co
   - hf.space
   - host.livekit.cloud
   - huggingface.co
+  - hunyuan.tencent.com
   - identrust.com
   - ideogram.ai
   - inflection.ai
@@ -238,6 +260,7 @@ domain_suffix_set:
   - jetbrains.ai
   - jules.google
   - jules.google.com
+  - kimi.com
   - kimi.moonshot.cn
   - kiro.dev
   - labs.google
@@ -257,9 +280,16 @@ domain_suffix_set:
   - makersuite.google.com
   - manus.im
   - manuscdn.com
+  - marscode.cn
   - marscode.com
+  - marscode.com.cn
+  - mcbaas.work
+  - mcdemo.show
+  - mchost.guru
+  - mcprev.cn
   - mcpservertest.online
   - meta.ai
+  - miaibox.com
   - midjourney.com
   - minimax.io
   - mistral.ai
@@ -267,6 +297,7 @@ domain_suffix_set:
   - modelcontextprotocol.io
   - modelcontextprotocol.net
   - modelcontextprotocol.org
+  - moonshot.ai
   - moonshot.cn
   - muthos.com
   - notebook.google.com
@@ -298,7 +329,10 @@ domain_suffix_set:
   - proactivebackend-pa.googleapis.com
   - q.eu-central-1.amazonaws.com
   - q.us-east-1.amazonaws.com
+  - qianwen.aliyun.com
   - qianwen.com
+  - qwen.ai
+  - qwenlm.ai
   - recraft.ai
   - repl.co
   - repl.it
@@ -328,11 +362,16 @@ domain_suffix_set:
   - suno.com
   - synthesia.io
   - tabnine.com
+  - tcwqqdy.guru
   - together.ai
   - together.xyz
   - tongyi.aliyun.com
+  - tongyi.com
   - trae-api-sg.mchost.guru
   - trae.ai
+  - trae.cn
+  - trae.com.cn
+  - trae.guru
   - tron-sg.bytelemon.com
   - turn.livekit.cloud
   - udio.com
@@ -343,13 +382,21 @@ domain_suffix_set:
   - windsurf.com
   - writesonic.com
   - x.ai
+  - xiaoaiassist.com
+  - xiaomimimo.com
+  - xingyeai.com
   - yiyan.baidu.com
+  - yoma.cn
   - you.com
   - youmind.ai
   - youmind.com
   - youmind.site
+  - yuanbao.tencent.com
+  - yuanqi.tencent.com
+  - z.ai
   - zed.dev
   - zhipuai.cn
+  - zhipucn.com
 domain_keyword_set:
   - alkalimakersuite-pa.clients6.google.com
   - chatgpt-async-webps-prod
