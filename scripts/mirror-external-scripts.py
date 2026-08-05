@@ -19,6 +19,7 @@ from external_script_utils import (
     dest_relative_path,
     extract_script_urls,
     is_local_url,
+    load_rewrite_map,
     local_raw_url,
     normalize_url,
     should_skip_mirror,

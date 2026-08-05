@@ -109,15 +109,44 @@ def collection_seeds() -> list[dict]:
     return list(by_url.values())
 
 
+def known_stub_rewrites() -> dict[str, str]:
+    """Dead upstream script URLs already remapped in merge manifests / defaults."""
+    fixes: dict[str, str] = {}
+    merge_path = Path(__file__).with_name("merge-adblock-modules.py")
+    if merge_path.is_file():
+        try:
+            spec = importlib.util.spec_from_file_location("merge_adblock_modules", merge_path)
+            mod = importlib.util.module_from_spec(spec)
+            assert spec.loader is not None
+            spec.loader.exec_module(mod)
+            fixes.update({str(k): str(v) for k, v in (getattr(mod, "DEFAULT_SCRIPT_URL_FIXES", {}) or {}).items()})
+        except Exception as exc:
+            print(f"warn: could not load DEFAULT_SCRIPT_URL_FIXES: {exc}")
+    for path in (MANIFEST, UNLOCK_MANIFEST, COOKIE_MANIFEST):
+        if not path.is_file():
+            continue
+        data = load_yaml(path)
+        merge = data.get("merge") or {}
+        for old, new in (merge.get("script_url_fixes") or {}).items():
+            fixes[str(old)] = str(new)
+    return fixes
+
+
 def main() -> None:
     seeds = collection_seeds()
     existing_map = load_rewrite_map()
+    stub_fixes = known_stub_rewrites()
+    # Prefer explicit stub/local fixes over attempting a dead upstream download
+    for old, new in stub_fixes.items():
+        existing_map.setdefault(old, new)
+
     report = {
         "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "collections_checked": [],
         "missing_before": [],
         "mirrored_now": [],
         "still_missing": [],
+        "stubbed": [],
         "foreign_in_our_collections": [],
     }
 
@@ -152,17 +181,20 @@ def main() -> None:
     for url in sorted(all_upstream_urls | our_foreign):
         if is_local_url(url) or should_skip_mirror(url):
             continue
+        if url in stub_fixes:
+            report["stubbed"].append({"url": url, "local": stub_fixes[url]})
+            continue
+        if url in existing_map:
+            # Already rewritten (local raw or stub); no need to re-download
+            continue
         dest = dest_absolute_path(url)
         if dest.is_file() and dest.stat().st_size > 0:
-            continue
-        if url in existing_map and Path(
-            ROOT / "Scripts/_external" / dest_relative_path(url)
-        ).is_file():
             continue
         missing.append(url)
 
     report["missing_before"] = missing
     print(f"missing scripts to mirror: {len(missing)}")
+    print(f"stubbed dead upstream scripts: {len(report['stubbed'])}")
 
     rewrites = dict(existing_map)
     for url in missing:
