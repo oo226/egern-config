@@ -1,0 +1,17 @@
+#!name=PingMe 签到
+#!desc=PingMe 抓参 + 定时签到（对齐起点：可用模版参数开关抓参；抓完请关掉抓参再开签到）
+#!author=怎么肥事 / fmz200 / oo226
+#!homepage=https://github.com/oo226/egern-config
+#!category=签到
+#!system=ios
+#!tag=PingMe,签到,抓参
+#!arguments=是否开启抓取重写:"PingMe抓参", CRONEXP:"30 8,20 * * *",TIMEOUT:300
+#!arguments-desc=- 是否开启抓取重写: ["PingMe抓参","#"]\n  填 PingMe抓参 = 开启抓参；填 # = 关闭抓参（抓完务必改成 #）。\n\n- CRONEXP: 签到定时，默认每天 8:30 与 20:30。\n\n- TIMEOUT: 签到脚本超时秒数，默认 300。\n\n用法：开抓参 → 打开 PingMe App 触发一次余额接口 → 收到成功通知后把抓参改成 # → 等定时签到或手动跑脚本。
+
+[Script]
+{{{是否开启抓取重写}}} = type=http-request, pattern=^https:\/\/api\.pingmeapp\.net\/app\/queryBalanceAndBonus, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/PingMe-capture.js, timeout=60
+
+PingMe签到 = type=cron, cronexp="{{{CRONEXP}}}", script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/PingMe-signin.js, timeout={{{TIMEOUT}}}
+
+[MITM]
+hostname = %APPEND% api.pingmeapp.net

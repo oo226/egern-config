@@ -33,7 +33,7 @@ startTasks().then(r => $.done());
 async function startTasks() {
     console.log("开始运行签到");
     // const raw = $prefs.valueForKey(ckKey);
-    const raw = $.getdata(ckKey);
+    const raw = $.getdata(ckKey) || $.getdata(`#${ckKey}`);
     if (!raw) {
         // notifyDone('⚠️ 未抓到参数', '先打开 PingMe 触发一次 ');
         // $done();

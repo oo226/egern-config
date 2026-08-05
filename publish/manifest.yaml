@@ -31,6 +31,8 @@ directories:
       - skip-proxy-collection.module
       - cookie-collection.module
       - spotify-unlock.sgmodule
+      - spotify-dualsubs.sgmodule
+      - pingme.sgmodule
       - qdreader.sgmodule
       - ibl3nd-plugin-hub.yaml
       - iringo-mitm.yaml

@@ -55,21 +55,26 @@ function saveCapture(url, reqHeaders) {
   };
   const json = JSON.stringify(capture);
 
+  // 同时写带/不带 # 的键，兼容签到脚本 $.getdata('pingme_capture_v3') 与旧写法
+  const keys = [`#${CK}`, CK];
   if (typeof $persistentStore !== 'undefined') {
-    $persistentStore.write(json, `#${CK}`);
+    keys.forEach(k => $persistentStore.write(json, k));
     return;
   }
   if (typeof globalThis.__pingmeStorage !== 'undefined' && globalThis.__pingmeStorage) {
     const s = globalThis.__pingmeStorage;
     if (typeof s.setJSON === 'function') s.setJSON(CK, capture);
-    else if (typeof s.set === 'function') s.set(CK, json);
+    else if (typeof s.set === 'function') {
+      s.set(CK, json);
+      s.set(`#${CK}`, json);
+    }
     return;
   }
   console.log(`【PingMe抓参】无可用存储，capture=${json.slice(0, 120)}...`);
 }
 
 function notifyOk(url) {
-  const msg = '现在可以关闭「PingMe参数」，再开「PingMe签到」';
+  const msg = '抓参成功。请把模块参数「是否开启抓取重写」改成 # 关掉抓参，再等定时签到。';
   console.log(`【PingMe抓参】成功\n${url}`);
   if (typeof $notification !== 'undefined' && $notification.post) {
     $notification.post('PingMe 获取成功✅', msg, '');
