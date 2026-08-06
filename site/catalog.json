@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-05T15:55:52Z",
+  "generated_at": "2026-08-06T04:39:41Z",
   "branch": "main",
   "repo": "oo226/egern-config",
   "raw_base": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main",
@@ -202,18 +202,33 @@
   ],
   "sync_digest": {
     "commit": {
-      "hash": "ba0f56f",
-      "subject": "Merge branch 'cursor/fix-pingme-spotify-egern-ac83': PingMe args + Spotify 304",
+      "hash": "c7aafda",
+      "subject": "Merge Spotify nocache (keep unlock)",
       "date": "2026-08-05"
     },
     "summary": [
-      "模块 更新 4 个文件",
-      "脚本 更新 2 个文件",
+      "模块 更新 2 个文件",
+      "脚本 更新 1 个文件",
       "国内直连 26042 条"
     ],
-    "files_changed": 9
+    "files_changed": 3
   },
   "changelog": [
+    {
+      "hash": "c23b156",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-08-05"
+    },
+    {
+      "hash": "6abb289",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-08-05"
+    },
+    {
+      "hash": "1725258",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-08-05"
+    },
     {
       "hash": "2d3ee87",
       "subject": "chore: publish curated snapshot from sync",
@@ -237,21 +252,6 @@
     {
       "hash": "3160f4a",
       "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-08-05"
-    },
-    {
-      "hash": "8a866d6",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-08-05"
-    },
-    {
-      "hash": "910d067",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-08-05"
-    },
-    {
-      "hash": "6e20415",
-      "subject": "Merge pull request #56 from oo226/cursor/pages-skip-proxy-ac83",
       "date": "2026-08-05"
     }
   ],
@@ -432,8 +432,8 @@
       "kind": "module",
       "category": "modules",
       "group": "解锁",
-      "name": "Spotify Unlock (Eevee)",
-      "desc": "部分解锁 Premium：去广告、去随机播放、列表正常（对照 wesselyang/spotify.plugin；音质勿设超高；登录后开模块并强杀重启 App）",
+      "name": "Spotify(>=iOS15)",
+      "desc": "部分解锁 Premium：去广告、歌手/专辑列表、去随机播放（与 wesselyang/spotify.plugin 同款；音质勿设超高；登录后开模块并强杀重启 App）",
       "icon": "",
       "homepage": "",
       "path": "Modules/spotify-unlock.sgmodule",
@@ -457,7 +457,7 @@
       "category": "modules",
       "group": "签到",
       "name": "PingMe 签到",
-      "desc": "PingMe 抓参 + 定时签到（模版参数开关抓参，用法同起点）",
+      "desc": "PingMe 抓参 + 定时签到（模版参数开关抓参；Egern 下 # 会写进匹配规则以关闭抓参）",
       "icon": "",
       "homepage": "https://github.com/oo226/egern-config",
       "path": "Modules/pingme.sgmodule",
@@ -466,7 +466,7 @@
       "default_enabled": false,
       "usage_tier": "optional",
       "requires": [],
-      "hint": "模块详情→参数。若无参数面板：删旧模块后重加；或改用 pingme.yaml（Egern 原生 compat_arguments）。",
+      "hint": "关闭抓参：参数「是否开启抓取重写」改成 #。开启则保持默认 URL 正则。",
       "tags": [
         "PingMe",
         "签到",
@@ -491,7 +491,7 @@
       "default_enabled": false,
       "usage_tier": "optional",
       "requires": [],
-      "hint": "Egern 原生 YAML 模版参数（compat_arguments），参数面板更稳。",
+      "hint": "推荐。关闭抓参把「是否开启抓取重写」改成 #（不要填 PingMe抓参 文字）。",
       "tags": [
         "PingMe",
         "签到",
