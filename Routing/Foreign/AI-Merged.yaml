@@ -408,4 +408,4 @@ domain_regex_set:
   - "^chatgpt-async-webps-prod-\\S+-\\d+\\.webpubsub\\.azure\\.com$"
 url_regex_set:
   - "https://chat\\.openai\\.com/.*"
-  - "https://www\\.google\\.com/.*continue=https://gemini\\.google\\.com.+"
+  - "https://www\.google\.com/.*continue=https://gemini\.google\.com.+"

@@ -2,6 +2,11 @@
 # 规则统计: 498
 
 no_resolve: true
+domain_keyword_set:
+  - apiproxy-device-prod-nlb-
+  - dualstack.apiproxy-
+  - dualstack.ichnaea-web-
+  - netflixdnstest
 domain_suffix_set:
   - fast.com
   - flxvpn.net
@@ -31,11 +36,6 @@ domain_suffix_set:
   - nflxso.net
   - nflxvideo.net
   - us-west-2.amazonaws.com
-domain_keyword_set:
-  - apiproxy-device-prod-nlb-
-  - dualstack.apiproxy-
-  - dualstack.ichnaea-web-
-  - netflixdnstest
 ip_cidr_set:
   - 103.87.204.0/22
   - 103.87.205.0/24
@@ -504,4 +504,4 @@ ip_cidr6_set:
   - 2a00:86c0:ff0a::/48
   - 2a03:5640::/32
 user_agent_set:
-  - "Argo*"
+  - 'Argo*'

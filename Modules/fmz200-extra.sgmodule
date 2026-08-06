@@ -5820,6 +5820,7 @@ vgTime = type=http-response, pattern=^https?:\/\/app02\.vgtime\.com:8080\/vgtime
 
 
 # >>> merged from RedditTranslation.module (unique only)
+Reddit自动翻译 = type=http-request, pattern=^https?:\/\/gql(-fed)?\.reddit\.com, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/gist/RavelloH/68ed0626dae69a1ce7c8ad6887087ea1/c008127260bc4dcd550fcd98285048cf6176f602/main.js
 
 
 # >>> merged from XWebAds.module (unique only)
@@ -5844,3 +5845,9 @@ X网页版去广告 = type=http-response, pattern=^https?:\/\/x\.com\/i\/api\/gr
 自定义tab皮肤 = type=http-response, pattern=^https?:\/\/m?api\.weibo\.c(n|om)\/2\/!\/client\/light_skin, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/zmqcherish/proxy-script/main/weibo_main.js, requires-body=true, timeout=60
 非会员设置tab皮肤 = type=http-response, pattern=^https?:\/\/new\.vip\.weibo\.c(n|om)\/littleskin\/preview, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/zmqcherish/proxy-script/main/weibo_main.js, requires-body=true, timeout=60
 解锁微博会员APP图标 = type=http-response, pattern=^https?:\/\/new\.vip\.weibo\.c(n|om)\/aj\/appicon\/list, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/fmz200/wool_scripts/main/Scripts/weibo/weibo_vip.js, requires-body=true, timeout=60
+
+
+[Header Rewrite]
+
+# >>> merged from bilibili.sgmodule (unique only)
+http-response ^https:\/\/grpc\.biliapi\.net\/bilibili\.app\.(interface\.v1\.(Teenagers\/ModeStatus|Search\/DefaultWords)|view\.v1\.View\/TFInfo|viewunite\.v1\.View\/ViewEndPage)$ header-add 'grpc-status' '0'

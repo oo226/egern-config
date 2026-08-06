@@ -1,5 +1,5 @@
 # 规则名称: Proxy
-# 规则统计: 17545
+# 规则统计: 17544
 
 no_resolve: true
 domain_set:
@@ -60,6 +60,23 @@ domain_set:
   - vcards.metowolf.com
   - wego.here.com
   - www2.ati.com
+domain_keyword_set:
+  - '.archive.'
+  - '.blogspot.'
+  - avoddashs
+  - blogspot
+  - browserleaks
+  - discord
+  - dropbox
+  - facebook
+  - google
+  - leak
+  - openai
+  - pinterest
+  - sci-hub
+  - speedtest
+  - ttvnw
+  - whatsapp
 domain_suffix_set:
   - 01.org
   - 02weqj32.com
@@ -477,8 +494,6 @@ domain_suffix_set:
   - 9to5toys.com
   - 9xlove.xyz
   - 9zipai.net
-  - Google.com
-  - Real-ThaiPussy.com
   - a-hentai.tv
   - a-normal-day.com
   - a1cbafa5ea9a6480cb8e9ffba46cbad9-466059813.us-west-2.elb.amazonaws.com
@@ -6105,7 +6120,6 @@ domain_suffix_set:
   - girlsxxx.net
   - git.io
   - gitbook.com
-  - gitbook.com 
   - gitbook.io
   - gitbook.zendesk.com
   - gitbooks.io
@@ -6263,7 +6277,7 @@ domain_suffix_set:
   - goodnotes.com
   - goodnotes.email
   - goodnotescloud.com
-  - goodnotesplatform.com 
+  - goodnotesplatform.com
   - goodporn.to
   - goodporno.cc
   - goodreaders.com
@@ -6330,6 +6344,7 @@ domain_suffix_set:
   - google.co.za
   - google.co.zm
   - google.co.zw
+  - google.com
   - google.com.af
   - google.com.ag
   - google.com.ai
@@ -6546,7 +6561,7 @@ domain_suffix_set:
   - gov.taipei
   - gov.tw
   - govecn.org
-  - goοglе.com
+  - 'goοglе.com'
   - gpsonextra.net
   - gpstheseries.com
   - gputechconf.cn
@@ -6678,8 +6693,8 @@ domain_suffix_set:
   - gyutto.com
   - gzm.tv
   - gzone-anime.info
-  - gοoglе.com
-  - gооgle.com
+  - 'gοoglе.com'
+  - 'gооgle.com'
   - h-china.org
   - h-flash.com
   - h-moe.com
@@ -12181,6 +12196,7 @@ domain_suffix_set:
   - readwise.io
   - readydown.com
   - real-homemade-movies.com
+  - real-thaipussy.com
   - realcourage.org
   - realdoll.com
   - realforum.zkiz.com
@@ -13158,7 +13174,7 @@ domain_suffix_set:
   - sm.ms
   - smallteenpussy.com
   - smart-edge.com
-  - smartdnsProxy.com
+  - smartdnsproxy.com
   - smarthide.com
   - smartmailcloud.com
   - smartmediarep.com
@@ -17035,29 +17051,12 @@ domain_suffix_set:
   - zzitube.com
   - zzux.com
   - zzycdz.com
-  - はじめよう.みんな
-  - 古博.com
-  - 咕果.com
-  - 奔腾.cn
-  - 易付通.cn
-  - 谷歌.com
-domain_keyword_set:
-  - .archive.
-  - .blogspot.
-  - avoddashs
-  - blogspot
-  - browserleaks
-  - discord
-  - dropbox
-  - facebook
-  - google
-  - leak
-  - openai
-  - pinterest
-  - sci-hub
-  - speedtest
-  - ttvnw
-  - whatsapp
+  - 'はじめよう.みんな'
+  - '古博.com'
+  - '咕果.com'
+  - '奔腾.cn'
+  - '易付通.cn'
+  - '谷歌.com'
 ip_cidr_set:
   - 1.201.0.0/24
   - 100.43.64.0/19
@@ -17548,8 +17547,8 @@ ip_cidr6_set:
   - 2a0b:e44:1::/48
   - 2a0b:e45:1::/48
 user_agent_set:
-  - "InstantVideo.US*"
-  - "LINE%20TV*"
-  - "Prime%20Video*"
-  - "Roam*"
-  - "SpeedTest*"
+  - 'InstantVideo.US*'
+  - 'LINE%20TV*'
+  - 'Prime%20Video*'
+  - 'Roam*'
+  - 'SpeedTest*'

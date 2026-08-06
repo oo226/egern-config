@@ -1,6 +1,6 @@
 {
   "generated_by": "scripts/discover-proxy-detect.py",
-  "count": 3,
+  "count": 4,
   "items": [
     {
       "id": "iamsweet-skip-proxy",
@@ -45,6 +45,22 @@
       "source": "seed",
       "upstream": true,
       "desc": "Last Updated: 2026-04-16T09:46:43.384Z"
+    },
+    {
+      "id": "proxy-detect-local-🍟 通用模块.official",
+      "name": "🍟 Fries: 🌐 General Enhanced",
+      "desc": "(📱 iOS版) 1.添加跳过代理部分段内容 2.添加返回真实IP段内容 3.添加不可MitM的域名，防止打断连接",
+      "kind": "module",
+      "url": "https://raw.githubusercontent.com/QingRex/LoonKissSurge/main/Official/%F0%9F%8D%9F%20%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97.official.sgmodule",
+      "homepage": "https://github.com/QingRex/LoonKissSurge",
+      "path": "qingrex/Official/🍟 通用模块.official.sgmodule",
+      "tags": [
+        "代理检测",
+        "上游原链",
+        "qingrex"
+      ],
+      "source": "local:qingrex",
+      "upstream": true
     }
   ]
 }

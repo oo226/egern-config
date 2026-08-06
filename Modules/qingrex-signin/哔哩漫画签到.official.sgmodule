@@ -5,9 +5,9 @@
 #!category=🐻 NobyDa
 
 [Script]
-哔哩漫画[签到] = type=cron,cronexp="{{{定时签到}}}",wake-system=1,script-update-interval=0,timeout=60,script-path=https://raw.githubusercontent.com/NobyDa/Script/master/Bilibili-DailyBonus/Manga.js
+哔哩漫画[签到] = type=cron,cronexp="{{{定时签到}}}",wake-system=1,script-update-interval=0,timeout=60,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/NobyDa/Script/master/Bilibili-DailyBonus/Manga.js
 
-{{{禁用脚本}}} = type=http-request,pattern=^https:\/\/app\.bilibili\.com\/x\/v\d\/account\/myinfo,script-path=https://raw.githubusercontent.com/NobyDa/Script/master/Bilibili-DailyBonus/Manga.js
+{{{禁用脚本}}} = type=http-request,pattern=^https:\/\/app\.bilibili\.com\/x\/v\d\/account\/myinfo,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/NobyDa/Script/master/Bilibili-DailyBonus/Manga.js
 
 [MITM]
 {{{禁用MITM}}} = %APPEND% app.bilibili.com

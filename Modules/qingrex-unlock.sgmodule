@@ -397,6 +397,13 @@ IP-CIDR,118.89.204.198/32,REJECT,no-resolve,pre-matching
 # >>> merged from 拦截HTTPDNS.sgmodule (unique only)
 
 
+[Header Rewrite]
+
+# >>> merged from Official/Spotify Plus.official.sgmodule (unique only)
+# if-none-match返回304状态码
+http-request ^https:\/\/(spclient\.wg\.spotify\.com|.*-spclient\.spotify\.com(:443)?)\/user-customization-service\/v1\/customize$ header-del if-none-match
+
+
 [Script]
 
 # >>> merged from Official/Spotify Plus.official.sgmodule (unique only)
