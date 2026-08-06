@@ -20,7 +20,12 @@ SOURCES = [
     ROUTING_FOREIGN / "App" / "TestFlight.yaml",
 ]
 
-EXTRA_SUFFIXES: tuple[str, ...] = ()
+# 用户指定须优先直连（在 Proxy 规则之前）：PingMe / 起点 / 120399
+EXTRA_SUFFIXES: tuple[str, ...] = (
+    "120399.xyz",
+    "qidian.com",
+    "pingmeapp.net",
+)
 
 
 def main() -> None:
