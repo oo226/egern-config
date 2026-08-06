@@ -1,15 +1,15 @@
 #!name=PingMe 签到
-#!desc=PingMe 抓参 + 定时签到（模版参数开关抓参，用法同起点）
+#!desc=PingMe 抓参 + 定时签到（模版参数开关抓参；Egern 下 # 会写进匹配规则以关闭抓参）
 #!author=怎么肥事 / fmz200 / oo226
 #!homepage=https://github.com/oo226/egern-config
 #!category=签到
 #!system=ios
 #!tag=PingMe,签到,抓参
-#!arguments=是否开启抓取重写:"PingMe抓参",CRONEXP:"30 8,20 * * *",TIMEOUT:300
-#!arguments-desc=- 是否开启抓取重写: ["PingMe抓参","#"]\n  填 PingMe抓参=开抓参；填 #=关抓参（抓完务必改成 #）。\n\n- CRONEXP: 签到定时，默认每天 8:30 与 20:30。\n\n- TIMEOUT: 签到超时秒数，默认 300。\n\n入口：模块详情 → 参数。若仍无参数面板，请删掉旧模块后重新添加本链接，或改用 pingme.yaml。
+#!arguments=是否开启抓取重写:"^https://api\\.pingmeapp\\.net/app/queryBalanceAndBonus",CRONEXP:"30 8,20 * * *",TIMEOUT:300
+#!arguments-desc=- 是否开启抓取重写：此值即请求匹配正则。开启=保持默认 URL 正则；关闭=改成 #（抓完务必改成 #）。不要填「PingMe抓参」文字。\n\n- CRONEXP: 签到定时，默认每天 8:30 与 20:30。\n\n- TIMEOUT: 签到超时秒数，默认 300。
 
 [Script]
-{{{是否开启抓取重写}}}获取参数 = type=http-request,pattern=^https:\/\/api\.pingmeapp\.net\/app\/queryBalanceAndBonus,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/PingMe-capture.js,timeout=60
+PingMe获取参数 = type=http-request,pattern={{{是否开启抓取重写}}},script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/PingMe-capture.js,timeout=60
 
 PingMe签到 = type=cron,cronexp="{{{CRONEXP}}}",script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/PingMe-signin.js,timeout={{{TIMEOUT}}}
 
