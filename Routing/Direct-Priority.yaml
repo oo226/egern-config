@@ -2,7 +2,7 @@
 # 类型: 分流规则 — 国内/系统服务优先直连（须在 Proxy 类规则之前匹配）
 # Do not edit manually. Updated by GitHub Actions after upstream sync.
 # Merged: WeChat.yaml, Microsoft.yaml, AppleServers.yaml, TestFlight.yaml
-# Total unique entries: 722
+# Total unique entries: 725
 
 no_resolve: true
 domain_set:
@@ -17,6 +17,7 @@ domain_set:
   - weixin110.qq.com
   - wup.imtt.qq.com
 domain_suffix_set:
+  - 120399.xyz
   - 1drv.com
   - 1drv.ms
   - 21vbc.com
@@ -560,6 +561,7 @@ domain_suffix_set:
   - passport.net
   - pbiwebcontent.cn
   - phonefactor.net
+  - pingmeapp.net
   - pixapp.net
   - playfabapi.cn
   - playfabcn.com
@@ -581,6 +583,7 @@ domain_suffix_set:
   - push-apple.com.akadns.net
   - pwabuilder.com
   - pxt.io
+  - qidian.com
   - qlogo.cn
   - qpic.cn
   - reactorms.com.cn
