@@ -4,15 +4,20 @@ author: oo226/egern-config
 homepage: https://github.com/oo226/egern-config
 category: 签到
 compat_arguments:
-  是否开启抓取重写: "PingMe抓参"
+  # 此值会直接当作 http_request.match；填 # 则永远匹配不到 = 关闭抓参
+  是否开启抓取重写: "^https://api\\.pingmeapp\\.net/app/queryBalanceAndBonus"
   CRONEXP: "30 8,20 * * *"
 compat_arguments_desc: |
-  是否开启抓取重写：填 PingMe抓参=开抓参；填 #=关（抓完务必改成 #）。
+  是否开启抓取重写：
+  · 开启抓参：保持默认的 URL 正则（不要填「PingMe抓参」四个字，Egern 里无效）
+  · 关闭抓参：改成单独一个 #
+  抓完务必改成 #。
+
   CRONEXP：签到定时，默认 8:30 与 20:30。
 scriptings:
   - http_request:
-      name: "{{{是否开启抓取重写}}}获取参数"
-      match: "^https://api\\.pingmeapp\\.net/app/queryBalanceAndBonus"
+      name: PingMe获取参数
+      match: "{{{是否开启抓取重写}}}"
       script_url: "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/PingMe-capture.js"
       timeout: 60
       enabled: true
