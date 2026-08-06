@@ -5,6 +5,9 @@ no_resolve: true
 domain_set:
   - api.mixpanel.com
   - events-gateway.ncdev.site
+domain_keyword_set:
+  - nicegram
+  - telegram
 domain_suffix_set:
   - cdn-telegram.org
   - comments.app
@@ -32,9 +35,6 @@ domain_suffix_set:
   - tx.me
   - usercontent.dev
   - walletbot.me
-domain_keyword_set:
-  - nicegram
-  - telegram
 ip_cidr_set:
   - 149.154.160.0/20
   - 185.76.151.0/24
@@ -54,8 +54,8 @@ ip_cidr6_set:
   - 2001:b28:f23f::/48
   - 2a0a:f280::/32
 asn_set:
-  - "211157"
-  - "44907"
-  - "59930"
-  - "62014"
-  - "62041"
+  - '211157'
+  - '44907'
+  - '59930'
+  - '62014'
+  - '62041'

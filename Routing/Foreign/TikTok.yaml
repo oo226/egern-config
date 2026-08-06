@@ -22,6 +22,14 @@ domain_set:
   - p3-tt-ipv6.byteimg.com
   - p9-tt.byteimg.com
   - roovza-launches.appsflyersdk.com
+domain_keyword_set:
+  - bytedance.map.
+  - musical.ly.
+  - tiktokcdn-
+  - tiktokcdn.com.
+  - tiktokv.com.
+  - ttcdn-tos.
+  - ttlivecdn.com.
 domain_suffix_set:
   - bytedance.com
   - bytedance.net
@@ -78,14 +86,6 @@ domain_suffix_set:
   - ttoverseaus.net
   - ttwstatic.com
   - tzvbfs.com
-domain_keyword_set:
-  - bytedance.map.
-  - musical.ly.
-  - tiktokcdn-
-  - tiktokcdn.com.
-  - tiktokv.com.
-  - ttcdn-tos.
-  - ttlivecdn.com.
 asn_set:
-  - "11983"
-  - "138699"
+  - '11983'
+  - '138699'

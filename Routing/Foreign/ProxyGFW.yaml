@@ -17,6 +17,35 @@ domain_set:
   - steamuserimages-a.akamaihd.net
   - store.ui.com.cn
   - wego.here.com
+domain_keyword_set:
+  - 1drv
+  - 1e100
+  - abema
+  - appledaily
+  - avtb
+  - beetalk
+  - blogspot
+  - browserleaks
+  - discord
+  - dropbox
+  - facebook
+  - fbcdn
+  - github
+  - gmail
+  - google
+  - instagram
+  - onedrive
+  - pinterest
+  - porn
+  - sci-hub
+  - skydrive
+  - spotify
+  - telegram
+  - ttvnw
+  - twitter
+  - uk-live
+  - whatsapp
+  - youtube
 domain_suffix_set:
   - 000webhost.com
   - 030buy.com
@@ -7496,35 +7525,6 @@ domain_suffix_set:
   - zzcartoon.com
   - zzcloud.me
   - zzux.com
-domain_keyword_set:
-  - 1drv
-  - 1e100
-  - abema
-  - appledaily
-  - avtb
-  - beetalk
-  - blogspot
-  - browserleaks
-  - discord
-  - dropbox
-  - facebook
-  - fbcdn
-  - github
-  - gmail
-  - google
-  - instagram
-  - onedrive
-  - pinterest
-  - porn
-  - sci-hub
-  - skydrive
-  - spotify
-  - telegram
-  - ttvnw
-  - twitter
-  - uk-live
-  - whatsapp
-  - youtube
 ip_cidr_set:
   - 1.201.0.0/24
   - 103.2.28.0/24
@@ -7611,4 +7611,4 @@ ip_cidr6_set:
   - 2001:b28:f23d::/48
   - 2001:b28:f23f::/48
 user_agent_set:
-  - "Roam*"
+  - 'Roam*'

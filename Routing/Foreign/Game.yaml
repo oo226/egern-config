@@ -5,6 +5,10 @@ domain_set:
   - cloudsync-prod.s3.amazonaws.com
   - eaasserts-a.akamaihd.net
   - originasserts.akamaized.net
+domain_keyword_set:
+  - steambroadcast
+  - steamstore
+  - steamuserimages
 domain_suffix_set:
   - 100classicbooks.com
   - ac-pocketcamp.com
@@ -545,9 +549,5 @@ domain_suffix_set:
   - xn--mts47c3w9b1qr.net
   - yogify.com
   - yoshisnewisland.com
-  - 神奇宝贝.cn
-  - 神奇宝贝.net
-domain_keyword_set:
-  - steambroadcast
-  - steamstore
-  - steamuserimages
+  - '神奇宝贝.cn'
+  - '神奇宝贝.net'
