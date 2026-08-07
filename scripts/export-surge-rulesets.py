@@ -7,19 +7,16 @@ Routing tree under Routing/Surge/ as plain Surge lists for RULE-SET URLs.
 
 from __future__ import annotations
 
+import shutil
 import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from paths import ROUTING
-from routing_list_utils import SET_KEYS, count_sets, empty_sets, parse_egern_sets
-
-try:
-    import yaml
-except ImportError:  # pragma: no cover
-    yaml = None  # type: ignore
+from routing_list_utils import SET_KEYS, count_sets, parse_egern_sets
 
 DEST_ROOT = ROUTING / "Surge"
+STAGING = ROUTING / ".Surge-export-tmp"
 
 # Egern bucket → Surge rule type (no policy; RULE-SET supplies it)
 BUCKET_TO_RULE = {
@@ -36,25 +33,12 @@ BUCKET_TO_RULE = {
 }
 
 SKIP_NAMES = {"manifest.yaml", "README.md"}
+REGEX_KEYS = {"domain_regex_set", "url_regex_set"}
 
 
-def load_egern_sets(path: Path) -> dict[str, set[str]]:
-    """Prefer real YAML load so regex escapes (\\\\ → \\) match Egern."""
-    if yaml is not None:
-        data = yaml.safe_load(path.read_text(encoding="utf-8", errors="replace")) or {}
-        sets = empty_sets()
-        if isinstance(data, dict):
-            for key in SET_KEYS:
-                raw = data.get(key) or []
-                if isinstance(raw, list):
-                    for item in raw:
-                        if item is None:
-                            continue
-                        value = str(item).strip()
-                        if value:
-                            sets[key].add(value)
-        return sets
-    return parse_egern_sets(path)
+def unescape_yaml_backslash(value: str) -> str:
+    """Line parser keeps YAML ``\\\\`` as two chars; Surge needs one ``\\``."""
+    return value.replace("\\\\", "\\")
 
 
 def egern_yaml_to_surge_lines(sets: dict[str, set[str]]) -> list[str]:
@@ -63,10 +47,11 @@ def egern_yaml_to_surge_lines(sets: dict[str, set[str]]) -> list[str]:
         rule = BUCKET_TO_RULE[key]
         values = sorted(sets.get(key) or set(), key=str.lower)
         for value in values:
-            # Strip accidental policy / flags if any leaked into the set value
             clean = value.split(",")[0].strip()
             if not clean:
                 continue
+            if key in REGEX_KEYS:
+                clean = unescape_yaml_backslash(clean)
             if key == "asn_set":
                 clean = clean.upper().removeprefix("AS")
             lines.append(f"{rule},{clean}")
@@ -74,7 +59,7 @@ def egern_yaml_to_surge_lines(sets: dict[str, set[str]]) -> list[str]:
 
 
 def export_one(src: Path, dest: Path) -> int:
-    sets = load_egern_sets(src)
+    sets = parse_egern_sets(src)
     total = count_sets(sets)
     body = egern_yaml_to_surge_lines(sets)
     header = [
@@ -89,26 +74,24 @@ def export_one(src: Path, dest: Path) -> int:
 
 
 def main() -> None:
-    if DEST_ROOT.exists():
-        for old in DEST_ROOT.rglob("*.list"):
-            old.unlink()
+    if STAGING.exists():
+        shutil.rmtree(STAGING)
 
     written = 0
     entries = 0
     for src in sorted(ROUTING.rglob("*.yaml")):
-        if "_upstream" in src.parts or "Surge" in src.parts:
+        if "_upstream" in src.parts or "Surge" in src.parts or ".Surge-export-tmp" in src.parts:
             continue
         if src.name in SKIP_NAMES:
             continue
         rel = src.relative_to(ROUTING)
-        dest = DEST_ROOT / rel.with_suffix(".list")
+        dest = STAGING / rel.with_suffix(".list")
         n = export_one(src, dest)
         written += 1
         entries += n
         print(f"  {rel} -> Surge/{rel.with_suffix('.list')} ({n})")
 
-    readme = DEST_ROOT / "README.md"
-    readme.write_text(
+    (STAGING / "README.md").write_text(
         "\n".join(
             [
                 "# Surge RULE-SET 镜像",
@@ -128,6 +111,10 @@ def main() -> None:
         ),
         encoding="utf-8",
     )
+
+    if DEST_ROOT.exists():
+        shutil.rmtree(DEST_ROOT)
+    STAGING.rename(DEST_ROOT)
     print(f"exported {written} lists, {entries} total entries -> {DEST_ROOT}")
 
 

@@ -1,0 +1,9 @@
+# AUTO-EXPORTED by scripts/export-surge-rulesets.py from Tailscale-Direct.yaml
+# Surge RULE-SET format (no policy). Do not edit manually.
+# Total entries: 5
+
+DOMAIN-SUFFIX,tailscale.com
+DOMAIN-SUFFIX,tailscale.net
+DOMAIN-SUFFIX,ts.net
+IP-CIDR,100.64.0.0/10
+IP-CIDR6,fd7a:115c:a1e0::/48
