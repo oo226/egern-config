@@ -8,6 +8,14 @@
 https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Egern.yaml
 ```
 
+**Surge 镜像配置（规则用 `Routing/Surge/*.list`，模块用 `.sgmodule` / `.module`）：**
+
+```
+https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Surge.conf
+```
+
+说明：仓库里的 `Routing/*.yaml` 是 Egern 语法，Surge **不能**直接 `RULE-SET` 引用；请用已导出的 `Routing/Surge/`。`pingme.yaml` / `ibl3nd-plugin-hub.yaml` 仅 Egern；Surge 改用 `pingme.sgmodule`。订阅链接与 MITM 证书请自行填入（仓库不放私钥）。
+
 **模块中心（网页浏览 / 一键添加）：**
 
 ```
