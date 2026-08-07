@@ -39,17 +39,17 @@ def main() -> None:
     if WORKTREE.exists():
         shutil.rmtree(WORKTREE)
 
-    run(["git", "fetch", "origin", BRANCH], cwd=ROOT)
-    # Create orphan-capable branch if missing
-    has_remote = (
-        subprocess.run(
-            ["git", "rev-parse", "--verify", f"origin/{BRANCH}"],
-            cwd=ROOT,
-            stdout=subprocess.DEVNULL,
-            stderr=subprocess.DEVNULL,
-        ).returncode
-        == 0
+    # surge branch may not exist yet on first publish
+    fetch = subprocess.run(
+        ["git", "fetch", "origin", BRANCH],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
     )
+    has_remote = fetch.returncode == 0
+    if not has_remote:
+        print(f"note: origin/{BRANCH} missing ({fetch.stderr.strip() or 'no ref'}); creating")
+
     if has_remote:
         run(
             ["git", "worktree", "add", "-B", BRANCH, str(WORKTREE), f"origin/{BRANCH}"],
@@ -61,17 +61,22 @@ def main() -> None:
             cwd=ROOT,
         )
         run(["git", "checkout", "--orphan", BRANCH], cwd=WORKTREE)
-        # orphan still has index from HEAD — clear it
-        run(["git", "rm", "-rf", "--ignore-unmatch", "."], cwd=WORKTREE)
-
-    # Wipe published tree (keep .git)
-    for child in WORKTREE.iterdir():
-        if child.name == ".git":
-            continue
-        if child.is_dir():
-            shutil.rmtree(child)
-        else:
-            child.unlink()
+        # Clear orphan index inherited from HEAD
+        subprocess.run(
+            ["git", "rm", "-rf", "--ignore-unmatch", "."],
+            cwd=WORKTREE,
+            check=False,
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+        )
+        # Also unstage/remove leftover tracked files from working tree
+        for child in list(WORKTREE.iterdir()):
+            if child.name == ".git":
+                continue
+            if child.is_dir():
+                shutil.rmtree(child)
+            else:
+                child.unlink()
 
     for name in PUBLISH_FILES:
         src = SURGE_SRC / name
