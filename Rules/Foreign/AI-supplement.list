@@ -1,6 +1,6 @@
 # AUTO-EXPORTED from Routing/Foreign/AI-supplement.yaml
 # Format: Surge RULE-SET (no policy). scripts/export-surge-rulesets.py
-# Total entries: 80
+# Total entries: 79
 
 DOMAIN,api.anthropic.com
 DOMAIN,api.cohere.ai
@@ -81,4 +81,3 @@ DOMAIN-SUFFIX,yiyan.baidu.com
 DOMAIN-SUFFIX,you.com
 DOMAIN-SUFFIX,zhipuai.cn
 DOMAIN-KEYWORD,openai
-URL-REGEX,https://chat\.openai\.com/.*

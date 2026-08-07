@@ -1,6 +1,6 @@
 # AUTO-EXPORTED from Routing/Foreign/AI.yaml
 # Format: Surge RULE-SET (no policy). scripts/export-surge-rulesets.py
-# Total entries: 50
+# Total entries: 49
 
 DOMAIN,ai.google.dev
 DOMAIN,aida.googleapis.com
@@ -51,4 +51,3 @@ DOMAIN-SUFFIX,sora.com
 DOMAIN-SUFFIX,x.ai
 DOMAIN-KEYWORD,alkalimakersuite-pa.clients6.google.com
 DOMAIN-KEYWORD,openai
-URL-REGEX,https://www\.google\.com/.*continue=https://gemini\.google\.com.+
