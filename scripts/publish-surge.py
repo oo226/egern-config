@@ -22,6 +22,7 @@ BRANCH = "surge"
 PUBLISH_FILES = [
     "Surge.conf",
     "README.md",
+    "Icons.md",
 ]
 
 
