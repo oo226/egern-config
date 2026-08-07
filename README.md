@@ -15,10 +15,10 @@
 https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Egern.yaml
 ```
 
-Surge 镜像（规则走 `Routing/Surge/*.list`）：
+Surge（独立分支，不进 main）：
 
 ```
-https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Surge.conf
+https://raw.githubusercontent.com/oo226/egern-config/refs/heads/surge/Surge.conf
 ```
 
 **模块中心（网页浏览 / 一键添加）：** https://oo226.github.io/egern-config/
@@ -30,15 +30,16 @@ https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Surge.conf
 ```
 main/
 ├── Egern.yaml              # Egern 主配置模板
-├── Surge.conf              # Surge 镜像配置（RULE-SET → Routing/Surge）
 ├── USAGE.md                # ← 你要的链接菜单
 ├── DISCLAIMER.md           # 搬运工免责 / 删除联系
-├── Routing/                # 分流成品（含 Surge/*.list）
+├── Routing/                # Egern 分流 YAML（无 _upstream）
 ├── Modules/                # 三个大合集 + 插件跳转
 ├── Scripts/                # 签到 JS + 模块依赖镜像
 ├── Assets/geoip/           # GeoIP 数据库
 └── Widgets/IBL3ND/         # 小组件脚本
 ```
+
+Surge 成品在 **`surge` 分支**（`Surge.conf` + `Rules/`），由 sync 工厂导出后单独发布。
 
 **不在 main**：`scripts/`（Python 工具）、`Modules/_upstream/`、`publish/` — 仅在 `sync` 分支。
 
@@ -47,7 +48,8 @@ main/
 | 分支 | 用途 |
 |------|------|
 | **`main`** | 日常用 — Egern 拉这个 |
-| **`sync`** | Actions 每日上游同步，自动发布到 main |
+| **`surge`** | Surge 专用 — `Surge.conf` + `Rules/` |
+| **`sync`** | Actions 每日上游同步，发布到 main + surge |
 
 ## 常用链接
 

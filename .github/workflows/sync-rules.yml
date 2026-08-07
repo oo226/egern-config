@@ -193,6 +193,9 @@ jobs:
       - name: Publish curated snapshot to main
         run: python3 scripts/publish-main.py
 
+      - name: Publish Surge snapshot to surge branch
+        run: python3 scripts/publish-surge.py
+
       # publish 后再刷一遍 catalog：编码中文路径 + 用本地文件判定健康，避免「刚发布却告警」
       - name: Refresh catalog health and re-publish site if needed
         run: |
