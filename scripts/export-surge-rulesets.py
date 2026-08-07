@@ -46,28 +46,46 @@ NON_IP_EXTRA_KEYS = (
 )
 
 SKIP_NAMES = {"manifest.yaml", "README.md"}
-REGEX_KEYS = {"domain_regex_set", "url_regex_set"}
+# External RULE-SET on Surge iOS rejects these (Invalid line); keep them out of .list
+UNSUPPORTED_RULESET_KEYS = frozenset({"domain_regex_set", "url_regex_set"})
+DOMAIN_HOST_KEYS = frozenset({"domain_set", "domain_suffix_set"})
 
 
-def unescape_yaml_backslash(value: str) -> str:
-    return value.replace("\\\\", "\\")
+def to_ascii_host(host: str) -> str | None:
+    """Punycode IDN labels so DOMAIN-SET/RULE-SET stay ASCII (e.g. .mi.中国)."""
+    prefix = ""
+    body = host.strip()
+    if body.startswith("."):
+        prefix = "."
+        body = body[1:]
+    if not body:
+        return None
+    try:
+        return prefix + body.encode("idna").decode("ascii")
+    except Exception:
+        # drop unencodable junk rather than break the whole set
+        return None
 
 
 def clean_value(key: str, value: str) -> str | None:
     clean = value.split(",")[0].strip()
     if not clean:
         return None
-    if key in REGEX_KEYS:
-        clean = unescape_yaml_backslash(clean)
     if key == "asn_set":
-        clean = clean.upper().removeprefix("AS")
+        return clean.upper().removeprefix("AS")
+    if key in ("domain_set", "domain_suffix_set"):
+        if any(ord(c) > 127 for c in clean):
+            return to_ascii_host(clean)
+        return clean
     return clean
 
 
 def ruleset_lines(sets: dict[str, set[str]], keys: tuple[str, ...] | None = None) -> list[str]:
-    keys = keys or SET_KEYS
+    keys = keys or tuple(k for k in SET_KEYS if k not in UNSUPPORTED_RULESET_KEYS)
     lines: list[str] = []
     for key in keys:
+        if key in UNSUPPORTED_RULESET_KEYS:
+            continue
         rule = BUCKET_TO_RULE[key]
         for value in sorted(sets.get(key) or set(), key=str.lower):
             clean = clean_value(key, value)
@@ -77,12 +95,12 @@ def ruleset_lines(sets: dict[str, set[str]], keys: tuple[str, ...] | None = None
 
 
 def domainset_lines(sets: dict[str, set[str]]) -> list[str]:
-    """Surge DOMAIN-SET: exact host, or '.suffix' for suffix match."""
+    """Surge DOMAIN-SET: exact host, or '.suffix' for suffix match (ASCII/punycode)."""
     lines: list[str] = []
     for value in sorted(sets.get("domain_set") or set(), key=str.lower):
         clean = clean_value("domain_set", value)
         if clean:
-            lines.append(clean)
+            lines.append(clean.lstrip("."))
     for value in sorted(sets.get("domain_suffix_set") or set(), key=str.lower):
         clean = clean_value("domain_suffix_set", value)
         if clean:
@@ -171,9 +189,12 @@ def main() -> None:
                 "",
                 "| 后缀 | Surge 用法 | 说明 |",
                 "| --- | --- | --- |",
-                "| `.list` | `RULE-SET,url,策略` | 完整规则（blackmatrix7 同款） |",
-                "| `.domainset` | `DOMAIN-SET,url,策略` | 纯域名；`.` 前缀=后缀匹配（Sukka domainset） |",
+                "| `.list` | `RULE-SET,url,策略` | 完整规则（blackmatrix7 同款；不含 DOMAIN/URL-REGEX） |",
+                "| `.domainset` | `DOMAIN-SET,url,策略` | 纯域名；`.` 前缀=后缀；中文域名已转 punycode |",
                 "| `.ip.list` | `RULE-SET,url,策略,no-resolve` | 仅 IP/ASN；放在域名规则之后 |",
+                "",
+                "注意：外部 RULE-SET 不含 `DOMAIN-REGEX` / `URL-REGEX`（Surge iOS 会报 Invalid line）。",
+                "中文等 IDN 在 domainset/list 中转为 `xn--…` punycode。",
                 "",
                 "主配置在 `surge` 分支根目录 `Surge.conf`。",
                 "Egern 继续用 `main` 的 `Routing/*.yaml`，互不覆盖。",
