@@ -1,6 +1,6 @@
 # Surge 策略组图标集（本配置在用）
 
-Surge **没有**单独「安装图标集」入口，图标写在策略组的 `img-url=` 里。  
+Surge **没有**单独「安装图标集」入口，图标写在策略组的 `icon-url=` 里。  
 本仓库 `Surge.conf` 统一用 **[Koolson/Qure Color](https://github.com/Koolson/Qure)**：
 
 前缀：
