@@ -1,0 +1,8 @@
+# AUTO-EXPORTED by scripts/export-surge-rulesets.py from Foreign/App/Weibo.yaml
+# Surge RULE-SET format (no policy). Do not edit manually.
+# Total entries: 4
+
+DOMAIN-SUFFIX,weibo.cn
+DOMAIN-SUFFIX,weibo.com
+DOMAIN-SUFFIX,weibocdn.com
+DOMAIN-KEYWORD,weibo

@@ -27,3 +27,11 @@ https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/For
 ```
 
 `_upstream/` 为 CI 临时目录，不提交。
+
+## Surge
+
+`Surge/` 目录由 `scripts/export-surge-rulesets.py` 从上述 YAML **自动导出**为 Surge `RULE-SET` 列表（`DOMAIN-SUFFIX,…` 等）。主配置见仓库根目录 [`Surge.conf`](../Surge.conf)。
+
+```
+https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Surge/China-Direct.list
+```
