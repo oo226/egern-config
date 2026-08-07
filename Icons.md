@@ -1,6 +1,6 @@
 # Surge 策略组图标集（本配置在用）
 
-Surge **没有**单独「安装图标集」入口，图标写在策略组的 `icon-url=` 里。  
+Surge **没有**单独「安装图标集」入口，图标写在策略组的 **`icon-url=`** 里（注意不是 Quantumult 的 `img-url`）。  
 本仓库 `Surge.conf` 统一用 **[Koolson/Qure Color](https://github.com/Koolson/Qure)**：
 
 前缀：
@@ -29,7 +29,7 @@ https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/
 
 整包浏览：https://github.com/Koolson/Qure/tree/master/IconSet/Color
 
-重新下载配置后图标会更新：
+重新下载配置后图标会更新（若仍旧：删掉旧配置再导入一次）：
 
 ```
 https://raw.githubusercontent.com/oo226/egern-config/refs/heads/surge/Surge.conf
