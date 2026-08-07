@@ -15,6 +15,12 @@
 https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Egern.yaml
 ```
 
+Surge 镜像（规则走 `Routing/Surge/*.list`）：
+
+```
+https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Surge.conf
+```
+
 **模块中心（网页浏览 / 一键添加）：** https://oo226.github.io/egern-config/
 
 备用（无需开 Pages）：https://cdn.jsdelivr.net/gh/oo226/egern-config@main/site/index.html
@@ -23,10 +29,11 @@ https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Egern.yaml
 
 ```
 main/
-├── Egern.yaml              # 主配置模板
+├── Egern.yaml              # Egern 主配置模板
+├── Surge.conf              # Surge 镜像配置（RULE-SET → Routing/Surge）
 ├── USAGE.md                # ← 你要的链接菜单
 ├── DISCLAIMER.md           # 搬运工免责 / 删除联系
-├── Routing/                # 分流成品（无 _upstream）
+├── Routing/                # 分流成品（含 Surge/*.list）
 ├── Modules/                # 三个大合集 + 插件跳转
 ├── Scripts/                # 签到 JS + 模块依赖镜像
 ├── Assets/geoip/           # GeoIP 数据库
