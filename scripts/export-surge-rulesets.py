@@ -1,8 +1,12 @@
 #!/usr/bin/env python3
-"""Export Egern Routing/*.yaml rule-sets to Surge RULE-SET .list files.
+"""Export Egern Routing/*.yaml → Surge rule files under surge/Rules/.
 
-Surge cannot load Egern YAML (domain_suffix_set / …). This script mirrors the
-Routing tree under Routing/Surge/ as plain Surge lists for RULE-SET URLs.
+Formats (per Surge manual + Sukka / blackmatrix7 practice):
+  *.list       RULE-SET  — full mix (DOMAIN / IP-CIDR / IP-ASN / …)
+  *.domainset  DOMAIN-SET — plain hostnames; leading '.' = suffix
+  *.ip.list    RULE-SET  — IP-CIDR / IP-CIDR6 / IP-ASN only (optional)
+
+Egern YAML cannot be loaded by Surge directly.
 """
 
 from __future__ import annotations
@@ -12,13 +16,12 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from paths import ROUTING
+from paths import ROOT, ROUTING
 from routing_list_utils import SET_KEYS, count_sets, parse_egern_sets
 
-DEST_ROOT = ROUTING / "Surge"
-STAGING = ROUTING / ".Surge-export-tmp"
+DEST_ROOT = ROOT / "surge" / "Rules"
+STAGING = ROOT / "surge" / ".Rules-export-tmp"
 
-# Egern bucket → Surge rule type (no policy; RULE-SET supplies it)
 BUCKET_TO_RULE = {
     "domain_set": "DOMAIN",
     "domain_suffix_set": "DOMAIN-SUFFIX",
@@ -32,45 +35,116 @@ BUCKET_TO_RULE = {
     "user_agent_set": "USER-AGENT",
 }
 
+DOMAIN_KEYS = ("domain_set", "domain_suffix_set")
+IP_KEYS = ("ip_cidr_set", "ip_cidr6_set", "asn_set")
+NON_IP_EXTRA_KEYS = (
+    "domain_keyword_set",
+    "domain_wildcard_set",
+    "domain_regex_set",
+    "url_regex_set",
+    "user_agent_set",
+)
+
 SKIP_NAMES = {"manifest.yaml", "README.md"}
 REGEX_KEYS = {"domain_regex_set", "url_regex_set"}
 
 
 def unescape_yaml_backslash(value: str) -> str:
-    """Line parser keeps YAML ``\\\\`` as two chars; Surge needs one ``\\``."""
     return value.replace("\\\\", "\\")
 
 
-def egern_yaml_to_surge_lines(sets: dict[str, set[str]]) -> list[str]:
+def clean_value(key: str, value: str) -> str | None:
+    clean = value.split(",")[0].strip()
+    if not clean:
+        return None
+    if key in REGEX_KEYS:
+        clean = unescape_yaml_backslash(clean)
+    if key == "asn_set":
+        clean = clean.upper().removeprefix("AS")
+    return clean
+
+
+def ruleset_lines(sets: dict[str, set[str]], keys: tuple[str, ...] | None = None) -> list[str]:
+    keys = keys or SET_KEYS
     lines: list[str] = []
-    for key in SET_KEYS:
+    for key in keys:
         rule = BUCKET_TO_RULE[key]
-        values = sorted(sets.get(key) or set(), key=str.lower)
-        for value in values:
-            clean = value.split(",")[0].strip()
-            if not clean:
-                continue
-            if key in REGEX_KEYS:
-                clean = unescape_yaml_backslash(clean)
-            if key == "asn_set":
-                clean = clean.upper().removeprefix("AS")
-            lines.append(f"{rule},{clean}")
+        for value in sorted(sets.get(key) or set(), key=str.lower):
+            clean = clean_value(key, value)
+            if clean:
+                lines.append(f"{rule},{clean}")
     return lines
 
 
-def export_one(src: Path, dest: Path) -> int:
+def domainset_lines(sets: dict[str, set[str]]) -> list[str]:
+    """Surge DOMAIN-SET: exact host, or '.suffix' for suffix match."""
+    lines: list[str] = []
+    for value in sorted(sets.get("domain_set") or set(), key=str.lower):
+        clean = clean_value("domain_set", value)
+        if clean:
+            lines.append(clean)
+    for value in sorted(sets.get("domain_suffix_set") or set(), key=str.lower):
+        clean = clean_value("domain_suffix_set", value)
+        if clean:
+            lines.append(f".{clean.lstrip('.')}")
+    return lines
+
+
+def write_text(path: Path, header: list[str], body: list[str]) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text("\n".join(header + body) + ("\n" if body or header else ""), encoding="utf-8")
+
+
+def export_one(src: Path, dest_stem: Path) -> dict[str, int]:
     sets = parse_egern_sets(src)
     total = count_sets(sets)
-    body = egern_yaml_to_surge_lines(sets)
-    header = [
-        f"# AUTO-EXPORTED by scripts/export-surge-rulesets.py from {src.relative_to(ROUTING)}",
-        "# Surge RULE-SET format (no policy). Do not edit manually.",
-        f"# Total entries: {total}",
-        "",
-    ]
-    dest.parent.mkdir(parents=True, exist_ok=True)
-    dest.write_text("\n".join(header + body) + "\n", encoding="utf-8")
-    return total
+    rel = src.relative_to(ROUTING)
+    counts: dict[str, int] = {"total": total}
+
+    full = ruleset_lines(sets)
+    write_text(
+        dest_stem.with_suffix(".list"),
+        [
+            f"# AUTO-EXPORTED from Routing/{rel}",
+            "# Format: Surge RULE-SET (no policy). scripts/export-surge-rulesets.py",
+            f"# Total entries: {len(full)}",
+            "",
+        ],
+        full,
+    )
+    counts["list"] = len(full)
+
+    dlines = domainset_lines(sets)
+    if dlines:
+        write_text(
+            dest_stem.with_suffix(".domainset"),
+            [
+                f"# AUTO-EXPORTED from Routing/{rel}",
+                "# Format: Surge DOMAIN-SET (leading '.' = suffix). scripts/export-surge-rulesets.py",
+                f"# Total entries: {len(dlines)}",
+                "",
+            ],
+            dlines,
+        )
+        counts["domainset"] = len(dlines)
+
+    ip_lines = ruleset_lines(sets, IP_KEYS)
+    extra_non_ip = ruleset_lines(sets, NON_IP_EXTRA_KEYS)
+    # Only emit .ip.list when the full set mixes domains with IPs (China-Direct etc.)
+    if ip_lines and (dlines or extra_non_ip):
+        write_text(
+            Path(str(dest_stem) + ".ip.list"),
+            [
+                f"# AUTO-EXPORTED from Routing/{rel}",
+                "# Format: Surge RULE-SET — IP / ASN only. Place after domain rules.",
+                f"# Total entries: {len(ip_lines)}",
+                "",
+            ],
+            ip_lines,
+        )
+        counts["ip"] = len(ip_lines)
+
+    return counts
 
 
 def main() -> None:
@@ -78,34 +152,31 @@ def main() -> None:
         shutil.rmtree(STAGING)
 
     written = 0
-    entries = 0
     for src in sorted(ROUTING.rglob("*.yaml")):
-        if "_upstream" in src.parts or "Surge" in src.parts or ".Surge-export-tmp" in src.parts:
+        if "_upstream" in src.parts or "Surge" in src.parts:
             continue
         if src.name in SKIP_NAMES:
             continue
         rel = src.relative_to(ROUTING)
-        dest = STAGING / rel.with_suffix(".list")
-        n = export_one(src, dest)
+        dest_stem = STAGING / rel.with_suffix("")
+        counts = export_one(src, dest_stem)
         written += 1
-        entries += n
-        print(f"  {rel} -> Surge/{rel.with_suffix('.list')} ({n})")
+        bits = ", ".join(f"{k}={v}" for k, v in counts.items() if k != "total")
+        print(f"  {rel} -> {bits}")
 
     (STAGING / "README.md").write_text(
         "\n".join(
             [
-                "# Surge RULE-SET 镜像",
+                "# Surge Rules（从 Egern Routing YAML 导出）",
                 "",
-                "由 `scripts/export-surge-rulesets.py` 从同目录结构的 Egern `*.yaml` 自动导出。",
+                "| 后缀 | Surge 用法 | 说明 |",
+                "| --- | --- | --- |",
+                "| `.list` | `RULE-SET,url,策略` | 完整规则（blackmatrix7 同款） |",
+                "| `.domainset` | `DOMAIN-SET,url,策略` | 纯域名；`.` 前缀=后缀匹配（Sukka domainset） |",
+                "| `.ip.list` | `RULE-SET,url,策略,no-resolve` | 仅 IP/ASN；放在域名规则之后 |",
                 "",
-                "Surge **不能**直接引用 `Routing/*.yaml`（Egern 的 `domain_suffix_set` 语法）。",
-                "请用本目录下的 `.list`，例如：",
-                "",
-                "```",
-                "RULE-SET,https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Surge/China-Direct.list,DIRECT,no-resolve",
-                "```",
-                "",
-                "主配置见仓库根目录 `Surge.conf`。",
+                "主配置在 `surge` 分支根目录 `Surge.conf`。",
+                "Egern 继续用 `main` 的 `Routing/*.yaml`，互不覆盖。",
                 "",
             ]
         ),
@@ -114,8 +185,16 @@ def main() -> None:
 
     if DEST_ROOT.exists():
         shutil.rmtree(DEST_ROOT)
+    DEST_ROOT.parent.mkdir(parents=True, exist_ok=True)
     STAGING.rename(DEST_ROOT)
-    print(f"exported {written} lists, {entries} total entries -> {DEST_ROOT}")
+
+    # Remove legacy path under Routing/Surge (Egern tree stays clean)
+    legacy = ROUTING / "Surge"
+    if legacy.exists():
+        shutil.rmtree(legacy)
+        print(f"removed legacy {legacy}")
+
+    print(f"exported {written} sources -> {DEST_ROOT}")
 
 
 if __name__ == "__main__":

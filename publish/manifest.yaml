@@ -3,7 +3,6 @@
 
 files:
   - Egern.yaml
-  - Surge.conf
   - README.md
   - USAGE.md
   - DISCLAIMER.md
@@ -22,7 +21,7 @@ files:
 
 directories:
   - path: Routing
-    exclude_dirs: [_upstream]
+    exclude_dirs: [_upstream, Surge]
 
   - path: Modules
     include_only:
@@ -79,6 +78,9 @@ directories:
 # Removed from main on each publish (factory / CI-only on sync).
 prune_from_main:
   - Routing/_upstream
+  - Routing/Surge
+  - Surge.conf
+  - surge
   - Modules/_upstream
   - Modules/manifest.yaml
   - Modules/unlock-manifest.yaml

@@ -30,8 +30,10 @@ https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/For
 
 ## Surge
 
-`Surge/` 目录由 `scripts/export-surge-rulesets.py` 从上述 YAML **自动导出**为 Surge `RULE-SET` 列表（`DOMAIN-SUFFIX,…` 等）。主配置见仓库根目录 [`Surge.conf`](../Surge.conf)。
+Surge **不能**直接引用本目录 `*.yaml`。导出在 sync 的 `surge/Rules/`，发布到 **`surge` 分支**：
 
 ```
-https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Surge/China-Direct.list
+https://raw.githubusercontent.com/oo226/egern-config/refs/heads/surge/Rules/China-Direct.list
 ```
+
+见 [surge/README.md](../surge/README.md)。

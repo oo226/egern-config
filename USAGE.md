@@ -8,13 +8,13 @@
 https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Egern.yaml
 ```
 
-**Surge 镜像配置（规则用 `Routing/Surge/*.list`，模块用 `.sgmodule` / `.module`）：**
+**Surge（独立 `surge` 分支，与 Egern 分开）：**
 
 ```
-https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Surge.conf
+https://raw.githubusercontent.com/oo226/egern-config/refs/heads/surge/Surge.conf
 ```
 
-说明：仓库里的 `Routing/*.yaml` 是 Egern 语法，Surge **不能**直接 `RULE-SET` 引用；请用已导出的 `Routing/Surge/`。`pingme.yaml` / `ibl3nd-plugin-hub.yaml` 仅 Egern；Surge 改用 `pingme.sgmodule`。订阅链接与 MITM 证书请自行填入（仓库不放私钥）。
+说明见该分支 [README](https://github.com/oo226/egern-config/blob/surge/README.md)。`Routing/*.yaml` 仍是 Egern 语法；Surge 用导出的 `Rules/*.list` / `*.domainset`。
 
 **模块中心（网页浏览 / 一键添加）：**
 
@@ -98,8 +98,9 @@ https://cdn.jsdelivr.net/gh/oo226/egern-config@main/site/index.html
 
 | 分支 | 你看不看 | 干什么 |
 |------|----------|--------|
-| **`main`** | **只看这个** | 成品；Egern 全部拉 `main` |
-| `sync` | 可忽略 | 每日上游同步 + 合并，再发布到 `main` |
+| **`main`** | **只看这个（Egern）** | 成品；Egern 全部拉 `main` |
+| **`surge`** | Surge 用这个 | `Surge.conf` + `Rules/` |
+| `sync` | 可忽略 | 每日上游同步 + 合并，再发布到 main / surge |
 
 ---
 
