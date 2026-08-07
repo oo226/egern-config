@@ -78,6 +78,16 @@ def main() -> None:
             else:
                 child.unlink()
 
+    # Existing surge branch: wipe working tree before copy
+    if has_remote:
+        for child in list(WORKTREE.iterdir()):
+            if child.name == ".git":
+                continue
+            if child.is_dir():
+                shutil.rmtree(child)
+            else:
+                child.unlink()
+
     for name in PUBLISH_FILES:
         src = SURGE_SRC / name
         if not src.is_file():
