@@ -38,6 +38,10 @@ https://raw.githubusercontent.com/oo226/egern-config/refs/heads/surge/Rules/
 
 模块继续装 `main` 的 `.module` / `.sgmodule`（Surge 原生）；不要装 Egern 专用 YAML。
 
+## 图标
+
+策略组图标见 [Icons.md](Icons.md)（Koolson/Qure Color）。
+
 ## 分支
 
 | 分支 | 给谁 |
