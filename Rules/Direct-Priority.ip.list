@@ -1,0 +1,6 @@
+# AUTO-EXPORTED from Routing/Direct-Priority.yaml
+# Format: Surge RULE-SET — IP / ASN only. Place after domain rules.
+# Total entries: 2
+
+IP-CIDR,17.0.0.0/8
+IP-ASN,132203

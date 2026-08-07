@@ -1,0 +1,6 @@
+# AUTO-EXPORTED from Routing/Tailscale-Direct.yaml
+# Format: Surge RULE-SET — IP / ASN only. Place after domain rules.
+# Total entries: 2
+
+IP-CIDR,100.64.0.0/10
+IP-CIDR6,fd7a:115c:a1e0::/48
