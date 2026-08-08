@@ -1,10 +1,3 @@
 #!name=代理检测补充
-#!desc=同 skip-proxy-collection，供 unlock 合并引用
+#!desc=【工厂残留·勿安装】同 skip-proxy-collection；General 已收敛到主配置，不再输出。
 #!category=代理检测
-
-[General]
-skip-proxy = %APPEND% yunbusiness.ccb.com, www.abchina.com.cn, login-service.mobile-bank.psbc.com, mobile-bank.psbc.com, www.baidu.com, wxh.wo.cn, gate.lagou.com, www.shanbay.com, id6.me, www.163.com
-always-real-ip = %APPEND% easy-login.10099.com.cn, *-update.xoyocdn.com, id6.me, open.e.189.cn, dns.msftncsi.com, *.srv.nintendo.net, *.stun.playstation.net, xbox.*.microsoft.com, *.xboxlive.com, *.turn.twilio.com, *.stun.twilio.com, stun.syncthing.net, stun.*, lancache.steamcontent.com
-
-[Rule]
-DOMAIN,msmp.abchina.com.cn,REJECT

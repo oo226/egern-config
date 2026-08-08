@@ -13,10 +13,13 @@ merge:
     - "# Do not edit manually. Updated by GitHub Actions after upstream sync."
     - ""
   exclude_cron_scripts: true
-  # skip-proxy / always-real-ip 只放主配置（Surge.conf / Egern.yaml），合集不再叠 Fries 大表
+  # 主配置 knobs 不进合集（Fries/奶思 General 会叠装截断、改写用户偏好）
   drop_general_keys:
     - skip-proxy
     - always-real-ip
+    - hide-vpn-icon
+    - use-local-host-item-for-proxy
+    - encrypted-dns-follow-outbound-mode
   # Avoid MITM on googleapis.com to prevent breaking Gemini (certificate pinning / sensitive APIs).
   mitm_hostname_excludes:
     - "*.googleapis.com"

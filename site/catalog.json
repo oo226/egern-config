@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-08T05:56:06Z",
+  "generated_at": "2026-08-08T06:14:20Z",
   "branch": "main",
   "repo": "oo226/egern-config",
   "raw_base": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main",
@@ -17,7 +17,7 @@
       "name": "按需开启",
       "icon": "🔧",
       "usage_tier": "optional",
-      "count": 175
+      "count": 173
     }
   ],
   "quick_start": [
@@ -202,19 +202,21 @@
   ],
   "sync_digest": {
     "commit": {
-      "hash": "e0dd208",
-      "subject": "fix: restore PingMe module name for Surge/Egern",
+      "hash": "c2bdd66",
+      "subject": "docs: drop skip-proxy-collection from Surge module install list",
       "date": "2026-08-08"
     },
     "summary": [
-      "模块 更新 2 个文件",
-      "模块站 更新 1 个文件",
-      "主配置 更新 1 个文件",
       "国内直连 26027 条"
     ],
-    "files_changed": 5
+    "files_changed": 1
   },
   "changelog": [
+    {
+      "hash": "f07e623",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-08-08"
+    },
     {
       "hash": "263812b",
       "subject": "chore: publish curated snapshot from sync",
@@ -249,15 +251,10 @@
       "hash": "f70f5b4",
       "subject": "chore: publish curated snapshot from sync",
       "date": "2026-08-07"
-    },
-    {
-      "hash": "a17ce36",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-08-07"
     }
   ],
   "local_health": {
-    "checked": 124,
+    "checked": 122,
     "fail": 0,
     "broken_ids": []
   },
@@ -280,7 +277,7 @@
       "id": "modules",
       "name": "模块",
       "icon": "🧩",
-      "count": 30
+      "count": 28
     },
     {
       "id": "routing",
@@ -379,31 +376,6 @@
       "health": "ok"
     },
     {
-      "id": "skip-proxy-collection",
-      "kind": "module",
-      "category": "modules",
-      "group": "合集",
-      "name": "跳过代理检测合集",
-      "desc": "【勿单独安装】skip-proxy / always-real-ip 已写入 Surge.conf 与 Egern.yaml；合集模块不再叠装。本文件仅保留补充 Rule。",
-      "icon": "",
-      "homepage": "",
-      "path": "Modules/skip-proxy-collection.module",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/skip-proxy-collection.module",
-      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Fskip-proxy-collection.module",
-      "default_enabled": false,
-      "usage_tier": "optional",
-      "requires": [],
-      "hint": "勿单独安装。skip-proxy 已写入 Surge.conf / Egern.yaml；装了只会叠名单触发截断。",
-      "tags": [
-        "跳过代理",
-        "skip-proxy",
-        "合集",
-        "always-real-ip"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=skip-proxy-collection",
-      "health": "ok"
-    },
-    {
       "id": "cookie-collection",
       "kind": "module",
       "category": "modules",
@@ -426,30 +398,6 @@
         "fmz200"
       ],
       "share_url": "https://oo226.github.io/egern-config/#id=cookie-collection",
-      "health": "ok"
-    },
-    {
-      "id": "spotify-unlock",
-      "kind": "module",
-      "category": "modules",
-      "group": "解锁",
-      "name": "Spotify(>=iOS15)",
-      "desc": "部分解锁 Premium：去广告、歌手/专辑列表、去随机播放（与 wesselyang/spotify.plugin 同款；音质勿设超高；登录后开模块并强杀重启 App）",
-      "icon": "",
-      "homepage": "",
-      "path": "Modules/spotify-unlock.sgmodule",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/spotify-unlock.sgmodule",
-      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Fspotify-unlock.sgmodule",
-      "default_enabled": false,
-      "usage_tier": "optional",
-      "requires": [],
-      "hint": "单独 Spotify VIP（Eevee）；解锁合集已内含同款。双语歌词默认已烘焙进解锁合集。",
-      "tags": [
-        "Spotify",
-        "VIP",
-        "Eevee"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=spotify-unlock",
       "health": "ok"
     },
     {
@@ -4944,5 +4892,5 @@
       "health": "ok"
     }
   ],
-  "total": 236
+  "total": 234
 }

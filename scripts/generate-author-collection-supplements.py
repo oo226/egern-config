@@ -111,6 +111,11 @@ QINGREX_SKIP_FILES = frozenset(
         "Official/🍟 Apple TestFlight.official.sgmodule",
         "Official/🍟 Apple TV 增强.official.sgmodule",
         "Official/🍟 Apple News 解锁.official.sgmodule",
+        # Fries General / DNS：主配置已有；并进合集会叠 skip-proxy、改 hide-vpn-icon
+        "Official/🍟 通用模块.official.sgmodule",
+        "Official/🍟 DNS 分流.official.sgmodule",
+        "Beta/🍟 通用模块.beta.sgmodule",
+        "Beta/🍟 DNS 分流.beta.sgmodule",
         "Official/新手友好の去广告集合.official.sgmodule",
         "Official/小程序和应用懒人去广告合集.official.sgmodule",
     }

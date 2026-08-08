@@ -87,11 +87,6 @@ modules:
     group: 合集
     default_enabled: true
     tags: [解锁, 流媒体]
-  skip-proxy-collection.module:
-    group: 合集
-    default_enabled: false
-    tags: [跳过代理, skip-proxy, 合集]
-    hint: "勿单独安装。skip-proxy 已写入 Surge.conf / Egern.yaml；装了只会叠名单触发截断。"
   cookie-collection.module:
     group: 合集
     default_enabled: false
@@ -111,11 +106,6 @@ modules:
     default_enabled: false
     tags: [PingMe, 签到, 抓参, 模版参数, Egern]
     hint: "Egern 推荐。关抓参：把「是否开启抓取重写」改成单独一个 #。"
-  spotify-unlock.sgmodule:
-    group: 解锁
-    default_enabled: false
-    tags: [Spotify, VIP, Eevee]
-    hint: "单独 Spotify VIP（Eevee）；解锁合集已内含同款。双语歌词默认已烘焙进解锁合集。"
   ibl3nd-plugin-hub.yaml:
     group: 工具
     default_enabled: true

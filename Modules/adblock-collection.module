@@ -11500,9 +11500,6 @@ hostname = %APPEND% *-discovery1.uplynk.com, *-pplus.cbs.com, *-release.wuta-cam
 
 [General]
 force-http-engine-hosts = %APPEND% *.boxjs.com, *.boxjs.net, *.hls.pv-cdn.net, *.hls.row.aiv-cdn.net, *.ott.cibntv.net, *.script.hub, *:4480, *:4483, *:8000, *:8082, *:9102, *avodhlss3ww-a.akamaihd.net, api.fenxianglife.com, assets.huluim.com, boxjs.com, boxjs.net, cf-timedtext.aux.pv-cdn.net, cmds.omesoft.com, d1v5ir2lpwr8os.cloudfront.net, d22qjgkvxw22r6.cloudfront.net, d25xi40x97liuc.cloudfront.net, d27xxe7juh1us6.cloudfront.net, dmqdd6hw24ucf.cloudfront.net, gql-fed.reddit.com, gql.reddit.com, info.mina.xiaoaisound.com, intl.iqiyi.com, m.client.10010.com, mag1.sdgun.net, maicai.api.ddxq.mobi, mobileapi-v6.elong.com, newapp2.szsmk.com, s3.amazonaws.com, script.hub, vod-*-live.akamaized.net, vod-*.live.cf.md.bbci.co.uk, weibointl.api.weibo.cn, wmapi.meituan.com
-hide-vpn-icon = true
-use-local-host-item-for-proxy = true
-encrypted-dns-follow-outbound-mode = false
 
 [Header Rewrite]
 

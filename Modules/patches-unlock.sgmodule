@@ -5,6 +5,8 @@
 #!system=ios
 
 [Rule]
+# 农行代理检测探针（原 skip-proxy-collection；skip-proxy 名单已收敛到主配置）
+DOMAIN,msmp.abchina.com.cn,REJECT
 # 屏蔽 iOS/iPadOS 企业证书 OCSP 验证（P12 相关）
 DOMAIN-SUFFIX,ocsp-lb.apple.com.akadns.net,REJECT
 DOMAIN-SUFFIX,ocsp.apple.com,REJECT

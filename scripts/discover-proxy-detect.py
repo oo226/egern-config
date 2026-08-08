@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
 """Discover upstream modules/rewrites related to proxy-app detection.
 
-Writes:
-  site/upstream-proxy-detect.json     — internal index of scanned upstreams
-  Modules/skip-proxy-collection.module — **唯一用户入口**（合并去重）
-  Modules/proxy-detect-extra.sgmodule — unlock 合并用（同内容）
+Writes (sync/CI only — not published as user install targets on main):
+  site/upstream-proxy-detect.json      — internal index of scanned upstreams
+  Modules/skip-proxy-collection.module — Rule leftovers only; General → profile
+  Modules/proxy-detect-extra.sgmodule  — alias stub
   site/upstreams.json
+
+User-facing skip-proxy / always-real-ip live in Surge.conf + Egern.yaml.
 """
 
 from __future__ import annotations

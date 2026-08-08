@@ -15,7 +15,6 @@ files:
   - site/manifest.webmanifest
   - site/sw.js
   - site/robots.txt
-  - site/upstream-proxy-detect.json
   - site/upstreams.json
   - site/collection-diff.json
 
@@ -28,9 +27,7 @@ directories:
       - README.md
       - adblock-collection.module
       - unlock-collection.module
-      - skip-proxy-collection.module
       - cookie-collection.module
-      - spotify-unlock.sgmodule
       - pingme.sgmodule
       - pingme.yaml
       - qdreader.sgmodule
@@ -99,6 +96,8 @@ prune_from_main:
   - Modules/liul0ng-unlock.sgmodule
   - Modules/weigiegie-unlock.sgmodule
   - Modules/proxy-detect-extra.sgmodule
+  - Modules/skip-proxy-collection.module
+  - Modules/spotify-unlock.sgmodule
   - Modules/unlock-primary.sgmodule
   - Modules/qdreader-cookie-extra.sgmodule
   - scripts

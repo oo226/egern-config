@@ -5,17 +5,21 @@ merge:
   output: unlock-collection.module
   primary_name: 解锁合集
   primary_desc: "多源合并去重：链接解锁 + Spotify + VIP解锁 + 屏蔽更新（Actions 每日同步）"
-  # skip-proxy / always-real-ip 只放主配置，避免与去广告合集/Fries 叠三份触发截断
+  # 主配置 knobs：模块里不再写（避免叠装 / 改写用户 Surge·Egern 偏好）
   drop_general_keys:
     - skip-proxy
     - always-real-ip
+    - hide-vpn-icon
+    - use-local-host-item-for-proxy
+    - encrypted-dns-follow-outbound-mode
   header_lines:
     - "# AUTO-MERGED by scripts/merge-adblock-modules.py"
-    - "# 类型: 模块 — 解锁/增强（链接解锁、Spotify、跳过代理检测、屏蔽更新等）"
+    - "# 类型: 模块 — 解锁/增强（链接解锁、Spotify、VIP解锁、屏蔽更新等）"
     - "# Do not edit manually. Updated by GitHub Actions after upstream sync."
     - "#"
-    - "# Sources: mieqq, Sukka RealIP, QingRex(可莉), chxm1023/ddm1023, Yu9191, miranquil, iEwha, ddgksf2013, WeiGiegie, liul0ng, proxy-detect scan, local patches"
-    - "# Spotify VIP: spotify-unlock.sgmodule (Eevee) — 排除旧 app2smile proto / Spotify.Crack 叠跑"
+    - "# Sources: QingRex(可莉), chxm1023/ddm1023, Yu9191, miranquil, iEwha, ddgksf2013, WeiGiegie, liul0ng, local patches"
+    - "# Spotify VIP: spotify-unlock.sgmodule (Eevee，仅作合并输入，不单独发布)"
+    - "# skip-proxy / always-real-ip：仅主配置；农行探针 Rule 在 patches-unlock"
     - ""
   # 旧 Spotify 解锁脚本与实测可用的 Eevee 冲突，合并时剔除
   # DualSubs Spotify 留在合集内，合并时把 {{{Types}}} 等占位符写成官方默认值
@@ -30,13 +34,7 @@ modules:
     cache: unlock-primary.sgmodule
     role: primary
     local: true
-    note: "合集标题壳；跳过代理等内容由 supplements 并入"
-
-  - name: skip-proxy-collection
-    cache: skip-proxy-collection.module
-    role: supplement
-    local: true
-    note: "mieqq+Sukka+iamsweet 等跳过代理/RealIP 合并去重（唯一入口）"
+    note: "合集标题壳；内容由 supplements 并入"
 
   - name: qingrex-unlock
     cache: qingrex-unlock.sgmodule
