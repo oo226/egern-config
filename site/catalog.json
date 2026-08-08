@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-08T04:05:16Z",
+  "generated_at": "2026-08-08T04:22:18Z",
   "branch": "main",
   "repo": "oo226/egern-config",
   "raw_base": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main",
@@ -10,14 +10,14 @@
       "name": "默认开启",
       "icon": "✅",
       "usage_tier": "daily",
-      "count": 7
+      "count": 8
     },
     {
       "id": "optional",
       "name": "按需开启",
       "icon": "🔧",
       "usage_tier": "optional",
-      "count": 176
+      "count": 175
     }
   ],
   "quick_start": [
@@ -32,8 +32,8 @@
     },
     {
       "id": "adblock-collection",
-      "name": "广告拦截&净化合集",
-      "desc": "多源合并去重：奶思 + blackmatrix7 + 银行税务NB（Actions 每日同步）",
+      "name": "去广告合集",
+      "desc": "奶思 + blackmatrix7 + 银行税务NB 去广告合集",
       "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Fadblock-collection.module",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/adblock-collection.module",
       "kind": "module",
@@ -41,7 +41,7 @@
     },
     {
       "id": "unlock-collection",
-      "name": "解锁增强合集",
+      "name": "解锁合集",
       "desc": "多源合并去重：跳过代理检测 + 链接解锁 + Spotify + VIP解锁 + 屏蔽更新（Actions 每日同步）",
       "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Funlock-collection.module",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/unlock-collection.module",
@@ -202,16 +202,37 @@
   ],
   "sync_digest": {
     "commit": {
-      "hash": "cd4ef6a",
-      "subject": "Match Surge icons to Egern lige47/iili set via icon-url",
-      "date": "2026-08-07"
+      "hash": "be99236",
+      "subject": "Merge branch 'cursor/fix-module-name-first-ac83' into sync",
+      "date": "2026-08-08"
     },
     "summary": [
+      "模块 更新 7 个文件",
       "国内直连 26027 条"
     ],
-    "files_changed": 0
+    "files_changed": 8
   },
   "changelog": [
+    {
+      "hash": "ef426fa",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-08-08"
+    },
+    {
+      "hash": "bdef9c0",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-08-08"
+    },
+    {
+      "hash": "fc17932",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-08-08"
+    },
+    {
+      "hash": "bf7afb6",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-08-08"
+    },
     {
       "hash": "4a22dd7",
       "subject": "chore: publish curated snapshot from sync",
@@ -231,26 +252,6 @@
       "hash": "0d8dea3",
       "subject": "chore: publish curated snapshot from sync",
       "date": "2026-08-07"
-    },
-    {
-      "hash": "f62c51e",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-08-07"
-    },
-    {
-      "hash": "890a56a",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-08-06"
-    },
-    {
-      "hash": "86293de",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-08-06"
-    },
-    {
-      "hash": "f2349af",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-08-06"
     }
   ],
   "local_health": {
@@ -330,8 +331,8 @@
       "kind": "module",
       "category": "modules",
       "group": "合集",
-      "name": "广告拦截&净化合集",
-      "desc": "多源合并去重：奶思 + blackmatrix7 + 银行税务NB（Actions 每日同步）",
+      "name": "去广告合集",
+      "desc": "奶思 + blackmatrix7 + 银行税务NB 去广告合集",
       "icon": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/AdblockPlus.png",
       "homepage": "https://github.com/fmz200/wool_scripts",
       "path": "Modules/adblock-collection.module",
@@ -357,7 +358,7 @@
       "kind": "module",
       "category": "modules",
       "group": "合集",
-      "name": "解锁增强合集",
+      "name": "解锁合集",
       "desc": "多源合并去重：跳过代理检测 + 链接解锁 + Spotify + VIP解锁 + 屏蔽更新（Actions 每日同步）",
       "icon": "",
       "homepage": "",
@@ -405,7 +406,7 @@
       "kind": "module",
       "category": "modules",
       "group": "合集",
-      "name": "获取cookie&token合集",
+      "name": "Cookie合集",
       "desc": "多源合并：签到 Cookie/Token 抓取（按需启用，抓完建议关闭）",
       "icon": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/others/cookie.png",
       "homepage": "https://github.com/fmz200/wool_scripts",
@@ -454,8 +455,8 @@
       "kind": "module",
       "category": "modules",
       "group": "签到",
-      "name": "PingMe 签到",
-      "desc": "PingMe 抓参 + 定时签到（模版参数开关抓参；Egern 下 # 会写进匹配规则以关闭抓参）",
+      "name": "PingMe",
+      "desc": "PingMe 抓参 + 定时签到。抓完请把参数「是否开启抓取重写」改成井号以关闭抓参。",
       "icon": "",
       "homepage": "https://github.com/oo226/egern-config",
       "path": "Modules/pingme.sgmodule",
@@ -464,7 +465,7 @@
       "default_enabled": false,
       "usage_tier": "optional",
       "requires": [],
-      "hint": "关闭抓参：参数「是否开启抓取重写」改成 #。开启则保持默认 URL 正则。",
+      "hint": "Surge 用这份。关抓参：参数改成 #。Egern 关抓参请用 pingme.yaml。",
       "tags": [
         "PingMe",
         "签到",
@@ -479,17 +480,17 @@
       "kind": "module",
       "category": "modules",
       "group": "签到",
-      "name": "PingMe 签到",
+      "name": "PingMe",
       "desc": "PingMe 抓参 + 定时签到（Egern 原生模版参数；抓完请关掉抓参）",
       "icon": "",
       "homepage": "https://github.com/oo226/egern-config",
       "path": "Modules/pingme.yaml",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/pingme.yaml",
       "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Fpingme.yaml",
-      "default_enabled": false,
-      "usage_tier": "optional",
+      "default_enabled": true,
+      "usage_tier": "daily",
       "requires": [],
-      "hint": "推荐。关闭抓参把「是否开启抓取重写」改成 #（不要填 PingMe抓参 文字）。",
+      "hint": "Egern 推荐。关抓参：把「是否开启抓取重写」改成单独一个 #。",
       "tags": [
         "PingMe",
         "签到",
