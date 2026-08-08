@@ -1,10 +1,5 @@
-# AUTO-MERGED by scripts/merge-adblock-modules.py
-# 类型: 模块 — 去广告/去开屏/净化（URL Rewrite + MITM + Script）
-# Primary: fmz200 blockAds | Supplements: blackmatrix7 + 本仓库 NB/银行补全
-# Do not edit manually. Updated by GitHub Actions after upstream sync.
-
-#!name=广告拦截&净化合集
-#!desc=多源合并去重：奶思 + blackmatrix7 + 银行税务NB（Actions 每日同步）
+#!name=去广告合集
+#!desc=奶思 + blackmatrix7 + 银行税务NB 去广告合集
 #!author=奶思[https://github.com/fmz200]
 #!icon=https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/AdblockPlus.png
 #!category=奶思的模块
@@ -19,6 +14,11 @@
 
 
 
+
+# AUTO-MERGED by scripts/merge-adblock-modules.py
+# 类型: 模块 — 去广告/去开屏/净化（URL Rewrite + MITM + Script）
+# Primary: fmz200 blockAds | Supplements: blackmatrix7 + 本仓库 NB/银行补全
+# Do not edit manually. Updated by GitHub Actions after upstream sync.
 
 [Rule]
 # > 哔哩哔哩

@@ -3,6 +3,15 @@
 
 merge:
   output: adblock-collection.module
+  # Surge 认文件最前的 #!name；勿用 & 等特殊字符
+  primary_name: 去广告合集
+  primary_desc: 奶思 + blackmatrix7 + 银行税务NB 去广告合集
+  header_lines:
+    - "# AUTO-MERGED by scripts/merge-adblock-modules.py"
+    - "# 类型: 模块 — 去广告/去开屏/净化（URL Rewrite + MITM + Script）"
+    - "# Primary: fmz200 blockAds | Supplements: blackmatrix7 + 本仓库 NB/银行补全"
+    - "# Do not edit manually. Updated by GitHub Actions after upstream sync."
+    - ""
   exclude_cron_scripts: true
   # Avoid MITM on googleapis.com to prevent breaking Gemini (certificate pinning / sensitive APIs).
   mitm_hostname_excludes:

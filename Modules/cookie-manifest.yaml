@@ -3,6 +3,7 @@
 
 merge:
   output: cookie-collection.module
+  primary_name: Cookie合集
   primary_desc: "多源合并：签到 Cookie/Token 抓取（按需启用，抓完建议关闭）"
   header_lines:
     - "# AUTO-MERGED by scripts/merge-adblock-modules.py"

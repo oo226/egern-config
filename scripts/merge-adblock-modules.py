@@ -442,6 +442,7 @@ def build_merged_module(
     supplements: list[tuple[str, str]],
     *,
     header_lines: list[str] | None = None,
+    primary_name: str | None = None,
     primary_desc: str | None = None,
     exclude_cron_scripts: bool = False,
     mitm_hostname_excludes: frozenset[str] = DEFAULT_MITM_HOSTNAME_EXCLUDES,
@@ -473,21 +474,33 @@ def build_merged_module(
         "",
     ]
 
-    # Refresh primary metadata (optional override via manifest merge.primary_desc)
+    # Surge reads #!name from the top of the file — keep metadata BEFORE comments.
     refreshed_header: list[str] = []
+    saw_name = False
+    saw_desc = False
     for line in primary_header:
-        if line.startswith("#!desc=") and primary_desc:
-            refreshed_header.append(f"#!desc={primary_desc}")
-        elif line.startswith("#!desc=") and primary_desc is None and header_lines:
-            refreshed_header.append(line)
+        if line.startswith("#!name="):
+            saw_name = True
+            refreshed_header.append(f"#!name={primary_name}" if primary_name else line)
         elif line.startswith("#!desc="):
-            refreshed_header.append(
-                "#!desc=多源合并去重：奶思 + blackmatrix7 + 银行税务NB（Actions 每日同步）"
-            )
+            saw_desc = True
+            if primary_desc:
+                refreshed_header.append(f"#!desc={primary_desc}")
+            elif primary_desc is None and header_lines:
+                refreshed_header.append(line)
+            else:
+                refreshed_header.append(
+                    "#!desc=多源合并去重：奶思 + blackmatrix7 + 银行税务NB（Actions 每日同步）"
+                )
         else:
             refreshed_header.append(line)
+    if primary_name and not saw_name:
+        refreshed_header.insert(0, f"#!name={primary_name}")
+    if primary_desc and not saw_desc:
+        insert_at = 1 if refreshed_header and refreshed_header[0].startswith("#!name=") else 0
+        refreshed_header.insert(insert_at, f"#!desc={primary_desc}")
 
-    out_lines = merge_header + refreshed_header + [""]
+    out_lines = refreshed_header + [""] + merge_header
 
     for section in all_section_names:
         primary_lines = primary_sections.get(section, [])
@@ -532,6 +545,7 @@ def main() -> None:
     output_name = merge_cfg.get("output", "adblock-collection.module")
     output_path = MODULES / output_name
     header_lines = merge_cfg.get("header_lines")
+    primary_name = merge_cfg.get("primary_name")
     primary_desc = merge_cfg.get("primary_desc")
     exclude_cron_scripts = bool(merge_cfg.get("exclude_cron_scripts", False))
     mitm_hostname_excludes = frozenset(
@@ -594,6 +608,7 @@ def main() -> None:
         primary[2],
         supplements,
         header_lines=header_lines,
+        primary_name=str(primary_name).strip() if primary_name else None,
         primary_desc=primary_desc,
         exclude_cron_scripts=exclude_cron_scripts,
         mitm_hostname_excludes=mitm_hostname_excludes,
