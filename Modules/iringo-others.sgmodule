@@ -50,6 +50,3 @@ RULE-SET,https://github.com/NSRingo/News/releases/download/v3.2.1/News.list,{{{P
 
 [MITM]
 hostname = %APPEND% news-client-search.apple.com, news-client.apple.com, news-edge.apple.com, news-events.apple.com, news-sports-events.apple.com, news-todayconfig-edge.apple.com, play-cdn.itunes.apple.com, play-edge-cdn.itunes.apple.com, testflight.apple.com, umc-tempo-api.apple.com, uts-api.itunes.apple.com
-
-[General]
-skip-proxy = %APPEND% iosapps.itunes.apple.com
