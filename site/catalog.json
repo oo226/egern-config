@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-08T04:22:18Z",
+  "generated_at": "2026-08-08T05:56:06Z",
   "branch": "main",
   "repo": "oo226/egern-config",
   "raw_base": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main",
@@ -42,7 +42,7 @@
     {
       "id": "unlock-collection",
       "name": "解锁合集",
-      "desc": "多源合并去重：跳过代理检测 + 链接解锁 + Spotify + VIP解锁 + 屏蔽更新（Actions 每日同步）",
+      "desc": "多源合并去重：链接解锁 + Spotify + VIP解锁 + 屏蔽更新（Actions 每日同步）",
       "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Funlock-collection.module",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/unlock-collection.module",
       "kind": "module",
@@ -202,17 +202,24 @@
   ],
   "sync_digest": {
     "commit": {
-      "hash": "be99236",
-      "subject": "Merge branch 'cursor/fix-module-name-first-ac83' into sync",
+      "hash": "e0dd208",
+      "subject": "fix: restore PingMe module name for Surge/Egern",
       "date": "2026-08-08"
     },
     "summary": [
-      "模块 更新 7 个文件",
+      "模块 更新 2 个文件",
+      "模块站 更新 1 个文件",
+      "主配置 更新 1 个文件",
       "国内直连 26027 条"
     ],
-    "files_changed": 8
+    "files_changed": 5
   },
   "changelog": [
+    {
+      "hash": "263812b",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-08-08"
+    },
     {
       "hash": "ef426fa",
       "subject": "chore: publish curated snapshot from sync",
@@ -245,11 +252,6 @@
     },
     {
       "hash": "a17ce36",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-08-07"
-    },
-    {
-      "hash": "0d8dea3",
       "subject": "chore: publish curated snapshot from sync",
       "date": "2026-08-07"
     }
@@ -359,7 +361,7 @@
       "category": "modules",
       "group": "合集",
       "name": "解锁合集",
-      "desc": "多源合并去重：跳过代理检测 + 链接解锁 + Spotify + VIP解锁 + 屏蔽更新（Actions 每日同步）",
+      "desc": "多源合并去重：链接解锁 + Spotify + VIP解锁 + 屏蔽更新（Actions 每日同步）",
       "icon": "",
       "homepage": "",
       "path": "Modules/unlock-collection.module",
@@ -382,7 +384,7 @@
       "category": "modules",
       "group": "合集",
       "name": "跳过代理检测合集",
-      "desc": "mieqq + Sukka Always Real IP + iamsweet 等合并去重（每日扫描更新）。银行/交管等 App 跳过代理检测用这一份即可。",
+      "desc": "【勿单独安装】skip-proxy / always-real-ip 已写入 Surge.conf 与 Egern.yaml；合集模块不再叠装。本文件仅保留补充 Rule。",
       "icon": "",
       "homepage": "",
       "path": "Modules/skip-proxy-collection.module",
@@ -391,7 +393,7 @@
       "default_enabled": false,
       "usage_tier": "optional",
       "requires": [],
-      "hint": "mieqq + Sukka RealIP + iamsweet 已合并成这一份；也可继续用解锁合集（已含同样内容）。",
+      "hint": "勿单独安装。skip-proxy 已写入 Surge.conf / Egern.yaml；装了只会叠名单触发截断。",
       "tags": [
         "跳过代理",
         "skip-proxy",

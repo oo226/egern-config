@@ -1,5 +1,5 @@
 #!name=解锁合集
-#!desc=多源合并去重：跳过代理检测 + 链接解锁 + Spotify + VIP解锁 + 屏蔽更新（Actions 每日同步）
+#!desc=多源合并去重：链接解锁 + Spotify + VIP解锁 + 屏蔽更新（Actions 每日同步）
 #!category=解锁
 
 
@@ -12,8 +12,6 @@
 
 [General]
 force-http-engine-hosts = %APPEND% 119.29.29.29:80, boxjs.com, boxjs.net, dns.weixin.qq.com:443, dns.weixin.qq.com:80, dns.weixin.qq.com:8080
-skip-proxy = %APPEND% yunbusiness.ccb.com, www.abchina.com.cn, login-service.mobile-bank.psbc.com, mobile-bank.psbc.com, www.baidu.com, wxh.wo.cn, gate.lagou.com, www.shanbay.com, id6.me, www.163.com
-always-real-ip = %APPEND% easy-login.10099.com.cn, *-update.xoyocdn.com, id6.me, open.e.189.cn, dns.msftncsi.com, *.srv.nintendo.net, *.stun.playstation.net, xbox.*.microsoft.com, *.xboxlive.com, *.turn.twilio.com, *.stun.twilio.com, stun.syncthing.net, stun.*, lancache.steamcontent.com
 
 [Rule]
 

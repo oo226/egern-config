@@ -23,7 +23,7 @@
 
 **原则：盯着的仓尽量全拉成本仓副本（防删库）；能进大合集的进合集；带 `#!arguments` 的签到模块单独保留，方便 Egern 里改模版参数。**
 
-**代理检测（skip-proxy / always-real-ip）**：`scripts/discover-proxy-detect.py` 扫描监视仓；中心页可挂上游原链，合集也会并一份。
+**代理检测（skip-proxy / always-real-ip）**：只写在主配置（`surge/Surge.conf` / `Egern.yaml`）。去广告/解锁合集已剥离，勿再叠装 Fries General 或本目录 `skip-proxy-collection`。
 
 
 ## raw 链接
