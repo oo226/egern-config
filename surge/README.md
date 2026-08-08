@@ -38,6 +38,8 @@ https://raw.githubusercontent.com/oo226/egern-config/refs/heads/surge/Rules/
 
 模块继续装 `main` 的 `.module` / `.sgmodule`（Surge 原生）；不要装 Egern 专用 YAML。
 
+`skip-proxy` / `always-real-ip` **只写在本分支 `Surge.conf`**。去广告/解锁合集已剥离这两项，勿再叠装 Fries `General.sgmodule` 或 `skip-proxy-collection`（会截断 + 费内存）。
+
 ## 图标
 
 策略组图标见 [Icons.md](Icons.md)（Koolson/Qure Color）。

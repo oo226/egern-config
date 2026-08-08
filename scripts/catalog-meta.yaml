@@ -91,7 +91,7 @@ modules:
     group: 合集
     default_enabled: false
     tags: [跳过代理, skip-proxy, 合集]
-    hint: "mieqq + Sukka RealIP + iamsweet 已合并成这一份；也可继续用解锁合集（已含同样内容）。"
+    hint: "勿单独安装。skip-proxy 已写入 Surge.conf / Egern.yaml；装了只会叠名单触发截断。"
   cookie-collection.module:
     group: 合集
     default_enabled: false

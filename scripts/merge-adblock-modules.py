@@ -315,10 +315,21 @@ def merge_general_lines(
     *,
     skip_proxy_excludes: frozenset[str] = frozenset(),
     content_line_excludes: frozenset[str] = frozenset(),
+    drop_general_keys: frozenset[str] = frozenset(),
 ) -> list[str]:
+    """Merge [General] lines.
+
+    drop_general_keys: drop these keys entirely (e.g. skip-proxy / always-real-ip).
+    Keep them only in the profile (Surge.conf / Egern.yaml) to avoid stacking
+    Fries-sized lists from every module and tripping iOS truncation / memory WARN.
+    """
+    drop_keys = {k.lower().strip() for k in drop_general_keys if k and str(k).strip()}
     force_hosts: set[str] = set()
     skip_proxy: list[str] = []
     other: list[str] = []
+
+    def dropped(key: str) -> bool:
+        return key in drop_keys
 
     for lines in [primary, *supplements]:
         for line in lines:
@@ -326,6 +337,9 @@ def merge_general_lines(
             if not stripped or stripped.startswith("#"):
                 continue
             lower = stripped.lower()
+            key = lower.split("=", 1)[0].strip()
+            if dropped(key):
+                continue
             if lower.startswith("force-http-engine-hosts"):
                 force_hosts.update(parse_hostnames(stripped))
             elif lower.startswith("skip-proxy"):
@@ -344,11 +358,12 @@ def merge_general_lines(
         other = filter_content_lines(other, content_line_excludes)
 
     merged: list[str] = []
-    if force_hosts:
+    if force_hosts and not dropped("force-http-engine-hosts"):
         merged.append(
             "force-http-engine-hosts = %APPEND% " + ", ".join(sorted(force_hosts, key=str.lower))
         )
-    merged.extend(skip_proxy)
+    if not dropped("skip-proxy"):
+        merged.extend(skip_proxy)
     merged.extend(other)
     return merged
 
@@ -362,6 +377,7 @@ def merge_section(
     mitm_hostname_excludes: frozenset[str] = DEFAULT_MITM_HOSTNAME_EXCLUDES,
     skip_proxy_excludes: frozenset[str] = frozenset(),
     content_line_excludes: frozenset[str] = frozenset(),
+    drop_general_keys: frozenset[str] = frozenset(),
 ) -> list[str]:
     if section == "General":
         supp_lines = [lines for _, lines in supplement_blocks]
@@ -370,6 +386,7 @@ def merge_section(
             supp_lines,
             skip_proxy_excludes=skip_proxy_excludes,
             content_line_excludes=content_line_excludes,
+            drop_general_keys=drop_general_keys,
         )
 
     if section == "MITM":
@@ -448,6 +465,7 @@ def build_merged_module(
     mitm_hostname_excludes: frozenset[str] = DEFAULT_MITM_HOSTNAME_EXCLUDES,
     skip_proxy_excludes: frozenset[str] = frozenset(),
     content_line_excludes: frozenset[str] = frozenset(),
+    drop_general_keys: frozenset[str] = frozenset(),
 ) -> str:
     primary_header, primary_sections = parse_module(primary_text)
 
@@ -525,6 +543,7 @@ def build_merged_module(
             mitm_hostname_excludes=mitm_hostname_excludes,
             skip_proxy_excludes=skip_proxy_excludes,
             content_line_excludes=content_line_excludes,
+            drop_general_keys=drop_general_keys,
         )
         if not merged_lines:
             continue
@@ -553,6 +572,9 @@ def main() -> None:
     )
     skip_proxy_excludes = frozenset(merge_cfg.get("skip_proxy_excludes") or ())
     content_line_excludes = frozenset(merge_cfg.get("content_line_excludes") or ())
+    drop_general_keys = frozenset(
+        str(x).strip() for x in (merge_cfg.get("drop_general_keys") or []) if str(x).strip()
+    )
     script_url_fixes = {**DEFAULT_SCRIPT_URL_FIXES, **(merge_cfg.get("script_url_fixes") or {})}
     script_pattern_fixes = (
         tuple(merge_cfg.get("script_pattern_fixes") or ())
@@ -614,6 +636,7 @@ def main() -> None:
         mitm_hostname_excludes=mitm_hostname_excludes,
         skip_proxy_excludes=skip_proxy_excludes,
         content_line_excludes=content_line_excludes,
+        drop_general_keys=drop_general_keys,
     )
     merged = apply_script_url_fixes(merged, script_url_fixes)
     merged = apply_script_pattern_fixes(merged, script_pattern_fixes)

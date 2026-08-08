@@ -4,7 +4,11 @@
 merge:
   output: unlock-collection.module
   primary_name: 解锁合集
-  primary_desc: "多源合并去重：跳过代理检测 + 链接解锁 + Spotify + VIP解锁 + 屏蔽更新（Actions 每日同步）"
+  primary_desc: "多源合并去重：链接解锁 + Spotify + VIP解锁 + 屏蔽更新（Actions 每日同步）"
+  # skip-proxy / always-real-ip 只放主配置，避免与去广告合集/Fries 叠三份触发截断
+  drop_general_keys:
+    - skip-proxy
+    - always-real-ip
   header_lines:
     - "# AUTO-MERGED by scripts/merge-adblock-modules.py"
     - "# 类型: 模块 — 解锁/增强（链接解锁、Spotify、跳过代理检测、屏蔽更新等）"
