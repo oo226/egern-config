@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-08T04:05:23Z",
+  "generated_at": "2026-08-08T04:05:16Z",
   "branch": "main",
   "repo": "oo226/egern-config",
   "raw_base": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main",
@@ -202,23 +202,16 @@
   ],
   "sync_digest": {
     "commit": {
-      "hash": "8682709",
-      "subject": "chore: sync upstream on sync branch",
-      "date": "2026-08-08"
+      "hash": "cd4ef6a",
+      "subject": "Match Surge icons to Egern lige47/iili set via icon-url",
+      "date": "2026-08-07"
     },
     "summary": [
-      "分流规则 更新 4 个文件",
-      "模块站 更新 2 个文件",
       "国内直连 26027 条"
     ],
-    "files_changed": 14
+    "files_changed": 0
   },
   "changelog": [
-    {
-      "hash": "bf7afb6",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-08-08"
-    },
     {
       "hash": "4a22dd7",
       "subject": "chore: publish curated snapshot from sync",
@@ -251,6 +244,11 @@
     },
     {
       "hash": "86293de",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-08-06"
+    },
+    {
+      "hash": "f2349af",
       "subject": "chore: publish curated snapshot from sync",
       "date": "2026-08-06"
     }
