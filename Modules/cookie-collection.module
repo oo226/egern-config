@@ -1,9 +1,4 @@
-# AUTO-MERGED by scripts/merge-adblock-modules.py
-# 类型: 模块 — 抓参/Cookie（MITM http-request，默认关闭）
-# Do not edit manually. Updated by GitHub Actions after upstream sync.
-#
-# Sources: fmz200 cookies.module + Yuheng 起点抓参 + chavyleung/lowking/NobyDa 等（本地镜像）
-#!name=获取cookie&token合集
+#!name=Cookie合集
 #!desc=多源合并：签到 Cookie/Token 抓取（按需启用，抓完建议关闭）
 #!author=奶思[https://github.com/fmz200]
 #!icon=https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/others/cookie.png
@@ -16,6 +11,11 @@
 #!date=2025-07-20 09:50:00
 
 
+# AUTO-MERGED by scripts/merge-adblock-modules.py
+# 类型: 模块 — 抓参/Cookie（MITM http-request，默认关闭）
+# Do not edit manually. Updated by GitHub Actions after upstream sync.
+#
+# Sources: fmz200 cookies.module + Yuheng 起点抓参 + chavyleung/lowking/NobyDa 等（本地镜像）
 [Script]
 # hostname = 
 AcFun = type=http-request, pattern=^https:\/\/api\-new\.app\.acfun\.cn\/rest\/app\/user\/personalInfo, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/chavyleung/scripts/master/acfun/acfun.cookie.js, timeout=60

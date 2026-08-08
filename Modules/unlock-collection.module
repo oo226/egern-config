@@ -1,14 +1,14 @@
+#!name=解锁合集
+#!desc=多源合并去重：跳过代理检测 + 链接解锁 + Spotify + VIP解锁 + 屏蔽更新（Actions 每日同步）
+#!category=解锁
+
+
 # AUTO-MERGED by scripts/merge-adblock-modules.py
 # 类型: 模块 — 解锁/增强（链接解锁、Spotify、跳过代理检测、屏蔽更新等）
 # Do not edit manually. Updated by GitHub Actions after upstream sync.
 #
 # Sources: mieqq, Sukka RealIP, QingRex(可莉), chxm1023/ddm1023, Yu9191, miranquil, iEwha, ddgksf2013, WeiGiegie, liul0ng, proxy-detect scan, local patches
 # Spotify VIP: spotify-unlock.sgmodule (Eevee) — 排除旧 app2smile proto / Spotify.Crack 叠跑
-
-#!name=解锁增强合集
-#!desc=多源合并去重：跳过代理检测 + 链接解锁 + Spotify + VIP解锁 + 屏蔽更新（Actions 每日同步）
-#!category=解锁
-
 
 [General]
 force-http-engine-hosts = %APPEND% 119.29.29.29:80, boxjs.com, boxjs.net, dns.weixin.qq.com:443, dns.weixin.qq.com:80, dns.weixin.qq.com:8080
