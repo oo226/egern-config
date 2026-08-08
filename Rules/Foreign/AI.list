@@ -1,6 +1,6 @@
 # AUTO-EXPORTED from Routing/Foreign/AI.yaml
 # Format: Surge RULE-SET (no policy). scripts/export-surge-rulesets.py
-# Total entries: 49
+# Total entries: 50
 
 DOMAIN,ai.google.dev
 DOMAIN,aida.googleapis.com
@@ -22,6 +22,7 @@ DOMAIN-SUFFIX,anthropic.com
 DOMAIN-SUFFIX,bard.google.com
 DOMAIN-SUFFIX,chat.com
 DOMAIN-SUFFIX,chatgpt.com
+DOMAIN-SUFFIX,chatgpt.site
 DOMAIN-SUFFIX,claude.ai
 DOMAIN-SUFFIX,claude.com
 DOMAIN-SUFFIX,clipdrop.co
