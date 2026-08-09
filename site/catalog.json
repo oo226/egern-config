@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-08T06:14:20Z",
+  "generated_at": "2026-08-09T04:15:07Z",
   "branch": "main",
   "repo": "oo226/egern-config",
   "raw_base": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main",
@@ -202,16 +202,21 @@
   ],
   "sync_digest": {
     "commit": {
-      "hash": "c2bdd66",
-      "subject": "docs: drop skip-proxy-collection from Surge module install list",
+      "hash": "fc6a811",
+      "subject": "refactor: stop publishing duplicate skip-proxy and Spotify entrypoints",
       "date": "2026-08-08"
     },
     "summary": [
       "国内直连 26027 条"
     ],
-    "files_changed": 1
+    "files_changed": 0
   },
   "changelog": [
+    {
+      "hash": "72aa3c5",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-08-08"
+    },
     {
       "hash": "f07e623",
       "subject": "chore: publish curated snapshot from sync",
@@ -244,11 +249,6 @@
     },
     {
       "hash": "4a22dd7",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-08-07"
-    },
-    {
-      "hash": "f70f5b4",
       "subject": "chore: publish curated snapshot from sync",
       "date": "2026-08-07"
     }
