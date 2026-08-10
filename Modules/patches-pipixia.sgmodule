@@ -1,5 +1,5 @@
 #!name=皮皮虾去广告补全
-#!desc=stream/detail 去广告去水印；Map Local 拦 banner/ad；check_in 改走 Egern yaml 静音处理（避免狂刷日志）。
+#!desc=合集内完成：stream 去广告去水印、banner/ad 本地空响应、check_in「我的」页精简。不碰评论接口。
 #!author=oo226/egern-config (Super.js + QingRex/可莉 + ZenmoFeiShi)
 #!category=去广告补全
 #!system=ios
@@ -9,13 +9,20 @@
 ^https?:\/\/.*\.snssdk\.com\/(monitor|trace|log).* - reject
 
 [Map Local]
-# 开屏/运营位/推荐上方入口常见来源（可莉模块同款）
+# 开屏/运营位/推荐上方入口（可莉同款）
 ^https?:\/\/[^\/]*\.pipix\.com\/api\/ad\/ data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 ^https?:\/\/[^\/]*\.pipix\.com\/bds\/banner\/ data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 
+[Body Rewrite]
+# check_in 走 Body Rewrite（不进 Script 日志），「我的」页精简留在合集内
+http-response-jq ^https?:\/\/[^\/]*\.pipix\.com\/bds\/user\/check_in '(if .data.profile_entrances then .data.profile_entrances |= map(select(.title != "放心借" and .title != "洋钱罐借款" and .title != "创作中心" and .title != "原创特权" and .title != "小黑屋" and .title != "我的订单" and .title != "银行卡管理" and .title != "神评鉴定" and .title != "宠物乐园" and .title != "进入宠物乐园")) else . end) | del(.data.pet_interface_message) | del(.data.pet_entrance) | del(.data.pet_paradise) | del(.data.activity_banner) | del(.data.profile_banner) | del(.data.loan_entrance) | del(.data.credit_entrance)'
+# 去水印 / 可下载（正文替换，无脚本日志）
+http-response ^https?:\/\/[^\/]*\.pipix\.com\/bds\/(feed\/stream|cell\/detail) tplv-ppx-logo.image 0x0.gif
+http-response ^https?:\/\/[^\/]*\.pipix\.com\/bds\/(feed\/stream|cell\/detail) tplv-ppx-logo 0x0
+http-response ^https?:\/\/[^\/]*\.pipix\.com\/bds\/(feed\/stream|cell\/detail) "can_download":false "can_download":true
+
 [Script]
-# 不含 check_in：该接口几秒一次，挂 Script 会把日志刷爆
-# 含 stream/v2、channel_list、detail
+# 不含 check_in（几秒一次会刷爆日志）；stream/channel_list/detail 去广告+圆形入口+去水印兜底
 皮皮虾 = type=http-response, pattern=^https?:\/\/[^\/]*\.(snssdk|pipix)\.com\/bds\/(feed\/(stream|channel_list)|cell\/detail), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/pipixia/ppx_ads.js, requires-body=true, max-size=-1, timeout=60
 
 [MITM]

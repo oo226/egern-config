@@ -1,7 +1,7 @@
 /**
  * 皮皮虾：信息流去广告 + 去水印 + 频道/圆形入口精简
  *
- * 注意：check_in 由 Egern 原生 yaml（response_jq）处理，避免 Script 被签到接口狂刷日志。
+ * 注意：check_in「我的」页由合集 Body Rewrite（http-response-jq）处理，避免 Script 被签到接口狂刷。
  * 本脚本只跑 stream / channel_list / detail。
  */
 const url = ($request && $request.url) || "";
