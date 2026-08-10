@@ -1,23 +1,31 @@
 /**
- * 皮皮虾：信息流去广告 + 去水印 + 「我的」页精简
+ * 皮皮虾：信息流去广告 + 去水印 +「我的」页 / 频道栏精简
  *
- * - 去广告/去水印：基于 Liquor030/NobyDa Super.js（大整数 id 保护）
- * - 「我的」页：基于 ZenmoFeiShi PPX.js（check_in / channel_list）
- * - 故意不匹配评论/回复接口，避免精度与字段误伤
+ * - 去广告/去水印：Liquor030/NobyDa Super.js（大整数 id 保护）
+ * - 「我的」/频道：ZenmoFeiShi PPX.js（check_in / channel_list / stream banner）
+ * - 不匹配评论/回复接口，避免精度与字段误伤
+ * - 显式带回 status，减轻 Egern 日志里 status=0
  */
 const url = ($request && $request.url) || "";
+
+const DROP_PROFILE = new Set([
+  "放心借",
+  "创作中心",
+  "原创特权",
+  "小黑屋",
+  "我的订单",
+  "银行卡管理",
+  "神评鉴定",
+  "宠物乐园",
+  "进入宠物乐园",
+]);
+
+const KEEP_CHANNEL = new Set(["feed", "image_text", "follow_feed"]);
 
 function fixPos(arr) {
   if (!Array.isArray(arr)) return;
   for (let i = 0; i < arr.length; i++) {
     if (arr[i] && typeof arr[i] === "object") arr[i].pos = i + 1;
-  }
-}
-
-function scrubAds(list) {
-  if (!Array.isArray(list)) return;
-  for (let i = list.length - 1; i >= 0; i--) {
-    if (list[i] && list[i].ad_info != null) list.splice(i, 1);
   }
 }
 
@@ -52,6 +60,27 @@ function unlockCell(cell) {
   }
 }
 
+function isAdCell(cell) {
+  if (!cell || typeof cell !== "object") return false;
+  if (cell.ad_info != null) return true;
+  if (cell.is_ad === true || cell.is_ads === true) return true;
+  if (typeof cell.ad_type === "number" && cell.ad_type > 0) return true;
+  return false;
+}
+
+function scrubList(list) {
+  if (!Array.isArray(list)) return;
+  for (let i = list.length - 1; i >= 0; i--) {
+    const cell = list[i];
+    if (isAdCell(cell)) {
+      list.splice(i, 1);
+      continue;
+    }
+    if (cell && cell.banner_info) delete cell.banner_info;
+    unlockCell(cell);
+  }
+}
+
 function pickLists(root) {
   const out = [];
   if (!root || typeof root !== "object") return out;
@@ -64,33 +93,71 @@ function pickLists(root) {
   return out;
 }
 
-function filterMinePage(body) {
-  const data = body && body.data;
+function filterProfile(data) {
   if (!data || typeof data !== "object") return;
 
-  if (url.includes("/bds/user/check_in") && Array.isArray(data.profile_entrances)) {
-    const drop = new Set(["放心借", "创作中心", "原创特权", "小黑屋", "我的订单"]);
-    data.profile_entrances = data.profile_entrances.filter((e) => e && !drop.has(e.title));
+  if (Array.isArray(data.profile_entrances)) {
+    data.profile_entrances = data.profile_entrances.filter(
+      (e) => e && !DROP_PROFILE.has(String(e.title || "").trim())
+    );
     fixPos(data.profile_entrances);
   }
 
-  if (url.includes("/bds/feed/channel_list") && Array.isArray(data.channel_model)) {
+  // 常见促销 / 入口字段：有则清掉
+  for (const key of [
+    "pet_entrance",
+    "pet_paradise",
+    "activity_banner",
+    "profile_banner",
+    "banner",
+    "banners",
+    "loan_entrance",
+    "credit_entrance",
+  ]) {
+    if (key in data) delete data[key];
+  }
+}
+
+function filterChannels(data) {
+  if (!data || typeof data !== "object") return;
+
+  if (Array.isArray(data.channel_model)) {
     data.channel_model = data.channel_model.filter(
-      (item) => item && ["feed", "image_text"].includes(item.event_name)
+      (item) => item && KEEP_CHANNEL.has(item.event_name)
     );
     fixPos(data.channel_model);
+  }
+
+  // 推荐上方圆形入口 / 影院 / 直播条等（字段名随版本变化，有则清）
+  for (const key of [
+    "story_list",
+    "stories",
+    "circle_list",
+    "live_list",
+    "live_cells",
+    "top_list",
+    "top_channels",
+    "square_list",
+    "square_items",
+    "cinema_list",
+    "header_list",
+    "recommend_users",
+    "user_story",
+  ]) {
+    if (key in data) delete data[key];
   }
 }
 
 function scrubFeed(body) {
-  for (const list of pickLists(body)) {
-    scrubAds(list);
-    for (const cell of list) unlockCell(cell);
-  }
-  // cell/detail 等单对象
+  for (const list of pickLists(body)) scrubList(list);
   if (body && body.data && !Array.isArray(body.data) && body.data.item) {
     unlockCell(body.data);
   }
+}
+
+function finish(text) {
+  const status = Number(($response && ($response.status || $response.statusCode)) || 200);
+  $done({ status: status, body: text });
 }
 
 let raw = $response && $response.body;
@@ -100,14 +167,26 @@ if (!raw) {
   try {
     let text = String(raw).replace(/id\":([0-9]{15,})/g, 'id":"$1str"');
     const body = JSON.parse(text);
-    filterMinePage(body);
-    scrubFeed(body);
+    const data = body && body.data;
+
+    if (url.includes("/bds/user/check_in")) filterProfile(data);
+    if (url.includes("/bds/feed/channel_list")) filterChannels(data);
+    if (
+      url.includes("/bds/feed/stream") ||
+      url.includes("/bds/feed/channel_list") ||
+      url.includes("/bds/cell/detail")
+    ) {
+      scrubFeed(body);
+    }
+
     text = JSON.stringify(body);
     text = text.replace(/id\":\"([0-9]{15,})str\"/g, 'id":$1');
     text = text.replace(/\"can_download\":false/g, '"can_download":true');
     text = text.replace(/tplv-ppx-logo\.image/g, "0x0.gif");
     text = text.replace(/tplv-ppx-logo/g, "0x0");
-    $done({ body: text });
+    // 其它常见水印切片
+    text = text.replace(/tplv-ppx-watermark[^\"\\]*/g, "0x0");
+    finish(text);
   } catch (e) {
     $done({});
   }
