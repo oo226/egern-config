@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-10T12:41:29Z",
+  "generated_at": "2026-08-10T12:44:02Z",
   "branch": "main",
   "repo": "oo226/egern-config",
   "raw_base": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main",
@@ -202,8 +202,8 @@
   ],
   "sync_digest": {
     "commit": {
-      "hash": "f74548d",
-      "subject": "fix: simplify pingme.yaml so Egern can parse it",
+      "hash": "5389df1",
+      "subject": "fix: restore PingMe in-app capture toggle via CAPTURE_MATCH",
       "date": "2026-08-10"
     },
     "summary": [
@@ -214,6 +214,11 @@
     "files_changed": 3
   },
   "changelog": [
+    {
+      "hash": "9e13e32",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-08-10"
+    },
     {
       "hash": "e3985a5",
       "subject": "chore: publish curated snapshot from sync",
@@ -246,11 +251,6 @@
     },
     {
       "hash": "72aa3c5",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-08-08"
-    },
-    {
-      "hash": "f07e623",
       "subject": "chore: publish curated snapshot from sync",
       "date": "2026-08-08"
     }
@@ -408,16 +408,16 @@
       "category": "modules",
       "group": "签到",
       "name": "PingMe",
-      "desc": "PingMe 抓参 + 定时签到。抓完请把参数「是否开启抓取重写」改成井号以关闭抓参。",
+      "desc": "PingMe 抓参 + 定时签到。用法同起点：模块参数里开关抓参；抓完把「是否开启抓取重写」改成 #",
       "icon": "",
       "homepage": "https://github.com/oo226/egern-config",
       "path": "Modules/pingme.sgmodule",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/pingme.sgmodule",
       "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Fpingme.sgmodule",
-      "default_enabled": false,
-      "usage_tier": "optional",
+      "default_enabled": true,
+      "usage_tier": "daily",
       "requires": [],
-      "hint": "Surge 用这份。关抓参：参数改成 #。Egern 关抓参请用 pingme.yaml。",
+      "hint": "Egern/Surge 都用这份（同起点 #!arguments）。关抓参：参数改成 #。不要装 pingme.yaml。",
       "tags": [
         "PingMe",
         "签到",
@@ -439,15 +439,14 @@
       "path": "Modules/pingme.yaml",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/pingme.yaml",
       "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Fpingme.yaml",
-      "default_enabled": true,
-      "usage_tier": "daily",
+      "default_enabled": false,
+      "usage_tier": "optional",
       "requires": [],
-      "hint": "Egern 用这份。关抓参：参数 CAPTURE_MATCH 改成 #。",
+      "hint": "已不推荐。无参数面板；请改用 pingme.sgmodule。",
       "tags": [
         "PingMe",
         "签到",
         "抓参",
-        "模版参数",
         "Egern"
       ],
       "share_url": "https://oo226.github.io/egern-config/#id=pingme",

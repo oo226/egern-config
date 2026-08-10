@@ -100,12 +100,12 @@ modules:
     group: 签到
     default_enabled: false
     tags: [PingMe, 签到, 抓参, 模版参数]
-    hint: "Surge 用这份。关抓参：参数改成 #。Egern 关抓参请用 pingme.yaml。"
+    hint: "Egern/Surge 都用这份（同起点 #!arguments）。关抓参：参数改成 #。不要装 pingme.yaml。"
   pingme.yaml:
     group: 签到
     default_enabled: false
-    tags: [PingMe, 签到, 抓参, 模版参数, Egern]
-    hint: "Egern 用这份。关抓参：参数 CAPTURE_MATCH 改成 #。"
+    tags: [PingMe, 签到, 抓参, Egern]
+    hint: "已不推荐。无参数面板；请改用 pingme.sgmodule。"
   ibl3nd-plugin-hub.yaml:
     group: 工具
     default_enabled: true
