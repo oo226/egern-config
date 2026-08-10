@@ -1,16 +1,15 @@
 #!name=皮皮虾去广告补全
-#!desc=仅净化信息流（feed），避免评论/签到等高频接口刷日志。清缓存后更稳。
-#!author=oo226/egern-config (脚本基于 Liquor030/NobyDa Super.js)
+#!desc=信息流/评论等全量去广告；用 jq 重写代替 Script，避免 Egern 日志刷「皮皮虾信息流」。清缓存后更稳。
+#!author=oo226/egern-config (逻辑参考 Liquor030/NobyDa Super.js)
 #!category=去广告补全
 #!system=ios
 
 [URL Rewrite]
-# 轻量降广告（无脚本、不刷日志）
+# 轻量降广告（无脚本）
 app_name=super&([\S]*)aid=\d+ app_name=super_pro&$1aid=1412 header
 
-[Script]
-# 只拦信息流：stream / channel_list（广告主要在这）；不匹配评论/签到等高频接口
-皮皮虾信息流 = type=http-response, pattern=^https?:\/\/[^\/]*\.(snssdk|pipix)\.com\/bds\/feed\/(stream|channel_list), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/pipixia/ppx_ads.js, requires-body=true, max-size=-1, timeout=60
+# 全量 /bds/ 接口：用 jq 剥 ad_info（走重写，不进脚本日志）
+http-response-jq ^https?:\/\/[^\/]*\.(snssdk|pipix)\.com\/bds\/(feed\/(stream|channel_list)|comment\/cell_reply|cell\/(cell_comment|detail)|ward\/list|user\/(favorite|cell_coment|cell_userfeed|publish_list|check_in)) 'def scrub: if type=="array" then map(select((type=="object" and (.ad_info!=null or .is_ad==true or ((.ad_type|type)=="number" and .ad_type>0)))|not)|scrub) elif type=="object" then (with_entries(.value|=scrub) | if (.item.video? and .item.origin_video_download.url_list?) then .item.video.video_download.url_list=.item.origin_video_download.url_list else . end | if (.comment_info.video.url_list?) then .comment_info.video_download.url_list=.comment_info.video.url_list else . end | if .can_download==false then .can_download=true else . end) else . end; scrub'
 
 [MITM]
 hostname = %APPEND% *.snssdk.com, *.pipix.com

@@ -7210,8 +7210,11 @@ https://app.flymodem.com.cn/Appapi/Public/welecome - reject
 
 
 # >>> merged from patches-pipixia (unique only)
-# 轻量降广告（无脚本、不刷日志）
+# 轻量降广告（无脚本）
 app_name=super&([\S]*)aid=\d+ app_name=super_pro&$1aid=1412 header
+
+# 全量 /bds/ 接口：用 jq 剥 ad_info（走重写，不进脚本日志）
+http-response-jq ^https?:\/\/[^\/]*\.(snssdk|pipix)\.com\/bds\/(feed\/(stream|channel_list)|comment\/cell_reply|cell\/(cell_comment|detail)|ward\/list|user\/(favorite|cell_coment|cell_userfeed|publish_list|check_in)) 'def scrub: if type=="array" then map(select((type=="object" and (.ad_info!=null or .is_ad==true or ((.ad_type|type)=="number" and .ad_type>0)))|not)|scrub) elif type=="object" then (with_entries(.value|=scrub) | if (.item.video? and .item.origin_video_download.url_list?) then .item.video.video_download.url_list=.item.origin_video_download.url_list else . end | if (.comment_info.video.url_list?) then .comment_info.video_download.url_list=.comment_info.video.url_list else . end | if .can_download==false then .can_download=true else . end) else . end; scrub'
 
 
 [Body Rewrite]
@@ -11493,11 +11496,6 @@ alidrive = type=http-response, pattern=^https?:\/\/api\.(aliyundrive|alipan)\.co
 
 # 小红书开屏/首页
 xiaohongshu = type=http-response, pattern=^https?:\/\/edith\.xiaohongshu\.com\/api\/sns\/v\d\/(system_service\/splash_config|homefeed\?|system_service\/config\?), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/chxm1023/advertising/xiaohongshu.js, requires-body=true, max-size=-1, timeout=60
-
-
-# >>> merged from patches-pipixia (unique only)
-# 只拦信息流：stream / channel_list（广告主要在这）；不匹配评论/签到等高频接口
-皮皮虾信息流 = type=http-response, pattern=^https?:\/\/[^\/]*\.(snssdk|pipix)\.com\/bds\/feed\/(stream|channel_list), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/pipixia/ppx_ads.js, requires-body=true, max-size=-1, timeout=60
 
 
 # >>> merged from tencent-sports-adblock (unique only)
