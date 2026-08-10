@@ -1,15 +1,15 @@
 #!name=皮皮虾去广告补全
-#!desc=信息流/评论等全量去广告；用 jq 重写代替 Script，避免 Egern 日志刷「皮皮虾信息流」。清缓存后更稳。
+#!desc=只净化信息流广告（feed）；不碰评论/回复接口，避免点开回复空白。清缓存后更稳。
 #!author=oo226/egern-config (逻辑参考 Liquor030/NobyDa Super.js)
 #!category=去广告补全
 #!system=ios
 
 [URL Rewrite]
-# 轻量降广告（无脚本）
+# 轻量降广告（无脚本、不伤评论）
 app_name=super&([\S]*)aid=\d+ app_name=super_pro&$1aid=1412 header
 
-# 全量 /bds/ 接口：用 jq 剥 ad_info（走重写，不进脚本日志）
-http-response-jq ^https?:\/\/[^\/]*\.(snssdk|pipix)\.com\/bds\/(feed\/(stream|channel_list)|comment\/cell_reply|cell\/(cell_comment|detail)|ward\/list|user\/(favorite|cell_coment|cell_userfeed|publish_list|check_in)) 'def scrub: if type=="array" then map(select((type=="object" and (.ad_info!=null or .is_ad==true or ((.ad_type|type)=="number" and .ad_type>0)))|not)|scrub) elif type=="object" then (with_entries(.value|=scrub) | if (.item.video? and .item.origin_video_download.url_list?) then .item.video.video_download.url_list=.item.origin_video_download.url_list else . end | if (.comment_info.video.url_list?) then .comment_info.video_download.url_list=.comment_info.video.url_list else . end | if .can_download==false then .can_download=true else . end) else . end; scrub'
+# 仅信息流：按 Super.js 只删带 ad_info 的条目；不匹配 comment/cell_reply 等回复接口
+http-response-jq ^https?:\/\/[^\/]*\.(snssdk|pipix)\.com\/bds\/feed\/(stream|channel_list) 'def drop_ad: map(select(.ad_info == null)); if .data.data then .data.data |= drop_ad else . end | if .data.replies then .data.replies |= drop_ad else . end | if .data.cell_comments then .data.cell_comments |= drop_ad else . end | if .data.cell_list then .data.cell_list |= drop_ad else . end | if .data.item_list then .data.item_list |= drop_ad else . end | if .data.feed_list then .data.feed_list |= drop_ad else . end | if .data.list then .data.list |= drop_ad else . end | if (.data|type)=="array" then .data |= drop_ad else . end'
 
 [MITM]
 hostname = %APPEND% *.snssdk.com, *.pipix.com
