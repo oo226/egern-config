@@ -1,26 +1,25 @@
 /**
- * 皮皮虾：信息流去广告 + 去水印 +「我的」页 / 频道栏精简
+ * 皮皮虾：信息流去广告 + 去水印 + 频道/圆形入口精简
  *
- * - 去广告/去水印：Liquor030/NobyDa Super.js（大整数 id 保护）
- * - 「我的」/频道：ZenmoFeiShi PPX.js（check_in / channel_list / stream banner）
- * - 不匹配评论/回复接口，避免精度与字段误伤
- * - 显式带回 status，减轻 Egern 日志里 status=0
+ * 注意：check_in 由 Egern 原生 yaml（response_jq）处理，避免 Script 被签到接口狂刷日志。
+ * 本脚本只跑 stream / channel_list / detail。
  */
 const url = ($request && $request.url) || "";
 
-const DROP_PROFILE = new Set([
-  "放心借",
-  "创作中心",
-  "原创特权",
-  "小黑屋",
-  "我的订单",
-  "银行卡管理",
-  "神评鉴定",
-  "宠物乐园",
-  "进入宠物乐园",
-]);
-
 const KEEP_CHANNEL = new Set(["feed", "image_text", "follow_feed"]);
+
+const CIRCLE_LIST_KEYS = [
+  "user_list",
+  "users",
+  "circle_list",
+  "circle_users",
+  "author_list",
+  "rec_users",
+  "story_users",
+  "live_users",
+  "header_users",
+  "slide_list",
+];
 
 function fixPos(arr) {
   if (!Array.isArray(arr)) return;
@@ -68,15 +67,43 @@ function isAdCell(cell) {
   return false;
 }
 
+/** 推荐上方横滑圆形入口 / 影院卡 */
+function isCircleRow(cell) {
+  if (!cell || typeof cell !== "object") return false;
+  if (cell.banner_info) return true;
+
+  const hasCircleList = CIRCLE_LIST_KEYS.some(
+    (k) => Array.isArray(cell[k]) && cell[k].length > 0
+  );
+  if (hasCircleList) {
+    if (!cell.item) return true;
+    if (cell.item && !cell.item.video && !cell.item.content && !cell.item.note) return true;
+  }
+
+  // 特征字段
+  for (const k of ["cinema_info", "story_info", "circle_info", "header_info", "slide_info"]) {
+    if (cell[k]) return true;
+  }
+
+  try {
+    const blob = JSON.stringify(cell);
+    if (/皮皮虾影院/.test(blob)) return true;
+    if (/"event_name"\s*:\s*"(cinema|live|story|circle|header)"/.test(blob) && !cell.item?.video) {
+      return true;
+    }
+  } catch (e) {}
+
+  return false;
+}
+
 function scrubList(list) {
   if (!Array.isArray(list)) return;
   for (let i = list.length - 1; i >= 0; i--) {
     const cell = list[i];
-    if (isAdCell(cell)) {
+    if (isAdCell(cell) || isCircleRow(cell)) {
       list.splice(i, 1);
       continue;
     }
-    if (cell && cell.banner_info) delete cell.banner_info;
     unlockCell(cell);
   }
 }
@@ -93,31 +120,6 @@ function pickLists(root) {
   return out;
 }
 
-function filterProfile(data) {
-  if (!data || typeof data !== "object") return;
-
-  if (Array.isArray(data.profile_entrances)) {
-    data.profile_entrances = data.profile_entrances.filter(
-      (e) => e && !DROP_PROFILE.has(String(e.title || "").trim())
-    );
-    fixPos(data.profile_entrances);
-  }
-
-  // 常见促销 / 入口字段：有则清掉
-  for (const key of [
-    "pet_entrance",
-    "pet_paradise",
-    "activity_banner",
-    "profile_banner",
-    "banner",
-    "banners",
-    "loan_entrance",
-    "credit_entrance",
-  ]) {
-    if (key in data) delete data[key];
-  }
-}
-
 function filterChannels(data) {
   if (!data || typeof data !== "object") return;
 
@@ -128,7 +130,6 @@ function filterChannels(data) {
     fixPos(data.channel_model);
   }
 
-  // 推荐上方圆形入口 / 影院 / 直播条等（字段名随版本变化，有则清）
   for (const key of [
     "story_list",
     "stories",
@@ -143,12 +144,16 @@ function filterChannels(data) {
     "header_list",
     "recommend_users",
     "user_story",
+    "banner_list",
+    "banners",
+    "slide_list",
   ]) {
     if (key in data) delete data[key];
   }
 }
 
 function scrubFeed(body) {
+  if (body && body.data) filterChannels(body.data);
   for (const list of pickLists(body)) scrubList(list);
   if (body && body.data && !Array.isArray(body.data) && body.data.item) {
     unlockCell(body.data);
@@ -167,10 +172,10 @@ if (!raw) {
   try {
     let text = String(raw).replace(/id\":([0-9]{15,})/g, 'id":"$1str"');
     const body = JSON.parse(text);
-    const data = body && body.data;
 
-    if (url.includes("/bds/user/check_in")) filterProfile(data);
-    if (url.includes("/bds/feed/channel_list")) filterChannels(data);
+    if (url.includes("/bds/feed/channel_list")) {
+      filterChannels(body.data);
+    }
     if (
       url.includes("/bds/feed/stream") ||
       url.includes("/bds/feed/channel_list") ||
@@ -184,7 +189,6 @@ if (!raw) {
     text = text.replace(/\"can_download\":false/g, '"can_download":true');
     text = text.replace(/tplv-ppx-logo\.image/g, "0x0.gif");
     text = text.replace(/tplv-ppx-logo/g, "0x0");
-    // 其它常见水印切片
     text = text.replace(/tplv-ppx-watermark[^\"\\]*/g, "0x0");
     finish(text);
   } catch (e) {

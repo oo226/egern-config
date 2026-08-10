@@ -531,6 +531,11 @@ modules:
     url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/adblock-collection.module
     update_interval: 86400
     enabled: true
+  # 皮皮虾 check_in 静音精简（合集 Script 已去掉该接口，避免日志狂刷）
+  - name: 皮皮虾「我的」页精简
+    url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/patches-pipixia.yaml
+    update_interval: 86400
+    enabled: true
   - name: 解锁增强合集
     url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/unlock-collection.module
     update_interval: 86400
