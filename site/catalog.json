@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-09T04:15:07Z",
+  "generated_at": "2026-08-10T04:29:07Z",
   "branch": "main",
   "repo": "oo226/egern-config",
   "raw_base": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main",
@@ -202,16 +202,26 @@
   ],
   "sync_digest": {
     "commit": {
-      "hash": "fc6a811",
-      "subject": "refactor: stop publishing duplicate skip-proxy and Spotify entrypoints",
-      "date": "2026-08-08"
+      "hash": "8a6348d",
+      "subject": "chore: sync upstream on sync branch",
+      "date": "2026-08-09"
     },
     "summary": [
-      "国内直连 26027 条"
+      "国内直连 26029 条"
     ],
     "files_changed": 0
   },
   "changelog": [
+    {
+      "hash": "44b3875",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-08-09"
+    },
+    {
+      "hash": "a23dcb5",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-08-09"
+    },
     {
       "hash": "72aa3c5",
       "subject": "chore: publish curated snapshot from sync",
@@ -241,16 +251,6 @@
       "hash": "fc17932",
       "subject": "chore: publish curated snapshot from sync",
       "date": "2026-08-08"
-    },
-    {
-      "hash": "bf7afb6",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-08-08"
-    },
-    {
-      "hash": "4a22dd7",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-08-07"
     }
   ],
   "local_health": {
