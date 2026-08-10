@@ -1,5 +1,5 @@
 #!name=皮皮虾去广告补全
-#!desc=信息流去广告 + 去水印 +「我的」页精简。用 jq/正文替换代替 Script，避免 Egern 刷日志。不用 aid=1412。不碰评论接口。
+#!desc=信息流去广告 + 去水印 +「我的」/频道精简。用 Script（Egern 可跑）；不用 jq（Egern 常不生效）。不用 aid=1412。不碰评论接口。
 #!author=oo226/egern-config (Super.js + ZenmoFeiShi PPX.js)
 #!category=去广告补全
 #!system=ios
@@ -9,13 +9,9 @@
 # 这里只拦真正的埋点路径（合集已排除错误那一行）。
 ^https?:\/\/.*\.snssdk\.com\/(monitor|trace|log).* - reject
 
-# 去水印 / 可下载：正文替换，不进脚本日志、不伤大整数
-http-response ^https?:\/\/[^\/]*\.(snssdk|pipix)\.com\/bds\/(feed\/(stream|channel_list)|cell\/detail) tplv-ppx-logo.image 0x0.gif
-http-response ^https?:\/\/[^\/]*\.(snssdk|pipix)\.com\/bds\/(feed\/(stream|channel_list)|cell\/detail) tplv-ppx-logo 0x0
-http-response ^https?:\/\/[^\/]*\.(snssdk|pipix)\.com\/bds\/(feed\/(stream|channel_list)|cell\/detail) "can_download":false "can_download":true
-
-# 结构净化：走 jq 重写（无 Script 日志）。仅 feed / check_in / detail，不匹配 comment 回复接口
-http-response-jq ^https?:\/\/[^\/]*\.(snssdk|pipix)\.com\/bds\/(feed\/(stream|channel_list)|user\/check_in|cell\/detail) 'def drop_titles: ["放心借","创作中心","原创特权","小黑屋","我的订单"]; def fix_pos: [range(length) as $i | .[$i] | .pos=($i+1)]; def unlock_cell: (if .item.video? and .item.origin_video_download.url_list? then .item.video.video_download.url_list=.item.origin_video_download.url_list else . end) | (if (.item.comments|type)=="array" then .item.comments |= map(if .video.url_list? then .video_download.url_list=.video.url_list else . end) else . end) | (if .comment_info.video.url_list? then .comment_info.video_download.url_list=.comment_info.video.url_list else . end); def drop_ad: map(select(.ad_info==null) | unlock_cell); if .data.profile_entrances then (.data.profile_entrances |= map(select(.title as $t | (drop_titles|index($t))==null)) | .data.profile_entrances |= fix_pos) else . end | if .data.channel_model then (.data.channel_model |= map(select(.event_name=="feed" or .event_name=="image_text")) | .data.channel_model |= fix_pos) else . end | if .data.data then .data.data |= drop_ad else . end | if .data.cell_list then .data.cell_list |= drop_ad else . end | if .data.item_list then .data.item_list |= drop_ad else . end | if .data.feed_list then .data.feed_list |= drop_ad else . end | if .data.list then .data.list |= drop_ad else . end | if (.data|type)=="array" then .data |= drop_ad else . end | if .data.item then .data |= unlock_cell else . end'
+[Script]
+# 仅 feed / check_in / detail，避免评论接口刷日志；显式 status 减轻 status=0
+皮皮虾 = type=http-response, pattern=^https?:\/\/[^\/]*\.(snssdk|pipix)\.com\/bds\/(feed\/(stream|channel_list)|user\/check_in|cell\/detail), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/pipixia/ppx_ads.js, requires-body=true, max-size=-1, timeout=60
 
 [MITM]
 hostname = %APPEND% *.snssdk.com, *.pipix.com

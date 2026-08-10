@@ -136,7 +136,7 @@ modules:
     cache: patches-pipixia.sgmodule
     role: supplement
     local: true
-    note: "皮皮虾去广告+去水印+我的页精简（jq/正文替换，避免 Script 刷日志）"
+    note: "皮皮虾去广告+去水印+我的/频道精简（Script；Egern 上 jq 常不生效）"
 
   - name: tencent-sports-adblock
     cache: TencentSportsAdBlock.sgmodule
