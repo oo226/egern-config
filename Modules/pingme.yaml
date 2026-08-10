@@ -1,30 +1,19 @@
 name: PingMe
-description: PingMe 抓参 + 定时签到（Egern 原生模版参数；抓完请关掉抓参）
+description: PingMe 抓参 + 定时签到（Egern 原生；抓完请关掉「PingMe获取参数」）
 author: oo226/egern-config
 homepage: https://github.com/oo226/egern-config
 category: 签到
-compat_arguments:
-  # 此值会直接当作 http_request.match；填 # 则永远匹配不到 = 关闭抓参
-  # 参数名须 ASCII（Egern 对 {{{中文}}} 会解析失败）
-  CAPTURE_MATCH: "^https://api\\.pingmeapp\\.net/app/queryBalanceAndBonus"
-  CRONEXP: "30 8,20 * * *"
-compat_arguments_desc: |
-  CAPTURE_MATCH（是否开启抓取）：
-  · 开启：保持默认 URL 正则
-  · 关闭：改成单独一个 #
-  抓完务必改成 #。
-
-  CRONEXP：签到定时，默认 8:30 与 20:30。
+# 不用 {{{占位符}}}：部分 Egern 版本解析 match 里的花括号会直接报错；CDN 也会缓存旧坏文件
 scriptings:
   - http_request:
       name: PingMe获取参数
-      match: "{{{CAPTURE_MATCH}}}"
+      match: "^https://api\\.pingmeapp\\.net/app/queryBalanceAndBonus"
       script_url: "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/PingMe-capture.js"
       timeout: 60
       enabled: true
   - schedule:
       name: PingMe签到
-      cron: "{{{CRONEXP}}}"
+      cron: "30 8,20 * * *"
       script_url: "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/PingMe-signin.js"
       timeout: 300
       enabled: true
