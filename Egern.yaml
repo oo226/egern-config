@@ -360,6 +360,11 @@ rules:
       update_interval: 86400
 
   # ── 第 3 段：分应用固定节点（B站→香港、抖音→台湾…）──
+  # 皮皮虾国内 snssdk 须在 TikTok 之前直连，否则 effect / *-lq.snssdk.com 会误命中 TikTok
+  - rule_set:
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Pipixia-Snssdk-Direct.yaml
+      policy: DIRECT
+      update_interval: 86400
   - rule_set:
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/App/Bilibili.yaml
       policy: 香港节点
