@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-10T12:38:46Z",
+  "generated_at": "2026-08-10T12:41:29Z",
   "branch": "main",
   "repo": "oo226/egern-config",
   "raw_base": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main",
@@ -202,8 +202,8 @@
   ],
   "sync_digest": {
     "commit": {
-      "hash": "19381d3",
-      "subject": "fix: PingMe yaml use ASCII compat_arguments keys",
+      "hash": "f74548d",
+      "subject": "fix: simplify pingme.yaml so Egern can parse it",
       "date": "2026-08-10"
     },
     "summary": [
@@ -214,6 +214,11 @@
     "files_changed": 3
   },
   "changelog": [
+    {
+      "hash": "e3985a5",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-08-10"
+    },
     {
       "hash": "9c5707e",
       "subject": "chore: publish curated snapshot from sync",
@@ -246,11 +251,6 @@
     },
     {
       "hash": "f07e623",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-08-08"
-    },
-    {
-      "hash": "263812b",
       "subject": "chore: publish curated snapshot from sync",
       "date": "2026-08-08"
     }
@@ -433,7 +433,7 @@
       "category": "modules",
       "group": "签到",
       "name": "PingMe",
-      "desc": "PingMe 抓参 + 定时签到（Egern 原生；抓完请关掉「PingMe获取参数」）",
+      "desc": "PingMe 抓参 + 定时签到（模块参数可开关抓参；v3）",
       "icon": "",
       "homepage": "https://github.com/oo226/egern-config",
       "path": "Modules/pingme.yaml",
@@ -442,11 +442,12 @@
       "default_enabled": true,
       "usage_tier": "daily",
       "requires": [],
-      "hint": "Egern 用这份。抓完关掉模块里的「PingMe获取参数」。",
+      "hint": "Egern 用这份。关抓参：参数 CAPTURE_MATCH 改成 #。",
       "tags": [
         "PingMe",
         "签到",
         "抓参",
+        "模版参数",
         "Egern"
       ],
       "share_url": "https://oo226.github.io/egern-config/#id=pingme",
