@@ -11497,8 +11497,9 @@ xiaohongshu = type=http-response, pattern=^https?:\/\/edith\.xiaohongshu\.com\/a
 
 
 # >>> merged from patches-pipixia (unique only)
-# 仅信息流去广告；不碰评论/回复接口
-皮皮虾信息流 = type=http-response, pattern=^https?:\/\/[^\/]*\.(snssdk|pipix)\.com\/bds\/feed\/(stream|channel_list), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/pipixia/ppx_ads.js, requires-body=true, max-size=-1, timeout=60
+# 信息流/详情：去广告 + 去水印；channel_list + check_in：「我的」页精简
+# 不碰 comment/cell_reply、cell/cell_comment
+皮皮虾净化 = type=http-response, pattern=^https?:\/\/[^\/]*\.(snssdk|pipix)\.com\/bds\/(feed\/(stream|channel_list)|user\/check_in|cell\/detail), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/pipixia/ppx_ads.js, requires-body=true, max-size=-1, timeout=60
 
 
 # >>> merged from tencent-sports-adblock (unique only)

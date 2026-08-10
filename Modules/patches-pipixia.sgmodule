@@ -1,6 +1,6 @@
 #!name=皮皮虾去广告补全
-#!desc=修掉误拦 /bds/ 的 reject；信息流去广告。不用 aid=1412 header。
-#!author=oo226/egern-config (脚本基于 Liquor030/NobyDa Super.js)
+#!desc=修掉误拦 /bds/ 的 reject；信息流去广告 + 去水印 +「我的」页精简。不用 aid=1412 header。
+#!author=oo226/egern-config (Super.js + ZenmoFeiShi PPX.js)
 #!category=去广告补全
 #!system=ios
 
@@ -10,8 +10,9 @@
 ^https?:\/\/.*\.snssdk\.com\/(monitor|trace|log).* - reject
 
 [Script]
-# 仅信息流去广告；不碰评论/回复接口
-皮皮虾信息流 = type=http-response, pattern=^https?:\/\/[^\/]*\.(snssdk|pipix)\.com\/bds\/feed\/(stream|channel_list), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/pipixia/ppx_ads.js, requires-body=true, max-size=-1, timeout=60
+# 信息流/详情：去广告 + 去水印；channel_list + check_in：「我的」页精简
+# 不碰 comment/cell_reply、cell/cell_comment
+皮皮虾净化 = type=http-response, pattern=^https?:\/\/[^\/]*\.(snssdk|pipix)\.com\/bds\/(feed\/(stream|channel_list)|user\/check_in|cell\/detail), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/pipixia/ppx_ads.js, requires-body=true, max-size=-1, timeout=60
 
 [MITM]
 hostname = %APPEND% *.snssdk.com, *.pipix.com
