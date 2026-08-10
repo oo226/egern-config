@@ -9731,6 +9731,11 @@ https://.+\.gamersky.com/v1/statisticAd data-type=text data="{}" status-code=200
 # 开屏/运营 banner（日志里已是 ~50B 空包；给合法空结构避免客户端走缓存）
 ^https?:\/\/[^\/]*\.pipix\.com\/api\/ad\/ data-type=text data="{\"status_code\":0,\"message\":\"\",\"data\":null}" status-code=200 header="Content-Type:application/json"
 ^https?:\/\/[^\/]*\.pipix\.com\/bds\/banner\/ data-type=text data="{\"status_code\":0,\"message\":\"\",\"data\":{\"banner\":[],\"banners\":[],\"list\":[],\"banner_list\":[]}}" status-code=200 header="Content-Type:application/json"
+# 推荐上方四圆入口（怪兽的王 / 怀旧809 / 泥巴头像 / 皮皮虾影院）← get_top_hashtag
+^https?:\/\/[^\/]*\.pipix\.com\/bds\/hashtag\/get_top_hashtag data-type=text data="{\"status_code\":0,\"message\":\"\",\"data\":{\"hashtag_list\":[],\"hashtags\":[],\"list\":[],\"data\":[]}}" status-code=200 header="Content-Type:application/json"
+# 弹窗 / 勋章弹层
+^https?:\/\/[^\/]*\.pipix\.com\/bds\/popups\/ data-type=text data="{\"status_code\":0,\"message\":\"\",\"data\":null}" status-code=200 header="Content-Type:application/json"
+^https?:\/\/[^\/]*\.pipix\.com\/bds\/medal\/popups data-type=text data="{\"status_code\":0,\"message\":\"\",\"data\":null}" status-code=200 header="Content-Type:application/json"
 # 播完尾巴推荐卡
 ^https?:\/\/[^\/]*\.pipix\.com\/bds\/cell\/tail_cards data-type=text data="{\"status_code\":0,\"message\":\"\",\"data\":{\"cards\":[],\"list\":[],\"data\":[]}}" status-code=200 header="Content-Type:application/json"
 # 金币/小组件配置
