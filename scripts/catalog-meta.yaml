@@ -104,8 +104,8 @@ modules:
   pingme.yaml:
     group: 签到
     default_enabled: false
-    tags: [PingMe, 签到, 抓参, Egern]
-    hint: "Egern 用这份。抓完关掉模块里的「PingMe获取参数」。"
+    tags: [PingMe, 签到, 抓参, 模版参数, Egern]
+    hint: "Egern 用这份。关抓参：参数 CAPTURE_MATCH 改成 #。"
   ibl3nd-plugin-hub.yaml:
     group: 工具
     default_enabled: true
