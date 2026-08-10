@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-09T04:15:15Z",
+  "generated_at": "2026-08-10T04:29:07Z",
   "branch": "main",
   "repo": "oo226/egern-config",
   "raw_base": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main",
@@ -207,15 +207,16 @@
       "date": "2026-08-09"
     },
     "summary": [
-      "分流规则 更新 1 个文件",
-      "模块 更新 9 个文件",
-      "脚本 更新 1 个文件",
-      "模块站 更新 2 个文件",
-      "国内直连 26027 条"
+      "国内直连 26029 条"
     ],
-    "files_changed": 16
+    "files_changed": 0
   },
   "changelog": [
+    {
+      "hash": "44b3875",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-08-09"
+    },
     {
       "hash": "a23dcb5",
       "subject": "chore: publish curated snapshot from sync",
@@ -248,11 +249,6 @@
     },
     {
       "hash": "fc17932",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-08-08"
-    },
-    {
-      "hash": "bf7afb6",
       "subject": "chore: publish curated snapshot from sync",
       "date": "2026-08-08"
     }
