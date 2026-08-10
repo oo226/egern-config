@@ -1,16 +1,16 @@
 #!name=皮皮虾去广告补全
-#!desc=信息流 ad_info 净化 + 轻量 header 降广告；补全合集里仅有穿山甲域名拦截的缺口。清缓存或重装后更稳。
+#!desc=仅净化信息流（feed），避免评论/签到等高频接口刷日志。清缓存后更稳。
 #!author=oo226/egern-config (脚本基于 Liquor030/NobyDa Super.js)
 #!category=去广告补全
 #!system=ios
 
 [URL Rewrite]
-# 轻量降广告（Liquor030）：不依赖脚本也能少不少广告
+# 轻量降广告（无脚本、不刷日志）
 app_name=super&([\S]*)aid=\d+ app_name=super_pro&$1aid=1412 header
 
 [Script]
-# 信息流 / 评论 / 详情 / 收藏等 — 剥离 ad_info，顺带去水印可下载
-皮皮虾信息流 = type=http-response, pattern=^https?:\/\/[^\/]*\.(snssdk|pipix)\.com\/bds\/(feed\/(stream|channel_list)|comment\/cell_reply|cell\/(cell_comment|detail)|ward\/list|user\/(favorite|cell_coment|cell_userfeed|publish_list|check_in)), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/pipixia/ppx_ads.js, requires-body=true, max-size=-1, timeout=60
+# 只拦信息流：stream / channel_list（广告主要在这）；不匹配评论/签到等高频接口
+皮皮虾信息流 = type=http-response, pattern=^https?:\/\/[^\/]*\.(snssdk|pipix)\.com\/bds\/feed\/(stream|channel_list), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/pipixia/ppx_ads.js, requires-body=true, max-size=-1, timeout=60
 
 [MITM]
 hostname = %APPEND% *.snssdk.com, *.pipix.com
