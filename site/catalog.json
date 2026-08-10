@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-10T12:36:03Z",
+  "generated_at": "2026-08-10T12:38:46Z",
   "branch": "main",
   "repo": "oo226/egern-config",
   "raw_base": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main",
@@ -202,20 +202,23 @@
   ],
   "sync_digest": {
     "commit": {
-      "hash": "6d9ec43",
-      "subject": "chore: sync upstream on sync branch",
+      "hash": "19381d3",
+      "subject": "fix: PingMe yaml use ASCII compat_arguments keys",
       "date": "2026-08-10"
     },
     "summary": [
-      "分流规则 更新 2 个文件",
-      "模块 更新 4 个文件",
-      "脚本 更新 14 个文件",
-      "模块站 更新 2 个文件",
+      "模块 更新 1 个文件",
+      "模块站 更新 1 个文件",
       "国内直连 26029 条"
     ],
-    "files_changed": 27
+    "files_changed": 3
   },
   "changelog": [
+    {
+      "hash": "9c5707e",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-08-10"
+    },
     {
       "hash": "701dd70",
       "subject": "chore: publish curated snapshot from sync",
@@ -248,11 +251,6 @@
     },
     {
       "hash": "263812b",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-08-08"
-    },
-    {
-      "hash": "ef426fa",
       "subject": "chore: publish curated snapshot from sync",
       "date": "2026-08-08"
     }
@@ -435,7 +433,7 @@
       "category": "modules",
       "group": "签到",
       "name": "PingMe",
-      "desc": "PingMe 抓参 + 定时签到（Egern 原生模版参数；抓完请关掉抓参）",
+      "desc": "PingMe 抓参 + 定时签到（Egern 原生；抓完请关掉「PingMe获取参数」）",
       "icon": "",
       "homepage": "https://github.com/oo226/egern-config",
       "path": "Modules/pingme.yaml",
@@ -444,12 +442,11 @@
       "default_enabled": true,
       "usage_tier": "daily",
       "requires": [],
-      "hint": "Egern 推荐。关抓参：参数 CAPTURE_MATCH 改成 #。",
+      "hint": "Egern 用这份。抓完关掉模块里的「PingMe获取参数」。",
       "tags": [
         "PingMe",
         "签到",
         "抓参",
-        "模版参数",
         "Egern"
       ],
       "share_url": "https://oo226.github.io/egern-config/#id=pingme",
