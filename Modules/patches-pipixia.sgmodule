@@ -1,15 +1,12 @@
 #!name=皮皮虾去广告补全
-#!desc=只净化信息流广告（feed）；不碰评论/回复接口，避免点开回复空白。清缓存后更稳。
-#!author=oo226/egern-config (逻辑参考 Liquor030/NobyDa Super.js)
+#!desc=只净化信息流广告；不用 aid=1412 header（会弄丢评论回复）。清缓存后更稳。
+#!author=oo226/egern-config (脚本基于 Liquor030/NobyDa Super.js)
 #!category=去广告补全
 #!system=ios
 
-[URL Rewrite]
-# 轻量降广告（无脚本、不伤评论）
-app_name=super&([\S]*)aid=\d+ app_name=super_pro&$1aid=1412 header
-
-# 仅信息流：按 Super.js 只删带 ad_info 的条目；不匹配 comment/cell_reply 等回复接口
-http-response-jq ^https?:\/\/[^\/]*\.(snssdk|pipix)\.com\/bds\/feed\/(stream|channel_list) 'def drop_ad: map(select(.ad_info == null)); if .data.data then .data.data |= drop_ad else . end | if .data.replies then .data.replies |= drop_ad else . end | if .data.cell_comments then .data.cell_comments |= drop_ad else . end | if .data.cell_list then .data.cell_list |= drop_ad else . end | if .data.item_list then .data.item_list |= drop_ad else . end | if .data.feed_list then .data.feed_list |= drop_ad else . end | if .data.list then .data.list |= drop_ad else . end | if (.data|type)=="array" then .data |= drop_ad else . end'
+[Script]
+# 仅信息流。不用 app_name/aid header 全局改写（会让评论回复变空）
+皮皮虾信息流 = type=http-response, pattern=^https?:\/\/[^\/]*\.(snssdk|pipix)\.com\/bds\/feed\/(stream|channel_list), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/pipixia/ppx_ads.js, requires-body=true, max-size=-1, timeout=60
 
 [MITM]
 hostname = %APPEND% *.snssdk.com, *.pipix.com
