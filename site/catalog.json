@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-10T04:29:17Z",
+  "generated_at": "2026-08-10T12:36:03Z",
   "branch": "main",
   "repo": "oo226/egern-config",
   "raw_base": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main",
@@ -217,6 +217,11 @@
   },
   "changelog": [
     {
+      "hash": "701dd70",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-08-10"
+    },
+    {
       "hash": "b9f5899",
       "subject": "chore: publish curated snapshot from sync",
       "date": "2026-08-10"
@@ -248,11 +253,6 @@
     },
     {
       "hash": "ef426fa",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-08-08"
-    },
-    {
-      "hash": "bdef9c0",
       "subject": "chore: publish curated snapshot from sync",
       "date": "2026-08-08"
     }
@@ -444,7 +444,7 @@
       "default_enabled": true,
       "usage_tier": "daily",
       "requires": [],
-      "hint": "Egern 推荐。关抓参：把「是否开启抓取重写」改成单独一个 #。",
+      "hint": "Egern 推荐。关抓参：参数 CAPTURE_MATCH 改成 #。",
       "tags": [
         "PingMe",
         "签到",
