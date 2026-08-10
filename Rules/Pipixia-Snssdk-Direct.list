@@ -1,0 +1,9 @@
+# AUTO-EXPORTED from Routing/Pipixia-Snssdk-Direct.yaml
+# Format: Surge RULE-SET (no policy). scripts/export-surge-rulesets.py
+# Total entries: 5
+
+DOMAIN,effect.snssdk.com
+DOMAIN,iu-lq.snssdk.com
+DOMAIN,lf-lq.snssdk.com
+DOMAIN-KEYWORD,-hl.snssdk.com
+DOMAIN-KEYWORD,-lq.snssdk.com
