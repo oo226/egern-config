@@ -75,9 +75,19 @@ function pickLists(root) {
   return out;
 }
 
-let raw = $response.body;
-if (!raw) {
+function passThrough() {
   $done({});
+}
+
+function finish(text) {
+  // 显式带 status，减轻 Egern 日志里 status=0 的显示
+  const status = Number(($response && ($response.status || $response.statusCode)) || 200);
+  $done({ status: status, body: text });
+}
+
+let raw = $response && $response.body;
+if (!raw) {
+  passThrough();
 } else {
   try {
     // 大整数 id 先转字符串，避免 JSON.parse 精度丢失
@@ -94,8 +104,8 @@ if (!raw) {
     text = text.replace(/\"can_download\":false/g, '"can_download":true');
     text = text.replace(/tplv-ppx-logo\.image/g, "0x0.gif");
     text = text.replace(/tplv-ppx-logo/g, "0x0");
-    $done({ body: text });
+    finish(text);
   } catch (e) {
-    $done({});
+    passThrough();
   }
 }
