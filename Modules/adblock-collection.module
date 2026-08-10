@@ -7209,6 +7209,12 @@ https://app.flymodem.com.cn/Appapi/Public/welecome - reject
 ^https?:\/\/vpic\.cms\.qq\.com\/nj_vpic\/.+ - reject
 
 
+# >>> merged from patches-pipixia (unique only)
+# 原 chxm1023 把 bds 和 monitor/trace/log 写在一起，会 reject 掉皮皮虾整站 API。
+# 这里只拦真正的埋点路径（合集已排除错误那一行）。
+^https?:\/\/.*\.snssdk\.com\/(monitor|trace|log).* - reject
+
+
 [Body Rewrite]
 # >>>>>>>>>>>>>>> ✅ !! ✅ <<<<<<<<<<<<<<
 
@@ -11491,7 +11497,7 @@ xiaohongshu = type=http-response, pattern=^https?:\/\/edith\.xiaohongshu\.com\/a
 
 
 # >>> merged from patches-pipixia (unique only)
-# 仅信息流。不用 app_name/aid header 全局改写（会让评论回复变空）
+# 仅信息流去广告；不碰评论/回复接口
 皮皮虾信息流 = type=http-response, pattern=^https?:\/\/[^\/]*\.(snssdk|pipix)\.com\/bds\/feed\/(stream|channel_list), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/pipixia/ppx_ads.js, requires-body=true, max-size=-1, timeout=60
 
 

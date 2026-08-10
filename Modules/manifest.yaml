@@ -39,6 +39,8 @@ merge:
   content_line_excludes:
     - "Spotify.Crack.Dev.js"
     - "Spotify.Crack.js"
+    # chxm1023 误把皮皮虾主接口 /bds/ 写进「行为监控」reject，评论回复会被直接拦空
+    - "snssdk.com\\/(bds|monitor|trace|log)"
   script_url_fixes:
     # limbopro 上游 cnys.js 已从仓库删除，回退到通用脚本
     "https://raw.githubusercontent.com/limbopro/Adblock4limbo/main/Adguard/cnys.js": "https://raw.githubusercontent.com/limbopro/Adblock4limbo/main/Adguard/Adblock4limbo.js"
