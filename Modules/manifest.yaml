@@ -130,6 +130,12 @@ modules:
     local: true
     note: "ddm1023 — YouTube/555电影/小红书等 Advertising 仓库补充"
 
+  - name: patches-pipixia
+    cache: patches-pipixia.sgmodule
+    role: supplement
+    local: true
+    note: "皮皮虾信息流去广告（合集原仅有穿山甲域名 REJECT，缺 /bds/ 脚本）"
+
   - name: tencent-sports-adblock
     cache: TencentSportsAdBlock.sgmodule
     role: supplement
