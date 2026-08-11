@@ -136,7 +136,7 @@ modules:
     cache: patches-pipixia.sgmodule
     role: supplement
     local: true
-    note: "皮皮虾：hashtag reject（破缓存）；stream Script max-size=-1 清四圆"
+    note: "皮皮虾：无 Script；Map Local + Body Rewrite（已撤销 Script/reject）"
 
   - name: tencent-sports-adblock
     cache: TencentSportsAdBlock.sgmodule

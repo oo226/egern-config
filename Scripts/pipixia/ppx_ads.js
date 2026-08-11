@@ -1,16 +1,12 @@
 /**
- * 皮皮虾：仅 stream / channel_list
- * 去广告 + 推荐上方四圆/影院入口 + 去水印。
- * check_in「我的」页走 Body Rewrite，避免签到接口刷 Script 日志。
+ * 皮皮虾：信息流去广告 + 去水印 + 频道/圆形入口精简
  *
- * 注意：合集 Script 必须 max-size=-1（stream 常 300KB+）。
+ * 注意：check_in「我的」页由合集 Body Rewrite（http-response-jq）处理，避免 Script 被签到接口狂刷。
+ * 本脚本只跑 stream / channel_list / detail。
  */
 const url = ($request && $request.url) || "";
 
 const KEEP_CHANNEL = new Set(["feed", "image_text", "follow_feed"]);
-
-const CIRCLE_TITLE_RE =
-  /皮皮虾影院|泥巴头像|怀旧\s*809|怪兽的王|怀旧8090/;
 
 const CIRCLE_LIST_KEYS = [
   "user_list",
@@ -23,12 +19,6 @@ const CIRCLE_LIST_KEYS = [
   "live_users",
   "header_users",
   "slide_list",
-  "hashtag_list",
-  "hashtags",
-  "icon_list",
-  "entrance_list",
-  "quick_access",
-  "top_list",
 ];
 
 function fixPos(arr) {
@@ -77,50 +67,28 @@ function isAdCell(cell) {
   return false;
 }
 
-function hasRealPost(cell) {
-  const item = cell && cell.item;
-  if (!item || typeof item !== "object") return false;
-  return !!(item.video || item.content || item.note || item.image_list);
-}
-
-/** 推荐上方横滑圆形入口 / 影院 / 热门话题条 */
+/** 推荐上方横滑圆形入口 / 影院卡 */
 function isCircleRow(cell) {
   if (!cell || typeof cell !== "object") return false;
   if (cell.banner_info) return true;
-  if (cell.hashtag_info || cell.hashtag || cell.topic_info) return true;
 
   const hasCircleList = CIRCLE_LIST_KEYS.some(
     (k) => Array.isArray(cell[k]) && cell[k].length > 0
   );
-  if (hasCircleList && !hasRealPost(cell)) return true;
-
-  for (const k of [
-    "cinema_info",
-    "story_info",
-    "circle_info",
-    "header_info",
-    "slide_info",
-    "icon_info",
-    "entrance_info",
-    "quick_access_info",
-  ]) {
-    if (cell[k]) return true;
+  if (hasCircleList) {
+    if (!cell.item) return true;
+    if (cell.item && !cell.item.video && !cell.item.content && !cell.item.note) return true;
   }
 
-  // 常见 cell_type / display_type（字节系话题条）
-  const t = cell.cell_type ?? cell.display_type ?? cell.style_type ?? cell.card_type;
-  if (typeof t === "number" && !hasRealPost(cell)) {
-    // 非标准帖子类型且无正文：当作入口条丢掉（保守：仅无 item 时）
-    if (cell.item == null && (cell.hashtag_list || cell.icons || cell.icon_list)) return true;
+  // 特征字段
+  for (const k of ["cinema_info", "story_info", "circle_info", "header_info", "slide_info"]) {
+    if (cell[k]) return true;
   }
 
   try {
     const blob = JSON.stringify(cell);
-    if (CIRCLE_TITLE_RE.test(blob)) return true;
-    if (
-      /"event_name"\s*:\s*"(cinema|live|story|circle|header|hashtag|topic|icon)"/.test(blob) &&
-      !hasRealPost(cell)
-    ) {
+    if (/皮皮虾影院/.test(blob)) return true;
+    if (/"event_name"\s*:\s*"(cinema|live|story|circle|header)"/.test(blob) && !cell.item?.video) {
       return true;
     }
   } catch (e) {}
@@ -145,17 +113,7 @@ function pickLists(root) {
   if (!root || typeof root !== "object") return out;
   const data = root.data;
   if (!data || typeof data !== "object") return out;
-  for (const key of [
-    "data",
-    "replies",
-    "cell_comments",
-    "cell_list",
-    "item_list",
-    "feed_list",
-    "list",
-    "hashtag_list",
-    "hashtags",
-  ]) {
+  for (const key of ["data", "replies", "cell_comments", "cell_list", "item_list", "feed_list", "list"]) {
     if (Array.isArray(data[key])) out.push(data[key]);
   }
   if (Array.isArray(data)) out.push(data);
@@ -189,16 +147,6 @@ function filterChannels(data) {
     "banner_list",
     "banners",
     "slide_list",
-    "icon_list",
-    "entrance_list",
-    "quick_access",
-    "hashtag_list",
-    "hashtags",
-    "top_hashtag",
-    "top_hashtags",
-    "god_hashtag",
-    "hot_hashtag",
-    "hot_hashtags",
   ]) {
     if (key in data) delete data[key];
   }
@@ -225,7 +173,14 @@ if (!raw) {
     let text = String(raw).replace(/id\":([0-9]{15,})/g, 'id":"$1str"');
     const body = JSON.parse(text);
 
-    if (url.includes("/bds/feed/channel_list") || url.includes("/bds/feed/stream")) {
+    if (url.includes("/bds/feed/channel_list")) {
+      filterChannels(body.data);
+    }
+    if (
+      url.includes("/bds/feed/stream") ||
+      url.includes("/bds/feed/channel_list") ||
+      url.includes("/bds/cell/detail")
+    ) {
       scrubFeed(body);
     }
 

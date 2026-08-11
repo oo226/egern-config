@@ -494,7 +494,30 @@ body_rewrites:
       match: ^https?://testflight\.apple\.com/v\d/accounts/.+?/install$
       filter: .storefrontId = "143441-19,29"
       disabled: true
-  # 皮皮虾：stream/channel 由合集 Script(ppx-feed) 处理（大包 jq 常无效）；此处保留 check_in/detail
+  # 皮皮虾：Egern 原生 jq（合集 Surge 的 http-response-jq 在 Egern 上常不生效；无 Script 故无日志噪音）
+  - response_jq:
+      match: ^https?://[^/]*\.pipix\.com/bds/feed/stream
+      filter: >-
+        def unlock: if (.item.video? and .item.origin_video_download.url_list?)
+          then .item.video.video_download.url_list=.item.origin_video_download.url_list else . end;
+        def keep: (has("ad_info")|not) and (has("banner_info")|not) and (has("item"))
+          and ((.item.video!=null) or (.item.content!=null) or (.item.note!=null) or (.item.image_list!=null));
+        .data.data |= map(select(keep) | unlock)
+        | if .data.channel_model then
+            .data.channel_model |= map(select(.event_name=="feed" or .event_name=="image_text" or .event_name=="follow_feed"))
+          else . end
+        | del(.data.story_list,.data.circle_list,.data.live_list,.data.banner_list,.data.header_list,
+              .data.square_list,.data.cinema_list,.data.recommend_users,.data.user_story,.data.slide_list,
+              .data.icon_list,.data.entrance_list,.data.top_list,.data.quick_access)
+  - response_jq:
+      match: ^https?://[^/]*\.pipix\.com/bds/feed/channel_list
+      filter: >-
+        (if .data.channel_model then
+          .data.channel_model |= map(select(.event_name=="feed" or .event_name=="image_text" or .event_name=="follow_feed"))
+        else . end)
+        | del(.data.story_list,.data.circle_list,.data.live_list,.data.banner_list,.data.header_list,
+              .data.square_list,.data.cinema_list,.data.recommend_users,.data.user_story,.data.slide_list,
+              .data.icon_list,.data.entrance_list,.data.top_list,.data.quick_access)
   - response_jq:
       match: ^https?://[^/]*\.pipix\.com/bds/user/check_in
       filter: >-
