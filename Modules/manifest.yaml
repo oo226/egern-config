@@ -136,7 +136,7 @@ modules:
     cache: patches-pipixia.sgmodule
     role: supplement
     local: true
-    note: "皮皮虾：无 Script；Map Local + Body Rewrite（已撤销 Script/reject）"
+    note: "皮皮虾：Egern 用 Script(ppx) 清「我的」/频道/信息流；Map Local 空广告/luckycat"
 
   - name: tencent-sports-adblock
     cache: TencentSportsAdBlock.sgmodule
