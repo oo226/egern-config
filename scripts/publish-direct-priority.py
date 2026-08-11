@@ -27,6 +27,18 @@ EXTRA_SUFFIXES: tuple[str, ...] = (
     "pingmeapp.net",
 )
 
+# 皮皮虾等国内字节 snssdk：须排在 TikTok 之前直连。
+# 主配置若不能更新，靠强制更新本 rule_set（已在 Egern 第 1 段引用）即可生效。
+EXTRA_DOMAINS: tuple[str, ...] = (
+    "effect.snssdk.com",
+    "iu-lq.snssdk.com",
+    "lf-lq.snssdk.com",
+)
+EXTRA_KEYWORDS: tuple[str, ...] = (
+    "lq.snssdk.com",
+    "hl.snssdk.com",
+)
+
 
 def main() -> None:
     parts = []
@@ -44,12 +56,15 @@ def main() -> None:
 
     merged = merge_set_dicts(parts)
     merged["domain_suffix_set"].update(EXTRA_SUFFIXES)
+    merged.setdefault("domain_set", set()).update(EXTRA_DOMAINS)
+    merged.setdefault("domain_keyword_set", set()).update(EXTRA_KEYWORDS)
 
     header = [
         "# AUTO-PUBLISHED by scripts/publish-direct-priority.py",
         "# 类型: 分流规则 — 国内/系统服务优先直连（须在 Proxy 类规则之前匹配）",
         "# Do not edit manually. Updated by GitHub Actions after upstream sync.",
         f"# Merged: {', '.join(labels)}",
+        "# Extra: Pipixia CN snssdk (effect / *-lq|hl) before TikTok",
     ]
     write_egern_sets(DEST, merged, header_lines=header)
     print(f"Direct-Priority total: {count_sets(merged)} entries")
