@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-10T12:44:02Z",
+  "generated_at": "2026-08-11T04:17:22Z",
   "branch": "main",
   "repo": "oo226/egern-config",
   "raw_base": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main",
@@ -202,57 +202,55 @@
   ],
   "sync_digest": {
     "commit": {
-      "hash": "5389df1",
-      "subject": "fix: restore PingMe in-app capture toggle via CAPTURE_MATCH",
+      "hash": "257bdc4",
+      "subject": "fix: use pingme.sgmodule for Egern argument panel like Qidian",
       "date": "2026-08-10"
     },
     "summary": [
-      "模块 更新 1 个文件",
-      "模块站 更新 1 个文件",
-      "国内直连 26029 条"
+      "国内直连 26037 条"
     ],
-    "files_changed": 3
+    "files_changed": 0
   },
   "changelog": [
     {
-      "hash": "9e13e32",
+      "hash": "26e8625",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-08-11"
+    },
+    {
+      "hash": "66dba24",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-08-11"
+    },
+    {
+      "hash": "d4ef195",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-08-11"
+    },
+    {
+      "hash": "9520aa9",
       "subject": "chore: publish curated snapshot from sync",
       "date": "2026-08-10"
     },
     {
-      "hash": "e3985a5",
+      "hash": "103ea83",
       "subject": "chore: publish curated snapshot from sync",
       "date": "2026-08-10"
     },
     {
-      "hash": "9c5707e",
+      "hash": "f532467",
       "subject": "chore: publish curated snapshot from sync",
       "date": "2026-08-10"
     },
     {
-      "hash": "701dd70",
+      "hash": "354dbfb",
       "subject": "chore: publish curated snapshot from sync",
       "date": "2026-08-10"
     },
     {
-      "hash": "b9f5899",
+      "hash": "9e2f9a9",
       "subject": "chore: publish curated snapshot from sync",
       "date": "2026-08-10"
-    },
-    {
-      "hash": "44b3875",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-08-09"
-    },
-    {
-      "hash": "a23dcb5",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-08-09"
-    },
-    {
-      "hash": "72aa3c5",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-08-08"
     }
   ],
   "local_health": {
