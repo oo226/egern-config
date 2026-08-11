@@ -1,8 +1,7 @@
 /**
- * 皮皮虾：信息流去广告 + 去水印 + 频道/圆形入口精简
- *
- * 注意：check_in「我的」页由合集 Body Rewrite（http-response-jq）处理，避免 Script 被签到接口狂刷。
- * 本脚本只跑 stream / channel_list / detail。
+ * 皮皮虾：仅 stream / channel_list
+ * 去广告 + 推荐上方四圆/影院入口 + 去水印。
+ * check_in「我的」页走 Body Rewrite，避免签到接口刷 Script 日志。
  */
 const url = ($request && $request.url) || "";
 
@@ -147,6 +146,13 @@ function filterChannels(data) {
     "banner_list",
     "banners",
     "slide_list",
+    "icon_list",
+    "entrance_list",
+    "quick_access",
+    "hashtag_list",
+    "hashtags",
+    "top_hashtag",
+    "top_hashtags",
   ]) {
     if (key in data) delete data[key];
   }
@@ -173,14 +179,7 @@ if (!raw) {
     let text = String(raw).replace(/id\":([0-9]{15,})/g, 'id":"$1str"');
     const body = JSON.parse(text);
 
-    if (url.includes("/bds/feed/channel_list")) {
-      filterChannels(body.data);
-    }
-    if (
-      url.includes("/bds/feed/stream") ||
-      url.includes("/bds/feed/channel_list") ||
-      url.includes("/bds/cell/detail")
-    ) {
+    if (url.includes("/bds/feed/channel_list") || url.includes("/bds/feed/stream")) {
       scrubFeed(body);
     }
 

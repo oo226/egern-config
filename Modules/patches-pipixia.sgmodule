@@ -1,18 +1,20 @@
 #!name=皮皮虾去广告补全
-#!desc=合集内：无 Script。Map Local 空掉推荐四圆(hashtag)/banner/弹窗/tail_cards；Body Rewrite 处理 stream/check_in（Surge）。Egern 另用主配置 response_jq。
+#!desc=合集内：stream/channel 用 Script 清四圆（Egern jq 对大包常无效）；Map Local 空 hashtag/banner/弹窗/广告；check_in 仍用 Body Rewrite 免刷屏。
 #!author=oo226/egern-config (可莉 + Super.js + ZenmoFeiShi)
 #!category=去广告补全
 #!system=ios
 
 [URL Rewrite]
 ^https?:\/\/.*\.snssdk\.com\/(monitor|trace|log).* - reject
+# 推荐四圆：空响应仍可能走缓存时直接拒绝
+^https?:\/\/[^\/]*\.pipix\.com\/bds\/hashtag\/get_top_hashtag - reject
 
 [Map Local]
-# 开屏/运营 banner（日志里已是 ~50B 空包；给合法空结构避免客户端走缓存）
+# 开屏/运营广告
 ^https?:\/\/[^\/]*\.pipix\.com\/api\/ad\/ data-type=text data="{\"status_code\":0,\"message\":\"\",\"data\":null}" status-code=200 header="Content-Type:application/json"
 ^https?:\/\/[^\/]*\.pipix\.com\/bds\/banner\/ data-type=text data="{\"status_code\":0,\"message\":\"\",\"data\":{\"banner\":[],\"banners\":[],\"list\":[],\"banner_list\":[]}}" status-code=200 header="Content-Type:application/json"
-# 推荐上方四圆入口（怪兽的王 / 怀旧809 / 泥巴头像 / 皮皮虾影院）← get_top_hashtag
-^https?:\/\/[^\/]*\.pipix\.com\/bds\/hashtag\/get_top_hashtag data-type=text data="{\"status_code\":0,\"message\":\"\",\"data\":{\"hashtag_list\":[],\"hashtags\":[],\"list\":[],\"data\":[]}}" status-code=200 header="Content-Type:application/json"
+# 推荐上方四圆（get_top_hashtag；与 URL reject 双保险）
+^https?:\/\/[^\/]*\.pipix\.com\/bds\/hashtag\/ data-type=text data="{\"status_code\":0,\"message\":\"\",\"data\":{\"hashtag_list\":[],\"hashtags\":[],\"list\":[],\"data\":[]}}" status-code=200 header="Content-Type:application/json"
 # 弹窗 / 勋章弹层
 ^https?:\/\/[^\/]*\.pipix\.com\/bds\/popups\/ data-type=text data="{\"status_code\":0,\"message\":\"\",\"data\":null}" status-code=200 header="Content-Type:application/json"
 ^https?:\/\/[^\/]*\.pipix\.com\/bds\/medal\/popups data-type=text data="{\"status_code\":0,\"message\":\"\",\"data\":null}" status-code=200 header="Content-Type:application/json"
@@ -22,11 +24,7 @@
 ^https?:\/\/[^\/]*\.pipix\.com\/luckycat\/ data-type=text data="{\"status_code\":0,\"message\":\"\",\"data\":null}" status-code=200 header="Content-Type:application/json"
 
 [Body Rewrite]
-# 信息流：去广告 + 去掉无正文/视频的入口卡（推荐上方圆形入口）+ 去水印
-http-response-jq ^https?:\/\/[^\/]*\.pipix\.com\/bds\/feed\/stream 'def unlock: if (.item.video? and .item.origin_video_download.url_list?) then .item.video.video_download.url_list=.item.origin_video_download.url_list else . end; def keep: (has("ad_info")|not) and (has("banner_info")|not) and (has("item")) and ((.item.video!=null) or (.item.content!=null) or (.item.note!=null) or (.item.image_list!=null)); .data.data |= map(select(keep) | unlock) | if .data.channel_model then .data.channel_model |= map(select(.event_name=="feed" or .event_name=="image_text" or .event_name=="follow_feed")) else . end | del(.data.story_list,.data.circle_list,.data.live_list,.data.banner_list,.data.header_list,.data.square_list,.data.cinema_list,.data.recommend_users,.data.user_story,.data.slide_list,.data.icon_list,.data.entrance_list,.data.top_list,.data.quick_access)'
-
-http-response-jq ^https?:\/\/[^\/]*\.pipix\.com\/bds\/feed\/channel_list '(if .data.channel_model then .data.channel_model |= map(select(.event_name=="feed" or .event_name=="image_text" or .event_name=="follow_feed")) else . end) | del(.data.story_list,.data.circle_list,.data.live_list,.data.banner_list,.data.header_list,.data.square_list,.data.cinema_list,.data.recommend_users,.data.user_story,.data.slide_list,.data.icon_list,.data.entrance_list,.data.top_list,.data.quick_access)'
-
+# 「我的」页精简（不进 Script，避免签到接口刷日志）
 http-response-jq ^https?:\/\/[^\/]*\.pipix\.com\/bds\/user\/check_in '(if .data.profile_entrances then .data.profile_entrances |= map(select(.title != "放心借" and .title != "洋钱罐借款" and .title != "创作中心" and .title != "原创特权" and .title != "小黑屋" and .title != "我的订单" and .title != "银行卡管理" and .title != "神评鉴定" and .title != "宠物乐园" and .title != "进入宠物乐园")) else . end) | del(.data.pet_interface_message,.data.pet_entrance,.data.pet_paradise,.data.activity_banner,.data.profile_banner,.data.loan_entrance,.data.credit_entrance)'
 
 http-response-jq ^https?:\/\/[^\/]*\.pipix\.com\/bds\/cell\/detail 'if (.data.item.video? and .data.item.origin_video_download.url_list?) then .data.item.video.video_download.url_list=.data.item.origin_video_download.url_list else . end'
@@ -34,6 +32,10 @@ http-response-jq ^https?:\/\/[^\/]*\.pipix\.com\/bds\/cell\/detail 'if (.data.it
 http-response ^https?:\/\/[^\/]*\.pipix\.com\/bds\/(feed\/stream|cell\/detail) tplv-ppx-logo.image 0x0.gif
 http-response ^https?:\/\/[^\/]*\.pipix\.com\/bds\/(feed\/stream|cell\/detail) tplv-ppx-logo 0x0
 http-response ^https?:\/\/[^\/]*\.pipix\.com\/bds\/(feed\/stream|cell\/detail) "can_download":false "can_download":true
+
+[Script]
+# 仅信息流/频道：清广告+四圆入口（刷新时才跑，不会像 check_in 狂刷）
+ppx-feed = type=http-response, pattern=^https?:\/\/[^\/]*\.pipix\.com\/bds\/feed\/(stream|channel_list), requires-body=1, max-size=0, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/pipixia/ppx_ads.js
 
 [MITM]
 hostname = %APPEND% *.snssdk.com, *.pipix.com, api.pipix.com, api5-lq.pipix.com

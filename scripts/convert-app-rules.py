@@ -26,6 +26,22 @@ APP_LABELS = {
     "TestFlight": "blackmatrix7 — TestFlight",
 }
 
+# TikTok 上游含整域 snssdk.com，会把皮皮虾国内 effect/*-lq.snssdk.com 误判出海。
+# 海外解锁仍有 tiktokv.com / isnssdk.com / byteoversea 等，不必绑死 snssdk.com。
+DROP_DOMAIN_SUFFIX: dict[str, frozenset[str]] = {
+    "TikTok": frozenset({"snssdk.com"}),
+}
+
+
+def apply_drops(name: str, sets: dict[str, set[str]]) -> dict[str, set[str]]:
+    drop = DROP_DOMAIN_SUFFIX.get(name)
+    if not drop:
+        return sets
+    suffix = sets.get("domain_suffix_set")
+    if suffix:
+        sets["domain_suffix_set"] = {d for d in suffix if d.lower() not in drop}
+    return sets
+
 
 def main() -> None:
     if not APP_DIR.is_dir():
@@ -34,6 +50,7 @@ def main() -> None:
     for path in sorted(APP_DIR.glob("*.list")):
         name = path.stem
         sets = parse_surge_list(path.read_text(encoding="utf-8", errors="replace"))
+        sets = apply_drops(name, sets)
         if count_sets(sets) == 0:
             print(f"skip empty {name}")
             continue
@@ -43,6 +60,9 @@ def main() -> None:
             "# Do not edit manually. Updated by GitHub Actions after upstream sync.",
             f"# Source: {path.name}",
         ]
+        if name in DROP_DOMAIN_SUFFIX:
+            dropped = ", ".join(sorted(DROP_DOMAIN_SUFFIX[name]))
+            header.append(f"# Local drop domain_suffix: {dropped}")
         write_egern_sets(OUTPUT_DIR / f"{name}.yaml", sets, header_lines=header)
 
 

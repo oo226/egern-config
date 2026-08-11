@@ -136,7 +136,7 @@ modules:
     cache: patches-pipixia.sgmodule
     role: supplement
     local: true
-    note: "皮皮虾：无 Script（不刷日志）；Body Rewrite + Map Local 合集内完成"
+    note: "皮皮虾：stream Script 清四圆；Map Local 空 hashtag/广告；check_in 用 jq"
 
   - name: tencent-sports-adblock
     cache: TencentSportsAdBlock.sgmodule
