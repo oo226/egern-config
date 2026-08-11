@@ -24,8 +24,7 @@ domain_suffix_set:
   - muscdn.com
   - musical.ly
   - sgpstatp.com
-  # snssdk.com 已剔除：整域会误伤皮皮虾等国内字节（effect / *-lq.snssdk.com）。
-  # 海外 TikTok 仍靠 tiktokv.com / isnssdk.com / byteoversea 等；国内 snssdk 走 China-Direct。
+  - snssdk.com
   - tik-tokapi.com
   - tiktok.com
   - tiktokcdn-us.com

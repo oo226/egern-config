@@ -2,8 +2,7 @@
 # 类型: 分流规则 — 国内/系统服务优先直连（须在 Proxy 类规则之前匹配）
 # Do not edit manually. Updated by GitHub Actions after upstream sync.
 # Merged: WeChat.yaml, Microsoft.yaml, AppleServers.yaml, TestFlight.yaml
-# Extra: Pipixia CN snssdk (effect / *-lq|hl) before TikTok
-# Total unique entries: 730
+# Total unique entries: 725
 
 no_resolve: true
 domain_set:
@@ -11,9 +10,6 @@ domain_set:
   - beta.apple.com
   - btrace.qq.com
   - dldir1.qq.com
-  - effect.snssdk.com
-  - iu-lq.snssdk.com
-  - lf-lq.snssdk.com
   - slife.xy-asia.com
   - soup.v.qq.com
   - testflight.apple.com
@@ -732,8 +728,6 @@ domain_suffix_set:
   - yammerusercontent.com
   - yun-hl.3g.qq.com
 domain_keyword_set:
-  - hl.snssdk.com
-  - lq.snssdk.com
   - testflight
 ip_cidr_set:
   - 17.0.0.0/8
