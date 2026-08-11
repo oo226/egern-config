@@ -1,30 +1,12 @@
 /**
- * 皮皮虾（Egern 必须用 Script：合集 http-response-jq 常不生效）
- * - stream / channel_list：去广告、四圆/影院入口、精简顶栏频道
- * - check_in：「我的」页去放心借/创作中心/宠物乐园等
- * - settings：尽量去掉底部「福利」Tab
- * - detail：去水印解锁
- * 显式带回 HTTP status，减轻 Egern「状态 0」刷屏
+ * 皮皮虾：信息流去广告 + 去水印 + 频道/圆形入口精简
+ *
+ * 注意：check_in「我的」页由合集 Body Rewrite（http-response-jq）处理，避免 Script 被签到接口狂刷。
+ * 本脚本只跑 stream / channel_list / detail。
  */
 const url = ($request && $request.url) || "";
 
-const DROP_PROFILE = new Set([
-  "放心借",
-  "洋钱罐借款",
-  "创作中心",
-  "原创特权",
-  "小黑屋",
-  "我的订单",
-  "银行卡管理",
-  "神评鉴定",
-  "宠物乐园",
-  "进入宠物乐园",
-]);
-
 const KEEP_CHANNEL = new Set(["feed", "image_text", "follow_feed"]);
-
-const CIRCLE_TITLE_RE =
-  /皮皮虾影院|泥巴头像|怀旧\s*809|怪兽的王|怀旧8090/;
 
 const CIRCLE_LIST_KEYS = [
   "user_list",
@@ -37,12 +19,6 @@ const CIRCLE_LIST_KEYS = [
   "live_users",
   "header_users",
   "slide_list",
-  "hashtag_list",
-  "hashtags",
-  "icon_list",
-  "entrance_list",
-  "quick_access",
-  "top_list",
 ];
 
 function fixPos(arr) {
@@ -91,41 +67,28 @@ function isAdCell(cell) {
   return false;
 }
 
-function hasRealPost(cell) {
-  const item = cell && cell.item;
-  if (!item || typeof item !== "object") return false;
-  return !!(item.video || item.content || item.note || item.image_list);
-}
-
+/** 推荐上方横滑圆形入口 / 影院卡 */
 function isCircleRow(cell) {
   if (!cell || typeof cell !== "object") return false;
   if (cell.banner_info) return true;
-  if (cell.hashtag_info || cell.hashtag || cell.topic_info) return true;
 
   const hasCircleList = CIRCLE_LIST_KEYS.some(
     (k) => Array.isArray(cell[k]) && cell[k].length > 0
   );
-  if (hasCircleList && !hasRealPost(cell)) return true;
+  if (hasCircleList) {
+    if (!cell.item) return true;
+    if (cell.item && !cell.item.video && !cell.item.content && !cell.item.note) return true;
+  }
 
-  for (const k of [
-    "cinema_info",
-    "story_info",
-    "circle_info",
-    "header_info",
-    "slide_info",
-    "icon_info",
-    "entrance_info",
-  ]) {
+  // 特征字段
+  for (const k of ["cinema_info", "story_info", "circle_info", "header_info", "slide_info"]) {
     if (cell[k]) return true;
   }
 
   try {
     const blob = JSON.stringify(cell);
-    if (CIRCLE_TITLE_RE.test(blob)) return true;
-    if (
-      /"event_name"\s*:\s*"(cinema|live|story|circle|header|hashtag|topic|icon)"/.test(blob) &&
-      !hasRealPost(cell)
-    ) {
+    if (/皮皮虾影院/.test(blob)) return true;
+    if (/"event_name"\s*:\s*"(cinema|live|story|circle|header)"/.test(blob) && !cell.item?.video) {
       return true;
     }
   } catch (e) {}
@@ -141,7 +104,6 @@ function scrubList(list) {
       list.splice(i, 1);
       continue;
     }
-    if (cell && cell.banner_info) delete cell.banner_info;
     unlockCell(cell);
   }
 }
@@ -151,85 +113,11 @@ function pickLists(root) {
   if (!root || typeof root !== "object") return out;
   const data = root.data;
   if (!data || typeof data !== "object") return out;
-  for (const key of [
-    "data",
-    "replies",
-    "cell_comments",
-    "cell_list",
-    "item_list",
-    "feed_list",
-    "list",
-    "hashtag_list",
-    "hashtags",
-  ]) {
+  for (const key of ["data", "replies", "cell_comments", "cell_list", "item_list", "feed_list", "list"]) {
     if (Array.isArray(data[key])) out.push(data[key]);
   }
   if (Array.isArray(data)) out.push(data);
   return out;
-}
-
-function dropWelfareTitle(s) {
-  const t = String(s || "").trim();
-  return t === "福利" || t === "金币" || t === "赚钱" || /福利|金币任务|luckycat/i.test(t);
-}
-
-function scrubTabArray(arr) {
-  if (!Array.isArray(arr)) return;
-  for (let i = arr.length - 1; i >= 0; i--) {
-    const e = arr[i];
-    if (!e || typeof e !== "object") continue;
-    const title = e.title || e.name || e.text || e.tab_name || e.channel_name;
-    const en = e.event_name || e.type || e.tab_type || e.key || e.schema;
-    if (dropWelfareTitle(title) || dropWelfareTitle(en) || /lucky|welfare|gold|coin/i.test(String(en || ""))) {
-      arr.splice(i, 1);
-    }
-  }
-  fixPos(arr);
-}
-
-function walkDropWelfare(node, depth) {
-  if (!node || depth > 6) return;
-  if (Array.isArray(node)) {
-    scrubTabArray(node);
-    for (const x of node) walkDropWelfare(x, depth + 1);
-    return;
-  }
-  if (typeof node !== "object") return;
-  for (const k of Object.keys(node)) {
-    const v = node[k];
-    if (
-      /tab|bottom|nav|channel_model|entrance|bar_list|menu/i.test(k) &&
-      Array.isArray(v)
-    ) {
-      scrubTabArray(v);
-    }
-    walkDropWelfare(v, depth + 1);
-  }
-}
-
-function filterProfile(data) {
-  if (!data || typeof data !== "object") return;
-
-  if (Array.isArray(data.profile_entrances)) {
-    data.profile_entrances = data.profile_entrances.filter(
-      (e) => e && !DROP_PROFILE.has(String(e.title || "").trim())
-    );
-    fixPos(data.profile_entrances);
-  }
-
-  for (const key of [
-    "pet_interface_message",
-    "pet_entrance",
-    "pet_paradise",
-    "activity_banner",
-    "profile_banner",
-    "banner",
-    "banners",
-    "loan_entrance",
-    "credit_entrance",
-  ]) {
-    if (key in data) delete data[key];
-  }
 }
 
 function filterChannels(data) {
@@ -259,13 +147,6 @@ function filterChannels(data) {
     "banner_list",
     "banners",
     "slide_list",
-    "icon_list",
-    "entrance_list",
-    "quick_access",
-    "hashtag_list",
-    "hashtags",
-    "top_hashtag",
-    "top_hashtags",
   ]) {
     if (key in data) delete data[key];
   }
@@ -291,22 +172,16 @@ if (!raw) {
   try {
     let text = String(raw).replace(/id\":([0-9]{15,})/g, 'id":"$1str"');
     const body = JSON.parse(text);
-    const data = body && body.data;
 
-    if (url.includes("/bds/user/check_in")) filterProfile(data);
-    if (url.includes("/bds/feed/channel_list") || url.includes("/bds/feed/stream")) {
-      scrubFeed(body);
-    }
-    if (url.includes("/bds/cell/detail")) {
-      scrubFeed(body);
+    if (url.includes("/bds/feed/channel_list")) {
+      filterChannels(body.data);
     }
     if (
-      url.includes("/bds/settings/") ||
-      url.includes("/service/settings/") ||
+      url.includes("/bds/feed/stream") ||
       url.includes("/bds/feed/channel_list") ||
-      url.includes("/bds/user/check_in")
+      url.includes("/bds/cell/detail")
     ) {
-      walkDropWelfare(body, 0);
+      scrubFeed(body);
     }
 
     text = JSON.stringify(body);
