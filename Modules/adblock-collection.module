@@ -7211,8 +7211,8 @@ https://app.flymodem.com.cn/Appapi/Public/welecome - reject
 
 # >>> merged from patches-pipixia (unique only)
 ^https?:\/\/.*\.snssdk\.com\/(monitor|trace|log).* - reject
-# 推荐四圆：空响应仍可能走缓存时直接拒绝
-^https?:\/\/[^\/]*\.pipix\.com\/bds\/hashtag\/get_top_hashtag - reject
+# 推荐四圆：必须 reject。Map Local 空 200 时客户端会继续用本地缓存，去不掉。
+^https?:\/\/[^\/]*\.pipix\.com\/bds\/hashtag\/ - reject
 
 
 [Body Rewrite]
@@ -7498,7 +7498,6 @@ http-response ^https?:\/\/app\.zhuanzhuan\.com\/zz\/v2\/zzinfoshow\/getchoicegoo
 
 
 # >>> merged from patches-pipixia (unique only)
-# 「我的」页精简（不进 Script，避免签到接口刷日志）
 http-response-jq ^https?:\/\/[^\/]*\.pipix\.com\/bds\/user\/check_in '(if .data.profile_entrances then .data.profile_entrances |= map(select(.title != "放心借" and .title != "洋钱罐借款" and .title != "创作中心" and .title != "原创特权" and .title != "小黑屋" and .title != "我的订单" and .title != "银行卡管理" and .title != "神评鉴定" and .title != "宠物乐园" and .title != "进入宠物乐园")) else . end) | del(.data.pet_interface_message,.data.pet_entrance,.data.pet_paradise,.data.activity_banner,.data.profile_banner,.data.loan_entrance,.data.credit_entrance)'
 
 http-response-jq ^https?:\/\/[^\/]*\.pipix\.com\/bds\/cell\/detail 'if (.data.item.video? and .data.item.origin_video_download.url_list?) then .data.item.video.video_download.url_list=.data.item.origin_video_download.url_list else . end'
@@ -9729,8 +9728,6 @@ https://.+\.gamersky.com/v1/statisticAd data-type=text data="{}" status-code=200
 # 开屏/运营广告
 ^https?:\/\/[^\/]*\.pipix\.com\/api\/ad\/ data-type=text data="{\"status_code\":0,\"message\":\"\",\"data\":null}" status-code=200 header="Content-Type:application/json"
 ^https?:\/\/[^\/]*\.pipix\.com\/bds\/banner\/ data-type=text data="{\"status_code\":0,\"message\":\"\",\"data\":{\"banner\":[],\"banners\":[],\"list\":[],\"banner_list\":[]}}" status-code=200 header="Content-Type:application/json"
-# 推荐上方四圆（get_top_hashtag；与 URL reject 双保险）
-^https?:\/\/[^\/]*\.pipix\.com\/bds\/hashtag\/ data-type=text data="{\"status_code\":0,\"message\":\"\",\"data\":{\"hashtag_list\":[],\"hashtags\":[],\"list\":[],\"data\":[]}}" status-code=200 header="Content-Type:application/json"
 # 弹窗 / 勋章弹层
 ^https?:\/\/[^\/]*\.pipix\.com\/bds\/popups\/ data-type=text data="{\"status_code\":0,\"message\":\"\",\"data\":null}" status-code=200 header="Content-Type:application/json"
 ^https?:\/\/[^\/]*\.pipix\.com\/bds\/medal\/popups data-type=text data="{\"status_code\":0,\"message\":\"\",\"data\":null}" status-code=200 header="Content-Type:application/json"
@@ -11528,8 +11525,8 @@ xiaohongshu = type=http-response, pattern=^https?:\/\/edith\.xiaohongshu\.com\/a
 
 
 # >>> merged from patches-pipixia (unique only)
-# 仅信息流/频道：清广告+四圆入口（刷新时才跑，不会像 check_in 狂刷）
-ppx-feed = type=http-response, pattern=^https?:\/\/[^\/]*\.pipix\.com\/bds\/feed\/(stream|channel_list), requires-body=1, max-size=0, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/pipixia/ppx_ads.js
+# max-size=-1：stream 常 >128KB；max-size=0 在部分客户端等于不读 body，四圆清不掉
+ppx-feed = type=http-response, pattern=^https?:\/\/[^\/]*\.pipix\.com\/bds\/feed\/(stream|channel_list), requires-body=1, max-size=-1, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/pipixia/ppx_ads.js
 
 
 # >>> merged from tencent-sports-adblock (unique only)
