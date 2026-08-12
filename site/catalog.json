@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-11T04:17:22Z",
+  "generated_at": "2026-08-12T04:41:11Z",
   "branch": "main",
   "repo": "oo226/egern-config",
   "raw_base": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main",
@@ -202,16 +202,41 @@
   ],
   "sync_digest": {
     "commit": {
-      "hash": "257bdc4",
-      "subject": "fix: use pingme.sgmodule for Egern argument panel like Qidian",
-      "date": "2026-08-10"
+      "hash": "58c03a2",
+      "subject": "chore: sync upstream on sync branch",
+      "date": "2026-08-11"
     },
     "summary": [
-      "国内直连 26037 条"
+      "国内直连 26039 条"
     ],
     "files_changed": 0
   },
   "changelog": [
+    {
+      "hash": "27728d9",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-08-11"
+    },
+    {
+      "hash": "eb71512",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-08-11"
+    },
+    {
+      "hash": "c639b6b",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-08-11"
+    },
+    {
+      "hash": "48bc938",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-08-11"
+    },
+    {
+      "hash": "34a5e00",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-08-11"
+    },
     {
       "hash": "26e8625",
       "subject": "chore: publish curated snapshot from sync",
@@ -226,31 +251,6 @@
       "hash": "d4ef195",
       "subject": "chore: publish curated snapshot from sync",
       "date": "2026-08-11"
-    },
-    {
-      "hash": "9520aa9",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-08-10"
-    },
-    {
-      "hash": "103ea83",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-08-10"
-    },
-    {
-      "hash": "f532467",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-08-10"
-    },
-    {
-      "hash": "354dbfb",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-08-10"
-    },
-    {
-      "hash": "9e2f9a9",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-08-10"
     }
   ],
   "local_health": {
@@ -556,7 +556,7 @@
       "category": "modules",
       "group": "iRingo",
       "name": " iRingo: 🌤 WeatherKit",
-      "desc": "iOS 18 & macOS 15 & watchOS 11 1.解锁全部天气功能 2.替换空气质量数据 3.添加下一小时降水数据 4.添加天气数据",
+      "desc": "iOS 18 & macOS 15 & watchOS 11 1.解锁全部天气功能 2.修改空气质量数据 3.修改下一小时降水数据 4.修改天气数据 5.修改天气预警数据",
       "icon": "https://developer.apple.com/assets/elements/icons/weatherkit/weatherkit-128x128.png",
       "homepage": "https://NSRingo.github.io/guide/Weather/weather-kit",
       "path": "Modules/iringo-weather.sgmodule",
