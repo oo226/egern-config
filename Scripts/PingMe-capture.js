@@ -51,26 +51,27 @@ function saveCapture(url, reqHeaders) {
   const capture = {
     url,
     paramsRaw: parseRawQuery(url),
-    headers: normalizeHeaderNameMap(headersToMap(reqHeaders))
+    headers: normalizeHeaderNameMap(headersToMap(reqHeaders)),
+    capturedAt: Date.now()
   };
   const json = JSON.stringify(capture);
 
-  // 同时写带/不带 # 的键，兼容签到脚本 $.getdata('pingme_capture_v3') 与旧写法
   const keys = [`#${CK}`, CK];
   if (typeof $persistentStore !== 'undefined') {
     keys.forEach(k => $persistentStore.write(json, k));
-    return;
   }
   if (typeof globalThis.__pingmeStorage !== 'undefined' && globalThis.__pingmeStorage) {
     const s = globalThis.__pingmeStorage;
-    if (typeof s.setJSON === 'function') s.setJSON(CK, capture);
-    else if (typeof s.set === 'function') {
-      s.set(CK, json);
-      s.set(`#${CK}`, json);
+    if (typeof s.setJSON === 'function') {
+      s.setJSON(CK, capture);
+      s.setJSON(`#${CK}`, capture);
+    } else if (typeof s.set === 'function') {
+      keys.forEach(k => s.set(k, json));
     }
-    return;
   }
-  console.log(`【PingMe抓参】无可用存储，capture=${json.slice(0, 120)}...`);
+  if (typeof $persistentStore === 'undefined' && !globalThis.__pingmeStorage) {
+    console.log(`【PingMe抓参】无可用存储，capture=${json.slice(0, 120)}...`);
+  }
 }
 
 function notifyOk(url) {
