@@ -476,7 +476,7 @@ def build_merged_module(
         _, sections = parse_module(text)
         supp_parsed.append((name, sections))
 
-    # Preserve primary-only sections verbatim (Body Rewrite, Map Local, etc.)
+    # Non-MERGE sections: primary only (legacy). MERGE_SECTIONS includes Body Rewrite / Map Local.
     all_section_names: list[str] = []
     for name in primary_sections:
         if name not in all_section_names:

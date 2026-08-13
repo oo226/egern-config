@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import importlib.util
+import re
 import sys
 from pathlib import Path
 
@@ -118,16 +119,42 @@ QINGREX_SKIP_FILES = frozenset(
         "Beta/🍟 DNS 分流.beta.sgmodule",
         "Official/新手友好の去广告集合.official.sgmodule",
         "Official/小程序和应用懒人去广告合集.official.sgmodule",
+        # Local Modules/patches-pipixia.sgmodule supersedes (adds 福利/创作中心).
+        "皮皮虾去广告.sgmodule",
+        "Beta/皮皮虾去广告.beta.sgmodule",
     }
 )
 
-# Skip modules whose scripts point at dead or blocked hosts (kelee.one 403/404, perzikkop down)
+# Skip modules whose *runtime* URLs point at dead hosts (kelee.one 403/404, perzikkop down).
+# Do NOT match #!homepage / #!icon metadata — almost every 可莉 module has hub.kelee.one there.
 QINGREX_SKIP_CONTENT_MARKERS = (
     "kelee.one",
     "perzikkop.com",
     "Maasea/sgmodule/master/Script/Bilibili/dist/bilibili.helper",
     "kokoryh/Sparkle/refs/heads/master/dist/bilibili.airborne.js",
 )
+
+
+def _line_has_blocked_runtime_url(line: str, markers: tuple[str, ...]) -> bool:
+    """True when a blocked host appears in script-path / Map Local remote data / rewrite URL."""
+    stripped = line.strip()
+    if not stripped or stripped.startswith("#"):
+        return False
+    if not any(m in stripped for m in markers):
+        return False
+    lower = stripped.lower().replace(" ", "")
+    if "script-path=" in lower:
+        return True
+    if "data=" in lower and ("http://" in lower or "https://" in lower):
+        return True
+    # URL Rewrite / redirect targets
+    if re.search(r"https?://\S+", stripped) and any(m in stripped for m in markers):
+        return True
+    return False
+
+
+def content_has_blocked_runtime_host(text: str, markers: tuple[str, ...]) -> bool:
+    return any(_line_has_blocked_runtime_url(line, markers) for line in text.splitlines())
 
 
 def load_config() -> dict:
@@ -187,7 +214,9 @@ def read_modules(
         if skip and rel in skip:
             continue
         text = path.read_text(encoding="utf-8", errors="replace")
-        if skip_content_markers and any(m in text for m in skip_content_markers):
+        if skip_content_markers and content_has_blocked_runtime_host(
+            text, skip_content_markers
+        ):
             continue
         items.append((rel, text))
     for path in sorted(directory.rglob("*.module")):
@@ -195,7 +224,9 @@ def read_modules(
         if skip and rel in skip:
             continue
         text = path.read_text(encoding="utf-8", errors="replace")
-        if skip_content_markers and any(m in text for m in skip_content_markers):
+        if skip_content_markers and content_has_blocked_runtime_host(
+            text, skip_content_markers
+        ):
             continue
         items.append((rel, text))
     return items

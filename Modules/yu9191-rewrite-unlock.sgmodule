@@ -266,3 +266,11 @@ https://proxy.linearity.io/v1/receipts https://linearitcurve.lovebabyforever.wor
 # >>> merged from lsp/MJGS.sgmodule (unique only)
 #游戏
 ^https:\/\/(mfjk|gnjk|buyaoda).+\.com\/request_game\/v3\/game\/list - reject-dict
+
+
+[Map Local]
+
+# >>> merged from pear.sgmodule (unique only)
+^https?:\/\/[^\/]+\/api\/movie\/ShopProduct data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
+^https?:\/\/[^\/]+\/api\/adv\/index data-type=text data="{}" status-code=200 header="Content-Type:application/json"
