@@ -7491,6 +7491,26 @@ http-response ^https?:\/\/app\.zhuanzhuan\.com\/zz\/v2\/zzinfoshow\/getchoicegoo
 
 
 
+# >>> merged from patches-pipixia (unique only)
+# 信息流（对齐可莉 stream/v2，并剔 banner 卡 / 四圆字段）
+http-response-jq ^https?:\/\/api(5-lq)?\.pipix\.com\/bds\/feed\/stream 'def keep: (has("ad_info") | not) and (has("banner_info") | not); .data.data |= map(select(keep)) | del(.data.story_list,.data.circle_list,.data.live_list,.data.banner_list,.data.header_list,.data.square_list,.data.cinema_list,.data.hashtag_list,.data.hashtags,.data.icon_list,.data.entrance_list,.data.top_list,.data.slide_list)'
+
+http-response-jq ^https?:\/\/api(5-lq)?\.pipix\.com\/bds\/feed\/channel_list 'def label: (.title // .name // .text // .tab_name // .channel_name // ""); def bad_tab: (label | test("福利|金币|赚钱|luckycat"; "i")) or ((.event_name // .type // .tab_type // .key // .schema // "") | test("welfare|lucky|gold|coin|luckycat"; "i")); if .data.channel_model then .data.channel_model |= map(select(.event_name == "feed" or .event_name == "image_text" or .event_name == "follow_feed") | select(bad_tab | not)) else . end | del(.data.story_list,.data.circle_list,.data.live_list,.data.banner_list,.data.header_list,.data.square_list,.data.cinema_list,.data.hashtag_list,.data.hashtags,.data.icon_list,.data.entrance_list,.data.top_list,.data.slide_list)'
+
+# 我的页 + 底部 Tab：递归剔除创作中心/福利（对齐 Script 版 walkDropWelfare 思路）
+http-response-jq ^https?:\/\/api(5-lq)?\.pipix\.com\/bds\/user\/check_in 'def label: (.title // .name // .text // .entrance_name // .show_name // .tab_name // ""); def bad_ent: label | test("创作|原创特权|放心借|洋钱罐|小黑屋|我的订单|银行卡|神评|宠物"; "i"); def bad_tab: (label | test("福利|金币|赚钱|luckycat"; "i")) or ((.event_name // .type // .tab_type // .key // .schema // "") | test("welfare|lucky|gold|coin|luckycat"; "i")); def scrub: if type == "object" then with_entries(.value |= scrub) elif type == "array" then map(scrub) | map(select((bad_ent | not) and (bad_tab | not))) else . end; scrub | del(.data.pet_interface_message,.data.pet_entrance,.data.pet_paradise,.data.activity_banner,.data.profile_banner,.data.loan_entrance,.data.credit_entrance,.data.creator_center,.data.creation_center,.data.creator_entrance,.data.ugc_entrance,.data.create_entrance)'
+
+# 底部「福利」Tab：settings / tab 配置（广匹配 + 递归）
+http-response-jq ^https?:\/\/api(5-lq)?\.pipix\.com\/(bds\/settings|service\/settings|bds\/tab) 'def label: (.title // .name // .text // .tab_name // .channel_name // ""); def bad_tab: (label | test("福利|金币|赚钱|luckycat"; "i")) or ((.event_name // .type // .tab_type // .key // .schema // "") | test("welfare|lucky|gold|coin|luckycat"; "i")); def scrub: if type == "object" then with_entries(.value |= scrub) elif type == "array" then map(scrub) | map(select(bad_tab | not)) else . end; scrub'
+
+# 去水印（可莉无此项，regex 不刷 Script 日志）
+http-response-jq ^https?:\/\/api(5-lq)?\.pipix\.com\/bds\/cell\/detail 'if (.data.item.video? and .data.item.origin_video_download.url_list?) then .data.item.video.video_download.url_list = .data.item.origin_video_download.url_list else . end'
+
+http-response ^https?:\/\/api(5-lq)?\.pipix\.com\/bds\/(feed\/stream|cell\/detail) tplv-ppx-logo.image 0x0.gif
+http-response ^https?:\/\/api(5-lq)?\.pipix\.com\/bds\/(feed\/stream|cell\/detail) tplv-ppx-logo 0x0
+http-response ^https?:\/\/api(5-lq)?\.pipix\.com\/bds\/(feed\/stream|cell\/detail) "can_download":false "can_download":true
+
+
 [Map Local]
 # >>>>>>>>>>>>>>> ✅ !! ✅ <<<<<<<<<<<<<<
 
@@ -9707,6 +9727,22 @@ https://.+\.gamersky.com/v1/statisticAd data-type=text data="{}" status-code=200
 
 
 # >>>>>>>>>>>>>>> 🟣 <<<<<<<<<<<<<<
+
+# >>> merged from patches-pipixia (unique only)
+^https?:\/\/api(5-lq)?\.pipix\.com\/api\/ad\/ data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+^https?:\/\/api(5-lq)?\.pipix\.com\/bds\/banner\/ data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+^https?:\/\/api(5-lq)?\.pipix\.com\/bds\/feed\/follow_feed\/ data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+^https?:\/\/api(5-lq)?\.pipix\.com\/bds\/hashtag\/get_top_hashtag data-type=text data="{\"status_code\":0,\"message\":\"\",\"data\":{\"hashtag_list\":[],\"hashtags\":[],\"list\":[],\"data\":[]}}" status-code=200 header="Content-Type:application/json"
+^https?:\/\/api(5-lq)?\.pipix\.com\/bds\/popups\/ data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+^https?:\/\/api(5-lq)?\.pipix\.com\/bds\/medal\/popups data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+^https?:\/\/api(5-lq)?\.pipix\.com\/bds\/cell\/tail_cards data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+^https?:\/\/api(5-lq)?\.pipix\.com\/luckycat\/ data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
+
+# >>> merged from tencent-sports-adblock (unique only)
+^https:\/\/config\.ab\.qq\.com\/tab\/GetTabRemoteConfig.* data-type=text data="" status-code=200 header="Content-Type:application/proto"
+^https:\/\/config\.ab\.qq\.com\/tab\/GetTabToggle.* data-type=text data="" status-code=200 header="Content-Type:application/proto"
+
 
 [Script]
 

@@ -26,6 +26,8 @@ MERGE_SECTIONS = (
     "Rule",
     "URL Rewrite",
     "Header Rewrite",
+    "Body Rewrite",
+    "Map Local",
     "Script",
     "MITM",
 )
