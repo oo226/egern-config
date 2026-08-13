@@ -1,32 +1,33 @@
 #!name=皮皮虾去广告补全
-#!desc=可莉同款 Map Local + jq（无 Script/零日志）。去信息流广告、精简我的页；尽量去掉创作中心/福利相关入口。建议单独启用本模块验证。
+#!desc=可莉同款 Map Local + jq（无 Script）。Surge/Egern 请优先单独启用本模块；大合集 MITM 过长时 Surge 可能解密不到 pipix。
 #!author=oo226/egern-config (QingRex/可莉 + 本仓补全)
 #!category=去广告补全
 #!system=ios
 
 [Map Local]
 ^https:\/\/api(5-lq)?\.pipix\.com\/api\/ad\/ data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
 ^https:\/\/api(5-lq)?\.pipix\.com\/bds\/banner\/ data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
 ^https:\/\/api(5-lq)?\.pipix\.com\/bds\/feed\/follow_feed\/ data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
 ^https:\/\/api(5-lq)?\.pipix\.com\/bds\/hashtag\/get_top_hashtag data-type=text data="{\"status_code\":0,\"message\":\"\",\"data\":{\"hashtag_list\":[],\"hashtags\":[],\"list\":[],\"data\":[]}}" status-code=200 header="Content-Type:application/json"
+
 ^https:\/\/api(5-lq)?\.pipix\.com\/bds\/popups\/ data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
 ^https:\/\/api(5-lq)?\.pipix\.com\/bds\/medal\/popups data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
 ^https:\/\/api(5-lq)?\.pipix\.com\/bds\/cell\/tail_cards data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
 ^https:\/\/api(5-lq)?\.pipix\.com\/luckycat\/ data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 
 [Body Rewrite]
-# 信息流：对齐可莉，并多剔 banner_info / 四圆字段（勿用 jq 保留字 label）
-http-response-jq ^https:\/\/api(5-lq)?\.pipix\.com\/bds\/feed\/stream '.data.data |= map(select((has("ad_info") | not) and (has("banner_info") | not))) | del(.data.story_list,.data.circle_list,.data.live_list,.data.banner_list,.data.header_list,.data.square_list,.data.cinema_list,.data.hashtag_list,.data.hashtags,.data.icon_list,.data.entrance_list,.data.top_list,.data.slide_list)'
+# 与可莉原版逐字对齐（Surge 已验证）
+http-response-jq ^https:\/\/api(5-lq)?\.pipix\.com\/bds\/feed\/stream\/v2\/ '.data.data |= map(select(has("ad_info") | not))'
+http-response-jq ^https:\/\/api(5-lq)?\.pipix\.com\/bds\/user\/check_in\/ '.data.profile_entrances |= map(select(.title != "放心借" and .title != "洋钱罐借款" and .title != "创作中心" and .title != "原创特权" and .title != "宠物乐园")) | del(.data.pet_interface_message,.data.creator_center,.data.creation_center)'
 
-http-response-jq ^https:\/\/api(5-lq)?\.pipix\.com\/bds\/feed\/channel_list 'if .data.channel_model then .data.channel_model |= map(select(.event_name == "feed" or .event_name == "image_text" or .event_name == "follow_feed")) else . end | del(.data.story_list,.data.circle_list,.data.live_list,.data.banner_list,.data.header_list,.data.square_list,.data.cinema_list,.data.hashtag_list,.data.hashtags,.data.icon_list,.data.entrance_list,.data.top_list,.data.slide_list)'
-
-# 我的页：可莉字段 + 创作中心等
-http-response-jq ^https:\/\/api(5-lq)?\.pipix\.com\/bds\/user\/check_in '(if .data.profile_entrances then .data.profile_entrances |= map(select(.title != "放心借" and .title != "洋钱罐借款" and .title != "创作中心" and .title != "原创特权" and .title != "小黑屋" and .title != "我的订单" and .title != "银行卡管理" and .title != "神评鉴定" and .title != "宠物乐园" and .title != "进入宠物乐园")) else . end) | (if .data.tool_entrances then .data.tool_entrances |= map(select(.title != "创作中心" and .title != "原创特权" and .title != "宠物乐园")) else . end) | (if .data.more_functions then .data.more_functions |= map(select(.title != "创作中心" and .title != "原创特权")) else . end) | del(.data.pet_interface_message,.data.pet_entrance,.data.pet_paradise,.data.activity_banner,.data.profile_banner,.data.loan_entrance,.data.credit_entrance,.data.creator_center,.data.creation_center,.data.creator_entrance)'
-
-# 底部「福利」Tab：只扫常见 tab 数组（表达式保持简单，兼容 Surge/Egern jq）
-http-response-jq ^https:\/\/api(5-lq)?\.pipix\.com\/(bds\/settings|service\/settings) 'def tab_ok: ((.title // .name // .text // .tab_name // "") | test("福利|^金币$|^赚钱$"; "i") | not); (if .data.tab_list then .data.tab_list |= map(select(tab_ok)) else . end) | (if .data.tabs then .data.tabs |= map(select(tab_ok)) else . end) | (if .data.bottom_tabs then .data.bottom_tabs |= map(select(tab_ok)) else . end) | (if .data.bottom_tab_list then .data.bottom_tab_list |= map(select(tab_ok)) else . end) | (if .data.main_tab_config then .data.main_tab_config |= map(select(tab_ok)) else . end) | (if .data.nav_tabs then .data.nav_tabs |= map(select(tab_ok)) else . end)'
-
-# 去水印
+# 额外：四圆频道 / 去水印（短表达式）
+http-response-jq ^https:\/\/api(5-lq)?\.pipix\.com\/bds\/feed\/channel_list 'if .data.channel_model then .data.channel_model |= map(select(.event_name == "feed" or .event_name == "image_text" or .event_name == "follow_feed")) else . end'
 http-response-jq ^https:\/\/api(5-lq)?\.pipix\.com\/bds\/cell\/detail 'if (.data.item.video? and .data.item.origin_video_download.url_list?) then .data.item.video.video_download.url_list = .data.item.origin_video_download.url_list else . end'
 http-response ^https:\/\/api(5-lq)?\.pipix\.com\/bds\/(feed\/stream|cell\/detail) tplv-ppx-logo.image 0x0.gif
 http-response ^https:\/\/api(5-lq)?\.pipix\.com\/bds\/(feed\/stream|cell\/detail) tplv-ppx-logo 0x0
