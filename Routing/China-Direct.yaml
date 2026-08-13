@@ -7,15 +7,15 @@
 #   WeChat         — Repcz/Tool — 微信 (341 entries)
 #   Bilibili       — Repcz/Tool — 哔哩哔哩 (20 entries)
 #   AppleCN        — Repcz/Tool — 苹果中国 (166 entries)
-#   ChinaDomain    — Repcz/Tool — 国内域名 (13199 entries)
-#   ChinaIP        — Repcz/Tool — 国内 IP (5125 entries)
+#   ChinaDomain    — Repcz/Tool — 国内域名 (13210 entries)
+#   ChinaIP        — Repcz/Tool — 国内 IP (5145 entries)
 #   ChinaASN       — Repcz/Tool — 国内 ASN (5076 entries)
 #   Rabbit-China   — Rabbit-Spec — China.list (3762 entries)
 #   Rabbit-CIDR    — Rabbit-Spec — ChinaCIDR.list (5828 entries)
 #   ResourceSite   — eulac-dev/Proxy — 视频资源站 (22 entries)
 #   PanVod         — eulac-dev/Proxy — 网盘点播 (44 entries)
-# Overlap removed: 7579
-# Total unique entries: 26039
+# Overlap removed: 7598
+# Total unique entries: 26051
 
 no_resolve: true
 domain_set:
@@ -4564,6 +4564,7 @@ domain_suffix_set:
   - fspcdn.com
   - fsphere.cn
   - ftcwifi.com
+  - ftfast.com
   - ftfund.com
   - fthimalayandb.com
   - fu81q.cn
@@ -6266,6 +6267,8 @@ domain_suffix_set:
   - iopiopl.com
   - iosapps.itunes.g.aaplimg.com
   - iot-tencent.com
+  - iotaskyt.com
+  - iotaskyty.com
   - iotboss.cn
   - iotmrvr.com
   - ip-cdn.com
@@ -6377,6 +6380,8 @@ domain_suffix_set:
   - ithome.com
   - ithome.net
   - itiger.com
+  - itigergrowtha.com
+  - itigerup.com
   - itingwa.com
   - itjuzi.com
   - itmop.com
@@ -8754,6 +8759,7 @@ domain_suffix_set:
   - pixocial.com
   - pkoplink.com
   - pkulaw.com
+  - play-analytics.com
   - playbattleaces.com
   - playcvn.com
   - playdisorder.com
@@ -10018,6 +10024,7 @@ domain_suffix_set:
   - sktcdn.com
   - skycn.com
   - skysea.com
+  - skytigris.cn
   - slja2.com
   - slk1.net
   - sllssrq.com
@@ -10472,6 +10479,7 @@ domain_suffix_set:
   - tbcache.com
   - tbcdn.cn
   - tbcdn.com
+  - tbdesk.com
   - tbizmail.com
   - tbmcas.com
   - tbmkt.com
@@ -11181,7 +11189,10 @@ domain_suffix_set:
   - tigeek.net.cn
   - tigerbbs.cn
   - tigerbbs.com
+  - tigerbrokers.net
   - tigerfintech.com
+  - tigertcp.cn
+  - tigr.link
   - tik-tokapi.com
   - tiktok.com
   - tiktokcdn-us.com
@@ -16516,7 +16527,8 @@ ip_cidr_set:
   - 125.208.36.0/23
   - 125.208.40.0/24
   - 125.208.42.0/24
-  - 125.208.46.0/24
+  - 125.208.45.0/24
+  - 125.208.46.0/23
   - 125.208.49.0/24
   - 125.210.0.0/15
   - 125.213.32.0/20
@@ -18050,6 +18062,7 @@ ip_cidr_set:
   - 218.96.244.0/24
   - 218.96.255.0/24
   - 218.96.64.0/22
+  - 218.96.70.0/23
   - 218.97.0.0/17
   - 218.97.160.0/19
   - 218.97.192.0/19
@@ -19812,7 +19825,6 @@ ip_cidr6_set:
   - "2408:4002::/31"
   - "2408:4004::/30"
   - "2408:4008::/29"
-  - "2408:4010::/28"
   - "2408:4010::/30"
   - "2408:4014::/31"
   - "2408:4016:1000::/36"
