@@ -83,6 +83,16 @@ modules:
     group: 合集
     default_enabled: true
     tags: [去广告, 开屏, 净化]
+  qingrex-adblock.sgmodule:
+    group: 合集
+    default_enabled: false
+    tags: [去广告, 可莉, QingRex]
+    hint: "可莉全仓库去广告（jq/Map Local）。Surge 请单独加本模块，不要指望已并进大合集。"
+  patches-pipixia.sgmodule:
+    group: 合集
+    default_enabled: false
+    tags: [去广告, 皮皮虾]
+    hint: "皮皮虾。Surge 请单独启用；大合集 MITM 过长时解密可能轮不到 pipix。"
   unlock-collection.module:
     group: 合集
     default_enabled: true

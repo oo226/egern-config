@@ -306,8 +306,18 @@ def parse_mitm_hosts_from_line(line: str) -> tuple[set[str], set[str]]:
     return set(), set()
 
 
+# Keep these at the front of the MITM hostname line. Surge/iOS often truncates
+# a 40k-char hostname list; hosts near the end never get decrypted.
+MITM_PRIORITY_HOSTS = (
+    "api.pipix.com",
+    "api5-lq.pipix.com",
+)
+
+
 def format_hostnames(hosts: set[str]) -> str:
-    ordered = sorted(hosts, key=str.lower)
+    priority = [h for h in MITM_PRIORITY_HOSTS if h in hosts]
+    rest = sorted((hosts - set(priority)), key=str.lower)
+    ordered = priority + rest
     return "hostname = %APPEND% " + ", ".join(ordered)
 
 

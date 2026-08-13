@@ -29,6 +29,7 @@ directories:
       - unlock-collection.module
       - cookie-collection.module
       - patches-pipixia.sgmodule
+      - qingrex-adblock.sgmodule
       - pingme.sgmodule
       - pingme.yaml
       - qdreader.sgmodule
@@ -85,7 +86,6 @@ prune_from_main:
   - Modules/unlock-manifest.yaml
   - Modules/spotify-dualsubs.sgmodule
   - Modules/cookie-manifest.yaml
-  - Modules/qingrex-adblock.sgmodule
   - Modules/qingrex-unlock.sgmodule
   - Modules/fmz200-extra.sgmodule
   - Modules/fmz200-unlock-extra.sgmodule

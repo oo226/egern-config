@@ -118,11 +118,8 @@ modules:
     upstream: https://raw.githubusercontent.com/chxm1023/Advertising/Shadowrocket/AppAd.sgmodule
     note: "ddm1023/chxm1023 — App/小程序开屏去广告补充"
 
-  - name: qingrex-adblock
-    cache: qingrex-adblock.sgmodule
-    role: supplement
-    local: true
-    note: "QingRex/可莉 — 全仓库去广告模块合并去重（自动生成）"
+  # 可莉 jq/Map Local 不并进大合集：1500+ 条 http-response-jq 会让 Surge
+  # 整段 Body Rewrite 失效。单独发布 Modules/qingrex-adblock.sgmodule。
 
   - name: fmz200-extra
     cache: fmz200-extra.sgmodule
