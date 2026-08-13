@@ -6068,10 +6068,6 @@ hostname - reject
 ^https?:\/\/is\.snssdk\.com\/api\/ad\/ - reject
 ^https?:\/\/api\.ks\.com\/rest\/e\/v\d+\/open\/ - reject
 
-# >>> merged from patches-pipixia (unique only)
-^https?:\/\/.*\.snssdk\.com\/(monitor|trace|log).* - reject
-
-
 # >>> merged from limbopro-web-ads (unique only)
 
 ^https?:\/\/www\.novel543\.com\/log\/ad\.html - reject
@@ -10447,13 +10443,6 @@ Fa米家_开屏去广告 = type=http-response,script-path=https://raw.githubuser
 爱奇艺_开屏去广告 = type=http-response,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/blackmatrix7/ios_rule_script/master/script/startup/startup.js,pattern="^https?:\/\/(t7z|kjp)\.cupid\.iqiyi\.com\/mixer\?",requires-body=1
 美团外卖_开屏去广告 = type=http-response,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/blackmatrix7/ios_rule_script/master/script/startup/startup.js,pattern="^https?:\/\/wmapi\.meituan\.com\/api\/v\d+\/loadInfo?",requires-body=1
 联享家_开屏去广告 = type=http-response,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/blackmatrix7/ios_rule_script/master/script/startup/startup.js,pattern="^https?:\/\/mi\.gdt\.qq\.com\/gdt_mview\.fcg",requires-body=1
-
-# >>> merged from patches-pipixia (unique only)
-# 主路径：feed / 我的 / 设置(去福利Tab) / detail — max-size=-1 因 stream/v2 常 300KB+
-ppx = type=http-response, pattern=^https?:\/\/[^\/]*\.(snssdk|pipix)\.com\/(bds\/(feed\/(stream|channel_list)|user\/check_in|cell\/detail|settings\/)|service\/settings\/), requires-body=1, max-size=-1, timeout=60, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/pipixia/ppx_ads.js
-# Super.js 遗留路径：评论/插眼/收藏等（仍在 snssdk 域）
-ppx-extra = type=http-response, pattern=^https?:\/\/[^\/]*\.snssdk\.com\/bds\/(comment\/cell_reply|cell\/cell_comment|ward\/list|user\/favorite|user\/cell_coment|user\/cell_userfeed|user\/publish_list), requires-body=1, max-size=-1, timeout=60, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/pipixia/ppx_ads.js
-
 
 # >>> merged from limbopro-web-ads (unique only)
 知道搜索广告(zhidao.baidu.com) = type=http-response , pattern="^https?:\/\/(zhidao)\.baidu\.com\/(question|index|\?fr|\?word)" , requires-body=1 , max-size=-1 , script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/limbopro/Adblock4limbo/main/Adguard/Adblock4limbo.js , script-update-interval=0

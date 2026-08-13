@@ -104,7 +104,7 @@ modules:
     cache: patches-pipixia.sgmodule
     role: supplement
     local: true
-    note: "皮皮虾 — Super.js 去水印 + Map Local + Script 清 stream/我的/福利 Tab"
+    note: "皮皮虾 — 可莉式 Map Local + jq（无 Script），补福利Tab/创作中心"
 
   - name: limbopro-web-ads
     cache: limbopro-Adblock4limbo.sgmodule
