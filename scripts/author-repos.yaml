@@ -11,6 +11,7 @@ repos:
       - Scripts/
     include_scripts:
       - "^Scripts/.+\\.js$"
+      - "^Scripts/.+\\.json$"
     include_modules:
       - "^Surge/module/.+\\.(module|sgmodule)$"
 
