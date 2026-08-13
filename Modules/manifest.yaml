@@ -100,6 +100,12 @@ modules:
     local: true
     note: "本仓库 — 银行/税务/NB助手 NBToolAds 补全"
 
+  - name: patches-pipixia
+    cache: patches-pipixia.sgmodule
+    role: supplement
+    local: true
+    note: "皮皮虾 — Super.js 去水印 + Map Local + Script 清 stream/我的/福利 Tab"
+
   - name: limbopro-web-ads
     cache: limbopro-Adblock4limbo.sgmodule
     role: supplement

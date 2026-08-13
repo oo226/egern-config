@@ -18,6 +18,7 @@ SOURCES = [
     ROUTING_FOREIGN / "Microsoft.yaml",
     ROUTING_FOREIGN / "AppleServers.yaml",
     ROUTING_FOREIGN / "App" / "TestFlight.yaml",
+    ROUTING / "Pipixia-Snssdk-Direct.yaml",
 ]
 
 # 用户指定须优先直连（在 Proxy 规则之前）：PingMe / 起点 / 120399
