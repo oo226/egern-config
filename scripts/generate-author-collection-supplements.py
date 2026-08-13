@@ -262,6 +262,7 @@ def merge_modules(
         exclude_cron_scripts=exclude_cron_scripts,
     )
     merged = mirror_script_paths(merged)
+    merged = _merge.apply_script_url_fixes(merged, _merge.DEFAULT_SCRIPT_URL_FIXES)
     if preserve_arguments:
         return merged
     return strip_boxjs_module_arguments(merged)

@@ -73,6 +73,13 @@ DEFAULT_SCRIPT_URL_FIXES = {
     "https://raw.githubusercontent.com/chavyleung/scripts/master/zimuzu/zimuzu.cookie.js": (
         f"{GITHUB_RAW_MAIN}/Scripts/_stubs/noop.js"
     ),
+    # app2smile 起点：Type!==0 会弹「脚本错误」；改静默清活动图标
+    "https://raw.githubusercontent.com/app2smile/rules/master/js/qidian.js": (
+        f"{GITHUB_RAW_MAIN}/Scripts/qidian-ads.js"
+    ),
+    f"{GITHUB_RAW_MAIN}/Scripts/_external/github-raw/app2smile/rules/master/js/qidian.js": (
+        f"{GITHUB_RAW_MAIN}/Scripts/qidian-ads.js"
+    ),
 }
 
 # Narrow over-broad patterns that break unrelated API responses (e.g. alidrive vs device/session).
