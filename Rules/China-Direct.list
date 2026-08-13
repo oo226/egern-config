@@ -1,6 +1,6 @@
 # AUTO-EXPORTED from Routing/China-Direct.yaml
 # Format: Surge RULE-SET (no policy). scripts/export-surge-rulesets.py
-# Total entries: 26039
+# Total entries: 26051
 
 DOMAIN,0gr4uqmtt8y41hcjsgrzdrc31.ourdvsss.com
 DOMAIN,0gr4uqmtt8y41hcjsgrzdrc3s.ourdvsss.com
@@ -4546,6 +4546,7 @@ DOMAIN-SUFFIX,fsllq.com.cn
 DOMAIN-SUFFIX,fspcdn.com
 DOMAIN-SUFFIX,fsphere.cn
 DOMAIN-SUFFIX,ftcwifi.com
+DOMAIN-SUFFIX,ftfast.com
 DOMAIN-SUFFIX,ftfund.com
 DOMAIN-SUFFIX,fthimalayandb.com
 DOMAIN-SUFFIX,fu81q.cn
@@ -6248,6 +6249,8 @@ DOMAIN-SUFFIX,iop.org
 DOMAIN-SUFFIX,iopiopl.com
 DOMAIN-SUFFIX,iosapps.itunes.g.aaplimg.com
 DOMAIN-SUFFIX,iot-tencent.com
+DOMAIN-SUFFIX,iotaskyt.com
+DOMAIN-SUFFIX,iotaskyty.com
 DOMAIN-SUFFIX,iotboss.cn
 DOMAIN-SUFFIX,iotmrvr.com
 DOMAIN-SUFFIX,ip-cdn.com
@@ -6359,6 +6362,8 @@ DOMAIN-SUFFIX,itgsa.com
 DOMAIN-SUFFIX,ithome.com
 DOMAIN-SUFFIX,ithome.net
 DOMAIN-SUFFIX,itiger.com
+DOMAIN-SUFFIX,itigergrowtha.com
+DOMAIN-SUFFIX,itigerup.com
 DOMAIN-SUFFIX,itingwa.com
 DOMAIN-SUFFIX,itjuzi.com
 DOMAIN-SUFFIX,itmop.com
@@ -8736,6 +8741,7 @@ DOMAIN-SUFFIX,pitayaio.com
 DOMAIN-SUFFIX,pixocial.com
 DOMAIN-SUFFIX,pkoplink.com
 DOMAIN-SUFFIX,pkulaw.com
+DOMAIN-SUFFIX,play-analytics.com
 DOMAIN-SUFFIX,playbattleaces.com
 DOMAIN-SUFFIX,playcvn.com
 DOMAIN-SUFFIX,playdisorder.com
@@ -10000,6 +10006,7 @@ DOMAIN-SUFFIX,skspace.cn
 DOMAIN-SUFFIX,sktcdn.com
 DOMAIN-SUFFIX,skycn.com
 DOMAIN-SUFFIX,skysea.com
+DOMAIN-SUFFIX,skytigris.cn
 DOMAIN-SUFFIX,slja2.com
 DOMAIN-SUFFIX,slk1.net
 DOMAIN-SUFFIX,sllssrq.com
@@ -10454,6 +10461,7 @@ DOMAIN-SUFFIX,tbapp.com
 DOMAIN-SUFFIX,tbcache.com
 DOMAIN-SUFFIX,tbcdn.cn
 DOMAIN-SUFFIX,tbcdn.com
+DOMAIN-SUFFIX,tbdesk.com
 DOMAIN-SUFFIX,tbizmail.com
 DOMAIN-SUFFIX,tbmcas.com
 DOMAIN-SUFFIX,tbmkt.com
@@ -11163,7 +11171,10 @@ DOMAIN-SUFFIX,tieyou.com
 DOMAIN-SUFFIX,tigeek.net.cn
 DOMAIN-SUFFIX,tigerbbs.cn
 DOMAIN-SUFFIX,tigerbbs.com
+DOMAIN-SUFFIX,tigerbrokers.net
 DOMAIN-SUFFIX,tigerfintech.com
+DOMAIN-SUFFIX,tigertcp.cn
+DOMAIN-SUFFIX,tigr.link
 DOMAIN-SUFFIX,tik-tokapi.com
 DOMAIN-SUFFIX,tiktok.com
 DOMAIN-SUFFIX,tiktokcdn-us.com
@@ -16496,7 +16507,8 @@ IP-CIDR,125.208.32.0/22
 IP-CIDR,125.208.36.0/23
 IP-CIDR,125.208.40.0/24
 IP-CIDR,125.208.42.0/24
-IP-CIDR,125.208.46.0/24
+IP-CIDR,125.208.45.0/24
+IP-CIDR,125.208.46.0/23
 IP-CIDR,125.208.49.0/24
 IP-CIDR,125.210.0.0/15
 IP-CIDR,125.213.32.0/20
@@ -18030,6 +18042,7 @@ IP-CIDR,218.96.241.0/24
 IP-CIDR,218.96.244.0/24
 IP-CIDR,218.96.255.0/24
 IP-CIDR,218.96.64.0/22
+IP-CIDR,218.96.70.0/23
 IP-CIDR,218.97.0.0/17
 IP-CIDR,218.97.160.0/19
 IP-CIDR,218.97.192.0/19
@@ -19791,7 +19804,6 @@ IP-CIDR6,2408:4001::/32
 IP-CIDR6,2408:4002::/31
 IP-CIDR6,2408:4004::/30
 IP-CIDR6,2408:4008::/29
-IP-CIDR6,2408:4010::/28
 IP-CIDR6,2408:4010::/30
 IP-CIDR6,2408:4014::/31
 IP-CIDR6,2408:4016:1000::/36
