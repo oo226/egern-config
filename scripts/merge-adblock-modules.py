@@ -26,6 +26,8 @@ MERGE_SECTIONS = (
     "Rule",
     "URL Rewrite",
     "Header Rewrite",
+    "Body Rewrite",
+    "Map Local",
     "Script",
     "MITM",
 )
@@ -297,16 +299,237 @@ def parse_mitm_hosts_from_line(line: str) -> tuple[set[str], set[str]]:
     """Return (active_hosts, disabled_hosts) from a MITM hostname line."""
     stripped = line.strip()
     lower = stripped.lower()
-    if lower.startswith("hostname-disabled"):
+    # Require real key=value (URL Rewrite junk like "hostname - reject" must not match).
+    if lower.startswith("hostname-disabled") and "=" in stripped:
         return set(), set(parse_hostnames(stripped))
-    if lower.startswith("hostname"):
+    if lower.startswith("hostname") and "=" in stripped:
         return set(parse_hostnames(stripped)), set()
     return set(), set()
 
 
+# Keep tiny, high-value hosts first (Surge truncates huge hostname lines).
+MITM_PRIORITY_HOSTS = (
+    "api.pipix.com",
+    "api5-lq.pipix.com",
+)
+
+# Hard cap: one mega hostname= line with 2000+ entries OOMs Surge.
+# Lean profiles (like reference configs) only MITM a handful of hosts.
+MITM_MAX_HOSTS = 200
+
+# Decrypting entire CDNs via MITM balloons memory; never keep these as MITM targets.
+MITM_BROAD_BLOCKLIST = frozenset(
+    {
+        "*.cloudfront.net",
+        "*.akamaized.net",
+        "*.akamaihd.net",
+        "*.bdstatic.com",
+        "*.googleusercontent.com",
+        "*.googleapis.com",
+        "*.gstatic.com",
+        "*.googlevideo.com",
+        "*.google.cn",
+        "*.byteimg.com",
+        "*.bytescm.com",
+        "*.bytegoofy.com",
+    }
+)
+
+
+def is_overly_broad_mitm_host(host: str) -> bool:
+    h = host.lower().strip()
+    if h in MITM_BROAD_BLOCKLIST:
+        return True
+    # *.TLD or *.-only garbage
+    if h.startswith("*.") and h.count(".") <= 1:
+        return True
+    # Ultra-broad two-label CDN wildcards
+    if h.startswith("*.") and h.count(".") == 2:
+        sld = h[2:].split(".", 1)[0]
+        if sld in {
+            "cloudfront",
+            "akamai",
+            "akamaized",
+            "akamaihd",
+            "bdstatic",
+            "googleusercontent",
+            "googleapis",
+            "gstatic",
+            "googlevideo",
+            "byteimg",
+            "bytescm",
+            "bytegoofy",
+            "amazonaws",
+            "azureedge",
+            "fastly",
+            "cdn77",
+        }:
+            return True
+    return False
+
+
 def format_hostnames(hosts: set[str]) -> str:
-    ordered = sorted(hosts, key=str.lower)
+    priority = [h for h in MITM_PRIORITY_HOSTS if h in hosts]
+    rest = sorted((hosts - set(priority)), key=str.lower)
+    ordered = priority + rest
     return "hostname = %APPEND% " + ", ".join(ordered)
+
+_HOST_LIKE_RE = re.compile(
+    r"(?:https?://)?((?:\*\.)?(?:[A-Za-z0-9_*\[\]()-]+\\.?)+[A-Za-z0-9*_-]+)",
+    re.IGNORECASE,
+)
+
+
+def _normalize_host_token(raw: str) -> str | None:
+    host = raw.strip().lower()
+    host = host.replace("\\.", ".").replace("\\", "")
+    # Strip common regex wrappers used in Surge patterns
+    host = re.sub(r"[\[\]()^$?+|{}]", "", host)
+    host = host.strip(".-")
+    if not host or host.count(".") < 1:
+        return None
+    if host.endswith(
+        (".js", ".json", ".png", ".gif", ".jpg", ".jpeg", ".css", ".html", ".webp", ".svg")
+    ):
+        return None
+    # Skip CDN/raw script hosts — not MITM targets for app decryption
+    if any(
+        x in host
+        for x in (
+            "githubusercontent.com",
+            "jsdelivr.net",
+            "ghproxy",
+            "script.hub",
+            "google.com",
+            "gstatic.com",
+        )
+    ):
+        return None
+    if len(host) > 120:
+        return None
+    return host
+
+
+def extract_referenced_hosts_from_lines(lines: list[str]) -> set[str]:
+    """Hosts mentioned in rewrite/script patterns (need MITM to decrypt)."""
+    refs: set[str] = set()
+    for line in lines:
+        stripped = line.strip()
+        if not stripped or stripped.startswith("#"):
+            continue
+        # Ignore where the script itself is fetched from
+        cleaned = re.sub(r"script-path\s*=\s*[^,\s]+", " ", stripped, flags=re.I)
+        cleaned = re.sub(r'data="https?://[^"]+"', " ", cleaned, flags=re.I)
+        cleaned = re.sub(r"https?://raw\.githubusercontent\.com\S+", " ", cleaned, flags=re.I)
+        for match in _HOST_LIKE_RE.finditer(cleaned):
+            host = _normalize_host_token(match.group(1))
+            if host:
+                refs.add(host)
+    return refs
+
+
+def mitm_host_covers(mitm_host: str, ref: str) -> bool:
+    h = mitm_host.lower().strip()
+    r = ref.lower().strip()
+    if h == r:
+        return True
+    if h.startswith("*."):
+        suffix = h[1:]  # .example.com
+        return r.endswith(suffix) or r == h[2:]
+    if h.startswith("*") and "." in h:
+        # *api.example.com
+        suffix = h.lstrip("*")
+        return r.endswith(suffix) or r == suffix.lstrip(".")
+    if r.endswith("." + h) or h.endswith("." + r):
+        return True
+    return False
+
+
+def filter_mitm_to_referenced(
+    hosts: set[str],
+    referenced: set[str],
+    *,
+    max_hosts: int = MITM_MAX_HOSTS,
+) -> set[str]:
+    """Keep only MITM hosts that cover rewrite/script targets; hard-cap length."""
+    if not hosts:
+        return hosts
+    if not referenced:
+        # No patterns parsed — keep priority only to avoid OOM
+        return {h for h in MITM_PRIORITY_HOSTS if h in hosts}
+
+    kept: set[str] = {
+        h for h in MITM_PRIORITY_HOSTS if h in hosts and not is_overly_broad_mitm_host(h)
+    }
+    # Score: prefer exact matches and tighter wildcards
+    scored: list[tuple[int, str]] = []
+    for host in hosts:
+        if host in kept or is_overly_broad_mitm_host(host):
+            continue
+        hits = sum(1 for ref in referenced if mitm_host_covers(host, ref))
+        if hits <= 0:
+            continue
+        # Prefer specific hosts over ultra-broad wildcards
+        breadth = host.count("*") * 10 + max(0, 5 - host.count("."))
+        scored.append((hits * 100 - breadth, host))
+    scored.sort(key=lambda x: (-x[0], x[1].lower()))
+    for _, host in scored:
+        if len(kept) >= max_hosts:
+            break
+        kept.add(host)
+    return kept
+
+
+def prune_module_mitm(module_text: str, *, max_hosts: int = MITM_MAX_HOSTS) -> str:
+    """Rewrite [MITM] hostname line to only hosts needed by rewrite/script rules."""
+    _header, sections = parse_module(module_text)
+    ref_lines: list[str] = []
+    for sec in ("Script", "URL Rewrite", "Header Rewrite", "Body Rewrite", "Map Local"):
+        ref_lines.extend(sections.get(sec, []))
+    referenced = extract_referenced_hosts_from_lines(ref_lines)
+
+    mitm_lines = sections.get("MITM", [])
+    if not mitm_lines:
+        return module_text
+
+    hosts: set[str] = set()
+    disabled: set[str] = set()
+    comments: list[str] = []
+    for line in mitm_lines:
+        if line.strip().startswith("#") or not line.strip():
+            comments.append(line)
+            continue
+        active, dis = parse_mitm_hosts_from_line(line)
+        hosts.update(active)
+        disabled.update(dis)
+
+    before = len(hosts)
+    hosts = filter_mitm_to_referenced(hosts - disabled, referenced, max_hosts=max_hosts)
+    after = len(hosts)
+    print(f"MITM prune: {before} -> {after} hosts (refs={len(referenced)})")
+
+    new_mitm = comments + (
+        [format_hostnames(hosts)]
+        if hosts
+        else ["# MITM hostnames pruned empty — enable per-app modules if needed"]
+    )
+    # Rebuild module text with replaced MITM section
+    out: list[str] = []
+    in_mitm = False
+    for line in module_text.splitlines():
+        if line.strip() == "[MITM]":
+            out.append(line)
+            out.extend(new_mitm)
+            in_mitm = True
+            continue
+        if in_mitm:
+            if line.startswith("[") and line.endswith("]"):
+                in_mitm = False
+                out.append(line)
+            # skip old mitm body
+            continue
+        out.append(line)
+    return "\n".join(out) + ("\n" if module_text.endswith("\n") else "")
 
 
 def merge_general_lines(
@@ -641,6 +864,8 @@ def main() -> None:
     merged = apply_script_url_fixes(merged, script_url_fixes)
     merged = apply_script_pattern_fixes(merged, script_pattern_fixes)
     merged = mirror_script_paths(merged)
+    # Mega MITM (2000+ hosts on one line) is the main Surge memory bomb vs lean configs.
+    merged = prune_module_mitm(merged)
     output_path.write_text(merged, encoding="utf-8")
     print(f"wrote {output_path.name} ({len(merged.splitlines())} lines)")
 
