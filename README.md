@@ -49,13 +49,52 @@ https://raw.githubusercontent.com/oo226/egern-config/refs/heads/surge/Modules/ad
 `skip-proxy` / `always-real-ip` **只写在本分支 `Surge.conf`**。去广告/解锁合集已剥离这两项，勿再叠装 Fries `General.sgmodule` 或 `skip-proxy-collection`（会截断 + 费内存）。
 
 
-## PingMe 签到（本分支）
+
+
+## 签到（Surge 注意）
+
+Surge **不能像脚本编辑器那样“运行模块里的脚本”**，也不像 Egern 能点跑模块脚本。  
+模块装上后只会：
+
+- `http-request` / `http-response`：MITM 命中时自动抓参  
+- `cron`：到点自动签到  
+
+要手动测：把下面 `[Script]` **贴进配置**（或脚本编辑器），在脚本列表里点运行。
+
+### PingMe（参考 fmz200 截图拆分写法）
+
+模块（参数面板开关抓参）：
 
 ```
 https://raw.githubusercontent.com/oo226/egern-config/refs/heads/surge/Modules/pingme.sgmodule
 ```
 
-参考 fmz200 拆分写法（抓参 + cron）。参数「是否开启抓取重写」先填 `PingMe抓参`，打开 App 等到通知，再改成 `#`。不要用 `main` 的 `pingme.yaml`。
+或直接贴配置（与截图同结构）：
+
+```
+[Script]
+PingMe获取签到参数 = type=http-request, pattern=^https:\/\/api\.pingmeapp\.net\/app\/queryBalanceAndBonus, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/surge/Scripts/PingMe-capture.js, timeout=60
+PingMe签到 = type=cron, cronexp=30 8,20 * * *, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/surge/Scripts/PingMe-signin.js, timeout=300, script-update-interval=0
+
+[MITM]
+hostname = %APPEND% api.pingmeapp.net
+```
+
+流程：开着抓参脚本 → 打开 PingMe → 通知成功 → **注释/删掉抓参那行** → 到点或手动跑「PingMe签到」。
+
+### 起点读书（对齐 Yuheng 官方 `qdreader.surge.sgmodule`）
+
+上游：https://raw.githubusercontent.com/Yuheng0101/X/main/Tasks/QDReader/profiles/qdreader.surge.sgmodule  
+
+本分支镜像（脚本仍用 main 上与上游 hash 一致的 js）：
+
+```
+https://raw.githubusercontent.com/oo226/egern-config/refs/heads/surge/Modules/qdreader.sgmodule
+```
+
+流程：参数「是否开启抓取重写」=`起点读书` → 打开起点触发登录接口 → 改成 `#` → 等 cron（默认 2:11）或把 cron 行贴进配置后手动跑。
+
+MITM 需含：`h5.if.qidian.com`（模块会 `%APPEND%`）。
 
 ## 图标
 
