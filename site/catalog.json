@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-13T09:50:21Z",
+  "generated_at": "2026-08-15T03:31:12Z",
   "branch": "main",
   "repo": "oo226/egern-config",
   "raw_base": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main",
@@ -17,7 +17,7 @@
       "name": "按需开启",
       "icon": "🔧",
       "usage_tier": "optional",
-      "count": 175
+      "count": 173
     }
   ],
   "quick_start": [
@@ -202,17 +202,26 @@
   ],
   "sync_digest": {
     "commit": {
-      "hash": "1a9b917",
-      "subject": "fix(pipixia): repair invalid jq (label reserved) and publish standalone module",
+      "hash": "a682223",
+      "subject": "chore: sync upstream on sync branch",
       "date": "2026-08-13"
     },
     "summary": [
-      "模块 更新 2 个文件",
-      "国内直连 26051 条"
+      "国内直连 25588 条"
     ],
-    "files_changed": 3
+    "files_changed": 0
   },
   "changelog": [
+    {
+      "hash": "774535b",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-08-13"
+    },
+    {
+      "hash": "4d7e82b",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-08-13"
+    },
     {
       "hash": "f3b480a",
       "subject": "chore: publish curated snapshot from sync",
@@ -242,20 +251,10 @@
       "hash": "a8ba900",
       "subject": "chore: publish curated snapshot from sync",
       "date": "2026-08-13"
-    },
-    {
-      "hash": "28de927",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-08-13"
-    },
-    {
-      "hash": "f278cbf",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-08-13"
     }
   ],
   "local_health": {
-    "checked": 125,
+    "checked": 122,
     "fail": 0,
     "broken_ids": []
   },
@@ -278,13 +277,13 @@
       "id": "modules",
       "name": "模块",
       "icon": "🧩",
-      "count": 30
+      "count": 28
     },
     {
       "id": "routing",
       "name": "分流规则",
       "icon": "🔀",
-      "count": 38
+      "count": 37
     },
     {
       "id": "boxjs",
@@ -399,54 +398,6 @@
         "fmz200"
       ],
       "share_url": "https://oo226.github.io/egern-config/#id=cookie-collection",
-      "health": "ok"
-    },
-    {
-      "id": "patches-pipixia",
-      "kind": "module",
-      "category": "modules",
-      "group": "合集",
-      "name": "皮皮虾去广告补全",
-      "desc": "可莉同款 Map Local + jq（无 Script）。Surge/Egern 请优先单独启用本模块；大合集 MITM 过长时 Surge 可能解密不到 pipix。",
-      "icon": "",
-      "homepage": "",
-      "path": "Modules/patches-pipixia.sgmodule",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/patches-pipixia.sgmodule",
-      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Fpatches-pipixia.sgmodule",
-      "default_enabled": false,
-      "usage_tier": "optional",
-      "requires": [],
-      "hint": "皮皮虾。Surge 请单独启用；大合集 MITM 过长时解密可能轮不到 pipix。",
-      "tags": [
-        "去广告",
-        "皮皮虾"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=patches-pipixia",
-      "health": "ok"
-    },
-    {
-      "id": "qingrex-adblock",
-      "kind": "module",
-      "category": "modules",
-      "group": "合集",
-      "name": "1.1.1.1配置管理",
-      "desc": "可莉/QingRex 全仓库去广告模块合并去重（本地镜像）",
-      "icon": "https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/1.1.1.1.png",
-      "homepage": "http://boxjs.com/#/app/Cloudflare.1dot1dot1dot1",
-      "path": "Modules/qingrex-adblock.sgmodule",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/qingrex-adblock.sgmodule",
-      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Fqingrex-adblock.sgmodule",
-      "default_enabled": false,
-      "usage_tier": "optional",
-      "requires": [],
-      "hint": "可莉全仓库去广告（jq/Map Local）。Surge 请单独加本模块，不要指望已并进大合集。",
-      "tags": [
-        "去广告",
-        "可莉",
-        "QingRex",
-        "配置管理"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=qingrex-adblock",
       "health": "ok"
     },
     {
@@ -1619,25 +1570,6 @@
         "rule_set"
       ],
       "share_url": "https://oo226.github.io/egern-config/#id=Routing-Lan",
-      "health": "ok"
-    },
-    {
-      "id": "Routing-Pipixia-Snssdk-Direct",
-      "kind": "rule",
-      "category": "routing",
-      "group": "国内/通用",
-      "name": "Pipixia-Snssdk-Direct",
-      "desc": "类型: 分流规则 — 皮皮虾等国内字节 snssdk 直连",
-      "icon": "",
-      "path": "Routing/Pipixia-Snssdk-Direct.yaml",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Pipixia-Snssdk-Direct.yaml",
-      "add_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Pipixia-Snssdk-Direct.yaml",
-      "usage_tier": "neutral",
-      "tags": [
-        "分流",
-        "rule_set"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=Routing-Pipixia-Snssdk-Direct",
       "health": "ok"
     },
     {
@@ -4959,5 +4891,5 @@
       "health": "ok"
     }
   ],
-  "total": 237
+  "total": 234
 }
