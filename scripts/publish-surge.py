@@ -29,6 +29,13 @@ PUBLISH_FILES = [
 PUBLISH_MODULE_FILES = [
     "Modules/adblock-collection.module",
     "Modules/patches-pipixia.sgmodule",
+    "Modules/pingme.sgmodule",
+]
+
+# Surge-only scripts (PingMe etc.); keep off main/Egern.
+PUBLISH_SCRIPT_FILES = [
+    "Scripts/PingMe-capture.js",
+    "Scripts/PingMe-signin.js",
 ]
 
 
@@ -104,6 +111,16 @@ def main() -> None:
         print(f"copy {name}")
 
     for rel in PUBLISH_MODULE_FILES:
+        src = SURGE_SRC / rel
+        if not src.is_file():
+            print(f"skip missing {src}")
+            continue
+        dest = WORKTREE / rel
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(src, dest)
+        print(f"copy {rel}")
+
+    for rel in PUBLISH_SCRIPT_FILES:
         src = SURGE_SRC / rel
         if not src.is_file():
             print(f"skip missing {src}")
