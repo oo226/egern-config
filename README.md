@@ -48,6 +48,15 @@ https://raw.githubusercontent.com/oo226/egern-config/refs/heads/surge/Modules/ad
 
 `skip-proxy` / `always-real-ip` **只写在本分支 `Surge.conf`**。去广告/解锁合集已剥离这两项，勿再叠装 Fries `General.sgmodule` 或 `skip-proxy-collection`（会截断 + 费内存）。
 
+
+## PingMe 签到（本分支）
+
+```
+https://raw.githubusercontent.com/oo226/egern-config/refs/heads/surge/Modules/pingme.sgmodule
+```
+
+参考 fmz200 拆分写法（抓参 + cron）。参数「是否开启抓取重写」先填 `PingMe抓参`，打开 App 等到通知，再改成 `#`。不要用 `main` 的 `pingme.yaml`。
+
 ## 图标
 
 策略组图标见 [Icons.md](Icons.md)（Koolson/Qure Color）。
