@@ -114,9 +114,15 @@ modules:
 
   - name: qingrex-adblock
     cache: qingrex-adblock.sgmodule
+    role: skip
+    local: true
+    note: "QingRex/可莉全量勿并进大合集（Surge Body Rewrite 会爆）；皮皮虾用 patches-pipixia"
+
+  - name: patches-pipixia
+    cache: patches-pipixia.sgmodule
     role: supplement
     local: true
-    note: "QingRex/可莉 — 全仓库去广告模块合并去重（自动生成）"
+    note: "皮皮虾 — 可莉同款 Map Local + jq；并进大合集并置顶 MITM"
 
   - name: fmz200-extra
     cache: fmz200-extra.sgmodule

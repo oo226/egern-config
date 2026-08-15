@@ -26,6 +26,8 @@ MERGE_SECTIONS = (
     "Rule",
     "URL Rewrite",
     "Header Rewrite",
+    "Body Rewrite",
+    "Map Local",
     "Script",
     "MITM",
 )
@@ -304,8 +306,17 @@ def parse_mitm_hosts_from_line(line: str) -> tuple[set[str], set[str]]:
     return set(), set()
 
 
+# Keep high-value hosts first — Surge truncates huge hostname= lines from the end.
+MITM_PRIORITY_HOSTS = (
+    "api.pipix.com",
+    "api5-lq.pipix.com",
+)
+
+
 def format_hostnames(hosts: set[str]) -> str:
-    ordered = sorted(hosts, key=str.lower)
+    priority = [h for h in MITM_PRIORITY_HOSTS if h in hosts]
+    rest = sorted((hosts - set(priority)), key=str.lower)
+    ordered = priority + rest
     return "hostname = %APPEND% " + ", ".join(ordered)
 
 

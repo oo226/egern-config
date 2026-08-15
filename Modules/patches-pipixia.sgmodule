@@ -1,5 +1,5 @@
 #!name=皮皮虾去广告补全
-#!desc=可莉同款 Map Local + jq（无 Script）。Surge/Egern 请优先单独启用本模块；大合集 MITM 过长时 Surge 可能解密不到 pipix。
+#!desc=可莉同款 Map Local + jq（无 Script）。已并入去广告大合集；也可单独启用。Surge 大合集已把 api.pipix.com 置顶 MITM。
 #!author=oo226/egern-config (QingRex/可莉 + 本仓补全)
 #!category=去广告补全
 #!system=ios
