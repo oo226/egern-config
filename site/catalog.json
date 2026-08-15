@@ -32,13 +32,13 @@
     },
     {
       "id": "adblock-collection",
-      "name": "去广告合集",
-      "desc": "奶思 + blackmatrix7 + 银行税务NB 去广告合集（Egern 0815 已修复）",
-      "add_url": "egern:///modules/new?url=https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2Foo226%2Fegern-config%40main%2FModules%2Fadblock-egern.module",
-      "url": "https://cdn.jsdelivr.net/gh/oo226/egern-config@main/Modules/adblock-egern.module",
+      "name": "去广告合集（Egern）",
+      "desc": "奶思+blackmatrix7+NB（0815修复：去掉误并入的 QingRex 全量）",
+      "add_url": "egern:///modules/new?url=https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2Foo226%2Fegern-config%40main%2FModules%2Fadblock-egern-v0815b.module",
+      "url": "https://cdn.jsdelivr.net/gh/oo226/egern-config@main/Modules/adblock-egern-v0815b.module",
       "kind": "module",
-      "qr_url": "egern:///modules/new?url=https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2Foo226%2Fegern-config%40main%2FModules%2Fadblock-egern.module",
-      "path": "Modules/adblock-egern.module"
+      "qr_url": "egern:///modules/new?url=https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2Foo226%2Fegern-config%40main%2FModules%2Fadblock-egern-v0815b.module",
+      "path": "Modules/adblock-egern-v0815b.module"
     },
     {
       "id": "unlock-collection",
@@ -189,9 +189,9 @@
     {
       "step": 2,
       "title": "确认默认模块",
-      "desc": "去广告合集 + 解锁合集 + 插件跳转（Egern.yaml 里默认已开）",
-      "url": "https://cdn.jsdelivr.net/gh/oo226/egern-config@main/Modules/adblock-egern.module",
-      "add_url": "egern:///modules/new?url=https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2Foo226%2Fegern-config%40main%2FModules%2Fadblock-egern.module"
+      "desc": "奶思+blackmatrix7+NB（0815修复：去掉误并入的 QingRex 全量）",
+      "url": "https://cdn.jsdelivr.net/gh/oo226/egern-config@main/Modules/adblock-egern-v0815b.module",
+      "add_url": "egern:///modules/new?url=https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2Foo226%2Fegern-config%40main%2FModules%2Fadblock-egern-v0815b.module"
     },
     {
       "step": 3,
@@ -335,13 +335,13 @@
       "kind": "module",
       "category": "modules",
       "group": "合集",
-      "name": "去广告合集",
-      "desc": "奶思 + blackmatrix7 + 银行税务NB 去广告合集（Egern 0815 已修复）",
+      "name": "去广告合集（Egern）",
+      "desc": "奶思+blackmatrix7+NB（0815修复：去掉误并入的 QingRex 全量）",
       "icon": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/AdblockPlus.png",
       "homepage": "https://github.com/fmz200/wool_scripts",
-      "path": "Modules/adblock-egern.module",
-      "url": "https://cdn.jsdelivr.net/gh/oo226/egern-config@main/Modules/adblock-egern.module",
-      "add_url": "egern:///modules/new?url=https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2Foo226%2Fegern-config%40main%2FModules%2Fadblock-egern.module",
+      "path": "Modules/adblock-egern-v0815b.module",
+      "url": "https://cdn.jsdelivr.net/gh/oo226/egern-config@main/Modules/adblock-egern-v0815b.module",
+      "add_url": "egern:///modules/new?url=https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2Foo226%2Fegern-config%40main%2FModules%2Fadblock-egern-v0815b.module",
       "default_enabled": true,
       "usage_tier": "daily",
       "requires": [],
