@@ -30,6 +30,7 @@ PUBLISH_MODULE_FILES = [
     "Modules/adblock-collection.module",
     "Modules/patches-pipixia.sgmodule",
     "Modules/pingme.sgmodule",
+    "Modules/qdreader.sgmodule",
 ]
 
 # Surge-only scripts (PingMe etc.); keep off main/Egern.
