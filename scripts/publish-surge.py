@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Publish Surge-only snapshot from sync workspace → origin/surge branch.
 
-Keeps Egern main clean: Surge.conf + Rules live only on the surge branch.
-Modules / GeoIP / Scripts still referenced from main raw URLs.
+Keeps Egern main clean: Surge.conf + Rules + Surge-only modules live on surge.
+Shared Scripts / most Modules still referenced from main raw URLs.
 """
 
 from __future__ import annotations
@@ -25,8 +25,9 @@ PUBLISH_FILES = [
     "Icons.md",
 ]
 
-# Surge-only modules (not shared via main); copied next to conf on surge branch.
+# Surge-only modules (full copies; not shared with main Egern modules).
 PUBLISH_MODULE_FILES = [
+    "Modules/adblock-collection.module",
     "Modules/patches-pipixia.sgmodule",
 ]
 

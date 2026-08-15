@@ -38,13 +38,13 @@ https://raw.githubusercontent.com/oo226/egern-config/refs/heads/surge/Rules/
 
 模块继续装 `main` 的 `.module` / `.sgmodule`（Surge 原生）；不要装 Egern 专用 YAML。
 
-**皮皮虾（Surge）**：大合集 MITM 过长时 Surge 可能解密不到 `api.pipix.com`，请**单独**安装本分支模块：
+**例外 — 去广告大合集**：Surge 用本分支完整副本（已含皮皮虾），与 `main`（Egern）**不共用**：
 
 ```
-https://raw.githubusercontent.com/oo226/egern-config/refs/heads/surge/Modules/patches-pipixia.sgmodule
+https://raw.githubusercontent.com/oo226/egern-config/refs/heads/surge/Modules/adblock-collection.module
 ```
 
-（可莉同款 Map Local + jq，无 Script；`main` 上也有同名文件备 Egern 用。）
+只需开这一份即可；一般不必再单独装 `patches-pipixia`。
 
 `skip-proxy` / `always-real-ip` **只写在本分支 `Surge.conf`**。去广告/解锁合集已剥离这两项，勿再叠装 Fries `General.sgmodule` 或 `skip-proxy-collection`（会截断 + 费内存）。
 
