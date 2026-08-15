@@ -5,14 +5,32 @@ merge:
   output: adblock-collection.module
   # Surge 认文件最前的 #!name；勿用 & 等特殊字符
   primary_name: 去广告合集
-  primary_desc: 奶思 + blackmatrix7 + 银行税务NB 去广告合集
+  primary_desc: 奶思 + blackmatrix7 + 银行税务NB + 皮皮虾 去广告合集
   header_lines:
     - "# AUTO-MERGED by scripts/merge-adblock-modules.py"
     - "# 类型: 模块 — 去广告/去开屏/净化（URL Rewrite + MITM + Script）"
-    - "# Primary: fmz200 blockAds | Supplements: blackmatrix7 + 本仓库 NB/银行补全"
+    - "# Primary: fmz200 blockAds | Supplements: blackmatrix7 + 本仓库 NB/银行补全 + 皮皮虾"
     - "# Do not edit manually. Updated by GitHub Actions after upstream sync."
     - ""
   exclude_cron_scripts: true
+  # 皮皮虾短模块优先并进 Body Rewrite / Map Local（勿并 QingRex 全量）
+  priority_supplements:
+    - patches-pipixia
+  mitm_priority_hosts:
+    - api.pipix.com
+    - api5-lq.pipix.com
+  prepend_sections:
+    - Body Rewrite
+    - Map Local
+  merge_sections:
+    - General
+    - Rule
+    - URL Rewrite
+    - Header Rewrite
+    - Body Rewrite
+    - Map Local
+    - Script
+    - MITM
   # 主配置 knobs 不进合集（Fries/奶思 General 会叠装截断、改写用户偏好）
   drop_general_keys:
     - skip-proxy
@@ -114,9 +132,15 @@ modules:
 
   - name: qingrex-adblock
     cache: qingrex-adblock.sgmodule
+    role: skip
+    local: true
+    note: "QingRex/可莉全量勿并进大合集（Body Rewrite 过重）；皮皮虾走 patches-pipixia"
+
+  - name: patches-pipixia
+    cache: patches-pipixia.sgmodule
     role: supplement
     local: true
-    note: "QingRex/可莉 — 全仓库去广告模块合并去重（自动生成）"
+    note: "皮皮虾 — QingRex 短模块 + 福利/我的，并进 Egern 大合集"
 
   - name: fmz200-extra
     cache: fmz200-extra.sgmodule
