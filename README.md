@@ -54,7 +54,7 @@ Surge 成品在 **`surge` 分支**（`Surge.conf` + `Rules/`），由 sync 工�
 ## 常用链接
 
 ```
-https://cdn.jsdelivr.net/gh/oo226/egern-config@main/Modules/adblock-egern.module
+https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/adblock-collection.module
 https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/unlock-collection.module
 https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/China-Direct.yaml
 ```

@@ -531,6 +531,7 @@ widgets:
 
 modules:
   - name: 去广告净化合集
+    # 稳定别名；日更会同步写 adblock-collection / adblock-egern-v0815c
     url: https://cdn.jsdelivr.net/gh/oo226/egern-config@main/Modules/adblock-egern-v0815c.module
     update_interval: 86400
     enabled: true

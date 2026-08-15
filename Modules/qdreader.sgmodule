@@ -1,5 +1,5 @@
 #!name=起点读书签到
-#!desc=支持多账号对于"起点读书App"的签到功能，默认仅签到，其他任务需手动开启开关。脚本已镜像本仓（防删库）；Egern 模版参数 / BoxJS 可调。
+#!desc=起点读书签到（Surge/Egern .sgmodule）。参数「是否开启抓取重写」先填「起点读书」打开 App 抓 CK，再改成 #；默认仅签到。
 #!author=Yuheng0101[https://github.com/Yuheng0101]
 #!homepage=https://github.com/Yuheng0101/X
 #!category=签到

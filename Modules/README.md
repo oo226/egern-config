@@ -27,7 +27,7 @@
 ## raw 链接（用户入口）
 
 ```
-https://cdn.jsdelivr.net/gh/oo226/egern-config@main/Modules/adblock-egern.module
+https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/adblock-collection.module
 https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/unlock-collection.module
 https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/cookie-collection.module
 ```
