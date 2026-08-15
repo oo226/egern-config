@@ -33,12 +33,12 @@
     {
       "id": "adblock-collection",
       "name": "去广告合集（Egern）",
-      "desc": "奶思+blackmatrix7+NB（0815修复：去掉误并入的 QingRex 全量）",
-      "add_url": "egern:///modules/new?url=https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2Foo226%2Fegern-config%40main%2FModules%2Fadblock-egern-v0815b.module",
-      "url": "https://cdn.jsdelivr.net/gh/oo226/egern-config@main/Modules/adblock-egern-v0815b.module",
+      "desc": "已含皮皮虾（QingRex+福利/我的）；无 QingRex 全量 · v0815c",
+      "add_url": "egern:///modules/new?url=https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2Foo226%2Fegern-config%40main%2FModules%2Fadblock-egern-v0815c.module",
+      "url": "https://cdn.jsdelivr.net/gh/oo226/egern-config@main/Modules/adblock-egern-v0815c.module",
       "kind": "module",
-      "qr_url": "egern:///modules/new?url=https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2Foo226%2Fegern-config%40main%2FModules%2Fadblock-egern-v0815b.module",
-      "path": "Modules/adblock-egern-v0815b.module"
+      "qr_url": "egern:///modules/new?url=https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2Foo226%2Fegern-config%40main%2FModules%2Fadblock-egern-v0815c.module",
+      "path": "Modules/adblock-egern-v0815c.module"
     },
     {
       "id": "unlock-collection",
@@ -189,9 +189,10 @@
     {
       "step": 2,
       "title": "确认默认模块",
-      "desc": "奶思+blackmatrix7+NB（0815修复：去掉误并入的 QingRex 全量）",
-      "url": "https://cdn.jsdelivr.net/gh/oo226/egern-config@main/Modules/adblock-egern-v0815b.module",
-      "add_url": "egern:///modules/new?url=https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2Foo226%2Fegern-config%40main%2FModules%2Fadblock-egern-v0815b.module"
+      "desc": "已含皮皮虾（QingRex+福利/我的）；无 QingRex 全量 · v0815c",
+      "url": "https://cdn.jsdelivr.net/gh/oo226/egern-config@main/Modules/adblock-egern-v0815c.module",
+      "add_url": "egern:///modules/new?url=https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2Foo226%2Fegern-config%40main%2FModules%2Fadblock-egern-v0815c.module",
+      "name": "去广告合集（Egern）"
     },
     {
       "step": 3,
@@ -336,12 +337,12 @@
       "category": "modules",
       "group": "合集",
       "name": "去广告合集（Egern）",
-      "desc": "奶思+blackmatrix7+NB（0815修复：去掉误并入的 QingRex 全量）",
+      "desc": "已含皮皮虾（QingRex+福利/我的）；无 QingRex 全量 · v0815c",
       "icon": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/AdblockPlus.png",
       "homepage": "https://github.com/fmz200/wool_scripts",
-      "path": "Modules/adblock-egern-v0815b.module",
-      "url": "https://cdn.jsdelivr.net/gh/oo226/egern-config@main/Modules/adblock-egern-v0815b.module",
-      "add_url": "egern:///modules/new?url=https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2Foo226%2Fegern-config%40main%2FModules%2Fadblock-egern-v0815b.module",
+      "path": "Modules/adblock-egern-v0815c.module",
+      "url": "https://cdn.jsdelivr.net/gh/oo226/egern-config@main/Modules/adblock-egern-v0815c.module",
+      "add_url": "egern:///modules/new?url=https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2Foo226%2Fegern-config%40main%2FModules%2Fadblock-egern-v0815c.module",
       "default_enabled": true,
       "usage_tier": "daily",
       "requires": [],
