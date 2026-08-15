@@ -528,7 +528,7 @@ widgets:
 
 modules:
   - name: 去广告净化合集
-    url: https://cdn.jsdelivr.net/gh/oo226/egern-config@main/Modules/adblock-egern.module
+    url: https://cdn.jsdelivr.net/gh/oo226/egern-config@main/Modules/adblock-egern-v0815b.module
     update_interval: 86400
     enabled: true
   - name: 解锁增强合集
