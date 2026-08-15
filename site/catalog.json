@@ -33,11 +33,12 @@
     {
       "id": "adblock-collection",
       "name": "去广告合集",
-      "desc": "奶思 + blackmatrix7 + 银行税务NB 去广告合集",
-      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Fadblock-collection.module",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/adblock-collection.module",
+      "desc": "奶思 + blackmatrix7 + 银行税务NB 去广告合集（Egern 0815 已修复）",
+      "add_url": "egern:///modules/new?url=https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2Foo226%2Fegern-config%40main%2FModules%2Fadblock-egern.module",
+      "url": "https://cdn.jsdelivr.net/gh/oo226/egern-config@main/Modules/adblock-egern.module",
       "kind": "module",
-      "qr_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Fadblock-collection.module"
+      "qr_url": "egern:///modules/new?url=https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2Foo226%2Fegern-config%40main%2FModules%2Fadblock-egern.module",
+      "path": "Modules/adblock-egern.module"
     },
     {
       "id": "unlock-collection",
@@ -189,8 +190,8 @@
       "step": 2,
       "title": "确认默认模块",
       "desc": "去广告合集 + 解锁合集 + 插件跳转（Egern.yaml 里默认已开）",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/adblock-collection.module",
-      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Fadblock-collection.module"
+      "url": "https://cdn.jsdelivr.net/gh/oo226/egern-config@main/Modules/adblock-egern.module",
+      "add_url": "egern:///modules/new?url=https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2Foo226%2Fegern-config%40main%2FModules%2Fadblock-egern.module"
     },
     {
       "step": 3,
@@ -335,12 +336,12 @@
       "category": "modules",
       "group": "合集",
       "name": "去广告合集",
-      "desc": "奶思 + blackmatrix7 + 银行税务NB 去广告合集",
+      "desc": "奶思 + blackmatrix7 + 银行税务NB 去广告合集（Egern 0815 已修复）",
       "icon": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/AdblockPlus.png",
       "homepage": "https://github.com/fmz200/wool_scripts",
-      "path": "Modules/adblock-collection.module",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/adblock-collection.module",
-      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Fadblock-collection.module",
+      "path": "Modules/adblock-egern.module",
+      "url": "https://cdn.jsdelivr.net/gh/oo226/egern-config@main/Modules/adblock-egern.module",
+      "add_url": "egern:///modules/new?url=https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2Foo226%2Fegern-config%40main%2FModules%2Fadblock-egern.module",
       "default_enabled": true,
       "usage_tier": "daily",
       "requires": [],
