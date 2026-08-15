@@ -5,7 +5,10 @@ merge:
   output: adblock-collection.module
   # Surge 认文件最前的 #!name；勿用 & 等特殊字符
   primary_name: 去广告合集
-  primary_desc: 奶思 + blackmatrix7 + 银行税务NB 去广告合集
+  primary_desc: 奶思 + blackmatrix7 + 银行税务NB 去广告合集（含皮皮虾）
+  # Body Rewrite / Map Local 截断时优先保留这些补丁（置顶合并）
+  priority_supplements:
+    - patches-pipixia
   header_lines:
     - "# AUTO-MERGED by scripts/merge-adblock-modules.py"
     - "# 类型: 模块 — 去广告/去开屏/净化（URL Rewrite + MITM + Script）"
@@ -122,7 +125,7 @@ modules:
     cache: patches-pipixia.sgmodule
     role: supplement
     local: true
-    note: "皮皮虾 — 可莉同款 Map Local + jq；并进大合集并置顶 MITM"
+    note: "皮皮虾 — 可莉同款 Map Local + jq；并进大合集，MITM/Rewrite/MapLocal 均置顶"
 
   - name: fmz200-extra
     cache: fmz200-extra.sgmodule

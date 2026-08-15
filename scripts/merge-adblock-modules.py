@@ -32,6 +32,11 @@ MERGE_SECTIONS = (
     "MITM",
 )
 
+# Surge may truncate huge Body Rewrite / Map Local from the tail — keep these
+# supplements at the top of those sections (same idea as MITM_PRIORITY_HOSTS).
+SECTION_PREPEND_PRIORITY = frozenset({"Body Rewrite", "Map Local"})
+DEFAULT_PRIORITY_SUPPLEMENTS = ("patches-pipixia",)
+
 HEADER_KEYS = ("#!name=", "#!desc=", "#!author=", "#!category=", "#!system=")
 
 # Sign-in / scheduled tasks belong in cookie-collection or scripts/manifest — not adblock merge.
@@ -389,6 +394,7 @@ def merge_section(
     skip_proxy_excludes: frozenset[str] = frozenset(),
     content_line_excludes: frozenset[str] = frozenset(),
     drop_general_keys: frozenset[str] = frozenset(),
+    priority_supplements: tuple[str, ...] = DEFAULT_PRIORITY_SUPPLEMENTS,
 ) -> list[str]:
     if section == "General":
         supp_lines = [lines for _, lines in supplement_blocks]
@@ -437,13 +443,18 @@ def merge_section(
         for name, lines in supplement_blocks
     ]
 
-    for line in primary_lines:
-        key = rule_key(line) if section != "Script" else script_key(line)
-        if key:
-            seen.add(key)
-        output.append(line)
+    priority_set = {n for n in priority_supplements if n}
+    prepend = section in SECTION_PREPEND_PRIORITY and priority_set
+    priority_blocks = (
+        [(n, lines) for n, lines in supplement_blocks if n in priority_set] if prepend else []
+    )
+    rest_blocks = (
+        [(n, lines) for n, lines in supplement_blocks if n not in priority_set]
+        if prepend
+        else list(supplement_blocks)
+    )
 
-    for source_name, lines in supplement_blocks:
+    def append_unique_block(source_name: str, lines: list[str]) -> None:
         unique: list[str] = []
         for line in lines:
             key = rule_key(line) if section != "Script" else script_key(line)
@@ -455,9 +466,23 @@ def merge_section(
             seen.add(key)
             unique.append(line)
         if unique:
-            output.append("")
+            if output and output[-1].strip():
+                output.append("")
             output.append(f"# >>> merged from {source_name} (unique only)")
             output.extend(unique)
+
+    # Priority supplements first on Body Rewrite / Map Local (truncation-safe).
+    for source_name, lines in priority_blocks:
+        append_unique_block(source_name, lines)
+
+    for line in primary_lines:
+        key = rule_key(line) if section != "Script" else script_key(line)
+        if key:
+            seen.add(key)
+        output.append(line)
+
+    for source_name, lines in rest_blocks:
+        append_unique_block(source_name, lines)
 
     if section == "Script" and exclude_cron_scripts:
         output = filter_cron_scripts(output)
@@ -477,6 +502,7 @@ def build_merged_module(
     skip_proxy_excludes: frozenset[str] = frozenset(),
     content_line_excludes: frozenset[str] = frozenset(),
     drop_general_keys: frozenset[str] = frozenset(),
+    priority_supplements: tuple[str, ...] = DEFAULT_PRIORITY_SUPPLEMENTS,
 ) -> str:
     primary_header, primary_sections = parse_module(primary_text)
 
@@ -555,6 +581,7 @@ def build_merged_module(
             skip_proxy_excludes=skip_proxy_excludes,
             content_line_excludes=content_line_excludes,
             drop_general_keys=drop_general_keys,
+            priority_supplements=priority_supplements,
         )
         if not merged_lines:
             continue
@@ -586,6 +613,13 @@ def main() -> None:
     drop_general_keys = frozenset(
         str(x).strip() for x in (merge_cfg.get("drop_general_keys") or []) if str(x).strip()
     )
+    priority_raw = merge_cfg.get("priority_supplements")
+    if priority_raw is None:
+        priority_supplements = DEFAULT_PRIORITY_SUPPLEMENTS
+    else:
+        priority_supplements = tuple(
+            str(x).strip() for x in priority_raw if str(x).strip()
+        )
     script_url_fixes = {**DEFAULT_SCRIPT_URL_FIXES, **(merge_cfg.get("script_url_fixes") or {})}
     script_pattern_fixes = (
         tuple(merge_cfg.get("script_pattern_fixes") or ())
@@ -648,6 +682,7 @@ def main() -> None:
         skip_proxy_excludes=skip_proxy_excludes,
         content_line_excludes=content_line_excludes,
         drop_general_keys=drop_general_keys,
+        priority_supplements=priority_supplements,
     )
     merged = apply_script_url_fixes(merged, script_url_fixes)
     merged = apply_script_pattern_fixes(merged, script_pattern_fixes)
