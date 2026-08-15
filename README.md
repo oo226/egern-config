@@ -1,8 +1,6 @@
 # Surge 配置（`surge` 分支）
 
-与 **`main`（Egern）分开**：不覆盖 `Egern.yaml` / `Routing/*.yaml`。  
-**共用**：`main` 上的模块 / Scripts / GeoIP。  
-**分流**：本仓 `Rules/`（由 `Routing` 合并导出）——可比懒人包更全；**运行时只引用本仓 raw 链接**。
+与 **`main`（Egern）完全分开**：不覆盖 `Egern.yaml` / `Routing/*.yaml`。
 
 ## 导入
 
@@ -10,22 +8,49 @@
 https://raw.githubusercontent.com/oo226/egern-config/refs/heads/surge/Surge.conf
 ```
 
+规则目录：
+
 ```
 https://raw.githubusercontent.com/oo226/egern-config/refs/heads/surge/Rules/
 ```
 
-## 原则
+## 分流怎么给 Surge 用？
 
-1. **规则链接只用本仓**（`oo226/egern-config`）。上游（含深巷有喵 China 等）在 CI 合并进 `Routing/` 后再导出，不在 conf 里写第三方 RULE-SET URL。
-2. **胖 = 更全，可以接受。** 真正要避免的是：大表再进 `[Host]` Local DNS Mapping、`hijack-dns = *:53`、无必要的多 DoH。
-3. Egern / Surge 配置与分流树分开维护；模块成品共用。
+手册（[Rule Sets](https://manual.nssurge.com/rules/ruleset.html)）：
 
-## 更新
+| 格式 | 用法 | 本仓库 |
+| --- | --- | --- |
+| **RULE-SET** | 每行 `DOMAIN-SUFFIX,example.com` 等（无策略） | `Rules/**/*.list`（同 blackmatrix7） |
+| **DOMAIN-SET** | 每行一个域名；`.example.com` = 后缀 | `Rules/**/*.domainset`（同 Sukka domainset） |
+| Egern YAML | `domain_suffix_set:` … | **不能**给 Surge 用 |
 
-```bash
-python3 scripts/export-surge-rulesets.py
-python3 scripts/publish-surge.py
+`sync` 每日把 Egern `Routing/*.yaml` 导出成上述文件，再发布到本分支。
+
+规则顺序（对齐 Sukka）：先域名 `DOMAIN-SET` / 非 IP `RULE-SET`，再 IP `*.ip.list` + `GEOIP`，最后 `FINAL`。
+
+## 和别人大佬比一眼
+
+| | 本仓库 surge | SukkaW/Surge | blackmatrix7 | tutu Surge.conf |
+| --- | --- | --- | --- | --- |
+| 规则形态 | 自用 Egern 表导出 | 维护 domainset / non_ip / ip | 按 App 的 `.list` | 引用第三方 RULE-SET |
+| 主配置 | 对齐你的 Egern 策略组 | 规则片段为主 | 规则库 | 完整懒人包 |
+| 订阅 | `policy-path` 占位 | — | — | Sub-Store / policy-path |
+
+模块继续装 `main` 的 `.module` / `.sgmodule`（Surge 原生）；不要装 Egern 专用 YAML。
+
+**皮皮虾（Surge）**：大合集 MITM 过长时 Surge 可能解密不到 `api.pipix.com`，请**单独**安装本分支模块：
+
 ```
+https://raw.githubusercontent.com/oo226/egern-config/refs/heads/surge/Modules/patches-pipixia.sgmodule
+```
+
+（可莉同款 Map Local + jq，无 Script；`main` 上也有同名文件备 Egern 用。）
+
+`skip-proxy` / `always-real-ip` **只写在本分支 `Surge.conf`**。去广告/解锁合集已剥离这两项，勿再叠装 Fries `General.sgmodule` 或 `skip-proxy-collection`（会截断 + 费内存）。
+
+## 图标
+
+策略组图标见 [Icons.md](Icons.md)（Koolson/Qure Color）。
 
 ## 分支
 
@@ -33,6 +58,4 @@ python3 scripts/publish-surge.py
 | --- | --- |
 | `main` | Egern |
 | `surge` | Surge（本页） |
-| `sync` | 工厂 |
-
-图标见 [Icons.md](Icons.md)。
+| `sync` | 工厂（含 `surge/` 源） |
