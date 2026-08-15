@@ -136,6 +136,9 @@ jobs:
       - name: Merge adblock module
         run: python scripts/merge-adblock-modules.py
 
+      - name: Merge Surge-only adblock collection (full copy w/ 皮皮虾)
+        run: python scripts/merge-adblock-modules.py Modules/manifest.surge.yaml
+
       - name: Merge unlock module
         run: python scripts/merge-adblock-modules.py Modules/unlock-manifest.yaml
 
