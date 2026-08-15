@@ -1,43 +1,34 @@
 #!name=皮皮虾去广告（Surge）
-#!desc=基于 QingRex/可莉：开屏/信息流 + 精简「我的」+ 去掉「福利」页。仅 Surge 用；勿并进 main/Egern。
-#!author=oo226/egern-config (QingRex/可莉 + 本仓：福利/我的)
+#!desc=QingRex/可莉原版 +「我的」扩展精简 +「福利」页。仅 Surge；勿动 main/Egern。
+#!author=oo226/egern-config ← QingRex/可莉
 #!category=去广告补全
 #!system=ios
+#!homepage=https://raw.githubusercontent.com/QingRex/LoonKissSurge/refs/heads/main/Surge/皮皮虾去广告.sgmodule
+
+[Body Rewrite]
+# —— QingRex 原版：信息流 ——
+http-response-jq ^https:\/\/api(5-lq)?\.pipix\.com\/bds\/feed\/stream\/v2\/ '.data.data |= map(select(has("ad_info") | not))'
+
+# —— 「我的」页：QingRex（放心借/洋钱罐）+ 扩展入口 ——
+http-response-jq ^https:\/\/api(5-lq)?\.pipix\.com\/bds\/user\/check_in\/ '.data.profile_entrances |= map(select((.title // "") as $t | ($t != "放心借" and $t != "洋钱罐借款" and $t != "创作中心" and $t != "原创特权" and $t != "小黑屋" and $t != "我的订单" and $t != "银行卡管理" and $t != "神评鉴定" and $t != "宠物乐园" and $t != "进入宠物乐园"))) | del(.data.pet_interface_message,.data.pet_entrance,.data.pet_paradise,.data.activity_banner,.data.profile_banner,.data.banner,.data.banners,.data.loan_entrance,.data.credit_entrance,.data.creator_center,.data.creation_center)'
+
+# —— 「福利」Tab：频道只留关注·图文·推荐 ——
+http-response-jq ^https:\/\/api(5-lq)?\.pipix\.com\/bds\/feed\/channel_list 'if .data.channel_model then .data.channel_model |= map(select((.event_name == "feed" or .event_name == "image_text" or .event_name == "follow_feed") and (((.title // .name // .tab_name // .channel_name // .event_name // "") | tostring | test("福利|金币|赚钱|luckycat|welfare"; "i")) | not))) else . end'
 
 [Map Local]
-# QingRex 原版
+# —— QingRex 原版 ——
 ^https:\/\/api(5-lq)?\.pipix\.com\/api\/ad\/ data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 
 ^https:\/\/api(5-lq)?\.pipix\.com\/bds\/banner\/ data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 
 ^https:\/\/api(5-lq)?\.pipix\.com\/bds\/feed\/follow_feed\/ data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 
-# 福利页 / 金币任务 API
+# —— 「福利」页 API ——
 ^https:\/\/api(5-lq)?\.pipix\.com\/luckycat\/ data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 
-^https:\/\/api(5-lq)?\.pipix\.com\/bds\/(popups|medal\/popups|cell\/tail_cards) data-type=text data="{}" status-code=200 header="Content-Type:application/json"
-
-^https:\/\/api(5-lq)?\.pipix\.com\/bds\/hashtag\/get_top_hashtag data-type=text data="{\"status_code\":0,\"message\":\"\",\"data\":{\"hashtag_list\":[],\"hashtags\":[],\"list\":[],\"data\":[]}}" status-code=200 header="Content-Type:application/json"
-
-[Body Rewrite]
-# QingRex：信息流去广告
-http-response-jq ^https:\/\/api(5-lq)?\.pipix\.com\/bds\/feed\/stream\/v2\/ '.data.data |= map(select(has("ad_info") | not))'
-
-# 「我的」页：可莉基础 + 扩展入口清理
-http-response-jq ^https:\/\/api(5-lq)?\.pipix\.com\/bds\/user\/check_in\/ '.data.profile_entrances |= map(select((.title // "") as $t | ($t != "放心借" and $t != "洋钱罐借款" and $t != "创作中心" and $t != "原创特权" and $t != "小黑屋" and $t != "我的订单" and $t != "银行卡管理" and $t != "神评鉴定" and $t != "宠物乐园" and $t != "进入宠物乐园"))) | del(.data.pet_interface_message,.data.pet_entrance,.data.pet_paradise,.data.activity_banner,.data.profile_banner,.data.banner,.data.banners,.data.loan_entrance,.data.credit_entrance,.data.creator_center,.data.creation_center)'
-
-# 「福利」Tab / 底部频道：只留关注/图文/推荐，去掉福利·金币·赚钱
-http-response-jq ^https:\/\/api(5-lq)?\.pipix\.com\/bds\/feed\/channel_list 'if .data.channel_model then .data.channel_model |= map(select((.event_name == "feed" or .event_name == "image_text" or .event_name == "follow_feed") and (((.title // .name // .tab_name // .channel_name // .event_name // "") | tostring | test("福利|金币|赚钱|luckycat|welfare|gold|coin"; "i")) | not))) else . end | del(.data.banner_list,.data.banners,.data.entrance_list,.data.quick_access,.data.icon_list,.data.hashtag_list,.data.hashtags)'
-
-# 去水印（短规则）
-http-response-jq ^https:\/\/api(5-lq)?\.pipix\.com\/bds\/cell\/detail 'if (.data.item.video? and .data.item.origin_video_download.url_list?) then .data.item.video.video_download.url_list = .data.item.origin_video_download.url_list else . end'
-http-response ^https:\/\/api(5-lq)?\.pipix\.com\/bds\/(feed\/stream|cell\/detail) tplv-ppx-logo.image 0x0.gif
-http-response ^https:\/\/api(5-lq)?\.pipix\.com\/bds\/(feed\/stream|cell\/detail) tplv-ppx-logo 0x0
-http-response ^https:\/\/api(5-lq)?\.pipix\.com\/bds\/(feed\/stream|cell\/detail) "can_download":false "can_download":true
-
 [Script]
-# settings / channel_list / check_in：递归去掉底部「福利」Tab（本仓 ppx_ads.js）
-皮皮虾福利我的 = type=http-response, pattern=^https:\/\/api(5-lq)?\.pipix\.com\/(bds\/(feed\/channel_list|user\/check_in|settings\/)|service\/settings\/), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/pipixia/ppx_ads.js, requires-body=true, max-size=-1, timeout=30
+# 仅 settings：清底部「福利」Tab（不与上方 jq 同 URL 叠跑）
+皮皮虾福利Tab = type=http-response, pattern=^https:\/\/api(5-lq)?\.pipix\.com\/(bds\/settings\/|service\/settings\/), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/pipixia/ppx_ads.js, requires-body=true, max-size=-1, timeout=30
 
 [MITM]
 hostname = %APPEND% api.pipix.com, api5-lq.pipix.com
