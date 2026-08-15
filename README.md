@@ -36,22 +36,15 @@ https://raw.githubusercontent.com/oo226/egern-config/refs/heads/surge/Rules/
 | 主配置 | 对齐你的 Egern 策略组 | 规则片段为主 | 规则库 | 完整懒人包 |
 | 订阅 | `policy-path` 占位 | — | — | Sub-Store / policy-path |
 
-模块继续装 `main` 的 `.module` / `.sgmodule`（Surge 原生）；不要装 Egern 专用 YAML。
-
-**皮皮虾（建议先开单独模块）**：QingRex 原版 +「我的」+「福利」：
-
-```
-https://raw.githubusercontent.com/oo226/egern-config/refs/heads/surge/Modules/patches-pipixia.sgmodule
-```
-
-对照：https://raw.githubusercontent.com/QingRex/LoonKissSurge/refs/heads/main/Surge/皮皮虾去广告.sgmodule
-
-也可开本分支完整去广告大合集（已并入上述规则，与 main/Egern **不共用**）：
+模块：去广告请用 **本分支大合集**（完整副本，已修好皮皮虾：QingRex + 我的 + 福利），与 `main`（Egern）**不共用**：
 
 ```
 https://raw.githubusercontent.com/oo226/egern-config/refs/heads/surge/Modules/adblock-collection.module
 ```
 
+对照 QingRex：https://raw.githubusercontent.com/QingRex/LoonKissSurge/refs/heads/main/Surge/皮皮虾去广告.sgmodule
+
+其它 unlock / pingme / iringo 等仍可装 `main` 的模块。皮皮虾短模块一般不必再开（已并进上份大合集）。
 
 `skip-proxy` / `always-real-ip` **只写在本分支 `Surge.conf`**。去广告/解锁合集已剥离这两项，勿再叠装 Fries `General.sgmodule` 或 `skip-proxy-collection`（会截断 + 费内存）。
 
