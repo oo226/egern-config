@@ -1,0 +1,37 @@
+#!name=皮皮虾去广告补全
+#!desc=Surge 专用：可莉同款 Map Local + jq（无 Script）。请单独启用本模块，勿只靠 adblock 大合集（MITM 过长时 Surge 解密不到 pipix）。
+#!author=oo226/egern-config (QingRex/可莉 + 本仓补全)
+#!category=去广告补全
+#!system=ios
+
+[Map Local]
+^https:\/\/api(5-lq)?\.pipix\.com\/api\/ad\/ data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
+^https:\/\/api(5-lq)?\.pipix\.com\/bds\/banner\/ data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
+^https:\/\/api(5-lq)?\.pipix\.com\/bds\/feed\/follow_feed\/ data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
+^https:\/\/api(5-lq)?\.pipix\.com\/bds\/hashtag\/get_top_hashtag data-type=text data="{\"status_code\":0,\"message\":\"\",\"data\":{\"hashtag_list\":[],\"hashtags\":[],\"list\":[],\"data\":[]}}" status-code=200 header="Content-Type:application/json"
+
+^https:\/\/api(5-lq)?\.pipix\.com\/bds\/popups\/ data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
+^https:\/\/api(5-lq)?\.pipix\.com\/bds\/medal\/popups data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
+^https:\/\/api(5-lq)?\.pipix\.com\/bds\/cell\/tail_cards data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
+^https:\/\/api(5-lq)?\.pipix\.com\/luckycat\/ data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
+[Body Rewrite]
+# 与可莉原版逐字对齐（Surge 已验证）
+http-response-jq ^https:\/\/api(5-lq)?\.pipix\.com\/bds\/feed\/stream\/v2\/ '.data.data |= map(select(has("ad_info") | not))'
+http-response-jq ^https:\/\/api(5-lq)?\.pipix\.com\/bds\/user\/check_in\/ '.data.profile_entrances |= map(select(.title != "放心借" and .title != "洋钱罐借款" and .title != "创作中心" and .title != "原创特权" and .title != "宠物乐园")) | del(.data.pet_interface_message,.data.creator_center,.data.creation_center)'
+
+# 额外：四圆频道 / 去水印（短表达式）
+http-response-jq ^https:\/\/api(5-lq)?\.pipix\.com\/bds\/feed\/channel_list 'if .data.channel_model then .data.channel_model |= map(select(.event_name == "feed" or .event_name == "image_text" or .event_name == "follow_feed")) else . end'
+http-response-jq ^https:\/\/api(5-lq)?\.pipix\.com\/bds\/cell\/detail 'if (.data.item.video? and .data.item.origin_video_download.url_list?) then .data.item.video.video_download.url_list = .data.item.origin_video_download.url_list else . end'
+http-response ^https:\/\/api(5-lq)?\.pipix\.com\/bds\/(feed\/stream|cell\/detail) tplv-ppx-logo.image 0x0.gif
+http-response ^https:\/\/api(5-lq)?\.pipix\.com\/bds\/(feed\/stream|cell\/detail) tplv-ppx-logo 0x0
+http-response ^https:\/\/api(5-lq)?\.pipix\.com\/bds\/(feed\/stream|cell\/detail) "can_download":false "can_download":true
+
+[MITM]
+hostname = %APPEND% api.pipix.com, api5-lq.pipix.com

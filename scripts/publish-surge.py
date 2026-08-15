@@ -25,6 +25,11 @@ PUBLISH_FILES = [
     "Icons.md",
 ]
 
+# Surge-only modules (not shared via main); copied next to conf on surge branch.
+PUBLISH_MODULE_FILES = [
+    "Modules/patches-pipixia.sgmodule",
+]
+
 
 def run(cmd: list[str], *, cwd: Path) -> None:
     print("+", " ".join(cmd))
@@ -96,6 +101,16 @@ def main() -> None:
             continue
         shutil.copy2(src, WORKTREE / name)
         print(f"copy {name}")
+
+    for rel in PUBLISH_MODULE_FILES:
+        src = SURGE_SRC / rel
+        if not src.is_file():
+            print(f"skip missing {src}")
+            continue
+        dest = WORKTREE / rel
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(src, dest)
+        print(f"copy {rel}")
 
     # Disclaimer from repo root
     disclaimer = ROOT / "DISCLAIMER.md"
