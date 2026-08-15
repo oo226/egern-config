@@ -48,6 +48,16 @@ https://raw.githubusercontent.com/oo226/egern-config/refs/heads/surge/Modules/ad
 
 `skip-proxy` / `always-real-ip` **只写在本分支 `Surge.conf`**。去广告/解锁合集已剥离这两项，勿再叠装 Fries `General.sgmodule` 或 `skip-proxy-collection`（会截断 + 费内存）。
 
+
+## 签到模块（从 main 安装）
+
+| 模块 | URL | 要点 |
+| --- | --- | --- |
+| PingMe | `https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/pingme.sgmodule` | 参数「是否开启抓取重写」先=`PingMe抓参`，打开 App 等到通知，再改=`#`；不要装 `pingme.yaml` |
+| 起点读书 | `https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/qdreader.sgmodule` | 参数先=`起点读书` 抓 CK（打开起点触发登录接口），再改=`#`；MITM=`h5.if.qidian.com` |
+
+抓完务必关掉抓参，否则费电且可能反复写参。
+
 ## 图标
 
 策略组图标见 [Icons.md](Icons.md)（Koolson/Qure Color）。

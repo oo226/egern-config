@@ -1,7 +1,8 @@
 /**
  * PingMe 抓参 — 对齐 oo226/quanx cook.js 写法
- * Egern: http_request + export default(ctx)
- * 存储键: #pingme_capture_v3（与签到脚本一致）
+ * Surge / Egern(.sgmodule): http-request + $request + $persistentStore
+ * 勿用顶层 export default（Surge 脚本引擎会 SyntaxError，导致抓参全废）
+ * 存储键: pingme_capture_v3 / #pingme_capture_v3（与签到脚本一致）
  */
 
 const CK = 'pingme_capture_v3';
@@ -51,26 +52,27 @@ function saveCapture(url, reqHeaders) {
   const capture = {
     url,
     paramsRaw: parseRawQuery(url),
-    headers: normalizeHeaderNameMap(headersToMap(reqHeaders))
+    headers: normalizeHeaderNameMap(headersToMap(reqHeaders)),
+    capturedAt: Date.now()
   };
   const json = JSON.stringify(capture);
 
-  // 同时写带/不带 # 的键，兼容签到脚本 $.getdata('pingme_capture_v3') 与旧写法
   const keys = [`#${CK}`, CK];
   if (typeof $persistentStore !== 'undefined') {
     keys.forEach(k => $persistentStore.write(json, k));
-    return;
   }
   if (typeof globalThis.__pingmeStorage !== 'undefined' && globalThis.__pingmeStorage) {
     const s = globalThis.__pingmeStorage;
-    if (typeof s.setJSON === 'function') s.setJSON(CK, capture);
-    else if (typeof s.set === 'function') {
-      s.set(CK, json);
-      s.set(`#${CK}`, json);
+    if (typeof s.setJSON === 'function') {
+      s.setJSON(CK, capture);
+      s.setJSON(`#${CK}`, capture);
+    } else if (typeof s.set === 'function') {
+      keys.forEach(k => s.set(k, json));
     }
-    return;
   }
-  console.log(`【PingMe抓参】无可用存储，capture=${json.slice(0, 120)}...`);
+  if (typeof $persistentStore === 'undefined' && !globalThis.__pingmeStorage) {
+    console.log(`【PingMe抓参】无可用存储，capture=${json.slice(0, 120)}...`);
+  }
 }
 
 function notifyOk(url) {
@@ -89,14 +91,8 @@ function captureFromRequest(req) {
   notifyOk(req.url);
 }
 
-export default async function (ctx) {
-  globalThis.__pingmeStorage = ctx?.storage || null;
-  if (ctx?.request?.url) {
-    captureFromRequest({ url: String(ctx.request.url), headers: ctx.request.headers });
-  }
-}
-
-if (typeof $request !== 'undefined' && $request?.url?.includes('queryBalanceAndBonus')) {
+// Surge / QX / Loon / Egern(.sgmodule) http-request 入口
+if (typeof $request !== 'undefined' && $request?.url && String($request.url).includes('queryBalanceAndBonus')) {
   captureFromRequest($request);
   if (typeof $done === 'function') $done({});
 }

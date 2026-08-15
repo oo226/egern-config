@@ -1,12 +1,12 @@
 #!name=PingMe
-#!desc=PingMe 抓参 + 定时签到。用法同起点：模块参数里开关抓参；抓完把「是否开启抓取重写」改成 #
+#!desc=PingMe 抓参 + 定时签到（Surge/Egern 通用 .sgmodule）。先开抓参→打开 App→改成 #→等 cron
 #!author=怎么肥事 / fmz200 / oo226
 #!homepage=https://github.com/oo226/egern-config
 #!category=签到
 #!system=ios
 #!tag=PingMe,签到,抓参,模版参数
 #!arguments=是否开启抓取重写:"PingMe抓参",CRONEXP:"30 8,20 * * *",TIMEOUT:300
-#!arguments-desc=- 是否开启抓取重写: ["PingMe抓参","#"]\n  填 PingMe抓参=开抓参；填 #=关抓参（抓完务必改）。\n\n- CRONEXP: 签到定时，默认每天 8:30 与 20:30。\n\n- TIMEOUT: 签到超时秒数，默认 300。\n\n入口：模块详情 → 参数（与起点读书签到相同）。若无参数面板，请删掉旧的 pingme.yaml 后改装本 .sgmodule。
+#!arguments-desc=- 是否开启抓取重写: ["PingMe抓参","#"]\n  填 PingMe抓参=开抓参；填 #=关抓参（抓完务必改）。\n\n- CRONEXP: 签到定时，默认每天 8:30 与 20:30。\n\n- TIMEOUT: 签到超时秒数，默认 300。\n\nSurge：装本模块（不要装 pingme.yaml）；MITM 需含 api.pingmeapp.net；开抓参后打开 PingMe 等到「抓参成功」通知，再改成 #。可在脚本里手动跑「PingMe签到」验证。
 
 [Script]
 {{{是否开启抓取重写}}}获取参数 = type=http-request,pattern=^https:\/\/api\.pingmeapp\.net\/app\/queryBalanceAndBonus,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/PingMe-capture.js,timeout=60

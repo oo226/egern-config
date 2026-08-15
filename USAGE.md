@@ -36,7 +36,7 @@ https://cdn.jsdelivr.net/gh/oo226/egern-config@main/site/index.html
 |------|------|----------|------|
 | 去广告净化合集 | 模块 | `.../Modules/adblock-collection.module` | 默认开；**不含签到 cron** |
 | 解锁增强合集 | 模块 | `.../Modules/unlock-collection.module` | 默认开 |
-| PingMe 抓参签到 | 模块 | 外部 `oo226/quanx` `pingme.yaml` | 不在本仓库 |
+| PingMe 抓参签到 | 模块 | `.../Modules/pingme.sgmodule` | Surge/Egern 同用；抓完把参数改成 `#` |
 | 插件跳转 Egern | 模块 | `.../Modules/ibl3nd-plugin-hub.yaml` | 默认开 |
 | 追风挂机 | 节点+规则 | `Egern.yaml` 内 `proxies` + `Routing/Zhuifeng.yaml` | 途游小程序专用 |
 | 今日油价 | 小组件 | `.../Widgets/IBL3ND/Oil_Widget.JS` | **仅 `widgets` 段**，勿加 `scriptings` |
