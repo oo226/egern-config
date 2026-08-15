@@ -7091,12 +7091,14 @@ http:\/\/sv\.adintl\.cn - reject
 
 [Body Rewrite]
 # >>> merged from patches-pipixia (unique only)
-# QingRex 原版
+# ========== QingRex 原版（逐字）==========
 http-response-jq ^https:\/\/api(5-lq)?\.pipix\.com\/bds\/feed\/stream\/v2\/ '.data.data |= map(select(has("ad_info") | not))'
 http-response-jq ^https:\/\/api(5-lq)?\.pipix\.com\/bds\/user\/check_in\/ '.data.profile_entrances |= map(select(.title != "放心借" and .title != "洋钱罐借款")) | del(.data.pet_interface_message)'
-# 我的：扩展入口
+
+# ========== 增补：「我的」页更多入口 ==========
 http-response-jq ^https:\/\/api(5-lq)?\.pipix\.com\/bds\/user\/check_in\/ '.data.profile_entrances |= map(select((.title // "") as $t | ($t != "创作中心" and $t != "原创特权" and $t != "小黑屋" and $t != "我的订单" and $t != "银行卡管理" and $t != "神评鉴定" and $t != "宠物乐园" and $t != "进入宠物乐园"))) | del(.data.pet_entrance,.data.pet_paradise,.data.activity_banner,.data.profile_banner,.data.banner,.data.banners,.data.loan_entrance,.data.credit_entrance,.data.creator_center,.data.creation_center)'
-# 福利 Tab
+
+# ========== 增补：「福利」Tab（频道）==========
 http-response-jq ^https:\/\/api(5-lq)?\.pipix\.com\/bds\/feed\/channel_list 'if .data.channel_model then .data.channel_model |= map(select(.event_name == "feed" or .event_name == "image_text" or .event_name == "follow_feed")) else . end'
 http-response-jq ^https:\/\/api(5-lq)?\.pipix\.com\/bds\/feed\/channel_list 'if .data.channel_model then .data.channel_model |= map(select((((.title // .name // .tab_name // "") | tostring) | test("福利|金币|赚钱") | not))) else . end'
 
@@ -7383,11 +7385,14 @@ http-response ^https?:\/\/app\.zhuanzhuan\.com\/zz\/v2\/zzinfoshow\/getchoicegoo
 
 [Map Local]
 # >>> merged from patches-pipixia (unique only)
-# QingRex 原版
+# ========== QingRex 原版（逐字）==========
 ^https:\/\/api(5-lq)?\.pipix\.com\/api\/ad\/ data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
 ^https:\/\/api(5-lq)?\.pipix\.com\/bds\/banner\/ data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
 ^https:\/\/api(5-lq)?\.pipix\.com\/bds\/feed\/follow_feed\/ data-type=text data="{}" status-code=200 header="Content-Type:application/json"
-# 福利页
+
+# ========== 增补：「福利」页 ==========
 ^https:\/\/api(5-lq)?\.pipix\.com\/luckycat\/ data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 
 # >>>>>>>>>>>>>>> ✅ !! ✅ <<<<<<<<<<<<<<
