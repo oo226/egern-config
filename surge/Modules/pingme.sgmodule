@@ -1,0 +1,15 @@
+#!name=PingMe
+#!desc=PingMe 抓参+签到（Surge）。参考 fmz200/怎么肥事：先开抓参→打开 App→改成 #→等定时
+#!author=怎么肥事 / fmz200 / oo226
+#!category=签到
+#!system=ios
+#!arguments=是否开启抓取重写:"PingMe抓参",CRONEXP:"30 8,20 * * *",TIMEOUT:300
+#!arguments-desc=- 是否开启抓取重写: ["PingMe抓参","#"]\n  PingMe抓参=开；#=关（抓完务必改）。\n- CRONEXP: 默认 8:30 与 20:30\n- TIMEOUT: 默认 300
+
+[Script]
+{{{是否开启抓取重写}}}获取签到参数 = type=http-request,pattern=^https:\/\/api\.pingmeapp\.net\/app\/queryBalanceAndBonus,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/surge/Scripts/PingMe-capture.js,timeout=60
+
+PingMe签到 = type=cron,cronexp="{{{CRONEXP}}}",script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/surge/Scripts/PingMe-signin.js,timeout={{{TIMEOUT}}},script-update-interval=0
+
+[MITM]
+hostname = %APPEND% api.pingmeapp.net
