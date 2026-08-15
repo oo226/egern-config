@@ -26,37 +26,119 @@ const ckKey = 'pingme_capture_v3';
 const SECRET = '0fOiukQq7jXZV2GRi9LGlO';
 const MAX_VIDEO = 5;
 const VIDEO_DELAY = 8000;
+const SIGN_DROP_KEYS = {
+    sign: 1, signDate: 1, timestamp: 1, ts: 1, nonce: 1, random: 1,
+    reqTime: 1, reqId: 1, requestId: 1
+};
+const CAPTURE_MAX_AGE_MS = 7 * 24 * 60 * 60 * 1000;
 
-// 执行开始
-startTasks().then(r => $.done());
+let __egernStorage = null;
+
+function bindStorage(ctx) {
+    __egernStorage = ctx?.storage || null;
+}
+
+function readRaw(key) {
+    if (__egernStorage) {
+        if (typeof __egernStorage.getJSON === 'function') {
+            const obj = __egernStorage.getJSON(key);
+            if (obj != null) return JSON.stringify(obj);
+        }
+        const v = __egernStorage.get(key);
+        if (v != null) return String(v);
+    }
+    return $.getdata(key) || $.getdata(`#${key}`) || '';
+}
+
+function readCapture() {
+    const raw = readRaw(ckKey);
+    if (!raw) return { error: 'missing', message: '先打开 PingMe 触发一次抓参' };
+    try {
+        const capture = JSON.parse(raw);
+        if (!capture.paramsRaw || !Object.keys(capture.paramsRaw).length) {
+            return { error: 'invalid', message: '抓参不完整，请重新打开 PingMe' };
+        }
+        if (capture.capturedAt && Date.now() - capture.capturedAt > CAPTURE_MAX_AGE_MS) {
+            capture.__stale = true;
+        }
+        return { capture };
+    } catch (e) {
+        return { error: 'corrupt', message: '参数损坏，请重新打开 PingMe 抓参' };
+    }
+}
+
+function sleep(ms) {
+    return new Promise(r => setTimeout(r, ms));
+}
+
+function httpFetch(options) {
+    if (typeof $task !== 'undefined') {
+        return $task.fetch(options).then(resp => ({
+            statusCode: resp.statusCode || resp.status || 0,
+            body: resp.body || ''
+        }));
+    }
+    if (typeof $httpClient !== 'undefined') {
+        return new Promise((resolve, reject) => {
+            $httpClient.get(options, (err, resp, body) => {
+                if (err) {
+                    const m = String(err);
+                    const statusMatch = m.match(/status:\s*(\d+)/i);
+                    if (statusMatch) {
+                        const bodyMatch = m.match(/body:\s*(.*)$/i);
+                        return resolve({
+                            statusCode: Number(statusMatch[1]),
+                            body: bodyMatch ? bodyMatch[1] : ''
+                        });
+                    }
+                    return reject({ error: m });
+                }
+                resolve({
+                    statusCode: (resp && (resp.status || resp.statusCode)) || 0,
+                    body: body || ''
+                });
+            });
+        });
+    }
+    return $.http.get(options);
+}
+
+function parseApiBody(body, path, statusCode) {
+    if (!body) return { retcode: -1, retmsg: `HTTP ${statusCode} 空响应 (${path})` };
+    try {
+        return JSON.parse(body);
+    } catch (e) {
+        return { retcode: -1, retmsg: `HTTP ${statusCode} ${String(body).slice(0, 120)} (${path})` };
+    }
+}
 
 async function startTasks() {
     console.log("开始运行签到");
-    // const raw = $prefs.valueForKey(ckKey);
-    const raw = $.getdata(ckKey) || $.getdata(`#${ckKey}`);
-    if (!raw) {
-        // notifyDone('⚠️ 未抓到参数', '先打开 PingMe 触发一次 ');
-        // $done();
-        await sendMsg("❌ 请先获取PingMe签到参数", "先打开PingMe触发一次");
-        $.done();
+    const loaded = readCapture();
+    if (loaded.error) {
+        await sendMsg(`❌ 请先获取PingMe签到参数`, loaded.message);
+        return;
     }
-    let capture;
-    try {
-        capture = JSON.parse(raw);
-    } catch (e) {
-        // notifyDone('⚠️ 参数损坏', '请重新打开 PingMe 抓参');
-        // $done();
-        await sendMsg("❌ PingMe签到参数损坏", "可打开PingMe再触发一次");
-        $.done();
+    const capture = loaded.capture;
+    if (capture.__stale) {
+        console.log('⚠️ 抓参已超过 7 天，建议重新打开 PingMe 刷新参数');
     }
 
     console.log("组装请求头");
     const headers = buildHeaders(capture);
     const msgs = [];
+    if (capture.__stale) msgs.push('⚠️ 抓参较旧，若失败请重新打开 PingMe');
 
-    function fetchApi(path) {
-        // return $task.fetch({ url: buildUrl(path, capture), method: 'GET', headers });
-        return $.http.get({url: buildUrl(path, capture), headers: headers});
+    function fetchApi(path, attempt = 1) {
+        const url = buildUrl(path, capture);
+        return httpFetch({ url, method: 'GET', headers, timeout: 30000 })
+            .catch(err => {
+                const m = err && (err.error || String(err));
+                if (attempt < 3 && /SSL|timeout|timed out|reset|connection|network|stream closed|closed|EOF/i.test(m || '')) {
+                    return sleep(1500 * attempt).then(() => fetchApi(path, attempt + 1));
+                }
+                throw { error: m || '请求失败', path };
+            });
     }
 
     function doVideoLoop(count) {
@@ -68,17 +150,12 @@ async function startTasks() {
                 setTimeout(() => {
                     i++;
                     fetchApi('videoBonus').then(res => {
-                        try {
-                            const d = JSON.parse(res.body);
-                            if (d.retcode === 0) {
-                                msgs.push(`🎬 视频${i}：+${d.result?.bonus || '?'} Coins`);
-                                resolve(next());
-                            } else {
-                                msgs.push(`⏸ 视频${i}：${d.retmsg}`);
-                                resolve();
-                            }
-                        } catch (e) {
-                            msgs.push(`❌ 视频${i}：解析失败`);
+                        const d = parseApiBody(res.body, 'videoBonus', res.statusCode);
+                        if (d.retcode === 0) {
+                            msgs.push(`🎬 视频${i}：+${d.result?.bonus || '?'} Coins`);
+                            resolve(next());
+                        } else {
+                            msgs.push(`⏸ 视频${i}：${d.retmsg}`);
                             resolve();
                         }
                     }).catch(err => {
@@ -93,53 +170,52 @@ async function startTasks() {
     }
 
     return fetchApi('queryBalanceAndBonus').then(res => {
-        try {
-            const d = JSON.parse(res.body);
-            if (d.retcode === 0) msgs.push(`💰 余额：${d.result.balance} Coins`); else msgs.push(`⚠️ 查询：${d.retmsg}`);
-        } catch (e) {
-            msgs.push('❌ 查询：解析失败');
+        const d = parseApiBody(res.body, 'queryBalanceAndBonus', res.statusCode);
+        if (d.retcode === 0) msgs.push(`💰 余额：${d.result.balance} Coins`);
+        else msgs.push(`⚠️ 查询：${d.retmsg}`);
+        if (res.statusCode >= 400 && d.retcode !== 0) {
+            throw { error: d.retmsg, path: 'queryBalanceAndBonus', hint: '抓参可能过期，请重新打开 PingMe' };
         }
         return fetchApi('checkIn');
     }).then(res => {
-        try {
-            const d = JSON.parse(res.body);
-            if (d.retcode === 0) msgs.push(`✅ 签到：${(d.result?.bonusHint || d.retmsg || '').replace(/\n/g, ' ')}`); else msgs.push(`⚠️ 签到：${d.retmsg}`);
-        } catch (e) {
-            msgs.push('❌ 签到：解析失败');
+        const d = parseApiBody(res.body, 'checkIn', res.statusCode);
+        if (d.retcode === 0) msgs.push(`✅ 签到：${(d.result?.bonusHint || d.retmsg || '').replace(/\n/g, ' ')}`);
+        else msgs.push(`⚠️ 签到：${d.retmsg}`);
+        if (res.statusCode >= 400 && d.retcode !== 0) {
+            throw { error: d.retmsg, path: 'checkIn', hint: '抓参可能过期，请重新打开 PingMe' };
         }
         return doVideoLoop(MAX_VIDEO);
-    }).then(() => {
-        return fetchApi('queryBalanceAndBonus');
-    }).then(async res => {
-        try {
-            const d = JSON.parse(res.body);
-            if (d.retcode === 0) msgs.push(`💰 最新余额：${d.result.balance} Coins`);
-        } catch (e) {
-            console.log("查询最新余额失败！");
-        }
-        // notifyDone('🎉 任务完成', msgs.join('\n'));
+    }).then(() => fetchApi('queryBalanceAndBonus')).then(async res => {
+        const d = parseApiBody(res.body, 'queryBalanceAndBonus', res.statusCode);
+        if (d.retcode === 0) msgs.push(`💰 最新余额：${d.result.balance} Coins`);
         if (!isNode) {
-            $.msg($.name + '🎉 任务完成', msgs.join('\n'), '', {
+            $.msg($.name + ' 🎉 任务完成', msgs.join('\n'), '', {
                 'open-url': '',
                 'media-url': 'https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/PingMe.png'
             });
         } else {
-            await sendMsg(msgs.join('\n'), "").then(r => console.log("通知发送完成"));
+            await sendMsg(msgs.join('\n'), "");
         }
-        // $.done();
     }).catch(async err => {
-        // notifyDone('❌ 任务失败', msgs.join('\n') + '\n' + (err.error || String(err)));
+        const detail = [
+            msgs.join('\n'),
+            err.path ? `接口：${err.path}` : '',
+            err.error || String(err),
+            err.hint || (String(err.error || err).includes('400') ? '定时任务用的是旧抓参；请重新打开 PingMe 刷新，或临时手动跑一次' : '')
+        ].filter(Boolean).join('\n');
         if (!isNode) {
-            $.msg($.name + '❌ 任务失败', msgs.join('\n') + '\n' + (err.error || String(err)), '', {
+            $.msg($.name + ' ❌ 任务失败', detail, '', {
                 'open-url': '',
                 'media-url': 'https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/PingMe.png'
             });
         } else {
-            await sendMsg(msgs.join('\n'), "").then(r => console.log("通知发送完成"));
+            await sendMsg(detail, "");
         }
-        // $.done();
     });
-    /*}*/
+}
+
+function runSignin() {
+    return startTasks().then(() => $.done()).catch(() => $.done());
 }
 
 function MD5(string) {
@@ -244,7 +320,7 @@ function parseRawQuery(url) {
 function buildSignedParamsRaw(capture) {
     const params = {};
     Object.keys(capture.paramsRaw || {}).forEach(k => {
-        if (k !== 'sign' && k !== 'signDate') params[k] = capture.paramsRaw[k];
+        if (!SIGN_DROP_KEYS[k]) params[k] = capture.paramsRaw[k];
     });
     params.signDate = getUTCSignDate();
     const signBase = Object.keys(params).sort().map(k => `${k}=${params[k]}`).join('&');
@@ -252,9 +328,15 @@ function buildSignedParamsRaw(capture) {
     return params;
 }
 
+function encodeQueryValue(key, value, capture) {
+    if (key === 'signDate' || key === 'sign') return encodeURIComponent(value);
+    if (capture.paramsRaw && capture.paramsRaw[key] === value) return value;
+    return encodeURIComponent(value);
+}
+
 function buildUrl(path, capture) {
     const params = buildSignedParamsRaw(capture);
-    const qs = Object.keys(params).map(k => `${k}=${encodeURIComponent(params[k])}`).join('&');
+    const qs = Object.keys(params).map(k => `${k}=${encodeQueryValue(k, params[k], capture)}`).join('&');
     return `https://api.pingmeapp.net/app/${path}?${qs}`;
 }
 
@@ -268,10 +350,18 @@ function buildHeaders(capture) {
     const headers = cloneHeaders(capture.headers || {});
     delete headers['Content-Length']; delete headers['content-length'];
     delete headers[':authority']; delete headers[':method']; delete headers[':path']; delete headers[':scheme'];
+    Object.keys(headers).forEach(k => {
+        const lk = k.toLowerCase();
+        if (lk === 'connection' || lk === 'proxy-connection' || lk === 'keep-alive') delete headers[k];
+    });
     headers['Host'] = 'api.pingmeapp.net';
     headers['Accept'] = headers['Accept'] || 'application/json';
+    headers['Connection'] = 'close';
     return headers;
 }
+
+// Surge / Egern(.sgmodule) cron 入口（勿用 export default）
+runSignin();
 
 // API start
 async function sendMsg(desc, opts) { $.isNode() ? await notify.sendNotify($.name, desc) : $.msg($.name, $.subTitle || "", desc, opts) }
