@@ -1,0 +1,50 @@
+# NAME: 深巷有喵的「Meta」规则
+# AUTHOR: Rabbit-Spec
+# REPO: https://github.com/Rabbit-Spec/Surge
+# UPDATED: 2026.08.15 04:36:03
+# TOTAL: 43
+
+# ======= 上游同步规则 ========
+DOMAIN-SUFFIX,aboutfacebook.com
+DOMAIN-SUFFIX,fb.com
+DOMAIN-SUFFIX,fb.me
+DOMAIN-SUFFIX,fb.gg
+DOMAIN-SUFFIX,fb.watch
+DOMAIN-SUFFIX,facebook.com
+DOMAIN-SUFFIX,facebook.net
+DOMAIN-SUFFIX,facebookmail.com
+DOMAIN-SUFFIX,fbcdn.net
+DOMAIN-SUFFIX,fbcdn-a.akamaihd.net
+DOMAIN-SUFFIX,fbsbx.com
+DOMAIN-SUFFIX,atdmt.com
+DOMAIN-SUFFIX,atdmt2.com
+DOMAIN-SUFFIX,atlasdmt.com
+DOMAIN-SUFFIX,cdninstagram.com
+DOMAIN-SUFFIX,ig.me
+DOMAIN-SUFFIX,instagr.am
+DOMAIN-SUFFIX,instagram.com
+DOMAIN-SUFFIX,oninstagram.com
+DOMAIN-SUFFIX,m.me
+DOMAIN-SUFFIX,messenger.com
+DOMAIN-SUFFIX,meta.vc
+DOMAIN-SUFFIX,wa.me
+DOMAIN-SUFFIX,whatsapp.biz
+DOMAIN-SUFFIX,whatsapp.com
+DOMAIN-SUFFIX,whatsapp.net
+DOMAIN-SUFFIX,whatsappbusiness.com
+DOMAIN-SUFFIX,threads.com
+DOMAIN-SUFFIX,threads.net
+DOMAIN-SUFFIX,meta.ai
+DOMAIN-SUFFIX,meta.com
+DOMAIN-SUFFIX,mapillary.com
+DOMAIN-SUFFIX,getsupernatural.com
+DOMAIN-SUFFIX,ocul.us
+DOMAIN-SUFFIX,oculus.com
+DOMAIN-SUFFIX,oculuscdn.com
+DOMAIN-SUFFIX,oculusvr.com
+DOMAIN-SUFFIX,expresswifi.com
+DOMAIN-SUFFIX,freebasics.com
+DOMAIN-SUFFIX,freebasics.net
+DOMAIN-SUFFIX,internet.org
+IP-ASN,32934,no-resolve
+IP-ASN,63293,no-resolve
