@@ -528,7 +528,8 @@ widgets:
 
 modules:
   - name: 去广告净化合集
-    url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/adblock-collection.module
+    # restored pin (CDN was serving stale main); content = d9f4e97 + marker
+    url: https://raw.githubusercontent.com/oo226/egern-config/a415f44/Modules/adblock-collection.module
     update_interval: 86400
     enabled: true
   - name: 解锁增强合集
