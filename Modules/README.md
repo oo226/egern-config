@@ -10,12 +10,11 @@
 
 | 文件 | 中文名 | 说明 |
 |------|--------|------|
-| `adblock-collection.module` | 去广告合集 | **Egern / main 入口** — 奶思 + blackmatrix7 + 补全（**不含** skip-proxy / 签到 cron） |
+| `adblock-collection.module` | 去广告合集 | **唯一入口** — 奶思 + blackmatrix7 + 补全（**不含** skip-proxy / 签到 cron） |
 | `unlock-collection.module` | 解锁合集 | **唯一入口** — 链接解锁、Spotify VIP、HTTPDNS、屏蔽更新等（**已含** Spotify，勿再装单独份） |
 | `cookie-collection.module` | Cookie 合集 | **按需** — 签到前抓 ck，抓完关掉 |
 | `qdreader.sgmodule` / `pingme.*` | 签到 | 带模版参数，单独保留 |
 | `iringo-*.sgmodule` |  iRingo | 地图/天气/定位，与去广告无关 |
-| `../surge/Modules/adblock-collection.module` | Surge 去广告合集 | **Surge 完整副本**（含皮皮虾），与 main **不共用**；见 `manifest.surge.yaml` |
 
 已从 main **停发**：`skip-proxy-collection`、`spotify-unlock`（仅 sync 工厂合并用）。`skip-proxy` / `always-real-ip` 只写主配置。
 

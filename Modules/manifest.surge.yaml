@@ -1,6 +1,7 @@
-# Surge 专用去广告大合集（完整副本，与 main 不共用）
+# Surge 专用去广告大合集（完整副本，与 main/Egern 不共用）
 # 生成: python3 scripts/merge-adblock-modules.py Modules/manifest.surge.yaml
-# 输出: surge/Modules/adblock-collection.module → 发布到 surge 分支
+# 输出: surge/Modules/adblock-collection.module → 只发布到 surge 分支
+# main 的 Modules/adblock-collection.module 保持 Egern 原样，勿用本 manifest 覆盖
 
 merge:
   output: surge/Modules/adblock-collection.module
@@ -74,6 +75,15 @@ merge:
   prepend_sections:
   - Body Rewrite
   - Map Local
+  merge_sections:
+  - General
+  - Rule
+  - URL Rewrite
+  - Header Rewrite
+  - Body Rewrite
+  - Map Local
+  - Script
+  - MITM
 modules:
 - name: fmz200-blockAds
   cache: fmz200-blockAds.module

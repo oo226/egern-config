@@ -122,7 +122,7 @@ modules:
     cache: patches-pipixia.sgmodule
     role: skip
     local: true
-    note: "皮皮虾源文件；main 大合集不并入。Surge 完整合集见 manifest.surge.yaml"
+    note: "皮皮虾源（仅供 Surge 合集合并）；不进 main 大合集、不发布到 main"
 
   - name: fmz200-extra
     cache: fmz200-extra.sgmodule

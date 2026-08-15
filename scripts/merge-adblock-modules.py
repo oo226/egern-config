@@ -26,13 +26,11 @@ MERGE_SECTIONS = (
     "Rule",
     "URL Rewrite",
     "Header Rewrite",
-    "Body Rewrite",
-    "Map Local",
     "Script",
     "MITM",
 )
 
-# Optional: Surge may truncate huge Body Rewrite / Map Local from the tail.
+# Surge-only manifest may add Body Rewrite / Map Local via merge.merge_sections.
 SECTION_PREPEND_PRIORITY_DEFAULT = frozenset({"Body Rewrite", "Map Local"})
 
 HEADER_KEYS = ("#!name=", "#!desc=", "#!author=", "#!category=", "#!system=")
@@ -496,6 +494,7 @@ def build_merged_module(
     mitm_priority_hosts: tuple[str, ...] = (),
     priority_supplements: tuple[str, ...] = (),
     prepend_sections: frozenset[str] = frozenset(),
+    merge_sections: tuple[str, ...] = MERGE_SECTIONS,
 ) -> str:
     primary_header, primary_sections = parse_module(primary_text)
 
@@ -552,7 +551,7 @@ def build_merged_module(
 
     for section in all_section_names:
         primary_lines = primary_sections.get(section, [])
-        if section not in MERGE_SECTIONS:
+        if section not in merge_sections:
             if not primary_lines:
                 continue
             out_lines.append(f"[{section}]")
@@ -632,6 +631,11 @@ def main() -> None:
         )
     else:
         prepend_sections = frozenset(str(x).strip() for x in prepend_raw if str(x).strip())
+    merge_sections_raw = merge_cfg.get("merge_sections")
+    if merge_sections_raw:
+        merge_sections = tuple(str(x).strip() for x in merge_sections_raw if str(x).strip())
+    else:
+        merge_sections = MERGE_SECTIONS
     script_url_fixes = {**DEFAULT_SCRIPT_URL_FIXES, **(merge_cfg.get("script_url_fixes") or {})}
     script_pattern_fixes = (
         tuple(merge_cfg.get("script_pattern_fixes") or ())
@@ -697,6 +701,7 @@ def main() -> None:
         mitm_priority_hosts=mitm_priority_hosts,
         priority_supplements=priority_supplements,
         prepend_sections=prepend_sections,
+        merge_sections=merge_sections,
     )
     merged = apply_script_url_fixes(merged, script_url_fixes)
     merged = apply_script_pattern_fixes(merged, script_pattern_fixes)
