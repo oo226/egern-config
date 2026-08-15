@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-13T04:50:27Z",
+  "generated_at": "2026-08-15T03:31:12Z",
   "branch": "main",
   "repo": "oo226/egern-config",
   "raw_base": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main",
@@ -202,55 +202,55 @@
   ],
   "sync_digest": {
     "commit": {
-      "hash": "8fca2bc",
+      "hash": "a682223",
       "subject": "chore: sync upstream on sync branch",
-      "date": "2026-08-12"
+      "date": "2026-08-13"
     },
     "summary": [
-      "国内直连 26051 条"
+      "国内直连 25588 条"
     ],
     "files_changed": 0
   },
   "changelog": [
     {
-      "hash": "70025bc",
+      "hash": "774535b",
       "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-08-12"
+      "date": "2026-08-13"
     },
     {
-      "hash": "944cc58",
+      "hash": "4d7e82b",
       "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-08-12"
+      "date": "2026-08-13"
     },
     {
-      "hash": "27728d9",
+      "hash": "f3b480a",
       "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-08-11"
+      "date": "2026-08-13"
     },
     {
-      "hash": "eb71512",
+      "hash": "fb9d679",
       "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-08-11"
+      "date": "2026-08-13"
     },
     {
-      "hash": "c639b6b",
+      "hash": "7dd8f70",
       "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-08-11"
+      "date": "2026-08-13"
     },
     {
-      "hash": "48bc938",
+      "hash": "5f14085",
       "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-08-11"
+      "date": "2026-08-13"
     },
     {
-      "hash": "34a5e00",
+      "hash": "2c0aca1",
       "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-08-11"
+      "date": "2026-08-13"
     },
     {
-      "hash": "26e8625",
+      "hash": "a8ba900",
       "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-08-11"
+      "date": "2026-08-13"
     }
   ],
   "local_health": {
