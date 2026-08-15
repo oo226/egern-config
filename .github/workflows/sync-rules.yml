@@ -108,6 +108,7 @@ jobs:
           python3 scripts/publish-unbreak-rules.py
           python3 scripts/publish-direct-priority.py
           python3 scripts/export-surge-rulesets.py
+          python3 scripts/sync-surge-native-rules.py
           python3 scripts/mirror-semporia-icons.py
           python3 scripts/generate-catalog.py
 

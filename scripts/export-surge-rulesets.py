@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-"""Export Egern Routing/*.yaml → Surge rule files under surge/Rules/.
+"""Export Egern Routing/*.yaml → surge/egern-Rules/ (parity dump only).
+
+Surge's default conf uses surge/Rules/ from scripts/sync-surge-native-rules.py
+(Rabbit-Spec style). This export is for contrast / optional overlays — not the
+primary Surge rule tree.
 
 Formats (per Surge manual + Sukka / blackmatrix7 practice):
   *.list       RULE-SET  — full mix (DOMAIN / IP-CIDR / IP-ASN / …)
@@ -19,8 +23,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from paths import ROOT, ROUTING
 from routing_list_utils import SET_KEYS, count_sets, parse_egern_sets
 
-DEST_ROOT = ROOT / "surge" / "Rules"
-STAGING = ROOT / "surge" / ".Rules-export-tmp"
+DEST_ROOT = ROOT / "surge" / "egern-Rules"
+STAGING = ROOT / "surge" / ".egern-Rules-export-tmp"
 
 BUCKET_TO_RULE = {
     "domain_set": "DOMAIN",
@@ -185,7 +189,9 @@ def main() -> None:
     (STAGING / "README.md").write_text(
         "\n".join(
             [
-                "# Surge Rules（从 Egern Routing YAML 导出）",
+                "# egern-Rules（Egern Routing YAML 导出 · 对照用）",
+                "",
+                "**默认 Surge.conf 不用这棵树。** 正式分流见 `surge/Rules/`（Rabbit-Spec 镜像）。",
                 "",
                 "| 后缀 | Surge 用法 | 说明 |",
                 "| --- | --- | --- |",
@@ -196,8 +202,8 @@ def main() -> None:
                 "注意：外部 RULE-SET 不含 `DOMAIN-REGEX` / `URL-REGEX`（Surge iOS 会报 Invalid line）。",
                 "中文等 IDN 在 domainset/list 中转为 `xn--…` punycode。",
                 "",
-                "主配置在 `surge` 分支根目录 `Surge.conf`。",
-                "Egern 继续用 `main` 的 `Routing/*.yaml`，互不覆盖。",
+                "生成：`python3 scripts/export-surge-rulesets.py`",
+                "Surge 原生树：`python3 scripts/sync-surge-native-rules.py`",
                 "",
             ]
         ),

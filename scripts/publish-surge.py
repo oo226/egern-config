@@ -35,7 +35,7 @@ def main() -> None:
     if not (SURGE_SRC / "Surge.conf").is_file():
         raise SystemExit(f"missing {SURGE_SRC / 'Surge.conf'}; run export + place conf first")
     if not (SURGE_SRC / "Rules").is_dir():
-        raise SystemExit(f"missing {SURGE_SRC / 'Rules'}; run scripts/export-surge-rulesets.py")
+        raise SystemExit(f"missing {SURGE_SRC / 'Rules'}; run scripts/sync-surge-native-rules.py")
 
     if WORKTREE.exists():
         shutil.rmtree(WORKTREE)
