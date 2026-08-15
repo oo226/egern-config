@@ -11,7 +11,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from external_script_utils import apply_external_rewrites, load_rewrite_map
-from paths import GITHUB_RAW_MAIN, MANIFEST, MIRRORED_SCRIPT_REWRITES, MODULES, UPSTREAM_CACHE
+from paths import GITHUB_RAW_MAIN, MANIFEST, MIRRORED_SCRIPT_REWRITES, MODULES, ROOT, UPSTREAM_CACHE
 
 try:
     import yaml
@@ -29,6 +29,9 @@ MERGE_SECTIONS = (
     "Script",
     "MITM",
 )
+
+# Surge-only manifest may add Body Rewrite / Map Local via merge.merge_sections.
+SECTION_PREPEND_PRIORITY_DEFAULT = frozenset({"Body Rewrite", "Map Local"})
 
 HEADER_KEYS = ("#!name=", "#!desc=", "#!author=", "#!category=", "#!system=")
 
@@ -304,9 +307,10 @@ def parse_mitm_hosts_from_line(line: str) -> tuple[set[str], set[str]]:
     return set(), set()
 
 
-def format_hostnames(hosts: set[str]) -> str:
-    ordered = sorted(hosts, key=str.lower)
-    return "hostname = %APPEND% " + ", ".join(ordered)
+def format_hostnames(hosts: set[str], *, priority_hosts: tuple[str, ...] = ()) -> str:
+    priority = [h for h in priority_hosts if h in hosts]
+    rest = sorted((hosts - set(priority)), key=str.lower)
+    return "hostname = %APPEND% " + ", ".join(priority + rest)
 
 
 def merge_general_lines(
@@ -378,6 +382,9 @@ def merge_section(
     skip_proxy_excludes: frozenset[str] = frozenset(),
     content_line_excludes: frozenset[str] = frozenset(),
     drop_general_keys: frozenset[str] = frozenset(),
+    mitm_priority_hosts: tuple[str, ...] = (),
+    priority_supplements: tuple[str, ...] = (),
+    prepend_sections: frozenset[str] = frozenset(),
 ) -> list[str]:
     if section == "General":
         supp_lines = [lines for _, lines in supplement_blocks]
@@ -415,7 +422,7 @@ def merge_section(
         hosts = filter_mitm_hostnames(hosts, effective_excludes)
         if not hosts:
             return comments
-        return comments + [format_hostnames(hosts)]
+        return comments + [format_hostnames(hosts, priority_hosts=mitm_priority_hosts)]
 
     seen: set[str] = set()
     output: list[str] = []
@@ -426,13 +433,18 @@ def merge_section(
         for name, lines in supplement_blocks
     ]
 
-    for line in primary_lines:
-        key = rule_key(line) if section != "Script" else script_key(line)
-        if key:
-            seen.add(key)
-        output.append(line)
+    priority_set = {n for n in priority_supplements if n}
+    prepend = section in prepend_sections and priority_set
+    priority_blocks = (
+        [(n, lines) for n, lines in supplement_blocks if n in priority_set] if prepend else []
+    )
+    rest_blocks = (
+        [(n, lines) for n, lines in supplement_blocks if n not in priority_set]
+        if prepend
+        else list(supplement_blocks)
+    )
 
-    for source_name, lines in supplement_blocks:
+    def append_unique_block(source_name: str, lines: list[str]) -> None:
         unique: list[str] = []
         for line in lines:
             key = rule_key(line) if section != "Script" else script_key(line)
@@ -444,9 +456,22 @@ def merge_section(
             seen.add(key)
             unique.append(line)
         if unique:
-            output.append("")
+            if output and output[-1].strip():
+                output.append("")
             output.append(f"# >>> merged from {source_name} (unique only)")
             output.extend(unique)
+
+    for source_name, lines in priority_blocks:
+        append_unique_block(source_name, lines)
+
+    for line in primary_lines:
+        key = rule_key(line) if section != "Script" else script_key(line)
+        if key:
+            seen.add(key)
+        output.append(line)
+
+    for source_name, lines in rest_blocks:
+        append_unique_block(source_name, lines)
 
     if section == "Script" and exclude_cron_scripts:
         output = filter_cron_scripts(output)
@@ -466,6 +491,10 @@ def build_merged_module(
     skip_proxy_excludes: frozenset[str] = frozenset(),
     content_line_excludes: frozenset[str] = frozenset(),
     drop_general_keys: frozenset[str] = frozenset(),
+    mitm_priority_hosts: tuple[str, ...] = (),
+    priority_supplements: tuple[str, ...] = (),
+    prepend_sections: frozenset[str] = frozenset(),
+    merge_sections: tuple[str, ...] = MERGE_SECTIONS,
 ) -> str:
     primary_header, primary_sections = parse_module(primary_text)
 
@@ -522,7 +551,7 @@ def build_merged_module(
 
     for section in all_section_names:
         primary_lines = primary_sections.get(section, [])
-        if section not in MERGE_SECTIONS:
+        if section not in merge_sections:
             if not primary_lines:
                 continue
             out_lines.append(f"[{section}]")
@@ -544,6 +573,9 @@ def build_merged_module(
             skip_proxy_excludes=skip_proxy_excludes,
             content_line_excludes=content_line_excludes,
             drop_general_keys=drop_general_keys,
+            mitm_priority_hosts=mitm_priority_hosts,
+            priority_supplements=priority_supplements,
+            prepend_sections=prepend_sections,
         )
         if not merged_lines:
             continue
@@ -562,7 +594,14 @@ def main() -> None:
     data = load_manifest(manifest_path)
     merge_cfg = data.get("merge") or {}
     output_name = merge_cfg.get("output", "adblock-collection.module")
-    output_path = MODULES / output_name
+    output_path = Path(str(output_name))
+    if not output_path.is_absolute():
+        # "surge/Modules/foo.module" → repo root; bare filename → Modules/
+        output_path = (
+            (ROOT / output_path)
+            if "/" in str(output_name) or "\\" in str(output_name)
+            else (MODULES / output_path)
+        )
     header_lines = merge_cfg.get("header_lines")
     primary_name = merge_cfg.get("primary_name")
     primary_desc = merge_cfg.get("primary_desc")
@@ -575,6 +614,28 @@ def main() -> None:
     drop_general_keys = frozenset(
         str(x).strip() for x in (merge_cfg.get("drop_general_keys") or []) if str(x).strip()
     )
+    mitm_priority_hosts = tuple(
+        str(x).strip()
+        for x in (merge_cfg.get("mitm_priority_hosts") or ())
+        if str(x).strip()
+    )
+    priority_supplements = tuple(
+        str(x).strip()
+        for x in (merge_cfg.get("priority_supplements") or ())
+        if str(x).strip()
+    )
+    prepend_raw = merge_cfg.get("prepend_sections")
+    if prepend_raw is None:
+        prepend_sections = (
+            SECTION_PREPEND_PRIORITY_DEFAULT if priority_supplements else frozenset()
+        )
+    else:
+        prepend_sections = frozenset(str(x).strip() for x in prepend_raw if str(x).strip())
+    merge_sections_raw = merge_cfg.get("merge_sections")
+    if merge_sections_raw:
+        merge_sections = tuple(str(x).strip() for x in merge_sections_raw if str(x).strip())
+    else:
+        merge_sections = MERGE_SECTIONS
     script_url_fixes = {**DEFAULT_SCRIPT_URL_FIXES, **(merge_cfg.get("script_url_fixes") or {})}
     script_pattern_fixes = (
         tuple(merge_cfg.get("script_pattern_fixes") or ())
@@ -637,12 +698,17 @@ def main() -> None:
         skip_proxy_excludes=skip_proxy_excludes,
         content_line_excludes=content_line_excludes,
         drop_general_keys=drop_general_keys,
+        mitm_priority_hosts=mitm_priority_hosts,
+        priority_supplements=priority_supplements,
+        prepend_sections=prepend_sections,
+        merge_sections=merge_sections,
     )
     merged = apply_script_url_fixes(merged, script_url_fixes)
     merged = apply_script_pattern_fixes(merged, script_pattern_fixes)
     merged = mirror_script_paths(merged)
+    output_path.parent.mkdir(parents=True, exist_ok=True)
     output_path.write_text(merged, encoding="utf-8")
-    print(f"wrote {output_path.name} ({len(merged.splitlines())} lines)")
+    print(f"wrote {output_path.relative_to(ROOT)} ({len(merged.splitlines())} lines)")
 
 
 if __name__ == "__main__":
