@@ -1,11 +1,6 @@
-# Surge-native Rules
+# Surge Rules（本仓 Routing YAML 导出）
 
-与 **Egern `Routing/*.yaml` 分开维护**。
+运行时只应引用 `raw.githubusercontent.com/oo226/egern-config/.../surge/Rules/`。
+体量大于部分懒人包是正常的（合并源更多 = 更全）；上游在 CI 写入本仓后再导出。
 
-| 目录/文件 | 来源 |
-| --- | --- |
-| `*.list`（根下） | [Rabbit-Spec/Surge](https://github.com/Rabbit-Spec/Surge) 镜像 |
-| `Local/` | 本仓薄补丁（追风/Tailscale/App 策略等），从 `surge/egern-Rules` 抽取 |
-| `surge/egern-Rules/` | Egern YAML 导出（对照用，**不进默认 Surge.conf**） |
-
-更新：`python3 scripts/sync-surge-native-rules.py`
+生成：`python3 scripts/export-surge-rulesets.py`

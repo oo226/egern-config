@@ -30,13 +30,10 @@ https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/For
 
 ## Surge
 
-Surge **不能**直接引用本目录 `*.yaml`。
-
-- **正式 Surge 分流**：`surge/Rules/`（Rabbit-Spec 镜像，与 Egern 分开）→ 发布到 **`surge` 分支**
-- **对照导出**（默认 conf 不用）：`surge/egern-Rules/`（本目录 YAML 转 list）
+Surge **不能**直接引用本目录 `*.yaml`。导出到 sync 的 `surge/Rules/`，发布到 **`surge` 分支**（运行时只使用本仓链接）：
 
 ```
-https://raw.githubusercontent.com/oo226/egern-config/refs/heads/surge/Rules/China.list
+https://raw.githubusercontent.com/oo226/egern-config/refs/heads/surge/Rules/China-Direct.list
 https://raw.githubusercontent.com/oo226/egern-config/refs/heads/surge/Surge.conf
 ```
 
