@@ -1,7 +1,13 @@
 # AUTO-EXPORTED from Routing/Bootstrap-Direct.yaml
 # Format: Surge RULE-SET (no policy). scripts/export-surge-rulesets.py
-# Total entries: 3
+# Total entries: 9
 
 DOMAIN,captive.apple.com
 DOMAIN,connectivitycheck.gstatic.com
+DOMAIN,dns.msftncsi.com
+DOMAIN,easy-login.10099.com.cn
+DOMAIN,msftconnecttest.com
+DOMAIN,msftncsi.com
+DOMAIN,open.e.189.cn
 DOMAIN,www.msftconnecttest.com
+DOMAIN,www.msftncsi.com
