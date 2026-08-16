@@ -7,3 +7,6 @@ DOMAIN-SUFFIX,tailscale.net
 DOMAIN-SUFFIX,ts.net
 IP-CIDR,100.64.0.0/10
 IP-CIDR6,fd7a:115c:a1e0::/48
+DOMAIN-KEYWORD,tailscale
+DOMAIN,controlplane.tailscale.com
+DOMAIN,log.tailscale.com
