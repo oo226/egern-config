@@ -23,9 +23,7 @@ WARP Teams Request = type=http-request, pattern=^https?:\/\/(api|zero-trust-clie
 
 WARP Teams Response = type=http-response, pattern=^https?:\/\/(api|zero-trust-client)\.cloudflareclient\.com\/(.*)\/reg\/t\.[0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12}$, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/VirgilClyne/Cloudflare/main/js/1.1.1.1.response.js, requires-body=true
 
-
 # >>> merged from Beta/1.1.1.1配置管理.beta.sgmodule (unique only)
-
 
 
 
@@ -40,7 +38,6 @@ WARP Teams Response = type=http-response, pattern=^https?:\/\/(api|zero-trust-cl
 ☁ WARP Teams Request = type=http-request,pattern=^https?:\/\/(api|zero-trust-client)\.cloudflareclient\.com\/(.*)\/reg\/t\.[0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12}$, requires-body=1, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/VirgilClyne/Cloudflare/main/js/1.1.1.1.request.js
 ☁ WARP Teams Response = type=http-response,pattern=^https?:\/\/(api|zero-trust-client)\.cloudflareclient\.com\/(.*)\/reg\/t\.[0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12}$, requires-body=1, engine=webview, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/VirgilClyne/Cloudflare/main/js/1.1.1.1.response.js
 
-
 # >>> merged from Official/FlushDNS.official.sgmodule (unique only)
 FlushDNS = type=generic,timeout=10,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/Rabbit-Spec/Surge/Master/Module/Panel/Flush-DNS/Moore/Flush-DNS.js,argument=title={{{TITLE}}}&icon={{{ICON}}}&color={{{COLOR}}}&server=false
 
@@ -53,9 +50,7 @@ K-Basic = type=http-response,pattern=https:\/\/api\.gotokeep\.com\/config\/v3/ba
 K-Ad = type= http-response,pattern=https:\/\/kad\.gotokeep\.com\/op-engine-webapp\/v1\/ad,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/Maasea/surgeModule/master/Script/Keep/kad.js
 K-Course = type=http-response,pattern=^https?:\/\/api\.gotokeep\.com\/athena\/v7\/people\/course\/(practiced|general),requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/Maasea/surgeModule/master/Script/Keep/course.js
 
-
 # >>> merged from Official/SDGun 社区 Tablet 访问.sgmodule (unique only)
-
 
 
 # >>> merged from Official/Surge 启动时长.official.sgmodule (unique only)
@@ -68,16 +63,13 @@ Serverinfo = type=generic,script-path=https://raw.githubusercontent.com/oo226/eg
 # >>> merged from Official/YouTube去广告[Maasea].official.sgmodule (unique only)
 youtube.response = type=http-response,pattern=^https:\/\/youtubei\.googleapis\.com\/(youtubei\/v1\/(browse|next|player|search|reel\/reel_watch_sequence|guide|account\/get_setting|get_watch))(\?(.*))?$,requires-body=1,max-size=-1,binary-body-mode=1,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/Maasea/sgmodule/master/Script/Youtube/youtube.response.js,argument="{"lyricLang":"{{{歌词翻译语言}}}","captionLang":"{{{字幕翻译语言}}}","blockUpload":{{{屏蔽上传按钮}}},"blockImmersive":{{{屏蔽选段按钮}}},"blockShorts":{{{屏蔽Shorts按钮}}},"debug":{{{启用调试模式}}}}"
 
-
 # >>> merged from Official/Youtube (Music) Enhance.official.sgmodule (unique only)
-
 
 # >>> merged from Official/Youtube 去广告 (不去贴片).official.sgmodule (unique only)
 youtube-proto = type=http-response,pattern=^https:\/\/youtubei\.googleapis\.com\/youtubei\/v1\/(browse|next),requires-body=1,binary-body-mode=1,max-size=2097152,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/app2smile/rules/master/js/youtube.js
 
 # >>> merged from Official/⭐️ BoxJs.official.sgmodule (unique only)
 Rewrite: BoxJs = type=http-request,pattern=^https?:\/\/(.+\.)?boxjs\.(com|net),script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/chavyleung/scripts/master/box/chavy.boxjs.js, requires-body=true, timeout=120
-
 
 # >>> merged from Official/⭐️ Script Hub.official.sgmodule (unique only)
 Script Hub: 前端 = type=http-request, pattern=^https?:\/\/script\.hub\/($|edit\/|reload), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/Script-Hub-Org/Script-Hub/main/script-hub.js, timeout=300
@@ -88,7 +80,6 @@ Script Hub: 规则集转换 = type=http-request, pattern=^https?:\/\/script\.hub
 
 Script Hub: 脚本转换 = type=http-request, pattern=^https?:\/\/script\.hub\/convert\/, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/Script-Hub-Org/Script-Hub/main/script-converter.js, timeout=300
 
-
 # >>> merged from Official/哔哩哔哩去广告.official.sgmodule (unique only)
 bili-json = type=http-response,pattern=^https:\/\/app\.bilibili\.com\/x\/(v2\/(splash\/(list|show)|feed\/index\?)|resource\/show\/tab\/v2),requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/app2smile/rules/master/js/bilibili-json.js,script-update-interval=0
 bili-proto = type=http-response,pattern=^https:\/\/(grpc\.biliapi\.net|app\.bilibili\.com)\/bilibili\.app\.(viewunite\.v1\.View\/View|dynamic\.v2\.Dynamic\/DynAll)$,requires-body=1,binary-body-mode=1,max-size=0,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/app2smile/rules/master/js/bilibili-proto.js,script-update-interval=0
@@ -96,18 +87,15 @@ bili-proto = type=http-response,pattern=^https:\/\/(grpc\.biliapi\.net|app\.bili
 # >>> merged from Official/实时油价面板.official.sgmodule (unique only)
 YJ = type=generic,timeout=5,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/getsomecat/GetSomeCats/Surge/script/youjia.js,argument=guangdong/guangzhou
 
-
 # >>> merged from Official/将推特用户转换成RSS订阅.official.sgmodule (unique only)
 SRSS.account = type=http-request,pattern=^https?:\/\/api\.x\.com\/1\.1\/account\/settings\.json,requires-body=0,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/Maasea/sgmodule/master/Script/SRSS/dist/srss.js
 SRSS.handler = type=http-request,pattern=^http:\/\/s.rss\/x\/.*,requires-body=0,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/Maasea/sgmodule/master/Script/SRSS/dist/srss.js
-
 
 # >>> merged from Official/广告联盟.official.sgmodule (unique only)
 广告联盟json = type=http-response,pattern=^https:\/\/((api-access\.pangolin-sdk-toutiao|is\.snssdk)\.com\/api\/ad\/union\/sdk\/get_ads|open\.e\.kuaishou\.com\/rest\/e\/v3\/open\/univ$|mi\.gdt\.qq\.com\/gdt_mview\.fcg\?),requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/app2smile/rules/master/js/adsense.js
 
 # >>> merged from Official/微信阅读精简.official.sgmodule (unique only)
 WeRead = type=http-response,pattern=https:\/\/i\.weread\.qq\.com\/(book\/(reading[sS]tat|chapterReview)|user\/profile|groups\/readerEntrance|review\/list|mobileSync),requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/Maasea/sgmodule/master/Script/WeRead/weread.js
-
 
 # >>> merged from Official/机场流量信息面板.official.sgmodule (unique only)
 
@@ -140,7 +128,6 @@ TrafficStatistics = type=generic,timeout=10,script-path= https://raw.githubuserc
 网易云音乐 = type=http-response,pattern=^https?:\/\/(ipv4|interface\d?)\.music\.163\.com\/e?api\/user\/follow\/users\/mixed\/get,requires-body=1,max-size=0,timeout=20,binary-body-mode=1,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/Keywos/rule/main/script/wy/js/wyres.js
 
 
-
 # >>> merged from Official/网络信息 X.official.sgmodule (unique only)
 # Request
 网络信息请求 = type=http-request,pattern=^https?:\/\/net-lsp-x\.com,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/xream/scripts/main/surge/modules/network-info/net-lsp-x.js,timeout=120
@@ -150,11 +137,9 @@ TrafficStatistics = type=generic,timeout=10,script-path= https://raw.githubuserc
 # Panel
 网络信息面板 = type=generic,timeout=120,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/xream/scripts/main/surge/modules/network-info/net-lsp-x.js,argument="icon={{{ICON}}}&icon-color={{{ICON-COLOR}}}&LAN={{{LAN}}}&SSID={{{SSID}}}&IPv6={{{IPv6}}}&MASK={{{MASK}}}&DOMESTIC_IPv4={{{DOMESTIC_IPv4}}}&DOMESTIC_IPv6={{{DOMESTIC_IPv6}}}&LANDING_IPv4={{{LANDING_IPv4}}}&LANDING_IPv6={{{LANDING_IPv6}}}&PRIVACY={{{PRIVACY}}}&FLAG={{{FLAG}}}&ENTRANCE_DELAY={{{ENTRANCE_DELAY}}}&TIMEOUT={{{TIMEOUT}}}&EVENT_DELAY={{{EVENT_DELAY}}}&RETRIES={{{RETRIES}}}&RETRY_DELAY={{{RETRY_DELAY}}}&ASN={{{ASN}}}&ORG={{{ORG}}}&DOMESTIC_IPv4_KEY={{{DOMESTIC_IPv4_KEY}}}&LANDING_IPv4_KEY={{{LANDING_IPv4_KEY}}}"
 
-
 # >>> merged from Official/网络连通性测试.official.sgmodule (unique only)
 
 Connectivity_Test = type=generic,timeout=3,script-path= https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/getsomecat/GetSomeCats/Surge/script/ConnectivityTest.js,argument=title=Connectivity Test&icon=icloud.and.arrow.down&color=#FF9F0A&server=false
-
 
 # >>> merged from Official/腾讯新闻去广告.official.sgmodule (unique only)
 腾讯新闻json = type=http-response,pattern=^https:\/\/(news\.ssp\.qq\.com\/app|r\.inews\.qq\.com\/(get(QQNewsUnreadList|TagFeedList)|gw\/page\/(channel_feed|event_detail)|news_feed\/hot_module_list)),requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/app2smile/rules/master/js/qq-news.js
@@ -170,13 +155,11 @@ NetSpeed = type=generic,script-path=https://raw.githubusercontent.com/oo226/eger
 贴吧proto = type=http-response,pattern=^https?:\/\/(tiebac|c\.tieba)\.baidu\.com\/c\/(b\/ad\/adBid|f\/(frs\/(page|threadlist|generalTabList)|ad\/getFeedAd|pb\/page|excellent\/personalized))\?cmd,requires-body=1,binary-body-mode=1,max-size=-1,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/app2smile/rules/master/js/tieba-proto.js,argument=per_filter_video_thread={{{per_filter_video}}}
 
 
-
 # >>> merged from Official/起点中文去广告.official.sgmodule (unique only)
 起点json = type=http-response,pattern=^https:\/\/magev6\.if\.qidian\.com\/argus\/api\/(v4\/client\/getsplashscreen|v2\/(deeplink\/geturl|dailyrecommend\/getdailyrecommend)|v1\/(client\/getconf$|bookshelf\/getHoverAdv|adv\/getadvlistbatch\?positions=iOS_tab)),requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/app2smile/rules/master/js/qidian.js
 
 # >>> merged from Official/阿里 DNS.official.sgmodule (unique only)
 Alidns = type=dns,engine=jsc,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/Maasea/sgmodule/master/Script/Tools/alidns.js,argument="{"HOST":"{{{阿里DNS}}}","UID":"{{{Account ID}}}","ID":"{{{AccessKey ID}}}","SECRET":"{{{AccessKey Secret}}}","DID":"{{{Device ID}}}","TYPE":"{{{请求类型}}}"}"
-
 
 # >>> merged from Official/🍟 BiliADBlock.official.sgmodule (unique only)
 📺 BiliBili.ADBlock.feed.index.request.json = type=http-request,pattern=^https?:\/\/app\.bili(bili\.com|api\.net)\/x\/v2\/feed\/index\?, engine=webview, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-releases/BiliUniverse/ADBlock/v0.6.24/request.bundle.js, argument=Splash="{{{Splash}}}"&Feed.AD="{{{Feed.AD}}}"&Feed.Activity="{{{Feed.Activity}}}"&Feed.Vertical="{{{Feed.Vertical}}}"&Feed.BlockUpLiveList="{{{Feed.BlockUpLiveList}}}"&Feed.Story="{{{Feed.Story}}}"&Search.AD="{{{Search.AD}}}"&Search.HotSearch="{{{Search.HotSearch}}}"&PGC.AD="{{{PGC.AD}}}"&Xlive.AD="{{{Xlive.AD}}}"&Dynamic.HotTopics="{{{Dynamic.HotTopics}}}"&Dynamic.MostVisited="{{{Dynamic.MostVisited}}}"&Dynamic.MostVisitedLiveOnly="{{{Dynamic.MostVisitedLiveOnly}}}"&Dynamic.AdCard="{{{Dynamic.AdCard}}}"&View.AD="{{{View.AD}}}"&DM.Command="{{{DM.Command}}}"&DM.Colorful="{{{DM.Colorful}}}"&Reply.AD="{{{Reply.AD}}}"&LogLevel="{{{LogLevel}}}"
@@ -193,13 +176,11 @@ Alidns = type=dns,engine=jsc,script-path=https://raw.githubusercontent.com/oo226
 📺 BiliBili.ADBlock.reply.response.grpc = type=http-response, pattern=^https:\/\/(grpc|app)\.bili(bili\.com|api\.net)\/bilibili\.main\.community\.reply\.v1\.Reply\/MainList, requires-body=1, binary-body-mode=1, engine=webview, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-releases/BiliUniverse/ADBlock/v0.6.24/response.bundle.js, argument=Splash="{{{Splash}}}"&Feed.AD="{{{Feed.AD}}}"&Feed.Activity="{{{Feed.Activity}}}"&Feed.Vertical="{{{Feed.Vertical}}}"&Feed.BlockUpLiveList="{{{Feed.BlockUpLiveList}}}"&Feed.Story="{{{Feed.Story}}}"&Search.AD="{{{Search.AD}}}"&Search.HotSearch="{{{Search.HotSearch}}}"&PGC.AD="{{{PGC.AD}}}"&Xlive.AD="{{{Xlive.AD}}}"&Dynamic.HotTopics="{{{Dynamic.HotTopics}}}"&Dynamic.MostVisited="{{{Dynamic.MostVisited}}}"&Dynamic.MostVisitedLiveOnly="{{{Dynamic.MostVisitedLiveOnly}}}"&Dynamic.AdCard="{{{Dynamic.AdCard}}}"&View.AD="{{{View.AD}}}"&DM.Command="{{{DM.Command}}}"&DM.Colorful="{{{DM.Colorful}}}"&Reply.AD="{{{Reply.AD}}}"&LogLevel="{{{LogLevel}}}"
 📺 BiliBili.ADBlock.pgc.response.grpc = type=http-response, pattern=^https:\/\/(grpc|app)\.bili(bili\.com|api\.net)\/bilibili\.pgc\.gateway\.player\.v2\.PlayURL\/PlayView$, requires-body=1, binary-body-mode=1, engine=webview, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-releases/BiliUniverse/ADBlock/v0.6.24/response.bundle.js, argument=Splash="{{{Splash}}}"&Feed.AD="{{{Feed.AD}}}"&Feed.Activity="{{{Feed.Activity}}}"&Feed.Vertical="{{{Feed.Vertical}}}"&Feed.BlockUpLiveList="{{{Feed.BlockUpLiveList}}}"&Feed.Story="{{{Feed.Story}}}"&Search.AD="{{{Search.AD}}}"&Search.HotSearch="{{{Search.HotSearch}}}"&PGC.AD="{{{PGC.AD}}}"&Xlive.AD="{{{Xlive.AD}}}"&Dynamic.HotTopics="{{{Dynamic.HotTopics}}}"&Dynamic.MostVisited="{{{Dynamic.MostVisited}}}"&Dynamic.MostVisitedLiveOnly="{{{Dynamic.MostVisitedLiveOnly}}}"&Dynamic.AdCard="{{{Dynamic.AdCard}}}"&View.AD="{{{View.AD}}}"&DM.Command="{{{DM.Command}}}"&DM.Colorful="{{{DM.Colorful}}}"&Reply.AD="{{{Reply.AD}}}"&LogLevel="{{{LogLevel}}}"
 
-
 # >>> merged from Official/🍟 BiliEnhanced.official.sgmodule (unique only)
 📺 BiliBili.Enhanced.x.resource.show.tab.v2 = type=http-response, pattern=^https?:\/\/app\.bili(bili\.com|api\.net)\/x\/resource\/show\/tab\/v2\?, requires-body=1, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-releases/BiliUniverse/Enhanced/v0.5.13/response.bundle.js, argument=Home.Switch="{{{Home.Switch}}}"&Home.Tab="{{{Home.Tab}}}"&Home.Tab_default="{{{Home.Tab_default}}}"&Home.Top_left="{{{Home.Top_left}}}"&Home.Top="{{{Home.Top}}}"&Bottom="{{{Bottom}}}"&Region.Switch="{{{Region.Switch}}}"&Mine.Switch="{{{Mine.Switch}}}"&Mine.iPad.Switch="{{{Mine.iPad.Switch}}}"&Storage="{{{Storage}}}"&LogLevel="{{{LogLevel}}}"
 📺 BiliBili.Enhanced.x.v2.account.mine = type=http-response, pattern=^https?:\/\/app\.bili(bili\.com|api\.net)\/x\/v2\/account\/mine(\/ipad)?\?, requires-body=1, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-releases/BiliUniverse/Enhanced/v0.5.13/response.bundle.js, argument=Home.Switch="{{{Home.Switch}}}"&Home.Tab="{{{Home.Tab}}}"&Home.Tab_default="{{{Home.Tab_default}}}"&Home.Top_left="{{{Home.Top_left}}}"&Home.Top="{{{Home.Top}}}"&Bottom="{{{Bottom}}}"&Region.Switch="{{{Region.Switch}}}"&Mine.Switch="{{{Mine.Switch}}}"&Mine.iPad.Switch="{{{Mine.iPad.Switch}}}"&Storage="{{{Storage}}}"&LogLevel="{{{LogLevel}}}"
 📺 BiliBili.Enhanced.x.v2.region.index = type=http-response, pattern=^https?:\/\/app\.bili(bili\.com|api\.net)\/x\/v2\/region\/index\?, requires-body=1, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-releases/BiliUniverse/Enhanced/v0.5.13/response.bundle.js, argument=Home.Switch="{{{Home.Switch}}}"&Home.Tab="{{{Home.Tab}}}"&Home.Tab_default="{{{Home.Tab_default}}}"&Home.Top_left="{{{Home.Top_left}}}"&Home.Top="{{{Home.Top}}}"&Bottom="{{{Bottom}}}"&Region.Switch="{{{Region.Switch}}}"&Mine.Switch="{{{Mine.Switch}}}"&Mine.iPad.Switch="{{{Mine.iPad.Switch}}}"&Storage="{{{Storage}}}"&LogLevel="{{{LogLevel}}}"
 📺 BiliBili.Enhanced.x.v2.channel.region.list = type=http-response, pattern=^https?:\/\/app\.bili(bili\.com|api\.net)\/x\/v2\/channel\/region\/list\?, requires-body=1, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-releases/BiliUniverse/Enhanced/v0.5.13/response.bundle.js, argument=Home.Switch="{{{Home.Switch}}}"&Home.Tab="{{{Home.Tab}}}"&Home.Tab_default="{{{Home.Tab_default}}}"&Home.Top_left="{{{Home.Top_left}}}"&Home.Top="{{{Home.Top}}}"&Bottom="{{{Bottom}}}"&Region.Switch="{{{Region.Switch}}}"&Mine.Switch="{{{Mine.Switch}}}"&Mine.iPad.Switch="{{{Mine.iPad.Switch}}}"&Storage="{{{Storage}}}"&LogLevel="{{{LogLevel}}}"
-
 
 # >>> merged from Official/🍟 BiliGlobal.official.sgmodule (unique only)
 📺 BiliBili.Global.bangumi.play.html = type=http-request, pattern=^https?:\/\/www\.bilibili\.com\/bangumi\/play\/(ss|ep)\d+\/?, ability=http-client-policy, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-releases/BiliUniverse/Global/v0.8.20/request.bundle.js, argument=ForceHost="{{{ForceHost}}}"&Locales="{{{Locales}}}"&Proxies.CHN="{{{Proxies.CHN}}}"&Proxies.HKG="{{{Proxies.HKG}}}"&Proxies.MAC="{{{Proxies.MAC}}}"&Proxies.TWN="{{{Proxies.TWN}}}"&LogLevel="{{{LogLevel}}}"
@@ -225,7 +206,6 @@ Alidns = type=dns,engine=jsc,script-path=https://raw.githubusercontent.com/oo226
 📺 BiliBili.Global.space.wbi.json = type=http-request, pattern=^https?:\/\/api\.bili(bili\.com|api\.net)\/x\/space\/wbi\/acc\/info\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-releases/BiliUniverse/Global/v0.8.20/request.bundle.js, argument=ForceHost="{{{ForceHost}}}"&Locales="{{{Locales}}}"&Proxies.CHN="{{{Proxies.CHN}}}"&Proxies.HKG="{{{Proxies.HKG}}}"&Proxies.MAC="{{{Proxies.MAC}}}"&Proxies.TWN="{{{Proxies.TWN}}}"&LogLevel="{{{LogLevel}}}"
 📺 BiliBili.Global.space.pc.json = type=http-request, pattern=^https?:\/\/api\.bili(bili\.com|api\.net)\/x\/space\/acc\/info\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-releases/BiliUniverse/Global/v0.8.20/request.bundle.js, argument=ForceHost="{{{ForceHost}}}"&Locales="{{{Locales}}}"&Proxies.CHN="{{{Proxies.CHN}}}"&Proxies.HKG="{{{Proxies.HKG}}}"&Proxies.MAC="{{{Proxies.MAC}}}"&Proxies.TWN="{{{Proxies.TWN}}}"&LogLevel="{{{LogLevel}}}"
 
-
 # >>> merged from Official/🍟 BiliRedirect.official.sgmodule (unique only)
 📺 BiliBili.Redirect.CDN.upgcxcode.m4s = type=http-request, pattern=^https?:\/\/.+\.bilivideo\.com\/upgcxcode\/, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-releases/BiliUniverse/Redirect/v0.2.19/request.bundle.js, argument=Host.OverseaVideo="{{{Host.OverseaVideo}}}"&Host.BStar="{{{Host.BStar}}}"&Host.PCDN="{{{Host.PCDN}}}"&Host.MCDN="{{{Host.MCDN}}}"&LogLevel="{{{LogLevel}}}"
 📺 BiliBili.Redirect.MCDN.v1.resource.m4s = type=http-request, pattern=^https?:\/\/[adbcefxy0-9]+\.mcdn\.bilivideo\.cn(:(8000|8082))?\/v1\/resource\/, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-releases/BiliUniverse/Redirect/v0.2.19/request.bundle.js, argument=Host.OverseaVideo="{{{Host.OverseaVideo}}}"&Host.BStar="{{{Host.BStar}}}"&Host.PCDN="{{{Host.PCDN}}}"&Host.MCDN="{{{Host.MCDN}}}"&LogLevel="{{{LogLevel}}}"
@@ -233,10 +213,8 @@ Alidns = type=dns,engine=jsc,script-path=https://raw.githubusercontent.com/oo226
 📺 BiliBili.Redirect.PCDN.upgcxcode.m4s = type=http-request, pattern=^https?:\/\/(.+):4480\/upgcxcode\/, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-releases/BiliUniverse/Redirect/v0.2.19/request.bundle.js, argument=Host.OverseaVideo="{{{Host.OverseaVideo}}}"&Host.BStar="{{{Host.BStar}}}"&Host.PCDN="{{{Host.PCDN}}}"&Host.MCDN="{{{Host.MCDN}}}"&LogLevel="{{{LogLevel}}}"
 📺 BiliBili.Redirect.Akamaized.upgcxcode.m4s = type=http-request, pattern=^https?:\/\/upos-(hz|bstar1)-mirrorakam\.akamaized\.net/upgcxcode\/, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-releases/BiliUniverse/Redirect/v0.2.19/request.bundle.js, argument=Host.OverseaVideo="{{{Host.OverseaVideo}}}"&Host.BStar="{{{Host.BStar}}}"&Host.PCDN="{{{Host.PCDN}}}"&Host.MCDN="{{{Host.MCDN}}}"&LogLevel="{{{LogLevel}}}"
 
-
 # >>> merged from Official/🍟 DualSubsNetflix.official.sgmodule (unique only)
 🍿️ DualSubs.Netflix.Translate.Subtitles.response = type=http-response, pattern=^https?:\/\/(.+)\.oca\.nflxvideo\.net\/\?o=\d+&v=\d+&e=\d+&t=.+, requires-body=1, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/by-host/github.com/ab222890b43b/Translate.response.bundle.js, argument=Type="{{{Type}}}"&Languages[0]="{{{Languages[0]}}}"&Languages[1]="{{{Languages[1]}}}"&Position="{{{Position}}}"&Vendor="{{{Vendor}}}"&ShowOnly="{{{ShowOnly}}}"&LogLevel="{{{LogLevel}}}"
-
 
 # >>> merged from Official/🍟 DualSubsUniversal.official.sgmodule (unique only)
 🍿️ DualSubs.TV.M3U8.Master.response = type=http-response, pattern=^https?:\/\/(play|play-edge|hls)\.itunes\.apple\.com\/WebObjects\/(MZPlay|MZPlayLocal)\.woa\/hls\/playlist\.m3u8, requires-body=1, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-releases/DualSubs/Universal/v1.7.5/Manifest.response.bundle.js, argument=Types="{{{Types}}}"&Languages[0]="{{{Languages[0]}}}"&Languages[1]="{{{Languages[1]}}}"&Position="{{{Position}}}"&Vendor="{{{Vendor}}}"&ShowOnly="{{{ShowOnly}}}"&LogLevel="{{{LogLevel}}}"
@@ -392,7 +370,6 @@ Alidns = type=dns,engine=jsc,script-path=https://raw.githubusercontent.com/oo226
 🍿️ DualSubs.MUBI.Composite.Subtitles.response = type=http-response, pattern=^https?:\/\/(.+)\.mubicdn\.net\/stream\/(.+)\/drm_playlist\.(\w+)\.ism\/default\/drm_playlist\.(\w+)-textstream_(.+)\.webvtt\?(.*)subtype=(Official|External), requires-body=1, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-releases/DualSubs/Universal/v1.7.5/Composite.Subtitles.response.bundle.js, argument=Types="{{{Types}}}"&Languages[0]="{{{Languages[0]}}}"&Languages[1]="{{{Languages[1]}}}"&Position="{{{Position}}}"&Vendor="{{{Vendor}}}"&ShowOnly="{{{ShowOnly}}}"&LogLevel="{{{LogLevel}}}"
 🍿️ DualSubs.MUBI.Translate.Subtitles.response = type=http-response, pattern=^https?:\/\/(.+)\.mubicdn\.net\/stream\/(.+)\/drm_playlist\.(\w+)\.ism\/default\/drm_playlist\.(\w+)-textstream_(.+)\.webvtt\?(.*)subtype=Translate, requires-body=1, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-releases/DualSubs/Universal/v1.7.5/Translate.response.bundle.js, argument=Types="{{{Types}}}"&Languages[0]="{{{Languages[0]}}}"&Languages[1]="{{{Languages[1]}}}"&Position="{{{Position}}}"&Vendor="{{{Vendor}}}"&ShowOnly="{{{ShowOnly}}}"&LogLevel="{{{LogLevel}}}"
 
-
 # >>> merged from Official/🍟 DualSubsYouTube.official.sgmodule (unique only)
 # YouTube
 🍿️ DualSubs.YouTube.Player.request.json = type=http-request, pattern=^https?:\/\/(www|m|tv)\.youtube\.com\/youtubei\/v1\/player(\?.+)?$, requires-body=1, engine=webview, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-releases/DualSubs/YouTube/v1.5.11/request.bundle.js, argument=Type="{{{Type}}}"&Types="{{{Types}}}"&AutoCC="{{{AutoCC}}}"&Position="{{{Position}}}"&Vendor="{{{Vendor}}}"&ShowOnly="{{{ShowOnly}}}"&LogLevel="{{{LogLevel}}}"
@@ -416,10 +393,8 @@ Alidns = type=dns,engine=jsc,script-path=https://raw.githubusercontent.com/oo226
 hostname = %APPEND% *-discovery1.uplynk.com, *-pplus.cbs.com, *-vod.fubo.tv, *.airspace-*.cbsivideo.com, *.boxjs.com, *.boxjs.net, *.cdn.peacocktv.com, *.content.britbox.co.uk, *.cssott.com, *.gamersky.com, *.googlevideo.com, *.hbomaxcdn.com, *.hls.pv-cdn.net, *.hls.row.aiv-cdn.net, *.iqiyi.com, *.live.epix.services, *.mcdn.bilivideo.cn, *.media.dssott.com, *.media.starott.com, *.mubicdn.net, *.oca.nflxvideo.net, *.plutotv.net, *.pplus.paramount.tech, *.prd.media.h264.io, *.prd.media.max.com, *.prd.pluto.tv, *.prod.dssedge.com, *.prod.media.h264.io, *.prod.media.max.com, *.script.hub, *.stream.peacocktv.com, *avodhlss3ww-a.akamaihd.net, -i.vip.iqiyi.com, -redirector*.googlevideo.com, afd.baidu.com, amcplus-?.akamaized.net, ap-hls-live.cdn?.showtime.com, ap-hls-vod.dynamic.showtime.com, api-access.pangolin-sdk-toutiao.com, api-tx.dsocial.xyz, api.biliapi.net, api.bilibili.com, api.britbox.com, api.cloudflareclient.com, api.douban.com, api.fenxianglife.com, api.gotokeep.com, api.live.bilibili.com, api.vc.bilibili.com, api.viki.io, api.weibo.cn, api.wxcjgg.cn, api.x.com, app.biliapi.net, app.bilibili.com, app.flymodem.com.cn, app.hbooker.com, ask.zhaopin.com, assets.huluim.com, assetshuluimcom-a.akamaihd.net, atv-ps-fe.primevideo.com, atv-ps.amazon.com, bbs.sdgun.com.cn, boxjs.com, boxjs.net, capi.lkcoffee.com, cf-timedtext.aux.pv-cdn.net, cgate.zhaopin.com, cmds.omesoft.com, consumer.fcbox.com, content-discovery.uplynk.com, d1v5ir2lpwr8os.cloudfront.net, d22qjgkvxw22r6.cloudfront.net, d25xi40x97liuc.cloudfront.net, d27xxe7juh1us6.cloudfront.net, dmqdd6hw24ucf.cloudfront.net, dplus-ph-google-v2.prod-vod.h264.io, dplus-ph-prod-vod.akamaized.net, dsp.fcbox.com, ecom.map.baidu.com, epixhls.akamaized.net, frodo.douban.com, gql-fed.reddit.com, gql.reddit.com, grpc.biliapi.net, hls-svod.itunes.apple.com, hls.itunes.apple.com, hls.ted.com, httpdns.n.netease.com, i.weread.qq.com, info.mina.xiaoaisound.com, interface.music.163.com, interface3.music.163.com, interface9.music.163.com, ipv4.music.163.com, is.snssdk.com, kad.gotokeep.com, lanfanapp.com, link.theplatform.com, live-sc.hulustream.com, livemanifest-f.hulustream.com, m.client.10010.com, m.douban.com, m.youtube.com, mag1.sdgun.net, magev6.if.qidian.com, manga.bilibili.com, manifest-dp.hulustream.com, manifest-viki.viki.io, manifest.googlevideo.com, manifest.prod.boltdns.net, manifests.api.hbo.com, manifests.v2.api.hbo.com, mecdn?.starz.com, media-production.nebula.app, mi.gdt.qq.com, music.youtube.com, net-lsp-x.com, newapp2.szsmk.com, newclient.map.baidu.com, news.ssp.qq.com, open.e.kuaishou.com, picapp.sdgun.net, pubads.g.doubleclick.net, r.inews.qq.com, redirector.playback.*.prod.deploys.brightcove.com, s3.amazonaws.com, script.hub, search.bilibili.com, ssaimanifest.prod.boltdns.net, tiebac.baidu.com, tv.youtube.com, upos-*-mirrorakam.akamaized.net, upos-sz-mirror*bstar1.bilivideo.com, v.vrv.co, vod-*-live.akamaized.net, vod-*.cbsaavideo.com, vod-*.cbsivideo.com, vod-*.live.cf.md.bbci.co.uk, vod-*.tv.apple.com, vodmanifest.hulustream.com, weibointl.api.weibo.cn, www.bilibili.com, www.youtube.com, x-default-stgec.uplynk.com, yongche.baidu.com, youtubei.googleapis.com, zero-trust-client.cloudflareclient.com
 
 [Rule]
-
 # >>> merged from Beta/智联招聘去广告.beta.sgmodule (unique only)
 URL-REGEX,"^https:\/\/(ask|cgate)\.zhaopin\.com\/operation\/ad\/",REJECT,extended-matching
-
 
 # >>> merged from Beta/爱奇艺视频去广告.beta.sgmodule (unique only)
 IP-CIDR,103.44.59.54/32,REJECT,no-resolve,pre-matching
@@ -429,18 +404,14 @@ DOMAIN-SUFFIX,cupid.iqiyi.com,DIRECT,extended-matching
 DOMAIN,api.iqiyi.com,REJECT,extended-matching,pre-matching
 DOMAIN,access.if.iqiyi.com,REJECT,extended-matching,pre-matching
 
-
 # >>> merged from Official/Keep 去广告.official.sgmodule (unique only)
 DOMAIN,httpdns.calorietech.com,REJECT,extended-matching
-
 
 # >>> merged from Official/YouTube去广告[Maasea].official.sgmodule (unique only)
 AND,((DOMAIN-SUFFIX,googlevideo.com), (PROTOCOL,UDP)),REJECT
 AND,((DOMAIN,youtubei.googleapis.com), (PROTOCOL,UDP)),REJECT
 
-
 # >>> merged from Official/Youtube (Music) Enhance.official.sgmodule (unique only)
-
 
 # >>> merged from Official/网易云音乐去广告.official.sgmodule (unique only)
 DOMAIN,iadmusicmat.music.126.net,REJECT-NO-DROP
@@ -452,22 +423,17 @@ DOMAIN,httpdns.music.163.com,REJECT-NO-DROP
 # >>> merged from Official/贴吧去广告.official.sgmodule (unique only)
 RULE-SET,https://raw.githubusercontent.com/app2smile/rules/master/rule/tieba-ad.list,REJECT-DROP
 
-
 # >>> merged from Official/🍟 DualSubsYouTube.official.sgmodule (unique only)
 URL-REGEX,^https?:\/\/([\w-]+)\.googlevideo\.com\/initplayback(\?.*oad=.+)$,REJECT-TINYGIF
 
-
 # >>> merged from 智联招聘去广告.sgmodule (unique only)
-
 
 # >>> merged from 爱奇艺视频去广告.sgmodule (unique only)
 
 
 [URL Rewrite]
-
 # >>> merged from Beta/智联招聘去广告.beta.sgmodule (unique only)
 ^https:\/\/cgate\.zhaopin\.com\/bdp\/commercial\/queryLinkData$ - reject
-
 
 # >>> merged from Official/Keep 去广告.official.sgmodule (unique only)
 ^https:\/\/api\.gotokeep\.com\/op-engine-webapp\/v1\/ad _ reject
@@ -478,7 +444,6 @@ URL-REGEX,^https?:\/\/([\w-]+)\.googlevideo\.com\/initplayback(\?.*oad=.+)$,REJE
 # 动态相册
 ^https:\/\/api\.gotokeep\.com\/athena\/v1\/people\/my\/entry _ reject
 
-
 # >>> merged from Official/SDGun 社区 Tablet 访问.sgmodule (unique only)
 
 ^https://picapp\.sdgun\.net http://picapp\.sdgun\.net header
@@ -488,11 +453,9 @@ URL-REGEX,^https?:\/\/([\w-]+)\.googlevideo\.com\/initplayback(\?.*oad=.+)$,REJE
 # (^https?:\/\/bbs\.sdgun\.com\.cn\/forum\.php\?gid=\d+)(?!.*mobile=1) $1&mobile=1 302
 
 
-
 # >>> merged from Official/刺猬猫去广告.sgmodule (unique only)
 # 开屏
 ^https?:\/\/app\.hbooker\.com\/setting\/get_startpage_url_list - reject
-
 
 # >>> merged from Official/瑞幸咖啡去广告.sgmodule (unique only)
 # 日历
@@ -514,15 +477,12 @@ URL-REGEX,^https?:\/\/([\w-]+)\.googlevideo\.com\/initplayback(\?.*oad=.+)$,REJE
 
 # ^https:\/\/capi\.lkcoffee\.com\/resource\/m\/sys\/home\/ordertips - reject
 
-
 # >>> merged from Official/飞猫管家.official.sgmodule (unique only)
 https://app.flymodem.com.cn/Appapi/Public/welecome - reject
-
 
 # >>> merged from Official/🍟 BiliADBlock.official.sgmodule (unique only)
 # 去除搜索中的默认关键词
 ^https?:\/\/(grpc|app)\.bili(bili\.com|api\.net)\/bilibili\.app\.interface\.v1\.Search\/DefaultWords$ - reject
-
 
 # >>> merged from 智联招聘去广告.sgmodule (unique only)
 
@@ -532,7 +492,6 @@ force-http-engine-hosts = %APPEND% *.boxjs.com, *.boxjs.net, *.hls.pv-cdn.net, *
 hide-vpn-icon = true
 
 [Header Rewrite]
-
 # >>> merged from Official/Reddit 去广告.sgmodule (unique only)
 {{{TRANSLATION}}} ^https:\/\/gql(-fed)?\.reddit\.com\/ header-del x-reddit-translations
 {{{TRANSLATION}}} ^https:\/\/gql(-fed)?\.reddit\.com\/ header-add x-reddit-translations "{{{TRANSLATION_VALUE}}}"

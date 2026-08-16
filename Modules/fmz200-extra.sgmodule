@@ -18,7 +18,6 @@ DOMAIN-SUFFIX,new.xiongzhangad.com,REJECT
 DOMAIN-SUFFIX,alexametrics.com,REJECT
 DOMAIN-KEYWORD,in-page-push,REJECT
 
-
 # >>> merged from 17173Game.sgmodule (unique only)
 DOMAIN-SUFFIX,ad.17173.com,REJECT
 DOMAIN-SUFFIX,cvda.17173.com,REJECT
@@ -26,24 +25,20 @@ DOMAIN-SUFFIX,log1.17173.com,REJECT
 DOMAIN-SUFFIX,vda.17173.com,REJECT
 DOMAIN-SUFFIX,s.17173cdn.com,REJECT
 
-
 # >>> merged from 178Game.sgmodule (unique only)
 DOMAIN-SUFFIX,market.178.com,REJECT
 DOMAIN-SUFFIX,tuiguang.178.com,REJECT
-
 
 # >>> merged from 18183Game.sgmodule (unique only)
 DOMAIN-SUFFIX,img1.18183.com,REJECT
 DOMAIN-SUFFIX,eezdx.erc.18183.com,REJECT
 DOMAIN-SUFFIX,zpe.klre.18183.com,REJECT
 
-
 # >>> merged from 1905MovieNetwork.sgmodule (unique only)
 DOMAIN-SUFFIX,mlog.m1905.cn,REJECT
 DOMAIN-SUFFIX,vodlog.m1905.cn,REJECT
 DOMAIN-SUFFIX,afp.m1905.com,REJECT
 DOMAIN-SUFFIX,counter.m1905.com,REJECT
-
 
 # >>> merged from 2345WebNavigation.sgmodule (unique only)
 DOMAIN-SUFFIX,dl.2345.com,REJECT
@@ -57,7 +52,6 @@ DOMAIN-SUFFIX,zhushou.2345.com,REJECT
 DOMAIN-SUFFIX,tg.jifen.2345.com,REJECT
 DOMAIN-SUFFIX,update.minipage.2345.com,REJECT
 DOMAIN-SUFFIX,g.wan.2345.com,REJECT
-
 
 # >>> merged from 360.sgmodule (unique only)
 DOMAIN-SUFFIX,pjogndc8ixoidna.360doc.cn,REJECT
@@ -86,10 +80,8 @@ DOMAIN-SUFFIX,spro.so.com,REJECT
 DOMAIN-SUFFIX,mbrowser.news.so.com,REJECT
 DOMAIN-SUFFIX,tran.news.so.com,REJECT
 
-
 # >>> merged from 365Calendar.sgmodule (unique only)
 DOMAIN-SUFFIX,ad.365rili.com,REJECT
-
 
 # >>> merged from 39Health.sgmodule (unique only)
 DOMAIN-SUFFIX,app-g.39.net,REJECT
@@ -97,17 +89,14 @@ DOMAIN-SUFFIX,d.39.net,REJECT
 DOMAIN-SUFFIX,dpvc.39.net,REJECT
 DOMAIN-SUFFIX,thetestpage.39.net,REJECT
 
-
 # >>> merged from 51CTO.sgmodule (unique only)
 DOMAIN-SUFFIX,gg.51cto.com,REJECT
 DOMAIN-SUFFIX,gg2.51cto.com,REJECT
 DOMAIN-SUFFIX,gg3.51cto.com,REJECT
 
-
 # >>> merged from 58Auto.sgmodule (unique only)
 DOMAIN-SUFFIX,58.xgo.com.cn,REJECT
 DOMAIN-SUFFIX,imp.xgo.com.cn,REJECT
-
 
 # >>> merged from 58TongCheng.sgmodule (unique only)
 DOMAIN,track.58.com,REJECT
@@ -128,10 +117,8 @@ DOMAIN-SUFFIX,tracklog.58.com,REJECT
 DOMAIN-SUFFIX,zzpush.58.com,REJECT
 DOMAIN-SUFFIX,jump.luna.58.com,REJECT
 
-
 # >>> merged from 9Game.sgmodule (unique only)
 DOMAIN-SUFFIX,ad.9game.cn,REJECT
-
 
 # >>> merged from AOL.sgmodule (unique only)
 DOMAIN-SUFFIX,adinfo.aol.com,REJECT
@@ -139,7 +126,6 @@ DOMAIN-SUFFIX,dynamic.aol.com,REJECT
 DOMAIN-SUFFIX,free.aol.com,REJECT
 DOMAIN-SUFFIX,mads.aol.com,REJECT
 DOMAIN-SUFFIX,cdn.komentary.aol.com,REJECT
-
 
 # >>> merged from Adobe.sgmodule (unique only)
 DOMAIN-SUFFIX,3dns-2.adobe.com,REJECT
@@ -170,10 +156,8 @@ DOMAIN-SUFFIX,pages2.marketo.com,REJECT
 DOMAIN-SUFFIX,marketo.net,REJECT
 DOMAIN-SUFFIX,munchkin.marketo.net,REJECT
 
-
 # >>> merged from AdobeFlash.sgmodule (unique only)
 DOMAIN,geo2.adobe.com,REJECT
-
 
 # >>> merged from AffiliateMarketing.sgmodule (unique only)
 # 若有问题自行设置白名单, REJECT
@@ -681,26 +665,21 @@ DOMAIN-SUFFIX,zedo.com,REJECT
 DOMAIN-SUFFIX,d8.zedo.com,REJECT
 DOMAIN-SUFFIX,z1.zedo.com,REJECT
 
-
 # >>> merged from AiPai.sgmodule (unique only)
 DOMAIN-SUFFIX,apas.aipai.com,REJECT
 DOMAIN-SUFFIX,atiws.aipai.com,REJECT
 DOMAIN-SUFFIX,mlog.aipai.com,REJECT
-
 
 # >>> merged from Akamai.sgmodule (unique only)
 DOMAIN-SUFFIX,appnext-a.akamaihd.net,REJECT
 DOMAIN-SUFFIX,lbstatic-a.akamaihd.net,REJECT
 DOMAIN-SUFFIX,toots-a.akamaihd.net,REJECT
 
-
 # >>> merged from AlibabaCloud.sgmodule (unique only)
 IP-CIDR,203.107.1.1/24,REJECT,no-resolve
 
-
 # >>> merged from AllFootball.sgmodule (unique only)
 DOMAIN-KEYWORD,apimg.qunliao.info,REJECT
-
 
 # >>> merged from Amazon.sgmodule (unique only)
 DOMAIN-SUFFIX,amazon-adsystem.com,REJECT
@@ -713,7 +692,6 @@ DOMAIN-SUFFIX,kbnetworkz.s3.amazonaws.com,REJECT
 DOMAIN-SUFFIX,secretmedia.s3.amazonaws.com,REJECT
 DOMAIN-SUFFIX,smblock.s3.amazonaws.com,REJECT
 DOMAIN-SUFFIX,whistleout.s3.amazonaws.com,REJECT
-
 
 # >>> merged from Apple.sgmodule (unique only)
 DOMAIN,advertising.apple.com,REJECT
@@ -744,10 +722,8 @@ DOMAIN,vs6.bj2ct.u3.ucweb.com,REJECT
 DOMAIN-SUFFIX,safebrowsing.apple,REJECT
 DOMAIN-SUFFIX,u3.ucweb.com,REJECT
 
-
 # >>> merged from AsiaInfoTechnology.sgmodule (unique only)
 DOMAIN-SUFFIX,ad.asiainfo.com,REJECT
-
 
 # >>> merged from AutoNavi.sgmodule (unique only)
 DOMAIN-SUFFIX,adiu.amap.com,REJECT
@@ -764,7 +740,6 @@ DOMAIN,optimus-ads.amap.com.w.alikunlun.com,REJECT
 DOMAIN-SUFFIX,shouji.sougou.com,REJECT
 DOMAIN,u51.me,REJECT
 DOMAIN-SUFFIX,u51.me,REJECT
-
 
 # >>> merged from Autohome.sgmodule (unique only)
 DOMAIN-KEYWORD,adm3.autoimg.cn,REJECT
@@ -801,21 +776,17 @@ DOMAIN-SUFFIX,public.app.autohome.com.cn,REJECT
 DOMAIN-SUFFIX,push.app.autohome.com.cn,REJECT
 DOMAIN-SUFFIX,h.pcd.autohome.com.cn,REJECT
 
-
 # >>> merged from BBC.sgmodule (unique only)
 DOMAIN-SUFFIX,visualscience.external.bbc.co.uk,REJECT
-
 
 # >>> merged from BabyTree.sgmodule (unique only)
 DOMAIN-SUFFIX,titan.babytree.com,REJECT
 DOMAIN-SUFFIX,titan01.babytree.com,REJECT
 
-
 # >>> merged from BaiYi.sgmodule (unique only)
 DOMAIN-SUFFIX,bayimob.com,REJECT
 DOMAIN-SUFFIX,hdggcdn.bayimob.com,REJECT
 DOMAIN-SUFFIX,interaction.bayimob.com,REJECT
-
 
 # >>> merged from Baidu.sgmodule (unique only)
 DOMAIN-SUFFIX,duapps.com,REJECT
@@ -967,18 +938,15 @@ DOMAIN-SUFFIX,nsclick.baidu.com,REJECT
 DOMAIN,hm.baidu.com,REJECT
 DOMAIN,hmma.baidu.com,REJECT
 
-
 # >>> merged from BaiduMaps.sgmodule (unique only)
 DOMAIN,afdconf.baidu.com,REJECT
 DOMAIN,httpdns.baidubce.com,REJECT
 DOMAIN,lc.map.baidu.com,REJECT
 
-
 # >>> merged from BaiduTieba.sgmodule (unique only)
 DOMAIN,180.76.76.200,REJECT
 # 屏蔽域名dns查询, REJECT
 IP-CIDR,180.76.76.200/32,REJECT,no-resolve
-
 
 # >>> merged from Baixing.sgmodule (unique only)
 DOMAIN-SUFFIX,admx.baixing.com,REJECT
@@ -988,12 +956,10 @@ DOMAIN-SUFFIX,bd-js.baixing.net,REJECT
 DOMAIN-SUFFIX,bd-s.baixing.net,REJECT
 DOMAIN-SUFFIX,script-bd.baixing.net,REJECT
 
-
 # >>> merged from BaoMiHua.sgmodule (unique only)
 DOMAIN-SUFFIX,a.baomihua.com,REJECT
 DOMAIN-SUFFIX,djs.baomihua.com,REJECT
 DOMAIN-SUFFIX,resource.baomihua.com,REJECT
-
 
 # >>> merged from BaofengPlayer.sgmodule (unique only)
 DOMAIN-SUFFIX,active.baofeng.com,REJECT
@@ -1042,17 +1008,14 @@ DOMAIN-SUFFIX,rec.moviebox.baofeng.net,REJECT
 DOMAIN-SUFFIX,nclog.pad.baofeng.net,REJECT
 DOMAIN-SUFFIX,jfm4.pop.baofeng.net,REJECT
 
-
 # >>> merged from BiQuGe.sgmodule (unique only)
 DOMAIN-SUFFIX,j.biquge520.cc,REJECT
 DOMAIN-SUFFIX,m.biquge5200.cc,REJECT
 DOMAIN-SUFFIX,tt.biquge.la,REJECT
 
-
 # >>> merged from Bing.sgmodule (unique only)
 DOMAIN-SUFFIX,bat.bing.com,REJECT
 DOMAIN-SUFFIX,c.bing.com,REJECT
-
 
 # >>> merged from Braze.sgmodule (unique only)
 DOMAIN-SUFFIX,iad.appboy.com,REJECT
@@ -1064,7 +1027,6 @@ DOMAIN-SUFFIX,iad-04.braze.com,REJECT
 DOMAIN-SUFFIX,iad-05.braze.com,REJECT
 DOMAIN-SUFFIX,iad-06.braze.com,REJECT
 DOMAIN-SUFFIX,iad-08.braze.com,REJECT
-
 
 # >>> merged from ByteDance.sgmodule (unique only)
 DOMAIN,ad.zijieapi.com,REJECT
@@ -1088,17 +1050,14 @@ DOMAIN-SUFFIX,dm.pstatp.com,REJECT
 DOMAIN-SUFFIX,pb3.pstatp.com,REJECT
 DOMAIN-SUFFIX,s3a.pstatp.com,REJECT
 
-
 # >>> merged from CBox.sgmodule (unique only)
 DOMAIN-SUFFIX,adxserver.ad.cmvideo.cn,REJECT
 DOMAIN-SUFFIX,dspserver.ad.cmvideo.cn,REJECT
 DOMAIN-SUFFIX,openstorage.ad.cmvideo.cn,REJECT
 
-
 # >>> merged from CCBLife.sgmodule (unique only)
 # 内置饿了么外卖弹窗, REJECT
 DOMAIN,o2o-ad-log-gateway.alibaba.com,REJECT
-
 
 # >>> merged from CCTV.sgmodule (unique only)
 DOMAIN,galaxy.bjcathay.com,REJECT
@@ -1123,10 +1082,8 @@ DOMAIN-SUFFIX,mdrecv.app.cntvwb.cn,REJECT
 DOMAIN-SUFFIX,sdapprecv.app.cntvwb.cn,REJECT
 DOMAIN-SUFFIX,vdapprecv.app.cntvwb.cn,REJECT
 
-
 # >>> merged from CEB_SunshineHuiLife.sgmodule (unique only)
 DOMAIN-KEYWORD,talk.bz.getui.com,REJECT
-
 
 # >>> merged from CJMarketing.sgmodule (unique only)
 # 苏州思杰马克丁软件有限公司, REJECT
@@ -1145,10 +1102,8 @@ DOMAIN-SUFFIX,officesoftcn.com,REJECT
 DOMAIN-SUFFIX,photozoomchina.com,REJECT
 DOMAIN-SUFFIX,xitongqingli.com,REJECT
 
-
 # >>> merged from CNINFO.sgmodule (unique only)
 DOMAIN-SUFFIX,ad.cninfo.com.cn,REJECT
-
 
 # >>> merged from CNN.sgmodule (unique only)
 DOMAIN-SUFFIX,customad.cnn.com,REJECT
@@ -1157,24 +1112,20 @@ DOMAIN-SUFFIX,metrics.cnn.com,REJECT
 DOMAIN-SUFFIX,cnn.dyn.cnn.com,REJECT
 DOMAIN-SUFFIX,i.l.cnn.net,REJECT
 
-
 # >>> merged from CaiXin.sgmodule (unique only)
 DOMAIN-SUFFIX,apollo.caixin.com,REJECT
 DOMAIN-SUFFIX,logstat.caixin.com,REJECT
 DOMAIN-SUFFIX,promote.caixin.com,REJECT
-
 
 # >>> merged from Camera360.sgmodule (unique only)
 DOMAIN,dispatcher.360in.com,REJECT
 DOMAIN,ad.360in.com,REJECT
 DOMAIN,exp.360in.com,REJECT
 
-
 # >>> merged from CheLaiLe.sgmodule (unique only)
 DOMAIN-SUFFIX,atrace.chelaile.net.cn,REJECT
 DOMAIN,logs.chelaile.net.cn,REJECT
 DOMAIN,ad.chelaile.net.cn,REJECT
-
 
 # >>> merged from ChinaCom.sgmodule (unique only)
 DOMAIN-SUFFIX,union.china.com.cn,REJECT
@@ -1185,11 +1136,9 @@ DOMAIN-SUFFIX,dvser02.china.com,REJECT
 DOMAIN-SUFFIX,sssvd.china.com,REJECT
 DOMAIN-SUFFIX,rank.hit.china.com,REJECT
 
-
 # >>> merged from ChinaDaily.sgmodule (unique only)
 DOMAIN-SUFFIX,same.chinadaily.com.cn,REJECT
 DOMAIN-SUFFIX,usercollection.chinadaily.com.cn,REJECT
-
 
 # >>> merged from ChinaMinshengBank.sgmodule (unique only)
 DOMAIN-KEYWORD,cm-10-134.getui.com,REJECT
@@ -1198,14 +1147,11 @@ DOMAIN-KEYWORD,cm-10-35.getui.com,REJECT
 DOMAIN-KEYWORD,c-hzgt2.getui.com,REJECT
 DOMAIN-SUFFIX,sdk.open.talk.igexin.com,REJECT
 
-
 # >>> merged from ChinaMobile.sgmodule (unique only)
 IP-CIDR,120.240.95.37/32,REJECT,no-resolve
 
-
 # >>> merged from ChinaMobileCloudDrive.sgmodule (unique only)
 DOMAIN,ad.mcloud.139.com,REJECT
-
 
 # >>> merged from ChinaTelecom.sgmodule (unique only)
 DOMAIN,ad.21cn.com,REJECT
@@ -1215,72 +1161,58 @@ DOMAIN,adshows.21cn.com,REJECT
 IP-CIDR,122.229.8.47/32,REJECT,no-resolve
 IP-CIDR,122.229.29.89/32,REJECT,no-resolve
 
-
 # >>> merged from ChinaUnicom.sgmodule (unique only)
 DOMAIN-SUFFIX,m1.ad.10010.com,REJECT
-
 
 # >>> merged from CorelVideoStudio.sgmodule (unique only)
 DOMAIN-SUFFIX,huishenghuiying.com.cn,REJECT
 DOMAIN-SUFFIX,huishenghuiying.com,REJECT
 DOMAIN-SUFFIX,xia.huishenghuiying.com,REJECT
 
-
 # >>> merged from DangDang.sgmodule (unique only)
 DOMAIN-SUFFIX,a.dangdang.com,REJECT
 DOMAIN-SUFFIX,schprompt.dangdang.com,REJECT
 DOMAIN-SUFFIX,t.dangdang.com,REJECT
 
-
 # >>> merged from Dcar.sgmodule (unique only)
 DOMAIN-KEYWORD,p3-pack.byteimg.com,REJECT
 DOMAIN-KEYWORD,p6-pack.byteimg.com,REJECT
 
-
 # >>> merged from DiDiBike.sgmodule (unique only)
 #DOMAIN-KEYWORD, pt-starimg.didistatic.com, REJECT
 
-
 # >>> merged from Dida.sgmodule (unique only)
 DOMAIN-KEYWORD,image.bianxianmao.com,REJECT
-
 
 # >>> merged from DingDongMaiCai.sgmodule (unique only)
 DOMAIN,trackercollect.ddxq.mobi,REJECT
 DOMAIN,ddfs-public.ddimg.mobi,REJECT
 DOMAIN,rttrack.ddxq.mobi,REJECT
 
-
 # >>> merged from DongFangCaiFu.sgmodule (unique only)
 DOMAIN-SUFFIX,bduserlog.eastmoney.com,REJECT
 DOMAIN-SUFFIX,js4.eastmoney.com,REJECT
 DOMAIN-SUFFIX,same.eastmoney.com,REJECT
 
-
 # >>> merged from Douban.sgmodule (unique only)
 DOMAIN-SUFFIX,erebor.douban.com,REJECT
 DOMAIN-SUFFIX,ad.doubanio.com,REJECT
-
 
 # >>> merged from DouyuLive.sgmodule (unique only)
 DOMAIN-SUFFIX,wan.douyu.com,REJECT
 DOMAIN-SUFFIX,g.wan.douyu.com,REJECT
 DOMAIN-SUFFIX,dotcounter.douyutv.com,REJECT
 
-
 # >>> merged from DrPeng.sgmodule (unique only)
 #IP-CIDR, 10.72.25.0/24, REJECT, no-resolve
 IP-CIDR,211.161.101.110/32,REJECT,no-resolve
 
-
 # >>> merged from DuoDuoVideo.sgmodule (unique only)
 DOMAIN-SUFFIX,bayescom.com,REJECT
-
 
 # >>> merged from DuoDuoXiuYuanQuan.sgmodule (unique only)
 # 微信小程序去广告, REJECT
 DOMAIN-SUFFIX,ad.duoduo.link,REJECT
-
 
 # >>> merged from Eastday.sgmodule (unique only)
 DOMAIN-SUFFIX,afpimages.eastday.com,REJECT
@@ -1290,7 +1222,6 @@ DOMAIN-SUFFIX,tt123.eastday.com,REJECT
 DOMAIN-SUFFIX,tt321.eastday.com,REJECT
 DOMAIN-SUFFIX,afpimages.eastday,REJECT
 
-
 # >>> merged from Eleme.sgmodule (unique only)
 DOMAIN-SUFFIX,app-monitor.ele.me,REJECT
 DOMAIN-SUFFIX,client-api.ele.me,REJECT
@@ -1298,17 +1229,14 @@ DOMAIN-SUFFIX,grand.ele.me,REJECT
 DOMAIN-SUFFIX,mobile-pubt.ele.me,REJECT
 DOMAIN-SUFFIX,newton-api.ele.me,REJECT
 
-
 # >>> merged from Elong.sgmodule (unique only)
 DOMAIN-SUFFIX,d.elong.cn,REJECT
 DOMAIN-SUFFIX,mhuodong.elong.com,REJECT
-
 
 # >>> merged from Facebook.sgmodule (unique only)
 DOMAIN-SUFFIX,facebookma.cn,REJECT
 DOMAIN-SUFFIX,atdmt.com,REJECT
 DOMAIN-SUFFIX,staticxx.facebook.com,REJECT
-
 
 # >>> merged from FanQieNovel.sgmodule (unique only)
 DOMAIN,i-lq.snssdk.com,REJECT
@@ -1336,7 +1264,6 @@ IP-CIDR,117.92.229.188/32,REJECT,no-resolve
 IP-CIDR,101.36.166.16/32,REJECT,no-resolve
 IP-CIDR,180.96.2.114/32,REJECT,no-resolve
 
-
 # >>> merged from Funshion.sgmodule (unique only)
 DOMAIN-SUFFIX,pb.funshion.net.cn,REJECT
 DOMAIN-SUFFIX,ad.funshion.org.cn,REJECT
@@ -1350,11 +1277,9 @@ DOMAIN-SUFFIX,aa0.pub.funshion.com,REJECT
 DOMAIN-SUFFIX,aa1.pub.funshion.com,REJECT
 DOMAIN-SUFFIX,rt.funshion.net,REJECT
 
-
 # >>> merged from Gamersky.sgmodule (unique only)
 DOMAIN-SUFFIX,ja.gamersky.com,REJECT
 DOMAIN-SUFFIX,ja1.gamersky.com,REJECT
-
 
 # >>> merged from Ganji.sgmodule (unique only)
 DOMAIN-SUFFIX,jiaoben.ganji.cn,REJECT
@@ -1364,16 +1289,13 @@ DOMAIN-SUFFIX,ganjituiguang.ganji.com,REJECT
 DOMAIN-SUFFIX,sta.ganji.com,REJECT
 DOMAIN-SUFFIX,tralog.ganji.com,REJECT
 
-
 # >>> merged from Gionee.sgmodule (unique only)
 DOMAIN-SUFFIX,pdl.gionee.com,REJECT
-
 
 # >>> merged from GlobalTimes.sgmodule (unique only)
 DOMAIN-SUFFIX,boardx.huanqiu.com,REJECT
 DOMAIN-SUFFIX,interactive.huanqiu.com,REJECT
 DOMAIN-SUFFIX,ipengtai.huanqiu.com,REJECT
-
 
 # >>> merged from Go.com.sgmodule (unique only)
 DOMAIN-SUFFIX,ad.go.com,REJECT
@@ -1386,10 +1308,8 @@ DOMAIN-SUFFIX,dcapps.disney.go.com,REJECT
 DOMAIN-SUFFIX,adsatt.espn.go.com,REJECT
 DOMAIN-SUFFIX,seavideo-ak.espn.go.com,REJECT
 
-
 # >>> merged from GomeAppliances.sgmodule (unique only)
 DOMAIN-SUFFIX,prom.gome.com.cn,REJECT
-
 
 # >>> merged from Google.sgmodule (unique only)
 DOMAIN-SUFFIX,google-analytics.com,REJECT
@@ -1444,17 +1364,14 @@ DOMAIN-SUFFIX,s1.2mdn.net,REJECT
 DOMAIN-SUFFIX,pgdt.ugdtimg.com,REJECT
 DOMAIN-SUFFIX,adclick.g.doublecklick.net,REJECT
 
-
 # >>> merged from GouWuDang.sgmodule (unique only)
 DOMAIN-SUFFIX,browser.gwdang.com,REJECT
 DOMAIN-SUFFIX,router.gwdang.com,REJECT
-
 
 # >>> merged from GozenData.sgmodule (unique only)
 DOMAIN-SUFFIX,gozendata.com,REJECT
 DOMAIN-SUFFIX,gzads.com,REJECT
 DOMAIN-SUFFIX,gz-data.com,REJECT
-
 
 # >>> merged from Gridsum.sgmodule (unique only)
 DOMAIN-SUFFIX,gridsumdissector.cn,REJECT
@@ -1470,11 +1387,9 @@ DOMAIN-SUFFIX,recv-wd.gridsumdissector.com,REJECT
 DOMAIN-SUFFIX,sso-cas.gridsumdissector.com,REJECT
 DOMAIN-SUFFIX,g.gridsum.com,REJECT
 
-
 # >>> merged from GuangzhouMetroQRCode.sgmodule (unique only)
 # 多个广告 感谢CtrlMusic🐓分享, REJECT
 DOMAIN,apis.alenable.com,REJECT
-
 
 # >>> merged from HanJuTV.sgmodule (unique only)
 DOMAIN,mi.gdt.qq.com,REJECT
@@ -1485,17 +1400,14 @@ DOMAIN,da.bridgeturbo.com,REJECT
 DOMAIN,adx-os.bridgeturbo.com,REJECT
 DOMAIN,adx-bj.anythinktech.com,REJECT
 
-
 # >>> merged from Hao123.sgmodule (unique only)
 # hao123上网导航, REJECT
 DOMAIN-SUFFIX,hao123rt.com,REJECT
 DOMAIN-SUFFIX,1.hao123.com,REJECT
 DOMAIN-SUFFIX,mini.hao123.com,REJECT
 
-
 # >>> merged from HaoYouKuaiBao.sgmodule (unique only)
 DOMAIN-SUFFIX,ad.3839.com,REJECT
-
 
 # >>> merged from Hexun.sgmodule (unique only)
 DOMAIN-SUFFIX,hxsame.hexun.com,REJECT
@@ -1503,14 +1415,11 @@ DOMAIN-SUFFIX,itv.hexun.com,REJECT
 DOMAIN-SUFFIX,utrack.hexun.com,REJECT
 DOMAIN-SUFFIX,hxjs.tool.hexun.com,REJECT
 
-
 # >>> merged from HonkaiImpact3.sgmodule (unique only)
 DOMAIN-SUFFIX,ad.bh3.com,REJECT
 
-
 # >>> merged from HuChuan.sgmodule (unique only)
 DOMAIN-SUFFIX,ad.apk.vivo.com.cn,REJECT
-
 
 # >>> merged from HuangYouXiangJi.sgmodule (unique only)
 # 开屏广告 感谢#Dragon分享, REJECT
@@ -1518,19 +1427,15 @@ DOMAIN-SUFFIX,anythinktech.com,REJECT
 DOMAIN-SUFFIX,adkwai.com,REJECT
 DOMAIN-SUFFIX,mob.com,REJECT
 
-
 # >>> merged from HuaweiAspiegelBot.sgmodule (unique only)
 IP-CIDR,114.119.160.0/21,REJECT,no-resolve
-
 
 # >>> merged from HuaweiStore.sgmodule (unique only)
 DOMAIN-SUFFIX,hiad.vmall.com,REJECT
 DOMAIN-SUFFIX,ad.hicloud.com,REJECT
 
-
 # >>> merged from HujiangOnlineSchool.sgmodule (unique only)
 DOMAIN-SUFFIX,mc.hujiang.com,REJECT
-
 
 # >>> merged from HunanTV.sgmodule (unique only)
 DOMAIN-SUFFIX,da.hunantv.com,REJECT
@@ -1545,14 +1450,12 @@ DOMAIN-SUFFIX,y.da.hunantv.com,REJECT
 DOMAIN-SUFFIX,log.v2.hunantv.com,REJECT
 DOMAIN-SUFFIX,v2.log.hunantv.com,REJECT
 
-
 # >>> merged from Hupu.sgmodule (unique only)
 DOMAIN-SUFFIX,adx.hupu.com,REJECT
 DOMAIN-SUFFIX,adx-api.hupu.com,REJECT
 DOMAIN-SUFFIX,goblin.hupu.com,REJECT
 DOMAIN-SUFFIX,orz.hupu.com,REJECT
 DOMAIN-SUFFIX,cc.dace.hupu.com,REJECT
-
 
 # >>> merged from HuyaLive.sgmodule (unique only)
 # 开屏广告, REJECT
@@ -1563,7 +1466,6 @@ DOMAIN,livewebbs2.msstatic.com,REJECT
 DOMAIN,business.msstatic.com,REJECT
 DOMAIN-SUFFIX,v1d.szbdyd.com,REJECT
 DOMAIN-SUFFIX,3dm.huya.com,REJECT
-
 
 # >>> merged from JD.com.sgmodule (unique only)
 DOMAIN-SUFFIX,jzt.jd.com,REJECT
@@ -1584,7 +1486,6 @@ DOMAIN,dns.jd.com,REJECT
 IP-CIDR,101.124.19.122/32,REJECT,no-resolve
 IP-CIDR6,2402:db40:5100:1011::5/128,REJECT,no-resolve
 
-
 # >>> merged from JRJ.sgmodule (unique only)
 DOMAIN-SUFFIX,same.jrj.com.cn,REJECT
 DOMAIN-SUFFIX,same01.jrj.com.cn,REJECT
@@ -1592,16 +1493,13 @@ DOMAIN-SUFFIX,same02.jrj.com.cn,REJECT
 DOMAIN-SUFFIX,same03.jrj.com.cn,REJECT
 DOMAIN-SUFFIX,8.jrj.com,REJECT
 
-
 # >>> merged from JiaXiaoYiDianTong.sgmodule (unique only)
 DOMAIN,richmanapi.jxedt.com,REJECT
 DOMAIN,richmanmain.jxedt.com,REJECT
 DOMAIN,richmanrules.jxedt.com,REJECT
 
-
 # >>> merged from JiayuanDating.sgmodule (unique only)
 DOMAIN-SUFFIX,ad.jiayuan.com,REJECT
-
 
 # >>> merged from JinRongToutiao.sgmodule (unique only)
 DOMAIN-KEYWORD,clk.gentags.net,REJECT
@@ -1617,7 +1515,6 @@ DOMAIN-KEYWORD,s3.pstatp.com,REJECT
 DOMAIN-KEYWORD,a3.pstatp.com,REJECT
 DOMAIN-KEYWORD,a3.bytecdn.cn,REJECT
 
-
 # >>> merged from Keep.sgmodule (unique only)
 # 拦截HTTPDNS
 DOMAIN,httpdns.n.netease.com,REJECT
@@ -1626,7 +1523,6 @@ DOMAIN,httpdns.calorietech.com,REJECT
 DOMAIN,hc-ssp.sm.cn,REJECT
 DOMAIN,apm.gotokeep.com,REJECT
 DOMAIN,kad.gotokeep.com,REJECT
-
 
 # >>> merged from KingsoftPowerWord.sgmodule (unique only)
 DOMAIN,ad-stat.ksosoft.com,REJECT
@@ -1637,7 +1533,6 @@ DOMAIN,minfo.wps.cn,REJECT
 DOMAIN,mobad.ijinshan.com,REJECT
 DOMAIN,ups.ksmobile.net,REJECT
 DOMAIN,ws.ksmobile.net,REJECT
-
 
 # >>> merged from KingsoftSeries.sgmodule (unique only)
 DOMAIN-SUFFIX,an.m.liebao.cn,REJECT
@@ -1674,7 +1569,6 @@ DOMAIN-SUFFIX,bu2.duba.com,REJECT
 DOMAIN-SUFFIX,docer.com,REJECT
 DOMAIN-SUFFIX,iciba.com,REJECT
 
-
 # >>> merged from Ku6.sgmodule (unique only)
 DOMAIN-SUFFIX,st.vq.ku6.cn,REJECT
 DOMAIN-SUFFIX,addata.ku6.com,REJECT
@@ -1683,7 +1577,6 @@ DOMAIN-SUFFIX,static.ku6.com,REJECT
 DOMAIN-SUFFIX,gug.ku6cdn.com,REJECT
 DOMAIN-SUFFIX,vi1.ku6img.net,REJECT
 DOMAIN-SUFFIX,vi2.ku6img.net,REJECT
-
 
 # >>> merged from KuGouMusic.sgmodule (unique only)
 DOMAIN,adserviceretry.kugou.com,REJECT
@@ -1742,10 +1635,8 @@ DOMAIN-SUFFIX,kgmobilestatbak.kugou.com,REJECT
 DOMAIN-SUFFIX,mobilelog.kugou.com,REJECT
 DOMAIN-SUFFIX,ad.kugou.com,REJECT
 
-
 # >>> merged from KuaYaZip.sgmodule (unique only)
 DOMAIN-SUFFIX,kuaizip.com,REJECT
-
 
 # >>> merged from KuaiDi100.sgmodule (unique only)
 AND,((DOMAIN-KEYWORD,-ad-),(DOMAIN-SUFFIX,byteimg.com)),REJECT
@@ -1871,11 +1762,9 @@ DOMAIN,api.mobrtb.com,REJECT
 DOMAIN,ssp.maplehaze.cn,REJECT
 DOMAIN-SUFFIX,lnk0.com,REJECT
 
-
 # >>> merged from KuaiDongBaike.sgmodule (unique only)
 DOMAIN-SUFFIX,ehd.baike.com,REJECT
 DOMAIN-SUFFIX,hdad.baike.com,REJECT
-
 
 # >>> merged from KuaiLeGuangBo.sgmodule (unique only)
 DOMAIN,ad.hpplay.cn,REJECT
@@ -1890,7 +1779,6 @@ DOMAIN-SUFFIX,cm.downloader.commercial.kuaishou.com,REJECT
 DOMAIN-SUFFIX,cm.ad.gifshow.com,REJECT
 DOMAIN-SUFFIX,cm.kwad.com,REJECT
 
-
 # >>> merged from KuaiSuWenYiSheng.sgmodule (unique only)
 DOMAIN-SUFFIX,ax.120ask.com,REJECT
 DOMAIN-SUFFIX,eclick.120ask.com,REJECT
@@ -1898,10 +1786,8 @@ DOMAIN-SUFFIX,x.120ask.com,REJECT
 DOMAIN-SUFFIX,bdjs.120askimages.com,REJECT
 DOMAIN-SUFFIX,bdlm.120askimages.com,REJECT
 
-
 # >>> merged from Kuaishou.sgmodule (unique only)
 # DOMAIN, js-ad.a.yximgs.com, REJECT
-
 
 # >>> merged from KuwoMusic.sgmodule (unique only)
 DOMAIN,mobilead.kuwo.cn,REJECT
@@ -1922,17 +1808,14 @@ DOMAIN-SUFFIX,mobilead.kuwo.cn,REJECT
 DOMAIN-SUFFIX,rich.kuwo.cn,REJECT
 DOMAIN-SUFFIX,ad.kuwo.cn,REJECT
 
-
 # >>> merged from LanJiYin.sgmodule (unique only)
 # 弹窗还在，需要手动关闭, REJECT
 DOMAIN-KEYWORD,medicine.lanjiyin.com.cn,REJECT
-
 
 # >>> merged from LeBoScreenCast.sgmodule (unique only)
 DOMAIN-SUFFIX,ad.hpplay.cn,REJECT
 DOMAIN-SUFFIX,adeng.hpplay.cn,REJECT
 DOMAIN-SUFFIX,rp.hpplay.cn,REJECT
-
 
 # >>> merged from LeEco.sgmodule (unique only)
 DOMAIN,emma-414870e223.huodonghezi.com,REJECT
@@ -1955,12 +1838,10 @@ DOMAIN-SUFFIX,api.push.le.com,REJECT
 DOMAIN-SUFFIX,cn.api.push.le.com,REJECT
 DOMAIN-SUFFIX,guang.lesports.com,REJECT
 
-
 # >>> merged from Leju.sgmodule (unique only)
 DOMAIN-SUFFIX,adm.leju.com,REJECT
 DOMAIN-SUFFIX,src.leju.com,REJECT
 DOMAIN-SUFFIX,staticadm.leju.com,REJECT
-
 
 # >>> merged from Lenovo.sgmodule (unique only)
 DOMAIN-SUFFIX,adapi.lenovogame.com,REJECT
@@ -1981,9 +1862,7 @@ DOMAIN-SUFFIX,uss-pid.lenovomm.com,REJECT
 DOMAIN-SUFFIX,wth.lenovomm.com,REJECT
 DOMAIN-SUFFIX,yx.lenovomm.com,REJECT
 
-
 # >>> merged from LiangBuLu.sgmodule (unique only)
-
 
 # >>> merged from Line.sgmodule (unique only)
 URL-REGEX,"^https:\/\/a\.line\.me\/lass\/api\/v\d\/ads$",REJECT-DROP
@@ -2000,16 +1879,13 @@ URL-REGEX,"^https:\/\/sch\.line\.me\/api\/v\d\/ads$",REJECT-DROP
 URL-REGEX,"^https:\/\/uts-front\.line-apps\.com\/event$",REJECT-DROP
 URL-REGEX,"^https:\/\/uts-front\.line-apps\.com\/settings$",REJECT-DROP
 
-
 # >>> merged from LinkWiFi.sgmodule (unique only)
 DOMAIN,a.wkanx.com,REJECT
 DOMAIN,cwx.lianwangtech.com,REJECT
 DOMAIN,c1wx.lianwangtech.com,REJECT
 
-
 # >>> merged from LinkedIn.sgmodule (unique only)
 DOMAIN-SUFFIX,ads.linkedin.com,REJECT
-
 
 # >>> merged from Lycos.sgmodule (unique only)
 DOMAIN-SUFFIX,adbuyer3.lycos.com,REJECT
@@ -2023,7 +1899,6 @@ DOMAIN-SUFFIX,titan.guestworld.tripod.lycos.com,REJECT
 DOMAIN-SUFFIX,fe.lea.lycos.co.uk,REJECT
 DOMAIN-SUFFIX,hit.webcentre.lycos.co.uk,REJECT
 
-
 # >>> merged from MacKeeper.sgmodule (unique only)
 DOMAIN-SUFFIX,mackeeper.com,REJECT
 DOMAIN-SUFFIX,download.mackeeper.com,REJECT
@@ -2031,18 +1906,14 @@ DOMAIN-SUFFIX,event.mackeeper.com,REJECT
 DOMAIN-SUFFIX,mackeeperapp.mackeeper.com,REJECT
 DOMAIN-SUFFIX,zryydi.com,REJECT
 
-
 # >>> merged from MaiDanBa.sgmodule (unique only)
-
 
 # >>> merged from Makeding.sgmodule (unique only)
 DOMAIN-SUFFIX,cjmakeding.com,REJECT
 DOMAIN-SUFFIX,makeding.com,REJECT
 
-
 # >>> merged from Mama.sgmodule (unique only)
 DOMAIN-SUFFIX,ad.mama.cn,REJECT
-
 
 # >>> merged from MangoTV.sgmodule (unique only)
 DOMAIN,dflow.bz.mgtv.com,REJECT
@@ -2075,12 +1946,10 @@ DOMAIN-SUFFIX,x.da.mgtv.com,REJECT
 DOMAIN-SUFFIX,y.da.mgtv.com,REJECT
 DOMAIN-SUFFIX,da.mgtv.com,REJECT
 
-
 # >>> merged from MeiYanXiangJi.sgmodule (unique only)
 # 去首页和轮播广告, REJECT
 DOMAIN,adui.tg.meitu.com,REJECT
 DOMAIN,aaid.uyunad.com,REJECT
-
 
 # >>> merged from MeituXiuxiu.sgmodule (unique only)
 DOMAIN-SUFFIX,corp.meitu.com,REJECT
@@ -2096,7 +1965,6 @@ DOMAIN-SUFFIX,dc.meitustat.com,REJECT
 DOMAIN-SUFFIX,mdc.meitustat.com,REJECT
 DOMAIN-SUFFIX,rabbit.meitustat.com,REJECT
 
-
 # >>> merged from Meituan.sgmodule (unique only)
 DOMAIN-SUFFIX,meituan.xn,REJECT
 DOMAIN-SUFFIX,meituan.yoga,REJECT
@@ -2109,10 +1977,8 @@ DOMAIN-SUFFIX,mads.meituan.com,REJECT
 DOMAIN-SUFFIX,dreport.meituan.net,REJECT
 DOMAIN-SUFFIX,d.meituan.net,REJECT
 
-
 # >>> merged from Meiyou.sgmodule (unique only)
 DOMAIN,ad.seeyouyima.com,REJECT
-
 
 # >>> merged from Meizu.sgmodule (unique only)
 DOMAIN-SUFFIX,api-flow.flyme.cn,REJECT
@@ -2136,7 +2002,6 @@ DOMAIN-SUFFIX,push.res.meizu.com,REJECT
 DOMAIN-SUFFIX,reader.res.meizu.com,REJECT
 DOMAIN-SUFFIX,upush.res.meizu.com,REJECT
 DOMAIN-SUFFIX,aries.mzres.com,REJECT
-
 
 # >>> merged from Microsoft.sgmodule (unique only)
 DOMAIN-SUFFIX,c.msn.com.cn,REJECT
@@ -2178,7 +2043,6 @@ DOMAIN-SUFFIX,ads2.msn.com,REJECT
 DOMAIN-SUFFIX,bingads.microsoft.com,REJECT
 DOMAIN-SUFFIX,rads.msn.com,REJECT
 
-
 # >>> merged from MiguVideo.sgmodule (unique only)
 DOMAIN-SUFFIX,ad.cmvideo.cn,REJECT
 DOMAIN,ggc.cmvideo.cn,REJECT
@@ -2189,14 +2053,11 @@ DOMAIN,ggic03.miguvideo.com,REJECT
 DOMAIN,ggmk.miguvideo.com,REJECT
 DOMAIN,ggadoffline.miguvideo.com,REJECT
 
-
 # >>> merged from Mijia.sgmodule (unique only)
 DOMAIN,sdkconfig.ad.xiaomi.com,REJECT
 
-
 # >>> merged from MoguStreet.sgmodule (unique only)
 DOMAIN-SUFFIX,traffic.mogujie.com,REJECT
-
 
 # >>> merged from MojiWeather.sgmodule (unique only)
 DOMAIN-KEYWORD,me.api.moji.com,REJECT
@@ -2214,18 +2075,15 @@ DOMAIN-SUFFIX,ugc.moji001.com,REJECT
 DOMAIN-SUFFIX,cdn.moji002.com,REJECT
 DOMAIN-SUFFIX,cdn2.moji002.com,REJECT
 
-
 # >>> merged from Mop.sgmodule (unique only)
 DOMAIN-SUFFIX,pub.mop.com,REJECT
 DOMAIN-SUFFIX,union.mop.com,REJECT
-
 
 # >>> merged from Naver.sgmodule (unique only)
 DOMAIN-SUFFIX,ad.naver.com,REJECT
 DOMAIN-SUFFIX,adcr.naver.com,REJECT
 DOMAIN-SUFFIX,adcreative.naver.com,REJECT
 DOMAIN-SUFFIX,adimg3.search.naver.net,REJECT
-
 
 # >>> merged from NetEase.sgmodule (unique only)
 DOMAIN-SUFFIX,dsp.youdao.com,REJECT
@@ -2322,11 +2180,9 @@ DOMAIN-SUFFIX,clkservice.mail.youdao.com,REJECT
 DOMAIN-SUFFIX,clkservice.union.youdao.com,REJECT
 DOMAIN-SUFFIX,log.yex.youdao.com,REJECT
 
-
 # >>> merged from NetEaseCloudMusic.sgmodule (unique only)
 DOMAIN,iadmatapk.nosdn.127.net,REJECT
 DOMAIN,httpdns.music.163.com,REJECT
-
 
 # >>> merged from NetEaseDashen.sgmodule (unique only)
 # 拦截HTTPDNS
@@ -2339,21 +2195,17 @@ IP-CIDR,59.111.239.62/32,REJECT,no-resolve
 IP-CIDR,115.236.121.51/32,REJECT,no-resolve
 IP-CIDR,115.236.121.195/32,REJECT,no-resolve
 
-
 # >>> merged from NewRelic.sgmodule (unique only)
 DOMAIN-SUFFIX,newrelic.com,REJECT
 DOMAIN-SUFFIX,js-agent.newrelic.com,REJECT
 DOMAIN-SUFFIX,bam.nr-data.net,REJECT
 
-
 # >>> merged from OPPO.sgmodule (unique only)
 DOMAIN,adsfs.oppomobile.com,REJECT
 DOMAIN-SUFFIX,ads.oppomobile.com,REJECT
 
-
 # >>> merged from Openmultimedia.sgmodule (unique only)
 DOMAIN-SUFFIX,ad.openmultimedia.biz,REJECT
-
 
 # >>> merged from Optimix.sgmodule (unique only)
 DOMAIN-SUFFIX,bx.optimix.asia,REJECT
@@ -2361,7 +2213,6 @@ DOMAIN-SUFFIX,bx01.optimix.asia,REJECT
 DOMAIN-SUFFIX,c03.optimix.asia,REJECT
 DOMAIN-SUFFIX,s03.optimix.asia,REJECT
 DOMAIN-SUFFIX,optimix.cn,REJECT
-
 
 # >>> merged from Oupeng.sgmodule (unique only)
 DOMAIN-SUFFIX,ezine.oupeng.com,REJECT
@@ -2371,7 +2222,6 @@ DOMAIN-SUFFIX,startup.oupeng.com,REJECT
 DOMAIN-SUFFIX,c.bxb.oupeng.com,REJECT
 DOMAIN-SUFFIX,r.bxb.oupeng.com,REJECT
 
-
 # >>> merged from Outfit7.sgmodule (unique only)
 DOMAIN-SUFFIX,apps.outfit7.com,REJECT
 DOMAIN-SUFFIX,apps2.outfit7.com,REJECT
@@ -2379,12 +2229,10 @@ DOMAIN-SUFFIX,cdn.outfit7.com,REJECT
 DOMAIN-SUFFIX,cdn-gcs.outfit7.com,REJECT
 DOMAIN-SUFFIX,events-api.outfit7.net,REJECT
 
-
 # >>> merged from Outlook.sgmodule (unique only)
 DOMAIN,acdn.adnxs.com,REJECT
 DOMAIN,mediation.adnxs.com,REJECT
 DOMAIN,sin3-ib.adnxs.com,REJECT
-
 
 # >>> merged from PChome.sgmodule (unique only)
 DOMAIN-SUFFIX,btn.pchome.net,REJECT
@@ -2393,7 +2241,6 @@ DOMAIN-SUFFIX,pf.pchome.net,REJECT
 DOMAIN-SUFFIX,pf-2.pchome.net,REJECT
 DOMAIN-SUFFIX,ad.pchome.com.tw,REJECT
 DOMAIN-SUFFIX,adcl.pchome.com.tw,REJECT
-
 
 # >>> merged from PConline.sgmodule (unique only)
 DOMAIN-SUFFIX,iad0ssl.pcauto.com.cn,REJECT
@@ -2408,7 +2255,6 @@ DOMAIN-SUFFIX,count6.pconline.com.cn,REJECT
 DOMAIN-SUFFIX,iad0ssl.pconline.com.cn,REJECT
 DOMAIN-SUFFIX,imgad0.pconline.com.cn,REJECT
 DOMAIN-SUFFIX,ivy.pconline.com.cn,REJECT
-
 
 # >>> merged from PPTV.sgmodule (unique only)
 DOMAIN,ads.aplus.pptv.com,REJECT
@@ -2426,20 +2272,16 @@ DOMAIN-SUFFIX,as.aplus.pptv.com,REJECT
 DOMAIN-SUFFIX,jp.as.pptv.com,REJECT
 DOMAIN-SUFFIX,static.g.pptv.com,REJECT
 
-
 # >>> merged from Pantum.sgmodule (unique only)
 DOMAIN-SUFFIX,ad.pantum.com,REJECT
-
 
 # >>> merged from PeanutWiFi.sgmodule (unique only)
 DOMAIN,adnew.wifi8.com,REJECT
 DOMAIN,adfile.wifi8.com,REJECT
 
-
 # >>> merged from PeopleDaily.sgmodule (unique only)
 DOMAIN-SUFFIX,pmm.people.com.cn,REJECT
 DOMAIN-SUFFIX,a1.peoplecdn.cn,REJECT
-
 
 # >>> merged from PhoenixNewMedia.sgmodule (unique only)
 DOMAIN-SUFFIX,deliver.ifeng.com,REJECT
@@ -2461,17 +2303,14 @@ DOMAIN-SUFFIX,cz.ifeng0.com,REJECT
 DOMAIN-SUFFIX,c0.ifengimg.com,REJECT
 DOMAIN-SUFFIX,c1.ifengimg.com,REJECT
 
-
 # >>> merged from PhoneChina.sgmodule (unique only)
 DOMAIN-SUFFIX,pic.cnmo-img.com.cn,REJECT
 DOMAIN-SUFFIX,icon.cnmo.com,REJECT
 DOMAIN-SUFFIX,js.cnmo.com,REJECT
 
-
 # >>> merged from Photoable.sgmodule (unique only)
 DOMAIN,regist.fotoable.com,REJECT
 DOMAIN,cdn.adapi.fotoable.com,REJECT
-
 
 # >>> merged from PiPiXia.sgmodule (unique only)
 # 推荐视频不能预览, REJECT
@@ -2479,10 +2318,8 @@ DOMAIN-KEYWORD,log-api.pangolin-sdk-toutiao-b.com,REJECT
 DOMAIN-KEYWORD,log-api.pangolin-sdk-toutiao.com,REJECT
 DOMAIN-KEYWORD,api-access.pangolin-sdk-toutiao.com,REJECT
 
-
 # >>> merged from PingAnChina.sgmodule (unique only)
 DOMAIN-SUFFIX,events.pingan.com,REJECT
-
 
 # >>> merged from QQMusic.sgmodule (unique only)
 DOMAIN,adstats.tencentmusic.com,REJECT
@@ -2511,12 +2348,10 @@ DOMAIN,wallpaper-1258344696.file.myqcloud.com,REJECT
 DOMAIN,xs.gdt.qq.com,REJECT
 IP-CIDR,120.222.240.171/32,REJECT,no-resolve
 
-
 # >>> merged from QiMaoNovel.sgmodule (unique only)
 DOMAIN,cdn-new-ad.wtzw.com,REJECT
 DOMAIN,a-remad.qm989.com,REJECT
 DOMAIN,mobads-pre-config.cdn.bcebos.com,REJECT
-
 
 # >>> merged from QiShuiMusic.sgmodule (unique only)
 AND,((DOMAIN-KEYWORD,api100-core-quic-),(DOMAIN-SUFFIX,amemv.com)),REJECT
@@ -2540,17 +2375,14 @@ AND,((IP-CIDR,220.243.141.0/32,no-resolve),(DEST-PORT,6443)),REJECT
 #DOMAIN, is.snssdk.com, REJECT
 # DOMAIN-KEYWORD, api-access.pangolin-sdk-toutiao, REJECT // 被复写替代
 
-
 # >>> merged from Qilu.sgmodule (unique only)
 DOMAIN-SUFFIX,g3.iqilu.com,REJECT
 DOMAIN-SUFFIX,g4.iqilu.com,REJECT
-
 
 # >>> merged from QingTingFM.sgmodule (unique only)
 DOMAIN,ad.qingting.fm,REJECT
 DOMAIN,adlaunch.qingting.fm,REJECT
 DOMAIN,ad-cdn.qingting.fm,REJECT
-
 
 # >>> merged from RenRenVideo.sgmodule (unique only)
 DOMAIN-SUFFIX,ad.rr.tv,REJECT
@@ -2560,7 +2392,6 @@ DOMAIN-SUFFIX,bolt.jebe.renren.com,REJECT
 DOMAIN-SUFFIX,cupid.jebe.renren.com,REJECT
 DOMAIN-SUFFIX,shaft.jebe.renren.com,REJECT
 DOMAIN-SUFFIX,xray.jebe.renren.com,REJECT
-
 
 # >>> merged from SMZDM.sgmodule (unique only)
 DOMAIN,acs4baichuan.m.taobao.com,REJECT
@@ -2573,35 +2404,28 @@ DOMAIN,sec.umeng.com,REJECT
 DOMAIN,ynuf.aliapp.org,REJECT
 DOMAIN-SUFFIX,res-ga.smzdm.com,REJECT
 
-
 # >>> merged from Sape.sgmodule (unique only)
 DOMAIN-SUFFIX,sape.ru,REJECT
 DOMAIN-SUFFIX,cdn-rtb.sape.ru,REJECT
 DOMAIN-SUFFIX,dispenser-rtb.sape.ru,REJECT
 DOMAIN-SUFFIX,ssp-rtb.sape.ru,REJECT
 
-
 # >>> merged from ShanMeng.sgmodule (unique only)
 DOMAIN-SUFFIX,ad.weshineapp.com,REJECT
 
-
 # >>> merged from ShengQuGames.sgmodule (unique only)
 DOMAIN-SUFFIX,adrs.sdo.com,REJECT
-
 
 # >>> merged from ShenzhenTong.sgmodule (unique only)
 # 微信小程序, REJECT
 DOMAIN-SUFFIX,wxsnsdythumb.wxs.qq.com,REJECT
 
-
 # >>> merged from ShouQianBa.sgmodule (unique only)
 # 买单小程序去广告, REJECT
 DOMAIN,ads-shopping.shouqianba.com,REJECT
 
-
 # >>> merged from ShuQiNovel.sgmodule (unique only)
 DOMAIN-SUFFIX,ut2.shuqistat.com,REJECT
-
 
 # >>> merged from Shuzilm.sgmodule (unique only)
 DOMAIN-SUFFIX,shuzilm.cn,REJECT
@@ -2609,7 +2433,6 @@ DOMAIN-SUFFIX,api.shuzilm.cn,REJECT
 DOMAIN-SUFFIX,daa.shuzilm.cn,REJECT
 DOMAIN-SUFFIX,dai.shuzilm.cn,REJECT
 DOMAIN-SUFFIX,stream.shuzilm.cn,REJECT
-
 
 # >>> merged from Sina.sgmodule (unique only)
 DOMAIN-SUFFIX,ad.sina.com.cn,REJECT
@@ -2690,17 +2513,14 @@ DOMAIN-SUFFIX,adimages.sina.com.hk,REJECT
 DOMAIN-SUFFIX,oascentral.sina.com.hk,REJECT
 DOMAIN-SUFFIX,dd.iask.cn,REJECT
 
-
 # >>> merged from Skyworth.sgmodule (unique only)
 DOMAIN-SUFFIX,hoisin.coocaa.com,REJECT
 DOMAIN-SUFFIX,hoisin.coocaatv.com,REJECT
 DOMAIN,data-hoisin.coocaa.com,REJECT
 
-
 # >>> merged from Snapchat.sgmodule (unique only)
 DOMAIN,ads.snapchat.com,REJECT
 DOMAIN,adsapi.snapchat.com,REJECT
-
 
 # >>> merged from Sogou.sgmodule (unique only)
 DOMAIN-SUFFIX,epro.sogou.com,REJECT
@@ -2781,11 +2601,9 @@ DOMAIN-SUFFIX,png.lu.sogoucdn.com,REJECT
 DOMAIN-SUFFIX,inte.theta.sogoucdn.com,REJECT
 DOMAIN-SUFFIX,dl.wan.sogoucdn.com,REJECT
 
-
 # >>> merged from SogouInput.sgmodule (unique only)
 # DOMAIN-SUFFIX, business-cdn.shouji.sogou.com, REJECT
 DOMAIN-SUFFIX,push-service-ios.sginput.qq.com,REJECT
-
 
 # >>> merged from Sohu.sgmodule (unique only)
 DOMAIN-SUFFIX,ad.sohu.com,REJECT
@@ -2812,11 +2630,9 @@ DOMAIN-SUFFIX,ad.mail.sohu.com,REJECT
 DOMAIN-SUFFIX,3rd.t.sohu.com,REJECT
 DOMAIN-SUFFIX,888.tv.sohu.com,REJECT
 
-
 # >>> merged from Soufun.sgmodule (unique only)
 DOMAIN-SUFFIX,click1n.soufun.com,REJECT
 DOMAIN-SUFFIX,countubn.light.soufun.com,REJECT
-
 
 # >>> merged from Soul.sgmodule (unique only)
 DOMAIN,soul-ad.soulapp.cn,REJECT
@@ -2829,14 +2645,12 @@ IP-CIDR,47.99.42.29/32,REJECT,no-resolve
 IP-CIDR,120.27.235.201/32,REJECT,no-resolve
 IP-CIDR,121.196.197.147/32,REJECT,no-resolve
 
-
 # >>> merged from Suning.sgmodule (unique only)
 DOMAIN-SUFFIX,show.suning.beer,REJECT
 DOMAIN-SUFFIX,apm.suning.cn,REJECT
 DOMAIN-SUFFIX,mads.suning.com,REJECT
 DOMAIN-SUFFIX,ssac.suning.com,REJECT
 DOMAIN-SUFFIX,tad.suning.com,REJECT
-
 
 # >>> merged from Talkatone.sgmodule (unique only)
 DOMAIN-SUFFIX,tappx.com,REJECT
@@ -2867,7 +2681,6 @@ DOMAIN-SUFFIX,googleads.g.doubleclick.net,REJECT
 DOMAIN-SUFFIX,4dvertible.com,REJECT
 DOMAIN-SUFFIX,smadex.com,REJECT
 
-
 # >>> merged from Tanwan.sgmodule (unique only)
 DOMAIN-SUFFIX,mytanwan.com,REJECT
 DOMAIN-SUFFIX,tanwanyx.com,REJECT
@@ -2882,13 +2695,11 @@ DOMAIN-SUFFIX,b.code.tanwanyx.com,REJECT
 DOMAIN-SUFFIX,hv.code.tanwanyx.com,REJECT
 DOMAIN-SUFFIX,xd.code.tanwanyx.com,REJECT
 
-
 # >>> merged from TaoTaoSou.sgmodule (unique only)
 DOMAIN-SUFFIX,img.taotaosou.cn,REJECT
 DOMAIN-SUFFIX,img01.taotaosou.cn,REJECT
 DOMAIN-SUFFIX,re.taotaosou.com,REJECT
 DOMAIN-SUFFIX,show.kc.taotaosou.com,REJECT
-
 
 # >>> merged from Taobao.sgmodule (unique only)
 DOMAIN-SUFFIX,apoll.m.taobao.com,REJECT
@@ -2924,7 +2735,6 @@ DOMAIN-SUFFIX,stat.simba.taobao.com,REJECT
 DOMAIN-SUFFIX,m-adash.m.taobao.com,REJECT
 DOMAIN-SUFFIX,adashbc.m.taobao.com,REJECT
 
-
 # >>> merged from Tencent.sgmodule (unique only)
 DOMAIN-SUFFIX,activeqq.3g.qq.com,REJECT
 DOMAIN-SUFFIX,ad.qq.com,REJECT
@@ -2951,11 +2761,9 @@ DOMAIN-SUFFIX,analy.qq.com,REJECT
 DOMAIN-SUFFIX,astrategy.beacon.qq.com,REJECT
 DOMAIN-SUFFIX,rp.crasheye.cn,REJECT
 
-
 # >>> merged from TencentWisdom.sgmodule (unique only)
 DOMAIN-SUFFIX,tencentmind.com,REJECT
 DOMAIN-SUFFIX,p.tencentmind.com,REJECT
-
 
 # >>> merged from ThePaperNews.sgmodule (unique only)
 DOMAIN,admonitor.thepaper.cn,REJECT
@@ -2963,7 +2771,6 @@ DOMAIN,adpai.thepaper.cn,REJECT
 DOMAIN,imgadpai.thepaper.cn,REJECT
 DOMAIN-SUFFIX,ad.thepaper.cn,REJECT
 DOMAIN-SUFFIX,imgad.thepaper.cn,REJECT
-
 
 # >>> merged from Thunder.sgmodule (unique only)
 DOMAIN-SUFFIX,adsp.xunlei.com,REJECT
@@ -2983,13 +2790,11 @@ DOMAIN-SUFFIX,etl.xlmc.sandai.net,REJECT
 DOMAIN-SUFFIX,test.api.xlmc.sandai.net,REJECT
 DOMAIN-SUFFIX,pre.api.tw06.xlmc.sandai.net,REJECT
 
-
 # >>> merged from TianShen.sgmodule (unique only)
 DOMAIN,track.tenjin.com,REJECT
 DOMAIN,track.tenjin.io,REJECT
 DOMAIN,lf9-cdn-tos.bytegecko.com,REJECT
 DOMAIN,novel.pangolin-sdk-toutiao.com,REJECT
-
 
 # >>> merged from TianTianKanKan.sgmodule (unique only)
 DOMAIN-SUFFIX,biz5.kankan.com,REJECT
@@ -3000,17 +2805,14 @@ DOMAIN-SUFFIX,kkpgv2.kankan.com,REJECT
 DOMAIN-SUFFIX,cpm.cm.kankan.com,REJECT
 DOMAIN-SUFFIX,count.cpm.cm.kankan.com,REJECT
 
-
 # >>> merged from Tongdun.sgmodule (unique only)
 DOMAIN-SUFFIX,fraudmetrix.cn,REJECT
 DOMAIN-SUFFIX,fp.fraudmetrix.cn,REJECT
 DOMAIN-SUFFIX,fptest.fraudmetrix.cn,REJECT
 DOMAIN-SUFFIX,statictest.fraudmetrix.cn,REJECT
 
-
 # >>> merged from TuanYou.sgmodule (unique only)
 DOMAIN-KEYWORD,img1.czb365.com,REJECT
-
 
 # >>> merged from TubeMax.sgmodule (unique only)
 DOMAIN-SUFFIX,adjust.com,REJECT
@@ -3021,27 +2823,22 @@ DOMAIN-SUFFIX,appier.net,REJECT
 DOMAIN-SUFFIX,adsmoloco.com,REJECT
 DOMAIN-SUFFIX,adcanvas.com,REJECT
 
-
 # >>> merged from TuhuAutoCare.sgmodule (unique only)
 DOMAIN,analytics.tuhu.com,REJECT
 DOMAIN,ta.tuhu.cn,REJECT
-
 
 # >>> merged from Tumblr.sgmodule (unique only)
 DOMAIN-SUFFIX,92x.tumblr.com,REJECT
 DOMAIN-SUFFIX,its-dori.tumblr.com,REJECT
 DOMAIN-SUFFIX,31.media.tumblr.com,REJECT
 
-
 # >>> merged from Turn.sgmodule (unique only)
 DOMAIN-SUFFIX,ad.turn.com,REJECT
 DOMAIN-SUFFIX,d.turn.com,REJECT
 
-
 # >>> merged from Twitch.sgmodule (unique only)
 DOMAIN-SUFFIX,fan.twitch.tv,REJECT
 DOMAIN-SUFFIX,spade.twitch.tv,REJECT
-
 
 # >>> merged from Twitter.sgmodule (unique only)
 DOMAIN-SUFFIX,ads-twitter.com,REJECT
@@ -3051,10 +2848,8 @@ DOMAIN-SUFFIX,syndication.twitter.com,REJECT
 DOMAIN-SUFFIX,syndication-o.twitter.com,REJECT
 DOMAIN-SUFFIX,urls.api.twitter.com,REJECT
 
-
 # >>> merged from U9Game.sgmodule (unique only)
 DOMAIN-SUFFIX,gg.uuu9.com,REJECT
-
 
 # >>> merged from UCBrowser.sgmodule (unique only)
 DOMAIN,safe.ucweb.com,REJECT
@@ -3142,12 +2937,10 @@ DOMAIN-SUFFIX,vs7.gzcu.u3.ucweb.com,REJECT
 DOMAIN-SUFFIX,vs8.gzcu.u3.ucweb.com,REJECT
 DOMAIN-SUFFIX,slot.union.ucweb.com,REJECT
 
-
 # >>> merged from UUSee.sgmodule (unique only)
 DOMAIN-SUFFIX,g.uusee.com,REJECT
 DOMAIN-SUFFIX,pop.uusee.com,REJECT
 DOMAIN-SUFFIX,traffic.uusee.com,REJECT
-
 
 # >>> merged from UnionPayCloudPay.sgmodule (unique only)
 DOMAIN,ads.95516.com,REJECT
@@ -3158,15 +2951,12 @@ DOMAIN,switch.cup.com.cn,REJECT
 DOMAIN,tysdk.95516.com,REJECT
 DOMAIN,ads.cup.com.cn,REJECT
 
-
 # >>> merged from UnityAds.sgmodule (unique only)
 DOMAIN-SUFFIX,config.unityads.unity3d.com,REJECT
-
 
 # >>> merged from UrbanAirship.sgmodule (unique only)
 DOMAIN-SUFFIX,urbanairship.com,REJECT
 DOMAIN-SUFFIX,combine.urbanairship.com,REJECT
-
 
 # >>> merged from VIVO.sgmodule (unique only)
 DOMAIN,adlog.vivo.com.cn,REJECT
@@ -3179,31 +2969,25 @@ DOMAIN,vcardsdkservice.vivo.com.cn,REJECT
 DOMAIN-KEYWORD,stsdk.vivo.com.cn,REJECT
 DOMAIN-KEYWORD,stsdk.vivoglobal.com,REJECT
 
-
 # >>> merged from VIVOMall.sgmodule (unique only)
 DOMAIN-KEYWORD,paradisestatic.vivo.com.cn,REJECT
-
 
 # >>> merged from VariFlight.sgmodule (unique only)
 DOMAIN,adv-adlog.variflight.com,REJECT
 DOMAIN,adv-ads.variflight.com,REJECT
 DOMAIN,app-ad.variflight.com,REJECT
 
-
 # >>> merged from Vipshop.sgmodule (unique only)
 DOMAIN-SUFFIX,n-st.vip.com,REJECT
 DOMAIN-SUFFIX,api.union.vip.com,REJECT
 DOMAIN-SUFFIX,ms.vipstatic.com,REJECT
 
-
 # >>> merged from WaiMaiBaWangCan.sgmodule (unique only)
 # 去开屏 , REJECT
 DOMAIN-SUFFIX,ad.gameley.com,REJECT
 
-
 # >>> merged from Wandoujia.sgmodule (unique only)
 DOMAIN-SUFFIX,push.wandoujia.com,REJECT
-
 
 # >>> merged from Waps.sgmodule (unique only)
 DOMAIN-SUFFIX,waps.cn,REJECT
@@ -3216,7 +3000,6 @@ DOMAIN-SUFFIX,push.wapx.cn,REJECT
 DOMAIN-SUFFIX,wapscdn.wapx.cn,REJECT
 DOMAIN-SUFFIX,wapx.com,REJECT
 
-
 # >>> merged from WasuTV.sgmodule (unique only)
 DOMAIN-SUFFIX,acsystem.wasu.cn,REJECT
 DOMAIN-SUFFIX,afp.wasu.cn,REJECT
@@ -3227,11 +3010,9 @@ DOMAIN-SUFFIX,delivery-pc.wasu.cn,REJECT
 DOMAIN-SUFFIX,adsystem.wasu.tv,REJECT
 DOMAIN-SUFFIX,adwasu.tv,REJECT
 
-
 # >>> merged from WhaleCloud.sgmodule (unique only)
 DOMAIN-SUFFIX,whalecloud.com,REJECT
 DOMAIN-SUFFIX,feedback.whalecloud.com,REJECT
-
 
 # >>> merged from WiFiMasterKey.sgmodule (unique only)
 DOMAIN-KEYWORD,app.51y5.net,REJECT
@@ -3257,7 +3038,6 @@ DOMAIN-SUFFIX,mi.gdt.qq.com,REJECT
 # 去除导航栏免费短剧, REJECT
 DOMAIN,taichi.51y5.net,REJECT
 
-
 # >>> merged from Wostore.sgmodule (unique only)
 DOMAIN-SUFFIX,appspromote.wostore.cn,REJECT
 DOMAIN-SUFFIX,secpay.wostore.cn,REJECT
@@ -3265,29 +3045,23 @@ DOMAIN-SUFFIX,unilog.wostore.cn,REJECT
 DOMAIN-SUFFIX,unipaydl.wostore.cn,REJECT
 DOMAIN-SUFFIX,unipayupg.wostore.cn,REJECT
 
-
 # >>> merged from XcarAuto.sgmodule (unique only)
 DOMAIN-SUFFIX,d0.xcar.com.cn,REJECT
 DOMAIN-SUFFIX,dw.xcar.com.cn,REJECT
 DOMAIN-SUFFIX,pv.xcar.com.cn,REJECT
 
-
 # >>> merged from XianYu.sgmodule (unique only)
 AND,((URL-REGEX,"^http:\/\/.+\/amdc\/mobileDispatch"),(USER-AGENT,"%E9%97%B2%E9%B1%BC*")),REJECT
 DOMAIN-KEYWORD,iyes.youku.com,REJECT
 
-
 # >>> merged from XiaoAiSpeaker.sgmodule (unique only)
 DOMAIN,mistat.xiaomi.com,REJECT
-
 
 # >>> merged from XiaoLiShengHuo.sgmodule (unique only)
 DOMAIN-KEYWORD,mpos-pic.helipay.com,REJECT
 
-
 # >>> merged from XiaoXiaoYingShi.sgmodule (unique only)
 DOMAIN,39d83s.com,REJECT
-
 
 # >>> merged from XiaoXiaoYouXuan.sgmodule (unique only)
 DOMAIN-SUFFIX,adintl.cn,REJECT
@@ -3313,14 +3087,12 @@ DOMAIN-SUFFIX,api.wxcjgg.cn,REJECT
 DOMAIN-SUFFIX,shunchangzhixing.com,REJECT
 IP-CIDR,114.132.165.205/32,REJECT,no-resolve
 
-
 # >>> merged from Xiaohongshu.sgmodule (unique only)
 DOMAIN,ads-img-qc.xhscdn.com,REJECT
 DOMAIN,ads-video-al.xhscdn.com,REJECT
 DOMAIN,ads-video-qc.xhscdn.com,REJECT
 DOMAIN,t-ads.xiaohongshu.com,REJECT
 AND,((PROTOCOL,QUIC),(DOMAIN-SUFFIX,xiaohongshu.com)),REJECT
-
 
 # >>> merged from Xiaomi.sgmodule (unique only)
 DOMAIN-KEYWORD,XiaoQiang,REJECT
@@ -3381,7 +3153,6 @@ DOMAIN-SUFFIX,a.hl.mi.com,REJECT
 DOMAIN-SUFFIX,api.jr.mi.com,REJECT
 DOMAIN-SUFFIX,a.union.mi.com,REJECT
 
-
 # >>> merged from Ximalaya.sgmodule (unique only)
 DOMAIN,adsehera.ximalaya.com,REJECT
 DOMAIN,adse.wsa.ximalaya.com,REJECT
@@ -3393,21 +3164,17 @@ DOMAIN-SUFFIX,adse-v2.ximalaya.com,REJECT
 DOMAIN-SUFFIX,open.ximalaya.com,REJECT
 DOMAIN-SUFFIX,upos-app.ximalaya.com,REJECT
 
-
 # >>> merged from Xinhuanet.sgmodule (unique only)
 DOMAIN-SUFFIX,tmisc.home.news.cn,REJECT
 DOMAIN-SUFFIX,webd.home.news.cn,REJECT
-
 
 # >>> merged from Xinmin.sgmodule (unique only)
 DOMAIN-SUFFIX,iads.xinmin.cn,REJECT
 DOMAIN-SUFFIX,total.xinmin.cn,REJECT
 DOMAIN-SUFFIX,www2.xinmin.cn,REJECT
 
-
 # >>> merged from XueQiu.sgmodule (unique only)
 DOMAIN-SUFFIX,ad.xueqiu.com,REJECT
-
 
 # >>> merged from XunYiWenYao.sgmodule (unique only)
 DOMAIN-SUFFIX,a.xywy.com,REJECT
@@ -3419,10 +3186,8 @@ DOMAIN-SUFFIX,page.xywy.com,REJECT
 DOMAIN-SUFFIX,stat-y.xywy.com,REJECT
 DOMAIN-SUFFIX,stat-z.xywy.com,REJECT
 
-
 # >>> merged from YYLivePlatform.sgmodule (unique only)
 DOMAIN-SUFFIX,gt.yy.com,REJECT
-
 
 # >>> merged from Yahoo.sgmodule (unique only)
 DOMAIN-SUFFIX,adss.yahoo.com,REJECT
@@ -3467,12 +3232,10 @@ DOMAIN,ads.finance.yahoo.com,REJECT
 DOMAIN,ads.yahoo.com,REJECT
 DOMAIN,ads.yahoo.de,REJECT
 
-
 # >>> merged from Yicha.sgmodule (unique only)
 DOMAIN-SUFFIX,yicha.cn,REJECT
 DOMAIN-SUFFIX,adsmart.yicha.cn,REJECT
 DOMAIN-SUFFIX,tuiguang.yicha.cn,REJECT
-
 
 # >>> merged from Yiche.sgmodule (unique only)
 DOMAIN,adx.yiche.com,REJECT
@@ -3482,7 +3245,6 @@ DOMAIN-SUFFIX,g.bitauto.com,REJECT
 DOMAIN-SUFFIX,gimg.bitauto.com,REJECT
 DOMAIN-SUFFIX,gstat.bitauto.com,REJECT
 
-
 # >>> merged from YidianNews.sgmodule (unique only)
 DOMAIN-SUFFIX,imagelx.yidianzixun.com,REJECT
 DOMAIN-SUFFIX,l.yidianzixun.com,REJECT
@@ -3490,14 +3252,12 @@ DOMAIN-SUFFIX,lx-upload-log.yidianzixun.com,REJECT
 DOMAIN-SUFFIX,oppo.yidianzixun.com,REJECT
 DOMAIN-SUFFIX,s.yidianzixun.com,REJECT
 
-
 # >>> merged from YinyueTai.sgmodule (unique only)
 DOMAIN-SUFFIX,shop.yinyuetai.com,REJECT
 DOMAIN-SUFFIX,statisticsv2.yinyuetai.com,REJECT
 DOMAIN-SUFFIX,shop.admin.yinyuetai.com,REJECT
 DOMAIN-SUFFIX,t.collect.yinyuetai.com,REJECT
 DOMAIN-SUFFIX,client.stats.yinyuetai.com,REJECT
-
 
 # >>> merged from Youku.sgmodule (unique only)
 DOMAIN-SUFFIX,partner.uc.cn,REJECT
@@ -3532,7 +3292,6 @@ DOMAIN-SUFFIX,s.p.youku.com,REJECT
 DOMAIN-SUFFIX,tdrec.youku.com,REJECT
 DOMAIN-SUFFIX,test.ott.youku.com,REJECT
 
-
 # >>> merged from Youmi.sgmodule (unique only)
 DOMAIN-SUFFIX,wumii.cn,REJECT
 DOMAIN-SUFFIX,wumii.com,REJECT
@@ -3545,12 +3304,10 @@ DOMAIN-SUFFIX,s.youmi.net,REJECT
 DOMAIN-SUFFIX,t.youmi.net,REJECT
 DOMAIN-SUFFIX,aos.wall.youmi.net,REJECT
 
-
 # >>> merged from Youxun.sgmodule (unique only)
 DOMAIN-SUFFIX,ccr.yxdown.com,REJECT
 DOMAIN-SUFFIX,gg.yxdown.com,REJECT
 DOMAIN-SUFFIX,ggr.yxdown.com,REJECT
-
 
 # >>> merged from YoyiInteractive.sgmodule (unique only)
 DOMAIN-SUFFIX,yoyi.com.cn,REJECT
@@ -3573,7 +3330,6 @@ DOMAIN-SUFFIX,js.yoyi.tv,REJECT
 DOMAIN-SUFFIX,g.d.yoyi.tv,REJECT
 DOMAIN-SUFFIX,t.d.yoyi.tv,REJECT
 
-
 # >>> merged from YuanjuNetwork.sgmodule (unique only)
 DOMAIN-SUFFIX,d.1391.com,REJECT
 DOMAIN-SUFFIX,lyapi.1391.com,REJECT
@@ -3585,26 +3341,21 @@ DOMAIN-SUFFIX,mhdufile.1391.com,REJECT
 DOMAIN-SUFFIX,mhjk.1391.com,REJECT
 DOMAIN-SUFFIX,sqtpks3.1391.com,REJECT
 
-
 # >>> merged from YunKuaiChong.sgmodule (unique only)
 # 微信小程序
 DOMAIN,et.ykccn.com,REJECT
 
-
 # >>> merged from YunZhiJia.sgmodule (unique only)
 DOMAIN-SUFFIX,ad.yunzhijia.com,REJECT
-
 
 # >>> merged from ZAKERNews.sgmodule (unique only)
 DOMAIN-SUFFIX,adm.myzaker.com,REJECT
 DOMAIN-SUFFIX,ggs.myzaker.com,REJECT
 DOMAIN-SUFFIX,push-android.myzaker.com,REJECT
 
-
 # >>> merged from ZhenBuKa.sgmodule (unique only)
 DOMAIN-SUFFIX,ttayy.cn,REJECT
 DOMAIN-SUFFIX,zhengxiaoliu.top,REJECT
-
 
 # >>> merged from Zhihu.sgmodule (unique only)
 USER-AGENT,"AVOS*",REJECT
@@ -3619,7 +3370,6 @@ IP-CIDR6,2402:4e00:1200:ed00:0:9089:6dac:96b6/128,REJECT,no-resolve
 DOMAIN,zxid-m.mobileservice.cn,REJECT
 IP-CIDR,103.41.167.237/32,REJECT,no-resolve
 
-
 # >>> merged from ZhongHuaWanNianLi.sgmodule (unique only)
 DOMAIN-KEYWORD,lkme.cc,REJECT
 DOMAIN-KEYWORD,api.freed.so,REJECT
@@ -3631,7 +3381,6 @@ DOMAIN-SUFFIX,ad.51wnl.com,REJECT
 DOMAIN-SUFFIX,ad-android.51wnl.com,REJECT
 DOMAIN-SUFFIX,ad.51wnl-cq.com,REJECT
 DOMAIN-SUFFIX,adextra.51wnl-cq.com,REJECT
-
 
 # >>> merged from Zhongguancun.sgmodule (unique only)
 DOMAIN-SUFFIX,apppv.zol.com.cn,REJECT
@@ -3653,16 +3402,13 @@ DOMAIN-SUFFIX,afp.zol-img.com.cn,REJECT
 DOMAIN-SUFFIX,pic.zol-img.com.cn,REJECT
 DOMAIN-SUFFIX,api.zol.com,REJECT
 
-
 # >>> merged from ZuoYeBang.sgmodule (unique only)
 DOMAIN-SUFFIX,bu01.zybang.com,REJECT
 DOMAIN-SUFFIX,bu02.zybang.com,REJECT
 
-
 # >>> merged from baicizhan.sgmodule (unique only)
 DOMAIN,advertise.baicizhan.com,REJECT
 DOMAIN,advertise.baicizhan.org,REJECT
-
 
 # >>> merged from bilibili.sgmodule (unique only)
 DOMAIN,api.biliapi.com,REJECT
@@ -3671,11 +3417,9 @@ DOMAIN,api.biliapi.net,REJECT
 DOMAIN,app.biliapi.net,REJECT
 AND,((DOMAIN-SUFFIX,chat.bilibili.com),(OR,((DOMAIN-KEYWORD,stun),(DOMAIN-KEYWORD,tracker)))),REJECT
 
-
 # >>> merged from bshare.sgmodule (unique only)
 DOMAIN-SUFFIX,bshare.cn,REJECT
 DOMAIN-SUFFIX,bshare.optimix.asia,REJECT
-
 
 # >>> merged from csdn.sgmodule (unique only)
 DOMAIN-SUFFIX,ad.csdn.net,REJECT
@@ -3684,19 +3428,16 @@ DOMAIN-SUFFIX,dc.csdn.net,REJECT
 DOMAIN-SUFFIX,dc2.csdn.net,REJECT
 DOMAIN-SUFFIX,medal.blog.csdn.net,REJECT
 
-
 # >>> merged from iFinD.sgmodule (unique only)
 DOMAIN,adm.10jqka.com.cn,REJECT
 DOMAIN,stat.10jqka.com.cn,REJECT
 DOMAIN-SUFFIX,ad.thsi.cn,REJECT
-
 
 # >>> merged from iFlytekInputMethod.sgmodule (unique only)
 DOMAIN-KEYWORD,ossp.voicecloud.cn,REJECT
 DOMAIN-KEYWORD,bj.imp.voiceads.cn,REJECT
 DOMAIN-KEYWORD,m.panda.voiceads.cn,REJECT
 DOMAIN-KEYWORD,iflyad.bj.openstorage.cn,REJECT
-
 
 # >>> merged from iQIYI.sgmodule (unique only)
 DOMAIN,api.iqiyi.com,REJECT
@@ -3743,7 +3484,6 @@ IP-CIDR,101.227.200.11/32,REJECT,no-resolve
 IP-CIDR,101.227.200.28/32,REJECT,no-resolve
 IP-CIDR,124.192.153.42/32,REJECT,no-resolve
 
-
 # >>> merged from weibo.module (unique only)
 # 收集用户信息，上传用户日志的请求
 URL-REGEX,"^https?:\/\/api\.weibo\.cn\/2\/(push\/active|client\/addlog_batch|ad\/preload)",REJECT-DROP
@@ -3787,14 +3527,11 @@ DOMAIN,adpinpai.video.weibocdn.com,REJECT
 #^https?:\/\/gab\.122\.gov\.cn\/eapp\/m\/sysquery reject
 ^https?:\/\/gab\.122\.gov\.cn\/eapp\/m\/sysquery\/adver$ - reject
 
-
 # >>> merged from 21EconomicNet.sgmodule (unique only)
 ^https?:\/\/api\.21jingji\.com\/ad\/ - reject
 
-
 # >>> merged from 500.sgmodule (unique only)
 ^https?:\/\/evs\.500\.com\/esinfo\/loading\/loading - reject
-
 
 # >>> merged from 51Job.sgmodule (unique only)
 ^https?:\/\/appapi\.51job(app)?\.com\/api\/market\/(adtrace|get_launch|get_prompt) - reject
@@ -3810,64 +3547,50 @@ DOMAIN,adpinpai.video.weibocdn.com,REJECT
 # 弹窗广告
 ^https?:\/\/cupid\.51job(app)?\.com\/launch-hub\/open\/noauth\/popUp - reject
 
-
 # >>> merged from 555YingShi.sgmodule (unique only)
 ^https?:\/\/[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+){1,3}(:\d+)?\/api\/v\d\/advert - reject
-
 
 # >>> merged from 58TongCheng.sgmodule (unique only)
 ^https?:\/\/app\.58\.com\/api\/home\/(advertising|appadv)\/ - reject
 ^https?:\/\/app\.58\.com\/api\/log\/ - reject
 
-
 # >>> merged from ABC.sgmodule (unique only)
 # ^https?:\/\/midc\.cdn-static\.abchina\.com\.cn\/distributecenterimg\/file\/download\/(?!bbc2|f015|1655|0992|4678|a194|d8e2|c513|e51c|0ee1|166e|05ca|c882|d5b8|22ed|a0dc|a55a|6f89|3bf9|3c71|52ec|5b62|ve7a|001c|923d|accf|4a10|0bd7|be7a|5b62|5dd6|1f24|006c|775d|bd02|b983|5251|806b|d119|db14|43c9|41d3|8570|2c10|85ea|1435|814e|f422|aec7|738c|d7c8|0538|02b4|fd20|7647|f6ef|07c5|885b|e4cb|685b|30aa|c23b|9603|f27f|eaf8|8011|a5eb|409d|724c|3f2a|e07f|6744|60a6|158c|8ce3) reject-dict
 ^https?:\/\/midc\.cdn-static\.abchina\.com\.cn\/distributecenterimg\/file\/download\/(ed64|74b5) - reject
-
 
 # >>> merged from AcFun.sgmodule (unique only)
 ^https?:\/\/aes\.acfun\.cn\/s\?adzones - reject
 ^https?:\/\/api-new\.app\.acfun\.cn\/rest\/app\/flash\/screen\/ - reject
 
-
 # >>> merged from AiHuiShou.sgmodule (unique only)
 ^https?:\/\/gw\.aihuishou\.com\/app-portal\/home\/getadvertisement - reject
-
 
 # >>> merged from AiMeiJu.sgmodule (unique only)
 ^https?:\/\/api\.bjxkhc\.com\/index\.php\/app\/ios\/ver/index_ios$ - reject
 ^https?:\/\/api\.bjxkhc\.com\/index\.php\/app\/ios\/ads\/ - reject
 
-
 # >>> merged from AiSiAssistant.sgmodule (unique only)
 ^https?:\/\/list-app-m\.i4\.cn\/(adclickcb|getHotSearchList|getopfstadinfo)\.xhtml - reject
 
-
 # >>> merged from AiYueShuXiang.sgmodule (unique only)
 ^https?:\/\/icc\.one\/iFreeTime\/xid32uxaoecnfv2\/ - reject
-
 
 # >>> merged from AllFootball.sgmodule (unique only)
 #^https?:\/\/ap\.dongqiudi\.com\/plat\/v reject
 ^https?:\/\/ap\.dongdianqiu\.com\/plat\/v4 - reject
 
-
 # >>> merged from AoMi.sgmodule (unique only)
 ^https?:\/\/interface\.aomiapp\.com\/aomi-ads - reject
 
-
 # >>> merged from AppSo.sgmodule (unique only)
 ^https?:\/\/sso\.ifanr\.com\/jiong\/IOS\/appso\/splash\/ - reject
-
 
 # >>> merged from AutoNavi.sgmodule (unique only)
 ^https?:\/\/m5\.amap\.com\/ws\/valueadded\/ - reject
 ^https?:\/\/amap-aos-info-nogw\.amap\.com\/ws\/aos\/alimama\/splash_screen_rt - reject
 
-
 # >>> merged from BTGHomeinns.sgmodule (unique only)
 ^https?:\/\/app\.homeinns\.com\/api\/landing - reject
-
 
 # >>> merged from Baidu.sgmodule (unique only)
 ^https?:\/\/fcvbjbcebos\.baidu\.com\/.+.mp4 - reject
@@ -3879,7 +3602,6 @@ DOMAIN,adpinpai.video.weibocdn.com,REJECT
 ^https?:\/\/log.+?baidu\.com - reject
 ^https?:\/\/www.baidu.com\/?action=static&ms=1&version=css_page_2@0.*? - reject
 
-
 # >>> merged from BaiduInputMethod.sgmodule (unique only)
 ^https?:\/\/r6\.mo\.baidu\.com\/res\/file/advertisement\/files\/.+\.jpg - reject
 ^https?:\/\/res\.mi\.baidu\.com\/imeres\/ime-res\/advertisement\/files\/.+\.jpg - reject
@@ -3887,11 +3609,9 @@ DOMAIN,adpinpai.video.weibocdn.com,REJECT
 ^https?:\/\/mime\.baidu\.com\/v5\/start_screen_ads\/list - reject
 ^https?:\/\/mime\.baidu\.com\/v5\/hotpatch\/check\?hotpatch - reject
 
-
 # >>> merged from BaiduMaps.sgmodule (unique only)
 ^https?:\/\/dss0\.bdstatic\.com\/.+/tam-ogel\/.+\.(jpg|mp4) - reject
 ^https?:\/\/tb1\.bdstatic\.com\/tb\/cms\/ngmis\/adsense\/*.jpg - reject
-
 
 # >>> merged from BaiduNetdisk.sgmodule (unique only)
 ^https?:\/\/pan\.baidu\.com\/rest\/\d\.\d\/pcs\/adx - reject
@@ -3912,74 +3632,57 @@ DOMAIN,adpinpai.video.weibocdn.com,REJECT
 ^https?:\/\/fc-video\.cdn\.bcebos\.com - reject
 ^https?:\/\/rp\.hpplay\.cn\/logouts - reject
 
-
 # >>> merged from BaiduTranslation.sgmodule (unique only)
 ^https?:\/\/mime\.baidu\.com\/v\d\/IosStart\/getStartInfo - reject
 ^https?:\/\/mime\.baidu\.com\/v\d\/activity\/advertisement - reject
 
-
 # >>> merged from BeiKeZhaoFang.sgmodule (unique only)
 ^https?:\/\/apps\.api\.ke\.com\/config\/config\/(bootpage|getactivityconfig) - reject
-
 
 # >>> merged from BeijingShouQi.sgmodule (unique only)
 ^https?:\/\/gateway\.shouqiev\.com\/fsda\/app\/bootImage\.json - reject
 
-
 # >>> merged from BettyKitchen.sgmodule (unique only)
 ^https?:\/\/channel\.beitaichufang\.com\/channel\/api\/v\d\/promote\/ios\/start\/page - reject
-
 
 # >>> merged from BiShiJie.sgmodule (unique only)
 ^https?:\/\/iapi\.bishijie\.com\/actopen\/advertising\/ - reject
 
-
 # >>> merged from BiTeQiuCloudDrive.sgmodule (unique only)
 ^https?:\/\/pan-api\.bitqiu\.com\/activity\/getPromoteGuide - reject
 
-
 # >>> merged from BoLuoBaoLightNovel.sgmodule (unique only)
 ^https?:\/\/api\.sfacg\.com\/ioscfg - reject
-
 
 # >>> merged from ByteDance.sgmodule (unique only)
 ^https?:\/\/[\w-]+\.amemv\.com\/aweme\/v\d\/ad\/ - reject
 ^https?:\/\/[\w-]+\.snssdk\.com\/.+_ad\/ - reject
 
-
 # >>> merged from CCBLife.sgmodule (unique only)
 ^https?:\/\/waimai-guide\.ele\.me\/\w+\/mtop\.alsc\.wamai\.store\.detail\.miniapp\.popup - reject
 ^https?:\/\/waimai-guide\.ele\.me\/\w+\/mtop\.venus\.shopcouponpopupservice\.getshopcouponspopup - reject
 
-
 # >>> merged from CCTVVideo.sgmodule (unique only)
 ^https?:\/\/cdn\.cmgadx\.com\/sdk\/pool\/\w+\.json - reject
-
 
 # >>> merged from CaiJingZaZhi.sgmodule (unique only)
 ^https?:\/\/api\.caijingmobile\.com\/(ad|advert)\/ - reject
 
-
 # >>> merged from CaiLianShe.sgmodule (unique only)
 ^https?:\/\/api3\.cls\.cn\/v1\/boot\/ad - reject
-
 
 # >>> merged from CaiNiaoGuoGuo.sgmodule (unique only)
 # 支付宝-菜鸟
 ^https?:\/\/guide-acs\.m\.taobao\.com\/gw\/mtop\.cainiao\.guoguo\.nbnetflow\.ads - reject
 
-
 # >>> merged from CaoCaoZhuanChe.sgmodule (unique only)
 ^https?:\/\/cap\.caocaokeji\.cn\/advert-bss\/ - reject
-
 
 # >>> merged from ChaoJiKeChengBiao.sgmodule (unique only)
 http:\/\/ad\.myfriday\.cn\/d\/json\/1\.1 - reject
 
-
 # >>> merged from ChaoXingXueXiTong.sgmodule (unique only)
 ^https?:\/\/learn\.chaoxing\.com\/apis\/service\/appConfig\? - reject
-
 
 # >>> merged from CheLaiLe.sgmodule (unique only)
 ^https?:\/\/pic1\.chelaile\.net\.cn\/adv\/ - reject
@@ -3988,45 +3691,36 @@ http:\/\/ad\.myfriday\.cn\/d\/json\/1\.1 - reject
 ^https?:\/\/web\.chelaile\.net\.cn\/api\/adpub\/ad - reject
 ^https?:\/\/cdn\.\w{3}\.chelaileapp\.cn\/(api\/)?adpub - reject
 
-
 # >>> merged from ChinaCITICBank.sgmodule (unique only)
 # 开屏广告
 ^https:\/\/imcs\.citicbank\.com\/cloud\/([a-fA-F0-9]{32})\.(jpg|png) - reject
-
 
 # >>> merged from ChinaMobile.sgmodule (unique only)
 ^https?:\/\/client\.app\.coc\.10086\.cn\/biz-orange\/DN\/explorePage\/getAdverList - reject
 # 多个悬浮窗
 ^https?:\/\/(client\.app\.coc|app)\.10086\.cn\/biz-orange\/DN\/emotionMarket - reject
 
-
 # >>> merged from ChinaTelecom.sgmodule (unique only)
 ^https?:\/\/cloud\.189\.cn\/include\/splash\/ - reject
 
-
 # >>> merged from CiWeiMaoYueDu.sgmodule (unique only)
 ^https?:\/\/app\.hbooker\.com\/setting\/get_startpage_url_list - reject
-
 
 # >>> merged from Ctrip.sgmodule (unique only)
 # 开屏去广告
 ^https?:\/\/ma-adx\.ctrip\.com\/_ma\.gif - reject
 ^https?:\/\/mbd\.baidu\.com\/newspage\/api\/getmobads\?page\=landingshare - reject
 
-
 # >>> merged from DLabelCloudTag.sgmodule (unique only)
 # 去开屏广告
 ^https:\/\/imagepc\.ctaiot\.com\/dlabel\/0\/startpage - reject
 ^https:\/\/dudian-oss\.oss-cn-shenzhen\.aliyuncs\.com\/dlabel\/1\/startpage - reject
 
-
 # >>> merged from DaZhiHui.sgmodule (unique only)
 ^https?://ssp\.dzh\.com\.cn/v2api/adgroupjson - reject
 
-
 # >>> merged from Damai.sgmodule (unique only)
 ^https?:\/\/amdc\.m\.taobao\.com\/amdc\/mobileDispatch\?appkey=23782110 - reject
-
 
 # >>> merged from DangDangReading.sgmodule (unique only)
 ^https?:\/\/e\.dangdang\.com\/media\/api.+\?action=getDeviceStartPage - reject
@@ -4034,17 +3728,14 @@ http:\/\/ad\.myfriday\.cn\/d\/json\/1\.1 - reject
 ^https?:\/\/api\.dangdang\.com\/mapi\d\/mobile\/init - reject
 ^https?:\/\/mapi\.dangdang\.com\/index\.php\?action=init - reject
 
-
 # >>> merged from DeWu.sgmodule (unique only)
 # 开屏广告 【Runestoner】分享
 ^https?:\/\/app\.dewu\.com\/api\/v1\/app\/advertisement - reject
-
 
 # >>> merged from DiDaChuxing.sgmodule (unique only)
 # 小程序净化
 ^https?:\/\/capis(-\d)?\.didapinche\.com\/adbase - reject
 ^https?:\/\/capis(-\d)?\.didapinche\.com\/ad\/ - reject
-
 
 # >>> merged from DianPing.sgmodule (unique only)
 # 开屏广告
@@ -4062,18 +3753,15 @@ http:\/\/ad\.myfriday\.cn\/d\/json\/1\.1 - reject
 ^https?:\/\/s3plus\.meituan\.net\/ocean-blk-index\/index\/blk_conf - reject
 ^https?:\/\/ddplus\.meituan\.net\/v\d\/mss_\w+\/(?>ehc|titansx|ddblue|edfu)\/ - reject
 
-
 # >>> merged from DianShiJia.sgmodule (unique only)
 ^https?:\/\/api\.gaoqingdianshi\.com\/api\/v\d\/ad\/ - reject
 ^https?:\/\/cdn\.dianshihome\.com\/static\/ad\/ - reject
-
 
 # >>> merged from DingDingPai.sgmodule (unique only)
 ^https?:\/\/.*\.pglstatp-toutiao\.com\/.*ad.* - reject
 ^https?:\/\/api\.htp\.ad-scope\.com\.cn.* - reject
 ^https?:\/\/appgw\.ddpai\.com.*\/ad\/list.* - reject
 ^https?:\/\/init\.sms\.mob\.com\/.*sdk\/init.* - reject
-
 
 # >>> merged from DingDongMaiCai.sgmodule (unique only)
 # 开屏广告
@@ -4083,24 +3771,19 @@ http:\/\/ad\.myfriday\.cn\/d\/json\/1\.1 - reject
 # 我的页VIP栏净化
 ^https?:\/\/gw\.api\.ddxq\.mobi\/vip-app-service\/vip\/my\/page\/advertising - reject
 
-
 # >>> merged from DingXiangDoctor.sgmodule (unique only)
 ^https?:\/\/dxy\.com\/app\/i\/ask\/biz\/feed\/launch - reject
-
 
 # >>> merged from DingXiangYuan.sgmodule (unique only)
 ^https?:\/\/dq\.dxy\.cn\/api\.php\?action=getpostbanners - reject
 
-
 # >>> merged from DongFangCaiFu.sgmodule (unique only)
 ^https?:\/\/emdcadvertise\.eastmoney\.com\/infoService\/v\d - reject
-
 
 # >>> merged from Douban.sgmodule (unique only)
 ^https?:\/\/img\d\.doubanio\.com\/view\/dale-online\/dale_ad\/ - reject
 ^https?:\/\/frodo\.douban\.com\/api\/v2\/movie\/banner - reject
 ^https?:\/\/erebor\.douban\.com\/count\/\?ad= - reject
-
 
 # >>> merged from DouyuLive.sgmodule (unique only)
 ^https?:\/\/daoyu\.sdo\.com\/api\/userCommon\/getAppStartAd - reject
@@ -4108,7 +3791,6 @@ http:\/\/ad\.myfriday\.cn\/d\/json\/1\.1 - reject
 ^https?:\/\/staticlive\.douyucdn\.cn\/.+\/getStartSend - reject
 ^https?:\/\/capi\.douyucdn\.cn\/lapi\/sign\/app(api)?\/getinfo\?client_sys=ios - reject
 ^https?:\/\/douyucdn\.cn\/.+\/appapi\/getinfo - reject
-
 
 # >>> merged from Eleme.sgmodule (unique only)
 # 开屏广告
@@ -4122,23 +3804,18 @@ http:\/\/ad\.myfriday\.cn\/d\/json\/1\.1 - reject
 ^https?:\/\/www1\.elecfans\.com\/www\/delivery\/ - reject
 ^https?:\/\/(nr-op|cube)\.elemecdn\.com\/.+\.jpeg\?x-oss-process=image\/resize,m_fill,w_\d{4,},h_\d{4,}\/($|format,webp\/$) - reject
 
-
 # >>> merged from ElongTravel.sgmodule (unique only)
 ^https?:\/\/webboot\.zhangyue\.com\/zycl\/api\/ad\/ - reject
 ^https?:\/\/saad\.ms\.zhangyue\.net\/ad - reject
 
-
 # >>> merged from Ezviz.sgmodule (unique only)
 ^https?:\/\/i\.ys7\.com\/api\/ads - reject
-
 
 # >>> merged from FamilyMart.sgmodule (unique only)
 ^https?:\/\/fmapp\.chinafamilymart\.com\.cn\/api\/app\/biz\/base\/appversion\/latest - reject
 
-
 # >>> merged from FanDengReading.sgmodule (unique only)
 ^https?:\/\/gateway-api\.dushu365\.com\/chief-orch\/config\/config\/v100\/appConfig - reject
-
 
 # >>> merged from FanQieNovel.sgmodule (unique only)
 # 去章末广告
@@ -4156,15 +3833,12 @@ http:\/\/ad\.myfriday\.cn\/d\/json\/1\.1 - reject
 ^https?:\/\/.+\.byteimg\.com\/ad-app-package - reject
 ^https?:\/\/.+\.byteimg\.com\/web\.business\.image - reject
 
-
 # >>> merged from FeiKeChaGuan.sgmodule (unique only)
 ^https?:\/\/47\.100\.65\.202\/source\/plugin\/mobile\/mobile\.php\?module=advis - reject
-
 
 # >>> merged from FeiMaoGuanJia.sgmodule (unique only)
 # 开屏
 ^https:\/\/app\.flymodem\.com\.cn\/Appapi\/Public\/welecome - reject
-
 
 # >>> merged from FengChao.sgmodule (unique only)
 ^https:\/\/dsp\.fcbox\.com\/adSearch\/get\? - reject
@@ -4173,15 +3847,12 @@ http:\/\/ad\.myfriday\.cn\/d\/json\/1\.1 - reject
 # 已无法MITM
 ^https?:\/\/consumer\.fcbox\.com\/v\d\/ad\/ - reject
 
-
 # >>> merged from FengHuangXiu.sgmodule (unique only)
 ^https?:\/\/dsa-mfp\.fengshows\.cn\/mfp\/mfpMultipleDelivery\.do\?.+?adunitid - reject
-
 
 # >>> merged from Fliggy.sgmodule (unique only)
 ^https?:\/\/gw\.alicdn\.com\/mt\/ - reject
 ^https?:\/\/gw\.alicdn\.com\/imgextra\/\w{2}\/[\w!]+-\d-tps-\d{3}-\d{4}\.(jpg|png)$ - reject
-
 
 # >>> merged from FutuNiuNiu.sgmodule (unique only)
 ^https?:\/\/api\d\.futunn\.com\/ad\/ - reject
@@ -4189,108 +3860,84 @@ http:\/\/ad\.myfriday\.cn\/d\/json\/1\.1 - reject
 # 首页右下角角标
 ^https?:\/\/api\.futunn\.com\/treasure-chest\/box-data - reject
 
-
 # >>> merged from GaiDePaiHang.sgmodule (unique only)
 ^https?:\/\/zone\.guiderank-app\.com\/guiderank-web\/app\/ad\/listLaunchADByCity\.do - reject
-
 
 # >>> merged from GameTime.sgmodule (unique only)
 ^(http:\/\/www\.vgtime\.com\/app\/topic\/\d+\.jhtml\?.*?&close_ad=)false(&page=\d&sign=\w+&timestamp=\d+&font_size=\d$) $1true$2 302
 
-
 # >>> merged from GaoTieGuanJia.sgmodule (unique only)
 ^https?:\/\/[a-z]*\.rsscc\.com\/[a-z]*\/adver - reject
-
 
 # >>> merged from GomeAppliances.sgmodule (unique only)
 ^https?:\/\/prom\.mobile\.gome\.com\.cn\/mobile\/promotion\/promscms\/\w+\.jsp - reject
 ^https?:\/\/prom\.mobile\.gome\.com\.cn\/mobile\/promotion\/promscms\/sale\w+\.jsp - reject
 
-
 # >>> merged from GongShiJiLu.sgmodule (unique only)
 ^https?:\/\/mi\.gdt\.qq\.com\/gdt_mview\.fcg - reject
 ^https?:\/\/open\.e\.kuaishou\.com\/rest\/e\/v3\/open\/univ - reject
 
-
 # >>> merged from GuahaoWangWeiyi.sgmodule (unique only)
 ^https?:\/\/app\.wy\.guahao\.com\/json\/white\/dayquestion\/getpopad - reject
-
 
 # >>> merged from GuaiShouChongDian.sgmodule (unique only)
 # 微信小程序
 ^https?:\/\/aag\.enmonster\.com\/apa\/index\/advert\/skin - reject
 
-
 # >>> merged from GuanYu.sgmodule (unique only)
 # 开屏广告
 ^https?:\/\/guanyu\.longfor\.com\/app-server\/api\/v1\/main\/start - reject
 
-
 # >>> merged from HaiTunYouHui.sgmodule (unique only)
 ^https?:\/\/.*\.townmalls\.cn:1890\/mossapi\/mossp\.BannerManager\/activityList.* - reject
-
 
 # >>> merged from HanJuTV.sgmodule (unique only)
 ^https?:\/\/gfp\.veta\.naver\.com\/adcall\? - reject
 ^https?:\/\/api\.hanju\.koudaibaobao\.com\/api\/carp\/kp\? - reject
-
 
 # >>> merged from HangLvZongHeng.sgmodule (unique only)
 # 此条存在首页横幅误杀，可以禁止MITM域名
 ^https:\/\/oss\.umetrip\.com\/fs\/advert\/polite - reject
 ^http?:\/\/(discardrp|startup)\.umetrip\.com\/gateway\/api\/umetrip\/native - reject
 
-
 # >>> merged from HangZhouBus.sgmodule (unique only)
 ^https?:\/\/m\.ibuscloud\.com\/v\d\/app\/getStartPage - reject
-
 
 # >>> merged from HangZhouCitizen.sgmodule (unique only)
 ^https?:\/\/smkmp\.96225\.com\/smkcenter\/ad/ - reject
 
-
 # >>> merged from HaoHaoZhu.sgmodule (unique only)
 ^https?:\/\/api\.haohaozhu\.cn\/index\.php\/home\/AppInit\/getStartPhoto - reject
-
 
 # >>> merged from HaoQiXinDaily.sgmodule (unique only)
 ^https?:\/\/notch\.qdaily\.com\/api\/v\d\/boot_ad - reject
 ^https?:\/\/app3\.qdaily\.com\/app3\/boot_advertisements\.json - reject
 
-
 # >>> merged from HaoXingTiZhongCheng.sgmodule (unique only)
 ^https?:\/\/open\.fitdays\.cn\/uploads\/ad\/ - reject
 
-
 # >>> merged from Hema.sgmodule (unique only)
 ^https?:\/\/acs(\.|-)m\.(taobao|freshippo)\.com\/gw\/mtop\.wdk\.hippotown\.tabbar\.info - reject
-
 
 # >>> merged from HengDianCinema.sgmodule (unique only)
 # 开屏广告
 ^https?:\/\/api\.hengdianfilm\.com\/\/cinema\/queryAvailableBannerInfo\/1 https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/hengdian.json 302
 
-
 # >>> merged from HongBanBao.sgmodule (unique only)
 ^https?:\/\/fbchina\.flipchina\.cn\/v\d\/ad\/query - reject
-
 
 # >>> merged from HuaShengDiTie.sgmodule (unique only)
 ^https?:\/\/cmsapi\.wifi8\.com\/v\d\/(emptyAd|adNew)\/ - reject
 
-
 # >>> merged from HuangYouXiangJi.sgmodule (unique only)
 ^https?:\/\/api4\.bybutter\.com\/v\d\/app\/placements\/\d\/advertisements - reject
-
 
 # >>> merged from HuazhuClub.sgmodule (unique only)
 # 开屏广告
 ^https?:\/\/appapi\.huazhu\.com:\d+\/client\/app\/getAppStartPage\/ - reject
 
-
 # >>> merged from HuoMao.sgmodule (unique only)
 ^https?:\/\/api\.huomao\.com\/channels\/loginAd - reject
-
 
 # >>> merged from Hupu.sgmodule (unique only)
 ^https?:\/\/games\.mobileapi\.hupu\.com\/.+?\/(interfaceAdMonitor|interfaceAd)\/ - reject
@@ -4298,72 +3945,57 @@ http:\/\/ad\.myfriday\.cn\/d\/json\/1\.1 - reject
 ^https?:\/\/games\.mobileapi\.hupu\.com\/\d\/(?:\d\.){2}\d\/status\/init - reject
 ^https?:\/\/goblin\.hupu\.com\/.+\/interfaceAd\/getOther - reject
 
-
 # >>> merged from Huxiu.sgmodule (unique only)
 ^https?:\/\/api-ad-product\.huxiu\.com\/Api\/Product\/SDK\/Advert\/Query\/queryAdvertListInfo - reject
-
 
 # >>> merged from HuyaLive.sgmodule (unique only)
 ^https?:\/\/cdn\.wup\.huya\.com\/launch\/queryHttpDns$ - reject
 ^https?:\/\/business\.msstatic\.com\/advertiser\/material - reject
 
-
 # >>> merged from InkeLive.sgmodule (unique only)
 ^https?:\/\/service\.busi\.inke\.cn\/api\/flash\/screen - reject
-
 
 # >>> merged from JD.com.sgmodule (unique only)
 # 禁京东直播小窗
 ^https?:\/\/api\.m\.jd\.com\/client\.action\?functionId=getWidgetV1052 - reject
-
 
 # >>> merged from JDFinance.sgmodule (unique only)
 ^https?:\/\/ms\.jr\.jd\.com\/gw\/generic\/aladdin\/(new)?na\/m\/getLoadingPicture - reject
 ^https?:\/\/appconf\.mail\.163\.com\/mmad\/ - reject
 ^https?:\/\/support\.you\.163\.com\/xhr\/boot\/getBootMedia\.json - reject
 
-
 # >>> merged from JiJianHuiLv.sgmodule (unique only)
 ^https?:\/\/explorer\.tratao\.com\/api\/client\/v4\/xtransfer\/ad\/ - reject
 
-
 # >>> merged from JiaKaoBaoDian.sgmodule (unique only)
 ^https?:\/\/\w+\.kakamobi\.cn\/api\/open\/v\d\/advert-sdk\/ - reject
-
 
 # >>> merged from JiaXiaoYiDianTong.sgmodule (unique only)
 # 开屏广告 感谢【jinlvei】分享
 ^https?:\/\/richmanrules\.ksedt\.com\/intellectWaterfall(Bidding)?\/find - reject
 ^https?:\/\/api\.jxedt\.com\/ad\/ - reject
 
-
 # >>> merged from JieMianNews.sgmodule (unique only)
 ^https?:\/\/img\.jiemian\.com\/ads\/ - reject
-
 
 # >>> merged from JinRongToutiao.sgmodule (unique only)
 # 感谢【Jörgen Frecht】分享
 ^https?:\/\/p\d\.pstatp.com\/origin - reject
 ^https?:\/\/pb\d\.pstatp.com\/origin - reject
 
-
 # >>> merged from JinShiData.sgmodule (unique only)
 # 开屏广告和应用内弹窗
 ^https?:\/\/jad-api\.jin10\.com\/ad - reject
 
-
 # >>> merged from KFC.sgmodule (unique only)
 ^https?:\/\/res\.kfc\.com.\cn\/advertisement\/ - reject
-
 
 # >>> merged from KanLiXiang.sgmodule (unique only)
 ^https?:\/\/api\.vistopia\.com\.cn\/api\/v\d\/home\/advertisement - reject
 
-
 # >>> merged from KanTianXia.sgmodule (unique only)
 ^https?:\/\/open3\.vistastory\.com\/v\d\/api\/index\/loading_ad - reject
 ^https?:\/\/open3\.vistastory\.com\/v\d\/api.*get_popup - reject
-
 
 # >>> merged from Keep.sgmodule (unique only)
 # 屏蔽应用内弹窗
@@ -4389,12 +4021,10 @@ http:\/\/ad\.myfriday\.cn\/d\/json\/1\.1 - reject
 # 屏蔽更新
 ^https?:\/\/api\.gotokeep\.com\/anno\/v\d\/upgrade\/check - reject
 
-
 # >>> merged from KingsoftPowerWord.sgmodule (unique only)
 ^https?:\/\/dict-mobile\.iciba\.com\/interface\/index\.php\?.+(c=ad|collectFeedsAdShowCount|KSFeedsAdCardViewController) - reject
 ^https?:\/\/mobile-pic\.cache\.iciba\.com\/feeds_ad\/ - reject
 ^https?:\/\/.+?\.kingsoft-office-service\.com - reject
-
 
 # >>> merged from KuaiDi100.sgmodule (unique only)
 ^https?:\/\/p\.kuaidi100\.com\/mobile\/mobileapi\.do - reject
@@ -4403,44 +4033,34 @@ http:\/\/ad\.myfriday\.cn\/d\/json\/1\.1 - reject
 ^https:\/\/images\.pinduoduo\.com\/mrk\/ - reject
 ^https:\/\/images\.pinduoduo\.com\/marketing_api\/ - reject
 
-
 # >>> merged from LaiChong.sgmodule (unique only)
 ^https?:\/\/(mobile|shop)\.laichon\.com\/api\/(v1\/goods\/goodsList|exposureAdvStatistics|getWebAdvList) - reject
 
-
 # >>> merged from LaiFeng.sgmodule (unique only)
 ^https?:\/\/api\.laifeng\.com\/v\d\/start\/ads - reject
-
 
 # >>> merged from LanJiYin.sgmodule (unique only)
 # 首页弹窗广告 OCc分享
 ^https?:\/\/tk\.lanjiyin\.com\.cn\/ad\/getAdList - reject
 
-
 # >>> merged from LanJie100.sgmodule (unique only)
 ^https?:\/\/tagit\.hyhuo\.com\/recover\/list - reject
-
 
 # >>> merged from LanRenTingShu.sgmodule (unique only)
 ^https?:\/\/.*\/yyting\/advertclient\/ClientAdvertList.action - reject
 
-
 # >>> merged from LanTouZi.sgmodule (unique only)
 ^https?:\/\/ios\.lantouzi\.com\/api\/startpage - reject
-
 
 # >>> merged from LeCheng.sgmodule (unique only)
 ^https:\/\/dl-cu-hz\.lechange\.cn\/oms-online\/advertisementPush - reject
 
-
 # >>> merged from Lenovo.sgmodule (unique only)
 ^https?:\/\/api\.club\.lenovo\.cn\/common\/open_ad - reject
-
 
 # >>> merged from LiangBuLu.sgmodule (unique only)
 # host-suffix, admobile.top, reject
 https?:\/\/helper\.2bulu\.com\/(greenPea\/queryTasks|proSpecial\/allData|saveSplashFrequencyStatistics|getPopInfo|getAppEntranceConfig|promote\/list|getSplash|outing\/reqFoundNewList|outing\/reqIndex) - reject
-
 
 # >>> merged from Line.sgmodule (unique only)
 ^https:\/\/ad\.line-scdn\.net\/0h - reject
@@ -4458,54 +4078,43 @@ https?:\/\/helper\.2bulu\.com\/(greenPea\/queryTasks|proSpecial\/allData|saveSpl
 ^https:\/\/static\.line-scdn\.net\/ad-sdk\/ - reject
 ^https:\/\/nelo2-col\.linecorp\.com\/_store$ - reject
 
-
 # >>> merged from MIX.sgmodule (unique only)
 ^https?:\/\/dispatcher\.camera360\.com\/api\/v\d\/list$ - reject
-
 
 # >>> merged from Mafengwo.sgmodule (unique only)
 ^https?:\/\/mapi\.mafengwo\.cn\/(travelguide\/)?ad - reject
 ^https?:\/\/mapi\.mafengwo\.cn\/widget\/note\/get_widget_note - reject
 ^https?:\/\/mapi\.mafengwo\.cn\/system\/push\/get_local_push_config - reject
 
-
 # >>> merged from MaiDanBa.sgmodule (unique only)
 ^https?:\/\/creditcard\.bankcomm\.(com|cn)\/tfimg\/public00\/M00\/[a-zA-Z0-9]{2}\/[a-zA-Z0-9]{2}\/[a-zA-Z0-9-]{30}\.(jpg|jpeg) - reject
-
 
 # >>> merged from MaiDuiDui.sgmodule (unique only)
 ^https?:\/\/tower\.ubixioe\.com\/mob\/mediation - reject
 ^https?:\/\/sdk1xyajs\.data\.kuiniuca\.com - reject
-
 
 # >>> merged from ManHuaRen.sgmodule (unique only)
 ^https?:\/\/mangaapi\.manhuaren\.com\/v\d\/public\/getStartPageAds - reject
 ^https?:\/\/.*mangaapi\.manhuaren\.\w{2,4}\/v\d\/public\/(getStartUpMessage|getStartPageAds|getShelfActivity) - reject
 ^https?:\/\/.*mangaapi\.manhuaren\.\w{2,4}\/v\d\/ad - reject
 
-
 # >>> merged from MangoTV.sgmodule (unique only)
 # 无用请求
 ^https?:\/\/[\d\.]+:\d{5}\/\?cmd=indexes - reject
-
 
 # >>> merged from MaoErFM.sgmodule (unique only)
 # 开屏广告 感谢【可莉🅥】分享
 ^https?:\/\/app\.missevan\.com\/site\/launch\? - reject
 
-
 # >>> merged from MeiRiYouXian.sgmodule (unique only)
 ^https?:\/\/j-image\.missfresh\.cn\/img_(.+)\.gif$ - reject
 ^https?:\/\/j-image\.missfresh\.cn\/img_(.+)\.(jpg|jpeg|gif|png)\?iopcmd=convert&dst=webp&q=85$ - reject
 
-
 # >>> merged from MeiWeiBuYongDeng.sgmodule (unique only)
 ^https?:\/\/capi\.mwee\.cn\/app-api\/V\d{2}\/app\/(ad|getstartad) - reject
 
-
 # >>> merged from MeituXiuxiu.sgmodule (unique only)
 ^https?:\/\/mea\.meitudata\.com\/kaiping - reject
-
 
 # >>> merged from Meiyou.sgmodule (unique only)
 ^http:\/\/x\.seeyouyima\.com\/adx\/staticstics\? - reject
@@ -4514,34 +4123,27 @@ https?:\/\/helper\.2bulu\.com\/(greenPea\/queryTasks|proSpecial\/allData|saveSpl
 ^https:\/\/axxd\.xmseeyouyima\.com\/v1\/getad\? - reject
 ^https:\/\/axxd\.xmseeyouyima\.com\/pregetad\? - reject
 
-
 # >>> merged from MiDu.sgmodule (unique only)
 ^https?:\/\/apiwz\.midukanshu\.com\/advert\/getPopup$ - reject
 ^https?:\/\/apiwz\.midukanshu\.com\/advert\/treasureInfo$ - reject
 ^https?:\/\/apiwz\.midukanshu\.com\/config\/getAds$ - reject
 
-
 # >>> merged from MiaoPai.sgmodule (unique only)
 ^https?:\/\/b-api\.ins\.miaopai\.com\/\d\/ad/ - reject
 
-
 # >>> merged from MoGuZuFang.sgmodule (unique only)
 ^https?:\/\/api\.mgzf\.com\/renter-operation\/home\/startHomePage - reject
-
 
 # >>> merged from NMIServicePlatform.sgmodule (unique only)
 # 开屏广告
 ^https?:\/\/fuwu\.nhsa\.gov\.cn\/ebus\/fuwu\/api\/base\/cms\/iep\/web\/cms\/hmpgcfg\/queryAppHmpgCfgByApp - reject
 
-
 # >>> merged from NetEaseDashen.sgmodule (unique only)
 # 广告下发
 ^https:\/\/god\.gameyw\.netease\.com\/v\d\/ad - reject
 
-
 # >>> merged from NetEaseKaola.sgmodule (unique only)
 ^https?:\/\/gw\.kaola\.com\/gw\/dgmobile\/newOpenAd - reject
-
 
 # >>> merged from NetEaseMail.sgmodule (unique only)
 ^https?:\/\/p\.c\.music\.126.net\/.*?jpg$ - reject
@@ -4552,65 +4154,52 @@ https?:\/\/helper\.2bulu\.com\/(greenPea\/queryTasks|proSpecial\/allData|saveSpl
 ^https?:\/\/nex.163.com\/q - reject
 ^https?:\/\/g1.163.com\/madfeedback - reject
 
-
 # >>> merged from NetEaseYanxuan.sgmodule (unique only)
 https://support.you.163.com/appversync/check.do - reject
 ^https?:\/\/m\.you\.163\.com\/activity\/popWindow - reject
 ^https?:\/\/yanxuan\.nosdn\.127\.net\/.*\.mp4 - reject
 
-
 # >>> merged from NetEaseYoudaoDictionary.sgmodule (unique only)
 # 其他
 ^https?:\/\/oimage([a-z])([0-9])\.ydstatic\.com\/.+adpublish - reject
-
 
 # >>> merged from ONE.sgmodule (unique only)
 ^https?:\/\/app\.api\.d3yuiw4\.com\/api\/app\/ad - reject
 ^https?:\/\/api\.21ec74\.com\/v2\.5\/ad - reject
 
-
 # >>> merged from Oray.sgmodule (unique only)
 ^https?:\/\/slapi\.oray\.net\/client\/ad - reject
 ^https?:\/\/slapi\.oray\.net\/adver - reject
-
 
 # >>> merged from PConline.sgmodule (unique only)
 ^https?:\/\/agent-count\.pconline\.com\.cn\/counter\/adAnalyse\/ - reject
 ^https?:\/\/mrobot\.(pcauto|pconline)\.com\.cn\/v\d\/ad\dp - reject
 ^https?:\/\/mrobot\.pcauto\.com\.cn\/xsp\/s\/auto\/info\/(ad|preload) - reject
 
-
 # >>> merged from PICC.sgmodule (unique only)
 # 人保头条
 ^https?:\/\/zgrb\.epicc\.com\.cn\/G-HAPP\/h\/headlines\/queryHeadlines - reject
-
 
 # >>> merged from PSBC.sgmodule (unique only)
 # 屏蔽升级弹窗 感谢@jinlvei分享 影响软件运行，如开启可自行添加主机名
 ^https?:\/\/static\.mobile-bank\.psbc\.com\/mgs - reject
 
-
 # >>> merged from PeoplesDaily.sgmodule (unique only)
 ^https?:\/\/app\.peopleapp\.com\/Api\/\d+/HomeApi\/(adv|getAdvertImage) - reject
 ^https?:\/\/stat\.peopleapp\.com\/ - reject
-
 
 # >>> merged from PerfectWorldEsports.sgmodule (unique only)
 # 开屏广告
 ^https?:\/\/api\.wmpvp\.com\/api\/v\d\/config\/promote - reject
 
-
 # >>> merged from Pinduoduo.sgmodule (unique only)
 ^https?:\/\/api\.(pinduoduo|yangkeduo)\.com\/api\/cappuccino\/splash - reject
-
 
 # >>> merged from PingAnHaoCheZhu.sgmodule (unique only)
 ^https?:\/\/hcz-member\.pingan\.com\.cn\/micro-api\/homepage\/do\/app\/popbox\/getTopPopBox - reject
 
-
 # >>> merged from PizzaHut.sgmodule (unique only)
 ^https?:\/\/res\.pizzahut\.com\.cn\/CRM\/phad\/apphome\/apphome - reject
-
 
 # >>> merged from PuPuSupermarket.sgmodule (unique only)
 # 广告下发
@@ -4621,10 +4210,8 @@ https://support.you.163.com/appversync/check.do - reject
 # 主页实惠卡横幅
 ^https:\/\/j1\.pupuapi\.com\/client\/member_card\/index\/my - reject
 
-
 # >>> merged from QQBrowser.sgmodule (unique only)
 ^https?:\/\/us\.l\.qq\.com\/exapp\?spsa=\d - reject
-
 
 # >>> merged from QQMusic.sgmodule (unique only)
 ^https?:\/\/us\.l\.qq\.com\/exapp - reject
@@ -4633,10 +4220,8 @@ https://support.you.163.com/appversync/check.do - reject
 ^https?:\/\/((25[0-5]|2[0-4]\d|1\d{2}|[1-9]?\d)\.){3}(25[0-5]|2[0-4]\d|1\d{2}|[1-9]?\d)\/music\/common\/upload\/t_splash_info\/ - reject
 ^https:\/\/music\.y\.qq\.com\/maproxy\/getPbCompressAd - reject
 
-
 # >>> merged from QQWallet.sgmodule (unique only)
 ^https?:\/\/m\.qianbao\.qq\.com\/pages\/walletHome\?invisible - reject
-
 
 # >>> merged from QiDianReading.sgmodule (unique only)
 ^https?:\/\/mage\.if\.qidian\.com\/argus\/api\/v\d\/client\/getsplashscreen - reject
@@ -4645,10 +4230,8 @@ https://support.you.163.com/appversync/check.do - reject
 ^https?://magev6.if.qidian.com/argus/api/v4/client/getsplashscreen? - reject
 ^https?:\/\/magev6\.if\.qidian\.com\/argus\/api\/v1\/adv\/getadvlistbatch - reject
 
-
 # >>> merged from QiMai.sgmodule (unique only)
 ^https?:\/\/(?>webapi|miniapp)\.qmai\.cn\/web\/cmk-center\/marketing\/canvas\/advert - reject
-
 
 # >>> merged from QiMaoNovel.sgmodule (unique only)
 # 删除了域名lf-cdn-tos.bytescm.com，原因是无法MITM
@@ -4660,7 +4243,6 @@ https://support.you.163.com/appversync/check.do - reject
 ^https?:\/\/p1\-lm\.adukwai\.com\/bs2\/adUnionVideo - reject
 ^https?:\/\/lf\-cdn\-tos\.bytescm\.com\/obj\/static\/ad - reject
 
-
 # >>> merged from QiShuiMusic.sgmodule (unique only)
 # 字节跳动广告
 ^https:\/\/ether-pack\.pangolin-sdk-toutiao\.com\/union\/endcard\/ - reject
@@ -4668,38 +4250,30 @@ https://support.you.163.com/appversync/check.do - reject
 ^https:\/\/sf\d+-fe-tos\.pglstatp-toutiao\.com\/obj\/ad-pattern\/ - reject
 ^https:\/\/lf-cdn-tos\.bytescm\.com\/obj\/static\/ad\/ - reject
 
-
 # >>> merged from QinBaoBao.sgmodule (unique only)
 ^https?:\/\/api\.qbb6\.com\/ad\/ - reject
-
 
 # >>> merged from Qiongyou.sgmodule (unique only)
 ^https?:\/\/open\.qyer\.com\/qyer\/config\/get - reject
 ^https?:\/\/media\.qyer\.com\/ad\/ - reject
 
-
 # >>> merged from QiuMiBao.sgmodule (unique only)
 ^https?:\/\/a\.qiumibao\.com\/activities\/config\.php - reject
 ^https?:\/\/a\.qiumibao\.com\/ios\/config\/\?version_code= - reject
 
-
 # >>> merged from Qunar.sgmodule (unique only)
 ^https?:\/\/client\.qunar\.com\/pitcher-proxy\?qrt=p_splashAd - reject
-
 
 # >>> merged from RenRenVideo.sgmodule (unique only)
 # RRTV_屏蔽軟件更新
 ^https?:\/\/api\.rr\.tv\/.*?Version - reject
 
-
 # >>> merged from RiRiZhu.sgmodule (unique only)
 ^https?:\/\/cms\.daydaycook\.com\.cn\/api\/cms\/advertisement\/ - reject
 ^https?:\/\/api\.daydaycook\.com\.cn\/daydaycook\/server\/ad\/ - reject
 
-
 # >>> merged from SFBest.sgmodule (unique only)
 ^https?:\/\/mapi\.sfbest\.com\/brokerservice-server\/cms\/getPositionById.* - reject
-
 
 # >>> merged from SPDBank.sgmodule (unique only)
 ^https?:\/\/lban\.spdb\.com\.cn\/mspmk-web-component\/getAdvList\.ah$ - reject
@@ -4707,35 +4281,27 @@ https://support.you.163.com/appversync/check.do - reject
 ^https?:\/\/lban\.spdb\.com\.cn\/mspmk-web-component\/prefetchAdvList\.ah - reject
 ^https?:\/\/wap\.spdb\.com\.cn\/mspmk-web-homeassist\/OpenScreenAdv\.ah$ - reject
 
-
 # >>> merged from SamClub.sgmodule (unique only)
 ^https?:\/\/api-sams\.walmartmobile\.cn\/api\/v\d\/sams\/sams-user\/(window\/getGoUpPlus|screen_promotion\/get) - reject
-
 
 # >>> merged from SanLianZhongDu.sgmodule (unique only)
 https://apis.lifeweek.com.cn/api/baseConfig/getIosNewConfig - reject
 
-
 # >>> merged from ShaoShuPai.sgmodule (unique only)
 https://ios.sspai.com/api/v3/recommend/page/get\?ad.*ios_home_modal - reject
-
 
 # >>> merged from ShenMa.sgmodule (unique only)
 ^https?:\/\/editor\.sm\.cn\/launch_picture - reject
 
-
 # >>> merged from ShengQuGames.sgmodule (unique only)
-
 
 # >>> merged from ShiHuo.sgmodule (unique only)
 # 开屏广告
 ^https?:\/\/sh-gateway\.shihuo\.cn\/v\d\/services\/sh-adapi\/home\/(screen|ad) - reject
 
-
 # >>> merged from ShouQiYueChe.sgmodule (unique only)
 ^https?:\/\/gw-passenger\.01zhuanche\.com\/gw-passenger\/zhuanche-passenger-token\/leachtoken\/webservice\/homepage\/queryADs - reject
 ^https?:\/\/gw-passenger\.01zhuanche\.com\/gw-passenger\/zhuanche-passengerController\/notk\/passenger\/recommendADs - reject
-
 
 # >>> merged from ShuQiNovel.sgmodule (unique only)
 ^https?:\/\/ut2\.shuqistat\.com\/.+\.gif - reject
@@ -4753,91 +4319,72 @@ https://ios.sspai.com/api/v3/recommend/page/get\?ad.*ios_home_modal - reject
 ^https?:\/\/feedback\.uc\.cn\/feedback\/api\/get_unread_status - reject
 ^https?:\/\/.+\.shuqireader\.com\/sapi\/.+ - reject
 
-
 # >>> merged from SnailSleep.sgmodule (unique only)
 ^https?:\/\/snailsleep\.net\/snail\/v\d\/adTask\/ - reject
 ^https?:\/\/snailsleep\.net\/snail\/v\d\/screen\/qn\/get\? - reject
-
 
 # >>> merged from SogouInput.sgmodule (unique only)
 # 开屏广告
 ^https?://(ios|android)\.sogou\.com/[^/]+/sogou_input_[^/]+/[^/]+/index\.html - reject
 
-
 # >>> merged from Sohu.sgmodule (unique only)
 ^https?:\/\/(api|api-bk\d+)\.tv\.sohu\.com\/agg\/api\/app\/config\/bootstrap - reject
 ^https?:\/\/pic\.k\.sohu\.com\/img\d\/wb\/tj\/ - reject
-
 
 # >>> merged from Soul.sgmodule (unique only)
 # 国际版Soul去广告
 ^https?:\/\/api-global\.soulapp\.me\/app\/open\/get - reject
 
-
 # >>> merged from Suning.sgmodule (unique only)
 ^https?:\/\/mpcs\.suning\.com\/mpcs\/dm\/getDmInfo - reject
-
 
 # >>> merged from TaoTaoReading.sgmodule (unique only)
 # 感谢【Baby】分享
 ^https?:\/\/bid\.adview\.cn\/agent\/getAd - reject
 
-
 # >>> merged from Taopiaopiao.sgmodule (unique only)
 # 开屏广告
 ^https?:\/\/acs\.m\.taobao\.com\/gw\/mtop\.film\.mtopadvertiseapi\.(queryadvertise|queryloadingbanner)\/ - reject
 
-
 # >>> merged from TencentGames.sgmodule (unique only)
 ^https?:\/\/qt\.qq\.com\/lua\/mengyou\/get_splash_screen_info - reject
-
 
 # >>> merged from TencentGamesCommunity.sgmodule (unique only)
 # 如果想拦截1234567890-1234?wx类的长连接就加长规则,不加结尾符,只要前面的匹配了都会拦截。
 ^https?:\/\/static\.gameplus\.qq\.com\/img\/\d{10}-\d{4}$ - reject
-
 
 # >>> merged from TencentNews.sgmodule (unique only)
 #^https?:\/\/r\.inews\.qq\.com\/getSplash\?apptype=ios&startarticleid=&__qnr= reject-img
 ^https?:\/\/r\.inews\.qq\.com\/(adsBlacklist|getFullScreenPic|getQQNewsRemoteConfig) - reject
 ^https?:\/\/r\.inews\.qq\.com\/(getBannerAds|getNewsRemoteConfig|getSplash|searchHotCatList|upLoadLoc) - reject
 
-
 # >>> merged from TencentRideCode.sgmodule (unique only)
 # 感谢【jinlvei】分享
 ^https?:\/\/ccmsupport-sz\.tenpay\.com\/cgi-bin\/common\/ccm_page_element.cgi - reject
-
 
 # >>> merged from TencentSports.sgmodule (unique only)
 ^https?:\/\/news\.ssp\.qq\.com\/app - reject
 ^https?:\/\/sports3\.gtimg\.com\/community\/20cf93884470434eaf38b2e77ab7796a\.png - reject
 
-
 # >>> merged from ThePaperNews.sgmodule (unique only)
 ^https?:\/\/adpai\.thepaper\.cn\/.+&ad= - reject
-
 
 # >>> merged from TianTianFund.sgmodule (unique only)
 ^https?:\/\/appactive\.1234567\.com\.cn\/AppoperationApi\/OperationService\/GetAppStartImg - reject
 
-
 # >>> merged from TianXingFinance.sgmodule (unique only)
 ^https?:\/\/t1\.market\.xiaomi\.com\/thumbnail\/webp\/w1170q100\/ - reject
-
 
 # >>> merged from TongChengTravel.sgmodule (unique only)
 # 开屏广告
 ^https?:\/\/wx\.17u\.cn\/xcxhomeapi\/((aggregator\/index)|(home\/(screen|banner|converge)))$ - reject
 
-
 # >>> merged from TruthSocial.sgmodule (unique only)
 ^https?:\/\/truthsocial\.com\/api\/v\d\/truth\/ads - reject
-
 
 # >>> merged from TubeMax.sgmodule (unique only)
 # 感谢【可莉】分享
 ^https?:\/\/.*\.i18n-pglstatp\.com\/obj\/ad-pattern-sg - reject
-
 
 # >>> merged from TuhuAutoCare.sgmodule (unique only)
 # 包含途虎小程序和App净化
@@ -4849,102 +4396,80 @@ https://ios.sspai.com/api/v3/recommend/page/get\?ad.*ios_home_modal - reject
 ^https?:\/\/(cl-)?gateway\.tuhu\.cn(\/cl)?\/ext-website-cl-beauty-api\/channelPage\/v\d\/channelPageCouponPromptComponent - reject
 ^https?:\/\/(cl-)?gateway\.tuhu\.cn(\/cl)?\/cl-common-api\/api\/personalCenter\/getAutoSuperConfig - reject
 
-
 # >>> merged from TujiaHomestay.sgmodule (unique only)
 ^https?:\/\/client\.tujia\.com\/bnbapp-node\/app\/(promotion\/popup\/getpopupups\/bnb|portal\/getStartPictureAdvertising) - reject
-
 
 # >>> merged from UJing.sgmodule (unique only)
 ^https?:\/\/api-marketing\.zhinengxiyifang\.cn\/api\/v2\/cloudcode\/wechat\/bid - reject
 ^https?:\/\/adsoss\.zhinengxiyifang\.cn\/ads - reject
 
-
 # >>> merged from VariFlight.sgmodule (unique only)
 ^https?:\/\/app\.variflight\.com\/ad\/ - reject
 ^https?:\/\/app\.variflight\.com\/v\d\/advert\/ - reject
-
 
 # >>> merged from Vipshop.sgmodule (unique only)
 ^https?:\/\/b\.appsimg\.com\/upload\/momin - reject
 ^https?:\/\/mapi\.appvipshop\.com\/vips-mobile\/rest\/iosAdInfo\/report - reject
 
-
 # >>> merged from WPS.sgmodule (unique only)
 ^https?:\/\/ios\.wps\.cn\/ad-statistics-service - reject
-
 
 # >>> merged from WallStreetCN.sgmodule (unique only)
 ^https?:\/\/api\.wallstreetcn\.com\/apiv\d\/advertising\/ - reject
 
-
 # >>> merged from WanCiWang.sgmodule (unique only)
 # 移除开屏
 ^https?:\/\/wanciwangdata\.oss-cn-beijing\.aliyuncs\.com\/startup\/resource\/content.+ - reject
-
 
 # >>> merged from WangShangGuoWang.sgmodule (unique only)
 ^https?:\/\/(?>csc|osg)-service\.sgcc\.com\.cn:\d+\/emss-pfa-appset-front\/appForceUpdate - reject
 ^https?:\/\/(?>csc|osg)-service\.sgcc\.com\.cn:\d+\/emss-pfa-appset-front\/appSync\/getAppForceUpgrade - reject
 ^https?:\/\/(?>csc|osg)-service\.sgcc\.com\.cn:\d+\/.*\/inner\/cache - reject
 
-
 # >>> merged from WeiPhone.sgmodule (unique only)
 ^https?:\/\/api\.wfdata\.club\/v\d\/yesfeng\/(infoCenterAd|yesList) - reject
-
 
 # >>> merged from WuTaCamera.sgmodule (unique only)
 ^https?:\/\/res-release\.wuta-cam\.com\/json\/ads_component_cache\.json - reject
 
-
 # >>> merged from XiChuangZhu.sgmodule (unique only)
 ^https?:\/\/lchttpapi\.xczim\.com\/1\.1\/functions\/getLaunchImageForIOS - reject
-
 
 # >>> merged from XiFanAnime.sgmodule (unique only)
 ^https?:\/\/pzoap\.moedot\.net\/xgapp\.php\/v2\/top_notice - reject
 
-
 # >>> merged from XiaChuFang.sgmodule (unique only)
 ^https?:\/\/api\.xiachufang\.com\/v\d\/ad/ - reject
-
 
 # >>> merged from XiamenAirlines.sgmodule (unique only)
 # 开屏广告
 ^https:\/\/mobileapi\.xiamenair\.com\/mobile-starter - reject
 
-
 # >>> merged from XiamiMusic.sgmodule (unique only)
 ^https?:\/\/acs\.m\.taobao\.com\/gw\/mtop\.alimusic\.common\.mobileservice\.startinit\/ - reject
-
 
 # >>> merged from XianYu.sgmodule (unique only)
 # 消息页感兴趣推荐
 ^https:\/\/acs\.m\.goofish\.com\/gw\/mtop\.taobao\.idle\.playboy\.recommend\/1\.0 - reject
 
-
 # >>> merged from XiaoAiSpeaker.sgmodule (unique only)
 ^https?:\/\/(info\.mina\.xiaoaisound|marketing-aibox\.v\.mitvos)\.com\/advertise(?!\/banner) - reject
 ^https?:\/\/(info\.mina\.xiaoaisound|marketing-aibox\.v\.mitvos)\.com\/payGuide\/userCenter - reject
 
-
 # >>> merged from XiaoBaiStudyPrinter.sgmodule (unique only)
 # 捕获试卷脚本：https://raw.githubusercontent.com/Yu9191/Script/main/shijuan.js
 ^https?:\/\/api\.xbxxhz\.com\/big_data\/v1\/home_pages - reject
-
 
 # >>> merged from XiaoJuTechnology.sgmodule (unique only)
 ^https?:\/\/ct\.xiaojukeji\.com\/agent\/v3\/feeds - reject
 ^https?:\/\/res\.xiaojukeji\.com\/resapi\/activity\/get(Ruled|Preload|PasMultiNotices) - reject
 ^https?:\/\/res\.xiaojukeji\.com\/resapi\/activity\/mget - reject
 
-
 # >>> merged from XiaoLiShengHuo.sgmodule (unique only)
 ^https?:\/\/mpos-pic\.helipay\.com\/upload\/images\/advertisment\/image - reject
 
-
 # >>> merged from XiaoNiu.sgmodule (unique only)
 ^https?:\/\/app-api\.niu\.com\/v\d\/advertisement\/ - reject
-
 
 # >>> merged from XiaoRongJia.sgmodule (unique only)
 # 屏蔽固件更新
@@ -4952,15 +4477,12 @@ https://ios.sspai.com/api/v3/recommend/page/get\?ad.*ios_home_modal - reject
 # 首页弹窗
 ^https?:\/\/www\.myusmile\.online\/user\/userTagRecord\/popup - reject
 
-
 # >>> merged from XiaoShuiMian.sgmodule (unique only)
 ^https?:\/\/api\.psy-1\.com\/cosleep\/startup - reject
-
 
 # >>> merged from XiaoTuChongChong.sgmodule (unique only)
 # 小程序净化
 ^https?:\/\/ad\.xiaotucc\.com\/advert - reject
-
 
 # >>> merged from XiaoXiaoYouXuan.sgmodule (unique only)
 ^https?:\/\/xxyx-client-api\.xiaoxiaoyouxuan\.com\/get_big_module_bottom_ad - reject
@@ -4975,36 +4497,28 @@ https://ios.sspai.com/api/v3/recommend/page/get\?ad.*ios_home_modal - reject
 # 禁止上报设备信息
 ^https?:\/\/statistic\.live\.126\.net\/statics\/report\/common\/form - reject
 
-
 # >>> merged from XiaoXiongArt.sgmodule (unique only)
 ^https:\/\/www\.xiaoxiongmeishu\.com\/api\/(home\/v1\/config\/appInit|s\/v1\/popup\/createCouponPopup) - reject
-
 
 # >>> merged from XiaoYi.sgmodule (unique only)
 ^https?://api.xiaoyi.com\/v5\/app\/mobile\/ads - reject
 ^https?://api.xiaoyi.com\/v5\/app\/config\?userid=.* - reject
 
-
 # >>> merged from XinPianChang.sgmodule (unique only)
 ^https?:\/\/app\.xinpianchang\.com\/open_screen\? - reject
-
 
 # >>> merged from XingHuoEnglish.sgmodule (unique only)
 # 开屏广告
 ^https?:\/\/api\d\.sparke\.cn\/admodel\/list\?adspace=spgg&flag=\d$ - reject
 
-
 # >>> merged from YaNaiFei.sgmodule (unique only)
 ^https?:\/\/pipi\.4kya\.com\/\/xgapp\.php\/v3\/advert\.position=[^2]+ - reject
-
 
 # >>> merged from Yahoo.sgmodule (unique only)
 ^https?:\/\/m\.yap\.yahoo\.com\/v\d{2}\/getAds\.do - reject
 
-
 # >>> merged from YiHaoDian.sgmodule (unique only)
 ^https?:\/\/venus\.yhd\.com\/memhome\/launchConfig - reject
-
 
 # >>> merged from YiKaoBang.sgmodule (unique only)
 ^https?:\/\/api\.yikaobang\.com\.cn\/client\/main\/homePageSmallAd - reject
@@ -5012,28 +4526,22 @@ https://ios.sspai.com/api/v3/recommend/page/get\?ad.*ios_home_modal - reject
 # 去强制更新 感谢【SH DDDDD】分享
 ^https?:\/\/api\.yikaobang\.com\.cn\/index\.php\/version\/version\/check - reject
 
-
 # >>> merged from YiQiKaoJiaoShi.sgmodule (unique only)
 # 开屏广告及题库广告 感谢【Jessire】分享
 ^https?:\/\/api\.17kjs\.com\/meta\/ads_targets - reject
-
 
 # >>> merged from YiTao.sgmodule (unique only)
 ^https?:\/\/acs\.m\.taobao\.com\/gw\/mtop\.etao\.noah\.query\/.+tao_splash - reject
 ^https?:\/\/acs\.m\.taobao\.com\/gw\/mtop\.alimama\.etao\.config\.query\/.+?etao_advertise - reject
 
-
 # >>> merged from YinShengTong.sgmodule (unique only)
 ^https?:\/\/ad\.ysepay\.com\/yst-ad\/ST101001\/[0-9]{11}\.jpg - reject
-
 
 # >>> merged from YouLinYouKe.sgmodule (unique only)
 ^https?:\/\/new-app-api\.ylyk\.com\/v\d\/user\/myinfo\/adviser - reject
 
-
 # >>> merged from YouShu.sgmodule (unique only)
 ^https?:\/\/gongdu\.youshu\.cc\/m\/open_screen\/list_by_udid - reject
-
 
 # >>> merged from YouTuReading.sgmodule (unique only)
 ^https?:\/\/img\.dailmo\.com\/img\/61\/23c7125bfe6166d69f3bff5b0ca4d31e\.jpg - reject
@@ -5046,25 +4554,20 @@ https://ios.sspai.com/api/v3/recommend/page/get\?ad.*ios_home_modal - reject
 ^https?:\/\/img\.allahall\.com\/img\/5\/6cb2aa237ce1f65944aa1ecb29fbdeef\.jpg - reject
 ^https?:\/\/img\.allahall\.com\/img\/59\/6a13a75dfe46ebfdac96bd27ef098885\.jpg - reject
 
-
 # >>> merged from YunBaoBaoBigData.sgmodule (unique only)
 ^https?:\/\/nnapp\.cloudbae\.cn:\d+\/mc\/api\/advert/ - reject
 ^https?:\/\/nnapp\.cloudbae\.cn\/mc\/api\/advert/ - reject
 
-
 # >>> merged from ZhangShangLOL.sgmodule (unique only)
 ^https?:\/\/mlol\.qt\.qq\.com\/go\/recommend - reject
-
 
 # >>> merged from ZhangShangShengHuo.sgmodule (unique only)
 # 设置栏目内广告
 ^https?:\/\/intellicc\.bas\.cmbchina\.com\/Edge\/api\/mlife\.intelli\.render\.api\.render\/getDynamicDataSec - reject
 
-
 # >>> merged from ZhiDianTianXia.sgmodule (unique only)
 # 开屏广告
 ^https?:\/\/zua\.zhidiantianxia\.cn\/api\/adverts - reject
-
 
 # >>> merged from Zhihu.sgmodule (unique only)
 ^https:\/\/api\.zhihu\.com\/unlimited\/go\/my_card - reject
@@ -5078,19 +4581,15 @@ https://ios.sspai.com/api/v3/recommend/page/get\?ad.*ios_home_modal - reject
 ^https:\/\/zhuanlan\.zhihu\.com\/api\/articles\/\d+\/recommendation - reject
 ^https:\/\/zhstatic\.zhihu\.com\/brand-ad - reject
 
-
 # >>> merged from ZhuiJuDaRen.sgmodule (unique only)
 ^https?:\/\/zjdr666\.com\/zjdr\.php\/v\d\/(version|top_notice\?|advert\?position=[^2]+) - reject
-
 
 # >>> merged from ZuiYou.sgmodule (unique only)
 ^https?:\/\/api\.izuiyou\.com\/ad\/ - reject
 ^https?:\/\/adapi\.izuiyou\.com\/ - reject
 
-
 # >>> merged from clicli.sgmodule (unique only)
 ^https?:\/\/js-ad\.ayximgs\.com\.ad-universe-cdn\.hzhcbkj\.cn\/xgapp\.php\/v2\/top_notice - reject
-
 
 # >>> merged from csdn.sgmodule (unique only)
 # 感谢【Jörgen Frecht】分享
@@ -5098,14 +4597,11 @@ https://ios.sspai.com/api/v3/recommend/page/get\?ad.*ios_home_modal - reject
 ^https?:\/\/app-gw\.csdn\.net\/abtesting\/v2\/getList? - reject
 ^https?:\/\/gw\.csdn\.net\/cms-app\/v\d+\/home_page\/open_advertisement - reject
 
-
 # >>> merged from iFinD.sgmodule (unique only)
 ^https?:\/\/iphone\.ac\.qq\.com\/.*\/Support\/(getSystemConf|bootScreen) - reject
 
-
 # >>> merged from linxi.sgmodule (unique only)
 ^https?:\/\/api\.internetofcity\.cn\/api\/resource\/anon\/popups\/(getSplashList|getList) - reject
-
 
 # >>> merged from ofoBicycle.sgmodule (unique only)
 ^https?:\/\/supportda\.ofo\.com\/adaction\? - reject
@@ -5113,23 +4609,18 @@ https://ios.sspai.com/api/v3/recommend/page/get\?ad.*ios_home_modal - reject
 ^https?:\/\/ma\.ofo\.com\/ads - reject
 ^https?:\/\/activity2\.api\.ofo\.com\/ofo\/Api\/v2\/ads - reject
 
-
 # >>> merged from omofun.sgmodule (unique only)
 ^https?:\/\/103\.91\.210\.141\:2515\/xgapp\.php\/v2\/top_notice - reject
-
 
 # >>> merged from pikpak.sgmodule (unique only)
 https://access.mypikpak.com/access_controller/v1/area_accessible - reject
 
-
 # >>> merged from top-widget.sgmodule (unique only)
 ^https?:\/\/top-widgets-api\.xiaozujian\.com\/api\/ad\/config - reject
-
 
 # >>> merged from udnNews.sgmodule (unique only)
 ^https?://pubads.g.doubleclick.net/gampad/ads - reject
 ^https?://pagead2.googleadservices.com/pagead/adview - reject
-
 
 # >>> merged from weibo.module (unique only)
 ^https?:\/\/sdkapp\.uve\.weibo\.com\/interface\/sdk\/(get-lbs-cell-info\.php|sdkconfig\.php) - reject
@@ -5141,16 +4632,13 @@ https://access.mypikpak.com/access_controller/v1/area_accessible - reject
 hostname = %APPEND% *.17u.cn, *.17usoft.com, *.58cdn.com.cn, *.beacon.qq.com, *.dianping.com, *.ecoliving168.com, *.gamersky.com, *.googleapis.com, *.hitv.com, *.i18n-pglstatp.com, *.iqiyi.com, *.kakamobi.cn, *.kingsoft-office-service.com, *.ly.com, *.mgtv.com, *.music.126.net, *.pangolin-sdk-toutiao.*, *.pangolin-sdk-toutiao.com, *.pglstatp-toutiao.com, *.pglstatp-toutiao.com.*, *.pstatp.com, *.pstatp.com.*, *.qyfxgd.cn, *.shuqireader.com, *.souhu.com, *.townmalls.cn, *.ubixioe.com, *.weibo.cn, *.weibo.com, *.weilai555.com, *.yuxueyuan.cn, *default.ixigua.com, *mangaapi.manhuaren.*, -i.vip.iqiyi.com, 101.201.175.228, 101.201.62.20, 101.201.62.26, 101.91.69.26, 103.37.155.60, 103.91.210.141, 118.178.214.118, 119.29.29.*, 124.250.48.3, 182.92.145.50, 182.92.244.70, 182.92.251.113, 39.103.79.14, 39.106.97.84, 3g.csair.com, 3gimg.qq.com, 47.110.187.87, 47.95.49.75, 4gimg.map.qq.com, a.line.me, a.qiumibao.com, a.sinopecsales.com, aag.enmonster.com, abcapi.lenovoimage.com, access.mypikpak.com, acs-m.freshippo.com, acs.m.goofish.com, acs.m.taobao.com, acs.youku.com, activity2.api.ofo.com, ad.12306.cn, ad.life.360.cn, ad.line-scdn.net, ad.lofter.com, ad.mcloud.139.com, ad.myfriday.cn, ad.shunchangzhixing.com, ad.xiaotucc.com, ad.ysepay.com, adapi.izuiyou.com, adm.10jqka.com.cn, adpai.thepaper.cn, adproxy.autohome.com.cn, ads.iconntech.com, ads.ysepay.com, ads.zhinengxiyifang.cn, adservice.sigmob.cn, adsoss.zhinengxiyifang.cn, adstatic.peopleapp.com, adui.tg.meitu.com, adx-cn.anythinktech.com, aes.acfun.cn, afd.baidu.com, agent-count.pconline.com.cn, aimg.babytreeimg.com, alt-r.my.com, amap-aos-info-nogw.amap.com, amdc.m.taobao.com, amemv.com, ams-cdn.cdtft.cn, android.sogou.com, ap.dongdianqiu.com, api*.futunn.com, api*.sparke.cn, api*.tuisong.baidu.com, api-a.soulapp.cn, api-ac.liepin.com, api-access.pangolin-sdk-toutiao-b.com, api-access.pangolin-sdk-toutiao.com, api-access.pangolin-sdk-toutiao1.com, api-access.pangolin-sdk-toutiao?.com, api-account.soulapp.cn, api-ad-product.huxiu.com, api-cfg.wtzw.com, api-chat.soulapp.cn, api-cslp-emt.amazon.cn, api-global.soulapp.me, api-marketing.zhinengxiyifang.cn, api-mifit*.huami.com, api-miprint.hannto.com, api-new.app.acfun.cn, api-one-wscn.awtmt.com, api-overmind.youdao.com, api-pay.soulapp.cn, api-release.wuta-cam.com, api-sams.walmartmobile.cn, api-shoulei-ssl.xunlei.com, api-user.soulapp.cn, api-wanda.liepin.com, api.17kjs.com, api.21ec74.com, api.21jingji.com, api.51credit.com, api.alipan.com, api.bevol.com, api.bilibili.com, api.bjxkhc.com, api.boohee.com, api.bwton.com, api.caijingmobile.com, api.chelaile.net.cn, api.cloud.189.cn, api.club.lenovo.cn, api.coolapk.com, api.dangdang.com, api.daydaycook.com.cn, api.douban.com, api.fengshows.com, api.flydigi.com, api.gameplus.qq.com, api.gamer.com.tw, api.gaoqingdianshi.com, api.gongkaoleida.com, api.gotokeep.com, api.hanju.koudaibaobao.com, api.haohaozhu.cn, api.htp.ad-scope.com.cn, api.huachenjie.com, api.huomao.com, api.indeedpower.com, api.internetofcity.cn, api.izuiyou.com, api.jr.mi.com, api.jxedt.com, api.kkmh.com, api.laifeng.com, api.live.bilibili.com, api.m.jd.com, api.mcd.cn, api.mgzf.com, api.mos.csvw.com, api.ncarzone.com, api.nj.nbtv.cn, api.petkit.cn, api.pinduoduo.com, api.psy-1.com, api.qbb6.com, api.rr.tv, api.sfacg.com, api.shanghaionstar.com, api.sodalife.xyz, api.sogaha.cn, api.taptapdada.com, api.tipsoon.com, api.touker.com, api.u51.com, api.ulife.group, api.vistopia.com.cn, api.wallstreetcn.com, api.wfdata.club, api.winbull8.com, api.wmpvp.com, api.xbxxhz.com, api.xiaoyi.com, api.xiaoyuzhoufm.com, api.xueqiu.com, api.yangkeduo.com, api.ycapp.yiche.com, api.yikaobang.com.cn, api.yonghuivip.com, api.zhihu.com, api2.helper.qq.com, api2.yaduo.com, api3.cls.cn, api4.bybutter.com, api5.youonbike.com, apicloud.zol.com.cn, apio.zhengqi100.com, apis.folidaymall.com, apis.lifeweek.com.cn, apissl.gifshow.com, apissl.ksapisrv.com, apiwz.midukanshu.com, app-api.niu.com, app-api.smzdm.com, app-conf.ds.163.com, app-gw.csdn.net, app-izz.zhengzhou.gov.cn, app-sc.miguvideo.com, app-v1.ecoliving168.com, app.10086.cn, app.10099.com.cn, app.58.com, app.95598pay.com, app.aa-ab.com, app.api.d3yuiw4.com, app.api.versa-ai.com, app.badmintoncn.com, app.bilibili.com, app.ceair.com, app.chinahxzq.com.cn, app.flymodem.com.cn, app.hbooker.com, app.homeinns.com, app.meruki.cn, app.missevan.com, app.peopleapp.com, app.variflight.com, app.wy.guahao.com, app.xinpianchang.com, app.yinxiang.com, app.zhoudamozi.com, app.zhuanzhuan.com, app02.vgtime.com, app2.autoimg.cn, app3.qdaily.com, appactive.1234567.com.cn, appapi.51job*.com, appapi.caiyicloud.com, appapi.huazhu.com, appcloud2.zhihu.com, appconf.mail.163.com, appdmkj.5idream.net, appgw.ddpai.com, apphw.ddpai.com, apps.api.ke.com, appwk.baidu.com, article-api.smzdm.com, as.xiaojukeji.com, atrace.chelaile.net.cn, audiobookpay.kuwo.cn, awg.enmonster.com, awp-assets.meituan.net, axxd.xmseeyouyima.com, az2-api-idc.ksapisrv.com, az2-api-js.gifshow.com, az2-api.ksapisrv.com, az2-live.ksapisrv.com, az4-api-idc.ksapisrv.com, az4-api.ksapisrv.com, b-api.ins.miaopai.com, b.appsimg.com, b2baifanfan.baidu.com, baichuan.baidu.com, bd-api.kuwo.cn, bdsp-x.jd.com, beehiveapi.58.com, beta-api.crunchyroll.com, beta-luna.douyin.com, bgw.xinyue.qq.com, bid.adview.cn, bk.bingo.qq.com, bla.gtimg.com, blog.nilbt.com, bodianimgcdn.kuwo.cn, bohe.sfo-tx-shanghai-01.saas.sensorsdata.cn, book.img.ireader.com, bp-api.bestv.cn, bp-api.bestv.com.cn, btrace.qq.com, business-cdn.shouji.sogou.com, business.msstatic.com, buy.line.me, c.m.163.com, c.zhangle.com, cache.bydauto.com.cn, cap.caocaokeji.cn, capi.douyucdn.cn, capi.lkcoffee.com, capi.mwee.cn, capis*.didapinche.com, ccmsupport-sz.tenpay.com, ccsp-egmas.sf-express.com, cdb.meituan.com, cdke.youdao.com, cdn-evone-ceph.echargenet.com, cdn-xyk-app.bankofbeijing.com.cn, cdn.*.chelaileapp.cn, cdn.133.cn, cdn.cmgadx.com, cdn.dianshihome.com, cdn.jlbank.com.cn, cdn.sdb.com.cn, cdn.wup.huya.com, cdnfile1.msstatic.com, cdnmobibank.bankofbeijing.com.cn, cds.wifi188.com, cgbank.oss-cn-shenzhen.aliyuncs.com, channel.beitaichufang.com, chat-live.soulapp.cn, cheyouapi.ycapp.yiche.com, chl.tf.cn, ci.xiaohongshu.com, cix.line-apps.com, cl-gateway.tuhu.cn, client-api-v2.oray.com, client.app.coc.10086.cn, client.mail.163.com, client.qunar.com, client.tujia.com, cloud.189.cn, cms.daydaycook.com.cn, cmsapi.wifi8.com, cmsfile.wifi8.com, cn-acs.m.cainiao.com, common-sc.miguvideo.com, common.diditaxi.com.cn, compus.xiaofubao.com, conf-darwin.xycdn.com, conf.diditaxi.com.cn, config-service.seeyouyima.com, consumer.fcbox.com, cover.baidu.com, creditcard.bankcomm.cn, creditcard.bankcomm.com, creditcardapp.bankcomm.cn, creditcardapp.bankcomm.com, crs-event.line.me, cstore-en-public-tx.seewo.com, ct.xiaojukeji.com, cube.elemecdn.com, cupid.51job*.comhostname, d.line-scdn.net, d.psbc.com, daijia.kuaidadi.com, daoyu.sdo.com, dapis.mting.info, ddplus.meituan.net, ddrk.me, delivery-api.imdada.cn, dict-mobile.iciba.com, dict.youdao.com, dictvip-business.youdao.com, direct.z-bank.com, discardrp.umetrip.com, discuz.gtimg.cn, dispatcher.camera360.com, display*-sc.miguvideo.com, display.wting.info, djcapp.game.qq.com, dl*.app.gtja.com, dl-cu-hz.lechange.cn, dl.app.gtja.com, dns.jd.com, douyucdn.cn, dq.dxy.cn, dsa-mfp.fengshows.cn, dsp-impr2.youdao.com, dsp-x.jd.com, dsp.fcbox.com, dsp.toutiao.com, dss0.bdstatic.com, du.hupucdn.com, dudian-oss.oss-cn-shenzhen.aliyuncs.com, dxy.com, dyncdn.me, e-static.aia.com.cn, e.dangdang.com, e.weather.com.cn, easyreadfs.nosdn.127.net, ebk.17u.cn, ec-bot-obs.line-scdn.net, ecapi.lkcoffee.com, ecard.shenzhentong.com, ecloud.tppension.cntaiping.com, ecssmobile.e-chinalife.com, edit.sinaapp.com, edith.xiaohongshu.com, editor.sm.cn, elemecdn.com, elife.icbc.com.cn, emisdatacenteraws.hafoo.com, enjoy.cdn-static.abchina.com, ether-pack.pangolin-sdk-toutiao.com, evs.500.com, explorer.tratao.com, external.fcbox.com, facade-api.black-unique.com, fastbuyer.zbj.com, fbchina.flipchina.cn, fc-video.cdn.bcebos.com, fcvbjbcebos.baidu.com, feedback.uc.cn, file.cibfintech.com, file.dian.so, fintechappdr.cgws.com, flowplus.meituan.net, fm.fenqile.com, fmapp.chinafamilymart.com.cn, freight.xiaojukeji.com, fuss10.elemecdn.com, fuwu.nhsa.gov.cn, g-acs.m.goofish.com, g.alicdn.com, g1.163.com, ga-album-cdnqn.52tt.com, gab.122.gov.cn, games.mobileapi.hupu.com, gateway-api.dushu365.com, gateway-mobile-gray.soulapp.cn, gateway.36kr.com, gateway.benewtech.cn, gateway.shouqiev.com, gateway.tuhu.cn, geetest.htsc.com, gfp.veta.naver.com, ggc.miguvideo.com, ggic*.miguvideo.com, ggx*.miguvideo.com, gha.ghac.cn, gmp.lakala.com, go.babytree.com, goblin.hupu.com, god.gameyw.netease.com, gongdu.youshu.cc, gql-fed.reddit.com, gql.reddit.com, grpc.biliapi.net, gslbali.ximalaya.com, gsp.gacmotor.com, gss0.bdstatic.com, guanyu.longfor.com, guide-acs.m.taobao.com, gurd.snssdk.com, gurd.snssdk.com.*, gw-passenger.01zhuanche.com, gw.aihuishou.com, gw.alicdn.com, gw.api.ddxq.mobi, gw.chuangkit.com, gw.csdn.net, gw.kaola.com, gw.line.naver.jp, gw.xiaocantech.com, gw3.ykccn.com, h3.open.taou.com, h5api.sginput.qq.com, h5app.kuwo.cn, haojia-api.smzdm.com, haojia.m.smzdm.com, hcz-member.pingan.com.cn, hd.xiaojukeji.com, hdgateway.zto.com, heic.alicdn.com, hfapp-service.qweather.net, hmbaby.simshine.cn, home.mi.com, home.umetrip.com, homefront.qunar.com, homepage-api.smzdm.com, hweb-hotel.huazhu.com, hweb-manager.huazhu.com, hz.yxzq.com, i*.hdslb.com, i*.hoopchina.com.cn, i-lq.snssdk.com, i-lq.snssdk.com.*, i.ys7.com, iapi.bishijie.com, icc.one, ih2.ireader.com, image.pushplus.plus, image.spdbccc.com.cn, image.suning.com, imagepc.ctaiot.com, images.client.vip.xunlei.com, images.pinduoduo.com, imcs.citicbank.com, imeclient.openspeech.cn, img-tailor.11222.cn, img.admobile.top, img.alicdn.com, img.allahall.com, img.dailmo.com, img.ddrk.me, img.gdoil.cn, img.jiemian.com, img.meituan.net, img.wukongtv.com, img.yun.01zhuanche, img0*.benlailife.com, img0*.luckincoffeecdn.com, img01.10101111cdn.com, img1.126.net, imgcache.qq.com, imgx.jampp.com, impservice.dictapp.youdao.com, info.mina.xiaoaisound.com, init.sms.mob.com, intellicc.bas.cmbchina.com, intellicc.bcs.cmbchina.com, interface*.music.163.com, interface.aomiapp.com, interface.music.163.com, interface3.music.163.com, interface9.music.163.com, iobs.pingan.com.cn, ios-api.lucklyworld.com, ios.lantouzi.com, ios.sogou.com, ios.sspai.com, ios.wps.cn, iphone.ac.qq.com, ipv4.music.163.com, issuecdn.baidupcs.com, j-image.missfresh.cn, j1.pupuapi.com, j5.dfcfw.com, jad-api.jin10.com, jdread-api.jd.com, jiucaigongshe.oss-cn-beijing.aliyuncs.com, jp.rsscc.com, js-ad.ayximgs.com, jt.rsscc.com, kad.gotokeep.com, kano.guahao.cn, kaola-haitao.oss.kaolacdn.com, l*.51fanli.net, lan.line.me, lawsonapi.yorentown.com, lban.spdb.com.cn, lcen.xiaote.net, lchttpapi.xczim.com, learn.chaoxing.com, lego.boohee.com, legy.line-apps.com, lens.leoao.com, lf-cdn-tos.bytescm.com, line3-h5-mobile-api.biligame.com, link.zhihu.com, list-app-m.i4.cn, live-ads.huya.com, live.inst-service.htsc.com, lives.l.qq.com, lofter.lf127.net, luckman.suning.com, m*.amap.com, m-cloud.zhihu.com, m.360buyimg.com, m.baidu.com, m.client.10010.com, m.creditcard.ecitic.com, m.ctrip.com, m.ibuscloud.com, m.lkcoffee.com, m.prod.app.hsbcfts.com.cn, m.pvp.xoyo.com, m.qianbao.qq.com, m.tuniu.com, m.ximalaya.com, m.yap.yahoo.com, m.you.163.com, m1.ad.10010.com, ma-adx.ctrip.com, ma.ofo.com, mada-travel.17u.cn, mage.if.qidian.com, magev6.if.qidian.com, maicai.api.ddxq.mobi, mall.meituan.com, manager.aiqiangua.com, manga.bilibili.com, mangaapi.manhuaren.com, mapi-app.bestpay.com.cn, mapi.appvipshop.com, mapi.dangdang.com, mapi.mafengwo.cn, mapi.sfbest.com, mapi.sichuanair.com, mapi.txcmapp.com, mapi.xiaotucc.com, mapiweb.babytree.com, marketing-aibox.v.mitvos.com, marketing.cmschina.com, mbank.grcbank.com, mbank5.jsbchina.cn, mbasecc.bas.cmbchina.com, mbasecc.bcs.cmbchina.com, mbd.baidu.com, mbmodule-openapi.paas.cmbchina.com, mcc.psbc.com, mcmm.caiyun.feixin.10086.cn, mcs-mimp-web.sf-express.com, mea.meitudata.com, media.qyer.com, member.alipan.com, message.shuqireader.com, mgesq.api.mgtv.com, mgxhtj.kuwo.cn, mi.gdt.qq.com, midc.cdn-static.abchina.com.cn, middle.yun.139.com, mime.baidu.com, miniapp.qmai.cn, minipro.95504.net, misc-api-prd-mx.wandafilm.com, mkt-gateway.tuhu.cn, mlife.jf365.boc.cn, mlol.qt.qq.com, mmgr.gtimg.com, mob.mddcloud.com.cn, mobads-pre-config.cdn.bcebos.com, mobads.baidu.com, mobile-api.imlaidian.com, mobile-api2011.elong.com, mobile-consumer-sapp.chery.cn, mobile-pic.cache.iciba.com, mobile.1qianbao.com, mobile.cebbank.com, mobile.laichon.com, mobile.ximalaya.com, mobile.yangkeduo.com, mobileapi.xiamenair.com, mobilehera.ximalaya.com, mobilehotelapi.elong.com, mobwsa.ximalaya.com, mp.weixin.qq.com, mpcs.suning.com, mpos-pic.helipay.com, mps.95508.com, mres.aibank.com, mrobot.pcauto.com.cn, mrobot.pconline.com.cn, mrp.mcloud.139.com, ms.jr.jd.com, mtteve.beacon.qq.com, music.y.qq.com, musical.com, musicpay.kuwo.cn, mwsa.ximalaya.com, myusmile.online, ndstatic.cdn.bcebos.com, nelo2-col.linecorp.com, new-app-api.ylyk.com, newclient.map.baidu.com, news.ssp.qq.com, nex.163.com, nmobi.kuwo.cn, nnapp.cloudbae.cn, notch.qdaily.com, nr-op.elemecdn.com, ntt-app.benewtech.cn, obs.line-scdn.net, ocean.shuqireader.com, ocrifs.ejoy.sinopec.com, oimage*.ydstatic.com, omgup*.xiaojukeji.com, oneapp-api.faw-vw.com, oneapph5.dongfeng-nissan.com.cn, open.e.kuaishou.cn, open.e.kuaishou.com, open.fitdays.cn, open.qyer.com, open.taou.com, open.xueqiu.com, open3.vistastory.com, openapi.boc.cn, operationapi.fosunhanig.com, optimus-ads.amap.com, oral.youdao.com, order-app-api.lbdj.com, osg-service.sgcc.com.cn, osg-static.sgcc.com.cn, oss.umetrip.com, ossgw.alicdn.com, ossweb-img.qq.com, otheve.beacon.qq.com, overseas.weico.cc, oxadmin.cp.com.cn, p*.meituan.net, p*.pstatp.com, p.du.163.com, p.kuaidi100.com, p.meituan.com, p0.pipi.cn, p1-lm.adukwai.com, pacdn.m.stock.pingan.com, pagead2.googleadservices.com, pagead2.googlesyndication.com, pan-api.bitqiu.com, pan.baidu.com, patient-api.suh.cn, peisongapi.meituan.com, pic.edaijia.cn, pic1.chelaile.net.cn, pipi.4kya.com, plough.babytree.com, plt.yorentown.com, pocketuni.net, poplayer.template.alibaba.com, portal-portm.meituan.com, portal-xunyou.qingcdn.com, portal.zjzwfw.gov.cn, post.soulapp.cn, preprod.cdzghome.com, prom.mobile.gome.com.cn, promote-trx.helipay.com, pss.txffp.com, pt-starimg.didistatic.com, ptmpcap.caocaokeji.cn, pubads.g.doubleclick.net, public-deliver9.miguvideo.com, push.m.youku.com, pv.elife.icbc.com.cn, pzoap.moedot.net, qde.qunar.com, qianbao.smzdm.com, qidian.qpic.cn, qimg.cdnmama.com, qiye.gaoding.com, qt.qq.com, quanguo.mygolbs.com, quic-tcmapi.elong.com, qzonestyle.gtimg.cn, r6.mo.baidu.com, rec.xiaohongshu.com, recite.perfectlingo.com, recommend-dy.miguvideo.com, res-release.wuta-cam.com, res.hongyibo.com.cn, res.kfc.com.cn, res.mall.10010.cn, res.mi.baidu.com, res.pizzahut.com.cn, res.xiaojukeji.com, res1.hubcloud.com.cnhostname, restapi.iyunmai.com, richmanapi.jxedt.com, richmanrules.ksedt.com, rms.meituan.com, router-app-api.jdcloud.com, rp.hpplay.cn, rr*.googlevideo.com, rs.creditcard.cmbc.com.cn, rtbapi.douyucdn.cn, rtm.fcbox.com, s-api.smzdm.com, s.jiediankeji.com, s3plus.meituan.net, sa*.tuisong.baidu.com, saad.ms.zhangyue.net, scdn.line-apps.com, sch.line.me, sdk.1rtb.net, sdk.alibaba.com.ailbaba.me, sdk1xyajs.data.kuiniuca.com, se-api.djiits.com, search.ximalaya.com, searchrecterm.kuwo.cn, searchwsa.ximalaya.com, security.wechat.com, service.4gtv.tv, service.busi.inke.cn, service.haiersmarthomes.com, service.iciba.com, sf*-fe-tos.pglstatp-toutiao.com, sf3-be-pack.pglstatp-toutiao.com, sfo.mddcloud.com.cn, sh-gateway.shihuo.cn, shcss.suning.com, shop.laichon.com, shopapi.io.mi.com, sichuan.95504.net, slapi.oray.net, smarket.dian.so, smart.789.image.mucang.cn, smkmp.96225.com, snailsleep.net, snssdk.com, so.xiaohongshu.com, social.blued.cn, sofire.baidu.com, sp.kaola.com, spamblocker-api.zeekstudio.com, splashqqlive.gtimg.com, sports3.gtimg.com, sq.sljkj.com, ss0.bdstatic.com, sso.ifanr.com, ssp.dzh.com.cn, ssp.soulapp.cn, startup.umetrip.com, stat.10jqka.com.cn, stat.peopleapp.com, static.95508.com, static.api.m.panda.tv, static.creditcard.hxb.com.cn, static.gameplus.qq.com, static.line-scdn.net, static.mobile-bank.psbc.com, static.psbc.com, static.shihuocdn.cn, static.xyzq.cn, static01.versa-ai.com, static1.keepcdn.com, staticlive.douyucdn.cn, staticsns.cdn.bcebos.com, statistic.live.126.net, status.boohee.com, stock.xueqiu.com, support.you.163.com, supportda.ofo.com, syh.zybang.com, szdmobile.suzhou.gov.cn, t-dsp.pinduoduo.com, t1.market.xiaomi.com, tagit.hyhuo.com, tb1.bdstatic.com, tb2.bdstatic.com, tfsmy.chengdu.gov.cn, tft-app.cdtft.cn, thor.weidian.com, tianqi.2345.com, tiebac.baidu.com, tiktokv.com, tk.lanjiyin.com.cn, toblog.ctobsnssdk.com, top-widgets-api.xiaozujian.com, truthsocial.com, ucmp.sf-express.com, ump.sz.creditcard.ecitic.com, un-acs.youku.com, update.pan.baidu.com, upload-bbs.mihoyo.com, us.l.qq.com, user-api.smzdm.com, user.api.ddxq.mobi, userpms-api.suh.cn, ut2.shuqistat.com, uts-front.line-apps.com, v.icbc.com.cn, v3.wufazhuce.com, vapp.tmuyun.com, venus.yhd.com, video-dsp.pddpic.com, vip1.kuwo.cn, vip7.fzwdyy.cn, vv.video.qq.com, w.line.me, waimai-guide.ele.me, wallet.lakala.com, wanciwangdata.oss-cn-beijing.aliyuncs.com, wap.bank.ecitic.com, wap.spdb.com.cn, wcprd.hilton.com.cn, web.chelaile.net.cn, web2.realtech-inc.com, webapi.qmai.cn, webappcfg.paas.cmbchina.com, webboot.zhangyue.com, webcast-open.douyin.com, webcdn.m.qq.com, wechat.tf.cn, weibo.com, weixin110.qq.com, wemallh5.usmile.com, www.1314zhilv.com, www.ahzs10000.com, www.baidu.com, www.banyuetanapp.com, www.binance.com, www.binance.info, www.cmbc.com.cn, www.cntv.cn, www.coolapk.com, www.didapinche.com, www.dpfile.com, www.gcores.com, www.haixue.com, www.i3zh.com, www.icourse163.org, www.iyingdi.cn, www.myusmile.online, www.nfmovies.com, www.onstar.com.cn, www.oschina.net, www.pushplus.plus, www.tailgdd.com, www.tsytv.com.cn, www.vgtime.com, www.xiaohongshu.com, www.xiaoxiongmeishu.com, www.yingwangtech.net, www.ymm56.com, www.zhihu.com, www.zybang.com, www1.elecfans.com, wx.mygolbs.com, wxs-weixin.sd.zhumanggroup.com, x.com, x.seeyouyima.com, xhtz.oss-cn-guangzhou.aliyuncs.com, xxyx-client-api.xiaoxiaoyouxuan.com, xyst.yuanfudao.com, xyz.cnki.net, y.gtimg.cn, yanxuan.nosdn.127.net, yghsh.cebbank.com, youtubei.googleapis.com, yun.tuitiger.com, yunbusiness.ccb.com, z.onewo.com, zconfig.alibabausercontent.com, zgrb.epicc.com.cn, zhuanlan.zhihu.com, zjdr666.com, zlsdk.1rtb.net, zone.guiderank-app.com, zt-app.go189.cn, ztoread.ziroom.com, zua.zhidiantianxia.cn
 
 [Script]
-
 # >>> merged from 12306.sgmodule (unique only)
 12306 = type=http-request, pattern=^https?:\/\/ad\.12306\.cn\/ad\/ser\/getAdList, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/kokoryh/Script/master/js/12306.js, requires-body=true, timeout=60
-
 
 # >>> merged from 51CreditCardManager.sgmodule (unique only)
 51信用卡管家 = type=http-response, pattern=^https?:\/\/api\.u51\.com\/liabilitygateway\/api\/v\d\/homepage\/liabilityline, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/51card.js, requires-body=true, timeout=60
 
 51信用卡管家 = type=http-response, pattern=^https?:\/\/api\.u51\.com\/generic-config-gateway\/api\/v\d\/guanjia\/me-tab2\/config, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/51card.js, requires-body=true, timeout=60
-
 
 # >>> merged from 51Job.sgmodule (unique only)
 51job = type=http-response, pattern=^https?:\/\/cupid\.51job(app)?\.com\/open\/noauth\/recommend\/job-tab-dynamic, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/zirawell/R-Store/main/Res/Scripts/AntiAd/51job.js, requires-body=true, timeout=60
@@ -5158,18 +4646,14 @@ hostname = %APPEND% *.17u.cn, *.17usoft.com, *.58cdn.com.cn, *.beacon.qq.com, *.
 # 我的页净化
 去哒 = type=http-response, pattern=^https?:\/\/cupid\.51job(app)?\.com\/open\/my-page\/, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/zirawell/R-Store/main/Res/Scripts/AntiAd/51job.js, requires-body=true, timeout=60
 
-
 # >>> merged from 555YingShi.sgmodule (unique only)
 555影视广告 = type=http-response, pattern="^https?:\/\/[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+){1,3}(:\d+)?\/api\/v\d\/movie\/index_recommend", script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/555Ad.js, requires-body=true, timeout=60
-
 
 # >>> merged from AdAlliance.sgmodule (unique only)
 快手联盟,优量汇,穿山甲「广告联盟」 = type=http-response, pattern=^https:\/\/(api-access\.pangolin-sdk-toutiao\.com\/api\/ad\/union\/sdk\/get_ads|open\.e\.kuaishou\.com\/rest\/e\/v3\/open\/univ$|mi\.gdt\.qq\.com\/gdt_mview\.fcg\?), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/app2smile/rules/master/js/adsense.js, requires-body=true, timeout=60
 
-
 # >>> merged from AirChina.sgmodule (unique only)
 中国国际航空 = type=http-response, pattern=^https:\/\/m\.airchina\.com\.cn\/airchina\/gateway\/v\d(\.\d)*\/api\/services, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/zirawell/R-Store/main/Res/Scripts/AntiAd/airchina.js, timeout=60
-
 
 # >>> merged from Alibaba.sgmodule (unique only)
 阿里巴巴广告 = type=http-response, pattern=^https:\/\/guide-acs\.m\.taobao\.com\/gw\/mtop\.cainiao\.guoguo\.nbnetflow\.ads\.mshow, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/cainiao/cainiao.js, requires-body=true, timeout=60
@@ -5178,26 +4662,21 @@ hostname = %APPEND% *.17u.cn, *.17usoft.com, *.58cdn.com.cn, *.beacon.qq.com, *.
 
 myBlockAds = type=http-response, pattern=^https:\/\/poplayer\.template\.alibaba\.com\/\w+\.json, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/myBlockAds.js, requires-body=true, timeout=60
 
-
 # >>> merged from AlibabaCloudDrive.sgmodule (unique only)
 阿里云盘 = type=http-response, pattern=^https:\/\/api\.alipan\.com\/apps\/v2\/users\/home\/(news|widgets), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/adrive/adrive.js, requires-body=true, timeout=60
 
 阿里云盘 = type=http-response, pattern=^https:\/\/member\.alipan\.com\/v1\/users\/onboard_list, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/adrive/adrive.js, requires-body=true, timeout=60
 
-
 # >>> merged from BaiduMaps.sgmodule (unique only)
 百度地图广告 = type=http-response, pattern=^https?:\/\/newclient\.map\.baidu\.com\/client\/phpui2\/\?qt=ads, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/baidumap.js, requires-body=true, timeout=60
-
 
 # >>> merged from BaiduTieba.sgmodule (unique only)
 贴吧json = type=http-response, pattern=^http(s:\/\/tiebac|:\/\/c\.tieba)\.baidu\.com\/(c\/(s\/sync|f\/(ad\/getSplashAd|frs\/(page|threadlist|generalTabList)|pb\/(pic)?page|excellent\/personalized))$|tiebaads\/commonbatch\?), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/app2smile/rules/master/js/tieba-json.js, requires-body=true, timeout=10
 
 贴吧proto = type=http-response, pattern=^http(s:\/\/tiebac|:\/\/c\.tieba)\.baidu\.com\/c\/(b\/ad\/adBid|f\/(frs\/(page|threadlist|generalTabList)|ad\/getFeedAd|pb\/page|excellent\/personalized))\?cmd, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/app2smile/rules/master/js/tieba-proto.js, requires-body=true, binary-body-mode=true, timeout=10, argument=[{{{per_filter_video_thread}}}]
 
-
 # >>> merged from BananaIsAFruit.sgmodule (unique only)
 香蕉是一种水果 = type=http-response, pattern=^https?:\/\/.+?\.(pipi|fuli|xiang(jiao|xiang))apps\.com\/(ucp\/index|getGlobalData|(\/|)vod\/reqplay\/), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/NobyDa/Script/master/QuantumultX/File/xjsp.js, requires-body=true, timeout=60
-
 
 # >>> merged from BilibiliComics.sgmodule (unique only)
 哔哩哔哩漫画 = type=http-response, pattern=^https?:\/\/manga\.bilibili\.com\/twirp\/user\.v\d\.User\/UCenterConf, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/zirawell/R-Store/main/Res/Scripts/AntiAd/bilibiliManga.js, requires-body=true, timeout=60
@@ -5208,11 +4687,9 @@ myBlockAds = type=http-response, pattern=^https:\/\/poplayer\.template\.alibaba\
 
 哔哩哔哩漫画 = type=http-response, pattern=^https?:\/\/manga\.bilibili\.com\/twirp\/comic\.v\d\.Comment\/Main, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/zirawell/R-Store/main/Res/Scripts/AntiAd/bilibiliManga.js, requires-body=true, timeout=60
 
-
 # >>> merged from Blued.sgmodule (unique only)
 # 登录后个人界面广告
 blued登录后个人界面广告 = type=http-response, pattern=^https?:\/\/social\.blued\.cn\/users\/.+\/more\/ios\?v=2, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/blued.js, requires-body=true, timeout=60
-
 
 # >>> merged from BoHeHealth.sgmodule (unique only)
 # 记录 大家都在看data.recom_cards / 底部按钮data.recom_btns
@@ -5224,13 +4701,11 @@ blued登录后个人界面广告 = type=http-response, pattern=^https?:\/\/socia
 # 代谢中心 顶部轮播图top_banner / 免费问诊推广diagnos_config / 合作医疗机构partner_hospital / 医患问答question_answer / 热门商品product / 品牌大事件brand_story
 薄荷健康 = type=http-response, pattern=^https:\/\/api\.boohee\.com\/open-interface\/v1\/string\/market_page\?title=metabolism_config$, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/bohe/bohe_ads.js, requires-body=true, timeout=60
 
-
 # >>> merged from CCBLife.sgmodule (unique only)
 建行生活 = type=http-response, pattern=^https?:\/\/yunbusiness\.ccb\.com\/basic_service\/txCtrl\?txcode=A3341AB04, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/ccbLife/ccbLifeAds.js, requires-body=true, timeout=60
 
 # 内置饿了么
 建行生活内置饿了么 = type=http-response, pattern=^https?:\/\/g\.alicdn\.com\/.*o2o-ad, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/zirawell/R-Store/main/Res/Scripts/AntiAd/alicdn.js, requires-body=true, timeout=60
-
 
 # >>> merged from CaiNiaoGuoGuo.sgmodule (unique only)
 菜鸟裹裹 = type=http-response, pattern=^https?:\/\/amdc\.m\.taobao\.com\/amdc\/mobileDispatch$, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/header.js, timeout=60
@@ -5242,15 +4717,12 @@ blued登录后个人界面广告 = type=http-response, pattern=^https?:\/\/socia
 # 消息中心
 菜鸟裹裹 = type=http-response, pattern=^https?:\/\/cn-acs\.m\.cainiao\.com\/gw\/mtop\.nbfriend\.message\.conversation\.list\.cn, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/cainiao/cainiao.js, requires-body=true, timeout=60
 
-
 # >>> merged from CaiXin.sgmodule (unique only)
 财新广告 = type=http-response, pattern=^https?:\/\/gg\.caixin\.com\/s\?z=caixin&op=1&c=3362, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/caixin/caixinAd.js, requires-body=true, timeout=60
-
 
 # >>> merged from ChinaMerchantsSecurities.sgmodule (unique only)
 # 首页和理财页面横幅广告
 招商证券去广告 = type=http-response, pattern=^https:\/\/marketing\.cmschina\.com\/mkt\/api\/v1\?.*, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/cmschina/cmschina.js, requires-body=true, timeout=20
-
 
 # >>> merged from Coolapk.sgmodule (unique only)
 酷安 = type=http-response, pattern=^https?:\/\/api\.coolapk\.com\/v6\/feed\/(detail|replyList)\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/coolapk.js, requires-body=true, timeout=60
@@ -5260,7 +4732,6 @@ blued登录后个人界面广告 = type=http-response, pattern=^https?:\/\/socia
 酷安 = type=http-response, pattern=^https?:\/\/api\.coolapk\.com\/v6\/page\/dataList\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/coolapk.js, requires-body=true, timeout=60
 
 酷安URL重定向 = type=http-request, pattern=^https:\/\/www\.coolapk\.com\/link.*, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/VenenoSix24/Ivy-Script/refs/heads/main/Loon/script/Coolapk_Redirect.js, timeout=10
-
 
 # >>> merged from DiDiChuxing.sgmodule (unique only)
 滴滴出行 = type=http-response, pattern=^https?:\/\/ct\.xiaojukeji\.com\/agent\/v3\/feeds, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/didi/didiAds.js, requires-body=true, timeout=60
@@ -5285,17 +4756,14 @@ blued登录后个人界面广告 = type=http-response, pattern=^https?:\/\/socia
 # 微信小程序个人中心净化 感谢【TEXAS】分享
 微信小程序个人中心净化 = type=http-response, pattern=^https?:\/\/common\.diditaxi\.com\.cn\/common\/v5, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/didi/didiAds.js, requires-body=true, timeout=60
 
-
 # >>> merged from DianPing.sgmodule (unique only)
 # 开屏广告
 大众点评 = type=http-response, pattern=^https?:\/\/img\.meituan\.net\/(?>dpmobile|goodsawardpic)\/, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/zirawell/R-Store/main/Res/Scripts/AntiAd/dianping.js, requires-body=true, timeout=60
 
 大众点评 = type=http-response, pattern=^https?:\/\/ddplus\.meituan\.net\/v\d\/mss_\w+\/picassovc, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/zirawell/R-Store/main/Res/Scripts/AntiAd/dianping.js, requires-body=true, timeout=60
 
-
 # >>> merged from DianYingLieShou.sgmodule (unique only)
 电影猎手去广告 = type=http-response, pattern=^https:\/\/app-v1\.ecoliving168\.com\/api\/v1\/movie\/index_recommend\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/dianyinglieshou.js, requires-body=true, timeout=60
-
 
 # >>> merged from DingDongMaiCai.sgmodule (unique only)
 # 开屏广告及首页推荐流及底部状态栏优化
@@ -5307,33 +4775,26 @@ blued登录后个人界面广告 = type=http-response, pattern=^https?:\/\/socia
 # 我的页净化
 叮咚买菜 = type=http-response, pattern=^https?:\/\/user\.api\.ddxq\.mobi\/userportal-service\/api\/v\d\/user\/queryMyPage, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/zirawell/R-Store/main/Res/Scripts/AntiAd/ddxq.js, requires-body=true, timeout=60
 
-
 # >>> merged from DongHuaFeng.sgmodule (unique only)
 # (黑屏25秒)
 动画疯 = type=http-response, pattern=^https?:\/\/api\.gamer\.com\.tw\/mobile_app\/anime\/v\d/(token|m3u8).php\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/NobyDa/Script/master/Bahamut/BahamutAnimeAds.js, requires-body=true, timeout=60
-
 
 # >>> merged from FeiKeChaGuan.sgmodule (unique only)
 飞客茶馆 = type=http-response, pattern=^https?:\/\/47\.100\.65\.202\/source\/plugin\/mobile\/mobile\.php\?module=threadpost&.+?&page=1, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/fly.js, requires-body=true, timeout=60
 
 飞客茶馆 = type=http-response, pattern=^https?:\/\/www\.flyert\.com(\.cn)?\/.*plugin, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/zirawell/R-Store/main/Res/Scripts/AntiAd/flyert.js, requires-body=true, timeout=60
 
-
 # >>> merged from FenBi.sgmodule (unique only)
 粉笔开屏广告 = type=http-response, pattern=^https?:\/\/tiku\.fenbi\.com\/activity\/app\/launcher\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/fenbi.js, requires-body=true, timeout=60
-
 
 # >>> merged from FuYouHui.sgmodule (unique only)
 复游会微信小程序 = type=http-response, pattern=^https?:\/\/apis\.folidaymall\.com\/online\/capi\/component\/getPageComponents, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/zirawell/R-Store/main/Res/Scripts/AntiAd/foliday.js, requires-body=true, timeout=60
 
-
 # >>> merged from HangLvZongHeng.sgmodule (unique only)
 航旅纵横 = type=http-response, pattern=^http?:\/\/(114\.115\.217\.129)|(home\.umetrip\.com)\/gateway\/api\/umetrip\/native$, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/umetrip/umetrip_ads.js, requires-body=true, timeout=60
 
-
 # >>> merged from Hema.sgmodule (unique only)
 盒马 = type=http-response, pattern=^https?:\/\/acs(\.|-)m\.(taobao|freshippo)\.com\/gw\/mtop\.wdk\.render\.query(?>indexpage|mypage|tabfeedstream), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/zirawell/R-Store/main/Res/Scripts/AntiAd/freshippo.js, requires-body=true, timeout=60
-
 
 # >>> merged from HuifuWorld.sgmodule (unique only)
 # 感谢【可莉】分享
@@ -5341,19 +4802,15 @@ blued登录后个人界面广告 = type=http-response, pattern=^https?:\/\/socia
 
 汇付天下 = type=http-response, pattern=^https:\/\/saas-ad\.cloudpnr\.com\/huifuad-base-api\/api\/tactics\/ad, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/huifutianxia_ads.js, requires-body=true, timeout=60
 
-
 # >>> merged from ITHome.sgmodule (unique only)
 # 移除 轮播图 置顶文章 信息流广告
 ithome = type=http-response, pattern=^https?:\/\/napi\.ithome\.com\/api\/(news\/index|topmenu\/getfeeds), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/ithome/ithome.js, requires-body=true, timeout=60
 
-
 # >>> merged from JD.com.sgmodule (unique only)
 京东 = type=http-response, pattern=^https:\/\/api\.m\.jd\.com\/client\.action\?functionId=(deliverLayer|getTabHomeInfo|myOrderInfo|orderTrackBusiness|personinfoBusiness|start|welcomeHome), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/jingdong/jingdong.js, requires-body=true, timeout=60
 
-
 # >>> merged from JingXi.sgmodule (unique only)
 京喜 = type=http-response, pattern=^https?:\/\/api\.m\.jd\.com\/api\?functionId=delivery_show, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/jingxiAd.js, requires-body=true, timeout=60
-
 
 # >>> merged from Keep.sgmodule (unique only)
 # 我的页面去推广
@@ -5371,7 +4828,6 @@ keep = type=http-response, pattern=^https?:\/\/api\.gotokeep\.com\/nuocha\/cours
 # 我的运动页面去除下方推荐
 keep = type=http-response, pattern=^https?:\/\/api\.gotokeep\.com\/sportpage\/sport\/v\d\/mysport, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/keep.js, requires-body=true, timeout=60
 
-
 # >>> merged from KuwoMusic.sgmodule (unique only)
 酷我音乐 = type=http-response, pattern=^https?:\/\/(mgxhtj|nmobi|searchrecterm)\.kuwo\.cn\/(mgxh|mobi|recterm)\.s, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/kuwo/kuwo.js, requires-body=true, timeout=60
 
@@ -5384,25 +4840,20 @@ keep = type=http-response, pattern=^https?:\/\/api\.gotokeep\.com\/sportpage\/sp
 
 酷我音乐 = type=http-response, pattern=^https?:\/\/vip1\.kuwo\.cn\/vip\/v\d\/user\/vip\?op=ui, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/kuwo/kuwo.js, requires-body=true, timeout=60
 
-
 # >>> merged from LuoSenDianDian.sgmodule (unique only)
 罗森点点 = type=http-response, pattern=^https:\/\/lawsonapi\.yorentown\.com\/area\/sh-lawson\/app\/v1\/, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/lawson.js, requires-body=true, timeout=60
 
 罗森点点 = type=http-response, pattern=^https:\/\/lawsonapi\.yorentown\.com\/portal\/app\/globalLaunch\/listAdvert, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/lawson.js, requires-body=true, timeout=60
 
-
 # >>> merged from LvTuSuiShenTing.sgmodule (unique only)
 # 首页北京城市导览图片,首页上方轮播图片净化
 旅途随身听 = type=http-response, pattern=^https?:\/\/www\.1314zhilv\.com\/ltsstnew\/(common\/getJGQIconNew|city\/getAllBannelByCity), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/lvtusuishenting/ltsst-ad.js, requires-body=true, timeout=60
 
-
 # >>> merged from Mafengwo.sgmodule (unique only)
 马蜂窝 = type=http-response, pattern=^https?:\/\/mapi\.mafengwo\.cn\/user\/profile\/get_(list|profile), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/zirawell/R-Store/main/Res/Scripts/AntiAd/mafengwo.js, requires-body=true, timeout=60
 
-
 # >>> merged from MaiDanBa.sgmodule (unique only)
 mdb = type=http-response, pattern=^https?:\/\/creditcardapp\.bankcomm\.(com|cn)\/rcg\/index\.html\?callbackurl=rcg\/index\.html&orclogin=1&, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/zirawell/R-Store/main/Res/Scripts/AntiAd/mdb.js, requires-body=true, timeout=60
-
 
 # >>> merged from Maimai.sgmodule (unique only)
 # 帖子末尾 看过此贴的用户也在看
@@ -5410,7 +4861,6 @@ mdb = type=http-response, pattern=^https?:\/\/creditcardapp\.bankcomm\.(com|cn)\
 
 # 移除信息流和评论区大块广告 信息流广告focus_feed / 评论区广告gossip_detail_comment / 评论区广告feed_detail_comment?
 脉脉 = type=http-response, pattern=^https:\/\/(h3\.)?open\.taou\.com\/maimai\/(feed|gossip)\/v\d\/(focus_feed|gossip_detail_comment|feed_detail_comment?)\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/maimai/maimai_ads.js, requires-body=true, timeout=60
-
 
 # >>> merged from MangoTV.sgmodule (unique only)
 # 我的页面
@@ -5432,21 +4882,17 @@ mdb = type=http-response, pattern=^https?:\/\/creditcardapp\.bankcomm\.(com|cn)\
 # 搜索框填充词
 芒果TV搜索框填充词 = type=http-response, pattern=^https?:\/\/mobileso\.bz\.mgtv\.com\/mobile\/recommend\/v2\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/cnftp.js, requires-body=true, timeout=60
 
-
 # >>> merged from MeiLiXiuXing.sgmodule (unique only)
 # 去除开屏 首页广告 美修盒广告 我的页面广告
 美丽修行广告 = type=http-response, pattern=^https:\/\/api\.bevol\.com\/(?:appmain\/app\/home\/page|usercenter\/account\/info|personal\/page|appmain\/app\/home\/launch|trialbox\/shop\/app\/homePage)$, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/yu9191/rewrite/mlxx.js, requires-body=true, timeout=60
-
 
 # >>> merged from Meiyou.sgmodule (unique only)
 美柚App净化 = type=http-response, pattern=^https:\/\/config-service\.seeyouyima\.com\/api\/configs\/batch\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/meiyou/meiyou_ads.js, requires-body=true, timeout=60
 
 美柚App净化 = type=http-response, pattern=^https:\/\/config-service\.seeyouyima\.com\/api\/configs\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/meiyou/meiyou_ads.js, requires-body=true, timeout=60
 
-
 # >>> merged from MiguVideo.sgmodule (unique only)
 咪咕视频个人中心去广告 = type=http-response, pattern=^https?:\/\/display-sc\.miguvideo\.com\/display\/v3\/static\/PERSONAL_CENTER$, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/miguvideo/miguvideo_ads.js, requires-body=true, timeout=60
-
 
 # >>> merged from NetEaseCloudMusic.sgmodule (unique only)
 # mian | 热推、有话想说、分享一下、歌曲下的祝福等小提示去除 ｜ 评论区 乐迷、星评等级 关注 等 图标去除
@@ -5467,11 +4913,9 @@ NetEaseCloudMusic_mybarad = type=http-response, pattern=^https?:\/\/(ipv4|interf
 # 显示未关注你
 NetEaseCloudMusic_foll = type=http-response, pattern=^https?:\/\/(ipv4|interface\d?)\.music\.163\.com\/e?api\/user\/follow\/users\/mixed\/get, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/Keywos/rule/main/script/wy/js/wyres.js, requires-body=true, binary-body-mode=true, timeout=20
 
-
 # >>> merged from NetEaseYoudaoDictionary.sgmodule (unique only)
 # 首页净化，学习Tab界面净化，首页听读训练净化
 网易有道词典 = type=http-response, pattern=^https?:\/\/dict\.youdao\.com\/(homepage\/promotion|course\/tab\/home|homepage\/tile), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/youdao/dict-youdao-ad.js, requires-body=true, timeout=60
-
 
 # >>> merged from PuPuSupermarket.sgmodule (unique only)
 朴朴超市 = type=http-response, pattern=^https:\/\/j1\.pupuapi\.com\/client\/search\/hot_keywords\/v3, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/PupuSplashAds.js, requires-body=true, timeout=60
@@ -5489,24 +4933,19 @@ NetEaseCloudMusic_foll = type=http-response, pattern=^https?:\/\/(ipv4|interface
 # 订单列表骑手反馈问题推荐
 朴朴超市 = type=http-response, pattern=^https:\/\/j1\.pupuapi\.com\/client\/order\/orders\/list\/v4, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/PupuSplashAds.js, requires-body=true, timeout=60
 
-
 # >>> merged from QiMai.sgmodule (unique only)
 企迈（挪瓦咖啡、林里柠檬茶、霸王茶姬、陈香贵） = type=http-response, pattern=^https?:\/\/(?>webapi|miniapp)\.qmai\.cn\/web\/catering([0-9]-apiserver)?\/advertising\/ad\/advertiseInfo, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/zirawell/R-Store/main/Res/Scripts/AntiAd/qmai.js, requires-body=true, timeout=60
-
 
 # >>> merged from QuDa.sgmodule (unique only)
 # 首页开屏广告 感谢【德克萨斯】分享
 去哒 = type=http-response, pattern=^https?:\/\/iqushangwang\.8quan\.com\/index\.php\/i\/index\/index, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/QuDa.js, requires-body=true, timeout=60
 
-
 # >>> merged from Quark.sgmodule (unique only)
 夸克 = type=http-response, pattern=^https?:\/\/open-cms-api\.(uc|quark)\.cn\/open-cms, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/quark.js, requires-body=true, timeout=60
-
 
 # >>> merged from Reddit.sgmodule (unique only)
 # 过滤推广 关NSFW提示 感谢【xream】分享
 reddit = type=http-response, pattern=^https?:\/\/gql(-fed)?\.reddit\.com, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/reddit.js, requires-body=true, timeout=60
-
 
 # >>> merged from RenRenVideo.sgmodule (unique only)
 # RRTV_level_info
@@ -5536,7 +4975,6 @@ rrtv_json = type=http-response, pattern=https://api.rr.tv/watch/v4, script-path=
 # RRTV_User_Info
 rrtv_json = type=http-response, pattern=https://api.rr.tv/user/profile, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/rrtv_json.js, requires-body=true, timeout=60
 
-
 # >>> merged from SMZDM.sgmodule (unique only)
 什么值得买去广告 = type=http-response, pattern=^https?:\/\/haojia\.m\.smzdm\.com\/detail_modul\/user_related_modul\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/smzdm/smzdm_ads.js, requires-body=true, timeout=60
 
@@ -5564,7 +5002,6 @@ Smzdm = type=http-response, pattern=^https?:\/\/homepage-api\.smzdm\.com\/v3\/ho
 Smzdm = type=http-response, pattern=^https?:\/\/article-api\.smzdm\.com\/publish\/get_bubble, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/smzdm/Smzdm.js, requires-body=true, timeout=60
 
 Smzdm = type=http-response, pattern=^https?:\/\/qianbao\.smzdm\.com\/v\d\/app\/home, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/smzdm/Smzdm.js, requires-body=true, timeout=60
-
 
 # >>> merged from Soul.sgmodule (unique only)
 # 替换信息收集
@@ -5595,20 +5032,16 @@ soul_ads = type=http-response, pattern=^https?:\/\/gateway-mobile-gray\.soulapp\
 
 soul_ads = type=http-response, pattern=^https?:\/\/47\.110\.187\.87\/winterfell\/v2\/getIpByDomain, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/soul/soul_ads.js, requires-body=true, timeout=60
 
-
 # >>> merged from SuDaXiaoYuanAPP.sgmodule (unique only)
 苏打校园APP = type=http-response, pattern=^https?:\/\/api\.sodalife\.xyz\/v1\/posters\?location=SODA_APP%3AHOME%3ATOP, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/soda.js, requires-body=true, timeout=60
-
 
 # >>> merged from Taobao.sgmodule (unique only)
 淘宝 = type=http-response, pattern=^https?:\/\/guide-acs\.m\.taobao\.com\/gw\/mtop\.taobao\.(cloudvideo\.video\.query|wireless\.home\.splash\.awesome\.get), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/myBlockAds.js, requires-body=true, timeout=60
 
 淘宝 = type=http-response, pattern=^https?:\/\/poplayer\.template\.alibaba\.com\/\w+\.json, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/myBlockAds.js, requires-body=true, timeout=60
 
-
 # >>> merged from TencentNews.sgmodule (unique only)
 腾讯新闻 = type=http-response, pattern=^https?:\/\/(news\.ssp\.qq\.com\/app|r\.inews\.qq\.com\/(get(QQNewsUnreadList|TagFeedList)|gw\/page\/event_detail|news_feed\/hot_module_list)), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/app2smile/rules/master/js/qq-news.js, requires-body=true, timeout=60
-
 
 # >>> merged from TuhuAutoCare.sgmodule (unique only)
 途虎养车去广告 = type=http-response, pattern=^https?:\/\/(cl-)?gateway\.tuhu\.cn(\/cl)?\/cl-common-api\/api\/personalCenter\/getCmsModuleList, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/zirawell/R-Store/main/Res/Scripts/AntiAd/tuhu.js, requires-body=true, timeout=60
@@ -5617,15 +5050,12 @@ soul_ads = type=http-response, pattern=^https?:\/\/47\.110\.187\.87\/winterfell\
 
 途虎养车去广告 = type=http-response, pattern=^https?:\/\/(cl-)?gateway\.tuhu\.cn(\/cl)?\/cl-shop-api\/shopTab\/getModuleForC, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/zirawell/R-Store/main/Res/Scripts/AntiAd/tuhu.js, requires-body=true, timeout=60
 
-
 # >>> merged from WeChatUnlockLinkRestrict.sgmodule (unique only)
 # 微信跳过中间界面，支付宝链接、被封禁链接进行通知弹窗跳转，在微信中用快照显示被封禁的链接（可选），在微信中进行强制重定向（可选），群聊 / 扫码均可使用，可选项可在脚本 2、3 行更改，也可在 BoxJs 中更改。
 UnblockURLinWeChat-解除微信链接限制 = type=http-response, pattern=^https\:\/\/(weixin110\.qq|security.wechat)\.com\/cgi-bin\/mmspamsupport-bin\/newredirectconfirmcgi\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/zZPiglet/Task/master/asset/UnblockURLinWeChat.js, requires-body=true, timeout=60
 
-
 # >>> merged from WinnipegStation.sgmodule (unique only)
 温尼伯站 = type=http-response, pattern=^https:\/\/vue3-api\.zhixiny\.cn\/v1\/initui\?key=index, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/Sliverkiss/QuantumultX/main/AdBlock/xmApp/wnbz.js, requires-body=true, timeout=60
-
 
 # >>> merged from XianYu.sgmodule (unique only)
 # 商品信息流广告
@@ -5649,19 +5079,15 @@ UnblockURLinWeChat-解除微信链接限制 = type=http-response, pattern=^https
 # 同城页横幅广告
 同城页横幅广告 = type=http-response, pattern=^https:\/\/acs\.m\.goofish\.com\/gw\/mtop\.taobao\.idle\.local\.flow\.plat\.section, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/ishowshu/qx/refs/heads/main/script/goofish.js, requires-body=true
 
-
 # >>> merged from XiaoMang.sgmodule (unique only)
 小芒APP主页广告 = type=http-response, pattern=https://mgesq.api.mgtv.com/dsl/index.+, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/Sliverkiss/QuantumultX/main/AdBlock/xmApp/xmApp.js, requires-body=true, timeout=60
-
 
 # >>> merged from XiaoRongJia.sgmodule (unique only)
 # 我的页推广
 usmile = type=http-response, pattern=^https?:\/\/www\.myusmile\.online\/user\/plaqueTopic\/selectByType, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/zirawell/R-Store/main/Res/Scripts/AntiAd/usmile.js
 
-
 # >>> merged from XiaoTuChongChong.sgmodule (unique only)
 小兔充充 = type=http-response, pattern=^https?:\/\/mapi\.xiaotucc\.com\/(mall\/main|main_page\/index\/getActivity), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/xiaotucc.js, requires-body=true, timeout=60
-
 
 # >>> merged from Xiaohongshu.sgmodule (unique only)
 # 搜索页
@@ -5693,19 +5119,15 @@ usmile = type=http-response, pattern=^https?:\/\/www\.myusmile\.online\/user\/pl
 
 小红书评论区去水印下载 = type=http-response, pattern=^https:\/\/edith\.xiaohongshu\.com\/api\/sns\/v1\/interaction\/comment\/video\/download\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/fmz200/wool_scripts/main/Scripts/xiaohongshu/xiaohongshu.js, requires-body=true, timeout=60
 
-
 # >>> merged from XiaomiMall.sgmodule (unique only)
 小米商城 = type=http-response, pattern=^https?:\/\/api\.m\.mi\.com\/v1\/app\/start, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/myBlockAds.js, requires-body=true, timeout=60
-
 
 # >>> merged from YouTube.sgmodule (unique only)
 # 响应体
 YouTube响应体 = type=http-response, pattern=^https:\/\/youtubei\.googleapis\.com\/youtubei\/v1\/(browse|next|player|search|reel\/reel_watch_sequence|guide|account\/get_setting|get_watch), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/Maasea/sgmodule/refs/heads/master/Script/Youtube/youtube.response.js, requires-body=true, binary-body-mode=true, timeout=60
 
-
 # >>> merged from YouXiAPP.sgmodule (unique only)
 悠洗APP = type=http-response, pattern=^https?:\/\/api\.ulife\.group\/market\/homeIconDetail\/list\/v7, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/yx.js, requires-body=true, timeout=60
-
 
 # >>> merged from Youku.sgmodule (unique only)
 # 播放详情页,首页信息流,顶部tab,我的页面,评论区
@@ -5726,10 +5148,8 @@ YouTube响应体 = type=http-response, pattern=^https:\/\/youtubei\.googleapis\.
 # 开屏广告
 优酷开屏广告 = type=http-response, pattern=^https?:\/\/un-acs\.youku\.com\/gw\/mtop\.youku\.play\.ups\.appinfo\.get, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/cnftp.js, requires-body=true, timeout=60
 
-
 # >>> merged from ZhangShangGongJiao.sgmodule (unique only)
 掌上公交小程序广告 = type=http-response, pattern=^https?:\/\/wx\.mygolbs\.com\/WxBusServer\/ApiData\.do, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/zhangshanggongjiao.js, requires-body=true, timeout=60
-
 
 # >>> merged from Zhihu.sgmodule (unique only)
 # 首页 - 悬浮图标、顶部横幅、开屏广告、关注页推荐、推荐信息流、热榜信息流、热榜直播、回答底部卡片、精简顶部标签
@@ -5760,11 +5180,9 @@ YouTube响应体 = type=http-response, pattern=^https:\/\/youtubei\.googleapis\.
 
 知乎拦截服务器推送配置 = type=http-response, pattern=^https:\/\/m-cloud\.zhihu\.com\/api\/cloud\/config\/all\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/zhihu/zhihu.js, requires-body=true
 
-
 # >>> merged from ZhuanZhuan.sgmodule (unique only)
 # “我的”页面去除冗余的模块
 转转 = type=http-response, pattern=^https?:\/\/app\.zhuanzhuan\.com\/zz\/transfer\/getmyprofilev3, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/zhuanzhuan/zhuanzhuan.js, requires-body=true, timeout=60
-
 
 # >>> merged from bilibili.sgmodule (unique only)
 bilibili.airborne = type=http-request, pattern=^https:\/\/(grpc\.biliapi\.net|app\.bilibili\.com)\/bilibili\.community\.service\.dm\.v1\.DM\/DmSegMobile$, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/kokoryh/Sparkle/refs/heads/master/dist/bilibili.protobuf.request.js, requires-body=true, binary-body-mode=true, timeout=10, argument=[{{{logLevel}}}]
@@ -5774,7 +5192,6 @@ bilibili.request = type=http-request, pattern=^https:\/\/(grpc\.biliapi\.net|app
 bilibili.live = type=http-response, pattern=^https:\/\/api\.live\.bilibili\.com\/xlive\/(app-interface\/v2\/index\/feed|app-room\/v1\/index\/getInfoBy(Room|User))\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/kokoryh/Sparkle/refs/heads/master/dist/bilibili.json.js, requires-body=true
 
 bilibili.protobuf = type=http-response, pattern=^https:\/\/(grpc\.biliapi\.net|app\.bilibili\.com)\/bilibili\.(app\.(show\.v1\.Popular\/Index|dynamic\.v2\.Dynamic\/DynAll|view(unite)?\.v1\.View\/(View|ViewProgress|RelatesFeed)|playurl\.v1\.PlayURL\/PlayView|playerunite\.v1\.Player\/PlayViewUnite)|polymer\.app\.search\.v1\.Search\/SearchAll|community\.service\.dm\.v1\.DM\/DmView|main\.community\.reply\.v1\.Reply\/MainList|pgc\.gateway\.player\.v2\.PlayURL\/PlayView)$, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/kokoryh/Sparkle/refs/heads/master/dist/bilibili.protobuf.response.js, requires-body=true, binary-body-mode=true, argument="[{displayUpList}, {purifyComment}, {{{sponsorBlock}}}, {{{logLevel}}}]"
-
 
 # >>> merged from iQIYI.sgmodule (unique only)
 # 首页信息流广告
@@ -5813,19 +5230,15 @@ bilibili.protobuf = type=http-response, pattern=^https:\/\/(grpc\.biliapi\.net|a
 # 开屏广告,播放广告
 爱奇艺开屏广告,播放广告 = type=http-response, pattern=^https?:\/\/(kjp|t7z)\.cupid\.iqiyi\.com\/mixer\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/cnftp.js, requires-body=true, timeout=60
 
-
 # >>> merged from vgTime.sgmodule (unique only)
 # App去开屏广告(需全新应用). 若要去新闻列表广告需要搭配广告联盟模块
 vgTime = type=http-response, pattern=^https?:\/\/app02\.vgtime\.com:8080\/vgtime-app\/api\/v2\/init\/ad\.json, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/app2smile/rules/master/js/vgtime.js, requires-body=true, timeout=60
 
-
 # >>> merged from RedditTranslation.module (unique only)
 Reddit自动翻译 = type=http-request, pattern=^https?:\/\/gql(-fed)?\.reddit\.com, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/gist/RavelloH/68ed0626dae69a1ce7c8ad6887087ea1/c008127260bc4dcd550fcd98285048cf6176f602/main.js
 
-
 # >>> merged from XWebAds.module (unique only)
 X网页版去广告 = type=http-response, pattern=^https?:\/\/x\.com\/i\/api\/graphql\/[^\/]+\/(HomeTimeline|HomeLatestTimeline|TweetDetail), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/X/X_ads.js, requires-body=true
-
 
 # >>> merged from weibo.module (unique only)
 微博移除发现页广告 = type=http-response, pattern=^https?:\/\/m?api\.weibo\.c(n|om)\/2\/search\/(finder|container_timeline|container_discover)\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/weibo/weibo_ads.js, requires-body=true, timeout=60
@@ -5848,6 +5261,5 @@ X网页版去广告 = type=http-response, pattern=^https?:\/\/x\.com\/i\/api\/gr
 
 
 [Header Rewrite]
-
 # >>> merged from bilibili.sgmodule (unique only)
 http-response ^https:\/\/grpc\.biliapi\.net\/bilibili\.app\.(interface\.v1\.(Teenagers\/ModeStatus|Search\/DefaultWords)|view\.v1\.View\/TFInfo|viewunite\.v1\.View\/ViewEndPage)$ header-add 'grpc-status' '0'

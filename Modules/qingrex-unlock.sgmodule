@@ -17,7 +17,6 @@
 ^https?:\/\/(www.)?(g|google)\.cn https://www.google.com 307
 ^https?:\/\/(ditu|maps).google\.cn https://maps.google.com 307
 
-
 # >>> merged from Beta/拦截HTTPDNS.beta.sgmodule (unique only)
 ^https?:\/\/119\.29\.29\.29\/d - reject
 ^https?:\/\/203\.107\.1\.1/\d+/ss - reject
@@ -31,9 +30,7 @@
 ^https?:\/\/180\.76\.76\.112\/v\d\/resolve - reject
 ^https?:\/\/cdn\.wup\.huya\.com\/monitor\/monitor\.jsp - reject
 
-
 # >>> merged from Google重定向.sgmodule (unique only)
-
 
 # >>> merged from Official/拦截HTTPDNS.official.sgmodule (unique only)
 # Alipay
@@ -125,7 +122,6 @@
 # refer: https://github.com/lwd-temp/anti-ip-attribution/issues/24
 ^http:\/\/103\.41\.167\.237\/v2\/resolv - reject
 
-
 # >>> merged from 拦截HTTPDNS.sgmodule (unique only)
 
 
@@ -134,7 +130,6 @@
 hostname = %APPEND% *-spclient.spotify.com, *.httpdns.pro, *spclient.spotify.com, 119.29.29.29, 119.29.29.98, 119.29.29.99, 180.76.76.112, 180.76.76.200, 203.107.1.1, 203.107.1.33, 203.107.1.66, 203.107.1.67, 203.107.1.97, 2401:b180:2000:20::10, 2401:b180:2000:30::1c, amdc-sibling.alipay.com.cn, amdc.alipay.com, api.spotify.com, appconf.mail.163.com, dns.jd.com, msglb.91160.com, spclient.wg.spotify.com, www.google.cn
 
 [Rule]
-
 # >>> merged from Beta/拦截HTTPDNS.beta.sgmodule (unique only)
 DOMAIN,yyapp-httpdns.gslb.yy.com,REJECT,extended-matching,pre-matching
 DOMAIN,union-httpdns.gslb.yy.com,REJECT,extended-matching,pre-matching
@@ -292,7 +287,6 @@ IP-CIDR,118.89.204.198/23,REJECT,no-resolve,pre-matching
 IP-CIDR6,2402:4e00:1200:ed00:0:9089:6dac:96b6/128,REJECT,no-resolve,pre-matching
 DOMAIN,hd.xiaojukeji.com,REJECT,extended-matching,pre-matching
 
-
 # >>> merged from Official/拦截HTTPDNS.official.sgmodule (unique only)
 # Alibaba
 
@@ -393,19 +387,16 @@ DOMAIN,yuyin-httpdns.gslb.yy.com,REJECT,extended-matching,pre-matching
 # refer: https://github.com/lwd-temp/anti-ip-attribution/issues/24
 IP-CIDR,118.89.204.198/32,REJECT,no-resolve,pre-matching
 
-
 # >>> merged from 拦截HTTPDNS.sgmodule (unique only)
 
 
 [Header Rewrite]
-
 # >>> merged from Official/Spotify Plus.official.sgmodule (unique only)
 # if-none-match返回304状态码
 http-request ^https:\/\/(spclient\.wg\.spotify\.com|.*-spclient\.spotify\.com(:443)?)\/user-customization-service\/v1\/customize$ header-del if-none-match
 
 
 [Script]
-
 # >>> merged from Official/Spotify Plus.official.sgmodule (unique only)
 spotify-json = type=http-request,pattern=^https:\/\/(spclient\.wg\.spotify\.com|.*-spclient\.spotify\.com(:443)?)\/(artistview\/v1\/artist|album-entity-view\/v2\/album)\/,requires-body=0,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/app2smile/rules/master/js/spotify-json.js
 spotify-proto = type=http-response,pattern=^https:\/\/(spclient\.wg\.spotify\.com|.*-spclient\.spotify\.com(:443)?)\/(bootstrap\/v1\/bootstrap|user-customization-service\/v1\/customize)$,requires-body=1,binary-body-mode=1,max-size=0,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/app2smile/rules/master/js/spotify-proto.js,script-update-interval=0

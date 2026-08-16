@@ -15,7 +15,6 @@
 ^https:\/\/(?:\w+-spclient|spclient\.wg)\.spotify\.com(?::443)?\/artistview\/v1\/artist\/(.*)&platform=iphone https://spclient.wg.spotify.com/artistview/v1/artist/$1&platform=ipad header
 ^https:\/\/gae2-spclient\.spotify\.com:443\/ad - reject
 
-
 # >>> merged from blockHTTPDNS.module (unique only)
 ^https?:\/\/203\.107\.1\.1/\d+/ss - reject
 ^https?:\/\/203\.107\.1\.33/\d+/ss - reject
@@ -41,11 +40,9 @@ Protobuf = type=http-response, pattern=^https:\/\/(?:\w+-spclient|spclient\.wg)\
 hostname = %APPEND% *-spclient.spotify.com, 203.107.1.1, 203.107.1.33, 203.107.1.66, 203.107.1.67, 203.107.1.97, 2401:b180:2000:20::10, 2401:b180:2000:30::1c, amdc.alipay.com, appconf.mail.163.com, msglb.91160.com, spclient.wg.spotify.com
 
 [Rule]
-
 # >>> merged from TikTok.sgmodule (unique only)
 DOMAIN-KEYWORD,bds.snssdk.com,REJECT
 DOMAIN-KEYWORD,p3.pstatp.com,REJECT
-
 
 # >>> merged from blockHTTPDNS.module (unique only)
 DOMAIN,yyapp-httpdns.gslb.yy.com,REJECT
