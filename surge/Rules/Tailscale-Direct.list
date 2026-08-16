@@ -1,12 +1,7 @@
-# AUTO-EXPORTED from Routing/Tailscale-Direct.yaml
-# Format: Surge RULE-SET (no policy). scripts/export-surge-rulesets.py
-# Total entries: 5
-
+# Tailscale domains — use with DOMAIN-SET preferred; RULE-SET backup
 DOMAIN-SUFFIX,tailscale.com
 DOMAIN-SUFFIX,tailscale.net
 DOMAIN-SUFFIX,ts.net
-IP-CIDR,100.64.0.0/10
-IP-CIDR6,fd7a:115c:a1e0::/48
-DOMAIN-KEYWORD,tailscale
 DOMAIN,controlplane.tailscale.com
 DOMAIN,log.tailscale.com
+DOMAIN,login.tailscale.com
