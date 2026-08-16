@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-16T03:41:19Z",
+  "generated_at": "2026-08-16T03:41:26Z",
   "branch": "main",
   "repo": "oo226/egern-config",
   "raw_base": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main",
@@ -202,16 +202,25 @@
   ],
   "sync_digest": {
     "commit": {
-      "hash": "ab5e1fc",
-      "subject": "Merge: keep Surge qdreader module in factory publish",
-      "date": "2026-08-15"
+      "hash": "1d459c8",
+      "subject": "chore: sync upstream on sync branch",
+      "date": "2026-08-16"
     },
     "summary": [
+      "分流规则 更新 2 个文件",
+      "模块 更新 12 个文件",
+      "脚本 更新 1 个文件",
+      "模块站 更新 2 个文件",
       "国内直连 25589 条"
     ],
-    "files_changed": 0
+    "files_changed": 23
   },
   "changelog": [
+    {
+      "hash": "e19d3ed",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-08-16"
+    },
     {
       "hash": "ca78e86",
       "subject": "chore: publish curated snapshot from sync",
@@ -245,11 +254,6 @@
     {
       "hash": "bf4154b",
       "subject": "fix(egern): restore adblock mega collection without QingRex dump",
-      "date": "2026-08-15"
-    },
-    {
-      "hash": "286ed93",
-      "subject": "fix(egern): point 去广告合集 to jsDelivr adblock-egern",
       "date": "2026-08-15"
     }
   ],
