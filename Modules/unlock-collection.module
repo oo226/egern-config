@@ -1,5 +1,5 @@
 #!name=解锁合集
-#!desc=解锁合集 · 已取消系统更新屏蔽（mesu 等），保留 P12/OCSP 与业务解锁
+#!desc=解锁合集 · 含系统更新屏蔽（点进更新页无法检查属预期；Surge 不能伪造已是最新）
 #!category=解锁
 
 
@@ -624,8 +624,8 @@ URL-REGEX,"^http:\/\/139\.196\.12\.179:8053\/httpdns\/",REJECT
 # > Safari 防跳转
 DOMAIN,app-site-association.cdn-apple.com,REJECT
 # > Block iOS Update
-# ota-off: DOMAIN,gdmf.apple.com,REJECT
-# ota-off: DOMAIN,mesu.apple.com,REJECT
+DOMAIN,gdmf.apple.com,REJECT
+DOMAIN,mesu.apple.com,REJECT
 # > 屏蔽HTTP3/QUIC协议 
 AND,((PROTOCOL,UDP),(DEST-PORT,443)),REJECT-NO-DROP
 # > 屏蔽YouTube的UDP
@@ -665,17 +665,17 @@ DOMAIN,msmp.abchina.com.cn,REJECT
 DOMAIN-SUFFIX,ocsp-lb.apple.com.akadns.net,REJECT
 DOMAIN-SUFFIX,ocsp.apple.com,REJECT
 DOMAIN-SUFFIX,ocsp.g.aaplimg.com,REJECT
-# 已取消屏蔽系统更新（避免无法检查更新 / 小红点 / 重试费电）；P12 OCSP 仍保留
-# ota-off: DOMAIN,ns.itunes.apple.com,REJECT
-# ota-off: DOMAIN,updates.cdn-apple.com,REJECT
-# ota-off: DOMAIN,updates-http.cdn-apple.com,REJECT
-# ota-off: DOMAIN,xp.apple.com,REJECT
-# ota-off: DOMAIN-SUFFIX,appldnld.apple.com,REJECT
-# ota-off: DOMAIN-SUFFIX,mesu-cdn.apple.com.akadns.net,REJECT
-# ota-off: DOMAIN,configuration.apple.com,REJECT
-# ota-off: DOMAIN,swscan.apple.com,REJECT
-# ota-off: DOMAIN,swdist.apple.com,REJECT
-# ota-off: DOMAIN,swdownload.apple.com,REJECT
+# 屏蔽 iOS/iPadOS/macOS 系统更新（硬拒；无法伪造「已是最新」）
+DOMAIN,ns.itunes.apple.com,REJECT
+DOMAIN,updates.cdn-apple.com,REJECT
+DOMAIN,updates-http.cdn-apple.com,REJECT
+DOMAIN,xp.apple.com,REJECT
+DOMAIN-SUFFIX,appldnld.apple.com,REJECT
+DOMAIN-SUFFIX,mesu-cdn.apple.com.akadns.net,REJECT
+DOMAIN,configuration.apple.com,REJECT
+DOMAIN,swscan.apple.com,REJECT
+DOMAIN,swdist.apple.com,REJECT
+DOMAIN,swdownload.apple.com,REJECT
 
 
 [Header Rewrite]
