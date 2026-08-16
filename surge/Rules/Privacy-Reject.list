@@ -1,0 +1,6 @@
+# AUTO-EXPORTED from Routing/Privacy-Reject.yaml
+# Format: Surge RULE-SET (no policy). scripts/export-surge-rulesets.py
+# Total entries: 2
+
+DOMAIN-SUFFIX,webrtc.org,extended-matching
+DOMAIN-WILDCARD,stun.*,extended-matching
