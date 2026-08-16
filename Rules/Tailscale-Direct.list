@@ -1,7 +1,9 @@
-# Tailscale domains — use with DOMAIN-SET preferred; RULE-SET backup
-DOMAIN-SUFFIX,tailscale.com
-DOMAIN-SUFFIX,tailscale.net
-DOMAIN-SUFFIX,ts.net
-DOMAIN,controlplane.tailscale.com
-DOMAIN,log.tailscale.com
-DOMAIN,login.tailscale.com
+# Tailscale — domain lines carry extended-matching so RULE-SET hits TLS SNI
+# when always-real-ip makes the socket look like IP:443 (otherwise → FINAL).
+# Updating this ruleset alone is enough; conf line need not change.
+DOMAIN-SUFFIX,tailscale.com,extended-matching
+DOMAIN-SUFFIX,tailscale.net,extended-matching
+DOMAIN-SUFFIX,ts.net,extended-matching
+DOMAIN,controlplane.tailscale.com,extended-matching
+DOMAIN,log.tailscale.com,extended-matching
+DOMAIN,login.tailscale.com,extended-matching
