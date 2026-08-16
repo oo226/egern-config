@@ -2,14 +2,14 @@
 # Format: Surge RULE-SET (no policy). scripts/export-surge-rulesets.py
 # Total entries: 24
 
-DOMAIN-SUFFIX,lin.ee
-DOMAIN-SUFFIX,line-apps.com
-DOMAIN-SUFFIX,line-cdn.net
-DOMAIN-SUFFIX,line-scdn.net
-DOMAIN-SUFFIX,line.me
-DOMAIN-SUFFIX,linecorp.com
-DOMAIN-SUFFIX,naver.jp
-DOMAIN-SUFFIX,nhncorp.jp
+DOMAIN-SUFFIX,lin.ee,extended-matching
+DOMAIN-SUFFIX,line-apps.com,extended-matching
+DOMAIN-SUFFIX,line-cdn.net,extended-matching
+DOMAIN-SUFFIX,line-scdn.net,extended-matching
+DOMAIN-SUFFIX,line.me,extended-matching
+DOMAIN-SUFFIX,linecorp.com,extended-matching
+DOMAIN-SUFFIX,naver.jp,extended-matching
+DOMAIN-SUFFIX,nhncorp.jp,extended-matching
 IP-CIDR,103.2.28.0/22
 IP-CIDR,119.235.224.0/21
 IP-CIDR,119.235.232.0/23

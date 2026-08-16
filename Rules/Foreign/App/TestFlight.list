@@ -2,6 +2,6 @@
 # Format: Surge RULE-SET (no policy). scripts/export-surge-rulesets.py
 # Total entries: 3
 
-DOMAIN,beta.apple.com
-DOMAIN,testflight.apple.com
-DOMAIN-KEYWORD,testflight
+DOMAIN,beta.apple.com,extended-matching
+DOMAIN,testflight.apple.com,extended-matching
+DOMAIN-KEYWORD,testflight,extended-matching

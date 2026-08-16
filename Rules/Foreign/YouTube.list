@@ -2,17 +2,17 @@
 # Format: Surge RULE-SET (no policy). scripts/export-surge-rulesets.py
 # Total entries: 14
 
-DOMAIN,youtubei.googleapis.com
-DOMAIN,yt3.ggpht.com
-DOMAIN-SUFFIX,googlevideo.com
-DOMAIN-SUFFIX,gvt2.com
-DOMAIN-SUFFIX,withyoutube.com
-DOMAIN-SUFFIX,youtu.be
-DOMAIN-SUFFIX,youtube-nocookie.com
-DOMAIN-SUFFIX,youtube.com
-DOMAIN-SUFFIX,youtubeeducation.com
-DOMAIN-SUFFIX,youtubegaming.com
-DOMAIN-SUFFIX,youtubekids.com
-DOMAIN-SUFFIX,yt.be
-DOMAIN-SUFFIX,ytimg.com
-DOMAIN-KEYWORD,youtube
+DOMAIN,youtubei.googleapis.com,extended-matching
+DOMAIN,yt3.ggpht.com,extended-matching
+DOMAIN-SUFFIX,googlevideo.com,extended-matching
+DOMAIN-SUFFIX,gvt2.com,extended-matching
+DOMAIN-SUFFIX,withyoutube.com,extended-matching
+DOMAIN-SUFFIX,youtu.be,extended-matching
+DOMAIN-SUFFIX,youtube-nocookie.com,extended-matching
+DOMAIN-SUFFIX,youtube.com,extended-matching
+DOMAIN-SUFFIX,youtubeeducation.com,extended-matching
+DOMAIN-SUFFIX,youtubegaming.com,extended-matching
+DOMAIN-SUFFIX,youtubekids.com,extended-matching
+DOMAIN-SUFFIX,yt.be,extended-matching
+DOMAIN-SUFFIX,ytimg.com,extended-matching
+DOMAIN-KEYWORD,youtube,extended-matching
