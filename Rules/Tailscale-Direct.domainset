@@ -1,7 +1,4 @@
-# AUTO-EXPORTED from Routing/Tailscale-Direct.yaml
-# Format: Surge DOMAIN-SET (leading '.' = suffix). scripts/export-surge-rulesets.py
-# Total entries: 3
-
+# Tailscale DOMAIN-SET (leading '.' = suffix)
 .tailscale.com
 .tailscale.net
 .ts.net
