@@ -1,8 +1,17 @@
-# 类型: 分流规则 — 系统联网检测直连（须在代理规则之前匹配）
-# 仅含测网/Captive Portal；勿将 dns.google / 8.8.8.8 / 1.1.1.1 钉死 DIRECT，
+# 类型: 分流规则 — 系统联网检测 / 运营商登录直连（须在代理规则之前匹配）
+# 仅含测网/Captive Portal/运营商 portal；勿将 dns.google / 8.8.8.8 / 1.1.1.1 钉死 DIRECT，
 # 否则国内解析走「谷歌/国外」上游时会直连超时（dns relay timeout）。
+#
+# 下列域名也在 Egern real_ip_domains / Surge always-real-ip 中（真 IP 出站）；
+# 若不进本表，VIF 下可能只靠 GEOIP/FINAL，测网或运营商登录会飘。
 
 domain_set:
   - connectivitycheck.gstatic.com
   - www.msftconnecttest.com
+  - msftconnecttest.com
   - captive.apple.com
+  - msftncsi.com
+  - www.msftncsi.com
+  - dns.msftncsi.com
+  - open.e.189.cn
+  - easy-login.10099.com.cn
