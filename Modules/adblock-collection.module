@@ -1,5 +1,5 @@
 #!name=去广告合集（Surge）
-#!desc=Surge 专用完整合集（含皮皮虾）；与 main/Egern 不共用
+#!desc=Surge 专用完整合集（含皮皮虾）；与 main/Egern 不共用 · 穿山甲日志改 reject-200 防重试烫机
 #!author=奶思[https://github.com/fmz200]
 #!icon=https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/AdblockPlus.png
 #!category=奶思的模块
@@ -88,7 +88,7 @@ DOMAIN,gromore.pangolin-sdk-toutiao.com,REJECT
 DOMAIN,ether-pack.pangolin-sdk-toutiao.com,REJECT
 DOMAIN-KEYWORD,-ad-sign.byteimg.com,REJECT
 DOMAIN-KEYWORD,api-access.pangolin-sdk-toutiao,REJECT
-DOMAIN-KEYWORD,log-api.pangolin-sdk-toutiao,REJECT
+# DOMAIN-KEYWORD,log-api.pangolin-sdk-toutiao,REJECT
 DOMAIN-KEYWORD,-ad.byteoversea.com,REJECT
 DOMAIN-KEYWORD,video-cn.snssdk.com,REJECT
 DOMAIN-KEYWORD,asiad.byteactivity,REJECT
@@ -256,7 +256,7 @@ DOMAIN,pangolin.snssdk.com,REJECT
 DOMAIN,gromore.pangolin-sdk-toutiao.com,REJECT
 DOMAIN-KEYWORD,-ad-sign.byteimg.com,REJECT
 # DOMAIN-KEYWORD, api-access.pangolin-sdk-toutiao, REJECT // 被复写替代
-DOMAIN-KEYWORD,log-api.pangolin-sdk-toutiao,REJECT
+# DOMAIN-KEYWORD,log-api.pangolin-sdk-toutiao,REJECT
 DOMAIN-KEYWORD,-ad.byteoversea.com,REJECT
 DOMAIN-KEYWORD,video-cn.snssdk.com,REJECT
 DOMAIN-KEYWORD,asiad.byteactivity,REJECT
@@ -2501,8 +2501,8 @@ DOMAIN,cdn.adapi.fotoable.com,REJECT
 
 # >>> merged from PiPiXia.sgmodule (unique only)
 # 推荐视频不能预览, REJECT
-DOMAIN-KEYWORD,log-api.pangolin-sdk-toutiao-b.com,REJECT
-DOMAIN-KEYWORD,log-api.pangolin-sdk-toutiao.com,REJECT
+# DOMAIN-KEYWORD,log-api.pangolin-sdk-toutiao-b.com,REJECT
+# DOMAIN-KEYWORD,log-api.pangolin-sdk-toutiao.com,REJECT
 DOMAIN-KEYWORD,api-access.pangolin-sdk-toutiao.com,REJECT
 
 # >>> merged from PingAnChina.sgmodule (unique only)
@@ -4014,7 +4014,7 @@ http:\/\/ad\.myfriday\.cn\/d\/json\/1\.1 - reject
 # > 番茄小说
 # hostname = *.pangolin-sdk-toutiao.com, *.pangolin-sdk-toutiao.*, *.pstatp.com, *.pstatp.com.*, *.pglstatp-toutiao.com.*, *.pglstatp-toutiao.com, gurd.snssdk.com, gurd.snssdk.com.*, i-lq.snssdk.com, i-lq.snssdk.com.*, *default.ixigua.com
 # 去章末广告
-^https?:\/\/.+\.pangolin-sdk-toutiao\.com\/api\/ad\/union\/sdk\/(get_ads|stats|settings)\/ - reject
+^https?:\/\/.+\.pangolin-sdk-toutiao\.com\/api\/ad\/union\/sdk\/(get_ads|stats|settings)\/ - reject-200
 ^https?:\/\/.+\.pglstatp-toutiao\.com\/.+\/toutiao\.mp4 - reject
 ^https?:\/\/.+\.(pglstatp-toutiao|pstatp)\.com\/(obj|img)\/(ad-app-package|ad)\/.+ - reject
 ^https?:\/\/.+\.(pglstatp-toutiao|pstatp)\.com\/(obj|img)\/web\.business\.image\/.+ - reject
@@ -4553,8 +4553,8 @@ https://access.mypikpak.com/access_controller/v1/area_accessible - reject
 # hostname = open.e.kuaishou.cn, api-access.pangolin-sdk-toutiao-b.com, api-access.pangolin-sdk-toutiao.com, api-access.pangolin-sdk-toutiao1.com, dsp-x.jd.com,api-cfg.wtzw.com, p1-lm.adukwai.com, lf-cdn-tos.bytescm.com
 # 删除了域名lf-cdn-tos.bytescm.com，原因是无法MITM
 ^https?:\/\/open\.e\.kuaishou\.cn\/rest\/e\/v3\/open\/univ - reject
-^https?:\/\/api-access\.pangolin-sdk-toutiao-b\.com\/api\/ad\/union\/sdk\/get_ads - reject
-^https?:\/\/api-access\.(pangolin-sdk-toutiao|pangolin-sdk-toutiao1)\.com\/api\/ad - reject
+^https?:\/\/api-access\.pangolin-sdk-toutiao-b\.com\/api\/ad\/union\/sdk\/get_ads - reject-200
+^https?:\/\/api-access\.(pangolin-sdk-toutiao|pangolin-sdk-toutiao1)\.com\/api\/ad - reject-200
 ^https?:\/\/dsp\-x\.jd\.com\/adx\/sdk - reject
 ^https?:\/\/api\-cfg\.wtzw\.com\/v1\/(adv|reward|operation) - reject
 ^https?:\/\/p1\-lm\.adukwai\.com\/bs2\/adUnionVideo - reject
@@ -4562,8 +4562,8 @@ https://access.mypikpak.com/access_controller/v1/area_accessible - reject
 
 # > 汽水音乐
 # 字节跳动广告
-^https:\/\/ether-pack\.pangolin-sdk-toutiao\.com\/union\/endcard\/ - reject
-^https:\/\/api-access\.pangolin-sdk-toutiao\d?\.com\/api\/ad\/ - reject
+^https:\/\/ether-pack\.pangolin-sdk-toutiao\.com\/union\/endcard\/ - reject-200
+^https:\/\/api-access\.pangolin-sdk-toutiao\d?\.com\/api\/ad\/ - reject-200
 ^https:\/\/sf\d+-fe-tos\.pglstatp-toutiao\.com\/obj\/ad-pattern\/ - reject
 ^https:\/\/lf-cdn-tos\.bytescm\.com\/obj\/static\/ad\/ - reject
 
@@ -4649,7 +4649,7 @@ https://ios.sspai.com/api/v3/recommend/page/get\?ad.*ios_home_modal - reject
 ^https?:\/\/ut2\.shuqistat\.com\/.+\.gif - reject
 ^https?:\/\/dsp\.toutiao\.com\/api\/xunfei\/ads\/ - reject
 ^https?:\/\/sf3-be-pack\.pglstatp-toutiao\.com\/img\/ad\.union\.api - reject
-^https?:\/\/api-access\.pangolin-sdk-toutiao\.com\/api\/ad\/.+ - reject
+^https?:\/\/api-access\.pangolin-sdk-toutiao\.com\/api\/ad\/.+ - reject-200
 ^https?:\/\/sq\.sljkj\.com\/api\/sdk\/ads2 - reject
 ^https?:\/\/ocean\.shuqireader\.com\/api\/ad\/adserver\/.+ - reject
 ^https?:\/\/ocean\.shuqireader\.com\/api\/route\/iosReadPage\/ad.+ - reject
@@ -5314,8 +5314,8 @@ hostname - reject
 "^https?:\/\/amap\-aos\-info\-nogw\.amap\.com\/ws\/aos\/alimama\/" - reject
 "^https?:\/\/ap\.dongqiudi\.com\/plat\/v" - reject
 "^https?:\/\/api-access\.[0-9a-zA-Z_-]+\.com\/api\/ad" - reject
-"^https?:\/\/api-access\.pangolin-sdk-toutiao\.com\/api\/ad\/union\/sdk\/get_ads" - reject
-"^https?:\/\/api-access\.pangolin-sdk-toutiao\.com\/api\/ad\/union\/server_bidding\/pre_fetch\/" - reject
+"^https?:\/\/api-access\.pangolin-sdk-toutiao\.com\/api\/ad\/union\/sdk\/get_ads" - reject-200
+"^https?:\/\/api-access\.pangolin-sdk-toutiao\.com\/api\/ad\/union\/server_bidding\/pre_fetch\/" - reject-200
 "^https?:\/\/api-mifit\.huami\.com\/(discovery\/mi\/discovery\/(homepage|sleep|sport(_(summary|training))?|step_detail|training_video)_ad|v1\/app\/startpages\.json)\?" - reject
 "^https?:\/\/api-release\.wuta-cam\.com\/ad_tree" - reject
 "^https?:\/\/api-sams\.walmartmobile\.cn\/api\/v1\/sams\/sams-user\/(window\/getGoUpPlus|screen_promotion\/get)" - reject
@@ -5749,8 +5749,8 @@ hostname - reject
 
 # NB助手 — 常见嵌入式开屏 SDK
 ^https?:\/\/(mi|v|tv)\.gdt\.qq\.com\/gdt_mview\.fcg - reject-dict
-^https?:\/\/api-access\.pangolin-sdk-toutiao\.com\/ - reject
-^https?:\/\/api-access\.pangolin-sdk-toutiao1\.com\/ - reject
+^https?:\/\/api-access\.pangolin-sdk-toutiao\.com\/ - reject-200
+^https?:\/\/api-access\.pangolin-sdk-toutiao1\.com\/ - reject-200
 ^https?:\/\/open\.snssdk\.com\/api\/ad\/ - reject
 ^https?:\/\/is\.snssdk\.com\/api\/ad\/ - reject
 ^https?:\/\/api\.ks\.com\/rest\/e\/v\d+\/open\/ - reject
@@ -5894,16 +5894,16 @@ http:\/\/sv\.adintl\.cn - reject
 # 拼多多视频广告路径 hostname = video-dsp.pddpic.com
 ^https:\/\/video-dsp\.pddpic\.com\/market-dsp-video - reject-dict
 # 穿山甲广告服务主接口 hostname = *.pangolin-sdk-toutiao.com, *.pangolin-sdk-toutiao-*.com, *.pglstatp-toutiao.com, *.ctobsnssdk.com, *.snssdk.com, *.gromore.com
-^https?:\/\/[-\w]*\.pangolin-sdk-toutiao[-\w]*\.com\/.*(service|api|ad|sdk|batch|config).* - reject
+^https?:\/\/[-\w]*\.pangolin-sdk-toutiao[-\w]*\.com\/.*(service|api|ad|sdk|batch|config).* - reject-200
 # GroMore 广告聚合
-^https?:\/\/gromore\.pangolin-sdk-toutiao[-\w]*\.com\/.* - reject
+^https?:\/\/gromore\.pangolin-sdk-toutiao[-\w]*\.com\/.* - reject-200
 # SDK 初始化 / 广告调度
-^https?:\/\/api-access\.pangolin-sdk-toutiao[-\w]*\.com\/.* - reject
+^https?:\/\/api-access\.pangolin-sdk-toutiao[-\w]*\.com\/.* - reject-200
 # 广告日志上报
-^https?:\/\/log-api\.pangolin-sdk-toutiao[-\w]*\.com\/.* - reject
+^https?:\/\/log-api\.pangolin-sdk-toutiao[-\w]*\.com\/.* - reject-200
 # 素材 CDN（视频 / 图片 / JSON）
 ^https?:\/\/.*\.pglstatp-toutiao\.com\/.* - reject
-^https?:\/\/.*\.pangolin-sdk-toutiao[-\w]*\.com\/.*\.(jpg|png|gif|webp|mp4|json).* - reject
+^https?:\/\/.*\.pangolin-sdk-toutiao[-\w]*\.com\/.*\.(jpg|png|gif|webp|mp4|json).* - reject-200
 # 埋点日志
 ^https?:\/\/toblog\.ctobsnssdk\.com\/.* - reject
 # 行为监控 / trace
