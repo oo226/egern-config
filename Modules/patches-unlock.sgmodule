@@ -1,0 +1,30 @@
+#!name=本地解锁补全
+#!desc=P12/OCSP 证书验证屏蔽、MITM 跳过服务端证书校验（已取消系统更新屏蔽，避免小红点/重试费电）
+#!author=oo226/egern-config (规则源自 BlueGrave/Surge、社区惯例)
+#!category=解锁补全
+#!system=ios
+
+[Rule]
+# 农行代理检测探针（原 skip-proxy-collection；skip-proxy 名单已收敛到主配置）
+DOMAIN,msmp.abchina.com.cn,REJECT
+# 屏蔽 iOS/iPadOS 企业证书 OCSP 验证（P12 相关）
+DOMAIN-SUFFIX,ocsp-lb.apple.com.akadns.net,REJECT
+DOMAIN-SUFFIX,ocsp.apple.com,REJECT
+DOMAIN-SUFFIX,ocsp.g.aaplimg.com,REJECT
+# 已取消「屏蔽系统更新」：硬拒 mesu 等会导致无法检查更新、设置小红点、后台重试费电
+# 若仍要挡 OTA，自行取消下面注释
+# DOMAIN,ns.itunes.apple.com,REJECT
+# DOMAIN,gdmf.apple.com,REJECT
+# DOMAIN,mesu.apple.com,REJECT
+# DOMAIN,updates.cdn-apple.com,REJECT
+# DOMAIN,updates-http.cdn-apple.com,REJECT
+# DOMAIN,xp.apple.com,REJECT
+# DOMAIN-SUFFIX,appldnld.apple.com,REJECT
+# DOMAIN-SUFFIX,mesu-cdn.apple.com.akadns.net,REJECT
+# DOMAIN,configuration.apple.com,REJECT
+# DOMAIN,swscan.apple.com,REJECT
+# DOMAIN,swdist.apple.com,REJECT
+# DOMAIN,swdownload.apple.com,REJECT
+
+[MITM]
+skip-server-cert-verify = true
