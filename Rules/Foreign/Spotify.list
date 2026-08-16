@@ -2,23 +2,23 @@
 # Format: Surge RULE-SET (no policy). scripts/export-surge-rulesets.py
 # Total entries: 20
 
-DOMAIN-SUFFIX,audio-ak-spotify-com.akamaized.net
-DOMAIN-SUFFIX,byspotify.com
-DOMAIN-SUFFIX,heads4-ak-spotify-com.akamaized.net
-DOMAIN-SUFFIX,pscdn.co
-DOMAIN-SUFFIX,scdn.co
-DOMAIN-SUFFIX,spoti.fi
-DOMAIN-SUFFIX,spotify-com.akamaized.net
-DOMAIN-SUFFIX,spotify-everywhere.com
-DOMAIN-SUFFIX,spotify.app.link
-DOMAIN-SUFFIX,spotify.com
-DOMAIN-SUFFIX,spotify.design
-DOMAIN-SUFFIX,spotifycdn.com
-DOMAIN-SUFFIX,spotifycdn.net
-DOMAIN-SUFFIX,spotifycharts.com
-DOMAIN-SUFFIX,spotifycodes.com
-DOMAIN-SUFFIX,spotifyforbrands.com
-DOMAIN-SUFFIX,spotifyjobs.com
-DOMAIN-KEYWORD,-spotify-com
+DOMAIN-SUFFIX,audio-ak-spotify-com.akamaized.net,extended-matching
+DOMAIN-SUFFIX,byspotify.com,extended-matching
+DOMAIN-SUFFIX,heads4-ak-spotify-com.akamaized.net,extended-matching
+DOMAIN-SUFFIX,pscdn.co,extended-matching
+DOMAIN-SUFFIX,scdn.co,extended-matching
+DOMAIN-SUFFIX,spoti.fi,extended-matching
+DOMAIN-SUFFIX,spotify-com.akamaized.net,extended-matching
+DOMAIN-SUFFIX,spotify-everywhere.com,extended-matching
+DOMAIN-SUFFIX,spotify.app.link,extended-matching
+DOMAIN-SUFFIX,spotify.com,extended-matching
+DOMAIN-SUFFIX,spotify.design,extended-matching
+DOMAIN-SUFFIX,spotifycdn.com,extended-matching
+DOMAIN-SUFFIX,spotifycdn.net,extended-matching
+DOMAIN-SUFFIX,spotifycharts.com,extended-matching
+DOMAIN-SUFFIX,spotifycodes.com,extended-matching
+DOMAIN-SUFFIX,spotifyforbrands.com,extended-matching
+DOMAIN-SUFFIX,spotifyjobs.com,extended-matching
+DOMAIN-KEYWORD,-spotify-com,extended-matching
 IP-CIDR,35.186.224.47/32
 USER-AGENT,Spotify*
