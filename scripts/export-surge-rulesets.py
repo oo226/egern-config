@@ -35,6 +35,19 @@ BUCKET_TO_RULE = {
     "user_agent_set": "USER-AGENT",
 }
 
+# VIF + always-real-ip → socket is IP:port; domain RULE-SET must match TLS SNI.
+# Bake into each domain line so users can fix routing by updating external
+# resources only (no Surge.conf / subscription re-import).
+EXTMATCH_RULES = frozenset(
+    {
+        "DOMAIN",
+        "DOMAIN-SUFFIX",
+        "DOMAIN-KEYWORD",
+        "DOMAIN-WILDCARD",
+        "DOMAIN-REGEX",
+    }
+)
+
 DOMAIN_KEYS = ("domain_set", "domain_suffix_set")
 IP_KEYS = ("ip_cidr_set", "ip_cidr6_set", "asn_set")
 NON_IP_EXTRA_KEYS = (
@@ -89,7 +102,11 @@ def ruleset_lines(sets: dict[str, set[str]], keys: tuple[str, ...] | None = None
         rule = BUCKET_TO_RULE[key]
         for value in sorted(sets.get(key) or set(), key=str.lower):
             clean = clean_value(key, value)
-            if clean:
+            if not clean:
+                continue
+            if rule in EXTMATCH_RULES:
+                lines.append(f"{rule},{clean},extended-matching")
+            else:
                 lines.append(f"{rule},{clean}")
     return lines
 
@@ -125,6 +142,7 @@ def export_one(src: Path, dest_stem: Path) -> dict[str, int]:
         [
             f"# AUTO-EXPORTED from Routing/{rel}",
             "# Format: Surge RULE-SET (no policy). scripts/export-surge-rulesets.py",
+            "# Domain lines include extended-matching (SNI hit under always-real-ip / VIF).",
             f"# Total entries: {len(full)}",
             "",
         ],
@@ -195,6 +213,7 @@ def main() -> None:
                 "",
                 "注意：外部 RULE-SET 不含 `DOMAIN-REGEX` / `URL-REGEX`（Surge iOS 会报 Invalid line）。",
                 "中文等 IDN 在 domainset/list 中转为 `xn--…` punycode。",
+                "域名行自带 `extended-matching`：只更新外部资源即可按 SNI 命中（不必改 Surge.conf）。",
                 "",
                 "主配置在 `surge` 分支根目录 `Surge.conf`。",
                 "Egern 继续用 `main` 的 `Routing/*.yaml`，互不覆盖。",

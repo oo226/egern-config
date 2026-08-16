@@ -2,7 +2,7 @@
 # Format: Surge RULE-SET (no policy). scripts/export-surge-rulesets.py
 # Total entries: 4
 
-DOMAIN-SUFFIX,weibo.cn
-DOMAIN-SUFFIX,weibo.com
-DOMAIN-SUFFIX,weibocdn.com
-DOMAIN-KEYWORD,weibo
+DOMAIN-SUFFIX,weibo.cn,extended-matching
+DOMAIN-SUFFIX,weibo.com,extended-matching
+DOMAIN-SUFFIX,weibocdn.com,extended-matching
+DOMAIN-KEYWORD,weibo,extended-matching
