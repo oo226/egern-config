@@ -2,5 +2,5 @@
 # Format: Surge RULE-SET (no policy). scripts/export-surge-rulesets.py
 # Total entries: 2
 
-DOMAIN-SUFFIX,apissl.ksapisrv.com
-DOMAIN-SUFFIX,gifshow.com
+DOMAIN-SUFFIX,apissl.ksapisrv.com,extended-matching
+DOMAIN-SUFFIX,gifshow.com,extended-matching

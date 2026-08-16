@@ -2,9 +2,9 @@
 # Format: Surge RULE-SET (no policy). scripts/export-surge-rulesets.py
 # Total entries: 6
 
-DOMAIN-SUFFIX,github.com
-DOMAIN-SUFFIX,github.io
-DOMAIN-SUFFIX,githubapp.com
-DOMAIN-SUFFIX,githubassets.com
-DOMAIN-SUFFIX,githubusercontent.com
-DOMAIN-KEYWORD,github
+DOMAIN-SUFFIX,github.com,extended-matching
+DOMAIN-SUFFIX,github.io,extended-matching
+DOMAIN-SUFFIX,githubapp.com,extended-matching
+DOMAIN-SUFFIX,githubassets.com,extended-matching
+DOMAIN-SUFFIX,githubusercontent.com,extended-matching
+DOMAIN-KEYWORD,github,extended-matching
