@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-16T03:41:26Z",
+  "generated_at": "2026-08-17T03:42:22Z",
   "branch": "main",
   "repo": "oo226/egern-config",
   "raw_base": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main",
@@ -202,20 +202,41 @@
   ],
   "sync_digest": {
     "commit": {
-      "hash": "1d459c8",
-      "subject": "chore: sync upstream on sync branch",
-      "date": "2026-08-16"
+      "hash": "76af660",
+      "subject": "Merge pull request #73 from oo226/cursor/bootstrap-ari-gaps-ac83",
+      "date": "2026-08-17"
     },
     "summary": [
-      "分流规则 更新 2 个文件",
-      "模块 更新 12 个文件",
-      "脚本 更新 1 个文件",
-      "模块站 更新 2 个文件",
-      "国内直连 25589 条"
+      "国内直连 25590 条"
     ],
-    "files_changed": 23
+    "files_changed": 0
   },
   "changelog": [
+    {
+      "hash": "efeecaa",
+      "subject": "Merge pull request #72 from oo226/cursor/bootstrap-ari-gaps-main-ac83",
+      "date": "2026-08-17"
+    },
+    {
+      "hash": "f555ba5",
+      "subject": "fix(main): Bootstrap-Direct covers msftncsi + carrier portals",
+      "date": "2026-08-16"
+    },
+    {
+      "hash": "39ed0ad",
+      "subject": "revert(main): restore iOS OTA block in unlock modules",
+      "date": "2026-08-16"
+    },
+    {
+      "hash": "5d0f83f",
+      "subject": "fix(main): allow iOS OTA check — unblock mesu in unlock modules",
+      "date": "2026-08-16"
+    },
+    {
+      "hash": "a0ac57e",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-08-16"
+    },
     {
       "hash": "e19d3ed",
       "subject": "chore: publish curated snapshot from sync",
@@ -229,31 +250,6 @@
     {
       "hash": "4f93f65",
       "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-08-15"
-    },
-    {
-      "hash": "cf69531",
-      "subject": "fix(egern): point Map Local script assets to jsDelivr",
-      "date": "2026-08-15"
-    },
-    {
-      "hash": "118a4bb",
-      "subject": "fix(egern): restore missing fmz200 Map Local JSON assets",
-      "date": "2026-08-15"
-    },
-    {
-      "hash": "0cefffa",
-      "subject": "fix(egern): merge working 皮皮虾 standalone into mega collection",
-      "date": "2026-08-15"
-    },
-    {
-      "hash": "511ec3d",
-      "subject": "fix(egern): bake 皮皮虾 into mega collection + MITM hostnames",
-      "date": "2026-08-15"
-    },
-    {
-      "hash": "bf4154b",
-      "subject": "fix(egern): restore adblock mega collection without QingRex dump",
       "date": "2026-08-15"
     }
   ],
