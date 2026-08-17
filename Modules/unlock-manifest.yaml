@@ -4,7 +4,7 @@
 merge:
   output: unlock-collection.module
   primary_name: 解锁合集
-  primary_desc: "多源合并去重：链接解锁 + Spotify + VIP解锁 + 屏蔽更新（Actions 每日同步）"
+  primary_desc: "多源合并去重：链接解锁 + Spotify + VIP解锁 + 屏蔽更新（tf1：勿拒 xp.apple.com）"
   # 主配置 knobs：模块里不再写（避免叠装 / 改写用户 Surge·Egern 偏好）
   drop_general_keys:
     - skip-proxy

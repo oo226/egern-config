@@ -1,5 +1,5 @@
 #!name=解锁合集
-#!desc=多源合并去重：链接解锁 + Spotify + VIP解锁 + 屏蔽更新（Actions 每日同步）
+#!desc=多源合并去重：链接解锁 + Spotify + VIP解锁 + 屏蔽更新（tf1：勿拒 xp.apple.com）
 #!category=解锁
 
 
@@ -670,7 +670,7 @@ DOMAIN-SUFFIX,ocsp.g.aaplimg.com,REJECT
 DOMAIN,ns.itunes.apple.com,REJECT
 DOMAIN,updates.cdn-apple.com,REJECT
 DOMAIN,updates-http.cdn-apple.com,REJECT
-DOMAIN,xp.apple.com,REJECT
+# xp.apple.com 勿 REJECT（会卡 TestFlight）；见 patches-unlock
 DOMAIN-SUFFIX,appldnld.apple.com,REJECT
 DOMAIN-SUFFIX,mesu-cdn.apple.com.akadns.net,REJECT
 DOMAIN,configuration.apple.com,REJECT

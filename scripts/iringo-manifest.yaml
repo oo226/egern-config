@@ -19,11 +19,10 @@ standalone:
 
 others_merge:
   output: iringo-others.sgmodule
-  title: " iRingo 其他（TV / TestFlight / News）"
+  # TestFlight 不再并入：MitM testflight.apple.com 会令 join 页转圈；需要换区请单独装 NSRingo/TestFlight
+  title: " iRingo 其他（TV / News；不含 TestFlight）"
   repos:
     - repo: NSRingo/TV
       asset: iRingo.TV.sgmodule
-    - repo: NSRingo/TestFlight
-      asset: iRingo.TestFlight.sgmodule
     - repo: NSRingo/News
       asset: iRingo.News.sgmodule

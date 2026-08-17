@@ -1,5 +1,5 @@
 #!name=本地解锁补全
-#!desc=屏蔽系统更新下载 + P12/OCSP；点进更新页会「无法检查」属预期（Surge 无法伪造已是最新）
+#!desc=屏蔽系统更新下载 + P12/OCSP（tf1）；点进更新页会「无法检查」属预期。勿拒 xp.apple.com（会卡 TestFlight）
 #!author=oo226/egern-config (规则源自 BlueGrave/Surge、社区惯例)
 #!category=解锁补全
 #!system=ios
@@ -13,12 +13,12 @@ DOMAIN-SUFFIX,ocsp.apple.com,REJECT
 DOMAIN-SUFFIX,ocsp.g.aaplimg.com,REJECT
 # 屏蔽系统更新：硬拒后无法连苹果查清单 → 「无法检查更新」
 # 说明：苹果清单有签名，Map Local 空包/假包不能稳定伪装成「已是最新」消小红点
+# 不要 REJECT xp.apple.com：TestFlight / App 体验服务会一直转圈（日志里 Rule=REJECT）
 DOMAIN,ns.itunes.apple.com,REJECT
 DOMAIN,gdmf.apple.com,REJECT
 DOMAIN,mesu.apple.com,REJECT
 DOMAIN,updates.cdn-apple.com,REJECT
 DOMAIN,updates-http.cdn-apple.com,REJECT
-DOMAIN,xp.apple.com,REJECT
 DOMAIN-SUFFIX,appldnld.apple.com,REJECT
 DOMAIN-SUFFIX,mesu-cdn.apple.com.akadns.net,REJECT
 DOMAIN,configuration.apple.com,REJECT
