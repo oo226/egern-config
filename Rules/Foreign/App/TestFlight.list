@@ -2,7 +2,7 @@
 # Format: Surge RULE-SET (no policy). scripts/export-surge-rulesets.py
 # Domain lines include extended-matching (SNI hit under always-real-ip / VIF).
 # Total entries: 3
-# 分流策略与 Egern 一致：由 Direct-Priority → DIRECT（本 list 仅给 DNS Host 用）
+# 分流策略与 Egern 一致：由 Direct-Priority → DIRECT（本 list 仅给 DNS Host 用；Surge 用国内 DoH）
 
 DOMAIN,beta.apple.com,extended-matching
 DOMAIN,testflight.apple.com,extended-matching
