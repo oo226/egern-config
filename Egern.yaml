@@ -489,13 +489,8 @@ mitm:
       # 皮皮虾去广告（大合集 Map Local / jq 需要 MITM）
       - api.pipix.com
       - api5-lq.pipix.com
-      #  iRingo — 仅精确域名，不用 *.apple.com / *.ls.apple.com 整域
+      #  iRingo 天气（地图/定位默认关：走动切网会反复跑 Maps 脚本）
       - weatherkit.apple.com
-      - configuration.ls.apple.com
-      - gspe35-ssl.ls.apple.com
-      - gspe35-ssl.ls.apple.cn
-      - gspe1-ssl.ls.apple.com
-      - dispatcher.is.autonavi.com
     excludes:
       - "*.wechat.com"
       - "*.weixin.qq.com"
@@ -545,14 +540,15 @@ modules:
   - name: 插件跳转 Egern
     url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/ibl3nd-plugin-hub.yaml
     enabled: true
-  #  iRingo — MITM 主机名在上方 mitm.hostnames；模块按需开关
+  #  iRingo — 地图默认关（切网/位移会刷 config.defaults / geo_manifest）
+  # 若要开地图或定位：同时打开「 iRingo MITM 域名」
   - name: " iRingo MITM 域名"
     url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/iringo-mitm.yaml
     enabled: false
   - name: " iRingo 地图"
     url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/iringo-maps.sgmodule
     update_interval: 86400
-    enabled: true
+    enabled: false
   - name: " iRingo 天气"
     url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/iringo-weather.sgmodule
     update_interval: 86400

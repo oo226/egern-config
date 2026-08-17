@@ -673,7 +673,7 @@ DOMAIN,updates-http.cdn-apple.com,REJECT
 # xp.apple.com 勿 REJECT（会卡 TestFlight）；见 patches-unlock
 DOMAIN-SUFFIX,appldnld.apple.com,REJECT
 DOMAIN-SUFFIX,mesu-cdn.apple.com.akadns.net,REJECT
-DOMAIN,configuration.apple.com,REJECT
+# 勿拒 configuration.apple.com：系统会连打重试，最近请求里一串 REJECT
 DOMAIN,swscan.apple.com,REJECT
 DOMAIN,swdist.apple.com,REJECT
 DOMAIN,swdownload.apple.com,REJECT
