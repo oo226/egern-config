@@ -22,11 +22,13 @@ merge:
     - "# skip-proxy / always-real-ip：仅主配置；农行探针 Rule 在 patches-unlock"
     - ""
   # 旧 Spotify 解锁脚本与实测可用的 Eevee 冲突，合并时剔除
-  # DualSubs Spotify 留在合集内，合并时把 {{{Types}}} 等占位符写成官方默认值
+  # DualSubs Spotify：webview + protobuf 歌词脚本易超时、抬内存，iOS 会被系统杀掉
   content_line_excludes:
     - "app2smile/rules/master/js/spotify-proto.js"
     - "Spotify.Crack.Dev.js"
     - "Spotify.Crack.js"
+    - "DualSubs.Spotify"
+    - "DualSubsSpotify"
 
 
 modules:
