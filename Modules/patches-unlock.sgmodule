@@ -1,5 +1,5 @@
 #!name=本地解锁补全
-#!desc=屏蔽系统更新下载 + P12/OCSP（tf2）；勿拒 xp/ns.itunes/configuration（会卡 TestFlight）
+#!desc=屏蔽系统更新下载 + P12/OCSP（tf4）；勿拒 AASA/全局QUIC；MitM 排除 TestFlight
 #!author=oo226/egern-config (规则源自 BlueGrave/Surge、社区惯例)
 #!category=解锁补全
 #!system=ios
@@ -25,3 +25,5 @@ DOMAIN,swdownload.apple.com,REJECT
 
 [MITM]
 skip-server-cert-verify = true
+# TestFlight 证书固定：排除 MitM（Egern 的 mitm.includes 本就没有这些域名）
+hostname = %APPEND% -testflight.apple.com, -beta.apple.com
