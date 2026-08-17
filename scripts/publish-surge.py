@@ -29,8 +29,12 @@ PUBLISH_FILES = [
 PUBLISH_MODULE_FILES = [
     "Modules/adblock-collection.module",
     "Modules/patches-pipixia.sgmodule",
+    "Modules/patches-unlock.sgmodule",
     "Modules/pingme.sgmodule",
+    "Modules/pipixia-heat.sgmodule",
     "Modules/qdreader.sgmodule",
+    "Modules/iringo-others.sgmodule",
+    "Modules/unlock-collection.module",
 ]
 
 # Surge-only scripts (PingMe etc.); keep off main/Egern.
