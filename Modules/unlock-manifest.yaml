@@ -31,6 +31,17 @@ merge:
     - "DualSubsSpotify"
     # TestFlight / 设备配置：勿拒 configuration.apple.com（会狂重试、抬内存）
     - "DOMAIN,configuration.apple.com,REJECT"
+  mitm_hostname_excludes:
+    - "*.telegram.org"
+    - "*.telegram-cdn.org"
+    - "*.t.me"
+    - "*.whatsapp.com"
+    - "*.whatsapp.net"
+    - "*.wa.me"
+    - "149.154.*"
+    - "91.108.*"
+    - "91.105.*"
+    - "194.221.250.50"
 
 
 modules:
