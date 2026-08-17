@@ -16,7 +16,7 @@ _WEBVIEW_RE = re.compile(r",?\s*engine=webview", re.IGNORECASE)
 
 
 def harden_iringo_scripts(text: str) -> str:
-    """Drop webview; pin script-update-interval=0 so modules don't re-fetch raw GitHub."""
+    """Keep Maps on: Surge JSC (no webview), pin scripts, bound runtime."""
     out: list[str] = []
     for line in text.splitlines(True):
         if line.lstrip().startswith("#") or "script-path=" not in line or "type=http-" not in line:
@@ -27,8 +27,15 @@ def harden_iringo_scripts(text: str) -> str:
         body = re.sub(r",{2,}", ",", body)
         if "script-update-interval=" not in body:
             body = f"{body}, script-update-interval=0"
+        if "type=http-response" in body and "timeout=" not in body:
+            body = f"{body}, timeout=10"
         out.append(body + newline)
-    return "".join(out)
+    text = "".join(out)
+    old_mitm = "hostname = %APPEND% configuration.ls.apple.com, gspe35-ssl.ls.apple.com"
+    new_mitm = "hostname = %APPEND% configuration.ls.apple.com, gspe35-ssl.ls.apple.com, gspe35-ssl.ls.apple.cn"
+    if old_mitm in text and "gspe35-ssl.ls.apple.cn" not in text.split("[MITM]")[-1]:
+        text = text.replace(old_mitm, new_mitm, 1)
+    return text
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from paths import MODULES
