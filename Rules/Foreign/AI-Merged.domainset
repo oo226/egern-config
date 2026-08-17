@@ -1,6 +1,6 @@
 # AUTO-EXPORTED from Routing/Foreign/AI-Merged.yaml
 # Format: Surge DOMAIN-SET (leading '.' = suffix). scripts/export-surge-rulesets.py
-# Total entries: 384
+# Total entries: 390
 
 ai.google.dev
 ai.meta.com
@@ -386,3 +386,9 @@ yiyan.baidu.com
 .zed.dev
 .zhipuai.cn
 .zhipucn.com
+accountcapabilities-pa.googleapis.com
+notifications-pa.googleapis.com
+oauth2.googleapis.com
+oauthaccountmanager.googleapis.com
+signaler-pa.googleapis.com
+subscriptionsfirstparty-pa.googleapis.com
