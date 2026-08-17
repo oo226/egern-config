@@ -35,10 +35,14 @@ domain_set:
   - notifications-pa.googleapis.com
   - oauth2.googleapis.com
   - oauthaccountmanager.googleapis.com
+  - people-pa.googleapis.com
+  - play.googleapis.com
   - signaler-pa.googleapis.com
   - subscriptionsfirstparty-pa.googleapis.com
 
 domain_suffix_set:
+  # Gemini 附件/CDN；Google.list 的 KEYWORD,google 会误抢
+  - googleusercontent.com
   - openai.com
   - mistral.ai
   - deepseek.com

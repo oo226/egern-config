@@ -1,8 +1,9 @@
 # AUTO-EXPORTED from Routing/Foreign/AI-supplement.yaml
 # Format: Surge RULE-SET (no policy). scripts/export-surge-rulesets.py
 # Domain lines include extended-matching (SNI hit under always-real-ip / VIF).
-# Total entries: 79
+# Total entries: 88
 
+DOMAIN,accountcapabilities-pa.googleapis.com,extended-matching
 DOMAIN,api.anthropic.com,extended-matching
 DOMAIN,api.cohere.ai,extended-matching
 DOMAIN,api.cursor.sh,extended-matching
@@ -26,8 +27,15 @@ DOMAIN,claudeusercontent.com,extended-matching
 DOMAIN,console.mistral.ai,extended-matching
 DOMAIN,copilot.microsoft.com,extended-matching
 DOMAIN,files.oaiusercontent.com,extended-matching
+DOMAIN,notifications-pa.googleapis.com,extended-matching
 DOMAIN,oaiusercontent.com,extended-matching
+DOMAIN,oauth2.googleapis.com,extended-matching
+DOMAIN,oauthaccountmanager.googleapis.com,extended-matching
+DOMAIN,people-pa.googleapis.com,extended-matching
 DOMAIN,platform.openai.com,extended-matching
+DOMAIN,play.googleapis.com,extended-matching
+DOMAIN,signaler-pa.googleapis.com,extended-matching
+DOMAIN,subscriptionsfirstparty-pa.googleapis.com,extended-matching
 DOMAIN,sydney.bing.com,extended-matching
 DOMAIN-SUFFIX,baichuan-ai.com,extended-matching
 DOMAIN-SUFFIX,bolt.new,extended-matching
@@ -48,6 +56,7 @@ DOMAIN-SUFFIX,fireworks.ai,extended-matching
 DOMAIN-SUFFIX,flowgpt.com,extended-matching
 DOMAIN-SUFFIX,gamma.app,extended-matching
 DOMAIN-SUFFIX,githubcopilot.com,extended-matching
+DOMAIN-SUFFIX,googleusercontent.com,extended-matching
 DOMAIN-SUFFIX,hf.co,extended-matching
 DOMAIN-SUFFIX,huggingface.co,extended-matching
 DOMAIN-SUFFIX,ideogram.ai,extended-matching
