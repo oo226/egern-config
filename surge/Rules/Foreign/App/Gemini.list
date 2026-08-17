@@ -1,6 +1,4 @@
-# Gemini App / gemini.google.com 专用（须在 Google.list 的 googleapis.com / DOMAIN-KEYWORD,google 之前）
-# googleusercontent.com 含 "google" 子串，会被 Google.list 关键词误匹配 → 新国节点
-# Format: Surge RULE-SET (no policy)
+# Gemini App / gemini.google.com — 域名表；策略与 Egern 一致统一走 ChatGPT（日本流媒体等）
 
 DOMAIN,accountcapabilities-pa.googleapis.com,extended-matching
 DOMAIN,notifications-pa.googleapis.com,extended-matching
