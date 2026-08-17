@@ -30,6 +30,13 @@ domain_set:
   - api.kimi.moonshot.cn
   - api.minimax.chat
   - ark.cn-beijing.volces.com
+  # Gemini App 鉴权/推送栈（须在 Google.list 的 googleapis.com 之前命中 AI）
+  - accountcapabilities-pa.googleapis.com
+  - notifications-pa.googleapis.com
+  - oauth2.googleapis.com
+  - oauthaccountmanager.googleapis.com
+  - signaler-pa.googleapis.com
+  - subscriptionsfirstparty-pa.googleapis.com
 
 domain_suffix_set:
   - openai.com
