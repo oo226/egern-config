@@ -25,6 +25,7 @@ domain_set:
   - antigravity-unleash.goog
   - antigravity.google
   - antigravity.googleapis.com
+  - android.clients.google.com
   - api.anthropic.com
   - api.cohere.ai
   - api.cursor.sh
@@ -114,6 +115,7 @@ domain_set:
   - storage.googleapis.com
   - sydney.bing.com
   - webchannel-alkalimakersuite-pa.clients6.google.com
+  - www.googleapis.com
   - yiyan.baidu.com
 domain_suffix_set:
   - abtestvm-sg.bytedance.com
@@ -155,6 +157,7 @@ domain_suffix_set:
   - cerebras.ai
   - challenges.cloudflare.com
   - character.ai
+  - clients6.google.com
   - chat.com
   - chatbotclaude.com
   - chatglm.cn

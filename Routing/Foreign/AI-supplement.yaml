@@ -39,10 +39,13 @@ domain_set:
   - play.googleapis.com
   - signaler-pa.googleapis.com
   - subscriptionsfirstparty-pa.googleapis.com
+  - www.googleapis.com
+  - android.clients.google.com
 
 domain_suffix_set:
-  # Gemini 附件/CDN；Google.list 的 KEYWORD,google 会误抢
+  # Gemini 附件/CDN / clients6；Google.list 的 KEYWORD,google 会误抢
   - googleusercontent.com
+  - clients6.google.com
   - openai.com
   - mistral.ai
   - deepseek.com
