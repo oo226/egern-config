@@ -29,6 +29,8 @@ merge:
     - "Spotify.Crack.js"
     - "DualSubs.Spotify"
     - "DualSubsSpotify"
+    # TestFlight / 设备配置：勿拒 configuration.apple.com（会狂重试、抬内存）
+    - "DOMAIN,configuration.apple.com,REJECT"
 
 
 modules:

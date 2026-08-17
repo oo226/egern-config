@@ -5,10 +5,30 @@ from __future__ import annotations
 
 import importlib.util
 import json
+import re
 import ssl
 import sys
 import urllib.request
 from pathlib import Path
+
+# iOS NE 内存紧：webview 引擎 + 每次执行都拉 GitHub 脚本，走动/切网会把 Surge/Egern 打爆。
+_WEBVIEW_RE = re.compile(r",?\s*engine=webview", re.IGNORECASE)
+
+
+def harden_iringo_scripts(text: str) -> str:
+    """Drop webview; pin script-update-interval=0 so modules don't re-fetch raw GitHub."""
+    out: list[str] = []
+    for line in text.splitlines(True):
+        if line.lstrip().startswith("#") or "script-path=" not in line or "type=http-" not in line:
+            out.append(line)
+            continue
+        newline = "\n" if line.endswith("\n") else ""
+        body = _WEBVIEW_RE.sub("", line.rstrip("\n"))
+        body = re.sub(r",{2,}", ",", body)
+        if "script-update-interval=" not in body:
+            body = f"{body}, script-update-interval=0"
+        out.append(body + newline)
+    return "".join(out)
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from paths import MODULES
@@ -57,7 +77,7 @@ def download_module(repo: str, asset: str, dest: Path) -> None:
     if head.startswith(b"<!DOCTYPE") or head.startswith(b"<html"):
         raise ValueError(f"invalid payload from {url}")
     text = data.decode("utf-8", errors="replace")
-    text = _merge.mirror_script_paths(text)
+    text = harden_iringo_scripts(_merge.mirror_script_paths(text))
     dest.write_text(text, encoding="utf-8")
     print(f"OK {dest.name} <- {repo} ({len(data)} bytes)")
 
@@ -84,7 +104,7 @@ def merge_others(items: list[tuple[str, str]], title: str, output: Path) -> None
         ],
         primary_desc=title,
     )
-    merged = _merge.mirror_script_paths(merged)
+    merged = harden_iringo_scripts(_merge.mirror_script_paths(merged))
     output.write_text(merged, encoding="utf-8")
     print(f"OK {output.name} merged ({len(merged.splitlines())} lines)")
 
@@ -99,6 +119,10 @@ def main() -> None:
             download_module(item["repo"], item["asset"], dest)
         except Exception as exc:
             if dest.exists():
+                dest.write_text(
+                    harden_iringo_scripts(dest.read_text(encoding="utf-8")),
+                    encoding="utf-8",
+                )
                 print(f"KEEP {dest.name}: {exc}")
             else:
                 raise
