@@ -8,6 +8,7 @@
 
 注意：外部 RULE-SET 不含 `DOMAIN-REGEX` / `URL-REGEX`（Surge iOS 会报 Invalid line）。
 中文等 IDN 在 domainset/list 中转为 `xn--…` punycode。
+域名行自带 `extended-matching`：只更新外部资源即可按 SNI 命中（不必改 Surge.conf）。
 
 主配置在 `surge` 分支根目录 `Surge.conf`。
 Egern 继续用 `main` 的 `Routing/*.yaml`，互不覆盖。
