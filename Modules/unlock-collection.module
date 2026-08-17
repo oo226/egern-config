@@ -1,5 +1,5 @@
 #!name=解锁合集
-#!desc=解锁合集 · 含系统更新屏蔽（点进更新页无法检查属预期；Surge 不能伪造已是最新）
+#!desc=多源合并去重：链接解锁 + Spotify + VIP解锁 + 屏蔽更新（Actions 每日同步）
 #!category=解锁
 
 
@@ -665,7 +665,8 @@ DOMAIN,msmp.abchina.com.cn,REJECT
 DOMAIN-SUFFIX,ocsp-lb.apple.com.akadns.net,REJECT
 DOMAIN-SUFFIX,ocsp.apple.com,REJECT
 DOMAIN-SUFFIX,ocsp.g.aaplimg.com,REJECT
-# 屏蔽 iOS/iPadOS/macOS 系统更新（硬拒；无法伪造「已是最新」）
+# 屏蔽系统更新：硬拒后无法连苹果查清单 → 「无法检查更新」
+# 说明：苹果清单有签名，Map Local 空包/假包不能稳定伪装成「已是最新」消小红点
 DOMAIN,ns.itunes.apple.com,REJECT
 DOMAIN,updates.cdn-apple.com,REJECT
 DOMAIN,updates-http.cdn-apple.com,REJECT

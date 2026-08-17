@@ -1,5 +1,6 @@
 # AUTO-EXPORTED from Routing/Foreign/App/RedBook.yaml
 # Format: Surge RULE-SET (no policy). scripts/export-surge-rulesets.py
+# Domain lines include extended-matching (SNI hit under always-real-ip / VIF).
 # Total entries: 1
 
 DOMAIN-SUFFIX,edith.xiaohongshu.com,extended-matching

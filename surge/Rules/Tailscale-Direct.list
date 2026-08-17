@@ -1,9 +1,10 @@
-# Tailscale — domain lines carry extended-matching so RULE-SET hits TLS SNI
-# when always-real-ip makes the socket look like IP:443 (otherwise → FINAL).
-# Updating this ruleset alone is enough; conf line need not change.
+# AUTO-EXPORTED from Routing/Tailscale-Direct.yaml
+# Format: Surge RULE-SET (no policy). scripts/export-surge-rulesets.py
+# Domain lines include extended-matching (SNI hit under always-real-ip / VIF).
+# Total entries: 5
+
 DOMAIN-SUFFIX,tailscale.com,extended-matching
 DOMAIN-SUFFIX,tailscale.net,extended-matching
 DOMAIN-SUFFIX,ts.net,extended-matching
-DOMAIN,controlplane.tailscale.com,extended-matching
-DOMAIN,log.tailscale.com,extended-matching
-DOMAIN,login.tailscale.com,extended-matching
+IP-CIDR,100.64.0.0/10
+IP-CIDR6,fd7a:115c:a1e0::/48

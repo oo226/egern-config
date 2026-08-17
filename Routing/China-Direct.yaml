@@ -14,8 +14,8 @@
 #   Rabbit-CIDR    — Rabbit-Spec — ChinaCIDR.list (5394 entries)
 #   ResourceSite   — eulac-dev/Proxy — 视频资源站 (22 entries)
 #   PanVod         — eulac-dev/Proxy — 网盘点播 (47 entries)
-# Overlap removed: 7633
-# Total unique entries: 25589
+# Overlap removed: 7632
+# Total unique entries: 25590
 
 no_resolve: true
 domain_set:
@@ -14843,6 +14843,7 @@ ip_cidr_set:
   - 103.250.192.0/22
   - 103.250.216.0/22
   - 103.250.248.0/21
+  - 103.250.248.0/22
   - 103.250.32.0/22
   - 103.251.124.0/22
   - 103.251.160.0/22
@@ -18227,7 +18228,7 @@ ip_cidr_set:
   - 222.126.170.0/23
   - 222.126.172.0/22
   - 222.126.180.0/22
-  - 222.126.186.0/23
+  - 222.126.184.0/22
   - 222.126.188.0/23
   - 222.126.192.0/22
   - 222.126.196.0/23
