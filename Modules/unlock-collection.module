@@ -1,5 +1,5 @@
 #!name=解锁合集
-#!desc=多源合并去重：链接解锁 + Spotify + VIP解锁 + 屏蔽更新（tf1：勿拒 xp.apple.com）
+#!desc=多源合并去重：链接解锁 + Spotify + VIP解锁 + 屏蔽更新（tf2）
 #!category=解锁
 
 
@@ -667,13 +667,11 @@ DOMAIN-SUFFIX,ocsp.apple.com,REJECT
 DOMAIN-SUFFIX,ocsp.g.aaplimg.com,REJECT
 # 屏蔽系统更新：硬拒后无法连苹果查清单 → 「无法检查更新」
 # 说明：苹果清单有签名，Map Local 空包/假包不能稳定伪装成「已是最新」消小红点
-DOMAIN,ns.itunes.apple.com,REJECT
 DOMAIN,updates.cdn-apple.com,REJECT
 DOMAIN,updates-http.cdn-apple.com,REJECT
-# xp.apple.com 勿 REJECT（会卡 TestFlight）；见 patches-unlock
+# xp / ns.itunes / configuration 勿 REJECT（会卡 TestFlight）；见 patches-unlock / patches-testflight
 DOMAIN-SUFFIX,appldnld.apple.com,REJECT
 DOMAIN-SUFFIX,mesu-cdn.apple.com.akadns.net,REJECT
-DOMAIN,configuration.apple.com,REJECT
 DOMAIN,swscan.apple.com,REJECT
 DOMAIN,swdist.apple.com,REJECT
 DOMAIN,swdownload.apple.com,REJECT
