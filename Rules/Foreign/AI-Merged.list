@@ -84,7 +84,9 @@ DOMAIN,openaiassets.blob.core.windows.net,extended-matching
 DOMAIN,openaicom-api-bdcpf8c6d2e9atf6.z01.azurefd.net,extended-matching
 DOMAIN,openaicomproductionae4b.blob.core.windows.net,extended-matching
 DOMAIN,openrouter.ai,extended-matching
+DOMAIN,people-pa.googleapis.com,extended-matching
 DOMAIN,platform.openai.com,extended-matching
+DOMAIN,play.googleapis.com,extended-matching
 DOMAIN,ppl-ai-file-upload.s3.amazonaws.com,extended-matching
 DOMAIN,pplx-res.cloudinary.com,extended-matching
 DOMAIN,production-openaicom-storage.azureedge.net,extended-matching
@@ -233,6 +235,7 @@ DOMAIN-SUFFIX,githubcopilot.com,extended-matching
 DOMAIN-SUFFIX,grammarly.com,extended-matching
 DOMAIN-SUFFIX,grazie.ai,extended-matching
 DOMAIN-SUFFIX,grazie.aws.intellij.net,extended-matching
+DOMAIN-SUFFIX,googleusercontent.com,extended-matching
 DOMAIN-SUFFIX,grok.com,extended-matching
 DOMAIN-SUFFIX,grok.x.com,extended-matching
 DOMAIN-SUFFIX,grokipedia.com,extended-matching
