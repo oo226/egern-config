@@ -1,0 +1,27 @@
+# Gemini App / gemini.google.com 专用（须在 Google.list 的 googleapis.com / DOMAIN-KEYWORD,google 之前）
+# googleusercontent.com 含 "google" 子串，会被 Google.list 关键词误匹配 → 新国节点
+# Format: Surge RULE-SET (no policy)
+
+DOMAIN,accountcapabilities-pa.googleapis.com,extended-matching
+DOMAIN,notifications-pa.googleapis.com,extended-matching
+DOMAIN,oauth2.googleapis.com,extended-matching
+DOMAIN,oauthaccountmanager.googleapis.com,extended-matching
+DOMAIN,people-pa.googleapis.com,extended-matching
+DOMAIN,play.googleapis.com,extended-matching
+DOMAIN,robinfrontend-pa.googleapis.com,extended-matching
+DOMAIN,signaler-pa.googleapis.com,extended-matching
+DOMAIN,subscriptionsfirstparty-pa.googleapis.com,extended-matching
+DOMAIN-SUFFIX,gemini.google.com,extended-matching
+DOMAIN-SUFFIX,gemini.google,extended-matching
+DOMAIN-SUFFIX,gemini.gstatic.com,extended-matching
+DOMAIN-SUFFIX,generativelanguage.googleapis.com,extended-matching
+DOMAIN-SUFFIX,googleusercontent.com,extended-matching
+DOMAIN-SUFFIX,bard.google.com,extended-matching
+DOMAIN-SUFFIX,geller-pa.googleapis.com,extended-matching
+DOMAIN-SUFFIX,proactivebackend-pa.googleapis.com,extended-matching
+DOMAIN-SUFFIX,aistudio.google.com,extended-matching
+DOMAIN,alkalimakersuite-pa.clients6.google.com,extended-matching
+DOMAIN-SUFFIX,cloudcode-pa.googleapis.com,extended-matching
+DOMAIN-SUFFIX,deepmind.google,extended-matching
+DOMAIN-SUFFIX,makersuite.google.com,extended-matching
+DOMAIN-SUFFIX,notebooklm.google.com,extended-matching
