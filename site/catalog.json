@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-17T03:42:22Z",
+  "generated_at": "2026-08-17T03:42:31Z",
   "branch": "main",
   "repo": "oo226/egern-config",
   "raw_base": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main",
@@ -202,16 +202,25 @@
   ],
   "sync_digest": {
     "commit": {
-      "hash": "76af660",
-      "subject": "Merge pull request #73 from oo226/cursor/bootstrap-ari-gaps-ac83",
+      "hash": "beab1d4",
+      "subject": "chore: sync upstream on sync branch",
       "date": "2026-08-17"
     },
     "summary": [
+      "分流规则 更新 2 个文件",
+      "模块 更新 2 个文件",
+      "脚本 更新 2 个文件",
+      "模块站 更新 2 个文件",
       "国内直连 25590 条"
     ],
-    "files_changed": 0
+    "files_changed": 52
   },
   "changelog": [
+    {
+      "hash": "b5a00c7",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-08-17"
+    },
     {
       "hash": "efeecaa",
       "subject": "Merge pull request #72 from oo226/cursor/bootstrap-ari-gaps-main-ac83",
@@ -244,11 +253,6 @@
     },
     {
       "hash": "ca78e86",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-08-15"
-    },
-    {
-      "hash": "4f93f65",
       "subject": "chore: publish curated snapshot from sync",
       "date": "2026-08-15"
     }
