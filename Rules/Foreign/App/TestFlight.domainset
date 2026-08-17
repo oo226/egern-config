@@ -1,10 +1,6 @@
-# AUTO-EXPORTED from Routing/Foreign/App/TestFlight.yaml (+ Surge TF join hosts)
+# AUTO-EXPORTED from Routing/Foreign/App/TestFlight.yaml
 # Format: Surge DOMAIN-SET (leading '.' = suffix). scripts/export-surge-rulesets.py
-# Total entries: 6
+# Total entries: 2
 
 beta.apple.com
 testflight.apple.com
-fpinit.itunes.apple.com
-bag.itunes.apple.com
-profile.gc.apple.com
-static.gc.apple.com
