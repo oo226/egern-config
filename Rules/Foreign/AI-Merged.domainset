@@ -1,13 +1,15 @@
 # AUTO-EXPORTED from Routing/Foreign/AI-Merged.yaml
 # Format: Surge DOMAIN-SET (leading '.' = suffix). scripts/export-surge-rulesets.py
-# Total entries: 390
+# Total entries: 396
 
+accountcapabilities-pa.googleapis.com
 ai.google.dev
 ai.meta.com
 aida.googleapis.com
 aisandbox-pa.googleapis.com
 alkalicore-pa.clients6.google.com
 alkalimakersuite-pa.clients6.google.com
+android.clients.google.com
 anthropic-com.ghost.io
 anthropic.auth0.com
 anthropic.com.cdn.cloudflare.net
@@ -15,7 +17,6 @@ antigravity-pa.googleapis.com
 antigravity-unleash.goog
 antigravity.google
 antigravity.googleapis.com
-android.clients.google.com
 api.anthropic.com
 api.cohere.ai
 api.cursor.sh
@@ -77,7 +78,10 @@ jules.google.com
 location.microsoft.com
 notebooklm-pa.googleapis.com
 notebooklm.googleapis.com
+notifications-pa.googleapis.com
 oaiusercontent.com
+oauth2.googleapis.com
+oauthaccountmanager.googleapis.com
 odc.officeapps.live.com
 openai-api.arkoselabs.com
 openaiassets.blob.core.windows.net
@@ -95,8 +99,10 @@ qianfan.baidubce.com
 robinfrontend-pa.googleapis.com
 self.events.data.microsoft.com
 servd-anthropic-website.b-cdn.net
+signaler-pa.googleapis.com
 static.cloudflareinsights.com
 storage.googleapis.com
+subscriptionsfirstparty-pa.googleapis.com
 sydney.bing.com
 webchannel-alkalimakersuite-pa.clients6.google.com
 www.googleapis.com
@@ -140,7 +146,6 @@ yiyan.baidu.com
 .cerebras.ai
 .challenges.cloudflare.com
 .character.ai
-.clients6.google.com
 .chat.com
 .chatbotclaude.com
 .chatglm.cn
@@ -164,6 +169,7 @@ yiyan.baidu.com
 .claudestudio.com
 .claudeusercontent.com
 .client-api.arkoselabs.com
+.clients6.google.com
 .clipdrop.co
 .cloudcode-pa.googleapis.com
 .codeium.com
@@ -228,10 +234,10 @@ yiyan.baidu.com
 .generativelanguage.googleapis.com
 .genspark.ai
 .githubcopilot.com
+.googleusercontent.com
 .grammarly.com
 .grazie.ai
 .grazie.aws.intellij.net
-.googleusercontent.com
 .grok.com
 .grok.x.com
 .grokipedia.com
@@ -392,9 +398,3 @@ yiyan.baidu.com
 .zed.dev
 .zhipuai.cn
 .zhipucn.com
-accountcapabilities-pa.googleapis.com
-notifications-pa.googleapis.com
-oauth2.googleapis.com
-oauthaccountmanager.googleapis.com
-signaler-pa.googleapis.com
-subscriptionsfirstparty-pa.googleapis.com

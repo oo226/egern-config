@@ -1,14 +1,16 @@
 # AUTO-EXPORTED from Routing/Foreign/AI-Merged.yaml
 # Format: Surge RULE-SET (no policy). scripts/export-surge-rulesets.py
 # Domain lines include extended-matching (SNI hit under always-real-ip / VIF).
-# Total entries: 396
+# Total entries: 402
 
+DOMAIN,accountcapabilities-pa.googleapis.com,extended-matching
 DOMAIN,ai.google.dev,extended-matching
 DOMAIN,ai.meta.com,extended-matching
 DOMAIN,aida.googleapis.com,extended-matching
 DOMAIN,aisandbox-pa.googleapis.com,extended-matching
 DOMAIN,alkalicore-pa.clients6.google.com,extended-matching
 DOMAIN,alkalimakersuite-pa.clients6.google.com,extended-matching
+DOMAIN,android.clients.google.com,extended-matching
 DOMAIN,anthropic-com.ghost.io,extended-matching
 DOMAIN,anthropic.auth0.com,extended-matching
 DOMAIN,anthropic.com.cdn.cloudflare.net,extended-matching
@@ -16,7 +18,6 @@ DOMAIN,antigravity-pa.googleapis.com,extended-matching
 DOMAIN,antigravity-unleash.goog,extended-matching
 DOMAIN,antigravity.google,extended-matching
 DOMAIN,antigravity.googleapis.com,extended-matching
-DOMAIN,android.clients.google.com,extended-matching
 DOMAIN,api.anthropic.com,extended-matching
 DOMAIN,api.cohere.ai,extended-matching
 DOMAIN,api.cursor.sh,extended-matching
@@ -78,7 +79,10 @@ DOMAIN,jules.google.com,extended-matching
 DOMAIN,location.microsoft.com,extended-matching
 DOMAIN,notebooklm-pa.googleapis.com,extended-matching
 DOMAIN,notebooklm.googleapis.com,extended-matching
+DOMAIN,notifications-pa.googleapis.com,extended-matching
 DOMAIN,oaiusercontent.com,extended-matching
+DOMAIN,oauth2.googleapis.com,extended-matching
+DOMAIN,oauthaccountmanager.googleapis.com,extended-matching
 DOMAIN,odc.officeapps.live.com,extended-matching
 DOMAIN,openai-api.arkoselabs.com,extended-matching
 DOMAIN,openaiassets.blob.core.windows.net,extended-matching
@@ -94,16 +98,12 @@ DOMAIN,production-openaicom-storage.azureedge.net,extended-matching
 DOMAIN,q-developer-integration.us-east-1.api.aws,extended-matching
 DOMAIN,qianfan.baidubce.com,extended-matching
 DOMAIN,robinfrontend-pa.googleapis.com,extended-matching
-DOMAIN,accountcapabilities-pa.googleapis.com,extended-matching
-DOMAIN,notifications-pa.googleapis.com,extended-matching
-DOMAIN,oauth2.googleapis.com,extended-matching
-DOMAIN,oauthaccountmanager.googleapis.com,extended-matching
-DOMAIN,signaler-pa.googleapis.com,extended-matching
-DOMAIN,subscriptionsfirstparty-pa.googleapis.com,extended-matching
 DOMAIN,self.events.data.microsoft.com,extended-matching
 DOMAIN,servd-anthropic-website.b-cdn.net,extended-matching
+DOMAIN,signaler-pa.googleapis.com,extended-matching
 DOMAIN,static.cloudflareinsights.com,extended-matching
 DOMAIN,storage.googleapis.com,extended-matching
+DOMAIN,subscriptionsfirstparty-pa.googleapis.com,extended-matching
 DOMAIN,sydney.bing.com,extended-matching
 DOMAIN,webchannel-alkalimakersuite-pa.clients6.google.com,extended-matching
 DOMAIN,www.googleapis.com,extended-matching
@@ -147,7 +147,6 @@ DOMAIN-SUFFIX,byteoversea.com,extended-matching
 DOMAIN-SUFFIX,cerebras.ai,extended-matching
 DOMAIN-SUFFIX,challenges.cloudflare.com,extended-matching
 DOMAIN-SUFFIX,character.ai,extended-matching
-DOMAIN-SUFFIX,clients6.google.com,extended-matching
 DOMAIN-SUFFIX,chat.com,extended-matching
 DOMAIN-SUFFIX,chatbotclaude.com,extended-matching
 DOMAIN-SUFFIX,chatglm.cn,extended-matching
@@ -171,6 +170,7 @@ DOMAIN-SUFFIX,claudepages.dev,extended-matching
 DOMAIN-SUFFIX,claudestudio.com,extended-matching
 DOMAIN-SUFFIX,claudeusercontent.com,extended-matching
 DOMAIN-SUFFIX,client-api.arkoselabs.com,extended-matching
+DOMAIN-SUFFIX,clients6.google.com,extended-matching
 DOMAIN-SUFFIX,clipdrop.co,extended-matching
 DOMAIN-SUFFIX,cloudcode-pa.googleapis.com,extended-matching
 DOMAIN-SUFFIX,codeium.com,extended-matching
@@ -235,10 +235,10 @@ DOMAIN-SUFFIX,generativeai.google,extended-matching
 DOMAIN-SUFFIX,generativelanguage.googleapis.com,extended-matching
 DOMAIN-SUFFIX,genspark.ai,extended-matching
 DOMAIN-SUFFIX,githubcopilot.com,extended-matching
+DOMAIN-SUFFIX,googleusercontent.com,extended-matching
 DOMAIN-SUFFIX,grammarly.com,extended-matching
 DOMAIN-SUFFIX,grazie.ai,extended-matching
 DOMAIN-SUFFIX,grazie.aws.intellij.net,extended-matching
-DOMAIN-SUFFIX,googleusercontent.com,extended-matching
 DOMAIN-SUFFIX,grok.com,extended-matching
 DOMAIN-SUFFIX,grok.x.com,extended-matching
 DOMAIN-SUFFIX,grokipedia.com,extended-matching

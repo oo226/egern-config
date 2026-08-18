@@ -1,7 +1,9 @@
 # AUTO-EXPORTED from Routing/Foreign/AI-supplement.yaml
 # Format: Surge DOMAIN-SET (leading '.' = suffix). scripts/export-surge-rulesets.py
-# Total entries: 78
+# Total entries: 90
 
+accountcapabilities-pa.googleapis.com
+android.clients.google.com
 api.anthropic.com
 api.cohere.ai
 api.cursor.sh
@@ -25,14 +27,23 @@ claudeusercontent.com
 console.mistral.ai
 copilot.microsoft.com
 files.oaiusercontent.com
+notifications-pa.googleapis.com
 oaiusercontent.com
+oauth2.googleapis.com
+oauthaccountmanager.googleapis.com
+people-pa.googleapis.com
 platform.openai.com
+play.googleapis.com
+signaler-pa.googleapis.com
+subscriptionsfirstparty-pa.googleapis.com
 sydney.bing.com
+www.googleapis.com
 .baichuan-ai.com
 .bolt.new
 .byteintlapi.com
 .character.ai
 .civitai.com
+.clients6.google.com
 .codeium.com
 .cohere.com
 .continue.dev
@@ -47,6 +58,7 @@ sydney.bing.com
 .flowgpt.com
 .gamma.app
 .githubcopilot.com
+.googleusercontent.com
 .hf.co
 .huggingface.co
 .ideogram.ai
