@@ -30,8 +30,22 @@ domain_set:
   - api.kimi.moonshot.cn
   - api.minimax.chat
   - ark.cn-beijing.volces.com
+  # Gemini App 鉴权/推送栈（须在 Google.list 的 googleapis.com 之前命中 AI）
+  - accountcapabilities-pa.googleapis.com
+  - notifications-pa.googleapis.com
+  - oauth2.googleapis.com
+  - oauthaccountmanager.googleapis.com
+  - people-pa.googleapis.com
+  - play.googleapis.com
+  - signaler-pa.googleapis.com
+  - subscriptionsfirstparty-pa.googleapis.com
+  - www.googleapis.com
+  - android.clients.google.com
 
 domain_suffix_set:
+  # Gemini 附件/CDN / clients6；Google.list 的 KEYWORD,google 会误抢
+  - googleusercontent.com
+  - clients6.google.com
   - openai.com
   - mistral.ai
   - deepseek.com
