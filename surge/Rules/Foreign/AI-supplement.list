@@ -1,9 +1,10 @@
 # AUTO-EXPORTED from Routing/Foreign/AI-supplement.yaml
 # Format: Surge RULE-SET (no policy). scripts/export-surge-rulesets.py
 # Domain lines include extended-matching (SNI hit under always-real-ip / VIF).
-# Total entries: 88
+# Total entries: 91
 
 DOMAIN,accountcapabilities-pa.googleapis.com,extended-matching
+DOMAIN,android.clients.google.com,extended-matching
 DOMAIN,api.anthropic.com,extended-matching
 DOMAIN,api.cohere.ai,extended-matching
 DOMAIN,api.cursor.sh,extended-matching
@@ -37,11 +38,13 @@ DOMAIN,play.googleapis.com,extended-matching
 DOMAIN,signaler-pa.googleapis.com,extended-matching
 DOMAIN,subscriptionsfirstparty-pa.googleapis.com,extended-matching
 DOMAIN,sydney.bing.com,extended-matching
+DOMAIN,www.googleapis.com,extended-matching
 DOMAIN-SUFFIX,baichuan-ai.com,extended-matching
 DOMAIN-SUFFIX,bolt.new,extended-matching
 DOMAIN-SUFFIX,byteintlapi.com,extended-matching
 DOMAIN-SUFFIX,character.ai,extended-matching
 DOMAIN-SUFFIX,civitai.com,extended-matching
+DOMAIN-SUFFIX,clients6.google.com,extended-matching
 DOMAIN-SUFFIX,codeium.com,extended-matching
 DOMAIN-SUFFIX,cohere.com,extended-matching
 DOMAIN-SUFFIX,continue.dev,extended-matching

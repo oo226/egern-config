@@ -667,10 +667,10 @@ DOMAIN-SUFFIX,ocsp.apple.com,REJECT
 DOMAIN-SUFFIX,ocsp.g.aaplimg.com,REJECT
 # 屏蔽系统更新：硬拒后无法连苹果查清单 → 「无法检查更新」
 # 说明：苹果清单有签名，Map Local 空包/假包不能稳定伪装成「已是最新」消小红点
+# 不要 REJECT xp.apple.com：TestFlight / App 体验服务会一直转圈（日志里 Rule=REJECT）
 DOMAIN,ns.itunes.apple.com,REJECT
 DOMAIN,updates.cdn-apple.com,REJECT
 DOMAIN,updates-http.cdn-apple.com,REJECT
-# xp.apple.com 勿 REJECT（会卡 TestFlight）；见 patches-unlock
 DOMAIN-SUFFIX,appldnld.apple.com,REJECT
 DOMAIN-SUFFIX,mesu-cdn.apple.com.akadns.net,REJECT
 # 勿拒 configuration.apple.com：系统会连打重试，最近请求里一串 REJECT
@@ -697,6 +697,10 @@ Stream-All-Lite = type=generic,timeout=30,script-path=https://raw.githubusercont
 
 # >>> merged from Official/流媒体解锁检测.official.sgmodule (unique only)
 stream-all = type=generic, timeout=15, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/Rabbit-Spec/Surge/Master/Module/Panel/Stream-All/Moore/Stream-All.js
+
+# >>> merged from Official/🍟 DualSubsSpotify.official.sgmodule (unique only)
+
+
 
 
 # >>> merged from fmz200-unlock-extra (unique only)

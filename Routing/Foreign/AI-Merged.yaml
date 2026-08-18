@@ -6,18 +6,20 @@
 #   Repcz-AI     — Repcz/Tool — AI.yaml (51 entries)
 #   VPSDance     — VPSDance/ai-proxy-rules — egern/all.yaml (341 entries)
 #   Sukka-ai     — Sukka ruleset.skk.moe — non_ip/ai.conf (49 entries)
-#   local        — oo226/egern-config — AI-supplement.yaml (86 entries)
+#   local        — oo226/egern-config — AI-supplement.yaml (92 entries)
 # Overlap removed: 128
-# Total unique entries: 399
+# Total unique entries: 405
 
 no_resolve: true
 domain_set:
+  - accountcapabilities-pa.googleapis.com
   - ai.google.dev
   - ai.meta.com
   - aida.googleapis.com
   - aisandbox-pa.googleapis.com
   - alkalicore-pa.clients6.google.com
   - alkalimakersuite-pa.clients6.google.com
+  - android.clients.google.com
   - anthropic-com.ghost.io
   - anthropic.auth0.com
   - anthropic.com.cdn.cloudflare.net
@@ -25,7 +27,6 @@ domain_set:
   - antigravity-unleash.goog
   - antigravity.google
   - antigravity.googleapis.com
-  - android.clients.google.com
   - api.anthropic.com
   - api.cohere.ai
   - api.cursor.sh
@@ -49,7 +50,6 @@ domain_set:
   - api.together.xyz
   - api2.cursor.sh
   - ark.cn-beijing.volces.com
-  - accountcapabilities-pa.googleapis.com
   - assets.msn.com
   - auth0.openai.com
   - aws-language-servers.us-east-1.amazonaws.com
@@ -107,12 +107,12 @@ domain_set:
   - q-developer-integration.us-east-1.api.aws
   - qianfan.baidubce.com
   - robinfrontend-pa.googleapis.com
-  - signaler-pa.googleapis.com
-  - subscriptionsfirstparty-pa.googleapis.com
   - self.events.data.microsoft.com
   - servd-anthropic-website.b-cdn.net
+  - signaler-pa.googleapis.com
   - static.cloudflareinsights.com
   - storage.googleapis.com
+  - subscriptionsfirstparty-pa.googleapis.com
   - sydney.bing.com
   - webchannel-alkalimakersuite-pa.clients6.google.com
   - www.googleapis.com
@@ -157,7 +157,6 @@ domain_suffix_set:
   - cerebras.ai
   - challenges.cloudflare.com
   - character.ai
-  - clients6.google.com
   - chat.com
   - chatbotclaude.com
   - chatglm.cn
@@ -181,6 +180,7 @@ domain_suffix_set:
   - claudestudio.com
   - claudeusercontent.com
   - client-api.arkoselabs.com
+  - clients6.google.com
   - clipdrop.co
   - cloudcode-pa.googleapis.com
   - codeium.com
@@ -245,10 +245,10 @@ domain_suffix_set:
   - generativelanguage.googleapis.com
   - genspark.ai
   - githubcopilot.com
+  - googleusercontent.com
   - grammarly.com
   - grazie.ai
   - grazie.aws.intellij.net
-  - googleusercontent.com
   - grok.com
   - grok.x.com
   - grokipedia.com
