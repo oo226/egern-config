@@ -6261,7 +6261,11 @@
             "forecastDaily",
             "forecastHourly",
             "forecastNextHour",
-            "weatherAlerts"
+            "news",
+            "weatherAlerts",
+            "weatherChange",
+            "trendComparison",
+            "locationInfo"
           ],
           "items": [
             {
@@ -6285,11 +6289,27 @@
               "label": "未来一小时降水强度"
             },
             {
+              "key": "news",
+              "label": "新闻"
+            },
+            {
               "key": "weatherAlerts",
               "label": "天气预警"
+            },
+            {
+              "key": "weatherChange",
+              "label": "天气变化"
+            },
+            {
+              "key": "trendComparison",
+              "label": "历史对比"
+            },
+            {
+              "key": "locationInfo",
+              "label": "位置信息"
             }
           ],
-          "desc": "选择允许插件处理的数据集；未选中的可配置数据集会从请求中移除，其他 Apple 数据集保持不变。"
+          "desc": "选择需要解析并处理的数据集；未选择的数据槽始终保持原样透传，不作修改。"
         },
         {
           "id": "@iRingo.WeatherKit.Settings.Weather.Replace",
