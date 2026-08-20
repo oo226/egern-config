@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-20T03:44:26Z",
+  "generated_at": "2026-08-20T03:44:39Z",
   "branch": "main",
   "repo": "oo226/egern-config",
   "raw_base": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main",
@@ -202,16 +202,25 @@
   ],
   "sync_digest": {
     "commit": {
-      "hash": "89d5799",
+      "hash": "fa96188",
       "subject": "chore: sync upstream on sync branch",
-      "date": "2026-08-19"
+      "date": "2026-08-20"
     },
     "summary": [
+      "分流规则 更新 2 个文件",
+      "模块 更新 1 个文件",
+      "脚本 更新 1 个文件",
+      "模块站 更新 2 个文件",
       "国内直连 25592 条"
     ],
-    "files_changed": 0
+    "files_changed": 13
   },
   "changelog": [
+    {
+      "hash": "46cef00",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-08-20"
+    },
     {
       "hash": "cf400a8",
       "subject": "chore: publish curated snapshot from sync",
@@ -245,11 +254,6 @@
     {
       "hash": "86e00d7",
       "subject": "Merge pull request #113 from oo226/cursor/iringo-maps-mem-main-ac83",
-      "date": "2026-08-17"
-    },
-    {
-      "hash": "23b25c9",
-      "subject": "fix(main): disable iRingo Maps by default, stop REJECT configuration.apple.com",
       "date": "2026-08-17"
     }
   ],
