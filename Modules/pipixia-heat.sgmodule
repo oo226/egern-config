@@ -1,46 +1,42 @@
 #!name=皮皮虾防烫（Surge）
-#!desc=heat7 202608211002 · log-api假200停烫机
-# UPDATE-MARKER heat7-202608211002
+#!desc=heat8 202608211015 · Map Local有body · 禁空reject-200
+# UPDATE-MARKER heat8-202608211015
 #!category=Surge专用
 
 # 大合集经常「已是最新」刷不动时，单独装本小模块即可。
 # 与去广告合集可同时开；本模块只处理烫机埋点。
-# 硬 REJECT / URL Rewrite - reject 会让 App 立刻重试，最近请求一直跳。
-# 假 200（reject-200 + Map Local）让 SDK 以为上报成功。
-# i-lq.snssdk.com/service/settings 不要假空包，否则配置拉取失败仍会狂重试。
+#
+# heat8：不要再对 log-api / toblog 用 URL Rewrite reject-200。
+# reject-200 是空 body（最近请求 ↓0B），Map Local 虽显示命中，SDK 仍狂重试。
+# 只保留 Map Local / http-request 脚本，返回带 JSON 的假成功。
 
-[URL Rewrite]
-^https?:\/\/log-api\.pangolin-sdk-toutiao[-\w]*\.com\/.* - reject-200
-^https?:\/\/api-access\.pangolin-sdk-toutiao[-\w]*\.com\/.* - reject-200
-^https?:\/\/gromore\.pangolin-sdk-toutiao[-\w]*\.com\/.* - reject-200
-^https?:\/\/mon\.snssdk\.com\/.* - reject-200
-^https?:\/\/mon\.zijieapi\.com\/.* - reject-200
-^https?:\/\/toblog\.ctobsnssdk\.com\/.* - reject-200
-^https?:\/\/sdk\.e\.qq\.com - reject-200
-^https?:\/\/snowflake\.qq\.com\/ola - reject-200
-^https?:\/\/mobads-logs\.baidu\.com\/.* - reject-200
+[Script]
+pangolin-fake-log = type=http-request,pattern=^https?:\/\/log-api\.pangolin-sdk-toutiao,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/surge/Scripts/pangolin-fake-log.js,requires-body=0,max-size=0,timeout=5
+toblog-fake-log = type=http-request,pattern=^https?:\/\/toblog\.ctobsnssdk\.com,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/surge/Scripts/pangolin-fake-log.js,requires-body=0,max-size=0,timeout=5
 
 [Map Local]
-# heat6：app_log 假成功，停狂重试烫机
-^https?:\/\/log-api\.pangolin-sdk-toutiao[-\w]*\.com\/service\/2\/app_log data-type=text data="{\"code\":0,\"message\":\"success\"}" status-code=200 header="Content-Type:application/json"
-^https?:\/\/log-api\.pangolin-sdk-toutiao[-\w]*\.com data-type=text data="{\"code\":0,\"message\":\"success\"}" status-code=200 header="Content-Type:application/json"
-# 与 toblog 同款：假 200，避免走代理 EOF 狂重试
+# base64 避免转义把 body 吃空；ss_app_log 格式停重试
+# {"code":0,"message":"success","magic_tag":"ss_app_log","server_time":1724220000,"data":{}}
+^https?:\/\/log-api\.pangolin-sdk-toutiao[-\w]*\.com\/service\/2\/app_log data-type=base64 data="eyJjb2RlIjowLCJtZXNzYWdlIjoic3VjY2VzcyIsIm1hZ2ljX3RhZyI6InNzX2FwcF9sb2ciLCJzZXJ2ZXJfdGltZSI6MTcyNDIyMDAwMCwiZGF0YSI6e319" status-code=200 header="Content-Type:application/json"
+^https?:\/\/log-api\.pangolin-sdk-toutiao[-\w]*\.com data-type=base64 data="eyJjb2RlIjowLCJtZXNzYWdlIjoic3VjY2VzcyIsIm1hZ2ljX3RhZyI6InNzX2FwcF9sb2ciLCJzZXJ2ZXJfdGltZSI6MTcyNDIyMDAwMCwiZGF0YSI6e319" status-code=200 header="Content-Type:application/json"
 ^https?:\/\/mon\.snssdk\.com\/monitor data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 ^https?:\/\/mon\.zijieapi\.com data-type=text data="{}" status-code=200 header="Content-Type:application/json"
-^https?:\/\/toblog\.ctobsnssdk\.com data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+# {"message":"success","code":0,"device_id":1,"install_id":1,"ssid":"0"}
+^https?:\/\/toblog\.ctobsnssdk\.com data-type=base64 data="eyJtZXNzYWdlIjoic3VjY2VzcyIsImNvZGUiOjAsImRldmljZV9pZCI6MSwiaW5zdGFsbF9pZCI6MSwic3NpZCI6IjAifQ==" status-code=200 header="Content-Type:application/json"
 ^https?:\/\/sdk\.e\.qq\.com data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 ^https?:\/\/snowflake\.qq\.com\/ola data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 ^https?:\/\/mobads-logs\.baidu\.com data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 ^https?:\/\/api-access\.pangolin-sdk-toutiao[-\w]*\.com\/api\/ad\/union\/sdk\/stats data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 
 [Rule]
-# 不要硬 REJECT 这些域名（会重试烫机）；交给上面 Map Local / reject-200
+# 不要硬 REJECT（会重试烫机）；交给上面脚本 / Map Local
 DOMAIN,mon.snssdk.com,DIRECT
 DOMAIN,mon.zijieapi.com,DIRECT
 DOMAIN,toblog.ctobsnssdk.com,DIRECT
 DOMAIN,i-lq.snssdk.com,DIRECT
 DOMAIN,log-api.pangolin-sdk-toutiao.com,DIRECT
 DOMAIN,log-api.pangolin-sdk-toutiao1.com,DIRECT
+DOMAIN,log-api.pangolin-sdk-toutiao-b.com,DIRECT
 
 [MITM]
-hostname = %APPEND% log-api.pangolin-sdk-toutiao.com, log-api.pangolin-sdk-toutiao1.com, api-access.pangolin-sdk-toutiao.com, api-access.pangolin-sdk-toutiao1.com, gromore.pangolin-sdk-toutiao.com, mon.snssdk.com, mon.zijieapi.com, toblog.ctobsnssdk.com, i-lq.snssdk.com, sdk.e.qq.com, snowflake.qq.com, mobads-logs.baidu.com
+hostname = %APPEND% log-api.pangolin-sdk-toutiao.com, log-api.pangolin-sdk-toutiao1.com, log-api.pangolin-sdk-toutiao-b.com, api-access.pangolin-sdk-toutiao.com, api-access.pangolin-sdk-toutiao1.com, gromore.pangolin-sdk-toutiao.com, mon.snssdk.com, mon.zijieapi.com, toblog.ctobsnssdk.com, i-lq.snssdk.com, sdk.e.qq.com, snowflake.qq.com, mobads-logs.baidu.com

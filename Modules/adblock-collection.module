@@ -1,5 +1,5 @@
 #!name=去广告合集（Surge）
-#!desc=heat7 202608211002 · log-api假200 · 含皮皮虾 · 2026-08-21 10:02:55 UTC
+#!desc=heat8 202608211015 · 有body假成功禁空reject · 含皮皮虾 · 2026-08-21 10:12:42 UTC
 #!author=奶思[https://github.com/fmz200]
 #!icon=https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/AdblockPlus.png
 #!category=奶思的模块
@@ -15,7 +15,7 @@
 
 
 
-# UPDATE-MARKER heat7-202608211002
+# UPDATE-MARKER heat8-202608211015
 # AUTO-MERGED by scripts/merge-adblock-modules.py (Surge copy)
 # 类型: 模块 — Surge 专用去广告合集（完整副本，含皮皮虾）
 # 与 main Modules/adblock-collection.module 分开，互不覆盖
@@ -23,7 +23,7 @@
 
 [Rule]
 # heat5：字节埋点硬 REJECT 会立刻重试（最近请求一直跳）。
-# 先 DIRECT，交给下面 URL Rewrite reject-200 / Map Local 假成功。
+# 先 DIRECT，交给 Map Local / Script 有 body 假成功（勿用空 reject-200）。
 # i-lq.snssdk.com/service/settings 放行真实配置，不要假空包。
 DOMAIN,mon.snssdk.com,DIRECT
 DOMAIN,mon.zijieapi.com,DIRECT
@@ -5916,18 +5916,19 @@ http:\/\/sv\.adintl\.cn - reject
 # 拼多多视频广告路径 hostname = video-dsp.pddpic.com
 ^https:\/\/video-dsp\.pddpic\.com\/market-dsp-video - reject-dict
 # 穿山甲广告服务主接口 hostname = *.pangolin-sdk-toutiao.com, *.pangolin-sdk-toutiao-*.com, *.pglstatp-toutiao.com, *.ctobsnssdk.com, *.snssdk.com, *.gromore.com
-^https?:\/\/[-\w]*\.pangolin-sdk-toutiao[-\w]*\.com\/.*(service|api|ad|sdk|batch|config).* - reject-200
+# heat8：排除 log-api（空 reject-200 会 ↓0B 狂重试）；广告路径仍假空 200
+^https?:\/\/(?!log-api\.)[-\w]*\.pangolin-sdk-toutiao[-\w]*\.com\/.*(service|api|ad|sdk|batch|config).* - reject-200
 # GroMore 广告聚合
 ^https?:\/\/gromore\.pangolin-sdk-toutiao[-\w]*\.com\/.* - reject-200
 # SDK 初始化 / 广告调度
 ^https?:\/\/api-access\.pangolin-sdk-toutiao[-\w]*\.com\/.* - reject-200
-# 广告日志上报
-^https?:\/\/log-api\.pangolin-sdk-toutiao[-\w]*\.com\/.* - reject-200
+# heat8：log-api 禁止 reject-200（空 body）；改 Map Local / Script 有 JSON
+#^https?:\/\/log-api\.pangolin-sdk-toutiao[-\w]*\.com\/.* - reject-200
 # 素材 CDN（视频 / 图片 / JSON）
 ^https?:\/\/.*\.pglstatp-toutiao\.com\/.* - reject
 ^https?:\/\/.*\.pangolin-sdk-toutiao[-\w]*\.com\/.*\.(jpg|png|gif|webp|mp4|json).* - reject
-# 埋点日志（假 200，避免 REJECT 后立刻重试烫最近请求）
-^https?:\/\/toblog\.ctobsnssdk\.com\/.* - reject-200
+# heat8：toblog 禁止空 reject-200；改 Map Local / Script
+#^https?:\/\/toblog\.ctobsnssdk\.com\/.* - reject-200
 # 行为监控 / trace
 ^https?:\/\/.*\.snssdk\.com\/(bds|monitor|trace|log).* - reject-200
 # 广告曝光 / 点击 / 追踪
@@ -6894,14 +6895,21 @@ http-response ^https?:\/\/app\.zhuanzhuan\.com\/zz\/v2\/zzinfoshow\/getchoicegoo
 
 
 
+[Script]
+# heat8：http-request 短路返回有 body 的假成功（比空 reject-200 可靠）
+pangolin-fake-log = type=http-request,pattern=^https?:\/\/log-api\.pangolin-sdk-toutiao,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/surge/Scripts/pangolin-fake-log.js,requires-body=0,max-size=0,timeout=5
+toblog-fake-log = type=http-request,pattern=^https?:\/\/toblog\.ctobsnssdk\.com,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/surge/Scripts/pangolin-fake-log.js,requires-body=0,max-size=0,timeout=5
+
 [Map Local]
-# heat6：app_log 假成功，停狂重试烫机
-^https?:\/\/log-api\.pangolin-sdk-toutiao[-\w]*\.com\/service\/2\/app_log data-type=text data="{\"code\":0,\"message\":\"success\"}" status-code=200 header="Content-Type:application/json"
-^https?:\/\/log-api\.pangolin-sdk-toutiao[-\w]*\.com data-type=text data="{\"code\":0,\"message\":\"success\"}" status-code=200 header="Content-Type:application/json"
+# heat8：base64 有 body（reject-200 空包会狂重试）；ss_app_log 格式
+# {"code":0,"message":"success","magic_tag":"ss_app_log","server_time":1724220000,"data":{}}
+^https?:\/\/log-api\.pangolin-sdk-toutiao[-\w]*\.com\/service\/2\/app_log data-type=base64 data="eyJjb2RlIjowLCJtZXNzYWdlIjoic3VjY2VzcyIsIm1hZ2ljX3RhZyI6InNzX2FwcF9sb2ciLCJzZXJ2ZXJfdGltZSI6MTcyNDIyMDAwMCwiZGF0YSI6e319" status-code=200 header="Content-Type:application/json"
+^https?:\/\/log-api\.pangolin-sdk-toutiao[-\w]*\.com data-type=base64 data="eyJjb2RlIjowLCJtZXNzYWdlIjoic3VjY2VzcyIsIm1hZ2ljX3RhZyI6InNzX2FwcF9sb2ciLCJzZXJ2ZXJfdGltZSI6MTcyNDIyMDAwMCwiZGF0YSI6e319" status-code=200 header="Content-Type:application/json"
 # heat5 字节埋点假 200（合集内处理，不依赖小模块）
 ^https?:\/\/mon\.snssdk\.com\/monitor data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 ^https?:\/\/mon\.zijieapi\.com data-type=text data="{}" status-code=200 header="Content-Type:application/json"
-^https?:\/\/toblog\.ctobsnssdk\.com data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+# {"message":"success","code":0,"device_id":1,"install_id":1,"ssid":"0"}
+^https?:\/\/toblog\.ctobsnssdk\.com data-type=base64 data="eyJtZXNzYWdlIjoic3VjY2VzcyIsImNvZGUiOjAsImRldmljZV9pZCI6MSwiaW5zdGFsbF9pZCI6MSwic3NpZCI6IjAifQ==" status-code=200 header="Content-Type:application/json"
 ^https?:\/\/.*\.snssdk\.com\/(bds|monitor|trace|log) data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 # >>> merged from patches-pipixia (unique only)
 # QingRex 原版
@@ -7821,7 +7829,8 @@ https?:\/\/awg\.enmonster\.com\/apa\/(advert\/demand\/home\/poster|index\/advert
 ^https?:\/\/t-dsp\.pinduoduo\.com data-type=text data=" " status-code=200
 ^https?:\/\/mobads-pre-config\.cdn\.bcebos\.com\/preload\.php data-type=text data=" " status-code=200
 ^https?:\/\/sfo\.mddcloud\.com\.cn\/api\/v\d\/sfo\/popup_displays? data-type=text data="{}" status-code=200 header="Content-Type:application/json"
-^https?:\/\/toblog\.ctobsnssdk\.com data-type=text data=" " status-code=200
+# heat8：勿用空格 body 覆盖上面的 toblog 假成功
+#^https?:\/\/toblog\.ctobsnssdk\.com data-type=text data=" " status-code=200
 ^https?:\/\/conf-darwin\.xycdn\.com data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 
 # > 脉脉
