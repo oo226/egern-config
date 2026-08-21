@@ -1,5 +1,5 @@
 #!name=皮皮虾防烫（Surge）
-#!desc=heat5 2026-08-17 · 埋点假200已并进大合集；本模块可作备份
+#!desc=heat6 2026-08-21 · log-api/app_log 假200停烫机
 #!category=Surge专用
 
 # 大合集经常「已是最新」刷不动时，单独装本小模块即可。
@@ -20,8 +20,10 @@
 ^https?:\/\/mobads-logs\.baidu\.com\/.* - reject-200
 
 [Map Local]
+# heat6：app_log 假成功，停狂重试烫机
+^https?:\/\/log-api\.pangolin-sdk-toutiao[-\w]*\.com\/service\/2\/app_log data-type=text data="{\"code\":0,\"message\":\"success\"}" status-code=200 header="Content-Type:application/json"
+^https?:\/\/log-api\.pangolin-sdk-toutiao[-\w]*\.com data-type=text data="{\"code\":0,\"message\":\"success\"}" status-code=200 header="Content-Type:application/json"
 # 与 toblog 同款：假 200，避免走代理 EOF 狂重试
-^https?:\/\/log-api\.pangolin-sdk-toutiao[-\w]*\.com data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 ^https?:\/\/mon\.snssdk\.com\/monitor data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 ^https?:\/\/mon\.zijieapi\.com data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 ^https?:\/\/toblog\.ctobsnssdk\.com data-type=text data="{}" status-code=200 header="Content-Type:application/json"
