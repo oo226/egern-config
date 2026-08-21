@@ -1,6 +1,6 @@
 # AUTO-EXPORTED from Routing/Foreign/AI-Merged.yaml
 # Format: Surge DOMAIN-SET (leading '.' = suffix). scripts/export-surge-rulesets.py
-# Total entries: 396
+# Total entries: 405
 
 accountcapabilities-pa.googleapis.com
 ai.google.dev
@@ -96,6 +96,7 @@ pplx-res.cloudinary.com
 production-openaicom-storage.azureedge.net
 q-developer-integration.us-east-1.api.aws
 qianfan.baidubce.com
+qodercn-jb.oss-cn-hangzhou.aliyuncs.com
 robinfrontend-pa.googleapis.com
 self.events.data.microsoft.com
 servd-anthropic-website.b-cdn.net
@@ -170,6 +171,7 @@ yiyan.baidu.com
 .claudeusercontent.com
 .client-api.arkoselabs.com
 .clients6.google.com
+.cline.bot
 .clipdrop.co
 .cloudcode-pa.googleapis.com
 .codeium.com
@@ -180,6 +182,7 @@ yiyan.baidu.com
 .cohere.com
 .comfy.org
 .comfyregistry.org
+.commandcode.ai
 .console.aws.a2z.com
 .continue.dev
 .copilot.microsoft.com
@@ -261,6 +264,8 @@ yiyan.baidu.com
 .jetbrains.ai
 .jules.google
 .jules.google.com
+.kilo.ai
+.kilo.codes
 .kimi.com
 .kimi.moonshot.cn
 .kiro.dev
@@ -317,6 +322,7 @@ yiyan.baidu.com
 .openaicom.imgix.net
 .openart.ai
 .openclaw.ai
+.opencode.ai
 .openrouter.ai
 .otter.ai
 .perplexity.ai
@@ -332,6 +338,9 @@ yiyan.baidu.com
 .q.us-east-1.amazonaws.com
 .qianwen.aliyun.com
 .qianwen.com
+.qoder.cn
+.qoder.com
+.qoder.com.cn
 .qwen.ai
 .qwenlm.ai
 .recraft.ai

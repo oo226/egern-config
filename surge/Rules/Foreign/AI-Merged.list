@@ -1,7 +1,7 @@
 # AUTO-EXPORTED from Routing/Foreign/AI-Merged.yaml
 # Format: Surge RULE-SET (no policy). scripts/export-surge-rulesets.py
 # Domain lines include extended-matching (SNI hit under always-real-ip / VIF).
-# Total entries: 402
+# Total entries: 411
 
 DOMAIN,accountcapabilities-pa.googleapis.com,extended-matching
 DOMAIN,ai.google.dev,extended-matching
@@ -97,6 +97,7 @@ DOMAIN,pplx-res.cloudinary.com,extended-matching
 DOMAIN,production-openaicom-storage.azureedge.net,extended-matching
 DOMAIN,q-developer-integration.us-east-1.api.aws,extended-matching
 DOMAIN,qianfan.baidubce.com,extended-matching
+DOMAIN,qodercn-jb.oss-cn-hangzhou.aliyuncs.com,extended-matching
 DOMAIN,robinfrontend-pa.googleapis.com,extended-matching
 DOMAIN,self.events.data.microsoft.com,extended-matching
 DOMAIN,servd-anthropic-website.b-cdn.net,extended-matching
@@ -171,6 +172,7 @@ DOMAIN-SUFFIX,claudestudio.com,extended-matching
 DOMAIN-SUFFIX,claudeusercontent.com,extended-matching
 DOMAIN-SUFFIX,client-api.arkoselabs.com,extended-matching
 DOMAIN-SUFFIX,clients6.google.com,extended-matching
+DOMAIN-SUFFIX,cline.bot,extended-matching
 DOMAIN-SUFFIX,clipdrop.co,extended-matching
 DOMAIN-SUFFIX,cloudcode-pa.googleapis.com,extended-matching
 DOMAIN-SUFFIX,codeium.com,extended-matching
@@ -181,6 +183,7 @@ DOMAIN-SUFFIX,cohere.ai,extended-matching
 DOMAIN-SUFFIX,cohere.com,extended-matching
 DOMAIN-SUFFIX,comfy.org,extended-matching
 DOMAIN-SUFFIX,comfyregistry.org,extended-matching
+DOMAIN-SUFFIX,commandcode.ai,extended-matching
 DOMAIN-SUFFIX,console.aws.a2z.com,extended-matching
 DOMAIN-SUFFIX,continue.dev,extended-matching
 DOMAIN-SUFFIX,copilot.microsoft.com,extended-matching
@@ -262,6 +265,8 @@ DOMAIN-SUFFIX,jasper.ai,extended-matching
 DOMAIN-SUFFIX,jetbrains.ai,extended-matching
 DOMAIN-SUFFIX,jules.google,extended-matching
 DOMAIN-SUFFIX,jules.google.com,extended-matching
+DOMAIN-SUFFIX,kilo.ai,extended-matching
+DOMAIN-SUFFIX,kilo.codes,extended-matching
 DOMAIN-SUFFIX,kimi.com,extended-matching
 DOMAIN-SUFFIX,kimi.moonshot.cn,extended-matching
 DOMAIN-SUFFIX,kiro.dev,extended-matching
@@ -318,6 +323,7 @@ DOMAIN-SUFFIX,openaiapi-site.azureedge.net,extended-matching
 DOMAIN-SUFFIX,openaicom.imgix.net,extended-matching
 DOMAIN-SUFFIX,openart.ai,extended-matching
 DOMAIN-SUFFIX,openclaw.ai,extended-matching
+DOMAIN-SUFFIX,opencode.ai,extended-matching
 DOMAIN-SUFFIX,openrouter.ai,extended-matching
 DOMAIN-SUFFIX,otter.ai,extended-matching
 DOMAIN-SUFFIX,perplexity.ai,extended-matching
@@ -333,6 +339,9 @@ DOMAIN-SUFFIX,q.eu-central-1.amazonaws.com,extended-matching
 DOMAIN-SUFFIX,q.us-east-1.amazonaws.com,extended-matching
 DOMAIN-SUFFIX,qianwen.aliyun.com,extended-matching
 DOMAIN-SUFFIX,qianwen.com,extended-matching
+DOMAIN-SUFFIX,qoder.cn,extended-matching
+DOMAIN-SUFFIX,qoder.com,extended-matching
+DOMAIN-SUFFIX,qoder.com.cn,extended-matching
 DOMAIN-SUFFIX,qwen.ai,extended-matching
 DOMAIN-SUFFIX,qwenlm.ai,extended-matching
 DOMAIN-SUFFIX,recraft.ai,extended-matching
