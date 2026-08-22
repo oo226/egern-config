@@ -1,0 +1,6 @@
+# JPush 统计埋点：硬 REJECT 会立刻重试（最近请求刷屏）。
+# 先 DIRECT，交给合集 Map Local / Script 有 body 假成功。
+# config / push 等仍由 Reject-Merged 或合集其它规则处理。
+DOMAIN,stats.jpush.cn,extended-matching
+DOMAIN,gd-stats.jpush.cn,extended-matching
+DOMAIN,ali-stats.jpush.cn,extended-matching

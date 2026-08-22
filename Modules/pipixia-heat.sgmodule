@@ -1,35 +1,30 @@
 #!name=皮皮虾防烫（Surge）
-#!desc=heat8 202608211015 · Map Local有body · 禁空reject-200
-# UPDATE-MARKER heat8-202608211015
+#!desc=heat9 202608221230 · stats/jpush有body · 禁空reject
+# UPDATE-MARKER heat9-202608221230
 #!category=Surge专用
 
 # 大合集经常「已是最新」刷不动时，单独装本小模块即可。
-# 与去广告合集可同时开；本模块只处理烫机埋点。
-#
-# heat8：不要再对 log-api / toblog 用 URL Rewrite reject-200。
-# reject-200 是空 body（最近请求 ↓0B），Map Local 虽显示命中，SDK 仍狂重试。
-# 只保留 Map Local / http-request 脚本，返回带 JSON 的假成功。
+# heat9：JPush stats + api-access stats/batch 勿用空 reject-200。
 
 [Script]
 pangolin-fake-log = type=http-request,pattern=^https?:\/\/log-api\.pangolin-sdk-toutiao,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/surge/Scripts/pangolin-fake-log.js,requires-body=0,max-size=0,timeout=5
+pangolin-api-access = type=http-request,pattern=^https?:\/\/api-access\.pangolin-sdk-toutiao,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/surge/Scripts/pangolin-fake-log.js,requires-body=0,max-size=0,timeout=5
 toblog-fake-log = type=http-request,pattern=^https?:\/\/toblog\.ctobsnssdk\.com,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/surge/Scripts/pangolin-fake-log.js,requires-body=0,max-size=0,timeout=5
+jpush-fake-stats = type=http-request,pattern=^https?:\/\/(stats|gd-stats|ali-stats)\.jpush\.cn,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/surge/Scripts/pangolin-fake-log.js,requires-body=0,max-size=0,timeout=5
 
 [Map Local]
-# base64 避免转义把 body 吃空；ss_app_log 格式停重试
-# {"code":0,"message":"success","magic_tag":"ss_app_log","server_time":1724220000,"data":{}}
 ^https?:\/\/log-api\.pangolin-sdk-toutiao[-\w]*\.com\/service\/2\/app_log data-type=base64 data="eyJjb2RlIjowLCJtZXNzYWdlIjoic3VjY2VzcyIsIm1hZ2ljX3RhZyI6InNzX2FwcF9sb2ciLCJzZXJ2ZXJfdGltZSI6MTcyNDIyMDAwMCwiZGF0YSI6e319" status-code=200 header="Content-Type:application/json"
 ^https?:\/\/log-api\.pangolin-sdk-toutiao[-\w]*\.com data-type=base64 data="eyJjb2RlIjowLCJtZXNzYWdlIjoic3VjY2VzcyIsIm1hZ2ljX3RhZyI6InNzX2FwcF9sb2ciLCJzZXJ2ZXJfdGltZSI6MTcyNDIyMDAwMCwiZGF0YSI6e319" status-code=200 header="Content-Type:application/json"
+^https?:\/\/api-access\.pangolin-sdk-toutiao[-\w]*\.com\/api\/ad\/union\/sdk\/stats data-type=base64 data="eyJjb2RlIjowLCJtZXNzYWdlIjoic3VjY2VzcyIsImRhdGEiOnt9fQ==" status-code=200 header="Content-Type:application/json"
 ^https?:\/\/mon\.snssdk\.com\/monitor data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 ^https?:\/\/mon\.zijieapi\.com data-type=text data="{}" status-code=200 header="Content-Type:application/json"
-# {"message":"success","code":0,"device_id":1,"install_id":1,"ssid":"0"}
 ^https?:\/\/toblog\.ctobsnssdk\.com data-type=base64 data="eyJtZXNzYWdlIjoic3VjY2VzcyIsImNvZGUiOjAsImRldmljZV9pZCI6MSwiaW5zdGFsbF9pZCI6MSwic3NpZCI6IjAifQ==" status-code=200 header="Content-Type:application/json"
+^https?:\/\/(stats|gd-stats|ali-stats)\.jpush\.cn data-type=base64 data="eyJjb2RlIjowLCJtZXNzYWdlIjoic3VjY2VzcyJ9" status-code=200 header="Content-Type:application/json"
 ^https?:\/\/sdk\.e\.qq\.com data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 ^https?:\/\/snowflake\.qq\.com\/ola data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 ^https?:\/\/mobads-logs\.baidu\.com data-type=text data="{}" status-code=200 header="Content-Type:application/json"
-^https?:\/\/api-access\.pangolin-sdk-toutiao[-\w]*\.com\/api\/ad\/union\/sdk\/stats data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 
 [Rule]
-# 不要硬 REJECT（会重试烫机）；交给上面脚本 / Map Local
 DOMAIN,mon.snssdk.com,DIRECT
 DOMAIN,mon.zijieapi.com,DIRECT
 DOMAIN,toblog.ctobsnssdk.com,DIRECT
@@ -37,6 +32,12 @@ DOMAIN,i-lq.snssdk.com,DIRECT
 DOMAIN,log-api.pangolin-sdk-toutiao.com,DIRECT
 DOMAIN,log-api.pangolin-sdk-toutiao1.com,DIRECT
 DOMAIN,log-api.pangolin-sdk-toutiao-b.com,DIRECT
+DOMAIN,api-access.pangolin-sdk-toutiao.com,DIRECT
+DOMAIN,api-access.pangolin-sdk-toutiao1.com,DIRECT
+DOMAIN,api-access.pangolin-sdk-toutiao-b.com,DIRECT
+DOMAIN,stats.jpush.cn,DIRECT
+DOMAIN,gd-stats.jpush.cn,DIRECT
+DOMAIN,ali-stats.jpush.cn,DIRECT
 
 [MITM]
-hostname = %APPEND% log-api.pangolin-sdk-toutiao.com, log-api.pangolin-sdk-toutiao1.com, log-api.pangolin-sdk-toutiao-b.com, api-access.pangolin-sdk-toutiao.com, api-access.pangolin-sdk-toutiao1.com, gromore.pangolin-sdk-toutiao.com, mon.snssdk.com, mon.zijieapi.com, toblog.ctobsnssdk.com, i-lq.snssdk.com, sdk.e.qq.com, snowflake.qq.com, mobads-logs.baidu.com
+hostname = %APPEND% log-api.pangolin-sdk-toutiao.com, log-api.pangolin-sdk-toutiao1.com, log-api.pangolin-sdk-toutiao-b.com, api-access.pangolin-sdk-toutiao.com, api-access.pangolin-sdk-toutiao1.com, api-access.pangolin-sdk-toutiao-b.com, gromore.pangolin-sdk-toutiao.com, mon.snssdk.com, mon.zijieapi.com, toblog.ctobsnssdk.com, i-lq.snssdk.com, stats.jpush.cn, gd-stats.jpush.cn, ali-stats.jpush.cn, sdk.e.qq.com, snowflake.qq.com, mobads-logs.baidu.com
