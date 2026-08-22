@@ -1,6 +1,7 @@
-# 字节埋点：不要硬 REJECT（会立刻重试，最近请求一直跳）。
+# 字节 / JPush 统计埋点：不要硬 REJECT（会立刻重试，最近请求刷屏）。
 # 策略 DIRECT 后由去广告合集 / pipixia-heat 的 Map Local / Script 有 body 假成功（禁空 reject-200）。
 # i-lq.snssdk.com 放行 settings（真实 200）；不要对 /service/settings 假空包。
+# JPush config/push 等其它子域仍走 Reject-Merged。
 DOMAIN,mon.snssdk.com,extended-matching
 DOMAIN,mon.zijieapi.com,extended-matching
 DOMAIN,toblog.ctobsnssdk.com,extended-matching
@@ -11,3 +12,6 @@ DOMAIN,log-api.pangolin-sdk-toutiao-b.com,extended-matching
 DOMAIN,api-access.pangolin-sdk-toutiao.com,extended-matching
 DOMAIN,api-access.pangolin-sdk-toutiao1.com,extended-matching
 DOMAIN,api-access.pangolin-sdk-toutiao-b.com,extended-matching
+DOMAIN,stats.jpush.cn,extended-matching
+DOMAIN,gd-stats.jpush.cn,extended-matching
+DOMAIN,ali-stats.jpush.cn,extended-matching
