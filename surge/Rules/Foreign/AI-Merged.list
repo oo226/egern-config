@@ -1,7 +1,7 @@
 # AUTO-EXPORTED from Routing/Foreign/AI-Merged.yaml
 # Format: Surge RULE-SET (no policy). scripts/export-surge-rulesets.py
 # Domain lines include extended-matching (SNI hit under always-real-ip / VIF).
-# Total entries: 411
+# Total entries: 420
 
 DOMAIN,accountcapabilities-pa.googleapis.com,extended-matching
 DOMAIN,ai.google.dev,extended-matching
@@ -304,12 +304,15 @@ DOMAIN-SUFFIX,modelcontextprotocol.com,extended-matching
 DOMAIN-SUFFIX,modelcontextprotocol.io,extended-matching
 DOMAIN-SUFFIX,modelcontextprotocol.net,extended-matching
 DOMAIN-SUFFIX,modelcontextprotocol.org,extended-matching
+DOMAIN-SUFFIX,modelscope.cn,extended-matching
+DOMAIN-SUFFIX,modelscope.com,extended-matching
 DOMAIN-SUFFIX,moonshot.ai,extended-matching
 DOMAIN-SUFFIX,moonshot.cn,extended-matching
 DOMAIN-SUFFIX,muthos.com,extended-matching
 DOMAIN-SUFFIX,notebook.google.com,extended-matching
 DOMAIN-SUFFIX,notebooklm.google,extended-matching
 DOMAIN-SUFFIX,notebooklm.google.com,extended-matching
+DOMAIN-SUFFIX,novita.ai,extended-matching
 DOMAIN-SUFFIX,oaistatic.com,extended-matching
 DOMAIN-SUFFIX,oaistatsig.com,extended-matching
 DOMAIN-SUFFIX,oaiusercontent.com,extended-matching
@@ -333,6 +336,8 @@ DOMAIN-SUFFIX,pi.ai,extended-matching
 DOMAIN-SUFFIX,pika.art,extended-matching
 DOMAIN-SUFFIX,poe.com,extended-matching
 DOMAIN-SUFFIX,poecdn.net,extended-matching
+DOMAIN-SUFFIX,ppio.cn,extended-matching
+DOMAIN-SUFFIX,ppio.com,extended-matching
 DOMAIN-SUFFIX,pplx.ai,extended-matching
 DOMAIN-SUFFIX,proactivebackend-pa.googleapis.com,extended-matching
 DOMAIN-SUFFIX,q.eu-central-1.amazonaws.com,extended-matching
@@ -359,6 +364,8 @@ DOMAIN-SUFFIX,segment.io,extended-matching
 DOMAIN-SUFFIX,sensetime.com,extended-matching
 DOMAIN-SUFFIX,sentry.io,extended-matching
 DOMAIN-SUFFIX,sf16-short-sg.bytedapm.com,extended-matching
+DOMAIN-SUFFIX,siliconflow.cn,extended-matching
+DOMAIN-SUFFIX,siliconflow.com,extended-matching
 DOMAIN-SUFFIX,sillylittleguy.org,extended-matching
 DOMAIN-SUFFIX,sora.com,extended-matching
 DOMAIN-SUFFIX,sourcegraph.com,extended-matching
@@ -367,6 +374,8 @@ DOMAIN-SUFFIX,sso.amazonaws.com,extended-matching
 DOMAIN-SUFFIX,stability.ai,extended-matching
 DOMAIN-SUFFIX,starling.zijieapi.com,extended-matching
 DOMAIN-SUFFIX,statsigapi.net,extended-matching
+DOMAIN-SUFFIX,stepfun.ai,extended-matching
+DOMAIN-SUFFIX,stepfun.com,extended-matching
 DOMAIN-SUFFIX,stitch.withgoogle.com,extended-matching
 DOMAIN-SUFFIX,stripe.com,extended-matching
 DOMAIN-SUFFIX,suno.ai,extended-matching
