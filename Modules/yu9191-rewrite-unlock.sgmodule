@@ -144,6 +144,12 @@ insav = type=http-request, pattern="^https?:\/\/(\w+\.)?(insav\.tv|[a-z]{4,}\d{2
 # >>> merged from insav.tv.sgmodule (unique only)
 insav.tv = type=http-request, pattern="^https?:\/\/(insav\.tv|4k\.insav\.tv|dm\.insav\.tv|wuma\.[a-zA-Z0-9][-a-zA-Z0-9]{0,62}(\.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+(:[0-9]+)?|.*\.[a-z]{4}\d{3}\.com)\/api\/(extend\/lists|config\/lists|config\/links|notice\/lists|user\/(getVipStatus|info|login)|video\/getVideoUrl)", script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/yu9191/rewrite/insav.tv.js, requires-body=true, max-size=-1, timeout=60
 
+# >>> merged from javhd/modules/javhd.sgmodule (unique only)
+JAVHD播放 = type=http-response, pattern="^https?:\/\/(www\.|zh\.)?javhd\.com\/.*player_api", requires-body=1, max-size=-1, timeout=20, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/yu9191/rewrite/javhd/dist/javhd.js
+JAVHD页面 = type=http-response, pattern="^https?:\/\/(www\.|zh\.)?javhd\.com\/zh\/studio\/room\/[\w-]+\/video\/[\w-]+", requires-body=1, max-size=-1, timeout=20, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/yu9191/rewrite/javhd/dist/javhd.js
+JAVHD API = type=http-response, pattern="^https?:\/\/(www\.|zh\.)?javhd\.com\/api\/.*", requires-body=1, max-size=-1, timeout=20, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/yu9191/rewrite/javhd/dist/javhd.js
+JAVHD m3u8 = type=http-response, pattern="^https?:\/\/.*\.cdnjhd\.com\/.*\.m3u8(\?.*)?$", requires-body=1, max-size=-1, timeout=20, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/yu9191/rewrite/javhd/dist/javhd.js
+
 # >>> merged from klx.sgmodule (unique only)
 看理想 = type=http-response, pattern=^https?:\/\/api\.vistopia\.com\.cn\/api\/v2\/(reader\/(section-detail|detail)|user\/(profile|home)|vip\/buy-list|services\/play-token), requires-body=1, max-size=0, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/yu9191/rewrite/kanlixiang.js
 
@@ -156,6 +162,8 @@ mjgshd = type=http-request, pattern=https?:\/\/(mfjk|gnjk|buyaoda).+\.com\/api\/
 
 # >>> merged from luolita/modules/luolita.sgmodule (unique only)
 luolita API = type=http-response, pattern=^https?:\/\/api2\.vhmqswjb\.cc\/api\/, requires-body=1, max-size=-1, timeout=20, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/yu9191/rewrite/luolita/dist/luolita.js, argument=logLevel={{{日志级别}}}&player={{{播放器}}}&scheme={{{自定义scheme}}}&encode={{{URL编码}}}&jump={{{播放器跳转}}}
+
+# >>> merged from modules/javhd.sgmodule (unique only)
 
 # >>> merged from pear.sgmodule (unique only)
 
@@ -181,7 +189,7 @@ http-response ^https?:\/\/v2\.(?:cdn199\.com|kekecdn\.net|luchu\.org|madou\.ws|p
 http-response ^https?:\/\/(?:porntube\.(?:cool|fit|site|store)|91porn\.(?:coach|top|band|name|plus|porn|red|sex)|91pornny\.com|91\.wtf|91forum\.com|91dabiaojie\.com|91zpc\.(?:app|pro|org|co|com)|chineseselfie\.(?:com|net|org)|xchina\.(?:day|cloud|plus|tube|cool|red)|xasian\.org|theporny\.com|madoumedia\.org|1024(?:videos|movies)\.com|bdsmzoo\.com|pornshop\.one|pilipili\.cool|dsdav\.net|x91\.club|x91porn\.com|chinesebdsm\.\w+)\/(?:video\/[^/?]+|videos\?|videos$|$|\?) script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/yu9191/rewrite/porntube/dist/porntube-frontend.js, requires-body=true, max-size=-1, timeout=20, tag=porntube 前端
 
 # >>> merged from qishe/qishe.sgmodule (unique only)
-妻社 = type=http-response,pattern=^https?:\/\/qsh\d+\.qsh\d+\.\w+\.cn\/(?:source\/plugin\/qsts_app\/index\.php|mserver)\/,requires-body=true,max-size=-1,timeout=30,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/yu9191/rewrite/qishe/qishe.js
+妻社 = type=http-response,pattern=^https?:\/\/[\w-]+\.qsh\d+\.(?:com|cn|org\.cn)\/(?:source\/plugin\/qsts_app\/index\.php|mserver)\/,requires-body=true,max-size=-1,timeout=30,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/yu9191/rewrite/qishe/qishe.js
 
 # >>> merged from qiyoushe/modules/qiyoushequ.sgmodule (unique only)
 妻友社区启动页 = type=http-response, pattern="^https?:\/\/d1kmvkv4iwtiup\.cloudfront\.net\/js\/index-Dg2qL6uR\.\d+\.js", requires-body=1, max-size=-1, timeout=20, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/yu9191/rewrite/qiyoushe/dist/qiyoushequ.js
@@ -206,7 +214,7 @@ XV暗网 = type=http-response,pattern=^https:\/\/d18psf29jvwgay\.cloudfront\.net
 
 
 [MITM]
-hostname = %APPEND% *.baidu.com2.club, *.chinesebdsm.com, *.cloudfront.net, *.gcwe44p.com, *.hj260302818.top, *.kugou.com, *.pbfk364.com, *.pearhot.com, *.pearkin.com, *.rahc448.com, *.rftn469.com, *.supdogth.com, *.wt33k.com, *hyxq.*, 1024movies.com, 1024videos.com, 1808.online, 4k.insav.tv, 91.wtf, 91dabiaojie.com, 91forum.com, 91porn.band, 91porn.coach, 91porn.name, 91porn.plus, 91porn.porn, 91porn.red, 91porn.sex, 91porn.top, 91pornny.com, 91zpc.app, 91zpc.co, 91zpc.org, 91zpc.pro, 91zpcs.com, a74d.uwegu.com, api.agcplayer.com, api.vistopia.com.cn, api2.vhmqswjb.cc, bdsmzoo.com, boringday.api.neuronlabs.art, buyaoda.*.com, carrotweather.herokuapp.com, chineseselfie.com, chineseselfie.net, chineseselfie.org, d18psf29jvwgay.cloudfront.net, daoyu.*, dm.insav.tv, dsdav.net, gnjk.*.com, haijiao.com, huanyuxingqiu.*, hyxq.*, ihyxq.*, insav.tv, itaolu.com, lite.pearhot.com, madoumedia.org, mfjk.*.com, pilipili.cool, pornshop.one, porntube.cool, porntube.fit, porntube.site, porntube.store, proxy.linearity.io, qsh*.qsh*.org.cn, souhu.mett.me, taolusm.com, theporny.com, tlsm.one, user-api.speedtest.net, v2.cdn199.com, v2.kekecdn.net, v2.luchu.org, v2.madou.ws, v2.papapa.biz, v2.tianmtv.com, v2.xiaoshuo.info, v2.xiaoshuo.la, wuma.*.*, wuma.*.com, wuma.*.top, www.6lpu5.com, www.haijiao.com, www.itaolu.com, www.speedtest.net, www.taolusm.com, www.tlsm.one, www.xjh51.tv, x91.club, x91porn.com, xasian.org, xchina.cloud, xchina.cool, xchina.day, xchina.plus, xchina.red, xchina.tube
+hostname = %APPEND% *.baidu.com2.club, *.cdnjhd.com, *.chinesebdsm.com, *.cloudfront.net, *.gcwe44p.com, *.hj260302818.top, *.kugou.com, *.pbfk364.com, *.pearhot.com, *.pearkin.com, *.qsh526215.org.cn, *.qsh526724.com, *.rahc448.com, *.rftn469.com, *.supdogth.com, *.wt33k.com, *hyxq.*, 1024movies.com, 1024videos.com, 1808.online, 4k.insav.tv, 91.wtf, 91dabiaojie.com, 91forum.com, 91porn.band, 91porn.coach, 91porn.name, 91porn.plus, 91porn.porn, 91porn.red, 91porn.sex, 91porn.top, 91pornny.com, 91zpc.app, 91zpc.co, 91zpc.org, 91zpc.pro, 91zpcs.com, a74d.uwegu.com, api.agcplayer.com, api.vistopia.com.cn, api2.vhmqswjb.cc, bdsmzoo.com, boringday.api.neuronlabs.art, buyaoda.*.com, carrotweather.herokuapp.com, chineseselfie.com, chineseselfie.net, chineseselfie.org, d18psf29jvwgay.cloudfront.net, daoyu.*, dm.insav.tv, dsdav.net, gnjk.*.com, haijiao.com, huanyuxingqiu.*, hyxq.*, ihyxq.*, insav.tv, itaolu.com, javhd.com, lite.pearhot.com, madoumedia.org, mfjk.*.com, pilipili.cool, pornshop.one, porntube.cool, porntube.fit, porntube.site, porntube.store, proxy.linearity.io, souhu.mett.me, taolusm.com, theporny.com, tlsm.one, user-api.speedtest.net, v2.cdn199.com, v2.kekecdn.net, v2.luchu.org, v2.madou.ws, v2.papapa.biz, v2.tianmtv.com, v2.xiaoshuo.info, v2.xiaoshuo.la, wuma.*.*, wuma.*.com, wuma.*.top, www.6lpu5.com, www.haijiao.com, www.itaolu.com, www.javhd.com, www.speedtest.net, www.taolusm.com, www.tlsm.one, www.xjh51.tv, x91.club, x91porn.com, xasian.org, xchina.cloud, xchina.cool, xchina.day, xchina.plus, xchina.red, xchina.tube, zh.javhd.com
 
 [Rule]
 # >>> merged from KuGou.sgmodule (unique only)
