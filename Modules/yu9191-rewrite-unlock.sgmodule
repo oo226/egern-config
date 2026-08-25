@@ -146,7 +146,8 @@ insav.tv = type=http-request, pattern="^https?:\/\/(insav\.tv|4k\.insav\.tv|dm\.
 
 # >>> merged from javhd/modules/javhd.sgmodule (unique only)
 JAVHD播放 = type=http-response, pattern="^https?:\/\/(www\.|zh\.)?javhd\.com\/.*player_api", requires-body=1, max-size=-1, timeout=20, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/yu9191/rewrite/javhd/dist/javhd.js
-JAVHD页面 = type=http-response, pattern="^https?:\/\/(www\.|zh\.)?javhd\.com\/zh\/studio\/room\/[\w-]+\/video\/[\w-]+", requires-body=1, max-size=-1, timeout=20, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/yu9191/rewrite/javhd/dist/javhd.js
+JAVHD页面 = type=http-response, pattern="^https?:\/\/(www\.|zh\.)?javhd\.com\/(zh\/studio\/room\/[\w-]+\/video\/[\w-]+|zh\/sex-categories|zh\/japanese-porn-videos|zh\/sex-videos|zh\/studio\/room|zh\/?$)", requires-body=1, max-size=-1, timeout=20, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/yu9191/rewrite/javhd/dist/javhd.js
+JAVHD分类 = type=http-response, pattern="^https?:\/\/(www\.|zh\.)?javhd\.com\/zh\/japanese-porn-videos\/category\/.+", requires-body=1, max-size=-1, timeout=20, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/yu9191/rewrite/javhd/dist/javhd.js
 JAVHD API = type=http-response, pattern="^https?:\/\/(www\.|zh\.)?javhd\.com\/api\/.*", requires-body=1, max-size=-1, timeout=20, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/yu9191/rewrite/javhd/dist/javhd.js
 JAVHD m3u8 = type=http-response, pattern="^https?:\/\/.*\.cdnjhd\.com\/.*\.m3u8(\?.*)?$", requires-body=1, max-size=-1, timeout=20, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/yu9191/rewrite/javhd/dist/javhd.js
 
@@ -164,6 +165,7 @@ mjgshd = type=http-request, pattern=https?:\/\/(mfjk|gnjk|buyaoda).+\.com\/api\/
 luolita API = type=http-response, pattern=^https?:\/\/api2\.vhmqswjb\.cc\/api\/, requires-body=1, max-size=-1, timeout=20, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/yu9191/rewrite/luolita/dist/luolita.js, argument=logLevel={{{日志级别}}}&player={{{播放器}}}&scheme={{{自定义scheme}}}&encode={{{URL编码}}}&jump={{{播放器跳转}}}
 
 # >>> merged from modules/javhd.sgmodule (unique only)
+JAVHD页面 = type=http-response, pattern="^https?:\/\/(www\.|zh\.)?javhd\.com\/zh\/studio\/room\/[\w-]+\/video\/[\w-]+", requires-body=1, max-size=-1, timeout=20, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/yu9191/rewrite/javhd/dist/javhd.js
 
 # >>> merged from pear.sgmodule (unique only)
 
