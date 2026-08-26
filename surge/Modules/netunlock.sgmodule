@@ -1,0 +1,14 @@
+#!name=解锁检测 NetUnlock（Surge）
+#!desc=面板检测 Netflix / Disney+ / ChatGPT / Claude / Gemini（改自 Nullwhy Egern 小组件）
+#!author=Nullwhy / oo226
+#!homepage=https://github.com/Nullwhy/Egern
+#!category=Surge面板
+#!system=ios
+#!arguments=TITLE:解锁检测,ICON:antenna.radiowaves.left.and.right,COLOR:#7446D8,INTERVAL:7200
+#!arguments-desc=TITLE：面板标题\n\nICON：SF Symbol\n\nCOLOR：图标颜色（未全通时）\n\nINTERVAL：刷新秒数，默认 7200（2 小时）\n\n检测走当前 Surge 出站策略，可看节点是否解锁。
+
+[Panel]
+解锁检测 = script-name=解锁检测,update-interval={{{INTERVAL}}}
+
+[Script]
+解锁检测 = type=generic,timeout=30,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/surge/Scripts/netunlock.js,script-update-interval=86400,argument=title={{{TITLE}}}&icon={{{ICON}}}&color={{{COLOR}}}
