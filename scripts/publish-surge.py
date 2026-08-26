@@ -43,6 +43,7 @@ PUBLISH_MODULE_FILES = [
     "Modules/oil-price.sgmodule",
     "Modules/netunlock.sgmodule",
     "Modules/tg-mitm-heat.sgmodule",
+    "Modules/app-heat.sgmodule",
 ]
 
 PUBLISH_SCRIPT_FILES = [
@@ -69,6 +70,8 @@ PROTECTED_PRESERVE_IF_MISSING = frozenset(
         "Modules/oil-price.sgmodule",
         "Modules/netunlock.sgmodule",
         "Modules/tg-mitm-heat.sgmodule",
+        "Modules/app-heat.sgmodule",
+        "Rules/App-Heat.list",
         "Scripts/oil-price.js",
         "Scripts/netunlock.js",
     }
@@ -172,19 +175,23 @@ def copy_rules(*, src_root: Path, dest_root: Path, preserved: dict[str, str]) ->
         rules_dst.mkdir(parents=True, exist_ok=True)
         print("skip missing Rules/ source")
 
-    rel = "Rules/ByteDance-Heat.list"
-    preserved_text = preserved.get(rel)
-    if preserved_text is None:
-        return
-    dest = rules_dst / "ByteDance-Heat.list"
-    src_text = read_text(rules_src / "ByteDance-Heat.list") if rules_src.is_dir() else None
-    if src_text is None:
-        dest.write_text(preserved_text, encoding="utf-8")
-        print(f"preserve {rel} (missing in sync Rules/)")
-        return
-    if "stats.jpush.cn" not in src_text and "stats.jpush.cn" in preserved_text:
-        dest.write_text(preserved_text, encoding="utf-8")
-        print(f"preserve {rel} (sync list missing JPush stats)")
+    for rel, needle in (
+        ("Rules/ByteDance-Heat.list", "stats.jpush.cn"),
+        ("Rules/App-Heat.list", "doudou520.online"),
+    ):
+        preserved_text = preserved.get(rel)
+        if preserved_text is None:
+            continue
+        name = Path(rel).name
+        dest = rules_dst / name
+        src_text = read_text(rules_src / name) if rules_src.is_dir() else None
+        if src_text is None:
+            dest.write_text(preserved_text, encoding="utf-8")
+            print(f"preserve {rel} (missing in sync Rules/)")
+            continue
+        if needle not in src_text and needle in preserved_text:
+            dest.write_text(preserved_text, encoding="utf-8")
+            print(f"preserve {rel} (sync list missing {needle})")
 
 
 def validate_adblock(dest_root: Path) -> None:
@@ -213,13 +220,31 @@ def merge_surge_conf(*, src: Path, dest: Path, preserved_text: str | None) -> No
             print("preserve Surge.conf (missing sync source)")
         return
     text = read_text(src) or ""
-    heat_line = (
-        "RULE-SET,https://raw.githubusercontent.com/oo226/egern-config/"
-        "refs/heads/surge/Rules/ByteDance-Heat.list,DIRECT,extended-matching"
-    )
-    if heat_line not in text and preserved_text and heat_line in preserved_text:
-        text = preserved_text
-        print("preserve Surge.conf (kept ByteDance-Heat RULE-SET from surge branch)")
+    for heat_line, label in (
+        (
+            "RULE-SET,https://raw.githubusercontent.com/oo226/egern-config/"
+            "refs/heads/surge/Rules/ByteDance-Heat.list,DIRECT,extended-matching",
+            "ByteDance-Heat",
+        ),
+        (
+            "RULE-SET,https://raw.githubusercontent.com/oo226/egern-config/"
+            "refs/heads/surge/Rules/App-Heat.list,DIRECT,extended-matching",
+            "App-Heat",
+        ),
+    ):
+        if heat_line in text:
+            continue
+        if preserved_text and heat_line in preserved_text:
+            text = preserved_text
+            print(f"preserve Surge.conf (kept {label} RULE-SET from surge branch)")
+            break
+        needle = (
+            "DOMAIN-SET,https://raw.githubusercontent.com/oo226/egern-config/"
+            "refs/heads/surge/Rules/Reject-Merged.domainset"
+        )
+        if needle in text:
+            text = text.replace(needle, heat_line + "\n" + needle, 1)
+            print(f"inserted {label} RULE-SET into Surge.conf")
 
     # Telegram 裸 IP MitM 排除必须在主配置 hostname 最前；缺了就从 surge 备份补或硬插入。
     ip_excl = "-<ip-address>:0"

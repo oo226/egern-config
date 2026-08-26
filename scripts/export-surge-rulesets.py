@@ -26,6 +26,7 @@ STAGING = ROOT / "surge" / ".Rules-export-tmp"
 # Daily export does rmtree(DEST_ROOT) — keep these across the wipe.
 PRESERVE_RULE_FILES = (
     "ByteDance-Heat.list",
+    "App-Heat.list",
 )
 
 BUCKET_TO_RULE = {

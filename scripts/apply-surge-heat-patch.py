@@ -18,10 +18,12 @@ ROOT = Path(__file__).resolve().parent.parent
 ADBLOCK = ROOT / "surge" / "Modules" / "adblock-collection.module"
 PIPIXIA_HEAT = ROOT / "surge" / "Modules" / "pipixia-heat.sgmodule"
 BYTEDANCE_HEAT = ROOT / "surge" / "Rules" / "ByteDance-Heat.list"
+APP_HEAT = ROOT / "surge" / "Rules" / "App-Heat.list"
+APP_HEAT_MODULE = ROOT / "surge" / "Modules" / "app-heat.sgmodule"
 PANGOLIN_SCRIPT = ROOT / "surge" / "Scripts" / "pangolin-fake-log.js"
 SURGE_CONF = ROOT / "surge" / "Surge.conf"
 
-HEAT_MARKER = "heat10"
+HEAT_MARKER = "heat11"
 SCRIPT_URL = (
     "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/surge/"
     "Scripts/pangolin-fake-log.js"
@@ -57,6 +59,9 @@ DOMAIN,api-access.pangolin-sdk-toutiao-b.com,DIRECT
 DOMAIN,stats.jpush.cn,DIRECT
 DOMAIN,gd-stats.jpush.cn,DIRECT
 DOMAIN,ali-stats.jpush.cn,DIRECT
+# heat11：doudou TTS 一秒十几条已完成 DIRECT → 烫机；假成功，勿硬 REJECT
+DOMAIN,tts.doudou520.online,DIRECT
+DOMAIN-SUFFIX,doudou520.online,DIRECT
 """
 
 SCRIPT_BLOCK = f"""\
@@ -79,6 +84,9 @@ MAP_LOCAL_BLOCK = r"""
 ^https?:\/\/mon\.snssdk\.com\/monitor data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 ^https?:\/\/mon\.zijieapi\.com data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 ^https?:\/\/toblog\.ctobsnssdk\.com data-type=base64 data="eyJtZXNzYWdlIjoic3VjY2VzcyIsImNvZGUiOjAsImRldmljZV9pZCI6MSwiaW5zdGFsbF9pZCI6MSwic3NpZCI6IjAifQ==" status-code=200 header="Content-Type:application/json"
+# heat11：doudou TTS 狂刷假成功
+^https?:\/\/tts\.doudou520\.online data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+^https?:\/\/([-\w]+\.)*doudou520\.online data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 """.lstrip(
     "\n"
 )
@@ -169,10 +177,46 @@ $done({
 });
 """
 
-HEAT_LINE = (
-    "RULE-SET,https://raw.githubusercontent.com/oo226/egern-config/"
-    "refs/heads/surge/Rules/ByteDance-Heat.list,DIRECT,extended-matching"
+HEAT_LINES = (
+    (
+        "RULE-SET,https://raw.githubusercontent.com/oo226/egern-config/"
+        "refs/heads/surge/Rules/ByteDance-Heat.list,DIRECT,extended-matching",
+        "ByteDance-Heat",
+    ),
+    (
+        "RULE-SET,https://raw.githubusercontent.com/oo226/egern-config/"
+        "refs/heads/surge/Rules/App-Heat.list,DIRECT,extended-matching",
+        "App-Heat",
+    ),
 )
+
+APP_HEAT_LIST = """\
+# 杂项狂刷域名：不要硬 REJECT（部分 SDK 会立刻重试）。
+# Surge.conf 里 RULE-SET → DIRECT，再由 app-heat / 去广告合集 Map Local 有 body 假成功。
+DOMAIN,tts.doudou520.online,extended-matching
+DOMAIN-SUFFIX,doudou520.online,extended-matching
+"""
+
+APP_HEAT_SGMODULE = """\
+#!name=杂项防烫（Surge）
+#!desc=heat11 · doudou TTS 等狂刷假成功（禁空 reject / 硬 REJECT）
+# UPDATE-MARKER heat11-doudou-tts
+#!category=Surge专用
+
+# 最近请求：tts.doudou520.online:443 DIRECT 已完成，一秒十几条 → 烫机。
+# 走 DIRECT + Map Local 有 body；勿硬 REJECT（易更刷）。
+
+[Rule]
+DOMAIN,tts.doudou520.online,DIRECT
+DOMAIN-SUFFIX,doudou520.online,DIRECT
+
+[Map Local]
+^https?:\\/\\/tts\\.doudou520\\.online data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+^https?:\\/\\/([-\\w]+\\.)*doudou520\\.online data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
+[MITM]
+hostname = %APPEND% tts.doudou520.online, *.doudou520.online
+"""
 
 
 def has_markers(text: str) -> bool:
@@ -272,16 +316,66 @@ def comment_rejects(text: str) -> str:
 
 
 def ensure_direct_block(text: str) -> str:
-    if (
+    need_bytedance = not (
         "DOMAIN,stats.jpush.cn,DIRECT" in text
         and "DOMAIN,log-api.pangolin-sdk-toutiao.com,DIRECT" in text
-    ):
+    )
+    need_doudou = "DOMAIN,tts.doudou520.online,DIRECT" not in text
+    if not need_bytedance and not need_doudou:
         return text
     m = re.search(r"^\[Rule\]\s*$", text, re.M)
     if not m:
         raise SystemExit("apply-surge-heat-patch: missing [Rule] section")
+    if need_bytedance:
+        insert = DIRECT_BLOCK
+    else:
+        insert = (
+            "# heat11：doudou TTS\n"
+            "DOMAIN,tts.doudou520.online,DIRECT\n"
+            "DOMAIN-SUFFIX,doudou520.online,DIRECT\n"
+        )
     insert_at = m.end()
-    return text[:insert_at] + "\n" + DIRECT_BLOCK + text[insert_at:]
+    return text[:insert_at] + "\n" + insert + text[insert_at:]
+
+
+def ensure_map_local_block(text: str) -> str:
+    need_core = not (
+        "jpush.cn data-type=base64" in text
+        and "log-api.pangolin-sdk-toutiao" in text
+        and "api-access.pangolin-sdk-toutiao" in text
+        and "data-type=base64" in text
+    )
+    need_doudou = "tts.doudou520.online data-type=text" not in text
+    if not need_core and not need_doudou:
+        return text
+    if need_core:
+        block = MAP_LOCAL_BLOCK
+    else:
+        block = (
+            "# heat11：doudou TTS 狂刷假成功\n"
+            '^https?:\\/\\/tts\\.doudou520\\.online data-type=text data="{}" status-code=200 header="Content-Type:application/json"\n'
+            '^https?:\\/\\/([-\\w]+\\.)*doudou520\\.online data-type=text data="{}" status-code=200 header="Content-Type:application/json"\n'
+        )
+    m = re.search(r"^\[Map Local\]\s*$", text, re.M)
+    if m:
+        insert_at = m.end()
+        return text[:insert_at] + "\n" + block + text[insert_at:]
+    return text.rstrip() + "\n\n[Map Local]\n" + block + "\n"
+
+
+def ensure_doudou_mitm(text: str) -> str:
+    m = re.search(r"^(hostname\s*=\s*%APPEND%\s*)(.+)$", text, re.M)
+    if not m:
+        return text
+    hosts = m.group(2)
+    add: list[str] = []
+    if "tts.doudou520.online" not in hosts:
+        add.append("tts.doudou520.online")
+    if "*.doudou520.online" not in hosts:
+        add.append("*.doudou520.online")
+    if not add:
+        return text
+    return text[: m.start(2)] + ", ".join(add) + ", " + hosts + text[m.end(2) :]
 
 
 def ensure_script_block(text: str) -> str:
@@ -303,21 +397,6 @@ def ensure_script_block(text: str) -> str:
     return text.rstrip() + "\n\n[Script]\n" + SCRIPT_BLOCK + "\n"
 
 
-def ensure_map_local_block(text: str) -> str:
-    if (
-        "jpush.cn data-type=base64" in text
-        and "log-api.pangolin-sdk-toutiao" in text
-        and "api-access.pangolin-sdk-toutiao" in text
-        and "data-type=base64" in text
-    ):
-        return text
-    m = re.search(r"^\[Map Local\]\s*$", text, re.M)
-    if m:
-        insert_at = m.end()
-        return text[:insert_at] + "\n" + MAP_LOCAL_BLOCK + text[insert_at:]
-    return text.rstrip() + "\n\n[Map Local]\n" + MAP_LOCAL_BLOCK + "\n"
-
-
 EXCLUDED_PANGOLIN_REWRITE = (
     "# heat9：排除 log-api / api-access（空 reject-200 狂重试）；其它广告路径仍假空 200\n"
     r"^https?:\/\/(?!log-api\.)(?!api-access\.)[-\w]*\.pangolin-sdk-toutiao[-\w]*\.com\/.*(service|api|ad|sdk|batch|config).* - reject-200"
@@ -331,7 +410,6 @@ def ensure_excluded_pangolin_rewrite(text: str) -> str:
     if m:
         insert_at = m.end()
         return text[:insert_at] + "\n" + EXCLUDED_PANGOLIN_REWRITE + "\n" + text[insert_at:]
-    # Fallback: before [Script] / [Map Local]
     for section in ("[Script]", "[Map Local]", "[MITM]"):
         idx = text.find(section)
         if idx != -1:
@@ -347,13 +425,17 @@ def ensure_excluded_pangolin_rewrite(text: str) -> str:
 
 def patch_adblock(text: str) -> str:
     if has_markers(text):
-        print("adblock already has anti-retry markers; refresh header only")
+        print("adblock already has anti-retry markers; refresh heat extras")
+        text = ensure_direct_block(text)
+        text = ensure_map_local_block(text)
+        text = ensure_doudou_mitm(text)
         return stamp_header(text)
     text = comment_rejects(text)
     text = ensure_direct_block(text)
     text = ensure_excluded_pangolin_rewrite(text)
     text = ensure_script_block(text)
     text = ensure_map_local_block(text)
+    text = ensure_doudou_mitm(text)
     text = stamp_header(text)
     if not has_markers(text):
         missing = [m for m in REQUIRED_MARKERS if m not in text]
@@ -368,6 +450,14 @@ def ensure_sidecars() -> None:
     BYTEDANCE_HEAT.parent.mkdir(parents=True, exist_ok=True)
     BYTEDANCE_HEAT.write_text(BYTEDANCE_LIST, encoding="utf-8")
     print(f"wrote {BYTEDANCE_HEAT}")
+
+    APP_HEAT.parent.mkdir(parents=True, exist_ok=True)
+    APP_HEAT.write_text(APP_HEAT_LIST, encoding="utf-8")
+    print(f"wrote {APP_HEAT}")
+
+    APP_HEAT_MODULE.parent.mkdir(parents=True, exist_ok=True)
+    APP_HEAT_MODULE.write_text(APP_HEAT_SGMODULE, encoding="utf-8")
+    print(f"wrote {APP_HEAT_MODULE}")
 
     PIPIXIA_HEAT.parent.mkdir(parents=True, exist_ok=True)
     PIPIXIA_HEAT.write_text(PIPIXIA_HEAT_MODULE, encoding="utf-8")
@@ -387,24 +477,22 @@ def ensure_surge_conf_ruleset() -> None:
         return
     text = SURGE_CONF.read_text(encoding="utf-8", errors="replace")
     changed = False
+    needle = (
+        "DOMAIN-SET,https://raw.githubusercontent.com/oo226/egern-config/"
+        "refs/heads/surge/Rules/Reject-Merged.domainset"
+    )
 
-    if HEAT_LINE not in text:
-        needle = (
-            "DOMAIN-SET,https://raw.githubusercontent.com/oo226/egern-config/"
-            "refs/heads/surge/Rules/Reject-Merged.domainset"
-        )
-        comment = (
-            "\n# 字节 / JPush 统计埋点硬 REJECT 会立刻重试。先 DIRECT，交给合集 Map Local / Script 有 body。\n"
-            f"{HEAT_LINE}\n"
-        )
+    for heat_line, label in HEAT_LINES:
+        if heat_line in text:
+            print(f"Surge.conf already has {label} RULE-SET")
+            continue
+        comment = f"{heat_line}\n"
         if needle in text:
             text = text.replace(needle, comment + needle, 1)
         else:
             text = text.rstrip() + "\n" + comment
         changed = True
-        print("inserted ByteDance-Heat RULE-SET into Surge.conf")
-    else:
-        print("Surge.conf already has ByteDance-Heat RULE-SET")
+        print(f"inserted {label} RULE-SET into Surge.conf")
 
     ip_excl = "-<ip-address>:0"
     if ip_excl not in text:
