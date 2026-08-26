@@ -74,6 +74,13 @@ PROTECTED_PRESERVE_IF_MISSING = frozenset(
 
 _HEAT_SCORE_RE = re.compile(r"heat(\d+)", re.IGNORECASE)
 
+ANTI_RETRY_MARKERS = (
+    "DOMAIN,stats.jpush.cn,DIRECT",
+    "pangolin-fake-log",
+    "(?!log-api\\.)(?!api-access\\.)",
+    "jpush-fake-stats",
+)
+
 
 def run(cmd: list[str], *, cwd: Path) -> None:
     print("+", " ".join(cmd))
@@ -83,6 +90,10 @@ def run(cmd: list[str], *, cwd: Path) -> None:
 def heat_score(text: str) -> int:
     scores = [int(m.group(1)) for m in _HEAT_SCORE_RE.finditer(text[:4000])]
     return max(scores) if scores else 0
+
+
+def has_anti_retry(text: str) -> bool:
+    return all(m in text for m in ANTI_RETRY_MARKERS)
 
 
 def read_text(path: Path) -> str | None:
@@ -125,9 +136,15 @@ def copy_file(rel: str, *, src_root: Path, dest_root: Path, preserved: dict[str,
     use_preserved = False
 
     if preserved_text is not None and rel in PROTECTED_HEAT_PATHS:
+        src_ok = has_anti_retry(src_text)
+        old_ok = has_anti_retry(preserved_text)
         src_score = heat_score(src_text)
         old_score = heat_score(preserved_text)
-        if old_score > src_score:
+        # Prefer surge copy whenever sync lost anti-retry markers, or heat dropped.
+        if old_ok and not src_ok:
+            use_preserved = True
+            print(f"preserve {rel} (sync missing anti-retry markers; kept surge)")
+        elif old_score > src_score:
             use_preserved = True
             print(
                 f"preserve {rel} (surge heat{old_score} > sync heat{src_score})"
@@ -179,13 +196,7 @@ def validate_adblock(dest_root: Path) -> None:
             f"publish surge: adblock-collection.module heat score {score} < 6; "
             "refusing to publish stale factory snapshot (would restore 狂刷 REJECT)."
         )
-    required = [
-        "DOMAIN,stats.jpush.cn,DIRECT",
-        "pangolin-fake-log",
-        "(?!log-api\\.)(?!api-access\\.)",
-        "jpush-fake-stats",
-    ]
-    missing = [s for s in required if s not in text]
+    missing = [s for s in ANTI_RETRY_MARKERS if s not in text]
     if missing:
         raise SystemExit(
             "publish surge: adblock missing anti-retry markers: " + ", ".join(missing)
