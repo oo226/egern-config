@@ -4,7 +4,11 @@
 Daily `merge-adblock-modules.py Modules/manifest.surge.yaml` regenerates
 surge/Modules/adblock-collection.module from upstream and would wipe hand-tuned
 anti-retry fixes. This script re-applies those fixes so publish never ships
-empty reject-200 / hard REJECT for pangolin log-api, api-access stats, JPush.
+empty reject-200 / hard REJECT for pangolin log-api, api-access stats, JPush,
+and always restores `%INSERT% -<ip-address>:0` (Telegram bare-IP MitM skip).
+
+sync-rules.yml runs this twice: right after the Surge adblock merge, and again
+immediately before commit, so later workflow steps cannot squeeze heat out.
 """
 
 from __future__ import annotations

@@ -54,11 +54,14 @@ PUBLISH_SCRIPT_FILES = [
     "Scripts/netunlock.js",
 ]
 
-# Never downgrade these when surge branch has a higher heat marker.
+# Never downgrade these when surge branch has a higher heat marker /
+# is missing anti-retry tokens (INSERT bare-IP MitM, pangolin fake, …).
 PROTECTED_HEAT_PATHS = frozenset(
     {
         "Modules/adblock-collection.module",
         "Modules/pipixia-heat.sgmodule",
+        "Modules/tg-mitm-heat.sgmodule",
+        "Modules/app-heat.sgmodule",
     }
 )
 
@@ -87,6 +90,13 @@ ANTI_RETRY_MARKERS = (
     "%INSERT% -<ip-address>:0",
 )
 
+# Sidecar modules only need these needles (full ANTI_RETRY set is adblock-only).
+PROTECTED_NEEDLES = {
+    "Modules/tg-mitm-heat.sgmodule": ("%INSERT% -<ip-address>:0",),
+    "Modules/app-heat.sgmodule": ("doudou520.online", "Map Local"),
+    "Modules/pipixia-heat.sgmodule": ("pangolin-fake-log", "jpush-fake-stats"),
+}
+
 
 def run(cmd: list[str], *, cwd: Path) -> None:
     print("+", " ".join(cmd))
@@ -100,6 +110,13 @@ def heat_score(text: str) -> int:
 
 def has_anti_retry(text: str) -> bool:
     return all(m in text for m in ANTI_RETRY_MARKERS)
+
+
+def has_protected_needles(rel: str, text: str) -> bool:
+    needles = PROTECTED_NEEDLES.get(rel)
+    if needles is None:
+        return has_anti_retry(text)
+    return all(n in text for n in needles)
 
 
 def read_text(path: Path) -> str | None:
@@ -142,8 +159,8 @@ def copy_file(rel: str, *, src_root: Path, dest_root: Path, preserved: dict[str,
     use_preserved = False
 
     if preserved_text is not None and rel in PROTECTED_HEAT_PATHS:
-        src_ok = has_anti_retry(src_text)
-        old_ok = has_anti_retry(preserved_text)
+        src_ok = has_protected_needles(rel, src_text)
+        old_ok = has_protected_needles(rel, preserved_text)
         src_score = heat_score(src_text)
         old_score = heat_score(preserved_text)
         # Prefer surge copy whenever sync lost anti-retry markers, or heat dropped.
@@ -212,6 +229,15 @@ def validate_adblock(dest_root: Path) -> None:
             "publish surge: adblock missing anti-retry markers: " + ", ".join(missing)
         )
     print(f"validate adblock-collection.module heat{score} ok")
+
+    tg = dest_root / "Modules/tg-mitm-heat.sgmodule"
+    tg_text = read_text(tg) or ""
+    if "%INSERT% -<ip-address>:0" not in tg_text:
+        raise SystemExit(
+            "publish surge: tg-mitm-heat.sgmodule missing %INSERT% -<ip-address>:0 "
+            "(daily merge must not ship APPEND-only MitM exclude)"
+        )
+    print("validate tg-mitm-heat.sgmodule INSERT bare-IP MitM ok")
 
 
 def merge_surge_conf(*, src: Path, dest: Path, preserved_text: str | None) -> None:

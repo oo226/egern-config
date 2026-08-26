@@ -188,6 +188,10 @@ jobs:
           Actions run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
           fi
 
+      # 提交前再贴一次：中间步骤若动过 surge 合集，也不会把 heat12 / 裸 IP MitM 挤掉。
+      - name: Re-apply Surge heat before commit
+        run: python3 scripts/apply-surge-heat-patch.py
+
       - name: Commit sync branch
         run: |
           git config user.name "github-actions[bot]"
