@@ -1,14 +1,14 @@
 #!name=Telegram 防烫（Surge）
-#!desc=heat11 · 跳过裸 IP MitM，打断 MitM Failed 狂重试
-# UPDATE-MARKER heat11-tg-mitm
+#!desc=heat12 · 跳过裸 IP MitM，打断 MitM Failed 狂重试
+# UPDATE-MARKER heat12-tg-mitm
 #!category=Surge专用
 
 # 最近请求里 194.221.250.50 / 91.108.* / 149.154.* 狂刷 MitM Failed → 烫机。
 # 根因：Telegram 用裸 IP + 证书钉扎；解密必失败然后立刻重试。
 #
-# 注意：排除项必须出现在最终 hostname 列表「最前面」。
-# 本模块用 %INSERT% 无效时请直接更新主配置 Surge.conf（已含 -<ip-address>:0）。
-# 若你开了「解密全部 HTTPS」（hostname 含 *），务必保证主配置排除在 * 之前。
+# 分流：Foreign/Telegram.list 已含这些 IP → Telegram 策略组，不必另装分流。
+# MitM：排除必须在 hostname 列表最前（%INSERT%）。主配置已写 -<ip-address>:0 方便新人；
+# 不想拉主配置时：更新「去广告大合集」（已含同款 INSERT）或装本小模块即可。
 
 [MITM]
-hostname = %APPEND% -<ip-address>:0, -*.telegram.org, -*.telegram-cdn.org, -*.t.me, -*.whatsapp.com, -*.whatsapp.net, -*.wa.me
+hostname = %INSERT% -<ip-address>:0, -*.telegram.org, -*.telegram-cdn.org, -*.t.me, -*.whatsapp.com, -*.whatsapp.net, -*.wa.me
