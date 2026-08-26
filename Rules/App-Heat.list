@@ -1,0 +1,4 @@
+# 杂项狂刷域名：不要硬 REJECT（部分 SDK 会立刻重试）。
+# Surge.conf 里 RULE-SET → DIRECT，再由 app-heat / 去广告合集 Map Local 有 body 假成功。
+DOMAIN,tts.doudou520.online,extended-matching
+DOMAIN-SUFFIX,doudou520.online,extended-matching
