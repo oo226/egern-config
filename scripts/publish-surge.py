@@ -84,6 +84,7 @@ ANTI_RETRY_MARKERS = (
     "pangolin-fake-log",
     "(?!log-api\\.)(?!api-access\\.)",
     "jpush-fake-stats",
+    "%INSERT% -<ip-address>:0",
 )
 
 

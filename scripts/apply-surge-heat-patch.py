@@ -23,7 +23,9 @@ APP_HEAT_MODULE = ROOT / "surge" / "Modules" / "app-heat.sgmodule"
 PANGOLIN_SCRIPT = ROOT / "surge" / "Scripts" / "pangolin-fake-log.js"
 SURGE_CONF = ROOT / "surge" / "Surge.conf"
 
-HEAT_MARKER = "heat11"
+HEAT_MARKER = "heat12"
+TG_MITM = ROOT / "surge" / "Modules" / "tg-mitm-heat.sgmodule"
+IP_MITM_INSERT = "hostname = %INSERT% -<ip-address>:0"
 SCRIPT_URL = (
     "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/surge/"
     "Scripts/pangolin-fake-log.js"
@@ -34,6 +36,7 @@ REQUIRED_MARKERS = (
     "pangolin-fake-log",
     "(?!log-api\\.)(?!api-access\\.)",
     "jpush-fake-stats",
+    "%INSERT% -<ip-address>:0",
 )
 
 DIRECT_BLOCK = """\
@@ -199,12 +202,13 @@ DOMAIN-SUFFIX,doudou520.online,extended-matching
 
 APP_HEAT_SGMODULE = """\
 #!name=杂项防烫（Surge）
-#!desc=heat11 · doudou TTS 等狂刷假成功（禁空 reject / 硬 REJECT）
-# UPDATE-MARKER heat11-doudou-tts
+#!desc=heat12 · doudou TTS 等狂刷假成功（禁空 reject / 硬 REJECT）
+# UPDATE-MARKER heat12-doudou-tts
 #!category=Surge专用
 
 # 最近请求：tts.doudou520.online:443 DIRECT 已完成，一秒十几条 → 烫机。
 # 走 DIRECT + Map Local 有 body；勿硬 REJECT（易更刷）。
+# 已更新「去广告大合集」则不必再装本模块 / App-Heat 分流。
 
 [Rule]
 DOMAIN,tts.doudou520.online,DIRECT
@@ -216,6 +220,23 @@ DOMAIN-SUFFIX,doudou520.online,DIRECT
 
 [MITM]
 hostname = %APPEND% tts.doudou520.online, *.doudou520.online
+"""
+
+TG_MITM_SGMODULE = """\
+#!name=Telegram 防烫（Surge）
+#!desc=heat12 · 跳过裸 IP MitM，打断 MitM Failed 狂重试
+# UPDATE-MARKER heat12-tg-mitm
+#!category=Surge专用
+
+# 最近请求里 194.221.250.50 / 91.108.* / 149.154.* 狂刷 MitM Failed → 烫机。
+# 根因：Telegram 用裸 IP + 证书钉扎；解密必失败然后立刻重试。
+#
+# 分流：Foreign/Telegram.list 已含这些 IP → Telegram 策略组，不必另装分流。
+# MitM：排除必须在 hostname 列表最前（%INSERT%）。主配置已写 -<ip-address>:0 方便新人；
+# 不想拉主配置时：更新「去广告大合集」（已含同款 INSERT）或装本小模块即可。
+
+[MITM]
+hostname = %INSERT% -<ip-address>:0, -*.telegram.org, -*.telegram-cdn.org, -*.t.me, -*.whatsapp.com, -*.whatsapp.net, -*.wa.me
 """
 
 
@@ -378,6 +399,20 @@ def ensure_doudou_mitm(text: str) -> str:
     return text[: m.start(2)] + ", ".join(add) + ", " + hosts + text[m.end(2) :]
 
 
+def ensure_ip_mitm_insert(text: str) -> str:
+    """Skip MitM on bare-IP hosts (Telegram 91.108/149.154/194.221…).
+
+    Must be %INSERT% (front of hostname list). %APPEND% loses to decrypt-all `*`.
+    Putting this in 去广告合集 means updating that module is enough — no main conf pull.
+    """
+    if "%INSERT% -<ip-address>:0" in text:
+        return text
+    m = re.search(r"^\[MITM\]\s*$", text, re.M)
+    if m:
+        return text[: m.end()] + "\n" + IP_MITM_INSERT + "\n" + text[m.end() :]
+    return text.rstrip() + "\n\n[MITM]\n" + IP_MITM_INSERT + "\n"
+
+
 def ensure_script_block(text: str) -> str:
     if "pangolin-fake-log" in text and "jpush-fake-stats" in text:
         return text
@@ -429,6 +464,7 @@ def patch_adblock(text: str) -> str:
         text = ensure_direct_block(text)
         text = ensure_map_local_block(text)
         text = ensure_doudou_mitm(text)
+        text = ensure_ip_mitm_insert(text)
         return stamp_header(text)
     text = comment_rejects(text)
     text = ensure_direct_block(text)
@@ -436,6 +472,7 @@ def patch_adblock(text: str) -> str:
     text = ensure_script_block(text)
     text = ensure_map_local_block(text)
     text = ensure_doudou_mitm(text)
+    text = ensure_ip_mitm_insert(text)
     text = stamp_header(text)
     if not has_markers(text):
         missing = [m for m in REQUIRED_MARKERS if m not in text]
@@ -458,6 +495,10 @@ def ensure_sidecars() -> None:
     APP_HEAT_MODULE.parent.mkdir(parents=True, exist_ok=True)
     APP_HEAT_MODULE.write_text(APP_HEAT_SGMODULE, encoding="utf-8")
     print(f"wrote {APP_HEAT_MODULE}")
+
+    TG_MITM.parent.mkdir(parents=True, exist_ok=True)
+    TG_MITM.write_text(TG_MITM_SGMODULE, encoding="utf-8")
+    print(f"wrote {TG_MITM}")
 
     PIPIXIA_HEAT.parent.mkdir(parents=True, exist_ok=True)
     PIPIXIA_HEAT.write_text(PIPIXIA_HEAT_MODULE, encoding="utf-8")
