@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-26T03:53:27Z",
+  "generated_at": "2026-08-26T03:53:37Z",
   "branch": "main",
   "repo": "oo226/egern-config",
   "raw_base": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main",
@@ -202,16 +202,24 @@
   ],
   "sync_digest": {
     "commit": {
-      "hash": "56406af",
+      "hash": "d332b77",
       "subject": "chore: sync upstream on sync branch",
-      "date": "2026-08-25"
+      "date": "2026-08-26"
     },
     "summary": [
+      "分流规则 更新 2 个文件",
+      "脚本 更新 3 个文件",
+      "模块站 更新 2 个文件",
       "国内直连 25603 条"
     ],
-    "files_changed": 0
+    "files_changed": 12
   },
   "changelog": [
+    {
+      "hash": "c394c20",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-08-26"
+    },
     {
       "hash": "4bdf6c8",
       "subject": "chore: publish curated snapshot from sync",
@@ -244,11 +252,6 @@
     },
     {
       "hash": "7dadb11",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-08-21"
-    },
-    {
-      "hash": "f706988",
       "subject": "chore: publish curated snapshot from sync",
       "date": "2026-08-21"
     }
