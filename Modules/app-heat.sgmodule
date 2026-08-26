@@ -1,10 +1,11 @@
 #!name=杂项防烫（Surge）
-#!desc=heat11 · doudou TTS 等狂刷假成功（禁空 reject / 硬 REJECT）
-# UPDATE-MARKER heat11-doudou-tts
+#!desc=heat12 · doudou TTS 等狂刷假成功（禁空 reject / 硬 REJECT）
+# UPDATE-MARKER heat12-doudou-tts
 #!category=Surge专用
 
 # 最近请求：tts.doudou520.online:443 DIRECT 已完成，一秒十几条 → 烫机。
 # 走 DIRECT + Map Local 有 body；勿硬 REJECT（易更刷）。
+# 已更新「去广告大合集」则不必再装本模块 / App-Heat 分流。
 
 [Rule]
 DOMAIN,tts.doudou520.online,DIRECT
