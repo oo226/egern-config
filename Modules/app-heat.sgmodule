@@ -1,0 +1,18 @@
+#!name=杂项防烫（Surge）
+#!desc=heat11 · doudou TTS 等狂刷假成功（禁空 reject / 硬 REJECT）
+# UPDATE-MARKER heat11-doudou-tts
+#!category=Surge专用
+
+# 最近请求：tts.doudou520.online:443 DIRECT 已完成，一秒十几条 → 烫机。
+# 走 DIRECT + Map Local 有 body；勿硬 REJECT（易更刷）。
+
+[Rule]
+DOMAIN,tts.doudou520.online,DIRECT
+DOMAIN-SUFFIX,doudou520.online,DIRECT
+
+[Map Local]
+^https?:\/\/tts\.doudou520\.online data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+^https?:\/\/([-\w]+\.)*doudou520\.online data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
+[MITM]
+hostname = %APPEND% tts.doudou520.online, *.doudou520.online
