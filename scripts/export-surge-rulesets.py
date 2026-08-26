@@ -22,6 +22,12 @@ from routing_list_utils import SET_KEYS, count_sets, parse_egern_sets
 DEST_ROOT = ROOT / "surge" / "Rules"
 STAGING = ROOT / "surge" / ".Rules-export-tmp"
 
+# Hand-tuned heat lists live under surge/Rules/ but are not exported from Routing/.
+# Daily export does rmtree(DEST_ROOT) — keep these across the wipe.
+PRESERVE_RULE_FILES = (
+    "ByteDance-Heat.list",
+)
+
 BUCKET_TO_RULE = {
     "domain_set": "DOMAIN",
     "domain_suffix_set": "DOMAIN-SUFFIX",
@@ -223,10 +229,20 @@ def main() -> None:
         encoding="utf-8",
     )
 
+    preserved: dict[str, str] = {}
     if DEST_ROOT.exists():
+        for name in PRESERVE_RULE_FILES:
+            path = DEST_ROOT / name
+            if path.is_file():
+                preserved[name] = path.read_text(encoding="utf-8", errors="replace")
         shutil.rmtree(DEST_ROOT)
     DEST_ROOT.parent.mkdir(parents=True, exist_ok=True)
     STAGING.rename(DEST_ROOT)
+
+    for name, text in preserved.items():
+        dest = DEST_ROOT / name
+        dest.write_text(text, encoding="utf-8")
+        print(f"preserve {DEST_ROOT / name} (hand-tuned heat list)")
 
     # Remove legacy path under Routing/Surge (Egern tree stays clean)
     legacy = ROUTING / "Surge"

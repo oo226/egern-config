@@ -3,11 +3,16 @@
 
 Keeps Egern main clean: Surge.conf + Rules + Surge-only modules live on surge.
 Shared Scripts / most Modules still referenced from main raw URLs.
+
+Hand-tuned Surge fixes (heat6+ 防烫 / ByteDance-Heat) must not be downgraded when
+sync/surge/ factory snapshot is stale. Protected paths keep the higher heat marker
+from the existing surge branch.
 """
 
 from __future__ import annotations
 
 import os
+import re
 import shutil
 import subprocess
 import sys
@@ -18,14 +23,13 @@ WORKTREE = Path(os.environ.get("PUBLISH_SURGE_WORKTREE", "/tmp/egern-surge-publi
 SURGE_SRC = ROOT / "surge"
 BRANCH = "surge"
 
-# Paths relative to surge/ on the published branch
+# Paths relative to repo root on the published surge branch
 PUBLISH_FILES = [
     "Surge.conf",
     "README.md",
     "Icons.md",
 ]
 
-# Surge-only modules (full copies; not shared with main Egern modules).
 PUBLISH_MODULE_FILES = [
     "Modules/adblock-collection.module",
     "Modules/patches-pipixia.sgmodule",
@@ -34,19 +38,188 @@ PUBLISH_MODULE_FILES = [
     "Modules/pipixia-heat.sgmodule",
     "Modules/qdreader.sgmodule",
     "Modules/iringo-others.sgmodule",
+    "Modules/iringo-maps.sgmodule",
     "Modules/unlock-collection.module",
+    "Modules/oil-price.sgmodule",
+    "Modules/netunlock.sgmodule",
 ]
 
-# Surge-only scripts (PingMe etc.); keep off main/Egern.
 PUBLISH_SCRIPT_FILES = [
     "Scripts/PingMe-capture.js",
     "Scripts/PingMe-signin.js",
+    "Scripts/pangolin-fake-log.js",
+    "Scripts/oil-price.js",
+    "Scripts/netunlock.js",
 ]
+
+# Never downgrade these when surge branch has a higher heat marker.
+PROTECTED_HEAT_PATHS = frozenset(
+    {
+        "Modules/adblock-collection.module",
+        "Modules/pipixia-heat.sgmodule",
+    }
+)
+
+# Keep surge-branch copy if sync factory omitted the file entirely.
+PROTECTED_PRESERVE_IF_MISSING = frozenset(
+    {
+        "Rules/ByteDance-Heat.list",
+        "Scripts/pangolin-fake-log.js",
+        "Modules/oil-price.sgmodule",
+        "Modules/netunlock.sgmodule",
+        "Scripts/oil-price.js",
+        "Scripts/netunlock.js",
+    }
+)
+
+_HEAT_SCORE_RE = re.compile(r"heat(\d+)", re.IGNORECASE)
+
+ANTI_RETRY_MARKERS = (
+    "DOMAIN,stats.jpush.cn,DIRECT",
+    "pangolin-fake-log",
+    "(?!log-api\\.)(?!api-access\\.)",
+    "jpush-fake-stats",
+)
 
 
 def run(cmd: list[str], *, cwd: Path) -> None:
     print("+", " ".join(cmd))
     subprocess.run(cmd, cwd=cwd, check=True)
+
+
+def heat_score(text: str) -> int:
+    scores = [int(m.group(1)) for m in _HEAT_SCORE_RE.finditer(text[:4000])]
+    return max(scores) if scores else 0
+
+
+def has_anti_retry(text: str) -> bool:
+    return all(m in text for m in ANTI_RETRY_MARKERS)
+
+
+def read_text(path: Path) -> str | None:
+    if not path.is_file():
+        return None
+    return path.read_text(encoding="utf-8", errors="replace")
+
+
+def snapshot_tree(base: Path) -> dict[str, str]:
+    out: dict[str, str] = {}
+    if not base.is_dir():
+        return out
+    for path in base.rglob("*"):
+        if not path.is_file() or path.name == ".git":
+            continue
+        rel = path.relative_to(base).as_posix()
+        if rel.startswith(".git/"):
+            continue
+        text = read_text(path)
+        if text is not None:
+            out[rel] = text
+    return out
+
+
+def copy_file(rel: str, *, src_root: Path, dest_root: Path, preserved: dict[str, str]) -> None:
+    src = src_root / rel
+    dest = dest_root / rel
+    preserved_text = preserved.get(rel)
+
+    if not src.is_file():
+        if preserved_text is not None and rel in PROTECTED_PRESERVE_IF_MISSING:
+            dest.parent.mkdir(parents=True, exist_ok=True)
+            dest.write_text(preserved_text, encoding="utf-8")
+            print(f"preserve missing sync source {rel} (kept surge branch)")
+        else:
+            print(f"skip missing {src}")
+        return
+
+    src_text = read_text(src) or ""
+    use_preserved = False
+
+    if preserved_text is not None and rel in PROTECTED_HEAT_PATHS:
+        src_ok = has_anti_retry(src_text)
+        old_ok = has_anti_retry(preserved_text)
+        src_score = heat_score(src_text)
+        old_score = heat_score(preserved_text)
+        # Prefer surge copy whenever sync lost anti-retry markers, or heat dropped.
+        if old_ok and not src_ok:
+            use_preserved = True
+            print(f"preserve {rel} (sync missing anti-retry markers; kept surge)")
+        elif old_score > src_score:
+            use_preserved = True
+            print(
+                f"preserve {rel} (surge heat{old_score} > sync heat{src_score})"
+            )
+
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    if use_preserved and preserved_text is not None:
+        dest.write_text(preserved_text, encoding="utf-8")
+    else:
+        shutil.copy2(src, dest)
+        print(f"copy {rel}")
+
+
+def copy_rules(*, src_root: Path, dest_root: Path, preserved: dict[str, str]) -> None:
+    rules_src = src_root / "Rules"
+    rules_dst = dest_root / "Rules"
+    if rules_dst.exists():
+        shutil.rmtree(rules_dst)
+    if rules_src.is_dir():
+        shutil.copytree(rules_src, rules_dst)
+        print("copy Rules/")
+    else:
+        rules_dst.mkdir(parents=True, exist_ok=True)
+        print("skip missing Rules/ source")
+
+    rel = "Rules/ByteDance-Heat.list"
+    preserved_text = preserved.get(rel)
+    if preserved_text is None:
+        return
+    dest = rules_dst / "ByteDance-Heat.list"
+    src_text = read_text(rules_src / "ByteDance-Heat.list") if rules_src.is_dir() else None
+    if src_text is None:
+        dest.write_text(preserved_text, encoding="utf-8")
+        print(f"preserve {rel} (missing in sync Rules/)")
+        return
+    if "stats.jpush.cn" not in src_text and "stats.jpush.cn" in preserved_text:
+        dest.write_text(preserved_text, encoding="utf-8")
+        print(f"preserve {rel} (sync list missing JPush stats)")
+
+
+def validate_adblock(dest_root: Path) -> None:
+    path = dest_root / "Modules/adblock-collection.module"
+    text = read_text(path)
+    if not text:
+        raise SystemExit(f"publish surge: missing {path}")
+    score = heat_score(text)
+    if score < 6:
+        raise SystemExit(
+            f"publish surge: adblock-collection.module heat score {score} < 6; "
+            "refusing to publish stale factory snapshot (would restore 狂刷 REJECT)."
+        )
+    missing = [s for s in ANTI_RETRY_MARKERS if s not in text]
+    if missing:
+        raise SystemExit(
+            "publish surge: adblock missing anti-retry markers: " + ", ".join(missing)
+        )
+    print(f"validate adblock-collection.module heat{score} ok")
+
+
+def merge_surge_conf(*, src: Path, dest: Path, preserved_text: str | None) -> None:
+    if not src.is_file():
+        if preserved_text:
+            dest.write_text(preserved_text, encoding="utf-8")
+            print("preserve Surge.conf (missing sync source)")
+        return
+    text = read_text(src) or ""
+    heat_line = (
+        "RULE-SET,https://raw.githubusercontent.com/oo226/egern-config/"
+        "refs/heads/surge/Rules/ByteDance-Heat.list,DIRECT,extended-matching"
+    )
+    if heat_line not in text and preserved_text and heat_line in preserved_text:
+        text = preserved_text
+        print("preserve Surge.conf (kept ByteDance-Heat RULE-SET from surge branch)")
+    dest.write_text(text, encoding="utf-8")
+    print("copy Surge.conf")
 
 
 def main() -> None:
@@ -58,7 +231,6 @@ def main() -> None:
     if WORKTREE.exists():
         shutil.rmtree(WORKTREE)
 
-    # surge branch may not exist yet on first publish
     fetch = subprocess.run(
         ["git", "fetch", "origin", BRANCH],
         cwd=ROOT,
@@ -75,12 +247,8 @@ def main() -> None:
             cwd=ROOT,
         )
     else:
-        run(
-            ["git", "worktree", "add", "--detach", str(WORKTREE), "HEAD"],
-            cwd=ROOT,
-        )
+        run(["git", "worktree", "add", "--detach", str(WORKTREE), "HEAD"], cwd=ROOT)
         run(["git", "checkout", "--orphan", BRANCH], cwd=WORKTREE)
-        # Clear orphan index inherited from HEAD
         subprocess.run(
             ["git", "rm", "-rf", "--ignore-unmatch", "."],
             cwd=WORKTREE,
@@ -88,7 +256,6 @@ def main() -> None:
             stdout=subprocess.DEVNULL,
             stderr=subprocess.DEVNULL,
         )
-        # Also unstage/remove leftover tracked files from working tree
         for child in list(WORKTREE.iterdir()):
             if child.name == ".git":
                 continue
@@ -97,7 +264,8 @@ def main() -> None:
             else:
                 child.unlink()
 
-    # Existing surge branch: wipe working tree before copy
+    preserved = snapshot_tree(WORKTREE)
+
     if has_remote:
         for child in list(WORKTREE.iterdir()):
             if child.name == ".git":
@@ -108,6 +276,13 @@ def main() -> None:
                 child.unlink()
 
     for name in PUBLISH_FILES:
+        if name == "Surge.conf":
+            merge_surge_conf(
+                src=SURGE_SRC / name,
+                dest=WORKTREE / name,
+                preserved_text=preserved.get(name),
+            )
+            continue
         src = SURGE_SRC / name
         if not src.is_file():
             print(f"skip missing {src}")
@@ -116,34 +291,18 @@ def main() -> None:
         print(f"copy {name}")
 
     for rel in PUBLISH_MODULE_FILES:
-        src = SURGE_SRC / rel
-        if not src.is_file():
-            print(f"skip missing {src}")
-            continue
-        dest = WORKTREE / rel
-        dest.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copy2(src, dest)
-        print(f"copy {rel}")
+        copy_file(rel, src_root=SURGE_SRC, dest_root=WORKTREE, preserved=preserved)
 
     for rel in PUBLISH_SCRIPT_FILES:
-        src = SURGE_SRC / rel
-        if not src.is_file():
-            print(f"skip missing {src}")
-            continue
-        dest = WORKTREE / rel
-        dest.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copy2(src, dest)
-        print(f"copy {rel}")
+        copy_file(rel, src_root=SURGE_SRC, dest_root=WORKTREE, preserved=preserved)
 
-    # Disclaimer from repo root
+    copy_rules(src_root=SURGE_SRC, dest_root=WORKTREE, preserved=preserved)
+
     disclaimer = ROOT / "DISCLAIMER.md"
     if disclaimer.is_file():
         shutil.copy2(disclaimer, WORKTREE / "DISCLAIMER.md")
 
-    rules_src = SURGE_SRC / "Rules"
-    rules_dst = WORKTREE / "Rules"
-    shutil.copytree(rules_src, rules_dst)
-    print("copy Rules/")
+    validate_adblock(WORKTREE)
 
     run(["git", "config", "user.name", "github-actions[bot]"], cwd=WORKTREE)
     run(
