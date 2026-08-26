@@ -42,6 +42,7 @@ PUBLISH_MODULE_FILES = [
     "Modules/unlock-collection.module",
     "Modules/oil-price.sgmodule",
     "Modules/netunlock.sgmodule",
+    "Modules/tg-mitm-heat.sgmodule",
 ]
 
 PUBLISH_SCRIPT_FILES = [
@@ -67,6 +68,7 @@ PROTECTED_PRESERVE_IF_MISSING = frozenset(
         "Scripts/pangolin-fake-log.js",
         "Modules/oil-price.sgmodule",
         "Modules/netunlock.sgmodule",
+        "Modules/tg-mitm-heat.sgmodule",
         "Scripts/oil-price.js",
         "Scripts/netunlock.js",
     }
@@ -218,6 +220,27 @@ def merge_surge_conf(*, src: Path, dest: Path, preserved_text: str | None) -> No
     if heat_line not in text and preserved_text and heat_line in preserved_text:
         text = preserved_text
         print("preserve Surge.conf (kept ByteDance-Heat RULE-SET from surge branch)")
+
+    # Telegram 裸 IP MitM 排除必须在主配置 hostname 最前；缺了就从 surge 备份补或硬插入。
+    ip_excl = "-<ip-address>:0"
+    if ip_excl not in text:
+        if preserved_text and ip_excl in preserved_text:
+            text = preserved_text
+            print("preserve Surge.conf (kept -<ip-address>:0 MitM exclude from surge)")
+        else:
+            text2, n = re.subn(
+                r"^(hostname\s*=\s*)",
+                rf"\g<1>{ip_excl}, ",
+                text,
+                count=1,
+                flags=re.M,
+            )
+            if n:
+                text = text2
+                print("inserted -<ip-address>:0 into Surge.conf MITM hostname")
+            else:
+                print("warn: could not insert -<ip-address>:0 (no hostname= line)")
+
     dest.write_text(text, encoding="utf-8")
     print("copy Surge.conf")
 

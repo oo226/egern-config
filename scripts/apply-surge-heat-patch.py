@@ -386,23 +386,46 @@ def ensure_surge_conf_ruleset() -> None:
         print("skip Surge.conf (missing)")
         return
     text = SURGE_CONF.read_text(encoding="utf-8", errors="replace")
-    if HEAT_LINE in text:
-        print("Surge.conf already has ByteDance-Heat RULE-SET")
-        return
-    needle = (
-        "DOMAIN-SET,https://raw.githubusercontent.com/oo226/egern-config/"
-        "refs/heads/surge/Rules/Reject-Merged.domainset"
-    )
-    comment = (
-        "\n# 字节 / JPush 统计埋点硬 REJECT 会立刻重试。先 DIRECT，交给合集 Map Local / Script 有 body。\n"
-        f"{HEAT_LINE}\n"
-    )
-    if needle in text:
-        text = text.replace(needle, comment + needle, 1)
+    changed = False
+
+    if HEAT_LINE not in text:
+        needle = (
+            "DOMAIN-SET,https://raw.githubusercontent.com/oo226/egern-config/"
+            "refs/heads/surge/Rules/Reject-Merged.domainset"
+        )
+        comment = (
+            "\n# 字节 / JPush 统计埋点硬 REJECT 会立刻重试。先 DIRECT，交给合集 Map Local / Script 有 body。\n"
+            f"{HEAT_LINE}\n"
+        )
+        if needle in text:
+            text = text.replace(needle, comment + needle, 1)
+        else:
+            text = text.rstrip() + "\n" + comment
+        changed = True
+        print("inserted ByteDance-Heat RULE-SET into Surge.conf")
     else:
-        text = text.rstrip() + "\n" + comment
-    SURGE_CONF.write_text(text, encoding="utf-8")
-    print("inserted ByteDance-Heat RULE-SET into Surge.conf")
+        print("Surge.conf already has ByteDance-Heat RULE-SET")
+
+    ip_excl = "-<ip-address>:0"
+    if ip_excl not in text:
+        text2, n = re.subn(
+            r"^(hostname\s*=\s*)",
+            rf"\g<1>{ip_excl}, ",
+            text,
+            count=1,
+            flags=re.M,
+        )
+        if n:
+            text = text2
+            changed = True
+            print("inserted -<ip-address>:0 into Surge.conf MITM hostname")
+        else:
+            print("warn: Surge.conf has no hostname= line to patch")
+    else:
+        print("Surge.conf already has -<ip-address>:0 MitM exclude")
+
+    if changed:
+        SURGE_CONF.write_text(text, encoding="utf-8")
 
 
 def main() -> None:
