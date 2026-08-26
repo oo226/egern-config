@@ -33,6 +33,7 @@ PUBLISH_MODULE_FILES = [
     "Modules/pingme.sgmodule",
     "Modules/pipixia-heat.sgmodule",
     "Modules/qdreader.sgmodule",
+    "Modules/iringo-maps.sgmodule",
     "Modules/iringo-others.sgmodule",
     "Modules/unlock-collection.module",
 ]
