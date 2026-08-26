@@ -1,0 +1,13 @@
+#!name=实时油价（Surge）
+#!desc=面板显示 92/95/98/柴油；argument 改地区拼音（省/市）
+#!author=oo226 / getsomecat / IBL3ND
+#!category=Surge面板
+#!system=ios
+#!arguments=REGION:guangdong/guangzhou,TITLE:实时油价,ICON:fuelpump.fill,COLOR:#FF9F0A,INTERVAL:43200
+#!arguments-desc=REGION：地区拼音，如 beijing、shanghai、guangdong/guangzhou、shanxi-3/xian（陕西西安）。对照 http://m.qiyoujiage.com/\n\nTITLE：面板标题\n\nICON：SF Symbol\n\nCOLOR：图标颜色\n\nINTERVAL：刷新秒数，默认 43200（12 小时）\n\n也可在脚本持久化写入 key=yj 覆盖地区。
+
+[Panel]
+油价 = script-name=油价,update-interval={{{INTERVAL}}}
+
+[Script]
+油价 = type=generic,timeout=15,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/surge/Scripts/oil-price.js,script-update-interval=86400,argument=region={{{REGION}}}&title={{{TITLE}}}&icon={{{ICON}}}&color={{{COLOR}}}
