@@ -44,6 +44,7 @@ PUBLISH_MODULE_FILES = [
     "Modules/netunlock.sgmodule",
     "Modules/tg-mitm-heat.sgmodule",
     "Modules/app-heat.sgmodule",
+    "Modules/google-gemini-fix.sgmodule",
 ]
 
 PUBLISH_SCRIPT_FILES = [
@@ -71,6 +72,7 @@ PROTECTED_PRESERVE_IF_MISSING = frozenset(
         "Modules/netunlock.sgmodule",
         "Modules/tg-mitm-heat.sgmodule",
         "Modules/app-heat.sgmodule",
+        "Modules/google-gemini-fix.sgmodule",
         "Rules/App-Heat.list",
         "Scripts/oil-price.js",
         "Scripts/netunlock.js",

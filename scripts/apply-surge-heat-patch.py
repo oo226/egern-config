@@ -20,6 +20,7 @@ PIPIXIA_HEAT = ROOT / "surge" / "Modules" / "pipixia-heat.sgmodule"
 BYTEDANCE_HEAT = ROOT / "surge" / "Rules" / "ByteDance-Heat.list"
 APP_HEAT = ROOT / "surge" / "Rules" / "App-Heat.list"
 APP_HEAT_MODULE = ROOT / "surge" / "Modules" / "app-heat.sgmodule"
+GOOGLE_GEMINI_FIX = ROOT / "surge" / "Modules" / "google-gemini-fix.sgmodule"
 PANGOLIN_SCRIPT = ROOT / "surge" / "Scripts" / "pangolin-fake-log.js"
 SURGE_CONF = ROOT / "surge" / "Surge.conf"
 
@@ -216,6 +217,32 @@ DOMAIN-SUFFIX,doudou520.online,DIRECT
 
 [MITM]
 hostname = %APPEND% tts.doudou520.online, *.doudou520.online
+"""
+
+GOOGLE_GEMINI_SGMODULE = """\
+#!name=Google / Gemini 修复（Surge）
+#!desc=AI+Google 用 dns.google；DoH 走代理；排除 www.google.com MitM
+# UPDATE-MARKER gemini-dns-us
+#!category=Surge专用
+
+# Gemini「无法连接」常见原因：AliDNS 解析到国内 IP、ChatGPT url-test 锁日本流媒体、
+# 去广告合集 MitM www.google.com。主配置已写同款；本模块给不想整份更新 conf 的人。
+
+[Host]
+RULE-SET:https://raw.githubusercontent.com/oo226/egern-config/refs/heads/surge/Rules/Foreign/AI-Merged.list = server:https://dns.google/dns-query
+RULE-SET:https://raw.githubusercontent.com/oo226/egern-config/refs/heads/surge/Rules/Foreign/Google.list = server:https://dns.google/dns-query
+RULE-SET:https://raw.githubusercontent.com/oo226/egern-config/refs/heads/surge/Rules/Foreign/YouTube.list = server:https://dns.google/dns-query
+
+[Rule]
+IP-CIDR,8.8.8.8/32,新国节点,no-resolve
+IP-CIDR,8.8.4.4/32,新国节点,no-resolve
+IP-CIDR,1.1.1.1/32,新国节点,no-resolve
+IP-CIDR,1.0.0.1/32,新国节点,no-resolve
+DOMAIN,dns.google,新国节点,extended-matching
+DOMAIN,cloudflare-dns.com,新国节点,extended-matching
+
+[MITM]
+hostname = %INSERT% -www.google.com, -www.google.com.hk
 """
 
 
@@ -459,6 +486,10 @@ def ensure_sidecars() -> None:
     APP_HEAT_MODULE.write_text(APP_HEAT_SGMODULE, encoding="utf-8")
     print(f"wrote {APP_HEAT_MODULE}")
 
+    GOOGLE_GEMINI_FIX.parent.mkdir(parents=True, exist_ok=True)
+    GOOGLE_GEMINI_FIX.write_text(GOOGLE_GEMINI_SGMODULE, encoding="utf-8")
+    print(f"wrote {GOOGLE_GEMINI_FIX}")
+
     PIPIXIA_HEAT.parent.mkdir(parents=True, exist_ok=True)
     PIPIXIA_HEAT.write_text(PIPIXIA_HEAT_MODULE, encoding="utf-8")
     print(f"wrote {PIPIXIA_HEAT}")
@@ -511,6 +542,82 @@ def ensure_surge_conf_ruleset() -> None:
             print("warn: Surge.conf has no hostname= line to patch")
     else:
         print("Surge.conf already has -<ip-address>:0 MitM exclude")
+
+    # Google/Gemini：AI+Google 必须用国外 DoH；AliDNS 易解析到国内 IP。
+    if "AI-Merged.list = server:https://dns.google/dns-query" not in text:
+        text2, n = re.subn(
+            r"^RULE-SET:https://raw\.githubusercontent\.com/oo226/egern-config/"
+            r"refs/heads/surge/Rules/Foreign/Google\.list = server:.*$",
+            "RULE-SET:https://raw.githubusercontent.com/oo226/egern-config/"
+            "refs/heads/surge/Rules/Foreign/AI-Merged.list = server:https://dns.google/dns-query\n"
+            "RULE-SET:https://raw.githubusercontent.com/oo226/egern-config/"
+            "refs/heads/surge/Rules/Foreign/Google.list = server:https://dns.google/dns-query",
+            text,
+            count=1,
+            flags=re.M,
+        )
+        if n:
+            text = text2
+            changed = True
+            print("restored AI-Merged+Google DNS → dns.google in Surge.conf")
+        else:
+            print("warn: could not restore Google/AI dns.google mapping")
+    else:
+        print("Surge.conf already maps AI-Merged to dns.google")
+
+    if "ChatGPT = select, 美国节点, 日本节点" not in text:
+        text2, n = re.subn(
+            r"^ChatGPT\s*=\s*.*$",
+            "ChatGPT = select, 美国节点, 日本节点, icon-url="
+            "https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/04ProxySoft/chatgpt4.0.png?v=3",
+            text,
+            count=1,
+            flags=re.M,
+        )
+        if n:
+            text = text2
+            changed = True
+            print("restored ChatGPT = select 美国/日本 in Surge.conf")
+    else:
+        print("Surge.conf already has ChatGPT select 美国/日本")
+
+    doh_rule = "IP-CIDR,8.8.8.8/32,新国节点,no-resolve"
+    if doh_rule not in text:
+        text2, n = re.subn(
+            r"^\[Rule\]\s*$",
+            "[Rule]\n"
+            "# 国外 DoH 出口：否则 Google/AI 的 dns.google / 1.1.1.1 直连空解析。\n"
+            "IP-CIDR,8.8.8.8/32,新国节点,no-resolve\n"
+            "IP-CIDR,8.8.4.4/32,新国节点,no-resolve\n"
+            "IP-CIDR,1.1.1.1/32,新国节点,no-resolve\n"
+            "IP-CIDR,1.0.0.1/32,新国节点,no-resolve\n"
+            "DOMAIN,dns.google,新国节点,extended-matching\n"
+            "DOMAIN,cloudflare-dns.com,新国节点,extended-matching\n",
+            text,
+            count=1,
+            flags=re.M,
+        )
+        if n:
+            text = text2
+            changed = True
+            print("inserted DoH proxy rules into Surge.conf [Rule]")
+    else:
+        print("Surge.conf already has DoH proxy IP-CIDR rules")
+
+    if "-www.google.com" not in text and "hostname" in text:
+        text2, n = re.subn(
+            r"^(hostname\s*=\s*)",
+            r"\g<1>-www.google.com, -www.google.com.hk, ",
+            text,
+            count=1,
+            flags=re.M,
+        )
+        if n:
+            text = text2
+            changed = True
+            print("inserted -www.google.com MitM exclude into Surge.conf")
+    elif "-www.google.com" in text:
+        print("Surge.conf already excludes www.google.com from MitM")
 
     if changed:
         SURGE_CONF.write_text(text, encoding="utf-8")
