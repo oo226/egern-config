@@ -219,14 +219,22 @@ DOMAIN-SUFFIX,doudou520.online,DIRECT
 hostname = %APPEND% tts.doudou520.online, *.doudou520.online
 """
 
-GOOGLE_GEMINI_SGMODULE = """\
+GOOGLE_GEMINI_SGMODULE = """
 #!name=Google / Gemini 修复（Surge）
-#!desc=AI+Google 钉美国；dns.google；DoH 走代理；排除 www.google.com MitM
-# UPDATE-MARKER gemini-dns-us
+#!desc=修 FINAL dns-failed；Google DNS；钉美国；关 IPv6 说明见主配置
+# UPDATE-MARKER gemini-dns-us2
 #!category=Surge专用
 
-# 注意：这是「模块」不是分流。未合并时 surge 正式 URL 会 404。
-# 截图出现韩国/香港=掉进兜底；香港必挂 Gemini。本模块直挂美国节点。
+# 你细节里的根因：
+#   [Rule] DNS lookup failed, use FINAL rule → 兜底（新/港/韩）
+# Tailscale-Direct.list 曾含 IP-CIDR 且无 no-resolve → 每条连接都要 DNS；
+# 主配置 Google.list = AliDNS → 解析失败 → 永远走不进 AI/Google 规则。
+#
+# 本模块：内联域名规则（不依赖 RULE-SET 下载）+ dns.google + DoH 走代理。
+# 主配置请同时：ipv6=false；ChatGPT 不要挂韩国/兜底；Google DNS 改 dns.google。
+
+[General]
+# 模块无法可靠覆盖主配置 ipv6；请在主配置设 ipv6 = false
 
 [Host]
 RULE-SET:https://raw.githubusercontent.com/oo226/egern-config/refs/heads/surge/Rules/Foreign/AI-Merged.list = server:https://dns.google/dns-query
@@ -234,6 +242,13 @@ RULE-SET:https://raw.githubusercontent.com/oo226/egern-config/refs/heads/surge/R
 RULE-SET:https://raw.githubusercontent.com/oo226/egern-config/refs/heads/surge/Rules/Foreign/YouTube.list = server:https://dns.google/dns-query
 
 [Rule]
+# 最高优先：SNI 直接钉美国，不先 DNS
+DOMAIN-SUFFIX,googleapis.com,美国节点,extended-matching,dns-failed
+DOMAIN-SUFFIX,google.com,美国节点,extended-matching,dns-failed
+DOMAIN-SUFFIX,googleusercontent.com,美国节点,extended-matching,dns-failed
+DOMAIN-SUFFIX,gstatic.com,美国节点,extended-matching,dns-failed
+DOMAIN-SUFFIX,gemini.google,美国节点,extended-matching,dns-failed
+DOMAIN-KEYWORD,google,美国节点,extended-matching,dns-failed
 IP-CIDR,8.8.8.8/32,新国节点,no-resolve
 IP-CIDR,8.8.4.4/32,新国节点,no-resolve
 IP-CIDR,1.1.1.1/32,新国节点,no-resolve
@@ -246,6 +261,7 @@ RULE-SET,https://raw.githubusercontent.com/oo226/egern-config/refs/heads/surge/R
 [MITM]
 hostname = %INSERT% -www.google.com, -www.google.com.hk
 """
+
 
 
 def has_markers(text: str) -> bool:
@@ -667,6 +683,24 @@ def ensure_surge_conf_ruleset() -> None:
             print("inserted -www.google.com MitM exclude into Surge.conf")
     elif "-www.google.com" in text:
         print("Surge.conf already excludes www.google.com from MitM")
+
+    ts = "Tailscale-Direct.list,DIRECT,extended-matching,no-resolve"
+    if "Tailscale-Direct.list" in text and ts not in text:
+        text2, n = re.subn(
+            r"RULE-SET,https://raw\.githubusercontent\.com/oo226/egern-config/"
+            r"refs/heads/surge/Rules/Tailscale-Direct\.list,DIRECT,extended-matching(?!,no-resolve)",
+            "RULE-SET,https://raw.githubusercontent.com/oo226/egern-config/"
+            "refs/heads/surge/Rules/Tailscale-Direct.list,DIRECT,extended-matching,no-resolve",
+            text,
+            count=1,
+        )
+        if n:
+            text = text2
+            changed = True
+            print("added no-resolve to Tailscale-Direct.list RULE-SET")
+    else:
+        print("Surge.conf Tailscale-Direct.list already has no-resolve")
+
 
     if changed:
         SURGE_CONF.write_text(text, encoding="utf-8")

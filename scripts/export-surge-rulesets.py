@@ -144,20 +144,37 @@ def export_one(src: Path, dest_stem: Path) -> dict[str, int]:
     counts: dict[str, int] = {"total": total}
 
     full = ruleset_lines(sets)
+    dlines = domainset_lines(sets)
+    ip_lines = ruleset_lines(sets, IP_KEYS)
+    extra_non_ip = ruleset_lines(sets, NON_IP_EXTRA_KEYS)
+    # When domains+IPs mix: .list must be domain-only. IP-CIDR in .list without
+    # no-resolve forces DNS on every connection; failed Google→AliDNS DNS then
+    # jumps to FINAL,dns-failed → 兜底 (Gemini 挂). IPs go to sibling .ip.list.
+    if ip_lines and (dlines or extra_non_ip):
+        domain_only = ruleset_lines(
+            sets,
+            DOMAIN_KEYS + NON_IP_EXTRA_KEYS,
+        )
+        list_body = domain_only
+        list_note = "Domain/UA only (IPs in sibling .ip.list; avoid DNS-on-match)."
+    else:
+        list_body = full
+        list_note = "Full mix (DOMAIN / IP-CIDR / …)."
+
     write_text(
         dest_stem.with_suffix(".list"),
         [
             f"# AUTO-EXPORTED from Routing/{rel}",
             "# Format: Surge RULE-SET (no policy). scripts/export-surge-rulesets.py",
+            f"# {list_note}",
             "# Domain lines include extended-matching (SNI hit under always-real-ip / VIF).",
-            f"# Total entries: {len(full)}",
+            f"# Total entries: {len(list_body)}",
             "",
         ],
-        full,
+        list_body,
     )
-    counts["list"] = len(full)
+    counts["list"] = len(list_body)
 
-    dlines = domainset_lines(sets)
     if dlines:
         write_text(
             dest_stem.with_suffix(".domainset"),
@@ -171,9 +188,6 @@ def export_one(src: Path, dest_stem: Path) -> dict[str, int]:
         )
         counts["domainset"] = len(dlines)
 
-    ip_lines = ruleset_lines(sets, IP_KEYS)
-    extra_non_ip = ruleset_lines(sets, NON_IP_EXTRA_KEYS)
-    # Only emit .ip.list when the full set mixes domains with IPs (China-Direct etc.)
     if ip_lines and (dlines or extra_non_ip):
         write_text(
             Path(str(dest_stem) + ".ip.list"),
