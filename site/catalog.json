@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-27T13:20:10Z",
+  "generated_at": "2026-08-27T13:20:29Z",
   "branch": "main",
   "repo": "oo226/egern-config",
   "raw_base": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main",
@@ -202,16 +202,25 @@
   ],
   "sync_digest": {
     "commit": {
-      "hash": "122690c",
-      "subject": "Merge pull request #130 from oo226/cursor/doudou-tts-heat-ac83",
-      "date": "2026-08-26"
+      "hash": "6c580cf",
+      "subject": "chore: sync upstream on sync branch",
+      "date": "2026-08-27"
     },
     "summary": [
+      "分流规则 更新 2 个文件",
+      "模块 更新 4 个文件",
+      "脚本 更新 2 个文件",
+      "模块站 更新 2 个文件",
       "国内直连 28688 条"
     ],
-    "files_changed": 0
+    "files_changed": 19
   },
   "changelog": [
+    {
+      "hash": "c51eeac",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-08-27"
+    },
     {
       "hash": "c1554e7",
       "subject": "chore: publish curated snapshot from sync",
@@ -244,11 +253,6 @@
     },
     {
       "hash": "8fae387",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-08-23"
-    },
-    {
-      "hash": "3a3b14b",
       "subject": "chore: publish curated snapshot from sync",
       "date": "2026-08-23"
     }
