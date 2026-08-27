@@ -221,12 +221,12 @@ hostname = %APPEND% tts.doudou520.online, *.doudou520.online
 
 GOOGLE_GEMINI_SGMODULE = """\
 #!name=Google / Gemini 修复（Surge）
-#!desc=AI+Google 用 dns.google；DoH 走代理；排除 www.google.com MitM
+#!desc=AI+Google 钉美国；dns.google；DoH 走代理；排除 www.google.com MitM
 # UPDATE-MARKER gemini-dns-us
 #!category=Surge专用
 
-# Gemini「无法连接」常见原因：AliDNS 解析到国内 IP、ChatGPT url-test 锁日本流媒体、
-# 去广告合集 MitM www.google.com。主配置已写同款；本模块给不想整份更新 conf 的人。
+# 注意：这是「模块」不是分流。未合并时 surge 正式 URL 会 404。
+# 截图出现韩国/香港=掉进兜底；香港必挂 Gemini。本模块直挂美国节点。
 
 [Host]
 RULE-SET:https://raw.githubusercontent.com/oo226/egern-config/refs/heads/surge/Rules/Foreign/AI-Merged.list = server:https://dns.google/dns-query
@@ -240,6 +240,8 @@ IP-CIDR,1.1.1.1/32,新国节点,no-resolve
 IP-CIDR,1.0.0.1/32,新国节点,no-resolve
 DOMAIN,dns.google,新国节点,extended-matching
 DOMAIN,cloudflare-dns.com,新国节点,extended-matching
+RULE-SET,https://raw.githubusercontent.com/oo226/egern-config/refs/heads/surge/Rules/Foreign/AI-Merged.list,美国节点,extended-matching,dns-failed
+RULE-SET,https://raw.githubusercontent.com/oo226/egern-config/refs/heads/surge/Rules/Foreign/Google.list,美国节点,extended-matching,dns-failed
 
 [MITM]
 hostname = %INSERT% -www.google.com, -www.google.com.hk
@@ -565,10 +567,19 @@ def ensure_surge_conf_ruleset() -> None:
     else:
         print("Surge.conf already maps AI-Merged to dns.google")
 
-    if "ChatGPT = select, 美国节点, 日本节点" not in text:
+    if "ChatGPT = select, 美国节点" not in text or "日本节点" in (
+        next(
+            (
+                line
+                for line in text.splitlines()
+                if line.startswith("ChatGPT =")
+            ),
+            "",
+        )
+    ):
         text2, n = re.subn(
             r"^ChatGPT\s*=\s*.*$",
-            "ChatGPT = select, 美国节点, 日本节点, icon-url="
+            "ChatGPT = select, 美国节点, icon-url="
             "https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/04ProxySoft/chatgpt4.0.png?v=3",
             text,
             count=1,
@@ -577,9 +588,47 @@ def ensure_surge_conf_ruleset() -> None:
         if n:
             text = text2
             changed = True
-            print("restored ChatGPT = select 美国/日本 in Surge.conf")
+            print("restored ChatGPT = select 美国节点 only in Surge.conf")
     else:
-        print("Surge.conf already has ChatGPT select 美国/日本")
+        print("Surge.conf already has ChatGPT select 美国节点 only")
+
+    ai_us = (
+        "Rules/Foreign/AI-Merged.list,美国节点,extended-matching,dns-failed"
+    )
+    if ai_us not in text:
+        text2, n = re.subn(
+            r"RULE-SET,https://raw\.githubusercontent\.com/oo226/egern-config/"
+            r"refs/heads/surge/Rules/Foreign/AI-Merged\.list,[^\n]+",
+            "RULE-SET,https://raw.githubusercontent.com/oo226/egern-config/"
+            "refs/heads/surge/Rules/Foreign/AI-Merged.list,美国节点,extended-matching,dns-failed",
+            text,
+            count=1,
+        )
+        if n:
+            text = text2
+            changed = True
+            print("pinned AI-Merged → 美国节点,dns-failed in Surge.conf")
+    else:
+        print("Surge.conf already pins AI-Merged → 美国节点")
+
+    google_us = (
+        "Rules/Foreign/Google.list,美国节点,extended-matching,dns-failed"
+    )
+    if google_us not in text:
+        text2, n = re.subn(
+            r"RULE-SET,https://raw\.githubusercontent\.com/oo226/egern-config/"
+            r"refs/heads/surge/Rules/Foreign/Google\.list,[^\n]+",
+            "RULE-SET,https://raw.githubusercontent.com/oo226/egern-config/"
+            "refs/heads/surge/Rules/Foreign/Google.list,美国节点,extended-matching,dns-failed",
+            text,
+            count=1,
+        )
+        if n:
+            text = text2
+            changed = True
+            print("pinned Google.list → 美国节点,dns-failed in Surge.conf")
+    else:
+        print("Surge.conf already pins Google.list → 美国节点")
 
     doh_rule = "IP-CIDR,8.8.8.8/32,新国节点,no-resolve"
     if doh_rule not in text:
