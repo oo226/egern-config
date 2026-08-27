@@ -139,6 +139,10 @@ jobs:
       - name: Merge Surge-only adblock collection (full copy w/ 皮皮虾)
         run: python scripts/merge-adblock-modules.py Modules/manifest.surge.yaml
 
+      # 每日上游合并会冲掉手调防烫；合并后强制回贴，发布也不会顶掉 heat。
+      - name: Re-apply Surge heat (防烫) patches
+        run: python3 scripts/apply-surge-heat-patch.py
+
       - name: Publish Egern adblock aliases + jsDelivr Map Local assets
         run: python3 scripts/finalize-egern-adblock.py
 
