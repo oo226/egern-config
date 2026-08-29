@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-28T14:46:54Z",
+  "generated_at": "2026-08-29T09:31:14Z",
   "branch": "main",
   "repo": "oo226/egern-config",
   "raw_base": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main",
@@ -202,16 +202,26 @@
   ],
   "sync_digest": {
     "commit": {
-      "hash": "6c580cf",
+      "hash": "d1f2285",
       "subject": "chore: sync upstream on sync branch",
-      "date": "2026-08-27"
+      "date": "2026-08-28"
     },
     "summary": [
-      "国内直连 28688 条"
+      "国内直连 31783 条"
     ],
     "files_changed": 0
   },
   "changelog": [
+    {
+      "hash": "f81af67",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-08-28"
+    },
+    {
+      "hash": "2b88cb9",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-08-28"
+    },
     {
       "hash": "781e5c6",
       "subject": "chore: publish curated snapshot from sync",
@@ -241,20 +251,10 @@
       "hash": "7df56a6",
       "subject": "chore: publish curated snapshot from sync",
       "date": "2026-08-25"
-    },
-    {
-      "hash": "e39bff9",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-08-24"
-    },
-    {
-      "hash": "433bec5",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-08-24"
     }
   ],
   "local_health": {
-    "checked": 124,
+    "checked": 125,
     "fail": 0,
     "broken_ids": []
   },
@@ -277,7 +277,7 @@
       "id": "modules",
       "name": "模块",
       "icon": "🧩",
-      "count": 30
+      "count": 31
     },
     {
       "id": "routing",
@@ -883,6 +883,28 @@
         "模版参数"
       ],
       "share_url": "https://oo226.github.io/egern-config/#id=qingrex-signin-哔哩漫画抢券.official",
+      "health": "ok"
+    },
+    {
+      "id": "qingrex-signin-哔哩漫画签到.official",
+      "kind": "module",
+      "category": "modules",
+      "group": "可莉签到",
+      "name": "🐻 哔哩哔哩漫画 [签到]",
+      "desc": "每日定时签到，模块参数可调整签到时间。 打开哔哩哔哩漫画APP点击\"我的\"即可获取cookie.",
+      "icon": "",
+      "homepage": "",
+      "path": "Modules/qingrex-signin/哔哩漫画签到.official.sgmodule",
+      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/qingrex-signin/%E5%93%94%E5%93%A9%E6%BC%AB%E7%94%BB%E7%AD%BE%E5%88%B0.official.sgmodule",
+      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Fqingrex-signin%2F%25E5%2593%2594%25E5%2593%25A9%25E6%25BC%25AB%25E7%2594%25BB%25E7%25AD%25BE%25E5%2588%25B0.official.sgmodule",
+      "default_enabled": null,
+      "usage_tier": "neutral",
+      "requires": [],
+      "hint": "Egern 编辑模块 → 模版参数可调；与 BoxJS 联动。",
+      "tags": [
+        "模版参数"
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=qingrex-signin-哔哩漫画签到.official",
       "health": "ok"
     },
     {
@@ -4944,5 +4966,5 @@
       "health": "ok"
     }
   ],
-  "total": 236
+  "total": 237
 }
