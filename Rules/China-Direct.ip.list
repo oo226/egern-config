@@ -1,6 +1,6 @@
 # AUTO-EXPORTED from Routing/China-Direct.yaml
 # Format: Surge RULE-SET — IP / ASN only. Place after domain rules.
-# Total entries: 17508
+# Total entries: 17509
 
 IP-CIDR,1.0.1.0/24
 IP-CIDR,1.0.2.0/23
@@ -9864,6 +9864,7 @@ IP-CIDR6,2402:70c0::/32
 IP-CIDR6,2402:7140::/32
 IP-CIDR6,2402:71c0::/32
 IP-CIDR6,2402:7240::/32
+IP-CIDR6,2402:72a0::/32
 IP-CIDR6,2402:72c0::/32
 IP-CIDR6,2402:7540::/32
 IP-CIDR6,2402:75c0::/32
