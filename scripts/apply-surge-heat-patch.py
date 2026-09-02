@@ -23,7 +23,7 @@ APP_HEAT_MODULE = ROOT / "surge" / "Modules" / "app-heat.sgmodule"
 PANGOLIN_SCRIPT = ROOT / "surge" / "Scripts" / "pangolin-fake-log.js"
 SURGE_CONF = ROOT / "surge" / "Surge.conf"
 
-HEAT_MARKER = "heat11"
+HEAT_MARKER = "heat13"
 SCRIPT_URL = (
     "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/surge/"
     "Scripts/pangolin-fake-log.js"
@@ -39,11 +39,12 @@ REQUIRED_MARKERS = (
 DIRECT_BLOCK = """\
 # heat5：字节埋点硬 REJECT 会立刻重试（最近请求一直跳）。
 # 先 DIRECT，交给 Map Local / Script 有 body 假成功（勿用空 reject-200）。
-# i-lq.snssdk.com/service/settings 放行真实配置，不要假空包。
+# i-lq / is-lq snssdk settings 放行真实配置，不要假空包。
 DOMAIN,mon.snssdk.com,DIRECT
 DOMAIN,mon.zijieapi.com,DIRECT
 DOMAIN,toblog.ctobsnssdk.com,DIRECT
 DOMAIN,i-lq.snssdk.com,DIRECT
+DOMAIN,is-lq.snssdk.com,DIRECT
 DOMAIN,log.snssdk.com,DIRECT
 DOMAIN,extlog.snssdk.com,DIRECT
 DOMAIN,mcs.snssdk.com,DIRECT
@@ -94,11 +95,12 @@ MAP_LOCAL_BLOCK = r"""
 BYTEDANCE_LIST = """\
 # 字节埋点：不要硬 REJECT（会立刻重试，最近请求一直跳）。
 # 策略 DIRECT 后由去广告合集 / pipixia-heat 的 Map Local / Script 有 body 假成功（禁空 reject-200）。
-# i-lq.snssdk.com 放行 settings（真实 200）；不要对 /service/settings 假空包。
+# i-lq / is-lq snssdk 放行 settings（真实 200）；不要对 /service/settings 假空包。
 DOMAIN,mon.snssdk.com,extended-matching
 DOMAIN,mon.zijieapi.com,extended-matching
 DOMAIN,toblog.ctobsnssdk.com,extended-matching
 DOMAIN,i-lq.snssdk.com,extended-matching
+DOMAIN,is-lq.snssdk.com,extended-matching
 DOMAIN,log-api.pangolin-sdk-toutiao.com,extended-matching
 DOMAIN,log-api.pangolin-sdk-toutiao1.com,extended-matching
 DOMAIN,log-api.pangolin-sdk-toutiao-b.com,extended-matching
@@ -142,6 +144,7 @@ DOMAIN,mon.snssdk.com,DIRECT
 DOMAIN,mon.zijieapi.com,DIRECT
 DOMAIN,toblog.ctobsnssdk.com,DIRECT
 DOMAIN,i-lq.snssdk.com,DIRECT
+DOMAIN,is-lq.snssdk.com,DIRECT
 DOMAIN,log-api.pangolin-sdk-toutiao.com,DIRECT
 DOMAIN,log-api.pangolin-sdk-toutiao1.com,DIRECT
 DOMAIN,log-api.pangolin-sdk-toutiao-b.com,DIRECT
@@ -199,8 +202,8 @@ DOMAIN-SUFFIX,doudou520.online,extended-matching
 
 APP_HEAT_SGMODULE = """\
 #!name=杂项防烫（Surge）
-#!desc=heat11 · doudou TTS 等狂刷假成功（禁空 reject / 硬 REJECT）
-# UPDATE-MARKER heat11-doudou-tts
+#!desc=heat13 · doudou TTS 等狂刷假成功（禁空 reject / 硬 REJECT）
+# UPDATE-MARKER heat13-doudou-tts
 #!category=Surge专用
 
 # 最近请求：tts.doudou520.online:443 DIRECT 已完成，一秒十几条 → 烫机。
@@ -266,59 +269,112 @@ def comment_line_if_active(line: str, needle: str, note: str) -> str:
     return line
 
 
+def _is_active_line(s: str) -> bool:
+    return bool(s) and not s.startswith("#")
+
+
+def _ends_with_reject(s: str) -> bool:
+    return s.endswith(" - reject") or s.endswith(" - reject-200")
+
+
+def _heat_url_reject_note(s: str) -> str | None:
+    if not _is_active_line(s) or not _ends_with_reject(s):
+        return None
+    if "(?!log-api" in s or "(?!api-access" in s:
+        return None
+    if "log-api\\.pangolin-sdk-toutiao" in s:
+        return "heat13：log-api 禁止 reject；改 Map Local / Script"
+    if "api-access\\.pangolin-sdk-toutiao" in s:
+        return "heat13：api-access 禁止 reject（stats/batch 狂刷）"
+    if "toblog\\.ctobsnssdk\\.com" in s:
+        return "heat13：toblog 禁止 reject；改 Map Local / Script"
+    if "gromore\\.pangolin-sdk-toutiao" in s:
+        return "heat13：gromore 埋点勿 hard reject"
+    if "snssdk\\.com\\/(bds|monitor|trace|log)" in s:
+        return "heat13：snssdk monitor/trace 改 Map Local 假 200"
+    if (
+        "pangolin-sdk-toutiao" in s
+        and "(service|api|ad|sdk|batch|config)" in s
+    ):
+        return "heat13：穿山甲 broad 会误伤 log-api/api-access"
+    return None
+
+
 def comment_rejects(text: str) -> str:
+    # URL Rewrite / Rule 里对防烫域名的 hard reject 必须在 Map Local 之前注释掉，
+    # 否则 SDK 收到空包会秒级重试（最近请求「Modified by URL rewrite rule」狂刷）。
+    heat_domain_rejects = (
+        ("DOMAIN,stats.jpush.cn,REJECT", "heat9 假成功"),
+        ("DOMAIN,gd-stats.jpush.cn,REJECT", "heat9 假成功"),
+        ("DOMAIN,ali-stats.jpush.cn,REJECT", "heat9 假成功"),
+        ("DOMAIN,toblog.ctobsnssdk.com,REJECT", "heat9 假成功"),
+        ("DOMAIN,mon.snssdk.com,REJECT", "heat9 假成功"),
+        ("DOMAIN,mon.zijieapi.com,REJECT", "heat9 假成功"),
+        ("DOMAIN,i-lq.snssdk.com,REJECT", "heat13 settings 放行"),
+        ("DOMAIN,is-lq.snssdk.com,REJECT", "heat13 settings 放行"),
+    )
+
     out_lines: list[str] = []
     for line in text.splitlines():
-        orig = line
-        line = comment_line_if_active(line, "DOMAIN,stats.jpush.cn,REJECT", "heat9 假成功")
-        line = comment_line_if_active(line, "DOMAIN,gd-stats.jpush.cn,REJECT", "heat9 假成功")
-        line = comment_line_if_active(line, "DOMAIN,ali-stats.jpush.cn,REJECT", "heat9 假成功")
-        line = comment_line_if_active(line, "DOMAIN,toblog.ctobsnssdk.com,REJECT", "heat9 假成功")
-        line = comment_line_if_active(line, "DOMAIN,mon.snssdk.com,REJECT", "heat9 假成功")
-        line = comment_line_if_active(line, "DOMAIN,mon.zijieapi.com,REJECT", "heat9 假成功")
+        for needle, note in heat_domain_rejects:
+            line = comment_line_if_active(line, needle, note)
         if "log-api.pangolin-sdk-toutiao" in line and ",REJECT" in line:
             line = comment_line_if_active(line, "log-api.pangolin-sdk-toutiao", "heat9 假成功")
         if "api-access.pangolin-sdk-toutiao" in line and ",REJECT" in line:
             line = comment_line_if_active(line, "api-access.pangolin-sdk-toutiao", "heat9 假成功")
 
-        # Empty reject-200 for heat hosts
         s = line.strip()
-        if not s.startswith("#"):
-            if re.match(
-                r"\^https\?:\\/\\/log-api\\.pangolin-sdk-toutiao.* - reject-200$",
-                s,
-            ):
-                line = f"# heat9：log-api 禁止空 reject-200；改 Map Local / Script\n# {s}"
-            elif re.match(
-                r"\^https\?:\\/\\/api-access\\.pangolin-sdk-toutiao.* - reject-200$",
-                s,
-            ):
-                line = f"# heat9：api-access 禁止空 reject-200（stats/batch 狂刷）\n# {s}"
-            elif re.match(
-                r"\^https\?:\\/\\/toblog\\.ctobsnssdk\\.com.* - reject-200$",
-                s,
-            ):
-                line = f"# heat8：toblog 禁止空 reject-200；改 Map Local / Script\n# {s}"
-            elif (
-                "pangolin-sdk-toutiao" in s
-                and "reject-200" in s
-                and "(?!log-api" not in s
-                and "(service|api|ad|sdk|batch|config)" in s
-            ):
-                # Broad pangolin rewrite without exclusions
+        note = _heat_url_reject_note(s)
+        if note:
+            line = f"# {note}\n# {s}"
+        elif _is_active_line(s) and "pangolin-sdk-toutiao" in s and "reject-200" in s:
+            if "(?!log-api" not in s and "(?!api-access" not in s and "(service|api|ad|sdk|batch|config)" in s:
                 line = (
                     "# heat9：排除 log-api / api-access（空 reject-200 狂重试）；其它广告路径仍假空 200\n"
                     r"^https?:\/\/(?!log-api\.)(?!api-access\.)[-\w]*\.pangolin-sdk-toutiao[-\w]*\.com\/.*(service|api|ad|sdk|batch|config).* - reject-200"
                 )
-        if line != orig or True:
-            out_lines.append(line)
+        out_lines.append(line)
     return "\n".join(out_lines) + ("\n" if text.endswith("\n") else "")
+
+
+FORBIDDEN_ACTIVE_CHECKS = (
+    ("DOMAIN,i-lq.snssdk.com,REJECT", lambda s: s == "DOMAIN,i-lq.snssdk.com,REJECT"),
+    ("DOMAIN,is-lq.snssdk.com,REJECT", lambda s: s == "DOMAIN,is-lq.snssdk.com,REJECT"),
+    ("log-api pangolin reject rewrite", lambda s: _heat_url_reject_note(s) == "heat13：log-api 禁止 reject；改 Map Local / Script"),
+    ("api-access pangolin reject rewrite", lambda s: _heat_url_reject_note(s) == "heat13：api-access 禁止 reject（stats/batch 狂刷）"),
+    ("toblog reject rewrite", lambda s: _heat_url_reject_note(s) == "heat13：toblog 禁止 reject；改 Map Local / Script"),
+    ("pangolin broad reject rewrite", lambda s: _heat_url_reject_note(s) == "heat13：穿山甲 broad 会误伤 log-api/api-access"),
+    ("snssdk monitor reject rewrite", lambda s: _heat_url_reject_note(s) == "heat13：snssdk monitor/trace 改 Map Local 假 200"),
+)
+
+
+def find_forbidden_active(text: str) -> list[str]:
+    bad: list[str] = []
+    for line in text.splitlines():
+        s = line.strip()
+        if not _is_active_line(s):
+            continue
+        for _label, check in FORBIDDEN_ACTIVE_CHECKS:
+            if check(s):
+                bad.append(s[:120])
+                break
+    return bad
+
+
+def validate_no_conflicts(text: str) -> None:
+    bad = find_forbidden_active(text)
+    if bad:
+        raise SystemExit(
+            "apply-surge-heat-patch: still has active anti-heat rules: "
+            + "; ".join(bad[:5])
+        )
 
 
 def ensure_direct_block(text: str) -> str:
     need_bytedance = not (
         "DOMAIN,stats.jpush.cn,DIRECT" in text
         and "DOMAIN,log-api.pangolin-sdk-toutiao.com,DIRECT" in text
+        and "DOMAIN,is-lq.snssdk.com,DIRECT" in text
     )
     need_doudou = "DOMAIN,tts.doudou520.online,DIRECT" not in text
     if not need_bytedance and not need_doudou:
@@ -424,12 +480,9 @@ def ensure_excluded_pangolin_rewrite(text: str) -> str:
 
 
 def patch_adblock(text: str) -> str:
-    if has_markers(text):
-        print("adblock already has anti-retry markers; refresh heat extras")
-        text = ensure_direct_block(text)
-        text = ensure_map_local_block(text)
-        text = ensure_doudou_mitm(text)
-        return stamp_header(text)
+    had_markers = has_markers(text)
+    if had_markers:
+        print("adblock already has anti-retry markers; re-scan rejects + refresh extras")
     text = comment_rejects(text)
     text = ensure_direct_block(text)
     text = ensure_excluded_pangolin_rewrite(text)
@@ -443,6 +496,7 @@ def patch_adblock(text: str) -> str:
             "apply-surge-heat-patch: still missing markers after patch: "
             + ", ".join(missing)
         )
+    validate_no_conflicts(text)
     return text
 
 
