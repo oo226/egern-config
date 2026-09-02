@@ -1,5 +1,5 @@
 #!name=去广告合集（Surge）
-#!desc=heat11 202609020729 · 防烫补丁 · 含皮皮虾 · apply-surge-heat-patch
+#!desc=heat13 202609021107 · 防烫补丁 · 含皮皮虾 · apply-surge-heat-patch
 #!author=奶思[https://github.com/fmz200]
 #!icon=https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/AdblockPlus.png
 #!category=奶思的模块
@@ -15,7 +15,7 @@
 
 
 
-# UPDATE-MARKER heat11-202609020729
+# UPDATE-MARKER heat13-202609021107
 
 # AUTO-MERGED by scripts/merge-adblock-modules.py (Surge copy)
 # 类型: 模块 — Surge 专用去广告合集（完整副本，含皮皮虾）
@@ -23,6 +23,33 @@
 # Do not edit manually.
 
 [Rule]
+# heat5：字节埋点硬 REJECT 会立刻重试（最近请求一直跳）。
+# 先 DIRECT，交给 Map Local / Script 有 body 假成功（勿用空 reject-200）。
+# i-lq / is-lq snssdk settings 放行真实配置，不要假空包。
+DOMAIN,mon.snssdk.com,DIRECT
+DOMAIN,mon.zijieapi.com,DIRECT
+DOMAIN,toblog.ctobsnssdk.com,DIRECT
+DOMAIN,i-lq.snssdk.com,DIRECT
+DOMAIN,is-lq.snssdk.com,DIRECT
+DOMAIN,log.snssdk.com,DIRECT
+DOMAIN,extlog.snssdk.com,DIRECT
+DOMAIN,mcs.snssdk.com,DIRECT
+DOMAIN,xlog.snssdk.com,DIRECT
+DOMAIN,applog.zijieapi.com,DIRECT
+DOMAIN,log-api.pangolin-sdk-toutiao.com,DIRECT
+DOMAIN,log-api.pangolin-sdk-toutiao1.com,DIRECT
+DOMAIN,log-api.pangolin-sdk-toutiao-b.com,DIRECT
+DOMAIN,gromore.pangolin-sdk-toutiao.com,DIRECT
+DOMAIN,api-access.pangolin-sdk-toutiao.com,DIRECT
+DOMAIN,api-access.pangolin-sdk-toutiao1.com,DIRECT
+DOMAIN,api-access.pangolin-sdk-toutiao-b.com,DIRECT
+DOMAIN,stats.jpush.cn,DIRECT
+DOMAIN,gd-stats.jpush.cn,DIRECT
+DOMAIN,ali-stats.jpush.cn,DIRECT
+# heat11：doudou TTS 一秒十几条已完成 DIRECT → 烫机；假成功，勿硬 REJECT
+DOMAIN,tts.doudou520.online,DIRECT
+DOMAIN-SUFFIX,doudou520.online,DIRECT
+
 # heat5：字节埋点硬 REJECT 会立刻重试（最近请求一直跳）。
 # 先 DIRECT，交给 Map Local / Script 有 body 假成功（勿用空 reject-200）。
 # i-lq.snssdk.com/service/settings 放行真实配置，不要假空包。
@@ -1598,8 +1625,8 @@ DOMAIN-SUFFIX,atdmt.com,REJECT
 DOMAIN-SUFFIX,staticxx.facebook.com,REJECT
 
 # >>> merged from FanQieNovel.sgmodule (unique only)
-DOMAIN,i-lq.snssdk.com,REJECT
-DOMAIN,is-lq.snssdk.com,REJECT
+# heat13 settings 放行：DOMAIN,i-lq.snssdk.com,REJECT
+# heat13 settings 放行：DOMAIN,is-lq.snssdk.com,REJECT
 DOMAIN,ug-sinfonlinea.bytedance.com,REJECT
 DOMAIN,dig.bdurl.net,REJECT
 DOMAIN,activity-ag.awemeughun.com,REJECT
@@ -4584,7 +4611,8 @@ https://access.mypikpak.com/access_controller/v1/area_accessible - reject
 # hostname = open.e.kuaishou.cn, api-access.pangolin-sdk-toutiao-b.com, api-access.pangolin-sdk-toutiao.com, api-access.pangolin-sdk-toutiao1.com, dsp-x.jd.com,api-cfg.wtzw.com, p1-lm.adukwai.com, lf-cdn-tos.bytescm.com
 # 删除了域名lf-cdn-tos.bytescm.com，原因是无法MITM
 ^https?:\/\/open\.e\.kuaishou\.cn\/rest\/e\/v3\/open\/univ - reject
-^https?:\/\/api-access\.pangolin-sdk-toutiao-b\.com\/api\/ad\/union\/sdk\/get_ads - reject
+# heat13：api-access 禁止 reject（stats/batch 狂刷）
+# ^https?:\/\/api-access\.pangolin-sdk-toutiao-b\.com\/api\/ad\/union\/sdk\/get_ads - reject
 ^https?:\/\/api-access\.(pangolin-sdk-toutiao|pangolin-sdk-toutiao1)\.com\/api\/ad - reject
 ^https?:\/\/dsp\-x\.jd\.com\/adx\/sdk - reject
 ^https?:\/\/api\-cfg\.wtzw\.com\/v1\/(adv|reward|operation) - reject
@@ -4594,7 +4622,8 @@ https://access.mypikpak.com/access_controller/v1/area_accessible - reject
 # > 汽水音乐
 # 字节跳动广告
 ^https:\/\/ether-pack\.pangolin-sdk-toutiao\.com\/union\/endcard\/ - reject
-^https:\/\/api-access\.pangolin-sdk-toutiao\d?\.com\/api\/ad\/ - reject
+# heat13：api-access 禁止 reject（stats/batch 狂刷）
+# ^https:\/\/api-access\.pangolin-sdk-toutiao\d?\.com\/api\/ad\/ - reject
 ^https:\/\/sf\d+-fe-tos\.pglstatp-toutiao\.com\/obj\/ad-pattern\/ - reject
 ^https:\/\/lf-cdn-tos\.bytescm\.com\/obj\/static\/ad\/ - reject
 
@@ -4680,7 +4709,8 @@ https://ios.sspai.com/api/v3/recommend/page/get\?ad.*ios_home_modal - reject
 ^https?:\/\/ut2\.shuqistat\.com\/.+\.gif - reject
 ^https?:\/\/dsp\.toutiao\.com\/api\/xunfei\/ads\/ - reject
 ^https?:\/\/sf3-be-pack\.pglstatp-toutiao\.com\/img\/ad\.union\.api - reject
-^https?:\/\/api-access\.pangolin-sdk-toutiao\.com\/api\/ad\/.+ - reject
+# heat13：api-access 禁止 reject（stats/batch 狂刷）
+# ^https?:\/\/api-access\.pangolin-sdk-toutiao\.com\/api\/ad\/.+ - reject
 ^https?:\/\/sq\.sljkj\.com\/api\/sdk\/ads2 - reject
 ^https?:\/\/ocean\.shuqireader\.com\/api\/ad\/adserver\/.+ - reject
 ^https?:\/\/ocean\.shuqireader\.com\/api\/route\/iosReadPage\/ad.+ - reject
@@ -5345,8 +5375,10 @@ hostname - reject
 "^https?:\/\/amap\-aos\-info\-nogw\.amap\.com\/ws\/aos\/alimama\/" - reject
 "^https?:\/\/ap\.dongqiudi\.com\/plat\/v" - reject
 "^https?:\/\/api-access\.[0-9a-zA-Z_-]+\.com\/api\/ad" - reject
-"^https?:\/\/api-access\.pangolin-sdk-toutiao\.com\/api\/ad\/union\/sdk\/get_ads" - reject
-"^https?:\/\/api-access\.pangolin-sdk-toutiao\.com\/api\/ad\/union\/server_bidding\/pre_fetch\/" - reject
+# heat13：api-access 禁止 reject（stats/batch 狂刷）
+# "^https?:\/\/api-access\.pangolin-sdk-toutiao\.com\/api\/ad\/union\/sdk\/get_ads" - reject
+# heat13：api-access 禁止 reject（stats/batch 狂刷）
+# "^https?:\/\/api-access\.pangolin-sdk-toutiao\.com\/api\/ad\/union\/server_bidding\/pre_fetch\/" - reject
 "^https?:\/\/api-mifit\.huami\.com\/(discovery\/mi\/discovery\/(homepage|sleep|sport(_(summary|training))?|step_detail|training_video)_ad|v1\/app\/startpages\.json)\?" - reject
 "^https?:\/\/api-release\.wuta-cam\.com\/ad_tree" - reject
 "^https?:\/\/api-sams\.walmartmobile\.cn\/api\/v1\/sams\/sams-user\/(window\/getGoUpPlus|screen_promotion\/get)" - reject
@@ -5780,8 +5812,10 @@ hostname - reject
 
 # NB助手 — 常见嵌入式开屏 SDK
 ^https?:\/\/(mi|v|tv)\.gdt\.qq\.com\/gdt_mview\.fcg - reject-dict
-^https?:\/\/api-access\.pangolin-sdk-toutiao\.com\/ - reject
-^https?:\/\/api-access\.pangolin-sdk-toutiao1\.com\/ - reject
+# heat13：api-access 禁止 reject（stats/batch 狂刷）
+# ^https?:\/\/api-access\.pangolin-sdk-toutiao\.com\/ - reject
+# heat13：api-access 禁止 reject（stats/batch 狂刷）
+# ^https?:\/\/api-access\.pangolin-sdk-toutiao1\.com\/ - reject
 ^https?:\/\/open\.snssdk\.com\/api\/ad\/ - reject
 ^https?:\/\/is\.snssdk\.com\/api\/ad\/ - reject
 ^https?:\/\/api\.ks\.com\/rest\/e\/v\d+\/open\/ - reject
@@ -5925,20 +5959,26 @@ http:\/\/sv\.adintl\.cn - reject
 # 拼多多视频广告路径 hostname = video-dsp.pddpic.com
 ^https:\/\/video-dsp\.pddpic\.com\/market-dsp-video - reject-dict
 # 穿山甲广告服务主接口 hostname = *.pangolin-sdk-toutiao.com, *.pangolin-sdk-toutiao-*.com, *.pglstatp-toutiao.com, *.ctobsnssdk.com, *.snssdk.com, *.gromore.com
-^https?:\/\/[-\w]*\.pangolin-sdk-toutiao[-\w]*\.com\/.*(service|api|ad|sdk|batch|config).* - reject
+# heat13：穿山甲 broad 会误伤 log-api/api-access
+# ^https?:\/\/[-\w]*\.pangolin-sdk-toutiao[-\w]*\.com\/.*(service|api|ad|sdk|batch|config).* - reject
 # GroMore 广告聚合
-^https?:\/\/gromore\.pangolin-sdk-toutiao[-\w]*\.com\/.* - reject
+# heat13：gromore 埋点勿 hard reject
+# ^https?:\/\/gromore\.pangolin-sdk-toutiao[-\w]*\.com\/.* - reject
 # SDK 初始化 / 广告调度
-^https?:\/\/api-access\.pangolin-sdk-toutiao[-\w]*\.com\/.* - reject
+# heat13：api-access 禁止 reject（stats/batch 狂刷）
+# ^https?:\/\/api-access\.pangolin-sdk-toutiao[-\w]*\.com\/.* - reject
 # 广告日志上报
-^https?:\/\/log-api\.pangolin-sdk-toutiao[-\w]*\.com\/.* - reject
+# heat13：log-api 禁止 reject；改 Map Local / Script
+# ^https?:\/\/log-api\.pangolin-sdk-toutiao[-\w]*\.com\/.* - reject
 # 素材 CDN（视频 / 图片 / JSON）
 ^https?:\/\/.*\.pglstatp-toutiao\.com\/.* - reject
 ^https?:\/\/.*\.pangolin-sdk-toutiao[-\w]*\.com\/.*\.(jpg|png|gif|webp|mp4|json).* - reject
 # 埋点日志
-^https?:\/\/toblog\.ctobsnssdk\.com\/.* - reject
+# heat13：toblog 禁止 reject；改 Map Local / Script
+# ^https?:\/\/toblog\.ctobsnssdk\.com\/.* - reject
 # 行为监控 / trace
-^https?:\/\/.*\.snssdk\.com\/(bds|monitor|trace|log).* - reject
+# heat13：snssdk monitor/trace 改 Map Local 假 200
+# ^https?:\/\/.*\.snssdk\.com\/(bds|monitor|trace|log).* - reject
 # 广告曝光 / 点击 / 追踪
 ^https?:\/\/.*\/commercial\/track - reject
 # 字节跳动系广告bytescm hostname = *.bytescm.com, *.bytegoofy.com
@@ -6905,6 +6945,36 @@ http-response ^https?:\/\/app\.zhuanzhuan\.com\/zz\/v2\/zzinfoshow\/getchoicegoo
 
 
 [Map Local]
+# heat8：base64 有 body（reject-200 空包会狂重试）；ss_app_log 格式
+^https?:\/\/log-api\.pangolin-sdk-toutiao[-\w]*\.com\/service\/2\/app_log data-type=base64 data="eyJjb2RlIjowLCJtZXNzYWdlIjoic3VjY2VzcyIsIm1hZ2ljX3RhZyI6InNzX2FwcF9sb2ciLCJzZXJ2ZXJfdGltZSI6MTcyNDIyMDAwMCwiZGF0YSI6e319" status-code=200 header="Content-Type:application/json"
+^https?:\/\/log-api\.pangolin-sdk-toutiao[-\w]*\.com data-type=base64 data="eyJjb2RlIjowLCJtZXNzYWdlIjoic3VjY2VzcyIsIm1hZ2ljX3RhZyI6InNzX2FwcF9sb2ciLCJzZXJ2ZXJfdGltZSI6MTcyNDIyMDAwMCwiZGF0YSI6e319" status-code=200 header="Content-Type:application/json"
+# heat9：api-access stats/batch 有 body（禁空 reject-200）
+^https?:\/\/api-access\.pangolin-sdk-toutiao[-\w]*\.com\/api\/ad\/union\/sdk\/stats data-type=base64 data="eyJjb2RlIjowLCJtZXNzYWdlIjoic3VjY2VzcyIsImRhdGEiOnt9fQ==" status-code=200 header="Content-Type:application/json"
+# heat9：JPush stats 有 body
+^https?:\/\/(stats|gd-stats|ali-stats)\.jpush\.cn data-type=base64 data="eyJjb2RlIjowLCJtZXNzYWdlIjoic3VjY2VzcyJ9" status-code=200 header="Content-Type:application/json"
+# heat5 字节埋点假 200（合集内处理，不依赖小模块）
+^https?:\/\/mon\.snssdk\.com\/monitor data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+^https?:\/\/mon\.zijieapi\.com data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+^https?:\/\/toblog\.ctobsnssdk\.com data-type=base64 data="eyJtZXNzYWdlIjoic3VjY2VzcyIsImNvZGUiOjAsImRldmljZV9pZCI6MSwiaW5zdGFsbF9pZCI6MSwic3NpZCI6IjAifQ==" status-code=200 header="Content-Type:application/json"
+# heat11：doudou TTS 狂刷假成功
+^https?:\/\/tts\.doudou520\.online data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+^https?:\/\/([-\w]+\.)*doudou520\.online data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
+# heat8：base64 有 body（reject-200 空包会狂重试）；ss_app_log 格式
+^https?:\/\/log-api\.pangolin-sdk-toutiao[-\w]*\.com\/service\/2\/app_log data-type=base64 data="eyJjb2RlIjowLCJtZXNzYWdlIjoic3VjY2VzcyIsIm1hZ2ljX3RhZyI6InNzX2FwcF9sb2ciLCJzZXJ2ZXJfdGltZSI6MTcyNDIyMDAwMCwiZGF0YSI6e319" status-code=200 header="Content-Type:application/json"
+^https?:\/\/log-api\.pangolin-sdk-toutiao[-\w]*\.com data-type=base64 data="eyJjb2RlIjowLCJtZXNzYWdlIjoic3VjY2VzcyIsIm1hZ2ljX3RhZyI6InNzX2FwcF9sb2ciLCJzZXJ2ZXJfdGltZSI6MTcyNDIyMDAwMCwiZGF0YSI6e319" status-code=200 header="Content-Type:application/json"
+# heat9：api-access stats/batch 有 body（禁空 reject-200）
+^https?:\/\/api-access\.pangolin-sdk-toutiao[-\w]*\.com\/api\/ad\/union\/sdk\/stats data-type=base64 data="eyJjb2RlIjowLCJtZXNzYWdlIjoic3VjY2VzcyIsImRhdGEiOnt9fQ==" status-code=200 header="Content-Type:application/json"
+# heat9：JPush stats 有 body
+^https?:\/\/(stats|gd-stats|ali-stats)\.jpush\.cn data-type=base64 data="eyJjb2RlIjowLCJtZXNzYWdlIjoic3VjY2VzcyJ9" status-code=200 header="Content-Type:application/json"
+# heat5 字节埋点假 200（合集内处理，不依赖小模块）
+^https?:\/\/mon\.snssdk\.com\/monitor data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+^https?:\/\/mon\.zijieapi\.com data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+^https?:\/\/toblog\.ctobsnssdk\.com data-type=base64 data="eyJtZXNzYWdlIjoic3VjY2VzcyIsImNvZGUiOjAsImRldmljZV9pZCI6MSwiaW5zdGFsbF9pZCI6MSwic3NpZCI6IjAifQ==" status-code=200 header="Content-Type:application/json"
+# heat11：doudou TTS 狂刷假成功
+^https?:\/\/tts\.doudou520\.online data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+^https?:\/\/([-\w]+\.)*doudou520\.online data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
 # heat8：base64 有 body（reject-200 空包会狂重试）；ss_app_log 格式
 ^https?:\/\/log-api\.pangolin-sdk-toutiao[-\w]*\.com\/service\/2\/app_log data-type=base64 data="eyJjb2RlIjowLCJtZXNzYWdlIjoic3VjY2VzcyIsIm1hZ2ljX3RhZyI6InNzX2FwcF9sb2ciLCJzZXJ2ZXJfdGltZSI6MTcyNDIyMDAwMCwiZGF0YSI6e319" status-code=200 header="Content-Type:application/json"
 ^https?:\/\/log-api\.pangolin-sdk-toutiao[-\w]*\.com data-type=base64 data="eyJjb2RlIjowLCJtZXNzYWdlIjoic3VjY2VzcyIsIm1hZ2ljX3RhZyI6InNzX2FwcF9sb2ciLCJzZXJ2ZXJfdGltZSI6MTcyNDIyMDAwMCwiZGF0YSI6e319" status-code=200 header="Content-Type:application/json"
