@@ -1,7 +1,7 @@
 # AUTO-EXPORTED from Routing/Foreign/AI-Merged.yaml
 # Format: Surge RULE-SET (no policy). scripts/export-surge-rulesets.py
 # Domain lines include extended-matching (SNI hit under always-real-ip / VIF).
-# Total entries: 421
+# Total entries: 422
 
 DOMAIN,accountcapabilities-pa.googleapis.com,extended-matching
 DOMAIN,ai.google.dev,extended-matching
@@ -19,6 +19,7 @@ DOMAIN,antigravity-unleash.goog,extended-matching
 DOMAIN,antigravity.google,extended-matching
 DOMAIN,antigravity.googleapis.com,extended-matching
 DOMAIN,api.anthropic.com,extended-matching
+DOMAIN,api.cloudflare.com,extended-matching
 DOMAIN,api.cohere.ai,extended-matching
 DOMAIN,api.cursor.sh,extended-matching
 DOMAIN,api.deepseek.com,extended-matching

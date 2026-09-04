@@ -1,11 +1,10 @@
 # 字节埋点：不要硬 REJECT（会立刻重试，最近请求一直跳）。
 # 策略 DIRECT 后由去广告合集 / pipixia-heat 的 Map Local / Script 有 body 假成功（禁空 reject-200）。
-# i-lq / is-lq snssdk 放行 settings（真实 200）；不要对 /service/settings 假空包。
+# i-lq.snssdk.com 放行 settings（真实 200）；不要对 /service/settings 假空包。
 DOMAIN,mon.snssdk.com,extended-matching
 DOMAIN,mon.zijieapi.com,extended-matching
 DOMAIN,toblog.ctobsnssdk.com,extended-matching
 DOMAIN,i-lq.snssdk.com,extended-matching
-DOMAIN,is-lq.snssdk.com,extended-matching
 DOMAIN,log-api.pangolin-sdk-toutiao.com,extended-matching
 DOMAIN,log-api.pangolin-sdk-toutiao1.com,extended-matching
 DOMAIN,log-api.pangolin-sdk-toutiao-b.com,extended-matching
