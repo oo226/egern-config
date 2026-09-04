@@ -4,11 +4,11 @@
 #
 # Sources:
 #   Repcz-AI     — Repcz/Tool — AI.yaml (51 entries)
-#   VPSDance     — VPSDance/ai-proxy-rules — egern/all.yaml (360 entries)
+#   VPSDance     — VPSDance/ai-proxy-rules — egern/all.yaml (361 entries)
 #   Sukka-ai     — Sukka ruleset.skk.moe — non_ip/ai.conf (49 entries)
 #   local        — oo226/egern-config — AI-supplement.yaml (92 entries)
 # Overlap removed: 128
-# Total unique entries: 424
+# Total unique entries: 425
 
 no_resolve: true
 domain_set:
@@ -28,6 +28,7 @@ domain_set:
   - antigravity.google
   - antigravity.googleapis.com
   - api.anthropic.com
+  - api.cloudflare.com
   - api.cohere.ai
   - api.cursor.sh
   - api.deepseek.com
