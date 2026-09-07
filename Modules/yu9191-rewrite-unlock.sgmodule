@@ -134,9 +134,11 @@ AGC = type=http-response, pattern=https://api.agcplayer.com/, script-path=https:
 海角API = type=http-response, pattern="^https?:\/\/(www\.)?haijiao\.com\/api\/(banner\/banner_list|attachment|topic\/\d+)", requires-body=1, max-size=-1, timeout=20, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/yu9191/rewrite/haijiao/dist/haijiao.js
 海角m3u8 = type=http-response, pattern="^https?:\/\/ts\d+\.hj\d+\.top\/.*\.m3u8$", requires-body=1, max-size=-1, timeout=20, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/yu9191/rewrite/haijiao/dist/haijiao.js
 
-# >>> merged from huangdouduanju/modules/huangdou.sgmodule (unique only)
+# >>> merged from huangdouduanju/huangdou.sgmodule (unique only)
 黄豆短剧请求 = type=http-request, pattern="^https?:\/\/(cocoaview\.cc|hdmgdj\.com|sxqirtho\.top|qicuknlj\.top|ferncider\.cc|hvthtcpa\.top|onyxripple\.cc|vivifable\.top|kucvcxrv\.cc|larkgarden\.top|niniharbor\.top|larksummit\.icu|lzlukvca\.cc)\/api\/(drama\/play|up\/episodePreview|up\/unlock|up\/access|up\/subscribe)", requires-body=1, binary-body-mode=1, max-size=-1, timeout=30, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/yu9191/rewrite/huangdouduanju/dist/huangdou.js, argument=logLevel={{{日志级别}}}
 黄豆短剧 = type=http-response, pattern="^https?:\/\/(cocoaview\.cc|hdmgdj\.com|sxqirtho\.top|qicuknlj\.top|ferncider\.cc|hvthtcpa\.top|onyxripple\.cc|vivifable\.top|kucvcxrv\.cc|larkgarden\.top|niniharbor\.top|larksummit\.icu|lzlukvca\.cc)\/api\/.+", requires-body=1, binary-body-mode=1, max-size=-1, timeout=30, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/yu9191/rewrite/huangdouduanju/dist/huangdou.js, argument=logLevel={{{日志级别}}}
+
+# >>> merged from huangdouduanju/modules/huangdou.sgmodule (unique only)
 
 # >>> merged from huangguoduanju/modules/huangguo.sgmodule (unique only)
 黄果短剧 = type=http-response, pattern=^https?://huangguoai\.com, requires-body=1, max-size=-1, timeout=30, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/yu9191/rewrite/huangguoduanju/dist/huangguo.js
