@@ -41,6 +41,8 @@ domain_set:
   - subscriptionsfirstparty-pa.googleapis.com
   - www.googleapis.com
   - android.clients.google.com
+  - growth-pa.googleapis.com
+  - robinfrontend-pa.googleapis.com
 
 domain_suffix_set:
   # Gemini 附件/CDN / clients6；Google.list 的 KEYWORD,google 会误抢

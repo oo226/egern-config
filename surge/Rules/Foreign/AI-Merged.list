@@ -3,6 +3,7 @@
 # Domain lines include extended-matching (SNI hit under always-real-ip / VIF).
 # Total entries: 422
 
+DOMAIN,growth-pa.googleapis.com,extended-matching
 DOMAIN,accountcapabilities-pa.googleapis.com,extended-matching
 DOMAIN,ai.google.dev,extended-matching
 DOMAIN,ai.meta.com,extended-matching
