@@ -25,7 +25,7 @@ PANGOLIN_SCRIPT = ROOT / "surge" / "Scripts" / "pangolin-fake-log.js"
 TG_MITM_HEAT = ROOT / "surge" / "Modules" / "tg-mitm-heat.sgmodule"
 SURGE_CONF = ROOT / "surge" / "Surge.conf"
 
-HEAT_MARKER = "heat14"
+HEAT_MARKER = "heat15"
 SCRIPT_URL = (
     "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/surge/"
     "Scripts/pangolin-fake-log.js"
@@ -77,6 +77,7 @@ pangolin-fake-log = type=http-request,pattern=^https?:\\/\\/log-api\\.pangolin-s
 pangolin-api-access = type=http-request,pattern=^https?:\\/\\/api-access\\.pangolin-sdk-toutiao,script-path={SCRIPT_URL},requires-body=0,max-size=0,timeout=5
 jpush-fake-stats = type=http-request,pattern=^https?:\\/\\/(stats|gd-stats|ali-stats)\\.jpush\\.cn,script-path={SCRIPT_URL},requires-body=0,max-size=0,timeout=5
 toblog-fake-log = type=http-request,pattern=^https?:\\/\\/toblog\\.ctobsnssdk\\.com,script-path={SCRIPT_URL},requires-body=0,max-size=0,timeout=5
+applog-zijie-fake = type=http-request,pattern=^https?:\\/\\/applog\\.zijieapi\\.com,script-path={SCRIPT_URL},requires-body=0,max-size=0,timeout=5
 """
 
 MAP_LOCAL_BLOCK = r"""
@@ -91,6 +92,8 @@ MAP_LOCAL_BLOCK = r"""
 ^https?:\/\/mon\.snssdk\.com\/monitor data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 ^https?:\/\/mon\.zijieapi\.com data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 ^https?:\/\/toblog\.ctobsnssdk\.com data-type=base64 data="eyJtZXNzYWdlIjoic3VjY2VzcyIsImNvZGUiOjAsImRldmljZV9pZCI6MSwiaW5zdGFsbF9pZCI6MSwic3NpZCI6IjAifQ==" status-code=200 header="Content-Type:application/json"
+# heat15：applog.zijieapi 皮皮虾狂刷 TCP Dial Failed → 假成功（须 MITM）
+^https?:\/\/applog\.zijieapi\.com data-type=base64 data="eyJtZXNzYWdlIjoic3VjY2VzcyIsImNvZGUiOjAsImRldmljZV9pZCI6MSwiaW5zdGFsbF9pZCI6MSwic3NpZCI6IjAifQ==" status-code=200 header="Content-Type:application/json"
 # heat11：doudou TTS 狂刷假成功
 ^https?:\/\/tts\.doudou520\.online data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 ^https?:\/\/([-\w]+\.)*doudou520\.online data-type=text data="{}" status-code=200 header="Content-Type:application/json"
@@ -105,6 +108,7 @@ BYTEDANCE_LIST = """\
 DOMAIN,mon.snssdk.com,extended-matching
 DOMAIN,mon.zijieapi.com,extended-matching
 DOMAIN,toblog.ctobsnssdk.com,extended-matching
+DOMAIN,applog.zijieapi.com,extended-matching
 DOMAIN,i-lq.snssdk.com,extended-matching
 DOMAIN,is-lq.snssdk.com,extended-matching
 DOMAIN,log-api.pangolin-sdk-toutiao.com,extended-matching
@@ -132,6 +136,7 @@ pangolin-fake-log = type=http-request,pattern=^https?:\\/\\/log-api\\.pangolin-s
 pangolin-api-access = type=http-request,pattern=^https?:\\/\\/api-access\\.pangolin-sdk-toutiao,script-path={SCRIPT_URL},requires-body=0,max-size=0,timeout=5
 toblog-fake-log = type=http-request,pattern=^https?:\\/\\/toblog\\.ctobsnssdk\\.com,script-path={SCRIPT_URL},requires-body=0,max-size=0,timeout=5
 jpush-fake-stats = type=http-request,pattern=^https?:\\/\\/(stats|gd-stats|ali-stats)\\.jpush\\.cn,script-path={SCRIPT_URL},requires-body=0,max-size=0,timeout=5
+applog-zijie-fake = type=http-request,pattern=^https?:\\/\\/applog\\.zijieapi\\.com,script-path={SCRIPT_URL},requires-body=0,max-size=0,timeout=5
 
 [Map Local]
 ^https?:\\/\\/log-api\\.pangolin-sdk-toutiao[-\\w]*\\.com\\/service\\/2\\/app_log data-type=base64 data="eyJjb2RlIjowLCJtZXNzYWdlIjoic3VjY2VzcyIsIm1hZ2ljX3RhZyI6InNzX2FwcF9sb2ciLCJzZXJ2ZXJfdGltZSI6MTcyNDIyMDAwMCwiZGF0YSI6e319" status-code=200 header="Content-Type:application/json"
@@ -140,6 +145,7 @@ jpush-fake-stats = type=http-request,pattern=^https?:\\/\\/(stats|gd-stats|ali-s
 ^https?:\\/\\/mon\\.snssdk\\.com\\/monitor data-type=text data="{{}}" status-code=200 header="Content-Type:application/json"
 ^https?:\\/\\/mon\\.zijieapi\\.com data-type=text data="{{}}" status-code=200 header="Content-Type:application/json"
 ^https?:\\/\\/toblog\\.ctobsnssdk\\.com data-type=base64 data="eyJtZXNzYWdlIjoic3VjY2VzcyIsImNvZGUiOjAsImRldmljZV9pZCI6MSwiaW5zdGFsbF9pZCI6MSwic3NpZCI6IjAifQ==" status-code=200 header="Content-Type:application/json"
+^https?:\\/\\/applog\\.zijieapi\\.com data-type=base64 data="eyJtZXNzYWdlIjoic3VjY2VzcyIsImNvZGUiOjAsImRldmljZV9pZCI6MSwiaW5zdGFsbF9pZCI6MSwic3NpZCI6IjAifQ==" status-code=200 header="Content-Type:application/json"
 ^https?:\\/\\/(stats|gd-stats|ali-stats)\\.jpush\\.cn data-type=base64 data="eyJjb2RlIjowLCJtZXNzYWdlIjoic3VjY2VzcyJ9" status-code=200 header="Content-Type:application/json"
 ^https?:\\/\\/sdk\\.e\\.qq\\.com data-type=text data="{{}}" status-code=200 header="Content-Type:application/json"
 ^https?:\\/\\/snowflake\\.qq\\.com\\/ola data-type=text data="{{}}" status-code=200 header="Content-Type:application/json"
@@ -149,6 +155,7 @@ jpush-fake-stats = type=http-request,pattern=^https?:\\/\\/(stats|gd-stats|ali-s
 DOMAIN,mon.snssdk.com,DIRECT
 DOMAIN,mon.zijieapi.com,DIRECT
 DOMAIN,toblog.ctobsnssdk.com,DIRECT
+DOMAIN,applog.zijieapi.com,DIRECT
 DOMAIN,i-lq.snssdk.com,DIRECT
 DOMAIN,is-lq.snssdk.com,DIRECT
 DOMAIN,log-api.pangolin-sdk-toutiao.com,DIRECT
@@ -163,7 +170,7 @@ DOMAIN,ali-stats.jpush.cn,DIRECT
 
 [MITM]
 hostname = %INSERT% -<ip-address>:0
-hostname = %APPEND% log-api.pangolin-sdk-toutiao.com, log-api.pangolin-sdk-toutiao1.com, log-api.pangolin-sdk-toutiao-b.com, api-access.pangolin-sdk-toutiao.com, api-access.pangolin-sdk-toutiao1.com, api-access.pangolin-sdk-toutiao-b.com, gromore.pangolin-sdk-toutiao.com, mon.snssdk.com, mon.zijieapi.com, toblog.ctobsnssdk.com, i-lq.snssdk.com, stats.jpush.cn, gd-stats.jpush.cn, ali-stats.jpush.cn, sdk.e.qq.com, snowflake.qq.com, mobads-logs.baidu.com
+hostname = %APPEND% log-api.pangolin-sdk-toutiao.com, log-api.pangolin-sdk-toutiao1.com, log-api.pangolin-sdk-toutiao-b.com, api-access.pangolin-sdk-toutiao.com, api-access.pangolin-sdk-toutiao1.com, api-access.pangolin-sdk-toutiao-b.com, gromore.pangolin-sdk-toutiao.com, mon.snssdk.com, mon.zijieapi.com, toblog.ctobsnssdk.com, applog.zijieapi.com, i-lq.snssdk.com, stats.jpush.cn, gd-stats.jpush.cn, ali-stats.jpush.cn, sdk.e.qq.com, snowflake.qq.com, mobads-logs.baidu.com
 """
 
 TG_MITM_HEAT_MODULE = """\
@@ -334,6 +341,7 @@ def comment_rejects(text: str) -> str:
         ("DOMAIN,toblog.ctobsnssdk.com,REJECT", "heat9 假成功"),
         ("DOMAIN,mon.snssdk.com,REJECT", "heat9 假成功"),
         ("DOMAIN,mon.zijieapi.com,REJECT", "heat9 假成功"),
+        ("DOMAIN,applog.zijieapi.com,REJECT", "heat15 假成功"),
         ("DOMAIN,i-lq.snssdk.com,REJECT", "heat13 settings 放行"),
         ("DOMAIN,is-lq.snssdk.com,REJECT", "heat13 settings 放行"),
     )
@@ -364,6 +372,7 @@ def comment_rejects(text: str) -> str:
 FORBIDDEN_ACTIVE_CHECKS = (
     ("DOMAIN,i-lq.snssdk.com,REJECT", lambda s: s == "DOMAIN,i-lq.snssdk.com,REJECT"),
     ("DOMAIN,is-lq.snssdk.com,REJECT", lambda s: s == "DOMAIN,is-lq.snssdk.com,REJECT"),
+    ("DOMAIN,applog.zijieapi.com,REJECT", lambda s: s == "DOMAIN,applog.zijieapi.com,REJECT"),
     ("log-api pangolin reject rewrite", lambda s: _heat_url_reject_note(s) == "heat13：log-api 禁止 reject；改 Map Local / Script"),
     ("api-access pangolin reject rewrite", lambda s: _heat_url_reject_note(s) == "heat13：api-access 禁止 reject（stats/batch 狂刷）"),
     ("toblog reject rewrite", lambda s: _heat_url_reject_note(s) == "heat13：toblog 禁止 reject；改 Map Local / Script"),
@@ -426,16 +435,25 @@ def ensure_map_local_block(text: str) -> str:
         and "data-type=base64" in text
     )
     need_doudou = "tts.doudou520.online data-type=text" not in text
-    if not need_core and not need_doudou:
+    need_applog = "applog.zijieapi.com data-type=base64" not in text
+    if not need_core and not need_doudou and not need_applog:
         return text
+    parts: list[str] = []
     if need_core:
-        block = MAP_LOCAL_BLOCK
+        parts.append(MAP_LOCAL_BLOCK)
     else:
-        block = (
-            "# heat11：doudou TTS 狂刷假成功\n"
-            '^https?:\\/\\/tts\\.doudou520\\.online data-type=text data="{}" status-code=200 header="Content-Type:application/json"\n'
-            '^https?:\\/\\/([-\\w]+\\.)*doudou520\\.online data-type=text data="{}" status-code=200 header="Content-Type:application/json"\n'
-        )
+        if need_applog:
+            parts.append(
+                "# heat15：applog.zijieapi 皮皮虾狂刷 TCP Dial Failed → 假成功（须 MITM）\n"
+                '^https?:\\/\\/applog\\.zijieapi\\.com data-type=base64 data="eyJtZXNzYWdlIjoic3VjY2VzcyIsImNvZGUiOjAsImRldmljZV9pZCI6MSwiaW5zdGFsbF9pZCI6MSwic3NpZCI6IjAifQ==" status-code=200 header="Content-Type:application/json"\n'
+            )
+        if need_doudou:
+            parts.append(
+                "# heat11：doudou TTS 狂刷假成功\n"
+                '^https?:\\/\\/tts\\.doudou520\\.online data-type=text data="{}" status-code=200 header="Content-Type:application/json"\n'
+                '^https?:\\/\\/([-\\w]+\\.)*doudou520\\.online data-type=text data="{}" status-code=200 header="Content-Type:application/json"\n'
+            )
+    block = "".join(parts)
     m = re.search(r"^\[Map Local\]\s*$", text, re.M)
     if m:
         insert_at = m.end()
@@ -453,9 +471,39 @@ def ensure_doudou_mitm(text: str) -> str:
         add.append("tts.doudou520.online")
     if "*.doudou520.online" not in hosts:
         add.append("*.doudou520.online")
+    if "applog.zijieapi.com" not in hosts:
+        add.append("applog.zijieapi.com")
     if not add:
         return text
     return text[: m.start(2)] + ", ".join(add) + ", " + hosts + text[m.end(2) :]
+
+
+def ensure_script_block(text: str) -> str:
+    need_core = not ("pangolin-fake-log" in text and "jpush-fake-stats" in text)
+    need_applog = "applog-zijie-fake" not in text
+    if not need_core and not need_applog:
+        return text
+    if need_core:
+        block = SCRIPT_BLOCK
+    else:
+        block = (
+            f"applog-zijie-fake = type=http-request,pattern=^https?:\\/\\/applog\\.zijieapi\\.com,"
+            f"script-path={SCRIPT_URL},requires-body=0,max-size=0,timeout=5\n"
+        )
+    m = re.search(r"^\[Script\]\s*$", text, re.M)
+    if m:
+        insert_at = m.end()
+        return text[:insert_at] + "\n" + block + text[insert_at:]
+    m = re.search(r"^\[Map Local\]\s*$", text, re.M)
+    if m:
+        return (
+            text[: m.start()]
+            + "[Script]\n"
+            + block
+            + "\n"
+            + text[m.start() :]
+        )
+    return text.rstrip() + "\n\n[Script]\n" + block + "\n"
 
 
 def ensure_bare_ip_mitm_insert(text: str) -> str:
@@ -472,25 +520,6 @@ def ensure_bare_ip_mitm_insert(text: str) -> str:
         return text.rstrip() + f"\n\n[MITM]\n{BARE_IP_MITM_INSERT}\n"
     insert_at = m.end()
     return text[:insert_at] + f"\n{BARE_IP_MITM_INSERT}\n" + text[insert_at:]
-
-
-def ensure_script_block(text: str) -> str:
-    if "pangolin-fake-log" in text and "jpush-fake-stats" in text:
-        return text
-    m = re.search(r"^\[Script\]\s*$", text, re.M)
-    if m:
-        insert_at = m.end()
-        return text[:insert_at] + "\n" + SCRIPT_BLOCK + text[insert_at:]
-    m = re.search(r"^\[Map Local\]\s*$", text, re.M)
-    if m:
-        return (
-            text[: m.start()]
-            + "[Script]\n"
-            + SCRIPT_BLOCK
-            + "\n"
-            + text[m.start() :]
-        )
-    return text.rstrip() + "\n\n[Script]\n" + SCRIPT_BLOCK + "\n"
 
 
 EXCLUDED_PANGOLIN_REWRITE = (
