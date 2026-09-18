@@ -209,13 +209,13 @@ policy_groups:
       hidden: true
       icon: https://iili.io/FaRfFXn.png
 
-  # 飞机专用：排除流媒体/专线（那些节点一抖，Telegram 会秒级重连上千条 TCP 烫机）
+  # 飞机专用：港/新/日，硬排除流媒体/专线（那些节点一抖 → Telegram 秒级重连上千条 TCP 烫机）
   - auto_test:
       name: 飞机节点
       policies:
         - 兜底
       flatten: true
-      filter: '(?=.*(🇸🇬|新加坡|Singapore|\bSG\b|\bSGP\b|狮城|🇭🇰|香港|Hong))(?!.*(流媒体|专线|IEPL|IPLC|家宽|游戏))'
+      filter: '(?=.*(🇸🇬|新加坡|Singapore|\bSG\b|\bSGP\b|狮城|🇭🇰|香港|Hong|🇯🇵|日本|Japan|\bJP\b|\bJPN\b|东京|大阪))(?!.*(流媒体|专线|IEPL|IPLC|家宽|游戏|解锁))'
       interval: 300
       tolerance: 50
       timeout: 5
@@ -271,7 +271,7 @@ policy_groups:
       hidden: true
       icon: https://iili.io/FaAug7s.png
 
-  # AI 专用：只要美国，排除流媒体/专线（避免选到解锁节点抖成重连风暴）
+  # AI 专用：只要美国，硬排除流媒体/专线/BGP（勿挂韩国/新国/日本地区池，那些池子里照样有流媒体）
   - auto_test:
       name: AI节点
       policies:
@@ -284,11 +284,12 @@ policy_groups:
       hidden: true
       icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/04ProxySoft/chatgpt4.0.png
 
+  # 只测 AI节点；面板不应再出现韩/新/日/美地区组（那些未过滤，延迟低就会进流媒体）
   - auto_test:
       name: ChatGPT
       policies:
         - AI节点
-      flatten: false
+      flatten: true
       interval: 300
       tolerance: 50
       timeout: 5
@@ -296,12 +297,9 @@ policy_groups:
 
   - select:
       name: Telegram
-      # 默认勿挂「新国节点」url-test：会选到专线/流媒体，一抖就上千条短 TCP。
+      # 只挂飞机节点（已排除流媒体/专线）。勿挂香港节点/新国节点/日本节点/兜底——那些 url-test 仍会选到「*流媒体*」。
       policies:
-        - 香港节点
         - 飞机节点
-        - 日本节点
-        - 兜底
       icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/04ProxySoft/telegram(1).png
 
   - select:
