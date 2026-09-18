@@ -75,14 +75,21 @@ def sync_yu9191_boxjs_subscription(
     upstream_url: str = YU9191_BOXJS_UPSTREAM,
     output: Path | None = None,
 ) -> Path:
+    import urllib.error
     import urllib.request
 
     output = output or (MODULES / "yu9191-player.boxjs.json")
-    with urllib.request.urlopen(upstream_url, timeout=60) as resp:
-        raw = resp.read().decode("utf-8-sig")
-    payload = json.loads(raw)
-    payload = rewrite_boxjs_script_urls(payload)
-    payload["repo"] = "https://github.com/oo226/egern-config"
-    text = json.dumps(payload, ensure_ascii=False, indent=2) + "\n"
-    output.write_text(text, encoding="utf-8")
-    return output
+    try:
+        with urllib.request.urlopen(upstream_url, timeout=60) as resp:
+            raw = resp.read().decode("utf-8-sig")
+        payload = json.loads(raw)
+        payload = rewrite_boxjs_script_urls(payload)
+        payload["repo"] = "https://github.com/oo226/egern-config"
+        text = json.dumps(payload, ensure_ascii=False, indent=2) + "\n"
+        output.write_text(text, encoding="utf-8")
+        return output
+    except Exception as exc:
+        if output.is_file():
+            print(f"keep {output} (upstream unavailable: {exc})")
+            return output
+        raise
