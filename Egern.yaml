@@ -454,7 +454,8 @@ rules:
       update_interval: 86400
   - rule_set:
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/Google.yaml
-      policy: 新国节点
+      # 勿挂「新国节点」：url-test 会选中「*流媒体*」专线；Gemini/OAuth 与 AI 同走 ChatGPT→AI节点
+      policy: ChatGPT
       update_interval: 86400
   - rule_set:
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/Game.yaml
