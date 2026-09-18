@@ -39,7 +39,10 @@ repos:
       - "^[^/]+\\.js$"
     generate_unlock: true
 
+  # Yu9191/shortcutstudio-rewrite + Yu9191/Rewrite 已 404（仓库删除/私有）。
+  # 保留本地 Scripts/yu9191 缓存；enabled=false 避免每日 Sync 硬崩。
   - id: yu9191
+    enabled: false
     github: Yu9191/shortcutstudio-rewrite
     branch: baby
     dest_scripts: yu9191
@@ -52,6 +55,7 @@ repos:
       - "^modules/.+\\.sgmodule$"
 
   - id: yu9191-rewrite
+    enabled: false
     github: Yu9191/Rewrite
     branch: main
     dest_scripts: yu9191/rewrite

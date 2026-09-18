@@ -4,9 +4,11 @@
 from __future__ import annotations
 
 import json
+import os
 import re
 import ssl
 import sys
+import urllib.error
 import urllib.request
 from pathlib import Path, PurePosixPath
 from urllib.parse import quote
@@ -30,14 +32,25 @@ def load_config() -> dict:
     return yaml.safe_load(CONFIG.read_text(encoding="utf-8")) or {}
 
 
+def _request_headers() -> dict[str, str]:
+    headers = {
+        "User-Agent": "egern-config-sync/1.0",
+        "Accept": "application/vnd.github+json",
+    }
+    token = os.environ.get("GITHUB_TOKEN") or os.environ.get("GH_TOKEN")
+    if token:
+        headers["Authorization"] = f"Bearer {token}"
+    return headers
+
+
 def fetch_bytes(url: str) -> bytes:
-    req = urllib.request.Request(url, headers={"User-Agent": "egern-config-sync/1.0"})
+    req = urllib.request.Request(url, headers=_request_headers())
     try:
         with urllib.request.urlopen(req, context=CTX, timeout=120) as resp:
             return resp.read()
     except Exception:
         mirror_url = MIRROR + url if not url.startswith(MIRROR) else url
-        req = urllib.request.Request(mirror_url, headers={"User-Agent": "egern-config-sync/1.0"})
+        req = urllib.request.Request(mirror_url, headers=_request_headers())
         with urllib.request.urlopen(req, context=CTX, timeout=120) as resp:
             return resp.read()
 
@@ -106,8 +119,16 @@ def mirror_repo(repo: dict) -> tuple[int, int, int]:
     script_patterns = repo.get("include_scripts") or []
     module_patterns = repo.get("include_modules") or []
 
+    try:
+        tree = list_tree(github, branch)
+    except Exception as exc:
+        # Dead/private upstream (404) or API/mirror 403 must not kill daily sync.
+        # Keep previously mirrored Scripts/<id>/ and Modules/_upstream/<id>/.
+        print(f"repo {repo['id']}: SKIP tree ({github}@{branch}): {exc}")
+        return 0, 0, 0
+
     ok = keep = fail = 0
-    for entry in list_tree(github, branch):
+    for entry in tree:
         path = entry.get("path", "")
         if entry.get("type") != "blob":
             continue
@@ -138,6 +159,9 @@ def main() -> None:
     data = load_config()
     total_ok = total_keep = total_fail = 0
     for repo in data.get("repos", []):
+        if repo.get("enabled") is False:
+            print(f"repo {repo.get('id', '?')}: disabled in author-repos.yaml")
+            continue
         ok, keep, fail = mirror_repo(repo)
         total_ok += ok
         total_keep += keep

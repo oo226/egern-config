@@ -11,6 +11,7 @@ from the existing surge branch.
 
 from __future__ import annotations
 
+import importlib.util
 import os
 import re
 import shutil
@@ -81,10 +82,25 @@ _HEAT_SCORE_RE = re.compile(r"heat(\d+)", re.IGNORECASE)
 
 ANTI_RETRY_MARKERS = (
     "DOMAIN,stats.jpush.cn,DIRECT",
+    "DOMAIN,is-lq.snssdk.com,DIRECT",
     "pangolin-fake-log",
     "(?!log-api\\.)(?!api-access\\.)",
     "jpush-fake-stats",
 )
+
+
+def _load_find_forbidden_active():
+    spec = importlib.util.spec_from_file_location(
+        "apply_surge_heat_patch", ROOT / "scripts" / "apply-surge-heat-patch.py"
+    )
+    if spec is None or spec.loader is None:
+        raise SystemExit("publish surge: cannot load apply-surge-heat-patch.py")
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod.find_forbidden_active
+
+
+find_forbidden_active = _load_find_forbidden_active()
 
 
 def run(cmd: list[str], *, cwd: Path) -> None:
@@ -209,6 +225,12 @@ def validate_adblock(dest_root: Path) -> None:
     if missing:
         raise SystemExit(
             "publish surge: adblock missing anti-retry markers: " + ", ".join(missing)
+        )
+    bad = find_forbidden_active(text)
+    if bad:
+        raise SystemExit(
+            "publish surge: adblock still has active anti-heat rules: "
+            + "; ".join(bad[:5])
         )
     print(f"validate adblock-collection.module heat{score} ok")
 
