@@ -60,6 +60,7 @@ PROTECTED_HEAT_PATHS = frozenset(
     {
         "Modules/adblock-collection.module",
         "Modules/pipixia-heat.sgmodule",
+        "Modules/tg-mitm-heat.sgmodule",
     }
 )
 
@@ -86,6 +87,7 @@ ANTI_RETRY_MARKERS = (
     "pangolin-fake-log",
     "(?!log-api\\.)(?!api-access\\.)",
     "jpush-fake-stats",
+    "hostname = %INSERT% -<ip-address>:0",
 )
 
 
@@ -287,6 +289,18 @@ def merge_surge_conf(*, src: Path, dest: Path, preserved_text: str | None) -> No
                 print("inserted -<ip-address>:0 into Surge.conf MITM hostname")
             else:
                 print("warn: could not insert -<ip-address>:0 (no hostname= line)")
+
+    tg_domain = (
+        "RULE-SET,https://raw.githubusercontent.com/oo226/egern-config/"
+        "refs/heads/surge/Rules/Foreign/Telegram.list,Telegram,extended-matching"
+    )
+    tg_ip = (
+        "RULE-SET,https://raw.githubusercontent.com/oo226/egern-config/"
+        "refs/heads/surge/Rules/Foreign/Telegram.ip.list,Telegram,no-resolve"
+    )
+    if tg_domain in text and tg_ip not in text:
+        text = text.replace(tg_domain, tg_domain + "\n" + tg_ip, 1)
+        print("inserted Telegram.ip.list RULE-SET (no-resolve) into Surge.conf")
 
     dest.write_text(text, encoding="utf-8")
     print("copy Surge.conf")

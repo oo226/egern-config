@@ -22,19 +22,24 @@ BYTEDANCE_HEAT = ROOT / "surge" / "Rules" / "ByteDance-Heat.list"
 APP_HEAT = ROOT / "surge" / "Rules" / "App-Heat.list"
 APP_HEAT_MODULE = ROOT / "surge" / "Modules" / "app-heat.sgmodule"
 PANGOLIN_SCRIPT = ROOT / "surge" / "Scripts" / "pangolin-fake-log.js"
+TG_MITM_HEAT = ROOT / "surge" / "Modules" / "tg-mitm-heat.sgmodule"
 SURGE_CONF = ROOT / "surge" / "Surge.conf"
 
-HEAT_MARKER = "heat13"
+HEAT_MARKER = "heat14"
 SCRIPT_URL = (
     "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/surge/"
     "Scripts/pangolin-fake-log.js"
 )
 
+BARE_IP_MITM_INSERT = "hostname = %INSERT% -<ip-address>:0"
+
 REQUIRED_MARKERS = (
     "DOMAIN,stats.jpush.cn,DIRECT",
+    "DOMAIN,is-lq.snssdk.com,DIRECT",
     "pangolin-fake-log",
     "(?!log-api\\.)(?!api-access\\.)",
     "jpush-fake-stats",
+    BARE_IP_MITM_INSERT,
 )
 
 DIRECT_BLOCK = """\
@@ -157,7 +162,25 @@ DOMAIN,gd-stats.jpush.cn,DIRECT
 DOMAIN,ali-stats.jpush.cn,DIRECT
 
 [MITM]
+hostname = %INSERT% -<ip-address>:0
 hostname = %APPEND% log-api.pangolin-sdk-toutiao.com, log-api.pangolin-sdk-toutiao1.com, log-api.pangolin-sdk-toutiao-b.com, api-access.pangolin-sdk-toutiao.com, api-access.pangolin-sdk-toutiao1.com, api-access.pangolin-sdk-toutiao-b.com, gromore.pangolin-sdk-toutiao.com, mon.snssdk.com, mon.zijieapi.com, toblog.ctobsnssdk.com, i-lq.snssdk.com, stats.jpush.cn, gd-stats.jpush.cn, ali-stats.jpush.cn, sdk.e.qq.com, snowflake.qq.com, mobads-logs.baidu.com
+"""
+
+TG_MITM_HEAT_MODULE = """\
+#!name=Telegram 防烫（Surge）
+#!desc=heat14 · %INSERT% 裸 IP 跳过 MitM，打断 MitM Failed 狂重试
+# UPDATE-MARKER heat14-tg-mitm
+#!category=Surge专用
+
+# 最近请求里 194.221.250.50 / 91.108.* / 149.154.* 狂刷 MitM Failed → 烫机。
+# 根因：Telegram 用裸 IP + 证书钉扎；解密必失败然后立刻重试。
+#
+# 排除必须在最终 hostname 列表最前面：用 %INSERT%（%APPEND% 无效）。
+# 去广告大合集 heat14+ 已含同一 INSERT；本小模块可单独装。
+# 若仍开「解密全部 HTTPS」（hostname 含 *），请确认排除在 * 之前。
+
+[MITM]
+hostname = %INSERT% -<ip-address>:0, -*.telegram.org, -*.telegram-cdn.org, -*.t.me, -*.whatsapp.com, -*.whatsapp.net, -*.wa.me
 """
 
 PANGOLIN_FAKE_LOG_JS = """\
@@ -203,8 +226,8 @@ DOMAIN-SUFFIX,doudou520.online,extended-matching
 
 APP_HEAT_SGMODULE = """\
 #!name=杂项防烫（Surge）
-#!desc=heat13 · doudou TTS 等狂刷假成功（禁空 reject / 硬 REJECT）
-# UPDATE-MARKER heat13-doudou-tts
+#!desc=heat14 · doudou TTS 等狂刷假成功（禁空 reject / 硬 REJECT）
+# UPDATE-MARKER heat14-doudou-tts
 #!category=Surge专用
 
 # 最近请求：tts.doudou520.online:443 DIRECT 已完成，一秒十几条 → 烫机。
@@ -435,6 +458,22 @@ def ensure_doudou_mitm(text: str) -> str:
     return text[: m.start(2)] + ", ".join(add) + ", " + hosts + text[m.end(2) :]
 
 
+def ensure_bare_ip_mitm_insert(text: str) -> str:
+    """Put -<ip-address>:0 at hostname front via %INSERT%.
+
+    Telegram / WhatsApp 常用裸 IP + 证书钉扎；MitM 必失败并秒级重试 → 烫机。
+    排除必须在最终 hostname 列表最前；模块 %APPEND% 排在后面无效。
+    用户只更新「去广告大合集」也能带上此排除，不必重导主配置。
+    """
+    if BARE_IP_MITM_INSERT in text:
+        return text
+    m = re.search(r"^\[MITM\]\s*$", text, re.M)
+    if not m:
+        return text.rstrip() + f"\n\n[MITM]\n{BARE_IP_MITM_INSERT}\n"
+    insert_at = m.end()
+    return text[:insert_at] + f"\n{BARE_IP_MITM_INSERT}\n" + text[insert_at:]
+
+
 def ensure_script_block(text: str) -> str:
     if "pangolin-fake-log" in text and "jpush-fake-stats" in text:
         return text
@@ -490,6 +529,7 @@ def patch_adblock(text: str) -> str:
     text = ensure_script_block(text)
     text = ensure_map_local_block(text)
     text = ensure_doudou_mitm(text)
+    text = ensure_bare_ip_mitm_insert(text)
     text = stamp_header(text)
     if not has_markers(text):
         missing = [m for m in REQUIRED_MARKERS if m not in text]
@@ -517,6 +557,10 @@ def ensure_sidecars() -> None:
     PIPIXIA_HEAT.parent.mkdir(parents=True, exist_ok=True)
     PIPIXIA_HEAT.write_text(PIPIXIA_HEAT_MODULE, encoding="utf-8")
     print(f"wrote {PIPIXIA_HEAT}")
+
+    TG_MITM_HEAT.parent.mkdir(parents=True, exist_ok=True)
+    TG_MITM_HEAT.write_text(TG_MITM_HEAT_MODULE, encoding="utf-8")
+    print(f"wrote {TG_MITM_HEAT}")
 
     PANGOLIN_SCRIPT.parent.mkdir(parents=True, exist_ok=True)
     if not PANGOLIN_SCRIPT.is_file():
@@ -548,6 +592,21 @@ def ensure_surge_conf_ruleset() -> None:
             text = text.rstrip() + "\n" + comment
         changed = True
         print(f"inserted {label} RULE-SET into Surge.conf")
+
+    tg_domain = (
+        "RULE-SET,https://raw.githubusercontent.com/oo226/egern-config/"
+        "refs/heads/surge/Rules/Foreign/Telegram.list,Telegram,extended-matching"
+    )
+    tg_ip = (
+        "RULE-SET,https://raw.githubusercontent.com/oo226/egern-config/"
+        "refs/heads/surge/Rules/Foreign/Telegram.ip.list,Telegram,no-resolve"
+    )
+    if tg_domain in text and tg_ip not in text:
+        text = text.replace(tg_domain, tg_domain + "\n" + tg_ip, 1)
+        changed = True
+        print("inserted Telegram.ip.list RULE-SET (no-resolve) into Surge.conf")
+    elif tg_ip in text:
+        print("Surge.conf already has Telegram.ip.list RULE-SET")
 
     ip_excl = "-<ip-address>:0"
     if ip_excl not in text:
