@@ -209,6 +209,20 @@ policy_groups:
       hidden: true
       icon: https://iili.io/FaRfFXn.png
 
+  # 飞机专用：排除流媒体/专线（那些节点一抖，Telegram 会秒级重连上千条 TCP 烫机）
+  - auto_test:
+      name: 飞机节点
+      policies:
+        - 兜底
+      flatten: true
+      filter: '(?=.*(🇸🇬|新加坡|Singapore|\bSG\b|\bSGP\b|狮城|🇭🇰|香港|Hong))(?!.*(流媒体|专线|IEPL|IPLC|家宽|游戏))'
+      interval: 300
+      tolerance: 50
+      timeout: 5
+      block_quic: true
+      hidden: true
+      icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/04ProxySoft/telegram(1).png
+
   - auto_test:
       name: 台湾节点
       policies:
@@ -272,9 +286,11 @@ policy_groups:
 
   - select:
       name: Telegram
+      # 默认勿挂「新国节点」url-test：会选到专线/流媒体，一抖就上千条短 TCP。
       policies:
-        - 新国节点
         - 香港节点
+        - 飞机节点
+        - 日本节点
         - 兜底
       icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/04ProxySoft/telegram(1).png
 
