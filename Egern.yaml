@@ -271,13 +271,23 @@ policy_groups:
       hidden: true
       icon: https://iili.io/FaAug7s.png
 
+  # AI 专用：只要美国，排除流媒体/专线（避免选到解锁节点抖成重连风暴）
+  - auto_test:
+      name: AI节点
+      policies:
+        - 兜底
+      flatten: true
+      filter: '(?=.*(🇺🇸|美国|United States|USA|\bUS\b|洛杉矶|硅谷|西雅图|芝加哥|纽约|旧金山|(?i)States))(?!.*(流媒体|专线|IEPL|IPLC|家宽|游戏|解锁))'
+      interval: 300
+      tolerance: 50
+      timeout: 5
+      hidden: true
+      icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/04ProxySoft/chatgpt4.0.png
+
   - auto_test:
       name: ChatGPT
       policies:
-        - 新国节点
-        - 日本节点
-        - 韩国节点
-        - 美国节点
+        - AI节点
       flatten: false
       interval: 300
       tolerance: 50
