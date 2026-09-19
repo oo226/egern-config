@@ -631,7 +631,6 @@ AND,((PROTOCOL,UDP),(DEST-PORT,443)),REJECT-NO-DROP
 # > 屏蔽YouTube的UDP
 AND,((PROTOCOL,UDP),(DOMAIN-SUFFIX,googlevideo.com)),REJECT-NO-DROP
 # > 微信
-DOMAIN-SUFFIX,wxs.qq.com,REJECT,extended-matching,pre-matching
 
 # >>> merged from yu9191-rewrite-unlock (unique only)
 # >>> merged from KuGou.sgmodule (unique only)

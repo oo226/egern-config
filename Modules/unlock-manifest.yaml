@@ -31,6 +31,12 @@ merge:
     - "DualSubsSpotify"
     # TestFlight / 设备配置：勿拒 configuration.apple.com（会狂重试、抬内存）
     - "DOMAIN,configuration.apple.com,REJECT"
+    # 微信 CDN（wximg/wxsmw 等）：iEwha/QingRex 整域 REJECT 会误杀公众号图/视频，广告改走 Map Local
+    - "DOMAIN-SUFFIX,wxs.qq.com,REJECT"
+    - "DOMAIN-SUFFIX, wxs.qq.com, REJECT"
+    - "DOMAIN,wximg.wxs.qq.com,REJECT"
+    - "DOMAIN,wxsmw.wxs.qq.com,REJECT"
+    - "DOMAIN,wxa.wxs.qq.com,REJECT"
   mitm_hostname_excludes:
     - "*.telegram.org"
     - "*.telegram-cdn.org"
