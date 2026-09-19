@@ -4,6 +4,10 @@
 Whole-host rejects belong in 分流 Reject-Merged (upstream + 合集补全).
 Modules keep MITM + URL Rewrite + Script + AND/URL-REGEX rules.
 
+Lines tagged `# @keep` are still merged into Reject-Merged, but left in the
+module text (dual-layer) so updating 合集 alone cannot open a gap when
+Reject-Merged is stale.
+
 Usage:
   python3 scripts/divert_adblock_domain_reject.py Modules/adblock-collection.module
   python3 scripts/divert_adblock_domain_reject.py MODULE --strip-only
@@ -95,6 +99,7 @@ def divert_module_text(
         "diverted": 0,
         "skipped_covered": 0,
         "kept_rule": 0,
+        "kept_dual": 0,
     }
 
     section: str | None = None
@@ -117,6 +122,9 @@ def divert_module_text(
             continue
 
         kind, value = parsed
+        # `# @keep` — still merge into Reject-Merged, but leave the line in the
+        # module so更新合集 alone cannot open a gap if Reject-Merged is stale.
+        keep_dual = "# @keep" in stripped
         stats["diverted"] += 1
         low = value.lower()
 
@@ -151,6 +159,10 @@ def divert_module_text(
                 stats["skipped_covered"] += 1
             else:
                 new_sets["ip_cidr6_set"].add(value)
+
+        if keep_dual:
+            stats["kept_dual"] += 1
+            out.append(line)
 
     cleaned: list[str] = []
     blank_run = 0
@@ -267,6 +279,7 @@ def main() -> None:
     total_new = sum(len(v) for v in new_sets.values())
     print(
         f"diverted={stats['diverted']} kept_rule={stats['kept_rule']} "
+        f"kept_dual={stats.get('kept_dual', 0)} "
         f"new_routing_entries={total_new} skipped_covered≈{stats['skipped_covered']}"
     )
     for k, v in new_sets.items():
