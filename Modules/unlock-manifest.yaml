@@ -90,8 +90,8 @@ modules:
   - name: yu9191-shortcutstudio
     cache: yu9191-ShortcutStudio.sgmodule
     role: supplement
-    upstream: https://raw.githubusercontent.com/Yu9191/shortcutstudio-rewrite/refs/heads/baby/modules/ShortcutStudio.sgmodule
-    note: "Yu9191 — ShortcutStudio 全仓库（脚本已镜像）"
+    local: true
+    note: "Yu9191 — ShortcutStudio（上游仓库已 404，本地固化 + Scripts/yu9191 镜像）"
 
   - name: yu9191-rewrite-unlock
     cache: yu9191-rewrite-unlock.sgmodule
