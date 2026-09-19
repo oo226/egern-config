@@ -371,9 +371,10 @@ rules:
       policy: DIRECT
       update_interval: 86400
 
-  # ── 微信公众号广告（一条规则集；须在 Direct-Priority 的 weixin/wxs DIRECT 之前）──
+  # ── 热点 REJECT（含微信公众号广告路径/素材）：须在 Direct-Priority（weixin/wxs DIRECT）之前 ──
+  # NB助手控制口勿硬 REJECT：/nb/telnet=Network OK；改走 IP 用 map_locals（apply-nb-ads-patch）
   - rule_set:
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Weixin-Ad-Reject.yaml
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Reject-Hot.yaml
       policy: REJECT
       update_interval: 3600
 
@@ -394,12 +395,7 @@ rules:
       policy: Spotify
       update_interval: 86400
 
-  # ── 第 2 段：广告 / WebRTC 拦截（分流优先；合集只做 MITM/路径改写）──
-  # NB助手控制口勿硬 REJECT：/nb/telnet=Network OK；改走 IP 用 map_locals（apply-nb-ads-patch）
-  - rule_set:
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Reject-Hot.yaml
-      policy: REJECT
-      update_interval: 3600
+  # ── 第 2 段：广告大表 / WebRTC（分流优先；合集只做 MITM/路径改写）──
   - rule_set:
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Reject-Merged.yaml
       policy: REJECT
@@ -533,7 +529,7 @@ url_rewrites:
 
 # NB助手：假成功去开屏（硬 REJECT 会无网络；域名拦了会改走 IP 80）
 # 微信公众号：getappmsgad Map Local + 脚本（须 MITM mp.weixin.qq.com）
-# 分流 REJECT 见 Routing/Weixin-Ad-Reject（wxsmw 等）；勿整域拒 wxs
+# 分流 REJECT 已并进 Reject-Hot（须在 Direct-Priority 前）；勿整域拒 wxs
 # 正则须兼容 :443 / http(s) / 无 query
 map_locals:
   # 心跳：真实接口返回纯文本 Network OK
@@ -669,7 +665,7 @@ modules:
   - name: 去广告净化合集
     # 稳定别名；日更会同步写 adblock-collection / adblock-egern-v0815c
     # 用 raw 避免 jsDelivr 缓存拖住紧急改写（如 nbtool8:9527）
-    # 公众号广告：Map Local/脚本在本文件；分流见 Weixin-Ad-Reject（Direct-Priority 前）
+    # 公众号广告：Map Local/脚本在本文件；分流 REJECT 并进 Reject-Hot
     url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/adblock-egern-v0815c.module
     update_interval: 86400
     enabled: true
