@@ -1,0 +1,20 @@
+# 微信公众号广告 / 埋点路径 REJECT（须排在 Direct-Priority 的 weixin.qq.com DIRECT 之前）
+# 勿拦 short.weixin.qq.com/mmtls（聊天信令）与 /mp/s 正文
+# getappmsgext 含阅读赞评，勿 REJECT，改走 Map Local/脚本剥 advertisement_*
+
+no_resolve: true
+url_regex_set:
+  # 文中/底栏广告接口
+  - '^https?://mp\.weixin\.qq\.com(?::\d+)?/mp/getappmsgad'
+  # 监控狂刷（截图 ↓322B DIRECT）
+  - '^https?://mp\.weixin\.qq\.com(?::\d+)?/mp/jsmonitor'
+  # 「都在搜」/ 相关推荐 / 关键词上报
+  - '^https?://mp\.weixin\.qq\.com(?::\d+)?/mp/relatedsearchword'
+  - '^https?://mp\.weixin\.qq\.com(?::\d+)?/mp/relatedarticle'
+  - '^https?://mp\.weixin\.qq\.com(?::\d+)?/mp/searchkeywordreport'
+  - '^https?://mp\.weixin\.qq\.com(?::\d+)?/mp/masonryfeed'
+  - '^https?://mp\.weixin\.qq\.com(?::\d+)?/mp/cps_product_info'
+  # 数据上报
+  - '^https?://mp\.weixin\.qq\.com(?::\d+)?/tp/datareport'
+  - '^https?://mp\.weixin\.qq\.com(?::\d+)?/mp/appmsgreport'
+  - '^https?://mp\.weixin\.qq\.com(?::\d+)?/mp/appmsg_comment'
