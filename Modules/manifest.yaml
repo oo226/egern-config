@@ -5,15 +5,15 @@ merge:
   output: adblock-collection.module
   # Surge 认文件最前的 #!name；勿用 & 等特殊字符
   primary_name: 去广告合集
-  primary_desc: 奶思 + blackmatrix7 + 银行税务NB + 皮皮虾（MITM/改写；整域 REJECT 已分流）
+  primary_desc: 奶思 + blackmatrix7 + 银行税务NB + 皮皮虾（MITM/改写；整域 REJECT 并入 Reject-Merged）
   header_lines:
     - "# AUTO-MERGED by scripts/merge-adblock-modules.py"
-    - "# 类型: 模块 — MITM / URL Rewrite / Script / Map Local（整域 REJECT 见 Routing/Reject-Module）"
+    - "# 类型: 模块 — MITM / URL Rewrite / Script / Map Local（整域 REJECT 并入 Reject-Merged）"
     - "# Primary: fmz200 blockAds | Supplements: blackmatrix7 + 本仓库 NB/银行补全 + 皮皮虾"
     - "# Do not edit manually. Updated by GitHub Actions after upstream sync."
     - ""
-  # 合集 [Rule] 里 DOMAIN*/IP-CIDR REJECT → Routing/Reject-Module.yaml（分流优先）
-  divert_domain_reject_to: Routing/Reject-Module.yaml
+  # 合集 [Rule] 里 DOMAIN*/IP-CIDR REJECT → 并入 Routing/Reject-Merged.yaml
+  divert_domain_reject_to: Routing/Reject-Merged.yaml
   exclude_cron_scripts: true
   # 皮皮虾短模块优先并进 Body Rewrite / Map Local（勿并 QingRex 全量）
   priority_supplements:

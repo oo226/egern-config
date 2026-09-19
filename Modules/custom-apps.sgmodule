@@ -30,7 +30,7 @@ DOMAIN-SUFFIX,zhangyuyidong.cn,REJECT,pre-matching
 DOMAIN,open.e.kuaishou.cn,REJECT,pre-matching
 DOMAIN,sdk.zhangyuyidong.cn,REJECT,pre-matching
 DOMAIN,v66-ad.ndcjl.com,REJECT,pre-matching
-# 得力e+ / 开屏 SDK（进合集后 divert 进 Reject-Module，不另开规则集）
+# 得力e+ / 开屏 SDK（进合集后 divert 并入 Reject-Merged）
 DOMAIN-KEYWORD,delicloud-operate-manager,REJECT,pre-matching
 DOMAIN-SUFFIX,hzzfcm.com,REJECT,pre-matching
 DOMAIN-SUFFIX,66mobi.com,REJECT,pre-matching

@@ -1,13 +1,12 @@
 #!/usr/bin/env python3
-"""Divert DOMAIN*/IP-CIDR REJECT from an adblock module [Rule] into Routing YAML.
+"""Divert DOMAIN*/IP-CIDR REJECT from an adblock module [Rule] into Reject-Merged.
 
-Whole-host rejects belong in 分流 (Reject-Merged / Reject-Extra / Reject-Module).
+Whole-host rejects belong in 分流 Reject-Merged (upstream + 合集补全).
 Modules keep MITM + URL Rewrite + Script + AND/URL-REGEX rules.
 
 Usage:
-  python3 scripts/divert-adblock-domain-reject.py Modules/adblock-collection.module
-  python3 scripts/divert-adblock-domain-reject.py MODULE --write-routing Routing/Reject-Module.yaml
-  python3 scripts/divert-adblock-domain-reject.py MODULE --strip-only   # no routing write
+  python3 scripts/divert_adblock_domain_reject.py Modules/adblock-collection.module
+  python3 scripts/divert_adblock_domain_reject.py MODULE --strip-only
 """
 
 from __future__ import annotations
@@ -19,11 +18,8 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from paths import REJECT_MERGED, ROOT, ROUTING
-from routing_list_utils import parse_egern_sets
-
-REJECT_EXTRA = ROUTING / "Reject-Extra.yaml"
-DEFAULT_OUT = ROUTING / "Reject-Module.yaml"
+from paths import REJECT_MERGED, ROOT
+from routing_list_utils import SET_KEYS, empty_sets, parse_egern_sets
 
 _IP_HOST_RE = re.compile(r"^\d{1,3}(?:\.\d{1,3}){3}$")
 
@@ -48,10 +44,8 @@ def _parse_rule_line(line: str) -> tuple[str, str] | None:
         return None
     kind = parts[0].upper()
     value = parts[1]
-    # policy often REJECT; allow REJECT-DROP etc.
     policy = parts[2].upper() if len(parts) >= 3 else ""
     if policy and not policy.startswith("REJECT"):
-        # DOMAIN,foo,DIRECT — do not divert
         return None
     if kind in ("DOMAIN", "DOMAIN-SUFFIX", "DOMAIN-KEYWORD"):
         return kind, value
@@ -61,20 +55,9 @@ def _parse_rule_line(line: str) -> tuple[str, str] | None:
 
 
 def load_existing_reject_sets() -> dict[str, set[str]]:
-    sets: dict[str, set[str]] = {
-        "domain_set": set(),
-        "domain_suffix_set": set(),
-        "domain_keyword_set": set(),
-        "ip_cidr_set": set(),
-        "ip_cidr6_set": set(),
-    }
-    for path in (REJECT_MERGED, REJECT_EXTRA):
-        if not path.is_file():
-            continue
-        parsed = parse_egern_sets(path)
-        for key in sets:
-            sets[key] |= {x.lower() for x in (parsed.get(key) or set())}
-    return sets
+    if not REJECT_MERGED.is_file():
+        return empty_sets()
+    return parse_egern_sets(REJECT_MERGED)
 
 
 def _suffix_covered(suf: str, existing: dict[str, set[str]]) -> bool:
@@ -107,13 +90,7 @@ def divert_module_text(
 ) -> tuple[str, dict[str, set[str]], dict[str, int]]:
     """Strip divertible [Rule] lines; return (new_text, new_sets, stats)."""
     existing = existing or load_existing_reject_sets()
-    new_sets: dict[str, set[str]] = {
-        "domain_set": set(),
-        "domain_suffix_set": set(),
-        "domain_keyword_set": set(),
-        "ip_cidr_set": set(),
-        "ip_cidr6_set": set(),
-    }
+    new_sets = empty_sets()
     stats = {
         "diverted": 0,
         "skipped_covered": 0,
@@ -146,7 +123,7 @@ def divert_module_text(
         if kind == "DOMAIN":
             if _is_ipv4_host(low):
                 cidr = f"{low}/32"
-                if cidr.lower() in existing["ip_cidr_set"] or cidr in new_sets["ip_cidr_set"]:
+                if cidr.lower() in {x.lower() for x in existing["ip_cidr_set"]} or cidr in new_sets["ip_cidr_set"]:
                     stats["skipped_covered"] += 1
                 else:
                     new_sets["ip_cidr_set"].add(cidr)
@@ -160,24 +137,21 @@ def divert_module_text(
             else:
                 new_sets["domain_suffix_set"].add(low)
         elif kind == "DOMAIN-KEYWORD":
-            if low in existing["domain_keyword_set"] or low in new_sets["domain_keyword_set"]:
+            if low in {x.lower() for x in existing["domain_keyword_set"]} or low in new_sets["domain_keyword_set"]:
                 stats["skipped_covered"] += 1
             else:
                 new_sets["domain_keyword_set"].add(low)
         elif kind == "IP-CIDR":
-            if low in existing["ip_cidr_set"] or low in new_sets["ip_cidr_set"]:
+            if low in {x.lower() for x in existing["ip_cidr_set"]} or low in new_sets["ip_cidr_set"]:
                 stats["skipped_covered"] += 1
             else:
-                new_sets["ip_cidr_set"].add(value)  # keep original case/format
+                new_sets["ip_cidr_set"].add(value)
         elif kind == "IP-CIDR6":
-            if low in existing["ip_cidr6_set"] or low in new_sets["ip_cidr6_set"]:
+            if low in {x.lower() for x in existing["ip_cidr6_set"]} or low in new_sets["ip_cidr6_set"]:
                 stats["skipped_covered"] += 1
             else:
                 new_sets["ip_cidr6_set"].add(value)
 
-        # drop line from module (do not append)
-
-    # Drop empty comment-only noise: consecutive blank lines collapse later
     cleaned: list[str] = []
     blank_run = 0
     for line in out:
@@ -192,33 +166,76 @@ def divert_module_text(
     return "\n".join(cleaned) + ("\n" if cleaned else ""), new_sets, stats
 
 
-def write_reject_module_yaml(path: Path, new_sets: dict[str, set[str]]) -> int:
-    total = sum(len(v) for v in new_sets.values())
+def _format_value(value: str) -> str:
+    if any(c in value for c in ':"[]{}#&*!|>\\'):
+        return f'  - "{value}"'
+    return f"  - {value}"
+
+
+def merge_into_reject_merged(new_sets: dict[str, set[str]]) -> int:
+    """Union diverted hosts into Reject-Merged.yaml; return count of newly added."""
+    if not REJECT_MERGED.is_file():
+        raise SystemExit(f"missing {REJECT_MERGED}")
+
+    # Preserve header notes up to first set key / no_resolve
+    raw = REJECT_MERGED.read_text(encoding="utf-8")
+    header_lines: list[str] = []
+    for line in raw.splitlines():
+        stripped = line.strip()
+        if stripped == "no_resolve: true" or stripped.endswith("_set:") or (
+            stripped and not stripped.startswith("#") and stripped != "no_resolve: true"
+        ):
+            break
+        header_lines.append(line)
+
+    existing = parse_egern_sets(REJECT_MERGED)
+    added = 0
+    for key in SET_KEYS:
+        before = len(existing[key])
+        # case-insensitive dedupe for domains
+        if key.startswith("domain") or key.startswith("ip_"):
+            lower_map = {x.lower(): x for x in existing[key]}
+            for v in new_sets.get(key) or set():
+                if v.lower() not in lower_map:
+                    lower_map[v.lower()] = v
+                    added += 1
+            existing[key] = set(lower_map.values())
+        else:
+            for v in new_sets.get(key) or set():
+                if v not in existing[key]:
+                    existing[key].add(v)
+                    added += 1
+        _ = before
+
+    total = sum(len(existing[k]) for k in SET_KEYS)
+    module_added = sum(len(new_sets.get(k) or ()) for k in SET_KEYS)
+
     lines = [
-        "# AUTO-GENERATED by scripts/divert-adblock-domain-reject.py",
-        "# 类型: 分流规则 — 从去广告合集 [Rule] 抽出的整域/IP REJECT",
-        "# 与 Reject-Merged 去重；合集只保留 MITM / URL Rewrite / Script / AND",
-        "# Do not edit manually. Regenerated when adblock modules are merged.",
+        "# AUTO-GENERATED by scripts/merge-reject-rules.py + divert_adblock_domain_reject.py",
+        "# 类型: 分流规则 — 去广告域名 REJECT（上游 + 去广告合集整域补全）",
+        "# Do not edit manually. Updated by GitHub Actions after upstream sync / adblock merge.",
+        "#",
+        f"# Includes ~{module_added} unique hosts diverted from 去广告合集 [Rule] (DOMAIN/IP REJECT).",
+        f"# Total unique entries: {total}",
         "",
+        "no_resolve: true",
     ]
-    key_order = (
-        "domain_set",
-        "domain_suffix_set",
-        "domain_keyword_set",
-        "ip_cidr_set",
-        "ip_cidr6_set",
-    )
-    for key in key_order:
-        values = sorted(new_sets.get(key) or set(), key=str.lower)
+    for key in SET_KEYS:
+        values = sorted(existing[key], key=str.lower)
         if not values:
             continue
         lines.append(f"{key}:")
-        for v in values:
-            lines.append(f'  - "{v}"' if any(c in v for c in ":*") else f"  - {v}")
-        lines.append("")
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text("\n".join(lines).rstrip() + "\n", encoding="utf-8")
-    return total
+        for value in values:
+            lines.append(_format_value(value))
+    lines.append("")
+
+    REJECT_MERGED.write_text("\n".join(lines), encoding="utf-8")
+    return added
+
+
+# Back-compat name used by merge-adblock-modules.py
+def write_reject_module_yaml(_path: Path, new_sets: dict[str, set[str]]) -> int:
+    return merge_into_reject_merged(new_sets)
 
 
 def main() -> None:
@@ -228,12 +245,12 @@ def main() -> None:
         "--write-routing",
         type=Path,
         default=None,
-        help=f"write diverted hosts here (default {DEFAULT_OUT} unless --strip-only)",
+        help="ignored; diverted hosts always merge into Reject-Merged.yaml",
     )
     ap.add_argument(
         "--strip-only",
         action="store_true",
-        help="only strip module; do not write/update Reject-Module.yaml",
+        help="only strip module; do not update Reject-Merged.yaml",
     )
     ap.add_argument(
         "--dry-run",
@@ -265,11 +282,8 @@ def main() -> None:
     if args.strip_only:
         return
 
-    out = args.write_routing or DEFAULT_OUT
-    if not out.is_absolute():
-        out = ROOT / out
-    n = write_reject_module_yaml(out, new_sets)
-    print(f"wrote {out.relative_to(ROOT)} ({n} entries)")
+    n = merge_into_reject_merged(new_sets)
+    print(f"merged into {REJECT_MERGED.relative_to(ROOT)} (+{n} new)")
 
 
 if __name__ == "__main__":
