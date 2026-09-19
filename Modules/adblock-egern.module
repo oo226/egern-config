@@ -3817,9 +3817,14 @@ hostname - reject
 ^https?:\/\/ump\.sz\.creditcard\.ecitic\.com\/citiccard\/cm-ump\/ump-gateway\/ump-net-app\/ump-net-app\/adv data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 ^https?:\/\/m\.creditcard\.ecitic\.com\/citiccard\/mbk\/appspace-getway\/getWay\/dkkj-system-web\/system\/v\d+\/init-config data-type=text data=" " status-code=200
 
-# NB全能助手 / NB Pro — 官方域名的开屏与广告接口
-^https?:\/\/(api\.|www\.|app\.)?nbtool8\.com\/.*(splash|startup|launch|open[Ss]creen|welcome|banner|popup|promo|advert|/ad/|/ads/) - reject-dict
-^https?:\/\/[^/]*nbtool8\.com\/.*(splash|startup|launch|banner|popup|advert|/ad/|/ads/) - reject-dict
+# NB全能助手 / NB Pro — 官方域名开屏与广告接口（须匹配 :端口，否则 9527/nb/app 漏网）
+^https?:\/\/(api\.|www\.|app\.)?nbtool8\.com(:\d+)?\/.*(splash|startup|launch|open[Ss]creen|welcome|banner|popup|promo|advert|/ad/|/ads/) - reject-dict
+^https?:\/\/[^:/]*nbtool8\.com(:\d+)?\/.*(splash|startup|launch|banner|popup|advert|/ad/|/ads/) - reject-dict
+# 截图实锤：http://nbtool8.com:9527/nb/app 明文下发广告配置（旧规则要求 .com/ 紧跟路径，漏掉 :9527）
+# 接口是 text/plain 密文，用空正文 200，避免 reject-dict 的 JSON 搅乱客户端
+^https?:\/\/[^:/]*nbtool8\.com:\d+\/nb\/app data-type=text data="" status-code=200 header="Content-Type:text/plain"
+^https?:\/\/[^:/]*nbtool8\.com:\d+\/nb\/(?!telnet) data-type=text data="" status-code=200 header="Content-Type:text/plain"
+^http:\/\/[^:/]*nbtool8\.com:\d+\/ data-type=text data="" status-code=200 header="Content-Type:text/plain"
 
 # 得力e+ 混业务接口（不能整域 REJECT）→ MITM 路径级；百川 SMB 同域淘宝 H5
 ^https?:\/\/qt-api\.delicloud\.com\/.*(splash|startup|launch|open[Ss]creen|welcome|banner|popup|promo|advert|/ad/|/ads/|operate) - reject-dict
