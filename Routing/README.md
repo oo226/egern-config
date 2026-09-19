@@ -16,8 +16,11 @@
 | `Lan.yaml` | 局域网 | 局域网直连 |
 | `China-Direct.yaml` | 国内直连 | **合并去重** — Direct+微信+B站+苹果中国+国内域名/IP/ASN+视频资源站+网盘点播 |
 | `Reject-Merged.yaml` | 去广告 | **合并去重** — Repcz Reject + Sukka 广告域名集 |
-| `Reject-Extra.yaml` | 去广告补全 | **手维护** — 整域/关键词 REJECT（得力 OSS 等）；混业务开屏仍靠 Modules |
+| `Reject-Extra.yaml` | 去广告补全 | **手维护** — 整域/关键词 REJECT（得力 OSS 等） |
+| `Reject-Module.yaml` | 合集抽分流 | **自动生成** — 从去广告合集 `[Rule]` 抽出的 DOMAIN/IP REJECT |
 | `Foreign/*.yaml` | 国外分流 | **按服务分开** — AI/Telegram/流媒体/游戏/兜底等 |
+
+备份（大改造前回滚点）：分支 `backup/adblock-before-rule-split-ac83`。
 
 ## raw 链接示例（可直接用）
 

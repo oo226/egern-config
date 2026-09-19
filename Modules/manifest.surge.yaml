@@ -6,13 +6,15 @@
 merge:
   output: surge/Modules/adblock-collection.module
   primary_name: 去广告合集（Surge）
-  primary_desc: Surge 专用完整合集（含皮皮虾）；与 main/Egern 不共用
+  primary_desc: Surge 专用（MITM/改写；整域 REJECT 已分流到 Reject-Module）
   header_lines:
   - '# AUTO-MERGED by scripts/merge-adblock-modules.py (Surge copy)'
-  - '# 类型: 模块 — Surge 专用去广告合集（完整副本，含皮皮虾）'
+  - '# 类型: 模块 — Surge MITM/改写合集（整域 REJECT 见 Routing/Reject-Module → Rules/Reject-Module.list）'
   - '# 与 main Modules/adblock-collection.module 分开，互不覆盖'
   - '# Do not edit manually.'
   - ''
+  # 只剥离合集内 DOMAIN REJECT；Reject-Module.yaml 由 Egern merge 写入
+  divert_domain_reject_strip_only: true
   exclude_cron_scripts: true
   drop_general_keys:
   - skip-proxy

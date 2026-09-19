@@ -710,6 +710,30 @@ def main() -> None:
     output_path.write_text(merged, encoding="utf-8")
     print(f"wrote {output_path.relative_to(ROOT)} ({len(merged.splitlines())} lines)")
 
+    # 整域 DOMAIN/IP REJECT → 分流；合集只留 MITM/改写/Script/AND
+    divert_to = merge_cfg.get("divert_domain_reject_to")
+    strip_only = bool(merge_cfg.get("divert_domain_reject_strip_only", False))
+    if divert_to or strip_only:
+        from divert_adblock_domain_reject import (  # noqa: WPS433
+            DEFAULT_OUT,
+            divert_module_text,
+            write_reject_module_yaml,
+        )
+
+        text = output_path.read_text(encoding="utf-8")
+        new_text, new_sets, stats = divert_module_text(text)
+        output_path.write_text(new_text, encoding="utf-8")
+        print(
+            f"divert Rule DOMAIN/IP REJECT: diverted={stats['diverted']} "
+            f"kept={stats['kept_rule']} new={sum(len(v) for v in new_sets.values())}"
+        )
+        if not strip_only:
+            out = Path(str(divert_to)) if divert_to else DEFAULT_OUT
+            if not out.is_absolute():
+                out = ROOT / out
+            n = write_reject_module_yaml(out, new_sets)
+            print(f"wrote {out.relative_to(ROOT)} ({n} entries)")
+
 
 if __name__ == "__main__":
     main()

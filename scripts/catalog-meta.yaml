@@ -20,7 +20,10 @@ routing:
     desc: Repcz Reject + Sukka 广告域名集，合并去重。
   Routing/Reject-Extra.yaml:
     name: 去广告补全
-    desc: 本仓库手维护的整域/关键词 REJECT（如得力e+ 素材桶）；混业务开屏仍靠去广告合集 MITM。
+    desc: 本仓库手维护的整域/关键词 REJECT（如得力e+ 素材桶）。
+  Routing/Reject-Module.yaml:
+    name: 合集抽分流
+    desc: 从去广告合集 [Rule] 自动抽出的 DOMAIN/IP REJECT；合集本身只做 MITM/路径改写。
   Routing/Direct-Priority.yaml:
     name: 优先直连
     desc: 须在 ProxyGFW/China-Direct 之前直连的服务域。
