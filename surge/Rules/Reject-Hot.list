@@ -1,0 +1,30 @@
+# AUTO-EXPORTED from Routing/Reject-Hot.yaml
+# Format: Surge RULE-SET (no policy). scripts/export-surge-rulesets.py
+# Domain lines include extended-matching (SNI hit under always-real-ip / VIF).
+# Total entries: 25
+
+DOMAIN,open.e.kuaishou.cn,extended-matching
+DOMAIN,sdk.zhangyuyidong.cn,extended-matching
+DOMAIN,v66-ad.ndcjl.com,extended-matching
+DOMAIN-SUFFIX,66mobi.com,extended-matching
+DOMAIN-SUFFIX,adintl.cn,extended-matching
+DOMAIN-SUFFIX,adkwai.com,extended-matching
+DOMAIN-SUFFIX,adn-plus.com.cn,extended-matching
+DOMAIN-SUFFIX,adukwai.com,extended-matching
+DOMAIN-SUFFIX,api-cfg.8ziben.com,extended-matching
+DOMAIN-SUFFIX,api-dsp.8ziben.com,extended-matching
+DOMAIN-SUFFIX,api-events.8ziben.com,extended-matching
+DOMAIN-SUFFIX,bugly.qq.com,extended-matching
+DOMAIN-SUFFIX,cdnhwc8.com,extended-matching
+DOMAIN-SUFFIX,ctyunxs.cn,extended-matching
+DOMAIN-SUFFIX,e.kuaishou.com,extended-matching
+DOMAIN-SUFFIX,eos.huhehaote-8.cmecloud.cn,extended-matching
+DOMAIN-SUFFIX,gepush.com,extended-matching
+DOMAIN-SUFFIX,gifshow.com,extended-matching
+DOMAIN-SUFFIX,hzzfcm.com,extended-matching
+DOMAIN-SUFFIX,static-dsp.8ziben.com,extended-matching
+DOMAIN-SUFFIX,static.fliduo.cn,extended-matching
+DOMAIN-SUFFIX,yximgs.com,extended-matching
+DOMAIN-SUFFIX,yxings.com,extended-matching
+DOMAIN-SUFFIX,zhangyuyidong.cn,extended-matching
+DOMAIN-KEYWORD,delicloud-operate-manager,extended-matching

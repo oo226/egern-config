@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-19T04:59:03Z",
+  "generated_at": "2026-09-19T06:09:12Z",
   "branch": "main",
   "repo": "oo226/egern-config",
   "raw_base": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main",
@@ -202,16 +202,42 @@
   ],
   "sync_digest": {
     "commit": {
-      "hash": "65616a9",
-      "subject": "chore: Reject-Module 头注释去掉 Reject-Extra",
+      "hash": "291f876",
+      "subject": "fix(adblock): Egern/Surge 合集别名同步 NB @keep 域名",
       "date": "2026-09-19"
     },
     "summary": [
+      "模块 更新 3 个文件",
       "国内直连 31751 条"
     ],
-    "files_changed": 1
+    "files_changed": 4
   },
   "changelog": [
+    {
+      "hash": "4673fda",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-09-19"
+    },
+    {
+      "hash": "730300e",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-09-19"
+    },
+    {
+      "hash": "c39d9d9",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-09-19"
+    },
+    {
+      "hash": "26817de",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-09-19"
+    },
+    {
+      "hash": "6c0174e",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-09-19"
+    },
     {
       "hash": "90fa1b5",
       "subject": "chore: publish curated snapshot from sync",
@@ -226,35 +252,10 @@
       "hash": "3ba1919",
       "subject": "chore: publish curated snapshot from sync",
       "date": "2026-09-19"
-    },
-    {
-      "hash": "77e61ae",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-09-19"
-    },
-    {
-      "hash": "48d39f2",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-09-19"
-    },
-    {
-      "hash": "29d1f62",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-09-18"
-    },
-    {
-      "hash": "171d4da",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-09-18"
-    },
-    {
-      "hash": "cb0a6f5",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-09-18"
     }
   ],
   "local_health": {
-    "checked": 125,
+    "checked": 126,
     "fail": 0,
     "broken_ids": []
   },
@@ -283,7 +284,7 @@
       "id": "routing",
       "name": "分流规则",
       "icon": "🔀",
-      "count": 37
+      "count": 38
     },
     {
       "id": "boxjs",
@@ -1664,6 +1665,25 @@
         "rule_set"
       ],
       "share_url": "https://oo226.github.io/egern-config/#id=Routing-Privacy-Reject",
+      "health": "ok"
+    },
+    {
+      "id": "Routing-Reject-Hot",
+      "kind": "rule",
+      "category": "routing",
+      "group": "国内/通用",
+      "name": "Reject-Hot",
+      "desc": "热点去广告（NB助手 / 得力开屏 SDK）",
+      "icon": "",
+      "path": "Routing/Reject-Hot.yaml",
+      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Reject-Hot.yaml",
+      "add_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Reject-Hot.yaml",
+      "usage_tier": "neutral",
+      "tags": [
+        "分流",
+        "rule_set"
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=Routing-Reject-Hot",
       "health": "ok"
     },
     {
@@ -4948,5 +4968,5 @@
       "health": "ok"
     }
   ],
-  "total": 236
+  "total": 237
 }
