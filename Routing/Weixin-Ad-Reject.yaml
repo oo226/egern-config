@@ -1,0 +1,17 @@
+# 微信公众号广告 REJECT（须排在 Direct-Priority 的 weixin/wxs DIRECT 之前）
+# 勿拦 short.weixin mmtls、/mp/s 正文；勿拒 wximg（正文图）
+# getappmsgad 勿 REJECT（客户端会改道）→ Map Local / 脚本在 Egern.yaml
+
+no_resolve: true
+
+domain_set:
+  - wxsmw.wxs.qq.com
+  - wxsnsdy.wxs.qq.com
+  - wxsnsdythumb.wxs.qq.com
+  - wxa.wxs.qq.com
+
+url_regex_set:
+  - '^https?://mp\.weixin\.qq\.com(?::\d+)?/mp/(jsmonitor|relatedsearchword|relatedarticle|searchkeywordreport|masonryfeed|cps_product_info|appmsgreport)'
+  - '^https?://mp\.weixin\.qq\.com(?::\d+)?/tp/datareport'
+  - '^https?://res\.wx\.qq\.com/a/wx[a-z]*/ad/'
+  - '^https?://dldir1\.qq\.com/weixin/.*/xad/'
