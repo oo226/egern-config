@@ -1,7 +1,7 @@
 # AUTO-EXPORTED from Routing/Reject-Merged.yaml
 # Format: Surge RULE-SET (no policy). scripts/export-surge-rulesets.py
 # Domain lines include extended-matching (SNI hit under always-real-ip / VIF).
-# Total entries: 138981
+# Total entries: 138982
 
 DOMAIN,1oavsblobprodcus350.blob.core.windows.net,extended-matching
 DOMAIN,2016.sina.cn,extended-matching
@@ -1179,6 +1179,7 @@ DOMAIN,sdapprecv.app.cntvwb.cn,extended-matching
 DOMAIN,sdfp.snssdk.com,extended-matching
 DOMAIN,sdk.51.la,extended-matching
 DOMAIN,sdk.m.youku.com,extended-matching
+DOMAIN,sdk.zhangyuyidong.cn,extended-matching
 DOMAIN,sdk.zsdfm.com,extended-matching
 DOMAIN,sdkapp.mobile.sina.cn,extended-matching
 DOMAIN,sdkapp.uve.weibo.com,extended-matching

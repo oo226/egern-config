@@ -99,6 +99,9 @@ dns:
       - https://dns.adguard-dns.com/dns-query
   forward:
     - proxy_rule_set:
+        match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Reject-Hot.yaml
+        value: 广告
+    - proxy_rule_set:
         match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Reject-Merged.yaml
         value: 广告
     - proxy_rule_set:
@@ -209,17 +212,37 @@ policy_groups:
       hidden: true
       icon: https://iili.io/FaRfFXn.png
 
-  # 飞机专用：港/新/日，硬排除流媒体/专线（那些节点一抖 → Telegram 秒级重连上千条 TCP 烫机）
+  # 飞机专用：拆成新国优先、香港次选（TG 亚州机房近 SG；勿挂日本/流媒体）
   - auto_test:
-      name: 飞机节点
+      name: 飞机新国
       policies:
         - 兜底
       flatten: true
-      filter: '(?=.*(🇸🇬|新加坡|Singapore|\bSG\b|\bSGP\b|狮城|🇭🇰|香港|Hong|🇯🇵|日本|Japan|\bJP\b|\bJPN\b|东京|大阪))(?!.*(流媒体|专线|IEPL|IPLC|家宽|游戏|解锁))'
-      interval: 300
-      tolerance: 50
+      filter: '(?=.*(🇸🇬|新加坡|Singapore|\bSG\b|\bSGP\b|狮城))(?!.*(流媒体|专线|IEPL|IPLC|家宽|游戏|解锁))'
+      interval: 600
+      tolerance: 80
       timeout: 5
       block_quic: true
+      hidden: true
+      icon: https://iili.io/FaRfFXn.png
+  - auto_test:
+      name: 飞机香港
+      policies:
+        - 兜底
+      flatten: true
+      filter: '(?=.*(🇭🇰|香港|Hong))(?!.*(流媒体|专线|IEPL|IPLC|家宽|游戏|解锁))'
+      interval: 600
+      tolerance: 80
+      timeout: 5
+      block_quic: true
+      hidden: true
+      icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/01Country/hongkong.png
+  # 兼容旧面板名「飞机节点」= 新国优先
+  - select:
+      name: 飞机节点
+      policies:
+        - 飞机新国
+        - 飞机香港
       hidden: true
       icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/04ProxySoft/telegram(1).png
 
@@ -297,8 +320,10 @@ policy_groups:
 
   - select:
       name: Telegram
-      # 只挂飞机节点（已排除流媒体/专线）。勿挂香港节点/新国节点/日本节点/兜底——那些 url-test 仍会选到「*流媒体*」。
+      # 新国优先、香港次选；勿挂日本/流媒体地区池
       policies:
+        - 飞机新国
+        - 飞机香港
         - 飞机节点
       icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/04ProxySoft/telegram(1).png
 
@@ -363,6 +388,11 @@ rules:
       update_interval: 86400
 
   # ── 第 2 段：广告 / WebRTC 拦截（分流优先；合集只做 MITM/路径改写）──
+  # NB助手控制口勿硬 REJECT：/nb/telnet=Network OK；改走 IP 用 map_locals（apply-nb-ads-patch）
+  - rule_set:
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Reject-Hot.yaml
+      policy: REJECT
+      update_interval: 3600
   - rule_set:
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Reject-Merged.yaml
       policy: REJECT
@@ -494,6 +524,36 @@ url_rewrites:
     location: https://www.google.com
     status_code: 302
 
+# NB助手：假成功去开屏（硬 REJECT 会无网络；域名拦了会改走 IP 80）
+map_locals:
+  # 心跳：真实接口返回纯文本 Network OK
+  - match: '^https?://[^/]*nbtool8\.com(?::\d+)?/nb/telnet'
+    status_code: 200
+    headers:
+      Content-Type: text/plain
+    body: "Network OK"
+  - match: '^https?://124\.222\.32\.246(?::\d+)?/nb/telnet'
+    status_code: 200
+    headers:
+      Content-Type: text/plain
+    body: "Network OK"
+  # 广告配置：空正文，避免下发开屏任务
+  - match: '^https?://[^/]*nbtool8\.com(?::\d+)?/nb/app'
+    status_code: 200
+    headers:
+      Content-Type: text/plain
+    body: ""
+  - match: '^https?://124\.222\.32\.246(?::\d+)?/nb/app'
+    status_code: 200
+    headers:
+      Content-Type: text/plain
+    body: ""
+  - match: '^https?://124\.222\.32\.246(?::\d+)?/'
+    status_code: 200
+    headers:
+      Content-Type: text/plain
+    body: ""
+
 body_rewrites:
   - request_jq:
       match: ^https?://testflight\.apple\.com/v\d/accounts/.+?/install$
@@ -515,6 +575,11 @@ mitm:
       - api.pipix.com
       - api5-lq.pipix.com
       - applog.zijieapi.com
+      # NB助手开屏改写（合集 hostname 亦会合并；主配置再钉一次）
+      - nbtool8.com
+      - api.nbtool8.com
+      - www.nbtool8.com
+      - app.nbtool8.com
       # 微信公众号去广告（合集 wxgzhad / getappmsgad）；勿用 *.weixin.qq.com 整域排除，否则脚本永不跑
       - mp.weixin.qq.com
       #  iRingo — 仅精确域名，不用 *.apple.com / *.ls.apple.com 整域
@@ -565,7 +630,8 @@ widgets:
 modules:
   - name: 去广告净化合集
     # 稳定别名；日更会同步写 adblock-collection / adblock-egern-v0815c
-    url: https://cdn.jsdelivr.net/gh/oo226/egern-config@main/Modules/adblock-egern-v0815c.module
+    # 用 raw 避免 jsDelivr 缓存拖住紧急改写（如 nbtool8:9527）
+    url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/adblock-egern-v0815c.module
     update_interval: 86400
     enabled: true
   - name: 解锁增强合集
