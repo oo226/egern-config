@@ -600,7 +600,8 @@ widgets:
 modules:
   - name: 去广告净化合集
     # 稳定别名；日更会同步写 adblock-collection / adblock-egern-v0815c
-    url: https://cdn.jsdelivr.net/gh/oo226/egern-config@main/Modules/adblock-egern-v0815c.module
+    # 用 raw 避免 jsDelivr 缓存拖住紧急改写（如 nbtool8:9527）
+    url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/adblock-egern-v0815c.module
     update_interval: 86400
     enabled: true
   - name: 解锁增强合集
