@@ -1,6 +1,11 @@
 # 类型: 分流规则 — 本仓库手维护的去广告补全（不并入上游 Reject-Merged）
 # 原则：整域/关键词能 REJECT 的放这里；同域混业务的开屏走 Modules MITM+URL Rewrite
-# 得力e+：operate-manager OSS 纯素材桶 → 分流 REJECT；qt-api / 百川 SMB 见去广告合集
+# 得力e+ 抓包：operate-manager OSS + hzzfcm/66mobi/adn-plus SDK；qt-api/百川仍靠合集 MITM
 
 domain_keyword_set:
   - delicloud-operate-manager
+
+domain_suffix_set:
+  - hzzfcm.com
+  - 66mobi.com
+  - adn-plus.com.cn

@@ -99,6 +99,12 @@ dns:
       - https://dns.adguard-dns.com/dns-query
   forward:
     - proxy_rule_set:
+        match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Reject-Extra.yaml
+        value: 广告
+    - proxy_rule_set:
+        match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Reject-Module.yaml
+        value: 广告
+    - proxy_rule_set:
         match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Reject-Merged.yaml
         value: 广告
     - proxy_rule_set:
