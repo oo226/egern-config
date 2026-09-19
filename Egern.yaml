@@ -527,7 +527,7 @@ url_rewrites:
     location: https://www.google.com
     status_code: 302
 
-# NB助手 + 微信公众号 Map Local（须 MITM；勿空正文否则 NB「格式不正确」）
+# NB助手 + 微信公众号 Map Local（须 MITM；勿拦 /nb/app）
 map_locals:
   - match: '^https?://[^/]*nbtool8\.com(?::\d+)?/nb/telnet'
     status_code: 200
@@ -539,16 +539,6 @@ map_locals:
     headers:
       Content-Type: text/plain
     body: "Network OK"
-  - match: '^https?://[^/]*nbtool8\.com(?::\d+)?/nb/app'
-    status_code: 200
-    headers:
-      Content-Type: application/json
-    body: "{}"
-  - match: '^https?://124\.222\.32\.246(?::\d+)?/nb/app'
-    status_code: 200
-    headers:
-      Content-Type: application/json
-    body: "{}"
   - match: '^https?://mp\.weixin\.qq\.com(?::\d+)?/mp/getappmsgad'
     status_code: 200
     headers:
