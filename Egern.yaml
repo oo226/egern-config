@@ -371,13 +371,32 @@ rules:
       policy: DIRECT
       update_interval: 86400
 
-  # ── 微信公众号广告路径 + 素材 CDN：必须在 Direct-Priority（weixin/wxs DIRECT）之前 ──
-  # 否则整域 DIRECT 抢先；连接里只会看到 jsmonitor DIRECT 322B / wxsmw DIRECT
-  # wxsmw/wxsnsdy REJECT →「卡片在、里面黑」；勿拒 wximg（正文图）
-  - rule_set:
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Weixin-Ad-Reject.yaml
+  # ── 微信公众号广告：须在 Direct-Priority（weixin/wxs DIRECT）之前，勿再拆独立 rule_set ──
+  # 素材 CDN 拒了 → 卡片壳在、图/视频黑；勿拒 wximg（正文图）
+  - domain:
+      match: wxsmw.wxs.qq.com
       policy: REJECT
-      update_interval: 3600
+  - domain:
+      match: wxsnsdy.wxs.qq.com
+      policy: REJECT
+  - domain:
+      match: wxsnsdythumb.wxs.qq.com
+      policy: REJECT
+  - domain:
+      match: wxa.wxs.qq.com
+      policy: REJECT
+  - url_regex:
+      match: '^https?://mp\.weixin\.qq\.com(?::\d+)?/mp/(jsmonitor|relatedsearchword|relatedarticle|searchkeywordreport|masonryfeed|cps_product_info|appmsgreport)'
+      policy: REJECT
+  - url_regex:
+      match: '^https?://mp\.weixin\.qq\.com(?::\d+)?/tp/datareport'
+      policy: REJECT
+  - url_regex:
+      match: '^https?://res\.wx\.qq\.com/a/wx[a-z]*/ad/'
+      policy: REJECT
+  - url_regex:
+      match: '^https?://dldir1\.qq\.com/weixin/.*/xad/'
+      policy: REJECT
 
   - rule_set:
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Direct-Priority.yaml
@@ -534,9 +553,9 @@ url_rewrites:
     status_code: 302
 
 # NB助手：假成功去开屏（硬 REJECT 会无网络；域名拦了会改走 IP 80）
-# 微信公众号：getappmsgad / jsmonitor 等（须 MITM mp.weixin.qq.com）
-# 素材黑屏见 Weixin-Ad-Reject 的 wxsmw/wxsnsdy；勿整域拒 wxs.qq.com（正文图会灰）
-# 正则须兼容 :443 / http(s) / 无 query（否则 Map Local 不命中，连接里仍见 DIRECT 322B）
+# 微信公众号：getappmsgad / jsmonitor 等写在本文件（须 MITM mp.weixin.qq.com）
+# 素材黑屏见上方 wxsmw/wxsnsdy domain REJECT；勿整域拒 wxs（正文图会灰）
+# 正则须兼容 :443 / http(s) / 无 query
 map_locals:
   # 心跳：真实接口返回纯文本 Network OK
   - match: '^https?://[^/]*nbtool8\.com(?::\d+)?/nb/telnet'
@@ -571,8 +590,13 @@ map_locals:
     headers:
       Content-Type: application/json
     body: '{"advertisement_num":0,"advertisement_info":[]}'
-  # 监控 / 商品 / 相关推荐（勿要求 \?）
-  - match: '^https?://mp\.weixin\.qq\.com(?::\d+)?/mp/(cps_product_info|jsmonitor|masonryfeed|relatedarticle|relatedsearchword)'
+  # 监控 / 商品 / 相关推荐（勿要求 \?；与上方 url_regex REJECT 双保险）
+  - match: '^https?://mp\.weixin\.qq\.com(?::\d+)?/mp/(cps_product_info|jsmonitor|masonryfeed|relatedarticle|relatedsearchword|searchkeywordreport)'
+    status_code: 200
+    headers:
+      Content-Type: application/json
+    body: '{}'
+  - match: '^https?://mp\.weixin\.qq\.com(?::\d+)?/tp/datareport'
     status_code: 200
     headers:
       Content-Type: application/json
@@ -666,13 +690,9 @@ modules:
   - name: 去广告净化合集
     # 稳定别名；日更会同步写 adblock-collection / adblock-egern-v0815c
     # 用 raw 避免 jsDelivr 缓存拖住紧急改写（如 nbtool8:9527）
+    # 公众号广告：map_locals / scriptings / domain REJECT 已写在本文件，勿再挂独立模块
     url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/adblock-egern-v0815c.module
     update_interval: 86400
-    enabled: true
-  # 公众号去广告：原生 YAML（合集 Surge Map Local 偶发不命中 :443）
-  - name: 微信公众号去广告
-    url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/weixin-mp-ads.yaml
-    update_interval: 3600
     enabled: true
   - name: 解锁增强合集
     url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/unlock-collection.module
