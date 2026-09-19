@@ -53,6 +53,7 @@ MAP_LOCAL_BLOCK = r"""# NB助手：假成功去开屏（勿硬 REJECT；含 IP �
 
 EGERN_MAP_LOCALS = r"""# NB助手：假成功去开屏（硬 REJECT 会无网络；域名拦了会改走 IP 80）
 # 微信公众号：getappmsgad / jsmonitor 等（须 MITM mp.weixin.qq.com；勿整域拒 wxs.qq.com）
+# 正则须兼容 :443 / http(s) / 无 query（否则 Map Local 不命中，连接里仍见 DIRECT 322B）
 map_locals:
   # 心跳：真实接口返回纯文本 Network OK
   - match: '^https?://[^/]*nbtool8\.com(?::\d+)?/nb/telnet'
@@ -81,23 +82,33 @@ map_locals:
     headers:
       Content-Type: text/plain
     body: ""
-  # 微信公众号底栏广告
-  - match: '^https://mp\.weixin\.qq\.com/mp/getappmsgad'
+  # 微信公众号底栏/文中广告（空广告结构）
+  - match: '^https?://mp\.weixin\.qq\.com(?::\d+)?/mp/getappmsgad'
     status_code: 200
     headers:
       Content-Type: application/json
     body: '{"advertisement_num":0,"advertisement_info":[]}'
-  - match: '^https://mp\.weixin\.qq\.com/mp/(cps_product_info|jsmonitor|masonryfeed|relatedarticle)\?'
-    status_code: 200
-    headers:
-      Content-Type: application/json
-    body: '{}'
-  - match: '^https://mp\.weixin\.qq\.com/mp/relatedsearchword'
+  # 监控 / 商品 / 相关推荐（勿要求 \?）
+  - match: '^https?://mp\.weixin\.qq\.com(?::\d+)?/mp/(cps_product_info|jsmonitor|masonryfeed|relatedarticle|relatedsearchword)'
     status_code: 200
     headers:
       Content-Type: application/json
     body: '{}'
 """
+
+# Surge/合集 Map Local：公众号（与 chxm1023-ad-supplement 同源，合集日更后仍钉死）
+WEIXIN_MAP_LOCAL_BLOCK = r"""# 微信公众号：兼容 :443 / http(s) / 无 query（旧 \? 正则会漏命中）
+^https?:\/\/mp\.weixin\.qq\.com(:\d+)?\/mp\/getappmsgad data-type=text data="{\"advertisement_num\":0,\"advertisement_info\":[]}" status-code=200 header="Content-Type:application/json"
+^https?:\/\/mp\.weixin\.qq\.com(:\d+)?\/mp\/(cps_product_info|jsmonitor|masonryfeed|relatedarticle|relatedsearchword) data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+# 小程序广告素材（勿整域拒 wxs.qq.com）
+^http:\/\/\w+\.wxs\.qq\.com\/\d+\/\d+\/(snscosdownload|snssvpdownload)\/(SH|SZ)\/reserved\/\w+ data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+"""
+
+# 奶思残缺 Body Rewrite：把 advertisement 字面替换成 fmz200，会弄坏 JSON；改由 Map Local/脚本处理
+BROKEN_FMZ200_WX_LINE = (
+    r"^http-response \^https\?:\\/\\/mp\\.weixin\\.qq\\.com\\/mp\\/getappmsgad "
+    r"advertisement fmz200\n"
+)
 
 REJECT_HOT_TEMPLATE = r"""# 热点去广告（NB助手 SDK / 得力开屏 SDK）
 # 小表、优先于 Reject-Merged 加载，避免大表日更空窗导致广告回潮
@@ -161,21 +172,56 @@ def _strip_and_reject_nb(text: str) -> str:
 
 
 def _strip_nb_url_lines(section: str) -> str:
+    # Surge 正则里点号常写成 \. ，剥离时要匹配字面反斜杠
     patterns = (
         r"^# NB全能助手.*\n",
         r"^# 截图实锤.*\n",
         r"^# 接口是 text/plain.*\n",
         r"^# 控制口假成功.*\n",
         r"^# NB助手.*\n",
-        r"^.*nbtool8\.com.*\n",
-        r"^.*124\.222\.32\.246.*\n",
+        r"^.*nbtool8\\?\.com.*\n",
+        r"^.*124\\?\.222\\?\.32\\?\.246.*\n",
     )
     for pat in patterns:
         section = re.sub(pat, "", section, flags=re.M)
     return section
 
 
-def _ensure_section_block(text: str, section: str, block: str) -> str:
+def _strip_weixin_map_local_lines(section: str) -> str:
+    patterns = (
+        r"^# 微信公众号.*\n",
+        r"^# 公众号底栏.*\n",
+        r"^# getappmsgad：.*\n",
+        r"^# 小程序广告素材.*\n",
+        r"^.*mp\\?\.weixin\\?\.qq\\?\.com.*getappmsgad.*\n",
+        r"^.*mp\\?\.weixin\\?\.qq\\?\.com.*(cps_product_info|jsmonitor|masonryfeed|relatedarticle|relatedsearchword).*\n",
+        r"^.*wxs\\?\.qq\\?\.com.*snscosdownload.*\n",
+    )
+    for pat in patterns:
+        section = re.sub(pat, "", section, flags=re.M)
+    return section
+
+
+def _strip_map_local_managed(section: str) -> str:
+    """Strip both NB + WeChat Map Local lines we manage."""
+    return _strip_weixin_map_local_lines(_strip_nb_url_lines(section))
+
+
+MAP_LOCAL_COMBINED = WEIXIN_MAP_LOCAL_BLOCK + MAP_LOCAL_BLOCK
+
+
+def _strip_broken_fmz200_wx(text: str) -> str:
+    return re.sub(BROKEN_FMZ200_WX_LINE, "", text, flags=re.M)
+
+
+def _ensure_section_block(
+    text: str,
+    section: str,
+    block: str,
+    *,
+    stripper=_strip_nb_url_lines,
+    prepend: bool = True,
+) -> str:
     m = re.search(rf"^\[{re.escape(section)}\]\s*$", text, re.M)
     if not m:
         mitm = re.search(r"^\[MITM\]\s*$", text, re.M)
@@ -187,20 +233,62 @@ def _ensure_section_block(text: str, section: str, block: str) -> str:
     rest = text[m.end() :]
     nxt = re.search(r"^\[(?:[A-Za-z][A-Za-z0-9 ]*)\]\s*$", rest, re.M)
     end = m.end() + (nxt.start() if nxt else len(rest))
-    body = _strip_nb_url_lines(text[m.end() : end])
+    body = stripper(text[m.end() : end])
     if section == "URL Rewrite" and "# 得力e+" in body:
         body = body.replace("# 得力e+", block + "\n# 得力e+", 1)
-    else:
+    elif prepend:
         body = "\n" + block + ("\n" if not body.startswith("\n") else "") + body.lstrip("\n")
+        if not body.endswith("\n"):
+            body += "\n"
+    else:
+        body = body.rstrip("\n") + "\n" + block
         if not body.endswith("\n"):
             body += "\n"
     return text[: m.end()] + body + text[end:]
 
 
+def _ensure_wxgzhad_script(text: str) -> str:
+    """Widen wxgzhad to getappmsgext + optional :port."""
+    widened = (
+        r"^https?:\/\/mp\.weixin\.qq\.com(:\d+)?\/mp\/(getappmsgad|getappmsgext),"
+    )
+
+    def _repl_named(m: re.Match[str]) -> str:
+        return m.group(1) + widened
+
+    text = re.sub(
+        r"(wxgzhad\s*=\s*type=http-response,\s*pattern=)\S+",
+        _repl_named,
+        text,
+    )
+
+    def _repl_http(m: re.Match[str]) -> str:
+        return (
+            m.group(1)
+            + r"(:\d+)?\/mp\/(getappmsgad|getappmsgext)"
+            + m.group(2)
+        )
+
+    text = re.sub(
+        r"(http-response \^https\?:\\/\\/mp\\.weixin\\.qq\\.com)"
+        r"(?:\(:\\d\+\?\))?\\/mp\\/(?:\(getappmsgad\|getappmsgext\)|getappmsgad)(\s)",
+        _repl_http,
+        text,
+    )
+    return text
+
+
 def patch_module_text(text: str) -> str:
     text = _strip_and_reject_nb(text)
+    text = _strip_broken_fmz200_wx(text)
+    text = _ensure_wxgzhad_script(text)
     text = _ensure_section_block(text, "URL Rewrite", URL_REWRITE_BLOCK)
-    text = _ensure_section_block(text, "Map Local", MAP_LOCAL_BLOCK)
+    text = _ensure_section_block(
+        text,
+        "Map Local",
+        MAP_LOCAL_COMBINED,
+        stripper=_strip_map_local_managed,
+    )
     note = (
         "# NB 控制口勿 AND REJECT：/nb/telnet=Network OK；"
         "域名拦了会改走 124.222.32.246:80\n"
@@ -266,6 +354,22 @@ def ensure_egern_yaml() -> None:
             raise SystemExit("Egern.yaml: cannot find insert point for map_locals")
         text = text[: anchor.start()] + EGERN_MAP_LOCALS + "\n" + text[anchor.start() :]
 
+    # Ensure native WeChat ad module is listed (after 去广告合集)
+    if "weixin-mp-ads.yaml" not in text:
+        text = re.sub(
+            r"(url: https://raw\.githubusercontent\.com/oo226/egern-config/refs/heads/main/Modules/adblock-egern-v0815c\.module\n"
+            r"    update_interval: 86400\n"
+            r"    enabled: true\n)",
+            r"\1"
+            r"  # 公众号去广告：原生 YAML（合集 Surge Map Local 偶发不命中 :443）\n"
+            r"  - name: 微信公众号去广告\n"
+            r"    url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/weixin-mp-ads.yaml\n"
+            r"    update_interval: 3600\n"
+            r"    enabled: true\n",
+            text,
+            count=1,
+        )
+
     _write_if_changed(EGERN_YAML, text)
 
 
@@ -321,6 +425,10 @@ def verify() -> None:
         errors.append("Egern.yaml missing map_locals Network OK")
     if ey.count("map_locals:") != 1:
         errors.append("Egern.yaml map_locals count != 1")
+    if "(?::\\d+)?" not in ey or "getappmsgad" not in ey:
+        errors.append("Egern.yaml WeChat map_locals missing :443-safe pattern")
+    if "weixin-mp-ads.yaml" not in ey:
+        errors.append("Egern.yaml missing weixin-mp-ads module")
     if re.search(r"dest_port:\s*\n\s*match:\s*[\"']9527[\"']", ey):
         errors.append("Egern.yaml still hard-rejects dest_port 9527")
     rh = REJECT_HOT.read_text(encoding="utf-8")
@@ -334,6 +442,10 @@ def verify() -> None:
             errors.append(f"{path.name} missing Network OK / IP")
         if "DST-PORT,9527" in t:
             errors.append(f"{path.name} still has DST-PORT 9527 REJECT")
+        if "advertisement fmz200" in t:
+            errors.append(f"{path.name} still has broken fmz200 WeChat body rewrite")
+        if r"mp\.weixin\.qq\.com(:\d+)?" not in t:
+            errors.append(f"{path.name} missing :443-safe WeChat Map Local")
     if errors:
         raise SystemExit("apply-nb-ads-patch verify failed:\n- " + "\n- ".join(errors))
     print("apply-nb-ads-patch: ok")

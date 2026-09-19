@@ -64,6 +64,8 @@ merge:
     - "DOMAIN,wximg.wxs.qq.com,REJECT"
     - "DOMAIN,wxsmw.wxs.qq.com,REJECT"
     - "DOMAIN,wxa.wxs.qq.com,REJECT"
+    # 奶思残缺 Body Rewrite：advertisement→fmz200 会弄坏 JSON
+    - "http-response ^https?:\\/\\/mp\\.weixin\\.qq\\.com\\/mp\\/getappmsgad advertisement fmz200"
   script_url_fixes:
     # limbopro 上游 cnys.js 已从仓库删除，回退到通用脚本
     "https://raw.githubusercontent.com/limbopro/Adblock4limbo/main/Adguard/cnys.js": "https://raw.githubusercontent.com/limbopro/Adblock4limbo/main/Adguard/Adblock4limbo.js"
