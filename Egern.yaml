@@ -515,6 +515,8 @@ mitm:
       - api.pipix.com
       - api5-lq.pipix.com
       - applog.zijieapi.com
+      # 微信公众号去广告（合集 wxgzhad / getappmsgad）；勿用 *.weixin.qq.com 整域排除，否则脚本永不跑
+      - mp.weixin.qq.com
       #  iRingo — 仅精确域名，不用 *.apple.com / *.ls.apple.com 整域
       - weatherkit.apple.com
       - configuration.ls.apple.com
@@ -523,8 +525,13 @@ mitm:
       - gspe1-ssl.ls.apple.com
       - dispatcher.is.autonavi.com
     excludes:
+      # 仅排除聊天短链，保留 mp.weixin.qq.com 给公众号去广告（Surge 同理不整域排除）
+      - short.weixin.qq.com
+      - extshort.weixin.qq.com
+      - minorshort.weixin.qq.com
+      - szshort.weixin.qq.com
+      - "*.long.weixin.qq.com"
       - "*.wechat.com"
-      - "*.weixin.qq.com"
       - "*.alipay.com"
       - "*.alipayobjects.com"
       - "*.microsoft.com"
