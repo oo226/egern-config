@@ -1,5 +1,5 @@
 #!name=去广告合集
-#!desc=微信路径REJECT已前置Direct-Priority·强制更新主配置+合集
+#!desc=微信公众号Map Local已加固(:443)+getappmsgext·强制更新本模块
 #!author=奶思[https://github.com/fmz200]
 #!icon=https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/AdblockPlus.png
 #!category=奶思的模块
@@ -3829,6 +3829,7 @@ hostname - reject
 
 
 
+
 # NB全能助手 / NB Pro — 官方域名开屏与广告接口（须匹配 :端口，否则 9527/nb/app 漏网）
 ^https?:\/\/(api\.|www\.|app\.)?nbtool8\.com(:\d+)?\/.*(splash|startup|launch|open[Ss]creen|welcome|banner|popup|promo|advert|/ad/|/ads/) - reject-dict
 ^https?:\/\/[^:/]*nbtool8\.com(:\d+)?\/.*(splash|startup|launch|banner|popup|advert|/ad/|/ads/) - reject-dict
@@ -4971,10 +4972,10 @@ http-response ^https?:\/\/app\.zhuanzhuan\.com\/zz\/v2\/zzinfoshow\/getchoicegoo
 # >>>>>>>>>>>>>>> 🟣 <<<<<<<<<<<<<<
 
 [Map Local]
-# 微信公众号：兼容 :443 / http(s) / 无 query（旧 \? 正则会漏命中）
+# 微信公众号：兼容 :443 / http(s) / 无 query（旧 \? 正则会漏命中；对齐 QingRex）
 ^https?:\/\/mp\.weixin\.qq\.com(:\d+)?\/mp\/getappmsgad data-type=text data="{\"advertisement_num\":0,\"advertisement_info\":[]}" status-code=200 header="Content-Type:application/json"
 ^https?:\/\/mp\.weixin\.qq\.com(:\d+)?\/mp\/(cps_product_info|jsmonitor|masonryfeed|relatedarticle|relatedsearchword) data-type=text data="{}" status-code=200 header="Content-Type:application/json"
-# 小程序广告素材（勿整域拒 wxs.qq.com）
+# 小程序广告素材路径兜底（整域 wxs 见 Reject-Hot）
 ^http:\/\/\w+\.wxs\.qq\.com\/\d+\/\d+\/(snscosdownload|snssvpdownload)\/(SH|SZ)\/reserved\/\w+ data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 # NB助手：假成功去开屏（勿硬 REJECT；含 IP 绕过 124.222.32.246）
 ^https?:\/\/[^:/]*nbtool8\.com(:\d+)?\/nb\/telnet data-type=text data="Network OK" status-code=200 header="Content-Type:text/plain"
