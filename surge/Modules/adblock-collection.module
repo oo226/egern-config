@@ -1,5 +1,5 @@
 #!name=去广告合集（Surge）
-#!desc=heat15 202609190427 · 防烫补丁 · 含皮皮虾 · apply-surge-heat-patch
+#!desc=heat15 202609190431 · 防烫补丁 · 含皮皮虾 · apply-surge-heat-patch
 #!author=奶思[https://github.com/fmz200]
 #!icon=https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/AdblockPlus.png
 #!category=奶思的模块
@@ -14,7 +14,7 @@
 
 
 
-# UPDATE-MARKER heat15-202609190427
+# UPDATE-MARKER heat15-202609190431
 
 # AUTO-MERGED by scripts/merge-adblock-modules.py (Surge copy)
 # 类型: 模块 — Surge 专用去广告合集（完整副本，含皮皮虾）
@@ -3950,7 +3950,7 @@ DOMAIN-SUFFIX,zhangyuyidong.cn,REJECT,pre-matching
 DOMAIN,open.e.kuaishou.cn,REJECT,pre-matching
 DOMAIN,sdk.zhangyuyidong.cn,REJECT,pre-matching
 DOMAIN,v66-ad.ndcjl.com,REJECT,pre-matching
-# 得力e+ 开屏素材桶（用户抓包 delicloud-operate-manager.oss-*.aliyuncs.com）
+# 得力e+ 素材桶：分流优先见 Routing/Reject-Extra.yaml；模块内再 REJECT 一层兜底
 DOMAIN-KEYWORD,delicloud-operate-manager,REJECT,pre-matching
 
 # >>> merged from fmz200-extra (unique only)
@@ -6865,7 +6865,7 @@ hostname - reject
 ^https?:\/\/(api\.|www\.|app\.)?nbtool8\.com\/.*(splash|startup|launch|open[Ss]creen|welcome|banner|popup|promo|advert|/ad/|/ads/) - reject-dict
 ^https?:\/\/[^/]*nbtool8\.com\/.*(splash|startup|launch|banner|popup|advert|/ad/|/ads/) - reject-dict
 
-# 得力e+（抓包：qt-api.delicloud.com + 百川 SMB + 750×1624 开屏图走 alicdn）
+# 得力e+ 混业务接口（不能整域 REJECT）→ MITM 路径级；百川 SMB 同域淘宝 H5
 ^https?:\/\/qt-api\.delicloud\.com\/.*(splash|startup|launch|open[Ss]creen|welcome|banner|popup|promo|advert|/ad/|/ads/|operate) - reject-dict
 ^https?:\/\/[^/]*\.delicloud\.com\/.*(splash|startup|launch|banner|popup|advert|/ad/|operate) - reject-dict
 ^https?:\/\/h5api\.m\.taobao\.com\/h5\/mtop\.taobao\.baichuan\.smb\.get - reject-dict

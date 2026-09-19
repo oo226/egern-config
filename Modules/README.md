@@ -6,6 +6,8 @@
 
 **模块**通过 URL Rewrite、MITM、Script 拦截 App 内广告和开屏。
 
+**分流 vs 模块：** 整域都是广告 → `Routing/Reject-Merged.yaml` / `Reject-Extra.yaml` 直接 REJECT（更快、不用证书）。同域混业务（公众号、淘宝 H5、App 自己的 API）才需要合集 MITM 按路径改写。去广告合集里大量 `DOMAIN,REJECT` 与分流表有重叠，是上游模块自带的兜底。
+
 ## 文件对照
 
 | 文件 | 中文名 | 说明 |
