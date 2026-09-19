@@ -1,0 +1,33 @@
+# 热点去广告（NB助手 / 得力开屏 SDK）
+# 小表、优先于 Reject-Merged 加载，避免大表日更空窗导致广告回潮
+# 完整清单仍在 Reject-Merged；此处为双层兜底
+
+no_resolve: true
+domain_set:
+  - open.e.kuaishou.cn
+  - sdk.zhangyuyidong.cn
+  - v66-ad.ndcjl.com
+domain_suffix_set:
+  - 66mobi.com
+  - adintl.cn
+  - adkwai.com
+  - adn-plus.com.cn
+  - adukwai.com
+  - api-cfg.8ziben.com
+  - api-dsp.8ziben.com
+  - api-events.8ziben.com
+  - bugly.qq.com
+  - cdnhwc8.com
+  - ctyunxs.cn
+  - e.kuaishou.com
+  - eos.huhehaote-8.cmecloud.cn
+  - gepush.com
+  - gifshow.com
+  - hzzfcm.com
+  - static-dsp.8ziben.com
+  - static.fliduo.cn
+  - yximgs.com
+  - yxings.com
+  - zhangyuyidong.cn
+domain_keyword_set:
+  - delicloud-operate-manager

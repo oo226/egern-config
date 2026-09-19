@@ -99,6 +99,9 @@ dns:
       - https://dns.adguard-dns.com/dns-query
   forward:
     - proxy_rule_set:
+        match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Reject-Hot.yaml
+        value: 广告
+    - proxy_rule_set:
         match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Reject-Merged.yaml
         value: 广告
     - proxy_rule_set:
@@ -209,17 +212,37 @@ policy_groups:
       hidden: true
       icon: https://iili.io/FaRfFXn.png
 
-  # 飞机专用：只港/新，硬排除流媒体/专线；勿挂日本——TG 亚州机房多在 SG，绕 JP 易抖 → 秒级重连烫机
+  # 飞机专用：拆成新国优先、香港次选（TG 亚州机房近 SG；勿挂日本/流媒体）
   - auto_test:
-      name: 飞机节点
+      name: 飞机新国
       policies:
         - 兜底
       flatten: true
-      filter: '(?=.*(🇸🇬|新加坡|Singapore|\bSG\b|\bSGP\b|狮城|🇭🇰|香港|Hong))(?!.*(流媒体|专线|IEPL|IPLC|家宽|游戏|解锁|🇯🇵|日本|Japan|\bJP\b|\bJPN\b|东京|大阪))'
+      filter: '(?=.*(🇸🇬|新加坡|Singapore|\bSG\b|\bSGP\b|狮城))(?!.*(流媒体|专线|IEPL|IPLC|家宽|游戏|解锁))'
       interval: 600
       tolerance: 80
       timeout: 5
       block_quic: true
+      hidden: true
+      icon: https://iili.io/FaRfFXn.png
+  - auto_test:
+      name: 飞机香港
+      policies:
+        - 兜底
+      flatten: true
+      filter: '(?=.*(🇭🇰|香港|Hong))(?!.*(流媒体|专线|IEPL|IPLC|家宽|游戏|解锁))'
+      interval: 600
+      tolerance: 80
+      timeout: 5
+      block_quic: true
+      hidden: true
+      icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/01Country/hongkong.png
+  # 兼容旧面板名「飞机节点」= 新国优先
+  - select:
+      name: 飞机节点
+      policies:
+        - 飞机新国
+        - 飞机香港
       hidden: true
       icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/04ProxySoft/telegram(1).png
 
@@ -297,8 +320,10 @@ policy_groups:
 
   - select:
       name: Telegram
-      # 只挂飞机节点（港/新、已排除流媒体/专线/日本）。勿挂地区池——url-test 仍会选到「*流媒体*」或绕 JP。
+      # 新国优先、香港次选；勿挂日本/流媒体地区池
       policies:
+        - 飞机新国
+        - 飞机香港
         - 飞机节点
       icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/04ProxySoft/telegram(1).png
 
@@ -363,6 +388,11 @@ rules:
       update_interval: 86400
 
   # ── 第 2 段：广告 / WebRTC 拦截（分流优先；合集只做 MITM/路径改写）──
+  # Reject-Hot：NB/得力等热点，短间隔；Reject-Merged：全量
+  - rule_set:
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Reject-Hot.yaml
+      policy: REJECT
+      update_interval: 3600
   - rule_set:
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Reject-Merged.yaml
       policy: REJECT
@@ -515,6 +545,11 @@ mitm:
       - api.pipix.com
       - api5-lq.pipix.com
       - applog.zijieapi.com
+      # NB助手开屏改写（合集 hostname 亦会合并；主配置再钉一次）
+      - nbtool8.com
+      - api.nbtool8.com
+      - www.nbtool8.com
+      - app.nbtool8.com
       # 微信公众号去广告（合集 wxgzhad / getappmsgad）；勿用 *.weixin.qq.com 整域排除，否则脚本永不跑
       - mp.weixin.qq.com
       #  iRingo — 仅精确域名，不用 *.apple.com / *.ls.apple.com 整域
