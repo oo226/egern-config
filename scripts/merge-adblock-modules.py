@@ -724,7 +724,8 @@ def main() -> None:
         output_path.write_text(new_text, encoding="utf-8")
         print(
             f"divert Rule DOMAIN/IP REJECT: diverted={stats['diverted']} "
-            f"kept={stats['kept_rule']} new={sum(len(v) for v in new_sets.values())}"
+            f"kept={stats['kept_rule']} dual={stats.get('kept_dual', 0)} "
+            f"new={sum(len(v) for v in new_sets.values())}"
         )
         if not strip_only:
             n = merge_into_reject_merged(new_sets)
