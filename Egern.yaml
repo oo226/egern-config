@@ -669,7 +669,7 @@ modules:
   - name: 去广告净化合集
     # 稳定别名；日更会同步写 adblock-collection / adblock-egern-v0815c
     # 用 raw 避免 jsDelivr 缓存拖住紧急改写（如 nbtool8:9527）
-    # 公众号广告：map_locals / scriptings / domain REJECT 已写在本文件，勿再挂独立模块
+    # 公众号广告：Map Local/脚本在本文件；分流见 Weixin-Ad-Reject（Direct-Priority 前）
     url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/adblock-egern-v0815c.module
     update_interval: 86400
     enabled: true
