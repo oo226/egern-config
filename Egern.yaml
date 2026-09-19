@@ -99,9 +99,6 @@ dns:
       - https://dns.adguard-dns.com/dns-query
   forward:
     - proxy_rule_set:
-        match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Reject-Extra.yaml
-        value: 广告
-    - proxy_rule_set:
         match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Reject-Module.yaml
         value: 广告
     - proxy_rule_set:
@@ -369,10 +366,6 @@ rules:
       update_interval: 86400
 
   # ── 第 2 段：广告 / WebRTC 拦截（分流优先；合集只做 MITM/路径改写）──
-  - rule_set:
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Reject-Extra.yaml
-      policy: REJECT
-      update_interval: 86400
   - rule_set:
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Reject-Module.yaml
       policy: REJECT
