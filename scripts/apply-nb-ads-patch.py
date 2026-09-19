@@ -5,11 +5,11 @@ Daily merge rebuilds Modules/adblock-collection.module from upstream + supplemen
 custom-apps.sgmodule is local:true (source of truth), but heat/finalize and accidental
 hard REJECT can still drift. This script forces:
 
-1. custom-apps Map Local / URL Rewrite（telnet=Network OK；/nb/app={} JSON，禁空正文）
+1. custom-apps Map Local / URL Rewrite（仅 telnet=Network OK；禁止拦 /nb/app）
 2. Egern.yaml 原生 map_locals（合集 Surge Map Local 在 Egern 偶发不命中）
 3. 去广告合集 Map Local + wxgzhad
 4. Reject-Hot：SDK + QingRex 同款 wxs.qq.com（须在 Direct-Priority 前）
-5. 主配置不挂独立微信模块
+5. 主配置不挂独立微信模块；另提供 Modules/nb-weixin-fix.yaml 供不拉主配置时手动加
 
 Wire after apply-surge-heat-patch.py, before finalize-egern-adblock.py.
 """
@@ -29,25 +29,20 @@ ADBLOCK_FILES = (
     ROOT / "surge" / "Modules" / "adblock-collection.module",
 )
 
-URL_REWRITE_BLOCK = r"""# NB全能助手 / NB Pro — 开屏广告路径拒掉；控制口假成功（勿空抓全部）
+URL_REWRITE_BLOCK = r"""# NB全能助手 / NB Pro — 只拒开屏广告路径；控制口仅假 telnet（勿拦 /nb/app，否则「格式不正确」）
 ^https?:\/\/(api\.|www\.|app\.)?nbtool8\.com(:\d+)?\/.*(splash|startup|launch|open[Ss]creen|welcome|banner|popup|promo|advert|/ad/|/ads/) - reject-dict
 ^https?:\/\/[^:/]*nbtool8\.com(:\d+)?\/.*(splash|startup|launch|banner|popup|advert|/ad/|/ads/) - reject-dict
-# telnet=Network OK；/nb/app 返回空 JSON（空正文会「格式不正确」）
 ^https?:\/\/[^:/]*nbtool8\.com(:\d+)?\/nb\/telnet data-type=text data="Network OK" status-code=200 header="Content-Type:text/plain"
 ^https?:\/\/124\.222\.32\.246(:\d+)?\/nb\/telnet data-type=text data="Network OK" status-code=200 header="Content-Type:text/plain"
-^https?:\/\/[^:/]*nbtool8\.com(:\d+)?\/nb\/app data-type=text data="{}" status-code=200 header="Content-Type:application/json"
-^https?:\/\/124\.222\.32\.246(:\d+)?\/nb\/app data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 """
 
-MAP_LOCAL_BLOCK = r"""# NB助手：假成功去开屏（勿硬 REJECT；勿用空正文；含 IP 绕过）
+MAP_LOCAL_BLOCK = r"""# NB助手：仅 telnet=Network OK（勿 Map Local /nb/app，空正文或 {} 都会导致客户端报格式错误）
 ^https?:\/\/[^:/]*nbtool8\.com(:\d+)?\/nb\/telnet data-type=text data="Network OK" status-code=200 header="Content-Type:text/plain"
 ^https?:\/\/124\.222\.32\.246(:\d+)?\/nb\/telnet data-type=text data="Network OK" status-code=200 header="Content-Type:text/plain"
-^https?:\/\/[^:/]*nbtool8\.com(:\d+)?\/nb\/app data-type=text data="{}" status-code=200 header="Content-Type:application/json"
-^https?:\/\/124\.222\.32\.246(:\d+)?\/nb\/app data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 """
 
 # Egern 原生 Map Local（合集 Surge 写法在 Egern 上偶发不命中；主配置钉死）
-EGERN_MAP_LOCALS = r"""# NB助手 + 微信公众号 Map Local（须 MITM；勿空正文否则 NB「格式不正确」）
+EGERN_MAP_LOCALS = r"""# NB助手 + 微信公众号 Map Local（须 MITM；勿拦 /nb/app）
 map_locals:
   - match: '^https?://[^/]*nbtool8\.com(?::\d+)?/nb/telnet'
     status_code: 200
@@ -59,16 +54,6 @@ map_locals:
     headers:
       Content-Type: text/plain
     body: "Network OK"
-  - match: '^https?://[^/]*nbtool8\.com(?::\d+)?/nb/app'
-    status_code: 200
-    headers:
-      Content-Type: application/json
-    body: "{}"
-  - match: '^https?://124\.222\.32\.246(?::\d+)?/nb/app'
-    status_code: 200
-    headers:
-      Content-Type: application/json
-    body: "{}"
   - match: '^https?://mp\.weixin\.qq\.com(?::\d+)?/mp/getappmsgad'
     status_code: 200
     headers:
@@ -418,8 +403,8 @@ def verify() -> None:
         errors.append("Egern.yaml missing map_locals Network OK")
     if ey.count("map_locals:") != 1:
         errors.append("Egern.yaml map_locals count != 1")
-    if 'body: "{}"' not in ey and "body: '{}'" not in ey:
-        errors.append("Egern.yaml /nb/app should return {} JSON not empty")
+    if 'body: "{}"' in ey and "nb/app" in ey:
+        errors.append("Egern.yaml must not Map Local /nb/app (causes NB format error)")
     if "getappmsgad" not in ey:
         errors.append("Egern.yaml missing WeChat getappmsgad map_local")
     if "ads-map-local.yaml" in ey or "weixin-mp-ads.yaml" in ey:
@@ -437,6 +422,8 @@ def verify() -> None:
         t = path.read_text(encoding="utf-8")
         if "Network OK" not in t or "124\\.222\\.32\\.246" not in t:
             errors.append(f"{path.name} missing Network OK / IP")
+        if re.search(r"nbtool8[^\n]*/nb/app|124\\.222\\.32\\.246[^\n]*/nb/app", t):
+            errors.append(f"{path.name} still Map Locals /nb/app (remove it)")
         if re.search(r"nbtool8[^\n]*data=\"\"|124\\.222\\.32\\.246[^\n]*data=\"\"", t):
             errors.append(f"{path.name} still has empty-body NB Map Local")
         if "DST-PORT,9527" in t:
