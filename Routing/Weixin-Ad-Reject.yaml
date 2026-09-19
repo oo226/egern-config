@@ -1,12 +1,11 @@
-# 微信公众号广告 / 埋点路径 REJECT（须排在 Direct-Priority 的 weixin.qq.com DIRECT 之前）
+# 微信公众号埋点 / 推荐路径 REJECT（须排在 Direct-Priority 的 weixin.qq.com DIRECT 之前）
 # 勿拦 short.weixin.qq.com/mmtls（聊天信令）与 /mp/s 正文
-# getappmsgext 含阅读赞评，勿 REJECT，改走 Map Local/脚本剥 advertisement_*
+# getappmsgad：勿 REJECT（客户端会改道）；空广告结构走 Map Local / 脚本
+# getappmsgext：含阅读赞评，勿 REJECT，脚本只剥 advertisement_*
 
 no_resolve: true
 url_regex_set:
-  # 文中/底栏广告接口
-  - '^https?://mp\.weixin\.qq\.com(?::\d+)?/mp/getappmsgad'
-  # 监控狂刷（截图 ↓322B DIRECT）
+  # 监控狂刷（命中后应 0ms + 本地响应，不再 DIRECT 322B）
   - '^https?://mp\.weixin\.qq\.com(?::\d+)?/mp/jsmonitor'
   # 「都在搜」/ 相关推荐 / 关键词上报
   - '^https?://mp\.weixin\.qq\.com(?::\d+)?/mp/relatedsearchword'
@@ -17,4 +16,6 @@ url_regex_set:
   # 数据上报
   - '^https?://mp\.weixin\.qq\.com(?::\d+)?/tp/datareport'
   - '^https?://mp\.weixin\.qq\.com(?::\d+)?/mp/appmsgreport'
-  - '^https?://mp\.weixin\.qq\.com(?::\d+)?/mp/appmsg_comment'
+  # 小程序/公众号广告素材 CDN（勿整域拒 wxs，只拦广告路径）
+  - '^https?://res\.wx\.qq\.com/a/wx[a-z]*/ad/'
+  - '^https?://dldir1\.qq\.com/weixin/.*/xad/'
