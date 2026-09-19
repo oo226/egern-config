@@ -15,7 +15,7 @@
 | `Privacy-Reject.yaml` | WebRTC 防护 | STUN / webrtc.org 拦截 |
 | `Lan.yaml` | 局域网 | 局域网直连 |
 | `China-Direct.yaml` | 国内直连 | **合并去重** — Direct+微信+B站+苹果中国+国内域名/IP/ASN+视频资源站+网盘点播 |
-| `Reject-Merged.yaml` | 去广告 | **统一** — 上游 Reject + 合集抽出的整域/IP REJECT（更新合集时请一并强制更新本表） |
+| `Reject-Merged.yaml` | 去广告 | **统一** — 上游 Reject + 合集抽出的整域/IP REJECT |
 | `Foreign/*.yaml` | 国外分流 | **按服务分开** — AI/Telegram/流媒体/游戏/兜底等 |
 
 备份（大改造前回滚点）：分支 `backup/adblock-before-rule-split-ac83`。

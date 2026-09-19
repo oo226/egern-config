@@ -3,7 +3,7 @@
 # Do not edit manually. Updated by GitHub Actions after upstream sync / adblock merge.
 #
 # Includes ~1255 unique hosts diverted from 去广告合集 [Rule] (DOMAIN/IP REJECT).
-# Total unique entries: 138982
+# Total unique entries: 138981
 
 no_resolve: true
 domain_set:
@@ -1183,7 +1183,6 @@ domain_set:
   - sdfp.snssdk.com
   - sdk.51.la
   - sdk.m.youku.com
-  - sdk.zhangyuyidong.cn
   - sdk.zsdfm.com
   - sdkapp.mobile.sina.cn
   - sdkapp.uve.weibo.com
