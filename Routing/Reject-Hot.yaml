@@ -1,9 +1,10 @@
-# 热点去广告（NB助手 / 得力开屏 SDK）
+# 热点去广告（NB助手 SDK / 得力开屏 SDK）
 # 小表、优先于 Reject-Merged 加载，避免大表日更空窗导致广告回潮
 # 完整清单仍在 Reject-Merged；此处为双层兜底
 #
-# NB：http://nbtool8.com:9527/nb/app 明文广告配置。Egern 上 URL Rewrite/Map Local
-# 对这条 DIRECT 明文常不触发（连接仍 DIRECT 200 + 正文）。分流 url_regex 硬拦。
+# NB 控制口（nbtool8.com:9527 / 硬编码 IP）不要进本表 REJECT：
+# /nb/telnet 返回 "Network OK"，硬拦会「无网络」；域名拦死后改走 IP:80。
+# 去开屏见 Egern.yaml map_locals + 合集 Map Local。
 
 no_resolve: true
 domain_set:
@@ -34,7 +35,3 @@ domain_suffix_set:
   - zhangyuyidong.cn
 domain_keyword_set:
   - delicloud-operate-manager
-url_regex_set:
-  # 截图：http://nbtool8.com:9527/nb/app → 须带 :端口，勿写成 .com/
-  - '^https?://[^/]*nbtool8\.com:\d+/'
-  - '^https?://[^/]*nbtool8\.com:\d+/nb/app'
