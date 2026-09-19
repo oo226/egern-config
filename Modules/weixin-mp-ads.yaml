@@ -1,27 +1,28 @@
 name: 微信公众号去广告
 description: |
-  原生 Egern Map Local + 脚本。兼容 URL 带 :443 / http(s)。
-  getappmsgad 空广告；getappmsgext 只剥 advertisement_*（保留阅读赞评）。
-  勿整域 REJECT wxs.qq.com（会误杀正文图）。
+  路径 REJECT（见 Routing/Weixin-Ad-Reject，须排在 weixin DIRECT 前）+ Map Local + 脚本。
+  getappmsgext 只剥 advertisement_*。勿整域 REJECT wxs / short.weixin mmtls。
 author: oo226/egern-config
 homepage: https://github.com/oo226/egern-config
 category: 去广告
+# 双保险：即使分流 REJECT 未命中，Map Local 仍可空掉广告接口
 map_locals:
-  # 底栏/文中广告接口：整段换成空广告结构
   - match: '^https?://mp\.weixin\.qq\.com(?::\d+)?/mp/getappmsgad'
     status_code: 200
     headers:
       Content-Type: application/json
     body: '{"advertisement_num":0,"advertisement_info":[]}'
-  # 监控 / 商品 / 相关推荐：空 JSON（勿要求 \?，兼容无 query / :443）
-  - match: '^https?://mp\.weixin\.qq\.com(?::\d+)?/mp/(cps_product_info|jsmonitor|masonryfeed|relatedarticle|relatedsearchword)'
+  - match: '^https?://mp\.weixin\.qq\.com(?::\d+)?/mp/(cps_product_info|jsmonitor|masonryfeed|relatedarticle|relatedsearchword|searchkeywordreport)'
+    status_code: 200
+    headers:
+      Content-Type: application/json
+    body: '{}'
+  - match: '^https?://mp\.weixin\.qq\.com(?::\d+)?/tp/datareport'
     status_code: 200
     headers:
       Content-Type: application/json
     body: '{}'
 scriptings:
-  # getappmsgext 含阅读赞评，不能 Map Local 整段清空；脚本只剥广告字段
-  # getappmsgad 双保险（Map Local 未命中时仍改写）
   - http_response:
       name: 微信公众号广告
       match: '^https?://mp\.weixin\.qq\.com(?::\d+)?/mp/(getappmsgad|getappmsgext)'
