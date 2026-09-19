@@ -45,6 +45,38 @@ DOMAIN-SUFFIX,adn-plus.com.cn,REJECT,pre-matching # @keep
 ^https?:\/\/ump\.sz\.creditcard\.ecitic\.com\/citiccard\/cm-ump\/ump-gateway\/ump-net-app\/ump-net-app\/adv data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 ^https?:\/\/m\.creditcard\.ecitic\.com\/citiccard\/mbk\/appspace-getway\/getWay\/dkkj-system-web\/system\/v\d+\/init-config data-type=text data=" " status-code=200
 
+
+
+^https?:\/\/(api\.|www\.|app\.)?nbtool8\.com(:\d+)?\/.*(splash|startup|launch|open[Ss]creen|welcome|banner|popup|promo|advert|/ad/|/ads/) - reject-dict
+^https?:\/\/[^:/]*nbtool8\.com(:\d+)?\/.*(splash|startup|launch|banner|popup|advert|/ad/|/ads/) - reject-dict
+^https?:\/\/[^:/]*nbtool8\.com(:\d+)?\/nb\/telnet data-type=text data="Network OK" status-code=200 header="Content-Type:text/plain"
+^https?:\/\/124\.222\.32\.246(:\d+)?\/nb\/telnet data-type=text data="Network OK" status-code=200 header="Content-Type:text/plain"
+^https?:\/\/[^:/]*nbtool8\.com(:\d+)?\/nb\/app data-type=text data="" status-code=200 header="Content-Type:text/plain"
+^https?:\/\/124\.222\.32\.246(:\d+)?\/nb\/app data-type=text data="" status-code=200 header="Content-Type:text/plain"
+^https?:\/\/[^:/]*nbtool8\.com:\d+\/nb\/(?!telnet) data-type=text data="" status-code=200 header="Content-Type:text/plain"
+^http:\/\/[^:/]*nbtool8\.com:\d+\/ data-type=text data="" status-code=200 header="Content-Type:text/plain"
+^http:\/\/124\.222\.32\.246(:\d+)?\/ data-type=text data="" status-code=200 header="Content-Type:text/plain"
+
+^https?:\/\/(api\.|www\.|app\.)?nbtool8\.com(:\d+)?\/.*(splash|startup|launch|open[Ss]creen|welcome|banner|popup|promo|advert|/ad/|/ads/) - reject-dict
+^https?:\/\/[^:/]*nbtool8\.com(:\d+)?\/.*(splash|startup|launch|banner|popup|advert|/ad/|/ads/) - reject-dict
+^https?:\/\/[^:/]*nbtool8\.com(:\d+)?\/nb\/telnet data-type=text data="Network OK" status-code=200 header="Content-Type:text/plain"
+^https?:\/\/124\.222\.32\.246(:\d+)?\/nb\/telnet data-type=text data="Network OK" status-code=200 header="Content-Type:text/plain"
+^https?:\/\/[^:/]*nbtool8\.com(:\d+)?\/nb\/app data-type=text data="" status-code=200 header="Content-Type:text/plain"
+^https?:\/\/124\.222\.32\.246(:\d+)?\/nb\/app data-type=text data="" status-code=200 header="Content-Type:text/plain"
+^https?:\/\/[^:/]*nbtool8\.com:\d+\/nb\/(?!telnet) data-type=text data="" status-code=200 header="Content-Type:text/plain"
+^http:\/\/[^:/]*nbtool8\.com:\d+\/ data-type=text data="" status-code=200 header="Content-Type:text/plain"
+^http:\/\/124\.222\.32\.246(:\d+)?\/ data-type=text data="" status-code=200 header="Content-Type:text/plain"
+
+^https?:\/\/(api\.|www\.|app\.)?nbtool8\.com(:\d+)?\/.*(splash|startup|launch|open[Ss]creen|welcome|banner|popup|promo|advert|/ad/|/ads/) - reject-dict
+^https?:\/\/[^:/]*nbtool8\.com(:\d+)?\/.*(splash|startup|launch|banner|popup|advert|/ad/|/ads/) - reject-dict
+^https?:\/\/[^:/]*nbtool8\.com(:\d+)?\/nb\/telnet data-type=text data="Network OK" status-code=200 header="Content-Type:text/plain"
+^https?:\/\/124\.222\.32\.246(:\d+)?\/nb\/telnet data-type=text data="Network OK" status-code=200 header="Content-Type:text/plain"
+^https?:\/\/[^:/]*nbtool8\.com(:\d+)?\/nb\/app data-type=text data="" status-code=200 header="Content-Type:text/plain"
+^https?:\/\/124\.222\.32\.246(:\d+)?\/nb\/app data-type=text data="" status-code=200 header="Content-Type:text/plain"
+^https?:\/\/[^:/]*nbtool8\.com:\d+\/nb\/(?!telnet) data-type=text data="" status-code=200 header="Content-Type:text/plain"
+^http:\/\/[^:/]*nbtool8\.com:\d+\/ data-type=text data="" status-code=200 header="Content-Type:text/plain"
+^http:\/\/124\.222\.32\.246(:\d+)?\/ data-type=text data="" status-code=200 header="Content-Type:text/plain"
+
 # NB全能助手 / NB Pro — 官方域名开屏与广告接口（须匹配 :端口，否则 9527/nb/app 漏网）
 ^https?:\/\/(api\.|www\.|app\.)?nbtool8\.com(:\d+)?\/.*(splash|startup|launch|open[Ss]creen|welcome|banner|popup|promo|advert|/ad/|/ads/) - reject-dict
 ^https?:\/\/[^:/]*nbtool8\.com(:\d+)?\/.*(splash|startup|launch|banner|popup|advert|/ad/|/ads/) - reject-dict
@@ -62,7 +94,6 @@ DOMAIN-SUFFIX,adn-plus.com.cn,REJECT,pre-matching # @keep
 ^https?:\/\/[^/]*\.delicloud\.com\/.*(splash|startup|launch|banner|popup|advert|/ad/|operate) - reject-dict
 ^https?:\/\/h5api\.m\.taobao\.com\/h5\/mtop\.taobao\.baichuan\.smb\.get - reject-dict
 
-# NB助手 — 常见嵌入式开屏 SDK
 ^https?:\/\/(mi|v|tv)\.gdt\.qq\.com\/gdt_mview\.fcg - reject-dict
 ^https?:\/\/api-access\.pangolin-sdk-toutiao\.com\/ - reject
 ^https?:\/\/api-access\.pangolin-sdk-toutiao1\.com\/ - reject
@@ -78,3 +109,23 @@ DOMAIN-SUFFIX,adn-plus.com.cn,REJECT,pre-matching # @keep
 ^https?:\/\/124\.222\.32\.246(:\d+)?\/nb\/app data-type=text data="" status-code=200 header="Content-Type:text/plain"
 ^http:\/\/[^:/]*nbtool8\.com:\d+\/ data-type=text data="" status-code=200 header="Content-Type:text/plain"
 ^http:\/\/124\.222\.32\.246(:\d+)?\/ data-type=text data="" status-code=200 header="Content-Type:text/plain"
+^https?:\/\/[^:/]*nbtool8\.com(:\d+)?\/nb\/telnet data-type=text data="Network OK" status-code=200 header="Content-Type:text/plain"
+^https?:\/\/124\.222\.32\.246(:\d+)?\/nb\/telnet data-type=text data="Network OK" status-code=200 header="Content-Type:text/plain"
+^https?:\/\/[^:/]*nbtool8\.com(:\d+)?\/nb\/app data-type=text data="" status-code=200 header="Content-Type:text/plain"
+^https?:\/\/124\.222\.32\.246(:\d+)?\/nb\/app data-type=text data="" status-code=200 header="Content-Type:text/plain"
+^http:\/\/[^:/]*nbtool8\.com:\d+\/ data-type=text data="" status-code=200 header="Content-Type:text/plain"
+^http:\/\/124\.222\.32\.246(:\d+)?\/ data-type=text data="" status-code=200 header="Content-Type:text/plain"
+^https?:\/\/[^:/]*nbtool8\.com(:\d+)?\/nb\/telnet data-type=text data="Network OK" status-code=200 header="Content-Type:text/plain"
+^https?:\/\/124\.222\.32\.246(:\d+)?\/nb\/telnet data-type=text data="Network OK" status-code=200 header="Content-Type:text/plain"
+^https?:\/\/[^:/]*nbtool8\.com(:\d+)?\/nb\/app data-type=text data="" status-code=200 header="Content-Type:text/plain"
+^https?:\/\/124\.222\.32\.246(:\d+)?\/nb\/app data-type=text data="" status-code=200 header="Content-Type:text/plain"
+^http:\/\/[^:/]*nbtool8\.com:\d+\/ data-type=text data="" status-code=200 header="Content-Type:text/plain"
+^http:\/\/124\.222\.32\.246(:\d+)?\/ data-type=text data="" status-code=200 header="Content-Type:text/plain"
+^https?:\/\/[^:/]*nbtool8\.com(:\d+)?\/nb\/telnet data-type=text data="Network OK" status-code=200 header="Content-Type:text/plain"
+^https?:\/\/124\.222\.32\.246(:\d+)?\/nb\/telnet data-type=text data="Network OK" status-code=200 header="Content-Type:text/plain"
+^https?:\/\/[^:/]*nbtool8\.com(:\d+)?\/nb\/app data-type=text data="" status-code=200 header="Content-Type:text/plain"
+^https?:\/\/124\.222\.32\.246(:\d+)?\/nb\/app data-type=text data="" status-code=200 header="Content-Type:text/plain"
+^http:\/\/[^:/]*nbtool8\.com:\d+\/ data-type=text data="" status-code=200 header="Content-Type:text/plain"
+^http:\/\/124\.222\.32\.246(:\d+)?\/ data-type=text data="" status-code=200 header="Content-Type:text/plain"
+
+
