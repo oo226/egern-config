@@ -209,15 +209,15 @@ policy_groups:
       hidden: true
       icon: https://iili.io/FaRfFXn.png
 
-  # 飞机专用：港/新/日，硬排除流媒体/专线（那些节点一抖 → Telegram 秒级重连上千条 TCP 烫机）
+  # 飞机专用：只港/新，硬排除流媒体/专线；勿挂日本——TG 亚州机房多在 SG，绕 JP 易抖 → 秒级重连烫机
   - auto_test:
       name: 飞机节点
       policies:
         - 兜底
       flatten: true
-      filter: '(?=.*(🇸🇬|新加坡|Singapore|\bSG\b|\bSGP\b|狮城|🇭🇰|香港|Hong|🇯🇵|日本|Japan|\bJP\b|\bJPN\b|东京|大阪))(?!.*(流媒体|专线|IEPL|IPLC|家宽|游戏|解锁))'
-      interval: 300
-      tolerance: 50
+      filter: '(?=.*(🇸🇬|新加坡|Singapore|\bSG\b|\bSGP\b|狮城|🇭🇰|香港|Hong))(?!.*(流媒体|专线|IEPL|IPLC|家宽|游戏|解锁|🇯🇵|日本|Japan|\bJP\b|\bJPN\b|东京|大阪))'
+      interval: 600
+      tolerance: 80
       timeout: 5
       block_quic: true
       hidden: true
@@ -297,7 +297,7 @@ policy_groups:
 
   - select:
       name: Telegram
-      # 只挂飞机节点（已排除流媒体/专线）。勿挂香港节点/新国节点/日本节点/兜底——那些 url-test 仍会选到「*流媒体*」。
+      # 只挂飞机节点（港/新、已排除流媒体/专线/日本）。勿挂地区池——url-test 仍会选到「*流媒体*」或绕 JP。
       policies:
         - 飞机节点
       icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/04ProxySoft/telegram(1).png
