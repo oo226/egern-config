@@ -1,6 +1,9 @@
 # 热点去广告（NB助手 / 得力开屏 SDK）
 # 小表、优先于 Reject-Merged 加载，避免大表日更空窗导致广告回潮
 # 完整清单仍在 Reject-Merged；此处为双层兜底
+#
+# NB：http://nbtool8.com:9527/nb/app 明文广告配置。Egern 上 URL Rewrite/Map Local
+# 对这条 DIRECT 明文常不触发（连接仍 DIRECT 200 + 正文）。分流 url_regex 硬拦。
 
 no_resolve: true
 domain_set:
@@ -31,3 +34,7 @@ domain_suffix_set:
   - zhangyuyidong.cn
 domain_keyword_set:
   - delicloud-operate-manager
+url_regex_set:
+  # 截图：http://nbtool8.com:9527/nb/app → 须带 :端口，勿写成 .com/
+  - '^https?://[^/]*nbtool8\.com:\d+/'
+  - '^https?://[^/]*nbtool8\.com:\d+/nb/app'
