@@ -145,6 +145,10 @@ jobs:
       - name: Re-apply Surge/Egern heat (防烫) patches
         run: python3 scripts/apply-surge-heat-patch.py
 
+      # 每日合并后回贴 NB 假成功（Network OK + IP 绕过）；勿硬 REJECT 控制口。
+      - name: Re-apply NB ads fake-ok patches
+        run: python3 scripts/apply-nb-ads-patch.py
+
       - name: Publish Egern adblock aliases + jsDelivr Map Local assets
         run: python3 scripts/finalize-egern-adblock.py
 

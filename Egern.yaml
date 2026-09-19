@@ -388,9 +388,7 @@ rules:
       update_interval: 86400
 
   # ── 第 2 段：广告 / WebRTC 拦截（分流优先；合集只做 MITM/路径改写）──
-  # NB助手控制口勿硬 REJECT：/nb/telnet 正文是 "Network OK"，拦了就「无网络」；
-  # 域名拦死后会改走 http://124.222.32.246/nb/app（默认 80）。用 map_locals 假成功。
-  # Reject-Hot：NB/得力等热点，短间隔；Reject-Merged：全量
+  # NB助手控制口勿硬 REJECT：/nb/telnet=Network OK；改走 IP 用 map_locals（apply-nb-ads-patch）
   - rule_set:
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Reject-Hot.yaml
       policy: REJECT
