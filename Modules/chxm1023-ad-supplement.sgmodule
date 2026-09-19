@@ -30,5 +30,14 @@ alidrive = type=http-response, pattern=^https?:\/\/api\.(aliyundrive|alipan)\.co
 # 小红书开屏/首页
 xiaohongshu = type=http-response, pattern=^https?:\/\/edith\.xiaohongshu\.com\/api\/sns\/v\d\/(system_service\/splash_config|homefeed\?|system_service\/config\?), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/chxm1023/advertising/xiaohongshu.js, requires-body=true, max-size=-1, timeout=60
 
+[Map Local]
+# 公众号底栏广告 / 监控 / 相关推荐（iEwha 同源；解锁合集合并未带 Map Local，这里钉死）
+# getappmsgad：空广告结构，与 wxgzhad 脚本双保险
+^https:\/\/mp\.weixin\.qq\.com\/mp\/getappmsgad data-type=text data="{\"advertisement_num\":0,\"advertisement_info\":[]}" status-code=200 header="Content-Type:application/json"
+^https:\/\/mp\.weixin\.qq\.com\/mp\/(cps_product_info|jsmonitor|masonryfeed|relatedarticle)\? data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+^https:\/\/mp\.weixin\.qq\.com\/mp\/relatedsearchword data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+# 小程序广告素材下载（勿整域拒 wxs.qq.com，只拦这条路径）
+^http:\/\/\w+\.wxs\.qq\.com\/\d+\/\d+\/(snscosdownload|snssvpdownload)\/(SH|SZ)\/reserved\/\w+ data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
 [MITM]
 hostname = %APPEND% redirector.googlevideo.com, *.googlevideo.com, www.youtube.com, s.youtube.com, youtubei.googleapis.com, vpic.cms.qq.com, a.weilai555.com, app-v1.ecoliving168.com, mp.weixin.qq.com, api.aliyundrive.com, api.alipan.com, edith.xiaohongshu.com

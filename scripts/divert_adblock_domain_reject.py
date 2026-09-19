@@ -27,6 +27,31 @@ from routing_list_utils import SET_KEYS, empty_sets, parse_egern_sets
 
 _IP_HOST_RE = re.compile(r"^\d{1,3}(?:\.\d{1,3}){3}$")
 
+# 整域 REJECT 会误杀业务 CDN；广告走路径级 Map Local / Script。
+# 勿再并入 Reject-Merged（日更 divert 也会跳过）。
+NEVER_REJECT_SUFFIXES = frozenset(
+    {
+        "wxs.qq.com",  # wximg/wxsmw 图床；公众号正文图依赖
+    }
+)
+NEVER_REJECT_DOMAINS = frozenset(
+    {
+        "wximg.wxs.qq.com",
+        "wxsmw.wxs.qq.com",
+        "wxa.wxs.qq.com",
+    }
+)
+
+
+def _is_never_reject(kind: str, value: str) -> bool:
+    """Hosts that must not land in Reject-Merged (path-level ads instead)."""
+    host = value.lower().strip()
+    if host in NEVER_REJECT_DOMAINS or host in NEVER_REJECT_SUFFIXES:
+        return True
+    if kind == "DOMAIN-SUFFIX" and host in NEVER_REJECT_SUFFIXES:
+        return True
+    return False
+
 
 def _is_ipv4_host(host: str) -> bool:
     if not _IP_HOST_RE.match(host):
@@ -122,6 +147,11 @@ def divert_module_text(
             continue
 
         kind, value = parsed
+        # 误杀业务 CDN：从合集剔除，且不进 Reject-Merged
+        if _is_never_reject(kind, value):
+            stats["skipped_covered"] += 1
+            continue
+
         # `# @keep` — still merge into Reject-Merged, but leave the line in the
         # module so更新合集 alone cannot open a gap if Reject-Merged is stale.
         keep_dual = "# @keep" in stripped

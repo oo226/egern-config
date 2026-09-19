@@ -52,6 +52,7 @@ MAP_LOCAL_BLOCK = r"""# NB助手：假成功去开屏（勿硬 REJECT；含 IP �
 """
 
 EGERN_MAP_LOCALS = r"""# NB助手：假成功去开屏（硬 REJECT 会无网络；域名拦了会改走 IP 80）
+# 微信公众号：getappmsgad / jsmonitor 等（须 MITM mp.weixin.qq.com；勿整域拒 wxs.qq.com）
 map_locals:
   # 心跳：真实接口返回纯文本 Network OK
   - match: '^https?://[^/]*nbtool8\.com(?::\d+)?/nb/telnet'
@@ -80,6 +81,22 @@ map_locals:
     headers:
       Content-Type: text/plain
     body: ""
+  # 微信公众号底栏广告
+  - match: '^https://mp\.weixin\.qq\.com/mp/getappmsgad'
+    status_code: 200
+    headers:
+      Content-Type: application/json
+    body: '{"advertisement_num":0,"advertisement_info":[]}'
+  - match: '^https://mp\.weixin\.qq\.com/mp/(cps_product_info|jsmonitor|masonryfeed|relatedarticle)\?'
+    status_code: 200
+    headers:
+      Content-Type: application/json
+    body: '{}'
+  - match: '^https://mp\.weixin\.qq\.com/mp/relatedsearchword'
+    status_code: 200
+    headers:
+      Content-Type: application/json
+    body: '{}'
 """
 
 REJECT_HOT_TEMPLATE = r"""# 热点去广告（NB助手 SDK / 得力开屏 SDK）
@@ -233,9 +250,9 @@ def ensure_egern_yaml() -> None:
         count=1,
     )
 
-    # Replace or insert map_locals (idempotent: wipe prior NB comments + block)
+    # Replace or insert map_locals (idempotent: wipe prior NB/微信 comments + block)
     text = re.sub(
-        r"(?:\n# NB助手：假成功去开屏[^\n]*\n)+map_locals:\n"
+        r"\n# NB助手：假成功去开屏[^\n]*\n(?:# [^\n]*\n)*map_locals:\n"
         r"(?:  .*\n)*",
         lambda _m: "\n" + EGERN_MAP_LOCALS,
         text,
