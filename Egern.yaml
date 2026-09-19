@@ -527,72 +527,12 @@ url_rewrites:
     location: https://www.google.com
     status_code: 302
 
-# NB助手：假成功去开屏（硬 REJECT 会无网络；域名拦了会改走 IP 80）
-# 微信公众号：getappmsgad Map Local + 脚本（须 MITM mp.weixin.qq.com）
-# 分流 REJECT 已并进 Reject-Hot（须在 Direct-Priority 前）；勿整域拒 wxs
-# 正则须兼容 :443 / http(s) / 无 query
-map_locals:
-  # 心跳：真实接口返回纯文本 Network OK
-  - match: '^https?://[^/]*nbtool8\.com(?::\d+)?/nb/telnet'
-    status_code: 200
-    headers:
-      Content-Type: text/plain
-    body: "Network OK"
-  - match: '^https?://124\.222\.32\.246(?::\d+)?/nb/telnet'
-    status_code: 200
-    headers:
-      Content-Type: text/plain
-    body: "Network OK"
-  # 广告配置：空正文，避免下发开屏任务
-  - match: '^https?://[^/]*nbtool8\.com(?::\d+)?/nb/app'
-    status_code: 200
-    headers:
-      Content-Type: text/plain
-    body: ""
-  - match: '^https?://124\.222\.32\.246(?::\d+)?/nb/app'
-    status_code: 200
-    headers:
-      Content-Type: text/plain
-    body: ""
-  - match: '^https?://124\.222\.32\.246(?::\d+)?/'
-    status_code: 200
-    headers:
-      Content-Type: text/plain
-    body: ""
-  # 微信公众号底栏/文中广告（空广告结构）
-  - match: '^https?://mp\.weixin\.qq\.com(?::\d+)?/mp/getappmsgad'
-    status_code: 200
-    headers:
-      Content-Type: application/json
-    body: '{"advertisement_num":0,"advertisement_info":[]}'
-  # 监控 / 商品 / 相关推荐（勿要求 \?；与上方 url_regex REJECT 双保险）
-  - match: '^https?://mp\.weixin\.qq\.com(?::\d+)?/mp/(cps_product_info|jsmonitor|masonryfeed|relatedarticle|relatedsearchword|searchkeywordreport)'
-    status_code: 200
-    headers:
-      Content-Type: application/json
-    body: '{}'
-  - match: '^https?://mp\.weixin\.qq\.com(?::\d+)?/tp/datareport'
-    status_code: 200
-    headers:
-      Content-Type: application/json
-    body: '{}'
-
+# Map Local / 微信脚本见模块 ads-map-local（油价仅 widgets，勿放 scriptings.generic）
 body_rewrites:
   - request_jq:
       match: ^https?://testflight\.apple\.com/v\d/accounts/.+?/install$
       filter: .storefrontId = "143441-19,29"
       disabled: true
-
-# 微信公众号：getappmsgext 含阅读赞评，分流不 REJECT；脚本只剥广告字段
-scriptings:
-  - http_response:
-      name: 微信公众号广告
-      match: '^https?://mp\.weixin\.qq\.com(?::\d+)?/mp/(getappmsgad|getappmsgext)'
-      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/chxm1023/advertising/wxgzhad.js
-      body_required: true
-      max_size: -1
-      timeout: 60
-      update_interval: 3600
 
 mitm:
   enabled: true
@@ -665,9 +605,13 @@ modules:
   - name: 去广告净化合集
     # 稳定别名；日更会同步写 adblock-collection / adblock-egern-v0815c
     # 用 raw 避免 jsDelivr 缓存拖住紧急改写（如 nbtool8:9527）
-    # 公众号广告：Map Local/脚本在本文件；分流 REJECT 并进 Reject-Hot
     url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/adblock-egern-v0815c.module
     update_interval: 86400
+    enabled: true
+  # NB开屏 + 微信公众号 Map Local / 脚本（分流 REJECT 在 Reject-Hot）
+  - name: 广告 Map Local
+    url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/ads-map-local.yaml
+    update_interval: 3600
     enabled: true
   - name: 解锁增强合集
     url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/unlock-collection.module
