@@ -125,7 +125,7 @@ modules:
     cache: custom-apps.sgmodule
     role: supplement
     local: true
-    note: "本仓库 — 银行/税务/NB助手 NBToolAds 补全"
+    note: "本仓库 — 银行/NB助手 + 墨鱼 NBProAds SDK/脚本补全"
 
   - name: limbopro-web-ads
     cache: limbopro-Adblock4limbo.sgmodule

@@ -1,9 +1,9 @@
 name: NB·微信修复
 description: |
-  不拉主配置也能用：只修 NB 控制口 + 微信公众号广告。
-  NB：仅 telnet=Network OK，不拦 /nb/app（拦了会「格式不正确」）。
+  不拉主配置也能用：NB 控制口 + NBPro 脚本 + 微信公众号。
+  NB：telnet=Network OK；/nb/app 用墨鱼脚本改广告（勿空 Map Local，否则「格式不正确」）。
   微信：空 getappmsgad + wxgzhad；素材 CDN 仍靠 Reject-Hot 的 wxs。
-author: oo226/egern-config
+author: oo226/egern-config + ddgksf2013
 homepage: https://github.com/oo226/egern-config
 category: 去广告
 
@@ -14,6 +14,21 @@ map_locals:
       Content-Type: text/plain
     body: "Network OK"
   - match: '^https?://124\.222\.32\.246(?::\d+)?/nb/telnet'
+    status_code: 200
+    headers:
+      Content-Type: text/plain
+    body: "Network OK"
+  - match: '^https?://117\.72\.39\.157(?::\d+)?/nb/telnet'
+    status_code: 200
+    headers:
+      Content-Type: text/plain
+    body: "Network OK"
+  - match: '^https?://47\.243\.71\.210(?::\d+)?/nb/telnet'
+    status_code: 200
+    headers:
+      Content-Type: text/plain
+    body: "Network OK"
+  - match: '^https?://cesapp\.goypzc\.cn(?::\d+)?/nb/telnet'
     status_code: 200
     headers:
       Content-Type: text/plain
@@ -31,6 +46,14 @@ map_locals:
 
 scriptings:
   - http_response:
+      name: NBPro去广告
+      match: '^https?://(?:[^/]*nbtool8\.com|124\.222\.32\.246|117\.72\.39\.157|47\.243\.71\.210|cesapp\.goypzc\.cn)(?::\d+)?/nb/app'
+      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/ddgksf2013/nbpro.ads.js
+      body_required: true
+      max_size: -1
+      timeout: 60
+      enabled: true
+  - http_response:
       name: 微信公众号广告
       match: '^https?://mp\.weixin\.qq\.com(?::\d+)?/mp/(getappmsgad|getappmsgext)'
       script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/chxm1023/advertising/wxgzhad.js
@@ -46,4 +69,8 @@ mitm:
       - api.nbtool8.com
       - www.nbtool8.com
       - app.nbtool8.com
+      - cesapp.goypzc.cn
+      - 124.222.32.246
+      - 117.72.39.157
+      - 47.243.71.210
       - mp.weixin.qq.com

@@ -1,15 +1,16 @@
 #!/usr/bin/env python3
-"""Re-apply NB助手假成功 + 微信公众号 patches after daily adblock merge.
+"""Re-apply NB助手假成功 + 微信公众号 + 墨鱼 NBProAds patches after daily adblock merge.
 
 Daily merge rebuilds Modules/adblock-collection.module from upstream + supplements.
 custom-apps.sgmodule is local:true (source of truth), but heat/finalize and accidental
 hard REJECT can still drift. This script forces:
 
 1. custom-apps Map Local / URL Rewrite（仅 telnet=Network OK；禁止拦 /nb/app）
-2. Egern.yaml 原生 map_locals（合集 Surge Map Local 在 Egern 偶发不命中）
-3. 去广告合集 Map Local + wxgzhad
-4. Reject-Hot：SDK + QingRex 同款 wxs.qq.com（须在 Direct-Priority 前）
-5. 主配置不挂独立微信模块；另提供 Modules/nb-weixin-fix.yaml 供不拉主配置时手动加
+2. /nb/app → nbpro-ads script-response-body（墨鱼 AES 改广告字段）
+3. Egern.yaml 原生 map_locals + NBPro scripting（合集 Surge 写法在 Egern 偶发不命中）
+4. 去广告合集 Map Local + wxgzhad + nbpro-ads
+5. Reject-Hot：SDK（含 NBProAds）+ QingRex 同款 wxs.qq.com（须在 Direct-Priority 前）
+6. 主配置不挂独立微信模块；另提供 Modules/nb-weixin-fix.yaml 供不拉主配置时手动加
 
 Wire after apply-surge-heat-patch.py, before finalize-egern-adblock.py.
 """
@@ -29,20 +30,33 @@ ADBLOCK_FILES = (
     ROOT / "surge" / "Modules" / "adblock-collection.module",
 )
 
-URL_REWRITE_BLOCK = r"""# NB全能助手 / NB Pro — 只拒开屏广告路径；控制口仅假 telnet（勿拦 /nb/app，否则「格式不正确」）
+URL_REWRITE_BLOCK = r"""# NB全能助手 / NB Pro — 只拒开屏路径；telnet 假成功；/nb/app 走脚本（墨鱼 NBProAds）
 ^https?:\/\/(api\.|www\.|app\.)?nbtool8\.com(:\d+)?\/.*(splash|startup|launch|open[Ss]creen|welcome|banner|popup|promo|advert|/ad/|/ads/) - reject-dict
 ^https?:\/\/[^:/]*nbtool8\.com(:\d+)?\/.*(splash|startup|launch|banner|popup|advert|/ad/|/ads/) - reject-dict
 ^https?:\/\/[^:/]*nbtool8\.com(:\d+)?\/nb\/telnet data-type=text data="Network OK" status-code=200 header="Content-Type:text/plain"
 ^https?:\/\/124\.222\.32\.246(:\d+)?\/nb\/telnet data-type=text data="Network OK" status-code=200 header="Content-Type:text/plain"
+^https?:\/\/117\.72\.39\.157(:\d+)?\/nb\/telnet data-type=text data="Network OK" status-code=200 header="Content-Type:text/plain"
+^https?:\/\/47\.243\.71\.210(:\d+)?\/nb\/telnet data-type=text data="Network OK" status-code=200 header="Content-Type:text/plain"
+^https?:\/\/cesapp\.goypzc\.cn(:\d+)?\/nb\/telnet data-type=text data="Network OK" status-code=200 header="Content-Type:text/plain"
 """
 
-MAP_LOCAL_BLOCK = r"""# NB助手：仅 telnet=Network OK（勿 Map Local /nb/app，空正文或 {} 都会导致客户端报格式错误）
+MAP_LOCAL_BLOCK = r"""# NB助手：仅 telnet=Network OK（/nb/app 用 nbpro-ads 脚本，勿空抓）
 ^https?:\/\/[^:/]*nbtool8\.com(:\d+)?\/nb\/telnet data-type=text data="Network OK" status-code=200 header="Content-Type:text/plain"
 ^https?:\/\/124\.222\.32\.246(:\d+)?\/nb\/telnet data-type=text data="Network OK" status-code=200 header="Content-Type:text/plain"
+^https?:\/\/117\.72\.39\.157(:\d+)?\/nb\/telnet data-type=text data="Network OK" status-code=200 header="Content-Type:text/plain"
+^https?:\/\/47\.243\.71\.210(:\d+)?\/nb\/telnet data-type=text data="Network OK" status-code=200 header="Content-Type:text/plain"
+^https?:\/\/cesapp\.goypzc\.cn(:\d+)?\/nb\/telnet data-type=text data="Network OK" status-code=200 header="Content-Type:text/plain"
 """
 
+NBPRO_SCRIPT_LINE = (
+    "nbpro-ads = type=http-response, pattern="
+    r"^https?:\/\/(?:[^:/]*nbtool8\.com|124\.222\.32\.246|117\.72\.39\.157|47\.243\.71\.210|cesapp\.goypzc\.cn)(?::\d+)?\/nb\/app"
+    ", script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/ddgksf2013/nbpro.ads.js"
+    ", requires-body=true, max-size=-1, timeout=60\n"
+)
+
 # Egern 原生 Map Local（合集 Surge 写法在 Egern 上偶发不命中；主配置钉死）
-EGERN_MAP_LOCALS = r"""# NB助手 + 微信公众号 Map Local（须 MITM；勿拦 /nb/app）
+EGERN_MAP_LOCALS = r"""# NB助手 + 微信公众号 Map Local（须 MITM；/nb/app 用脚本勿空抓）
 map_locals:
   - match: '^https?://[^/]*nbtool8\.com(?::\d+)?/nb/telnet'
     status_code: 200
@@ -50,6 +64,21 @@ map_locals:
       Content-Type: text/plain
     body: "Network OK"
   - match: '^https?://124\.222\.32\.246(?::\d+)?/nb/telnet'
+    status_code: 200
+    headers:
+      Content-Type: text/plain
+    body: "Network OK"
+  - match: '^https?://117\.72\.39\.157(?::\d+)?/nb/telnet'
+    status_code: 200
+    headers:
+      Content-Type: text/plain
+    body: "Network OK"
+  - match: '^https?://47\.243\.71\.210(?::\d+)?/nb/telnet'
+    status_code: 200
+    headers:
+      Content-Type: text/plain
+    body: "Network OK"
+  - match: '^https?://cesapp\.goypzc\.cn(?::\d+)?/nb/telnet'
     status_code: 200
     headers:
       Content-Type: text/plain
@@ -95,9 +124,41 @@ no_resolve: true
 domain_set:
   - open.e.kuaishou.cn
   - sdk.zhangyuyidong.cn
+  - sdk6.zhangyuyidong.cn
   - v66-ad.ndcjl.com
-  # 微信小程序广告素材（QingRex 微信小程序去广告）
   - wxsmsdy.video.qq.com
+  # NBPro 墨鱼版补充（ddgksf2013/NBProAds.conf；须 Reject-Hot 早拦，部分后缀在 China-Direct）
+  - capsinfo.anythink.com
+  - showtime.anythink.com
+  - api.bridgeoos.com
+  - pitk.birdgesdk.com
+  - aa.birdgesdk.com
+  - fusion-static.oss-cn-shenzhen.aliyuncs.com
+  - mobads.baidu.com
+  - cpu.baidu.com
+  - cpu-openapi.baidu.com
+  - mobads-pre-config.bj.bcebos.com
+  - mobads-pre-config.cdn.bcebos.com
+  - cpro.baidustatic.com
+  - render-server.cdn.bcebos.com
+  - adservice.sigmob.cn
+  - api.htp.ad-scope.com.cn
+  - bid.ad-scope.com.cn
+  - api-htp.beizi.biz
+  - sdk.beizi.biz
+  - sdktmp.hubcloud.com.cn
+  - sdkcfg.adintl.cn
+  - test.s.adintl.cn
+  - api-incentive.8ziben.com
+  - static.8ziben.com
+  - opehs.tanx.com
+  - videoproxy.tanx.com
+  - c.etoolads.cn
+  - sdk.adx.adwangmai.com
+  - sdk-cfg.adx.adwangmai.com
+  - static.adwangmai.com
+  - open.e.kuaishou.com
+  - s.e.kuaishou.com
 
 domain_suffix_set:
   - 66mobi.com
@@ -159,8 +220,12 @@ def _strip_nb_url_lines(section: str) -> str:
         r"^# 控制口假成功.*\n",
         r"^# telnet=Network OK.*\n",
         r"^# NB助手.*\n",
+        r"^# NB：.*\n",
         r"^.*nbtool8\\?\.com.*\n",
         r"^.*124\\?\.222\\?\.32\\?\.246.*\n",
+        r"^.*117\\?\.72\\?\.39\\?\.157.*\n",
+        r"^.*47\\?\.243\\?\.71\\?\.210.*\n",
+        r"^.*cesapp\\?\.goypzc\\?\.cn.*\n",
     )
     for pat in patterns:
         section = re.sub(pat, "", section, flags=re.M)
@@ -258,10 +323,43 @@ def _ensure_wxgzhad_script(text: str) -> str:
     return text
 
 
+def _ensure_nbpro_script(text: str) -> str:
+    """墨鱼 NBProAds：/nb/app AES 改广告字段（勿空 Map Local）。"""
+    text = re.sub(
+        r"^# NBPro /nb/app.*\n|^nbpro-ads\s*=\s*type=http-response,.*\n",
+        "",
+        text,
+        flags=re.M,
+    )
+    line = (
+        "# NBPro /nb/app：墨鱼版解密改广告字段再写回（勿空正文）\n"
+        + NBPRO_SCRIPT_LINE
+    )
+    m = re.search(r"^\[Script\]\s*$", text, re.M)
+    if m:
+        rest = text[m.end() :]
+        nxt = re.search(r"^\[(?:[A-Za-z][A-Za-z0-9 ]*)\]\s*$", rest, re.M)
+        end = m.end() + (nxt.start() if nxt else len(rest))
+        body = text[m.end() : end]
+        if not body.startswith("\n"):
+            body = "\n" + body
+        body = "\n" + line + body.lstrip("\n")
+        if not body.endswith("\n"):
+            body += "\n"
+        return text[: m.end()] + body + text[end:]
+
+    mitm = re.search(r"^\[MITM\]\s*$", text, re.M)
+    insert = f"\n[Script]\n{line}\n"
+    if mitm:
+        return text[: mitm.start()] + insert + text[mitm.start() :]
+    return text.rstrip() + "\n" + insert
+
+
 def patch_module_text(text: str) -> str:
     text = _strip_and_reject_nb(text)
     text = _strip_broken_fmz200_wx(text)
     text = _ensure_wxgzhad_script(text)
+    text = _ensure_nbpro_script(text)
     text = _ensure_section_block(text, "URL Rewrite", URL_REWRITE_BLOCK)
     text = _ensure_section_block(
         text,
@@ -271,7 +369,7 @@ def patch_module_text(text: str) -> str:
     )
     note = (
         "# NB 控制口勿 AND REJECT：/nb/telnet=Network OK；"
-        "域名拦了会改走 124.222.32.246:80\n"
+        "/nb/app 用脚本改广告；域名拦了会改走硬编码 IP\n"
     )
     if "NB 控制口勿 AND REJECT" not in text and re.search(r"^\[Rule\]\s*$", text, re.M):
         text = re.sub(r"^(\[Rule\]\s*\n)", r"\1" + note, text, count=1, flags=re.M)
@@ -346,6 +444,55 @@ def ensure_egern_yaml() -> None:
         count=1,
     )
 
+    # NBPro /nb/app 脚本（墨鱼；须 MITM）
+    nbpro_block = (
+        "  - http_response:\n"
+        "      name: NBPro去广告\n"
+        "      match: '^https?://(?:[^/]*nbtool8\\.com|124\\.222\\.32\\.246|117\\.72\\.39\\.157|"
+        "47\\.243\\.71\\.210|cesapp\\.goypzc\\.cn)(?::\\d+)?/nb/app'\n"
+        "      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/"
+        "Scripts/ddgksf2013/nbpro.ads.js\n"
+        "      body_required: true\n"
+        "      max_size: -1\n"
+        "      timeout: 60\n"
+        "      update_interval: 3600\n"
+    )
+    text = re.sub(
+        r"\n  - http_response:\n"
+        r"      name: NBPro去广告\n"
+        r"(?:      .*\n)+?",
+        "\n",
+        text,
+        count=1,
+    )
+    if "name: 微信公众号广告" in text and "name: NBPro去广告" not in text:
+        text = text.replace(
+            "      update_interval: 3600\n\nmitm:",
+            "      update_interval: 3600\n" + nbpro_block + "\nmitm:",
+            1,
+        )
+        if "name: NBPro去广告" not in text:
+            text = text.replace(
+                "scriptings:\n",
+                "scriptings:\n" + nbpro_block,
+                1,
+            )
+
+    # MITM：墨鱼 hostname + 控制口 IP
+    for host in (
+        "cesapp.goypzc.cn",
+        "124.222.32.246",
+        "117.72.39.157",
+        "47.243.71.210",
+    ):
+        needle = f"      - {host}\n"
+        if needle not in text and "app.nbtool8.com" in text:
+            text = text.replace(
+                "      - app.nbtool8.com\n",
+                f"      - app.nbtool8.com\n{needle}",
+                1,
+            )
+
     _write_if_changed(EGERN_YAML, text)
 
 
@@ -394,8 +541,14 @@ def verify() -> None:
     ca = CUSTOM_APPS.read_text(encoding="utf-8")
     if "Network OK" not in ca or "124\\.222\\.32\\.246" not in ca:
         errors.append("custom-apps missing Network OK / IP Map Local")
+    if "nbpro-ads" not in ca or "nbpro.ads.js" not in ca:
+        errors.append("custom-apps missing nbpro-ads script")
+    if "capsinfo.anythink.com" not in ca or "c.etoolads.cn" not in ca:
+        errors.append("custom-apps missing NBProAds SDK hosts")
     if re.search(r"nbtool8.*data=\"\"|124\\.222\\.32\\.246.*data=\"\"", ca):
         errors.append("custom-apps still has empty-body NB Map Local (causes format error)")
+    if re.search(r"/nb/app[^\n]*data=", ca):
+        errors.append("custom-apps must not Map Local /nb/app")
     if "DST-PORT,9527" in ca:
         errors.append("custom-apps still has DST-PORT 9527 REJECT")
     ey = EGERN_YAML.read_text(encoding="utf-8")
@@ -403,26 +556,33 @@ def verify() -> None:
         errors.append("Egern.yaml missing map_locals Network OK")
     if ey.count("map_locals:") != 1:
         errors.append("Egern.yaml map_locals count != 1")
-    if 'body: "{}"' in ey and "nb/app" in ey:
+    ml = re.search(r"^map_locals:\n((?:  .*\n)*)", ey, re.M)
+    if ml and "/nb/app" in ml.group(1):
         errors.append("Egern.yaml must not Map Local /nb/app (causes NB format error)")
+    if "name: NBPro去广告" not in ey or "nbpro.ads.js" not in ey:
+        errors.append("Egern.yaml missing NBPro scripting")
     if "getappmsgad" not in ey:
         errors.append("Egern.yaml missing WeChat getappmsgad map_local")
     if "ads-map-local.yaml" in ey or "weixin-mp-ads.yaml" in ey:
         errors.append("Egern.yaml still lists separate weixin/ads-map-local module")
     if re.search(r"dest_port:\s*\n\s*match:\s*[\"']9527[\"']", ey):
         errors.append("Egern.yaml still hard-rejects dest_port 9527")
+    if "cesapp.goypzc.cn" not in ey:
+        errors.append("Egern.yaml missing cesapp MITM hostname")
     rh = REJECT_HOT.read_text(encoding="utf-8")
     if "url_regex" in rh or rh.count("no_resolve:") != 1:
         errors.append("Reject-Hot malformed or still has url_regex")
     if "wxs.qq.com" not in rh:
         errors.append("Reject-Hot missing wxs.qq.com (QingRex-style creative reject)")
+    if "capsinfo.anythink.com" not in rh or "c.etoolads.cn" not in rh:
+        errors.append("Reject-Hot missing NBProAds SDK hosts")
     for path in ADBLOCK_FILES:
         if not path.is_file():
             continue
         t = path.read_text(encoding="utf-8")
         if "Network OK" not in t or "124\\.222\\.32\\.246" not in t:
             errors.append(f"{path.name} missing Network OK / IP")
-        if re.search(r"nbtool8[^\n]*/nb/app|124\\.222\\.32\\.246[^\n]*/nb/app", t):
+        if re.search(r"^[^#\n]*/nb/app[^\n]*data=", t, re.M):
             errors.append(f"{path.name} still Map Locals /nb/app (remove it)")
         if re.search(r"nbtool8[^\n]*data=\"\"|124\\.222\\.32\\.246[^\n]*data=\"\"", t):
             errors.append(f"{path.name} still has empty-body NB Map Local")
@@ -434,6 +594,8 @@ def verify() -> None:
             errors.append(f"{path.name} missing :443-safe WeChat Map Local")
         if "wxgzhad" not in t and "getappmsgad|getappmsgext" not in t:
             errors.append(f"{path.name} missing wxgzhad script")
+        if "nbpro-ads" not in t and "nbpro.ads.js" not in t:
+            errors.append(f"{path.name} missing nbpro-ads script")
     if errors:
         raise SystemExit("apply-nb-ads-patch verify failed:\n- " + "\n- ".join(errors))
     print("apply-nb-ads-patch: ok")
