@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-19T04:54:01Z",
+  "generated_at": "2026-09-19T04:59:03Z",
   "branch": "main",
   "repo": "oo226/egern-config",
   "raw_base": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main",
@@ -33,7 +33,7 @@
     {
       "id": "adblock-collection",
       "name": "去广告合集",
-      "desc": "heat15 202609190454 · 防烫补丁 · 含皮皮虾 · apply-surge-heat-patch",
+      "desc": "heat15 202609190459 · 防烫补丁 · 含皮皮虾 · apply-surge-heat-patch",
       "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Fadblock-collection.module",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/adblock-collection.module",
       "kind": "module",
@@ -202,18 +202,21 @@
   ],
   "sync_digest": {
     "commit": {
-      "hash": "eb4fde0",
-      "subject": "Merge: 得力 SDK 分流 + Egern DNS forward",
+      "hash": "65616a9",
+      "subject": "chore: Reject-Module 头注释去掉 Reject-Extra",
       "date": "2026-09-19"
     },
     "summary": [
-      "分流规则 更新 1 个文件",
-      "主配置 更新 1 个文件",
       "国内直连 31751 条"
     ],
-    "files_changed": 3
+    "files_changed": 1
   },
   "changelog": [
+    {
+      "hash": "90fa1b5",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-09-19"
+    },
     {
       "hash": "56ffd56",
       "subject": "chore: publish curated snapshot from sync",
@@ -248,15 +251,10 @@
       "hash": "cb0a6f5",
       "subject": "chore: publish curated snapshot from sync",
       "date": "2026-09-18"
-    },
-    {
-      "hash": "64a35d6",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-09-18"
     }
   ],
   "local_health": {
-    "checked": 126,
+    "checked": 125,
     "fail": 0,
     "broken_ids": []
   },
@@ -285,7 +283,7 @@
       "id": "routing",
       "name": "分流规则",
       "icon": "🔀",
-      "count": 38
+      "count": 37
     },
     {
       "id": "boxjs",
@@ -333,7 +331,7 @@
       "category": "modules",
       "group": "合集",
       "name": "去广告合集",
-      "desc": "heat15 202609190454 · 防烫补丁 · 含皮皮虾 · apply-surge-heat-patch",
+      "desc": "heat15 202609190459 · 防烫补丁 · 含皮皮虾 · apply-surge-heat-patch",
       "icon": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/AdblockPlus.png",
       "homepage": "https://github.com/fmz200/wool_scripts",
       "path": "Modules/adblock-collection.module",
@@ -360,7 +358,7 @@
       "category": "modules",
       "group": "其他",
       "name": "去广告合集",
-      "desc": "heat15 202609190454 · 防烫补丁 · 含皮皮虾 · apply-surge-heat-patch",
+      "desc": "heat15 202609190459 · 防烫补丁 · 含皮皮虾 · apply-surge-heat-patch",
       "icon": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/AdblockPlus.png",
       "homepage": "https://github.com/fmz200/wool_scripts",
       "path": "Modules/adblock-egern.module",
@@ -385,7 +383,7 @@
       "category": "modules",
       "group": "其他",
       "name": "去广告合集",
-      "desc": "heat15 202609190454 · 防烫补丁 · 含皮皮虾 · apply-surge-heat-patch",
+      "desc": "heat15 202609190459 · 防烫补丁 · 含皮皮虾 · apply-surge-heat-patch",
       "icon": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/AdblockPlus.png",
       "homepage": "https://github.com/fmz200/wool_scripts",
       "path": "Modules/adblock-egern-v0815b.module",
@@ -410,7 +408,7 @@
       "category": "modules",
       "group": "其他",
       "name": "去广告合集",
-      "desc": "heat15 202609190454 · 防烫补丁 · 含皮皮虾 · apply-surge-heat-patch",
+      "desc": "heat15 202609190459 · 防烫补丁 · 含皮皮虾 · apply-surge-heat-patch",
       "icon": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/AdblockPlus.png",
       "homepage": "https://github.com/fmz200/wool_scripts",
       "path": "Modules/adblock-egern-v0815c.module",
@@ -1674,7 +1672,7 @@
       "category": "routing",
       "group": "国内/通用",
       "name": "去广告域名",
-      "desc": "Repcz Reject + Sukka 广告域名集，合并去重。",
+      "desc": "上游 Reject + 合集抽出的整域/IP REJECT，统一一张表。",
       "icon": "",
       "path": "Routing/Reject-Merged.yaml",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Reject-Merged.yaml",
@@ -1685,25 +1683,6 @@
         "rule_set"
       ],
       "share_url": "https://oo226.github.io/egern-config/#id=Routing-Reject-Merged",
-      "health": "ok"
-    },
-    {
-      "id": "Routing-Reject-Module",
-      "kind": "rule",
-      "category": "routing",
-      "group": "国内/通用",
-      "name": "合集抽分流",
-      "desc": "从去广告合集 [Rule] 自动抽出的 DOMAIN/IP REJECT（含得力等补全）；合集本身只做 MITM/路径改写。",
-      "icon": "",
-      "path": "Routing/Reject-Module.yaml",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Reject-Module.yaml",
-      "add_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Reject-Module.yaml",
-      "usage_tier": "neutral",
-      "tags": [
-        "分流",
-        "rule_set"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=Routing-Reject-Module",
       "health": "ok"
     },
     {
@@ -4969,5 +4948,5 @@
       "health": "ok"
     }
   ],
-  "total": 237
+  "total": 236
 }
