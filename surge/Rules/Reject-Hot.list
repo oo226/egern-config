@@ -2,6 +2,8 @@
 # Format: Surge RULE-SET (no policy). scripts/export-surge-rulesets.py
 # Domain lines include extended-matching (SNI hit under always-real-ip / VIF).
 # Total entries: 25
+# NOTE: Reject-Hot.yaml 的 url_regex（nbtool8:端口）不能进 RULE-SET；
+#       Surge 主配置见 Surge.conf 的 AND DST-PORT 9527 + URL-REGEX。
 
 DOMAIN,open.e.kuaishou.cn,extended-matching
 DOMAIN,sdk.zhangyuyidong.cn,extended-matching

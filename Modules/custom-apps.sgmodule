@@ -35,6 +35,9 @@ DOMAIN-KEYWORD,delicloud-operate-manager,REJECT,pre-matching # @keep
 DOMAIN-SUFFIX,hzzfcm.com,REJECT,pre-matching # @keep
 DOMAIN-SUFFIX,66mobi.com,REJECT,pre-matching # @keep
 DOMAIN-SUFFIX,adn-plus.com.cn,REJECT,pre-matching # @keep
+# NB 官方 9527 广告配置口（URL Rewrite 在 Egern DIRECT 下可能不触发 → 分流硬拦）
+AND,((DOMAIN,nbtool8.com),(DST-PORT,9527)),REJECT,pre-matching # @keep
+AND,((DOMAIN-SUFFIX,nbtool8.com),(DST-PORT,9527)),REJECT,pre-matching # @keep
 
 [URL Rewrite]
 # 邮储银行（与奶思合集互补，确保子域 MITM 生效）
@@ -65,3 +68,8 @@ DOMAIN-SUFFIX,adn-plus.com.cn,REJECT,pre-matching # @keep
 ^https?:\/\/open\.snssdk\.com\/api\/ad\/ - reject
 ^https?:\/\/is\.snssdk\.com\/api\/ad\/ - reject
 ^https?:\/\/api\.ks\.com\/rest\/e\/v\d+\/open\/ - reject
+
+[Map Local]
+# NB助手 9527 明文广告配置（Map Local 兜底；与 Reject-Hot url_regex / AND DST-PORT 双保险）
+^https?:\/\/[^:/]*nbtool8\.com:\d+\/nb\/app data-type=text data="" status-code=200 header="Content-Type:text/plain"
+^http:\/\/[^:/]*nbtool8\.com:\d+\/ data-type=text data="" status-code=200 header="Content-Type:text/plain"
