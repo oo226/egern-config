@@ -1,7 +1,7 @@
 # AUTO-EXPORTED from Routing/Reject-Module.yaml
 # Format: Surge RULE-SET (no policy). scripts/export-surge-rulesets.py
 # Domain lines include extended-matching (SNI hit under always-real-ip / VIF).
-# Total entries: 1251
+# Total entries: 1255
 
 DOMAIN,39d83s.com,extended-matching
 DOMAIN,a-remad.qm989.com,extended-matching
@@ -150,6 +150,7 @@ DOMAIN-SUFFIX,3dns-3.adobe.com,extended-matching
 DOMAIN-SUFFIX,3rd.t.sohu.com,extended-matching
 DOMAIN-SUFFIX,4dvertible.com,extended-matching
 DOMAIN-SUFFIX,58.xgo.com.cn,extended-matching
+DOMAIN-SUFFIX,66mobi.com,extended-matching
 DOMAIN-SUFFIX,73.sinawap.com,extended-matching
 DOMAIN-SUFFIX,8.jrj.com,extended-matching
 DOMAIN-SUFFIX,888.tv.sohu.com,extended-matching
@@ -224,6 +225,7 @@ DOMAIN-SUFFIX,adm.leju.com,extended-matching
 DOMAIN-SUFFIX,adm.myzaker.com,extended-matching
 DOMAIN-SUFFIX,admob.xiaomi.com,extended-matching
 DOMAIN-SUFFIX,admx.baixing.com,extended-matching
+DOMAIN-SUFFIX,adn-plus.com.cn,extended-matching
 DOMAIN-SUFFIX,adnet.sohu.com,extended-matching
 DOMAIN-SUFFIX,adobe-dns-2.adobe.com,extended-matching
 DOMAIN-SUFFIX,adobe-dns-3.adobe.com,extended-matching
@@ -591,6 +593,7 @@ DOMAIN-SUFFIX,huishenghuiying.com,extended-matching
 DOMAIN-SUFFIX,hv.code.tanwanyx.com,extended-matching
 DOMAIN-SUFFIX,hxjs.tool.hexun.com,extended-matching
 DOMAIN-SUFFIX,hxsame.hexun.com,extended-matching
+DOMAIN-SUFFIX,hzzfcm.com,extended-matching
 DOMAIN-SUFFIX,i.l.cnn.net,extended-matching
 DOMAIN-SUFFIX,i.sng.link,extended-matching
 DOMAIN-SUFFIX,iadmatvideo.nosdn.127.net,extended-matching
@@ -1161,6 +1164,7 @@ DOMAIN-KEYWORD,collectionpv.che168.com,extended-matching
 DOMAIN-KEYWORD,config.51y5.net,extended-matching
 DOMAIN-KEYWORD,config.y5en.com,extended-matching
 DOMAIN-KEYWORD,dc.51y5.net,extended-matching
+DOMAIN-KEYWORD,delicloud-operate-manager,extended-matching
 DOMAIN-KEYWORD,dm.bytedance.com,extended-matching
 DOMAIN-KEYWORD,dm.pstatp.com,extended-matching
 DOMAIN-KEYWORD,dtscout,extended-matching
