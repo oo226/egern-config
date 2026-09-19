@@ -388,17 +388,8 @@ rules:
       update_interval: 86400
 
   # ── 第 2 段：广告 / WebRTC 拦截（分流优先；合集只做 MITM/路径改写）──
-  # NB助手：9527 明文广告口（合集 URL Rewrite 在 Egern DIRECT 下常不触发 → 分流硬拦）
-  - and:
-      match:
-        - domain_suffix:
-            match: nbtool8.com
-        - dest_port:
-            match: "9527"
-      policy: REJECT
-  - url_regex:
-      match: '^https?://[^/]*nbtool8\.com:\d+/'
-      policy: REJECT
+  # NB助手控制口勿硬 REJECT：/nb/telnet 正文是 "Network OK"，拦了就「无网络」；
+  # 域名拦死后会改走 http://124.222.32.246/nb/app（默认 80）。用 map_locals 假成功。
   # Reject-Hot：NB/得力等热点，短间隔；Reject-Merged：全量
   - rule_set:
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Reject-Hot.yaml
@@ -534,6 +525,36 @@ url_rewrites:
   - match: ^https?://(www\.)?(g|google)\.cn
     location: https://www.google.com
     status_code: 302
+
+# NB助手：假成功去开屏（硬 REJECT 会无网络；域名拦了会改走 IP 80）
+map_locals:
+  # 心跳：真实接口返回纯文本 Network OK
+  - match: '^https?://[^/]*nbtool8\.com(?::\d+)?/nb/telnet'
+    status_code: 200
+    headers:
+      Content-Type: text/plain
+    body: "Network OK"
+  - match: '^https?://124\.222\.32\.246(?::\d+)?/nb/telnet'
+    status_code: 200
+    headers:
+      Content-Type: text/plain
+    body: "Network OK"
+  # 广告配置：空正文，避免下发开屏任务
+  - match: '^https?://[^/]*nbtool8\.com(?::\d+)?/nb/app'
+    status_code: 200
+    headers:
+      Content-Type: text/plain
+    body: ""
+  - match: '^https?://124\.222\.32\.246(?::\d+)?/nb/app'
+    status_code: 200
+    headers:
+      Content-Type: text/plain
+    body: ""
+  - match: '^https?://124\.222\.32\.246(?::\d+)?/'
+    status_code: 200
+    headers:
+      Content-Type: text/plain
+    body: ""
 
 body_rewrites:
   - request_jq:
