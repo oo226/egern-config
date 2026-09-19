@@ -370,6 +370,14 @@ rules:
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Unbreak.yaml
       policy: DIRECT
       update_interval: 86400
+
+  # ── 微信公众号广告路径：必须在 Direct-Priority（weixin.qq.com DIRECT）之前 ──
+  # 否则整域 DIRECT 抢先，url_regex 永远不跑；连接里只会看到 jsmonitor DIRECT 322B
+  - rule_set:
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Weixin-Ad-Reject.yaml
+      policy: REJECT
+      update_interval: 3600
+
   - rule_set:
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Direct-Priority.yaml
       policy: DIRECT
@@ -573,6 +581,17 @@ body_rewrites:
       match: ^https?://testflight\.apple\.com/v\d/accounts/.+?/install$
       filter: .storefrontId = "143441-19,29"
       disabled: true
+
+# 微信公众号：getappmsgext 含阅读赞评，分流不 REJECT；脚本只剥广告字段
+scriptings:
+  - http_response:
+      name: 微信公众号广告
+      match: '^https?://mp\.weixin\.qq\.com(?::\d+)?/mp/(getappmsgad|getappmsgext)'
+      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/chxm1023/advertising/wxgzhad.js
+      body_required: true
+      max_size: -1
+      timeout: 60
+      update_interval: 3600
 
 mitm:
   enabled: true
