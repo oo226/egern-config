@@ -27,11 +27,11 @@ from routing_list_utils import SET_KEYS, empty_sets, parse_egern_sets
 
 _IP_HOST_RE = re.compile(r"^\d{1,3}(?:\.\d{1,3}){3}$")
 
-# 整域 REJECT 会误杀业务 CDN；广告走路径级 Map Local / Script。
-# 勿再并入 Reject-Merged（日更 divert 也会跳过）。
+# 整域 REJECT 会误杀业务 CDN；微信 wxs 改走 Reject-Hot（Direct-Priority 前，对齐 QingRex）。
+# 勿再并入 Reject-Merged（日更 divert 也会跳过；顺序错了拦不住）。
 NEVER_REJECT_SUFFIXES = frozenset(
     {
-        "wxs.qq.com",  # wximg/wxsmw 图床；公众号正文图依赖
+        "wxs.qq.com",  # Reject-Hot 早拦；合集 Map Local + wxgzhad 处理接口
     }
 )
 NEVER_REJECT_DOMAINS = frozenset(
