@@ -372,7 +372,7 @@ rules:
       update_interval: 86400
 
   # ── 热点 REJECT（含 QingRex 同款 wxs.qq.com）：须在 Direct-Priority 之前 ──
-  # NB助手控制口勿硬 REJECT：/nb/telnet=Network OK；改走 IP 用合集 Map Local（apply-nb-ads-patch）
+  # NB助手控制口勿硬 REJECT：/nb/telnet=Network OK；Map Local 在主配置 + 合集（apply-nb-ads-patch）
   - rule_set:
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Reject-Hot.yaml
       policy: REJECT
@@ -527,12 +527,60 @@ url_rewrites:
     location: https://www.google.com
     status_code: 302
 
-# Map Local / 微信脚本在去广告合集；油价仅 widgets
+# NB助手 + 微信公众号 Map Local（须 MITM；勿空正文否则 NB「格式不正确」）
+map_locals:
+  - match: '^https?://[^/]*nbtool8\.com(?::\d+)?/nb/telnet'
+    status_code: 200
+    headers:
+      Content-Type: text/plain
+    body: "Network OK"
+  - match: '^https?://124\.222\.32\.246(?::\d+)?/nb/telnet'
+    status_code: 200
+    headers:
+      Content-Type: text/plain
+    body: "Network OK"
+  - match: '^https?://[^/]*nbtool8\.com(?::\d+)?/nb/app'
+    status_code: 200
+    headers:
+      Content-Type: application/json
+    body: "{}"
+  - match: '^https?://124\.222\.32\.246(?::\d+)?/nb/app'
+    status_code: 200
+    headers:
+      Content-Type: application/json
+    body: "{}"
+  - match: '^https?://mp\.weixin\.qq\.com(?::\d+)?/mp/getappmsgad'
+    status_code: 200
+    headers:
+      Content-Type: application/json
+    body: '{"advertisement_num":0,"advertisement_info":[]}'
+  - match: '^https?://mp\.weixin\.qq\.com(?::\d+)?/mp/(cps_product_info|jsmonitor|masonryfeed|relatedarticle|relatedsearchword|searchkeywordreport)'
+    status_code: 200
+    headers:
+      Content-Type: application/json
+    body: '{}'
+  - match: '^https?://mp\.weixin\.qq\.com(?::\d+)?/tp/datareport'
+    status_code: 200
+    headers:
+      Content-Type: application/json
+    body: '{}'
+
 body_rewrites:
   - request_jq:
       match: ^https?://testflight\.apple\.com/v\d/accounts/.+?/install$
       filter: .storefrontId = "143441-19,29"
       disabled: true
+
+# getappmsgext 含阅读赞评，勿整段 Map Local；脚本只剥 advertisement_*
+scriptings:
+  - http_response:
+      name: 微信公众号广告
+      match: '^https?://mp\.weixin\.qq\.com(?::\d+)?/mp/(getappmsgad|getappmsgext)'
+      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/chxm1023/advertising/wxgzhad.js
+      body_required: true
+      max_size: -1
+      timeout: 60
+      update_interval: 3600
 
 mitm:
   enabled: true

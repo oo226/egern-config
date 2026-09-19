@@ -5,11 +5,11 @@ Daily merge rebuilds Modules/adblock-collection.module from upstream + supplemen
 custom-apps.sgmodule is local:true (source of truth), but heat/finalize and accidental
 hard REJECT can still drift. This script forces:
 
-1. custom-apps Map Local / URL Rewrite (Network OK + empty /nb/app + IP bypass)
-2. 去广告合集 Map Local（NB + 微信 getappmsgad；主配置不挂 map_locals）
-3. Strip DST-PORT/url_regex hard REJECT for nbtool8 in Surge.conf / modules
+1. custom-apps Map Local / URL Rewrite（telnet=Network OK；/nb/app={} JSON，禁空正文）
+2. Egern.yaml 原生 map_locals（合集 Surge Map Local 在 Egern 偶发不命中）
+3. 去广告合集 Map Local + wxgzhad
 4. Reject-Hot：SDK + QingRex 同款 wxs.qq.com（须在 Direct-Priority 前）
-5. 主配置不挂独立微信/ads-map-local 模块
+5. 主配置不挂独立微信模块
 
 Wire after apply-surge-heat-patch.py, before finalize-egern-adblock.py.
 """
@@ -29,38 +29,67 @@ ADBLOCK_FILES = (
     ROOT / "surge" / "Modules" / "adblock-collection.module",
 )
 
-URL_REWRITE_BLOCK = r"""# NB全能助手 / NB Pro — 官方域名开屏与广告接口（须匹配 :端口，否则 9527/nb/app 漏网）
+URL_REWRITE_BLOCK = r"""# NB全能助手 / NB Pro — 开屏广告路径拒掉；控制口假成功（勿空抓全部）
 ^https?:\/\/(api\.|www\.|app\.)?nbtool8\.com(:\d+)?\/.*(splash|startup|launch|open[Ss]creen|welcome|banner|popup|promo|advert|/ad/|/ads/) - reject-dict
 ^https?:\/\/[^:/]*nbtool8\.com(:\d+)?\/.*(splash|startup|launch|banner|popup|advert|/ad/|/ads/) - reject-dict
-# 控制口假成功：telnet=Network OK；app=空正文；含硬编码 IP 绕过
+# telnet=Network OK；/nb/app 返回空 JSON（空正文会「格式不正确」）
 ^https?:\/\/[^:/]*nbtool8\.com(:\d+)?\/nb\/telnet data-type=text data="Network OK" status-code=200 header="Content-Type:text/plain"
 ^https?:\/\/124\.222\.32\.246(:\d+)?\/nb\/telnet data-type=text data="Network OK" status-code=200 header="Content-Type:text/plain"
-^https?:\/\/[^:/]*nbtool8\.com(:\d+)?\/nb\/app data-type=text data="" status-code=200 header="Content-Type:text/plain"
-^https?:\/\/124\.222\.32\.246(:\d+)?\/nb\/app data-type=text data="" status-code=200 header="Content-Type:text/plain"
-^https?:\/\/[^:/]*nbtool8\.com:\d+\/nb\/(?!telnet) data-type=text data="" status-code=200 header="Content-Type:text/plain"
-^http:\/\/[^:/]*nbtool8\.com:\d+\/ data-type=text data="" status-code=200 header="Content-Type:text/plain"
-^http:\/\/124\.222\.32\.246(:\d+)?\/ data-type=text data="" status-code=200 header="Content-Type:text/plain"
+^https?:\/\/[^:/]*nbtool8\.com(:\d+)?\/nb\/app data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+^https?:\/\/124\.222\.32\.246(:\d+)?\/nb\/app data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 """
 
-MAP_LOCAL_BLOCK = r"""# NB助手：假成功去开屏（勿硬 REJECT；含 IP 绕过 124.222.32.246）
+MAP_LOCAL_BLOCK = r"""# NB助手：假成功去开屏（勿硬 REJECT；勿用空正文；含 IP 绕过）
 ^https?:\/\/[^:/]*nbtool8\.com(:\d+)?\/nb\/telnet data-type=text data="Network OK" status-code=200 header="Content-Type:text/plain"
 ^https?:\/\/124\.222\.32\.246(:\d+)?\/nb\/telnet data-type=text data="Network OK" status-code=200 header="Content-Type:text/plain"
-^https?:\/\/[^:/]*nbtool8\.com(:\d+)?\/nb\/app data-type=text data="" status-code=200 header="Content-Type:text/plain"
-^https?:\/\/124\.222\.32\.246(:\d+)?\/nb\/app data-type=text data="" status-code=200 header="Content-Type:text/plain"
-^http:\/\/[^:/]*nbtool8\.com:\d+\/ data-type=text data="" status-code=200 header="Content-Type:text/plain"
-^http:\/\/124\.222\.32\.246(:\d+)?\/ data-type=text data="" status-code=200 header="Content-Type:text/plain"
+^https?:\/\/[^:/]*nbtool8\.com(:\d+)?\/nb\/app data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+^https?:\/\/124\.222\.32\.246(:\d+)?\/nb\/app data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 """
 
-EGERN_MAP_LOCALS = r"""# (legacy unused — Map Local 只打进去广告合集，主配置不挂)
-map_locals: []
+# Egern 原生 Map Local（合集 Surge 写法在 Egern 上偶发不命中；主配置钉死）
+EGERN_MAP_LOCALS = r"""# NB助手 + 微信公众号 Map Local（须 MITM；勿空正文否则 NB「格式不正确」）
+map_locals:
+  - match: '^https?://[^/]*nbtool8\.com(?::\d+)?/nb/telnet'
+    status_code: 200
+    headers:
+      Content-Type: text/plain
+    body: "Network OK"
+  - match: '^https?://124\.222\.32\.246(?::\d+)?/nb/telnet'
+    status_code: 200
+    headers:
+      Content-Type: text/plain
+    body: "Network OK"
+  - match: '^https?://[^/]*nbtool8\.com(?::\d+)?/nb/app'
+    status_code: 200
+    headers:
+      Content-Type: application/json
+    body: "{}"
+  - match: '^https?://124\.222\.32\.246(?::\d+)?/nb/app'
+    status_code: 200
+    headers:
+      Content-Type: application/json
+    body: "{}"
+  - match: '^https?://mp\.weixin\.qq\.com(?::\d+)?/mp/getappmsgad'
+    status_code: 200
+    headers:
+      Content-Type: application/json
+    body: '{"advertisement_num":0,"advertisement_info":[]}'
+  - match: '^https?://mp\.weixin\.qq\.com(?::\d+)?/mp/(cps_product_info|jsmonitor|masonryfeed|relatedarticle|relatedsearchword|searchkeywordreport)'
+    status_code: 200
+    headers:
+      Content-Type: application/json
+    body: '{}'
+  - match: '^https?://mp\.weixin\.qq\.com(?::\d+)?/tp/datareport'
+    status_code: 200
+    headers:
+      Content-Type: application/json
+    body: '{}'
 """
 
 # Surge/合集 Map Local：公众号（与 QingRex / chxm1023 同源，合集日更后仍钉死）
-WEIXIN_MAP_LOCAL_BLOCK = r"""# 微信公众号：兼容 :443 / http(s) / 无 query（旧 \? 正则会漏命中；对齐 QingRex）
+WEIXIN_MAP_LOCAL_BLOCK = r"""# 微信公众号：兼容 :443 / http(s) / 无 query（对齐 QingRex；Egern 另有原生 map_locals）
 ^https?:\/\/mp\.weixin\.qq\.com(:\d+)?\/mp\/getappmsgad data-type=text data="{\"advertisement_num\":0,\"advertisement_info\":[]}" status-code=200 header="Content-Type:application/json"
 ^https?:\/\/mp\.weixin\.qq\.com(:\d+)?\/mp\/(cps_product_info|jsmonitor|masonryfeed|relatedarticle|relatedsearchword) data-type=text data="{}" status-code=200 header="Content-Type:application/json"
-# 小程序广告素材路径兜底（整域 wxs 见 Reject-Hot）
-^http:\/\/\w+\.wxs\.qq\.com\/\d+\/\d+\/(snscosdownload|snssvpdownload)\/(SH|SZ)\/reserved\/\w+ data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 """
 
 # 奶思残缺 Body Rewrite：把 advertisement 字面替换成 fmz200，会弄坏 JSON；改由 Map Local/脚本处理
@@ -143,6 +172,7 @@ def _strip_nb_url_lines(section: str) -> str:
         r"^# 截图实锤.*\n",
         r"^# 接口是 text/plain.*\n",
         r"^# 控制口假成功.*\n",
+        r"^# telnet=Network OK.*\n",
         r"^# NB助手.*\n",
         r"^.*nbtool8\\?\.com.*\n",
         r"^.*124\\?\.222\\?\.32\\?\.246.*\n",
@@ -298,26 +328,28 @@ def ensure_egern_yaml() -> None:
     text = re.sub(
         r"\n  # NB助手控制口勿硬 REJECT：.*\n(?:  # .*\n)*",
         "\n  # NB助手控制口勿硬 REJECT：/nb/telnet=Network OK；"
-        "改走 IP 用合集 Map Local（apply-nb-ads-patch）\n",
+        "Map Local 在主配置 + 合集（apply-nb-ads-patch）\n",
         text,
         count=1,
     )
 
-    # 主配置不挂 Map Local：NB/微信一律在去广告合集
+    # 主配置钉死 Map Local（Egern 对合集 Surge Map Local 偶发不命中）
     text = re.sub(
-        r"\n# NB助手：假成功去开屏[^\n]*\n(?:# [^\n]*\n)*map_locals:\n"
+        r"\n# (?:NB助手|Map Local)[^\n]*\n(?:# [^\n]*\n)*map_locals:\n"
         r"(?:  .*\n)*",
-        "\n",
+        lambda _m: "\n" + EGERN_MAP_LOCALS,
         text,
         count=1,
     )
-    text = re.sub(
-        r"\n# Map Local[^\n]*\nmap_locals:\n(?:  .*\n)*",
-        "\n# Map Local / 微信脚本在去广告合集；油价仅 widgets\n",
-        text,
-        count=1,
-    )
-    # 去掉独立微信/Map Local 模块（已并进合集）
+    if "map_locals:" not in text:
+        anchor = re.search(r"^body_rewrites:\s*$", text, re.M) or re.search(
+            r"^mitm:\s*$", text, re.M
+        )
+        if not anchor:
+            raise SystemExit("Egern.yaml: cannot find insert point for map_locals")
+        text = text[: anchor.start()] + EGERN_MAP_LOCALS + "\n" + text[anchor.start() :]
+
+    # 去掉独立微信/Map Local 模块（已并进合集 + 主配置 map_locals）
     text = re.sub(
         r"\n  # (?:公众号去广告|NB开屏).*?\n"
         r"  - name: (?:微信公众号去广告|广告 Map Local)\n"
@@ -377,15 +409,21 @@ def verify() -> None:
     ca = CUSTOM_APPS.read_text(encoding="utf-8")
     if "Network OK" not in ca or "124\\.222\\.32\\.246" not in ca:
         errors.append("custom-apps missing Network OK / IP Map Local")
+    if re.search(r"nbtool8.*data=\"\"|124\\.222\\.32\\.246.*data=\"\"", ca):
+        errors.append("custom-apps still has empty-body NB Map Local (causes format error)")
     if "DST-PORT,9527" in ca:
         errors.append("custom-apps still has DST-PORT 9527 REJECT")
     ey = EGERN_YAML.read_text(encoding="utf-8")
-    if "map_locals:" in ey:
-        errors.append("Egern.yaml should not have map_locals (use 去广告合集)")
+    if "map_locals:" not in ey or "Network OK" not in ey:
+        errors.append("Egern.yaml missing map_locals Network OK")
+    if ey.count("map_locals:") != 1:
+        errors.append("Egern.yaml map_locals count != 1")
+    if 'body: "{}"' not in ey and "body: '{}'" not in ey:
+        errors.append("Egern.yaml /nb/app should return {} JSON not empty")
+    if "getappmsgad" not in ey:
+        errors.append("Egern.yaml missing WeChat getappmsgad map_local")
     if "ads-map-local.yaml" in ey or "weixin-mp-ads.yaml" in ey:
         errors.append("Egern.yaml still lists separate weixin/ads-map-local module")
-    if "adblock-egern-v0815c.module" not in ey:
-        errors.append("Egern.yaml missing 去广告合集")
     if re.search(r"dest_port:\s*\n\s*match:\s*[\"']9527[\"']", ey):
         errors.append("Egern.yaml still hard-rejects dest_port 9527")
     rh = REJECT_HOT.read_text(encoding="utf-8")
@@ -399,6 +437,8 @@ def verify() -> None:
         t = path.read_text(encoding="utf-8")
         if "Network OK" not in t or "124\\.222\\.32\\.246" not in t:
             errors.append(f"{path.name} missing Network OK / IP")
+        if re.search(r"nbtool8[^\n]*data=\"\"|124\\.222\\.32\\.246[^\n]*data=\"\"", t):
+            errors.append(f"{path.name} still has empty-body NB Map Local")
         if "DST-PORT,9527" in t:
             errors.append(f"{path.name} still has DST-PORT 9527 REJECT")
         if "advertisement fmz200" in t:

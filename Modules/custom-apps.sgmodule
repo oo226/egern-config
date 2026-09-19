@@ -57,17 +57,16 @@ DOMAIN-SUFFIX,adn-plus.com.cn,REJECT,pre-matching # @keep
 
 
 
-# NB全能助手 / NB Pro — 官方域名开屏与广告接口（须匹配 :端口，否则 9527/nb/app 漏网）
+
+
+# NB全能助手 / NB Pro — 开屏广告路径拒掉；控制口假成功（勿空抓全部）
 ^https?:\/\/(api\.|www\.|app\.)?nbtool8\.com(:\d+)?\/.*(splash|startup|launch|open[Ss]creen|welcome|banner|popup|promo|advert|/ad/|/ads/) - reject-dict
 ^https?:\/\/[^:/]*nbtool8\.com(:\d+)?\/.*(splash|startup|launch|banner|popup|advert|/ad/|/ads/) - reject-dict
-# 控制口假成功：telnet=Network OK；app=空正文；含硬编码 IP 绕过
+# telnet=Network OK；/nb/app 返回空 JSON（空正文会「格式不正确」）
 ^https?:\/\/[^:/]*nbtool8\.com(:\d+)?\/nb\/telnet data-type=text data="Network OK" status-code=200 header="Content-Type:text/plain"
 ^https?:\/\/124\.222\.32\.246(:\d+)?\/nb\/telnet data-type=text data="Network OK" status-code=200 header="Content-Type:text/plain"
-^https?:\/\/[^:/]*nbtool8\.com(:\d+)?\/nb\/app data-type=text data="" status-code=200 header="Content-Type:text/plain"
-^https?:\/\/124\.222\.32\.246(:\d+)?\/nb\/app data-type=text data="" status-code=200 header="Content-Type:text/plain"
-^https?:\/\/[^:/]*nbtool8\.com:\d+\/nb\/(?!telnet) data-type=text data="" status-code=200 header="Content-Type:text/plain"
-^http:\/\/[^:/]*nbtool8\.com:\d+\/ data-type=text data="" status-code=200 header="Content-Type:text/plain"
-^http:\/\/124\.222\.32\.246(:\d+)?\/ data-type=text data="" status-code=200 header="Content-Type:text/plain"
+^https?:\/\/[^:/]*nbtool8\.com(:\d+)?\/nb\/app data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+^https?:\/\/124\.222\.32\.246(:\d+)?\/nb\/app data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 
 # 得力e+ 混业务接口（不能整域 REJECT）→ MITM 路径级；百川 SMB 同域淘宝 H5
 ^https?:\/\/qt-api\.delicloud\.com\/.*(splash|startup|launch|open[Ss]creen|welcome|banner|popup|promo|advert|/ad/|/ads/|operate) - reject-dict
@@ -82,15 +81,11 @@ DOMAIN-SUFFIX,adn-plus.com.cn,REJECT,pre-matching # @keep
 ^https?:\/\/api\.ks\.com\/rest\/e\/v\d+\/open\/ - reject
 
 [Map Local]
-# 微信公众号：兼容 :443 / http(s) / 无 query（旧 \? 正则会漏命中；对齐 QingRex）
+# 微信公众号：兼容 :443 / http(s) / 无 query（对齐 QingRex；Egern 另有原生 map_locals）
 ^https?:\/\/mp\.weixin\.qq\.com(:\d+)?\/mp\/getappmsgad data-type=text data="{\"advertisement_num\":0,\"advertisement_info\":[]}" status-code=200 header="Content-Type:application/json"
 ^https?:\/\/mp\.weixin\.qq\.com(:\d+)?\/mp\/(cps_product_info|jsmonitor|masonryfeed|relatedarticle|relatedsearchword) data-type=text data="{}" status-code=200 header="Content-Type:application/json"
-# 小程序广告素材路径兜底（整域 wxs 见 Reject-Hot）
-^http:\/\/\w+\.wxs\.qq\.com\/\d+\/\d+\/(snscosdownload|snssvpdownload)\/(SH|SZ)\/reserved\/\w+ data-type=text data="{}" status-code=200 header="Content-Type:application/json"
-# NB助手：假成功去开屏（勿硬 REJECT；含 IP 绕过 124.222.32.246）
+# NB助手：假成功去开屏（勿硬 REJECT；勿用空正文；含 IP 绕过）
 ^https?:\/\/[^:/]*nbtool8\.com(:\d+)?\/nb\/telnet data-type=text data="Network OK" status-code=200 header="Content-Type:text/plain"
 ^https?:\/\/124\.222\.32\.246(:\d+)?\/nb\/telnet data-type=text data="Network OK" status-code=200 header="Content-Type:text/plain"
-^https?:\/\/[^:/]*nbtool8\.com(:\d+)?\/nb\/app data-type=text data="" status-code=200 header="Content-Type:text/plain"
-^https?:\/\/124\.222\.32\.246(:\d+)?\/nb\/app data-type=text data="" status-code=200 header="Content-Type:text/plain"
-^http:\/\/[^:/]*nbtool8\.com:\d+\/ data-type=text data="" status-code=200 header="Content-Type:text/plain"
-^http:\/\/124\.222\.32\.246(:\d+)?\/ data-type=text data="" status-code=200 header="Content-Type:text/plain"
+^https?:\/\/[^:/]*nbtool8\.com(:\d+)?\/nb\/app data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+^https?:\/\/124\.222\.32\.246(:\d+)?\/nb\/app data-type=text data="{}" status-code=200 header="Content-Type:application/json"
