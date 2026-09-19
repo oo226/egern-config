@@ -371,7 +371,7 @@ rules:
       policy: DIRECT
       update_interval: 86400
 
-  # ── 热点 REJECT（含微信公众号广告路径/素材）：须在 Direct-Priority（weixin/wxs DIRECT）之前 ──
+  # ── 热点 REJECT（含 QingRex 同款 wxs.qq.com）：须在 Direct-Priority 之前 ──
   # NB助手控制口勿硬 REJECT：/nb/telnet=Network OK；改走 IP 用合集 Map Local（apply-nb-ads-patch）
   - rule_set:
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Reject-Hot.yaml
