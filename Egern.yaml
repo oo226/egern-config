@@ -527,7 +527,7 @@ url_rewrites:
     location: https://www.google.com
     status_code: 302
 
-# NB助手 + 微信公众号 Map Local（须 MITM；勿拦 /nb/app）
+# NB助手 + 微信公众号 Map Local（须 MITM；/nb/app 用脚本勿空抓）
 map_locals:
   - match: '^https?://[^/]*nbtool8\.com(?::\d+)?/nb/telnet'
     status_code: 200
@@ -535,6 +535,21 @@ map_locals:
       Content-Type: text/plain
     body: "Network OK"
   - match: '^https?://124\.222\.32\.246(?::\d+)?/nb/telnet'
+    status_code: 200
+    headers:
+      Content-Type: text/plain
+    body: "Network OK"
+  - match: '^https?://117\.72\.39\.157(?::\d+)?/nb/telnet'
+    status_code: 200
+    headers:
+      Content-Type: text/plain
+    body: "Network OK"
+  - match: '^https?://47\.243\.71\.210(?::\d+)?/nb/telnet'
+    status_code: 200
+    headers:
+      Content-Type: text/plain
+    body: "Network OK"
+  - match: '^https?://cesapp\.goypzc\.cn(?::\d+)?/nb/telnet'
     status_code: 200
     headers:
       Content-Type: text/plain
@@ -571,6 +586,14 @@ scriptings:
       max_size: -1
       timeout: 60
       update_interval: 3600
+  - http_response:
+      name: NBPro去广告
+      match: '^https?://(?:[^/]*nbtool8\.com|124\.222\.32\.246|117\.72\.39\.157|47\.243\.71\.210|cesapp\.goypzc\.cn)(?::\d+)?/nb/app'
+      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/ddgksf2013/nbpro.ads.js
+      body_required: true
+      max_size: -1
+      timeout: 60
+      update_interval: 3600
 
 mitm:
   enabled: true
@@ -592,6 +615,10 @@ mitm:
       - api.nbtool8.com
       - www.nbtool8.com
       - app.nbtool8.com
+      - 47.243.71.210
+      - 117.72.39.157
+      - 124.222.32.246
+      - cesapp.goypzc.cn
       # 微信公众号去广告（合集 wxgzhad / getappmsgad）；勿用 *.weixin.qq.com 整域排除，否则脚本永不跑
       - mp.weixin.qq.com
       #  iRingo — 仅精确域名，不用 *.apple.com / *.ls.apple.com 整域

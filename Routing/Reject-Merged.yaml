@@ -2,8 +2,8 @@
 # 类型: 分流规则 — 去广告域名 REJECT（上游 + 去广告合集整域补全）
 # Do not edit manually. Updated by GitHub Actions after upstream sync / adblock merge.
 #
-# Includes ~1255 unique hosts diverted from 去广告合集 [Rule] (DOMAIN/IP REJECT).
-# Total unique entries: 138982
+# Includes ~11 unique hosts diverted from 去广告合集 [Rule] (DOMAIN/IP REJECT).
+# Total unique entries: 138992
 
 no_resolve: true
 domain_set:
@@ -23,6 +23,7 @@ domain_set:
   - a.wkanx.com
   - a0.app.xiaomi.com
   - a460.cell.phone.ringtone.samsung.sms13.de
+  - aa.birdgesdk.com
   - aaid.umeng.com
   - abema-adx.ameba.jp
   - aboard.apilocate.amap.com
@@ -348,6 +349,7 @@ domain_set:
   - api-ads.tiantianqutao.com
   - api-analytics-cn.huami.com
   - api-es.doglobal.net
+  - api-incentive.8ziben.com
   - api-luckycoinsdk.doglobal.net
   - api-scout.vercel.app
   - api-shoulei-ssl.xunlei.com
@@ -454,6 +456,7 @@ domain_set:
   - c2.l.qq.com
   - c753738.r38.cf2.rackcdn.com
   - cache.datamart.windows.com
+  - capsinfo.anythink.com
   - cartoonapi.uc.cn
   - cast.innity.com
   - cb.l.qq.com
@@ -509,6 +512,7 @@ domain_set:
   - counter.kingsoft.com
   - counter.ksosoft.com
   - cps.360buy.com
+  - cpu-openapi.baidu.com
   - cr-status.iqiyi.com
   - crab.baidu.com
   - crash.163.com
@@ -667,6 +671,7 @@ domain_set:
   - frontier-aweme.snssdk.com
   - frontier-quic-test.bytedance.com
   - ftpcontent.worldnow.com
+  - fusion-static.oss-cn-shenzhen.aliyuncs.com
   - fyb-2.cdn.bcebos.com
   - g.163.com
   - g.koowo.com
@@ -939,6 +944,7 @@ domain_set:
   - mob.bz.mgtv.com
   - mobad.ijinshan.com
   - mobads-logs.baidu.com
+  - mobads-pre-config.bj.bcebos.com
   - mobads-pre-config.cdn.bcebos.com
   - mobads.baidu.com
   - mobilead.kuwo.cn
@@ -1054,6 +1060,7 @@ domain_set:
   - pin.hpplay.cn
   - pindao.huoban.taobao.com
   - ping.ifixit.com
+  - pitk.birdgesdk.com
   - pl.cp12.wasu.tv
   - pl.cp31.ott.cibntv.net
   - pl.youku.com
@@ -1113,6 +1120,7 @@ domain_set:
   - redir.metaservices.microsoft.com
   - redirect.simba.taobao.com
   - regist.fotoable.com
+  - render-server.cdn.bcebos.com
   - render-web.11222.cn
   - report.idqqimg.com
   - report.qqweb.qq.com
@@ -1203,6 +1211,7 @@ domain_set:
   - shouji.sogou.com
   - show.look.360.cn
   - show.re.taobao.com
+  - showtime.anythink.com
   - simaba.taobao.com
   - simba.6.cn
   - simba.m.taobao.com
@@ -1247,6 +1256,7 @@ domain_set:
   - stat.simba.taobao.com
   - stat.v.baidu.com
   - stat.zuimeitianqi.com
+  - static.8ziben.com
   - static.app.m.letv.com
   - static.g.iqiyi.com
   - static.g.ppstream.com
@@ -135376,6 +135386,7 @@ domain_suffix_set:
   - wxkhhw.lens-labo.com
   - wxlyppfiumhnp.online
   - wxnxau.air-r.jp
+  - wxsnsdythumb.wxs.qq.com
   - wxunyc.handyhuellen.de
   - wxuorj.parfumswinkel.nl
   - wxwsmt.matsmart.fi
