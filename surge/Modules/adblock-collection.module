@@ -47,6 +47,33 @@ DOMAIN,ali-stats.jpush.cn,DIRECT
 DOMAIN,tts.doudou520.online,DIRECT
 DOMAIN-SUFFIX,doudou520.online,DIRECT
 
+# NB助手 / 得力开屏 SDK — 合集内双层兜底（# @keep；亦在 Reject-Merged，防分流未刷新空窗）
+DOMAIN-SUFFIX,adintl.cn,REJECT # @keep
+DOMAIN-SUFFIX,adkwai.com,REJECT # @keep
+DOMAIN-SUFFIX,adukwai.com,REJECT # @keep
+DOMAIN-SUFFIX,api-cfg.8ziben.com,REJECT # @keep
+DOMAIN-SUFFIX,api-dsp.8ziben.com,REJECT # @keep
+DOMAIN-SUFFIX,api-events.8ziben.com,REJECT # @keep
+DOMAIN-SUFFIX,bugly.qq.com,REJECT # @keep
+DOMAIN-SUFFIX,cdnhwc8.com,REJECT # @keep
+DOMAIN-SUFFIX,ctyunxs.cn,REJECT # @keep
+DOMAIN-SUFFIX,e.kuaishou.com,REJECT # @keep
+DOMAIN-SUFFIX,eos.huhehaote-8.cmecloud.cn,REJECT # @keep
+DOMAIN-SUFFIX,gepush.com,REJECT # @keep
+DOMAIN-SUFFIX,gifshow.com,REJECT # @keep
+DOMAIN-SUFFIX,static-dsp.8ziben.com,REJECT # @keep
+DOMAIN-SUFFIX,static.fliduo.cn,REJECT # @keep
+DOMAIN-SUFFIX,yximgs.com,REJECT # @keep
+DOMAIN-SUFFIX,yxings.com,REJECT # @keep
+DOMAIN-SUFFIX,zhangyuyidong.cn,REJECT # @keep
+DOMAIN,open.e.kuaishou.cn,REJECT # @keep
+DOMAIN,sdk.zhangyuyidong.cn,REJECT # @keep
+DOMAIN,v66-ad.ndcjl.com,REJECT # @keep
+DOMAIN-KEYWORD,delicloud-operate-manager,REJECT # @keep
+DOMAIN-SUFFIX,hzzfcm.com,REJECT # @keep
+DOMAIN-SUFFIX,66mobi.com,REJECT # @keep
+DOMAIN-SUFFIX,adn-plus.com.cn,REJECT # @keep
+
 # >>>>>>>>>>>>>>> ✅ !! ✅ <<<<<<<<<<<<<<
 
 # > 广告联盟
