@@ -1,0 +1,72 @@
+name: 广告 Map Local
+description: |
+  NB助手开屏假成功 + 微信公众号空广告/剥广告字段。
+  分流 REJECT 在 Reject-Hot（Direct-Priority 前）；勿整域拒 wxs。
+author: oo226/egern-config
+homepage: https://github.com/oo226/egern-config
+category: 去广告
+
+# 正则须兼容 :443 / http(s) / 无 query
+map_locals:
+  # NB助手：硬 REJECT 会无网络；域名拦死后改走 IP:80
+  - match: '^https?://[^/]*nbtool8\.com(?::\d+)?/nb/telnet'
+    status_code: 200
+    headers:
+      Content-Type: text/plain
+    body: "Network OK"
+  - match: '^https?://124\.222\.32\.246(?::\d+)?/nb/telnet'
+    status_code: 200
+    headers:
+      Content-Type: text/plain
+    body: "Network OK"
+  - match: '^https?://[^/]*nbtool8\.com(?::\d+)?/nb/app'
+    status_code: 200
+    headers:
+      Content-Type: text/plain
+    body: ""
+  - match: '^https?://124\.222\.32\.246(?::\d+)?/nb/app'
+    status_code: 200
+    headers:
+      Content-Type: text/plain
+    body: ""
+  - match: '^https?://124\.222\.32\.246(?::\d+)?/'
+    status_code: 200
+    headers:
+      Content-Type: text/plain
+    body: ""
+  # 微信公众号：空广告结构（getappmsgad 勿硬 REJECT，客户端会改道）
+  - match: '^https?://mp\.weixin\.qq\.com(?::\d+)?/mp/getappmsgad'
+    status_code: 200
+    headers:
+      Content-Type: application/json
+    body: '{"advertisement_num":0,"advertisement_info":[]}'
+  - match: '^https?://mp\.weixin\.qq\.com(?::\d+)?/mp/(cps_product_info|jsmonitor|masonryfeed|relatedarticle|relatedsearchword|searchkeywordreport)'
+    status_code: 200
+    headers:
+      Content-Type: application/json
+    body: '{}'
+  - match: '^https?://mp\.weixin\.qq\.com(?::\d+)?/tp/datareport'
+    status_code: 200
+    headers:
+      Content-Type: application/json
+    body: '{}'
+
+# getappmsgext 含阅读赞评，分流不 REJECT；脚本只剥 advertisement_*
+scriptings:
+  - http_response:
+      name: 微信公众号广告
+      match: '^https?://mp\.weixin\.qq\.com(?::\d+)?/mp/(getappmsgad|getappmsgext)'
+      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/chxm1023/advertising/wxgzhad.js
+      body_required: true
+      max_size: -1
+      timeout: 60
+      enabled: true
+
+mitm:
+  hostnames:
+    includes:
+      - nbtool8.com
+      - api.nbtool8.com
+      - www.nbtool8.com
+      - app.nbtool8.com
+      - mp.weixin.qq.com
