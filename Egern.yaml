@@ -371,8 +371,8 @@ rules:
       policy: DIRECT
       update_interval: 86400
 
-  # ── 热点 REJECT（含微信公众号广告路径/素材）：须在 Direct-Priority（weixin/wxs DIRECT）之前 ──
-  # NB助手控制口勿硬 REJECT：/nb/telnet=Network OK；改走 IP 用 map_locals（apply-nb-ads-patch）
+  # ── 热点 REJECT（含 QingRex 同款 wxs.qq.com）：须在 Direct-Priority 之前 ──
+  # NB助手控制口勿硬 REJECT：/nb/telnet=Network OK；改走 IP 用合集 Map Local（apply-nb-ads-patch）
   - rule_set:
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Reject-Hot.yaml
       policy: REJECT
@@ -527,7 +527,7 @@ url_rewrites:
     location: https://www.google.com
     status_code: 302
 
-# Map Local / 微信脚本见模块 ads-map-local（油价仅 widgets，勿放 scriptings.generic）
+# Map Local / 微信脚本在去广告合集；油价仅 widgets
 body_rewrites:
   - request_jq:
       match: ^https?://testflight\.apple\.com/v\d/accounts/.+?/install$
@@ -605,13 +605,9 @@ modules:
   - name: 去广告净化合集
     # 稳定别名；日更会同步写 adblock-collection / adblock-egern-v0815c
     # 用 raw 避免 jsDelivr 缓存拖住紧急改写（如 nbtool8:9527）
+    # NB开屏 + 微信公众号 Map Local / wxgzhad 已打进合集；素材 CDN 见 Reject-Hot（wxs）
     url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/adblock-egern-v0815c.module
     update_interval: 86400
-    enabled: true
-  # NB开屏 + 微信公众号 Map Local / 脚本（分流 REJECT 在 Reject-Hot）
-  - name: 广告 Map Local
-    url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/ads-map-local.yaml
-    update_interval: 3600
     enabled: true
   - name: 解锁增强合集
     url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/unlock-collection.module

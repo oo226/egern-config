@@ -1,11 +1,9 @@
-# 热点去广告（须排在 Direct-Priority 之前：含微信公众号路径/素材 CDN）
-# 小表、优先于 Reject-Merged；完整清单仍在 Reject-Merged
+# 热点去广告（须排在 Direct-Priority 之前）
+# 含 QingRex 同款：DOMAIN-SUFFIX wxs.qq.com → 公众号广告卡片在、图/视频黑
+# 完整清单仍在 Reject-Merged；Map Local / 脚本在去广告合集（apply-nb-ads-patch）
 #
 # NB 控制口（nbtool8.com:9527 / 硬编码 IP）不要进本表 REJECT：
-# /nb/telnet 返回 "Network OK"，硬拦会「无网络」；域名拦死后改走 IP:80。
-# 去开屏见 Egern.yaml map_locals（scripts/apply-nb-ads-patch.py）。
-#
-# 微信：勿拒 wximg（正文图）；getappmsgad 勿 REJECT → Map Local / 脚本在 Egern.yaml
+# /nb/telnet 返回 "Network OK"；去开屏见合集 Map Local。
 
 no_resolve: true
 
@@ -13,11 +11,8 @@ domain_set:
   - open.e.kuaishou.cn
   - sdk.zhangyuyidong.cn
   - v66-ad.ndcjl.com
-  # 微信公众号广告素材 CDN（卡片壳在、图/视频黑）
-  - wxsmw.wxs.qq.com
-  - wxsnsdy.wxs.qq.com
-  - wxsnsdythumb.wxs.qq.com
-  - wxa.wxs.qq.com
+  # 微信小程序广告素材（QingRex 微信小程序去广告）
+  - wxsmsdy.video.qq.com
 
 domain_suffix_set:
   - 66mobi.com
@@ -41,13 +36,8 @@ domain_suffix_set:
   - yximgs.com
   - yxings.com
   - zhangyuyidong.cn
+  # 微信公众号广告 CDN（QingRex 微信公众号去广告；须先于 Direct-Priority 的 wxs DIRECT）
+  - wxs.qq.com
 
 domain_keyword_set:
   - delicloud-operate-manager
-
-url_regex_set:
-  # 微信公众号埋点 / 推荐 / 素材路径（须先于 weixin DIRECT）
-  - '^https?://mp\.weixin\.qq\.com(?::\d+)?/mp/(jsmonitor|relatedsearchword|relatedarticle|searchkeywordreport|masonryfeed|cps_product_info|appmsgreport)'
-  - '^https?://mp\.weixin\.qq\.com(?::\d+)?/tp/datareport'
-  - '^https?://res\.wx\.qq\.com/a/wx[a-z]*/ad/'
-  - '^https?://dldir1\.qq\.com/weixin/.*/xad/'

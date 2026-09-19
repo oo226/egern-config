@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
-"""Re-apply NB助手假成功 patches after daily adblock merge.
+"""Re-apply NB助手假成功 + 微信公众号 patches after daily adblock merge.
 
 Daily merge rebuilds Modules/adblock-collection.module from upstream + supplements.
 custom-apps.sgmodule is local:true (source of truth), but heat/finalize and accidental
 hard REJECT can still drift. This script forces:
 
 1. custom-apps Map Local / URL Rewrite (Network OK + empty /nb/app + IP bypass)
-2. Egern.yaml map_locals (same semantics; no hard REJECT on control channel)
+2. 去广告合集 Map Local（NB + 微信 getappmsgad；主配置不挂 map_locals）
 3. Strip DST-PORT/url_regex hard REJECT for nbtool8 in Surge.conf / modules
-4. Patch Egern + Surge 去广告合集 Map Local
-5. Reject-Hot must NOT reject nbtool8 control URLs (SDK domains only)
+4. Reject-Hot：SDK + QingRex 同款 wxs.qq.com（须在 Direct-Priority 前）
+5. 主配置不挂独立微信/ads-map-local 模块
 
 Wire after apply-surge-heat-patch.py, before finalize-egern-adblock.py.
 """
@@ -51,56 +51,15 @@ MAP_LOCAL_BLOCK = r"""# NB助手：假成功去开屏（勿硬 REJECT；含 IP �
 ^http:\/\/124\.222\.32\.246(:\d+)?\/ data-type=text data="" status-code=200 header="Content-Type:text/plain"
 """
 
-EGERN_MAP_LOCALS = r"""# NB助手：假成功去开屏（硬 REJECT 会无网络；域名拦了会改走 IP 80）
-# 微信公众号：getappmsgad / jsmonitor 等（须 MITM mp.weixin.qq.com；勿整域拒 wxs.qq.com）
-# 正则须兼容 :443 / http(s) / 无 query（否则 Map Local 不命中，连接里仍见 DIRECT 322B）
-map_locals:
-  # 心跳：真实接口返回纯文本 Network OK
-  - match: '^https?://[^/]*nbtool8\.com(?::\d+)?/nb/telnet'
-    status_code: 200
-    headers:
-      Content-Type: text/plain
-    body: "Network OK"
-  - match: '^https?://124\.222\.32\.246(?::\d+)?/nb/telnet'
-    status_code: 200
-    headers:
-      Content-Type: text/plain
-    body: "Network OK"
-  # 广告配置：空正文，避免下发开屏任务
-  - match: '^https?://[^/]*nbtool8\.com(?::\d+)?/nb/app'
-    status_code: 200
-    headers:
-      Content-Type: text/plain
-    body: ""
-  - match: '^https?://124\.222\.32\.246(?::\d+)?/nb/app'
-    status_code: 200
-    headers:
-      Content-Type: text/plain
-    body: ""
-  - match: '^https?://124\.222\.32\.246(?::\d+)?/'
-    status_code: 200
-    headers:
-      Content-Type: text/plain
-    body: ""
-  # 微信公众号底栏/文中广告（空广告结构）
-  - match: '^https?://mp\.weixin\.qq\.com(?::\d+)?/mp/getappmsgad'
-    status_code: 200
-    headers:
-      Content-Type: application/json
-    body: '{"advertisement_num":0,"advertisement_info":[]}'
-  # 监控 / 商品 / 相关推荐（勿要求 \?）
-  - match: '^https?://mp\.weixin\.qq\.com(?::\d+)?/mp/(cps_product_info|jsmonitor|masonryfeed|relatedarticle|relatedsearchword)'
-    status_code: 200
-    headers:
-      Content-Type: application/json
-    body: '{}'
+EGERN_MAP_LOCALS = r"""# (legacy unused — Map Local 只打进去广告合集，主配置不挂)
+map_locals: []
 """
 
-# Surge/合集 Map Local：公众号（与 chxm1023-ad-supplement 同源，合集日更后仍钉死）
-WEIXIN_MAP_LOCAL_BLOCK = r"""# 微信公众号：兼容 :443 / http(s) / 无 query（旧 \? 正则会漏命中）
+# Surge/合集 Map Local：公众号（与 QingRex / chxm1023 同源，合集日更后仍钉死）
+WEIXIN_MAP_LOCAL_BLOCK = r"""# 微信公众号：兼容 :443 / http(s) / 无 query（旧 \? 正则会漏命中；对齐 QingRex）
 ^https?:\/\/mp\.weixin\.qq\.com(:\d+)?\/mp\/getappmsgad data-type=text data="{\"advertisement_num\":0,\"advertisement_info\":[]}" status-code=200 header="Content-Type:application/json"
 ^https?:\/\/mp\.weixin\.qq\.com(:\d+)?\/mp\/(cps_product_info|jsmonitor|masonryfeed|relatedarticle|relatedsearchword) data-type=text data="{}" status-code=200 header="Content-Type:application/json"
-# 小程序广告素材（勿整域拒 wxs.qq.com）
+# 小程序广告素材路径兜底（整域 wxs 见 Reject-Hot）
 ^http:\/\/\w+\.wxs\.qq\.com\/\d+\/\d+\/(snscosdownload|snssvpdownload)\/(SH|SZ)\/reserved\/\w+ data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 """
 
@@ -110,19 +69,22 @@ BROKEN_FMZ200_WX_LINE = (
     r"advertisement fmz200\n"
 )
 
-REJECT_HOT_TEMPLATE = r"""# 热点去广告（NB助手 SDK / 得力开屏 SDK）
-# 小表、优先于 Reject-Merged 加载，避免大表日更空窗导致广告回潮
-# 完整清单仍在 Reject-Merged；此处为双层兜底
+REJECT_HOT_TEMPLATE = r"""# 热点去广告（须排在 Direct-Priority 之前）
+# 含 QingRex 同款：DOMAIN-SUFFIX wxs.qq.com → 公众号广告卡片在、图/视频黑
+# 完整清单仍在 Reject-Merged；Map Local / 脚本在去广告合集（apply-nb-ads-patch）
 #
 # NB 控制口（nbtool8.com:9527 / 硬编码 IP）不要进本表 REJECT：
-# /nb/telnet 返回 "Network OK"，硬拦会「无网络」；域名拦死后改走 IP:80。
-# 去开屏见 Egern.yaml map_locals + 合集 Map Local（scripts/apply-nb-ads-patch.py）。
+# /nb/telnet 返回 "Network OK"；去开屏见合集 Map Local。
 
 no_resolve: true
+
 domain_set:
   - open.e.kuaishou.cn
   - sdk.zhangyuyidong.cn
   - v66-ad.ndcjl.com
+  # 微信小程序广告素材（QingRex 微信小程序去广告）
+  - wxsmsdy.video.qq.com
+
 domain_suffix_set:
   - 66mobi.com
   - adintl.cn
@@ -145,6 +107,9 @@ domain_suffix_set:
   - yximgs.com
   - yxings.com
   - zhangyuyidong.cn
+  # 微信公众号广告 CDN（QingRex 微信公众号去广告；须先于 Direct-Priority 的 wxs DIRECT）
+  - wxs.qq.com
+
 domain_keyword_set:
   - delicloud-operate-manager
 """
@@ -333,42 +298,36 @@ def ensure_egern_yaml() -> None:
     text = re.sub(
         r"\n  # NB助手控制口勿硬 REJECT：.*\n(?:  # .*\n)*",
         "\n  # NB助手控制口勿硬 REJECT：/nb/telnet=Network OK；"
-        "改走 IP 用 map_locals（apply-nb-ads-patch）\n",
+        "改走 IP 用合集 Map Local（apply-nb-ads-patch）\n",
         text,
         count=1,
     )
 
-    # Replace or insert map_locals (idempotent: wipe prior NB/微信 comments + block)
+    # 主配置不挂 Map Local：NB/微信一律在去广告合集
     text = re.sub(
         r"\n# NB助手：假成功去开屏[^\n]*\n(?:# [^\n]*\n)*map_locals:\n"
         r"(?:  .*\n)*",
-        lambda _m: "\n" + EGERN_MAP_LOCALS,
+        "\n",
         text,
         count=1,
     )
-    if "map_locals:" not in text:
-        anchor = re.search(r"^body_rewrites:\s*$", text, re.M) or re.search(
-            r"^mitm:\s*$", text, re.M
-        )
-        if not anchor:
-            raise SystemExit("Egern.yaml: cannot find insert point for map_locals")
-        text = text[: anchor.start()] + EGERN_MAP_LOCALS + "\n" + text[anchor.start() :]
-
-    # Ensure native WeChat ad module is listed (after 去广告合集)
-    if "weixin-mp-ads.yaml" not in text:
-        text = re.sub(
-            r"(url: https://raw\.githubusercontent\.com/oo226/egern-config/refs/heads/main/Modules/adblock-egern-v0815c\.module\n"
-            r"    update_interval: 86400\n"
-            r"    enabled: true\n)",
-            r"\1"
-            r"  # 公众号去广告：原生 YAML（合集 Surge Map Local 偶发不命中 :443）\n"
-            r"  - name: 微信公众号去广告\n"
-            r"    url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/weixin-mp-ads.yaml\n"
-            r"    update_interval: 3600\n"
-            r"    enabled: true\n",
-            text,
-            count=1,
-        )
+    text = re.sub(
+        r"\n# Map Local[^\n]*\nmap_locals:\n(?:  .*\n)*",
+        "\n# Map Local / 微信脚本在去广告合集；油价仅 widgets\n",
+        text,
+        count=1,
+    )
+    # 去掉独立微信/Map Local 模块（已并进合集）
+    text = re.sub(
+        r"\n  # (?:公众号去广告|NB开屏).*?\n"
+        r"  - name: (?:微信公众号去广告|广告 Map Local)\n"
+        r"    url: https://raw\.githubusercontent\.com/oo226/egern-config/refs/heads/main/Modules/(?:weixin-mp-ads|ads-map-local)\.yaml\n"
+        r"    update_interval: \d+\n"
+        r"    enabled: true\n",
+        "\n",
+        text,
+        count=1,
+    )
 
     _write_if_changed(EGERN_YAML, text)
 
@@ -409,7 +368,7 @@ def ensure_surge_conf() -> None:
 
 
 def ensure_reject_hot() -> None:
-    """Rewrite Reject-Hot to SDK-only template (never nbtool8 control url_regex)."""
+    """Rewrite Reject-Hot（含 QingRex 同款 wxs.qq.com；永不含 nbtool8 控制口）。"""
     _write_if_changed(REJECT_HOT, REJECT_HOT_TEMPLATE)
 
 
@@ -421,19 +380,19 @@ def verify() -> None:
     if "DST-PORT,9527" in ca:
         errors.append("custom-apps still has DST-PORT 9527 REJECT")
     ey = EGERN_YAML.read_text(encoding="utf-8")
-    if "map_locals:" not in ey or "Network OK" not in ey:
-        errors.append("Egern.yaml missing map_locals Network OK")
-    if ey.count("map_locals:") != 1:
-        errors.append("Egern.yaml map_locals count != 1")
-    if "(?::\\d+)?" not in ey or "getappmsgad" not in ey:
-        errors.append("Egern.yaml WeChat map_locals missing :443-safe pattern")
-    if "weixin-mp-ads.yaml" not in ey:
-        errors.append("Egern.yaml missing weixin-mp-ads module")
+    if "map_locals:" in ey:
+        errors.append("Egern.yaml should not have map_locals (use 去广告合集)")
+    if "ads-map-local.yaml" in ey or "weixin-mp-ads.yaml" in ey:
+        errors.append("Egern.yaml still lists separate weixin/ads-map-local module")
+    if "adblock-egern-v0815c.module" not in ey:
+        errors.append("Egern.yaml missing 去广告合集")
     if re.search(r"dest_port:\s*\n\s*match:\s*[\"']9527[\"']", ey):
         errors.append("Egern.yaml still hard-rejects dest_port 9527")
     rh = REJECT_HOT.read_text(encoding="utf-8")
     if "url_regex" in rh or rh.count("no_resolve:") != 1:
         errors.append("Reject-Hot malformed or still has url_regex")
+    if "wxs.qq.com" not in rh:
+        errors.append("Reject-Hot missing wxs.qq.com (QingRex-style creative reject)")
     for path in ADBLOCK_FILES:
         if not path.is_file():
             continue
@@ -446,6 +405,8 @@ def verify() -> None:
             errors.append(f"{path.name} still has broken fmz200 WeChat body rewrite")
         if r"mp\.weixin\.qq\.com(:\d+)?" not in t:
             errors.append(f"{path.name} missing :443-safe WeChat Map Local")
+        if "wxgzhad" not in t and "getappmsgad|getappmsgext" not in t:
+            errors.append(f"{path.name} missing wxgzhad script")
     if errors:
         raise SystemExit("apply-nb-ads-patch verify failed:\n- " + "\n- ".join(errors))
     print("apply-nb-ads-patch: ok")
