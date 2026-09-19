@@ -6,7 +6,7 @@
 
 **模块**通过 URL Rewrite、MITM、Script 拦截 App 内广告和开屏。
 
-**分流 vs 模块：** 整域都是广告 → `Reject-Merged` 直接 REJECT。同域混业务才需要合集 MITM。合并时会把合集 `[Rule]` 里的 DOMAIN/IP REJECT 并进 `Reject-Merged.yaml`，合集只留改写/Script/AND。
+**分流 vs 模块：** 整域都是广告 → `Reject-Merged` 直接 REJECT。同域混业务才需要合集 MITM。合并时会把合集 `[Rule]` 里的 DOMAIN/IP REJECT 并进 `Reject-Merged.yaml`，合集只留改写/Script/AND。少量热点（如 NB助手 SDK）标 `# @keep`：仍并入分流，合集内也保留一行，避免只更新合集、Reject-Merged 未刷新时广告回潮。更新合集后请同时**强制更新**外部资源 `Reject-Merged`。
 
 ## 文件对照
 

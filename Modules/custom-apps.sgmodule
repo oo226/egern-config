@@ -8,33 +8,33 @@
 hostname = %APPEND% static.psbc.com, mcc.psbc.com, static.mobile-bank.psbc.com, d.psbc.com, mobile-bank.psbc.com, nbtool8.com, api.nbtool8.com, www.nbtool8.com, app.nbtool8.com, qt-api.delicloud.com, *.delicloud.com
 
 [Rule]
-# NB助手 / NBToolAds (LYZIOS) — 广告 SDK 域名
-DOMAIN-SUFFIX,adintl.cn,REJECT,pre-matching
-DOMAIN-SUFFIX,adkwai.com,REJECT,pre-matching
-DOMAIN-SUFFIX,adukwai.com,REJECT,pre-matching
-DOMAIN-SUFFIX,api-cfg.8ziben.com,REJECT,pre-matching
-DOMAIN-SUFFIX,api-dsp.8ziben.com,REJECT,pre-matching
-DOMAIN-SUFFIX,api-events.8ziben.com,REJECT,pre-matching
-DOMAIN-SUFFIX,bugly.qq.com,REJECT,pre-matching
-DOMAIN-SUFFIX,cdnhwc8.com,REJECT,pre-matching
-DOMAIN-SUFFIX,ctyunxs.cn,REJECT,pre-matching
-DOMAIN-SUFFIX,e.kuaishou.com,REJECT,pre-matching
-DOMAIN-SUFFIX,eos.huhehaote-8.cmecloud.cn,REJECT,pre-matching
-DOMAIN-SUFFIX,gepush.com,REJECT,pre-matching
-DOMAIN-SUFFIX,gifshow.com,REJECT,pre-matching
-DOMAIN-SUFFIX,static-dsp.8ziben.com,REJECT,pre-matching
-DOMAIN-SUFFIX,static.fliduo.cn,REJECT,pre-matching
-DOMAIN-SUFFIX,yximgs.com,REJECT,pre-matching
-DOMAIN-SUFFIX,yxings.com,REJECT,pre-matching
-DOMAIN-SUFFIX,zhangyuyidong.cn,REJECT,pre-matching
-DOMAIN,open.e.kuaishou.cn,REJECT,pre-matching
-DOMAIN,sdk.zhangyuyidong.cn,REJECT,pre-matching
-DOMAIN,v66-ad.ndcjl.com,REJECT,pre-matching
-# 得力e+ / 开屏 SDK（进合集后 divert 并入 Reject-Merged）
-DOMAIN-KEYWORD,delicloud-operate-manager,REJECT,pre-matching
-DOMAIN-SUFFIX,hzzfcm.com,REJECT,pre-matching
-DOMAIN-SUFFIX,66mobi.com,REJECT,pre-matching
-DOMAIN-SUFFIX,adn-plus.com.cn,REJECT,pre-matching
+# NB助手 / NBToolAds (LYZIOS) — 广告 SDK 域名（# @keep：合集内双层兜底，防 Reject-Merged 未刷新空窗）
+DOMAIN-SUFFIX,adintl.cn,REJECT,pre-matching # @keep
+DOMAIN-SUFFIX,adkwai.com,REJECT,pre-matching # @keep
+DOMAIN-SUFFIX,adukwai.com,REJECT,pre-matching # @keep
+DOMAIN-SUFFIX,api-cfg.8ziben.com,REJECT,pre-matching # @keep
+DOMAIN-SUFFIX,api-dsp.8ziben.com,REJECT,pre-matching # @keep
+DOMAIN-SUFFIX,api-events.8ziben.com,REJECT,pre-matching # @keep
+DOMAIN-SUFFIX,bugly.qq.com,REJECT,pre-matching # @keep
+DOMAIN-SUFFIX,cdnhwc8.com,REJECT,pre-matching # @keep
+DOMAIN-SUFFIX,ctyunxs.cn,REJECT,pre-matching # @keep
+DOMAIN-SUFFIX,e.kuaishou.com,REJECT,pre-matching # @keep
+DOMAIN-SUFFIX,eos.huhehaote-8.cmecloud.cn,REJECT,pre-matching # @keep
+DOMAIN-SUFFIX,gepush.com,REJECT,pre-matching # @keep
+DOMAIN-SUFFIX,gifshow.com,REJECT,pre-matching # @keep
+DOMAIN-SUFFIX,static-dsp.8ziben.com,REJECT,pre-matching # @keep
+DOMAIN-SUFFIX,static.fliduo.cn,REJECT,pre-matching # @keep
+DOMAIN-SUFFIX,yximgs.com,REJECT,pre-matching # @keep
+DOMAIN-SUFFIX,yxings.com,REJECT,pre-matching # @keep
+DOMAIN-SUFFIX,zhangyuyidong.cn,REJECT,pre-matching # @keep
+DOMAIN,open.e.kuaishou.cn,REJECT,pre-matching # @keep
+DOMAIN,sdk.zhangyuyidong.cn,REJECT,pre-matching # @keep
+DOMAIN,v66-ad.ndcjl.com,REJECT,pre-matching # @keep
+# 得力e+ / 开屏 SDK（进合集后 divert 并入 Reject-Merged；# @keep 双层）
+DOMAIN-KEYWORD,delicloud-operate-manager,REJECT,pre-matching # @keep
+DOMAIN-SUFFIX,hzzfcm.com,REJECT,pre-matching # @keep
+DOMAIN-SUFFIX,66mobi.com,REJECT,pre-matching # @keep
+DOMAIN-SUFFIX,adn-plus.com.cn,REJECT,pre-matching # @keep
 
 [URL Rewrite]
 # 邮储银行（与奶思合集互补，确保子域 MITM 生效）
