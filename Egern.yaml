@@ -371,8 +371,9 @@ rules:
       policy: DIRECT
       update_interval: 86400
 
-  # ── 微信公众号广告路径：必须在 Direct-Priority（weixin.qq.com DIRECT）之前 ──
-  # 否则整域 DIRECT 抢先，url_regex 永远不跑；连接里只会看到 jsmonitor DIRECT 322B
+  # ── 微信公众号广告路径 + 素材 CDN：必须在 Direct-Priority（weixin/wxs DIRECT）之前 ──
+  # 否则整域 DIRECT 抢先；连接里只会看到 jsmonitor DIRECT 322B / wxsmw DIRECT
+  # wxsmw/wxsnsdy REJECT →「卡片在、里面黑」；勿拒 wximg（正文图）
   - rule_set:
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Weixin-Ad-Reject.yaml
       policy: REJECT
@@ -533,7 +534,8 @@ url_rewrites:
     status_code: 302
 
 # NB助手：假成功去开屏（硬 REJECT 会无网络；域名拦了会改走 IP 80）
-# 微信公众号：getappmsgad / jsmonitor 等（须 MITM mp.weixin.qq.com；勿整域拒 wxs.qq.com）
+# 微信公众号：getappmsgad / jsmonitor 等（须 MITM mp.weixin.qq.com）
+# 素材黑屏见 Weixin-Ad-Reject 的 wxsmw/wxsnsdy；勿整域拒 wxs.qq.com（正文图会灰）
 # 正则须兼容 :443 / http(s) / 无 query（否则 Map Local 不命中，连接里仍见 DIRECT 322B）
 map_locals:
   # 心跳：真实接口返回纯文本 Network OK

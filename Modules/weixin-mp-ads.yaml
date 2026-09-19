@@ -1,7 +1,8 @@
 name: 微信公众号去广告
 description: |
-  路径 REJECT（见 Routing/Weixin-Ad-Reject，须排在 weixin DIRECT 前）+ Map Local + 脚本。
-  getappmsgext 只剥 advertisement_*。勿整域 REJECT wxs / short.weixin mmtls。
+  路径 REJECT（见 Routing/Weixin-Ad-Reject，须排在 weixin/wxs DIRECT 前）+ Map Local + 脚本。
+  广告素材 CDN（wxsmw / wxsnsdy）REJECT → 卡片壳在、图/视频黑；勿整域拒 wxs（会灰正文图）。
+  getappmsgext 只剥 advertisement_*。勿 MITM short.weixin mmtls。
 author: oo226/egern-config
 homepage: https://github.com/oo226/egern-config
 category: 去广告
