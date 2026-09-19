@@ -40,10 +40,9 @@ def main() -> None:
     lines = text.splitlines(keepends=True)
     for i, line in enumerate(lines[:40]):
         if line.startswith("#!desc="):
-            if "皮皮虾" not in line:
-                lines[i] = (
-                    "#!desc=已合并皮皮虾单独模块（QingRex+福利/我的）·强制更新本模块即可\n"
-                )
+            lines[i] = (
+                "#!desc=微信公众号Map Local已加固(:443)+getappmsgext·强制更新本模块\n"
+            )
             break
     text = "".join(lines)
     SRC.write_text(text, encoding="utf-8")

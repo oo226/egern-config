@@ -526,6 +526,7 @@ url_rewrites:
 
 # NB助手：假成功去开屏（硬 REJECT 会无网络；域名拦了会改走 IP 80）
 # 微信公众号：getappmsgad / jsmonitor 等（须 MITM mp.weixin.qq.com；勿整域拒 wxs.qq.com）
+# 正则须兼容 :443 / http(s) / 无 query（否则 Map Local 不命中，连接里仍见 DIRECT 322B）
 map_locals:
   # 心跳：真实接口返回纯文本 Network OK
   - match: '^https?://[^/]*nbtool8\.com(?::\d+)?/nb/telnet'
@@ -554,18 +555,14 @@ map_locals:
     headers:
       Content-Type: text/plain
     body: ""
-  # 微信公众号底栏广告
-  - match: '^https://mp\.weixin\.qq\.com/mp/getappmsgad'
+  # 微信公众号底栏/文中广告（空广告结构）
+  - match: '^https?://mp\.weixin\.qq\.com(?::\d+)?/mp/getappmsgad'
     status_code: 200
     headers:
       Content-Type: application/json
     body: '{"advertisement_num":0,"advertisement_info":[]}'
-  - match: '^https://mp\.weixin\.qq\.com/mp/(cps_product_info|jsmonitor|masonryfeed|relatedarticle)\?'
-    status_code: 200
-    headers:
-      Content-Type: application/json
-    body: '{}'
-  - match: '^https://mp\.weixin\.qq\.com/mp/relatedsearchword'
+  # 监控 / 商品 / 相关推荐（勿要求 \?）
+  - match: '^https?://mp\.weixin\.qq\.com(?::\d+)?/mp/(cps_product_info|jsmonitor|masonryfeed|relatedarticle|relatedsearchword)'
     status_code: 200
     headers:
       Content-Type: application/json
@@ -650,6 +647,11 @@ modules:
     # 用 raw 避免 jsDelivr 缓存拖住紧急改写（如 nbtool8:9527）
     url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/adblock-egern-v0815c.module
     update_interval: 86400
+    enabled: true
+  # 公众号去广告：原生 YAML（合集 Surge Map Local 偶发不命中 :443）
+  - name: 微信公众号去广告
+    url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/weixin-mp-ads.yaml
+    update_interval: 3600
     enabled: true
   - name: 解锁增强合集
     url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/unlock-collection.module
