@@ -1,5 +1,5 @@
 #!name=去广告合集
-#!desc=heat15 202609190459 · 防烫补丁 · 含皮皮虾 · apply-surge-heat-patch
+#!desc=微信公众号Map Local已加固(:443)+getappmsgext·强制更新本模块
 #!author=奶思[https://github.com/fmz200]
 #!icon=https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/AdblockPlus.png
 #!category=奶思的模块
@@ -3820,55 +3820,14 @@ hostname - reject
 
 
 
-^https?:\/\/(api\.|www\.|app\.)?nbtool8\.com(:\d+)?\/.*(splash|startup|launch|open[Ss]creen|welcome|banner|popup|promo|advert|/ad/|/ads/) - reject-dict
-^https?:\/\/[^:/]*nbtool8\.com(:\d+)?\/.*(splash|startup|launch|banner|popup|advert|/ad/|/ads/) - reject-dict
-^https?:\/\/[^:/]*nbtool8\.com(:\d+)?\/nb\/telnet data-type=text data="Network OK" status-code=200 header="Content-Type:text/plain"
-^https?:\/\/124\.222\.32\.246(:\d+)?\/nb\/telnet data-type=text data="Network OK" status-code=200 header="Content-Type:text/plain"
-^https?:\/\/[^:/]*nbtool8\.com(:\d+)?\/nb\/app data-type=text data="" status-code=200 header="Content-Type:text/plain"
-^https?:\/\/124\.222\.32\.246(:\d+)?\/nb\/app data-type=text data="" status-code=200 header="Content-Type:text/plain"
-^https?:\/\/[^:/]*nbtool8\.com:\d+\/nb\/(?!telnet) data-type=text data="" status-code=200 header="Content-Type:text/plain"
-^http:\/\/[^:/]*nbtool8\.com:\d+\/ data-type=text data="" status-code=200 header="Content-Type:text/plain"
-^http:\/\/124\.222\.32\.246(:\d+)?\/ data-type=text data="" status-code=200 header="Content-Type:text/plain"
 
-^https?:\/\/(api\.|www\.|app\.)?nbtool8\.com(:\d+)?\/.*(splash|startup|launch|open[Ss]creen|welcome|banner|popup|promo|advert|/ad/|/ads/) - reject-dict
-^https?:\/\/[^:/]*nbtool8\.com(:\d+)?\/.*(splash|startup|launch|banner|popup|advert|/ad/|/ads/) - reject-dict
-^https?:\/\/[^:/]*nbtool8\.com(:\d+)?\/nb\/telnet data-type=text data="Network OK" status-code=200 header="Content-Type:text/plain"
-^https?:\/\/124\.222\.32\.246(:\d+)?\/nb\/telnet data-type=text data="Network OK" status-code=200 header="Content-Type:text/plain"
-^https?:\/\/[^:/]*nbtool8\.com(:\d+)?\/nb\/app data-type=text data="" status-code=200 header="Content-Type:text/plain"
-^https?:\/\/124\.222\.32\.246(:\d+)?\/nb\/app data-type=text data="" status-code=200 header="Content-Type:text/plain"
-^https?:\/\/[^:/]*nbtool8\.com:\d+\/nb\/(?!telnet) data-type=text data="" status-code=200 header="Content-Type:text/plain"
-^http:\/\/[^:/]*nbtool8\.com:\d+\/ data-type=text data="" status-code=200 header="Content-Type:text/plain"
-^http:\/\/124\.222\.32\.246(:\d+)?\/ data-type=text data="" status-code=200 header="Content-Type:text/plain"
 
-^https?:\/\/(api\.|www\.|app\.)?nbtool8\.com(:\d+)?\/.*(splash|startup|launch|open[Ss]creen|welcome|banner|popup|promo|advert|/ad/|/ads/) - reject-dict
-^https?:\/\/[^:/]*nbtool8\.com(:\d+)?\/.*(splash|startup|launch|banner|popup|advert|/ad/|/ads/) - reject-dict
-^https?:\/\/[^:/]*nbtool8\.com(:\d+)?\/nb\/telnet data-type=text data="Network OK" status-code=200 header="Content-Type:text/plain"
-^https?:\/\/124\.222\.32\.246(:\d+)?\/nb\/telnet data-type=text data="Network OK" status-code=200 header="Content-Type:text/plain"
-^https?:\/\/[^:/]*nbtool8\.com(:\d+)?\/nb\/app data-type=text data="" status-code=200 header="Content-Type:text/plain"
-^https?:\/\/124\.222\.32\.246(:\d+)?\/nb\/app data-type=text data="" status-code=200 header="Content-Type:text/plain"
-^https?:\/\/[^:/]*nbtool8\.com:\d+\/nb\/(?!telnet) data-type=text data="" status-code=200 header="Content-Type:text/plain"
-^http:\/\/[^:/]*nbtool8\.com:\d+\/ data-type=text data="" status-code=200 header="Content-Type:text/plain"
-^http:\/\/124\.222\.32\.246(:\d+)?\/ data-type=text data="" status-code=200 header="Content-Type:text/plain"
 
-^https?:\/\/(api\.|www\.|app\.)?nbtool8\.com(:\d+)?\/.*(splash|startup|launch|open[Ss]creen|welcome|banner|popup|promo|advert|/ad/|/ads/) - reject-dict
-^https?:\/\/[^:/]*nbtool8\.com(:\d+)?\/.*(splash|startup|launch|banner|popup|advert|/ad/|/ads/) - reject-dict
-^https?:\/\/[^:/]*nbtool8\.com(:\d+)?\/nb\/telnet data-type=text data="Network OK" status-code=200 header="Content-Type:text/plain"
-^https?:\/\/124\.222\.32\.246(:\d+)?\/nb\/telnet data-type=text data="Network OK" status-code=200 header="Content-Type:text/plain"
-^https?:\/\/[^:/]*nbtool8\.com(:\d+)?\/nb\/app data-type=text data="" status-code=200 header="Content-Type:text/plain"
-^https?:\/\/124\.222\.32\.246(:\d+)?\/nb\/app data-type=text data="" status-code=200 header="Content-Type:text/plain"
-^https?:\/\/[^:/]*nbtool8\.com:\d+\/nb\/(?!telnet) data-type=text data="" status-code=200 header="Content-Type:text/plain"
-^http:\/\/[^:/]*nbtool8\.com:\d+\/ data-type=text data="" status-code=200 header="Content-Type:text/plain"
-^http:\/\/124\.222\.32\.246(:\d+)?\/ data-type=text data="" status-code=200 header="Content-Type:text/plain"
 
-^https?:\/\/(api\.|www\.|app\.)?nbtool8\.com(:\d+)?\/.*(splash|startup|launch|open[Ss]creen|welcome|banner|popup|promo|advert|/ad/|/ads/) - reject-dict
-^https?:\/\/[^:/]*nbtool8\.com(:\d+)?\/.*(splash|startup|launch|banner|popup|advert|/ad/|/ads/) - reject-dict
-^https?:\/\/[^:/]*nbtool8\.com(:\d+)?\/nb\/telnet data-type=text data="Network OK" status-code=200 header="Content-Type:text/plain"
-^https?:\/\/124\.222\.32\.246(:\d+)?\/nb\/telnet data-type=text data="Network OK" status-code=200 header="Content-Type:text/plain"
-^https?:\/\/[^:/]*nbtool8\.com(:\d+)?\/nb\/app data-type=text data="" status-code=200 header="Content-Type:text/plain"
-^https?:\/\/124\.222\.32\.246(:\d+)?\/nb\/app data-type=text data="" status-code=200 header="Content-Type:text/plain"
-^https?:\/\/[^:/]*nbtool8\.com:\d+\/nb\/(?!telnet) data-type=text data="" status-code=200 header="Content-Type:text/plain"
-^http:\/\/[^:/]*nbtool8\.com:\d+\/ data-type=text data="" status-code=200 header="Content-Type:text/plain"
-^http:\/\/124\.222\.32\.246(:\d+)?\/ data-type=text data="" status-code=200 header="Content-Type:text/plain"
+
+
+
+
 
 # NB全能助手 / NB Pro — 官方域名开屏与广告接口（须匹配 :端口，否则 9527/nb/app 漏网）
 ^https?:\/\/(api\.|www\.|app\.)?nbtool8\.com(:\d+)?\/.*(splash|startup|launch|open[Ss]creen|welcome|banner|popup|promo|advert|/ad/|/ads/) - reject-dict
@@ -4939,7 +4898,6 @@ http-response-jq ^https:\/\/app-conf\.ds\.163\.com\/v\d\/app\/base\/conf\/static
 
 # > 微信公众号
 # hostname = mp.weixin.qq.com
-http-response ^https?:\/\/mp\.weixin\.qq\.com\/mp\/getappmsgad advertisement fmz200
 
 # >>>>>>>>>>>>>>> ✅ X ✅ <<<<<<<<<<<<<<
 
@@ -5013,6 +4971,11 @@ http-response ^https?:\/\/app\.zhuanzhuan\.com\/zz\/v2\/zzinfoshow\/getchoicegoo
 # >>>>>>>>>>>>>>> 🟣 <<<<<<<<<<<<<<
 
 [Map Local]
+# 微信公众号：兼容 :443 / http(s) / 无 query（旧 \? 正则会漏命中）
+^https?:\/\/mp\.weixin\.qq\.com(:\d+)?\/mp\/getappmsgad data-type=text data="{\"advertisement_num\":0,\"advertisement_info\":[]}" status-code=200 header="Content-Type:application/json"
+^https?:\/\/mp\.weixin\.qq\.com(:\d+)?\/mp\/(cps_product_info|jsmonitor|masonryfeed|relatedarticle|relatedsearchword) data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+# 小程序广告素材（勿整域拒 wxs.qq.com）
+^http:\/\/\w+\.wxs\.qq\.com\/\d+\/\d+\/(snscosdownload|snssvpdownload)\/(SH|SZ)\/reserved\/\w+ data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 # NB助手：假成功去开屏（勿硬 REJECT；含 IP 绕过 124.222.32.246）
 ^https?:\/\/[^:/]*nbtool8\.com(:\d+)?\/nb\/telnet data-type=text data="Network OK" status-code=200 header="Content-Type:text/plain"
 ^https?:\/\/124\.222\.32\.246(:\d+)?\/nb\/telnet data-type=text data="Network OK" status-code=200 header="Content-Type:text/plain"
@@ -5020,44 +4983,6 @@ http-response ^https?:\/\/app\.zhuanzhuan\.com\/zz\/v2\/zzinfoshow\/getchoicegoo
 ^https?:\/\/124\.222\.32\.246(:\d+)?\/nb\/app data-type=text data="" status-code=200 header="Content-Type:text/plain"
 ^http:\/\/[^:/]*nbtool8\.com:\d+\/ data-type=text data="" status-code=200 header="Content-Type:text/plain"
 ^http:\/\/124\.222\.32\.246(:\d+)?\/ data-type=text data="" status-code=200 header="Content-Type:text/plain"
-^https?:\/\/[^:/]*nbtool8\.com(:\d+)?\/nb\/telnet data-type=text data="Network OK" status-code=200 header="Content-Type:text/plain"
-^https?:\/\/124\.222\.32\.246(:\d+)?\/nb\/telnet data-type=text data="Network OK" status-code=200 header="Content-Type:text/plain"
-^https?:\/\/[^:/]*nbtool8\.com(:\d+)?\/nb\/app data-type=text data="" status-code=200 header="Content-Type:text/plain"
-^https?:\/\/124\.222\.32\.246(:\d+)?\/nb\/app data-type=text data="" status-code=200 header="Content-Type:text/plain"
-^http:\/\/[^:/]*nbtool8\.com:\d+\/ data-type=text data="" status-code=200 header="Content-Type:text/plain"
-^http:\/\/124\.222\.32\.246(:\d+)?\/ data-type=text data="" status-code=200 header="Content-Type:text/plain"
-# 微信公众号底栏广告 / 监控 / 相关推荐（勿整域拒 wxs.qq.com）
-^https:\/\/mp\.weixin\.qq\.com\/mp\/getappmsgad data-type=text data="{\"advertisement_num\":0,\"advertisement_info\":[]}" status-code=200 header="Content-Type:application/json"
-^https:\/\/mp\.weixin\.qq\.com\/mp\/(cps_product_info|jsmonitor|masonryfeed|relatedarticle)\? data-type=text data="{}" status-code=200 header="Content-Type:application/json"
-^https:\/\/mp\.weixin\.qq\.com\/mp\/relatedsearchword data-type=text data="{}" status-code=200 header="Content-Type:application/json"
-^http:\/\/\w+\.wxs\.qq\.com\/\d+\/\d+\/(snscosdownload|snssvpdownload)\/(SH|SZ)\/reserved\/\w+ data-type=text data="{}" status-code=200 header="Content-Type:application/json"
-^https?:\/\/[^:/]*nbtool8\.com(:\d+)?\/nb\/telnet data-type=text data="Network OK" status-code=200 header="Content-Type:text/plain"
-^https?:\/\/124\.222\.32\.246(:\d+)?\/nb\/telnet data-type=text data="Network OK" status-code=200 header="Content-Type:text/plain"
-^https?:\/\/[^:/]*nbtool8\.com(:\d+)?\/nb\/app data-type=text data="" status-code=200 header="Content-Type:text/plain"
-^https?:\/\/124\.222\.32\.246(:\d+)?\/nb\/app data-type=text data="" status-code=200 header="Content-Type:text/plain"
-^http:\/\/[^:/]*nbtool8\.com:\d+\/ data-type=text data="" status-code=200 header="Content-Type:text/plain"
-^http:\/\/124\.222\.32\.246(:\d+)?\/ data-type=text data="" status-code=200 header="Content-Type:text/plain"
-^https?:\/\/[^:/]*nbtool8\.com(:\d+)?\/nb\/telnet data-type=text data="Network OK" status-code=200 header="Content-Type:text/plain"
-^https?:\/\/124\.222\.32\.246(:\d+)?\/nb\/telnet data-type=text data="Network OK" status-code=200 header="Content-Type:text/plain"
-^https?:\/\/[^:/]*nbtool8\.com(:\d+)?\/nb\/app data-type=text data="" status-code=200 header="Content-Type:text/plain"
-^https?:\/\/124\.222\.32\.246(:\d+)?\/nb\/app data-type=text data="" status-code=200 header="Content-Type:text/plain"
-^http:\/\/[^:/]*nbtool8\.com:\d+\/ data-type=text data="" status-code=200 header="Content-Type:text/plain"
-^http:\/\/124\.222\.32\.246(:\d+)?\/ data-type=text data="" status-code=200 header="Content-Type:text/plain"
-^https?:\/\/[^:/]*nbtool8\.com(:\d+)?\/nb\/telnet data-type=text data="Network OK" status-code=200 header="Content-Type:text/plain"
-^https?:\/\/124\.222\.32\.246(:\d+)?\/nb\/telnet data-type=text data="Network OK" status-code=200 header="Content-Type:text/plain"
-^https?:\/\/[^:/]*nbtool8\.com(:\d+)?\/nb\/app data-type=text data="" status-code=200 header="Content-Type:text/plain"
-^https?:\/\/124\.222\.32\.246(:\d+)?\/nb\/app data-type=text data="" status-code=200 header="Content-Type:text/plain"
-^http:\/\/[^:/]*nbtool8\.com:\d+\/ data-type=text data="" status-code=200 header="Content-Type:text/plain"
-^http:\/\/124\.222\.32\.246(:\d+)?\/ data-type=text data="" status-code=200 header="Content-Type:text/plain"
-^https?:\/\/[^:/]*nbtool8\.com(:\d+)?\/nb\/telnet data-type=text data="Network OK" status-code=200 header="Content-Type:text/plain"
-^https?:\/\/124\.222\.32\.246(:\d+)?\/nb\/telnet data-type=text data="Network OK" status-code=200 header="Content-Type:text/plain"
-^https?:\/\/[^:/]*nbtool8\.com(:\d+)?\/nb\/app data-type=text data="" status-code=200 header="Content-Type:text/plain"
-^https?:\/\/124\.222\.32\.246(:\d+)?\/nb\/app data-type=text data="" status-code=200 header="Content-Type:text/plain"
-^http:\/\/[^:/]*nbtool8\.com:\d+\/ data-type=text data="" status-code=200 header="Content-Type:text/plain"
-^http:\/\/124\.222\.32\.246(:\d+)?\/ data-type=text data="" status-code=200 header="Content-Type:text/plain"
-
-
-
 # heat8：base64 有 body（reject-200 空包会狂重试）；ss_app_log 格式
 ^https?:\/\/log-api\.pangolin-sdk-toutiao[-\w]*\.com\/service\/2\/app_log data-type=base64 data="eyJjb2RlIjowLCJtZXNzYWdlIjoic3VjY2VzcyIsIm1hZ2ljX3RhZyI6InNzX2FwcF9sb2ciLCJzZXJ2ZXJfdGltZSI6MTcyNDIyMDAwMCwiZGF0YSI6e319" status-code=200 header="Content-Type:application/json"
 ^https?:\/\/log-api\.pangolin-sdk-toutiao[-\w]*\.com data-type=base64 data="eyJjb2RlIjowLCJtZXNzYWdlIjoic3VjY2VzcyIsIm1hZ2ljX3RhZyI6InNzX2FwcF9sb2ciLCJzZXJ2ZXJfdGltZSI6MTcyNDIyMDAwMCwiZGF0YSI6e319" status-code=200 header="Content-Type:application/json"
@@ -7050,7 +6975,6 @@ https?:\/\/(ipv4|interface\d?)\.music\.163.com\/e?api\/ad data-type=text data="{
 # > 微信公众号
 # hostname = mp.weixin.qq.com
 # 公众号去除商品推广
-^https?:\/\/mp\.weixin\.qq\.com\/mp\/cps_product_info\?action data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 
 # > 唯品会
 # hostname = b.appsimg.com, mapi.appvipshop.com
@@ -8828,7 +8752,7 @@ xiaodaka = type=http-response, pattern=^https?:\/\/.*\.sharedaka\.com, script-pa
 donghuatai = type=http-response, pattern=^https?:\/\/comic\.321mh\.com, script-path=https://cdn.jsdelivr.net/gh/oo226/egern-config@main/Scripts/chxm1023/xcx/donghuatai.js, requires-body=true, max-size=-1, timeout=60
 
 # 公众号文章去广告 hostname = mp.weixin.qq.com
-wxgzhad = type=http-response, pattern=^https?:\/\/mp\.weixin\.qq\.com\/mp\/getappmsgad, script-path=https://cdn.jsdelivr.net/gh/oo226/egern-config@main/Scripts/chxm1023/advertising/wxgzhad.js, requires-body=true, max-size=-1, timeout=60
+wxgzhad = type=http-response, pattern=^https?:\/\/mp\.weixin\.qq\.com(:\d+)?\/mp\/(getappmsgad|getappmsgext), script-path=https://cdn.jsdelivr.net/gh/oo226/egern-config@main/Scripts/chxm1023/advertising/wxgzhad.js, requires-body=true, max-size=-1, timeout=60
 
 # 小野分享 hostname = lysl2020.com
 Admodule = type=http-response, pattern=^https?:\/\/lysl2020.com/wp-json/wp/v2/posts, script-path=https://cdn.jsdelivr.net/gh/oo226/egern-config@main/Scripts/chxm1023/advertising/Admodule.js, requires-body=true, max-size=-1, timeout=60
