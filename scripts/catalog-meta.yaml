@@ -17,10 +17,7 @@ routing:
     desc: Direct + 微信/B站/苹果中国 + 国内域名 IP/ASN + 视频资源站 + 网盘点播，合并去重。
   Routing/Reject-Merged.yaml:
     name: 去广告域名
-    desc: Repcz Reject + Sukka 广告域名集，合并去重。
-  Routing/Reject-Module.yaml:
-    name: 合集抽分流
-    desc: 从去广告合集 [Rule] 自动抽出的 DOMAIN/IP REJECT（含得力等补全）；合集本身只做 MITM/路径改写。
+    desc: 上游 Reject + 合集抽出的整域/IP REJECT，统一一张表。
   Routing/Direct-Priority.yaml:
     name: 优先直连
     desc: 须在 ProxyGFW/China-Direct 之前直连的服务域。
