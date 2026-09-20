@@ -1,6 +1,6 @@
 # 热点去广告（须排在 Direct-Priority 之前）
-# 含 QingRex 同款：DOMAIN-SUFFIX wxs.qq.com → 公众号广告卡片在、图/视频黑
-# 完整清单仍在 Reject-Merged；Map Local / 脚本在去广告合集（apply-nb-ads-patch）
+# 微信广告素材：Lentin 精准三域名（勿整域 wxs.qq.com，免误伤正文图）
+# 接口空响应 / wxgzhad 在去广告合集（apply-nb-ads-patch）
 #
 # NB 控制口（nbtool8.com:9527 / 硬编码 IP）不要进本表 REJECT：
 # /nb/telnet 返回 "Network OK"；去开屏见合集 Map Local。
@@ -13,6 +13,10 @@ domain_set:
   - sdk6.zhangyuyidong.cn
   - v66-ad.ndcjl.com
   - wxsmsdy.video.qq.com
+  # 微信公众号/小程序广告素材（Lentin；须先于 Direct-Priority 的 wxs DIRECT）
+  - wxa.wxs.qq.com
+  - wximg.wxs.qq.com
+  - wxsmw.wxs.qq.com
   # NBPro 墨鱼版补充（ddgksf2013/NBProAds.conf；须 Reject-Hot 早拦，部分后缀在 China-Direct）
   - capsinfo.anythink.com
   - showtime.anythink.com
@@ -68,8 +72,6 @@ domain_suffix_set:
   - yximgs.com
   - yxings.com
   - zhangyuyidong.cn
-  # 微信公众号广告 CDN（QingRex 微信公众号去广告；须先于 Direct-Priority 的 wxs DIRECT）
-  - wxs.qq.com
 
 domain_keyword_set:
   - delicloud-operate-manager

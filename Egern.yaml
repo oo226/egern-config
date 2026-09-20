@@ -371,7 +371,7 @@ rules:
       policy: DIRECT
       update_interval: 86400
 
-  # ── 热点 REJECT（含 QingRex 同款 wxs.qq.com）：须在 Direct-Priority 之前 ──
+  # ── 热点 REJECT（含 Lentin 微信广告 CDN）：须在 Direct-Priority 之前 ──
   # NB助手控制口勿硬 REJECT：/nb/telnet=Network OK；Map Local 在主配置 + 合集（apply-nb-ads-patch）
   - rule_set:
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Reject-Hot.yaml
@@ -582,6 +582,11 @@ scriptings:
       name: 微信公众号广告
       match: '^https?://mp\.weixin\.qq\.com(?::\d+)?/mp/(getappmsgad|getappmsgext)'
       script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/chxm1023/advertising/wxgzhad.js
+      body_required: true
+      max_size: -1
+      timeout: 60
+      update_interval: 3600
+      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/ddgksf2013/nbpro.ads.js
       body_required: true
       max_size: -1
       timeout: 60

@@ -2,7 +2,7 @@
 # 类型: 分流规则 — 去广告域名 REJECT（上游 + 去广告合集整域补全）
 # Do not edit manually. Updated by GitHub Actions after upstream sync / adblock merge.
 #
-# Includes ~11 unique hosts diverted from 去广告合集 [Rule] (DOMAIN/IP REJECT).
+# Includes ~0 unique hosts diverted from 去广告合集 [Rule] (DOMAIN/IP REJECT).
 # Total unique entries: 138992
 
 no_resolve: true
