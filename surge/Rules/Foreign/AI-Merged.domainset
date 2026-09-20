@@ -1,11 +1,13 @@
 # AUTO-EXPORTED from Routing/Foreign/AI-Merged.yaml
 # Format: Surge DOMAIN-SET (leading '.' = suffix). scripts/export-surge-rulesets.py
-# Total entries: 417
+# Total entries: 422
 
 accountcapabilities-pa.googleapis.com
+ai.developer.meta.com
 ai.google.dev
 ai.meta.com
 aida.googleapis.com
+aidemos.meta.com
 aisandbox-pa.googleapis.com
 alkalicore-pa.clients6.google.com
 alkalimakersuite-pa.clients6.google.com
@@ -65,17 +67,20 @@ copilot.microsoft.com
 copilotprodattachments.blob.core.windows.net
 daily-cloudcode-pa.googleapis.com
 dashscope.aliyuncs.com
+developer.meta.com
 ernie.baidu.com
 file.oaiusercontent.com
 files.oaiusercontent.com
 gateway.ai.cloudflare.com
 gateway.bingviz.microsoft.net
 gateway.bingviz.microsoftapp.net
+growth-pa.googleapis.com
 hunyuan.tencentcloudapi.com
 idetoolkits-hostedfiles.amazonaws.com
 idetoolkits.amazonwebservices.com
 in.appcenter.ms
 jules.google.com
+llama.developer.meta.com
 location.microsoft.com
 notebooklm-pa.googleapis.com
 notebooklm.googleapis.com
@@ -247,7 +252,6 @@ yiyan.baidu.com
 .grok.x.com
 .grokipedia.com
 .groq.com
-.growth-pa.googleapis.com
 .h2o.ai
 .hailuoai.com
 .hermes-agent.nousresearch.com
@@ -281,6 +285,7 @@ yiyan.baidu.com
 .leonardo.ai
 .lf3-static.bytednsdoc.com
 .llama.com
+.llamameta.net
 .lmarena.ai
 .lmstudio.ai
 .lovable.dev

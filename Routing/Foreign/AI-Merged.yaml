@@ -4,18 +4,20 @@
 #
 # Sources:
 #   Repcz-AI     — Repcz/Tool — AI.yaml (52 entries)
-#   VPSDance     — VPSDance/ai-proxy-rules — egern/all.yaml (361 entries)
+#   VPSDance     — VPSDance/ai-proxy-rules — egern/all.yaml (366 entries)
 #   Sukka-ai     — Sukka ruleset.skk.moe — non_ip/ai.conf (50 entries)
-#   local        — oo226/egern-config — AI-supplement.yaml (92 entries)
-# Overlap removed: 130
-# Total unique entries: 425
+#   local        — oo226/egern-config — AI-supplement.yaml (94 entries)
+# Overlap removed: 131
+# Total unique entries: 431
 
 no_resolve: true
 domain_set:
   - accountcapabilities-pa.googleapis.com
+  - ai.developer.meta.com
   - ai.google.dev
   - ai.meta.com
   - aida.googleapis.com
+  - aidemos.meta.com
   - aisandbox-pa.googleapis.com
   - alkalicore-pa.clients6.google.com
   - alkalimakersuite-pa.clients6.google.com
@@ -75,17 +77,20 @@ domain_set:
   - copilotprodattachments.blob.core.windows.net
   - daily-cloudcode-pa.googleapis.com
   - dashscope.aliyuncs.com
+  - developer.meta.com
   - ernie.baidu.com
   - file.oaiusercontent.com
   - files.oaiusercontent.com
   - gateway.ai.cloudflare.com
   - gateway.bingviz.microsoft.net
   - gateway.bingviz.microsoftapp.net
+  - growth-pa.googleapis.com
   - hunyuan.tencentcloudapi.com
   - idetoolkits-hostedfiles.amazonaws.com
   - idetoolkits.amazonwebservices.com
   - in.appcenter.ms
   - jules.google.com
+  - llama.developer.meta.com
   - location.microsoft.com
   - notebooklm-pa.googleapis.com
   - notebooklm.googleapis.com
@@ -243,7 +248,6 @@ domain_suffix_set:
   - g.ai
   - gamma.app
   - geller-pa.googleapis.com
-  - growth-pa.googleapis.com
   - gemini.google
   - gemini.google.com
   - gemini.gstatic.com
@@ -292,6 +296,7 @@ domain_suffix_set:
   - leonardo.ai
   - lf3-static.bytednsdoc.com
   - llama.com
+  - llamameta.net
   - lmarena.ai
   - lmstudio.ai
   - lovable.dev

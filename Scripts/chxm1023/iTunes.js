@@ -1,7 +1,7 @@
 /*************************************
 
 项目名称：iTunes-系列解锁合集
-更新日期：2026-09-07
+更新日期：2026-09-16
 脚本作者：@ddm1023
 电报频道：https://t.me/ddm1023
 使用声明：⚠️仅供参考，🈲转载与售卖！
@@ -56,6 +56,7 @@ const bundle_id = ddm.receipt["bundle_id"] || ddm.receipt["Bundle_Id"];
 
 // ===== App列表 =====
 const list = {
+  'MusicMix%20Pro': { tp: 'timeb', hx: 'hxpda', id: "permanent" }, //音频剪辑
   'StreamingLite': { tp: 'timeb', hx: 'hxpda', id: "NSP.lifetime" }, //Nero乐播-手机投屏助手
   'Anytable': { tp: 'timeb', hx: 'hxpda', id: "100004" }, //多多记账
   'bazaart': { tp: 'timea', hx: 'hxpda', id: "Bazaart_Super_Three_Months_v4" }, //Bazaart百色特
@@ -332,6 +333,7 @@ const autoMap = {
     'co.airapps'  //Air Apps System
   ],
   yearly: [
+    'com.mkapps.Vcaption',  //VideoCaption-视频对话标题
     'com.pocket'  //NetPocket Co
   ],
   yearlysubscription: [
@@ -342,7 +344,7 @@ const autoMap = {
     'co.vulcanlabs'  //Vulcan Labs Company Limited
   ],
   forever: [
-    
+    'com.paha.CapyMood'  //CapyMood-轻松水豚HRV自测
   ]
 };
 
@@ -360,7 +362,7 @@ const AutoID = {
   yearly: (bid) => `${bid}.yearly`,
   yearlysubscription: (bid) => `${bid}.yearlysubscription`,
   lifetime: (bid) => `${bid}.lifetime`,
-  forever: (bid) => `${bid}.Forever`
+  forever: (bid) => `${bid}.forever`
 };
 
 // ===== 自动注入list =====

@@ -1,12 +1,47 @@
 # AUTO-EXPORTED from Routing/Reject-Hot.yaml
 # Format: Surge RULE-SET (no policy). scripts/export-surge-rulesets.py
 # Domain lines include extended-matching (SNI hit under always-real-ip / VIF).
-# Total entries: 25
-# NOTE: NB 控制口勿进 REJECT；假成功见合集 Map Local / Egern map_locals。
+# Total entries: 61
 
+DOMAIN,aa.birdgesdk.com,extended-matching
+DOMAIN,adservice.sigmob.cn,extended-matching
+DOMAIN,api-htp.beizi.biz,extended-matching
+DOMAIN,api-incentive.8ziben.com,extended-matching
+DOMAIN,api.bridgeoos.com,extended-matching
+DOMAIN,api.htp.ad-scope.com.cn,extended-matching
+DOMAIN,bid.ad-scope.com.cn,extended-matching
+DOMAIN,c.etoolads.cn,extended-matching
+DOMAIN,capsinfo.anythink.com,extended-matching
+DOMAIN,cpro.baidustatic.com,extended-matching
+DOMAIN,cpu-openapi.baidu.com,extended-matching
+DOMAIN,cpu.baidu.com,extended-matching
+DOMAIN,fusion-static.oss-cn-shenzhen.aliyuncs.com,extended-matching
+DOMAIN,mobads-pre-config.bj.bcebos.com,extended-matching
+DOMAIN,mobads-pre-config.cdn.bcebos.com,extended-matching
+DOMAIN,mobads.baidu.com,extended-matching
+DOMAIN,opehs.tanx.com,extended-matching
 DOMAIN,open.e.kuaishou.cn,extended-matching
+DOMAIN,open.e.kuaishou.com,extended-matching
+DOMAIN,pitk.birdgesdk.com,extended-matching
+DOMAIN,render-server.cdn.bcebos.com,extended-matching
+DOMAIN,s.e.kuaishou.com,extended-matching
+DOMAIN,sdk-cfg.adx.adwangmai.com,extended-matching
+DOMAIN,sdk.adx.adwangmai.com,extended-matching
+DOMAIN,sdk.beizi.biz,extended-matching
 DOMAIN,sdk.zhangyuyidong.cn,extended-matching
+DOMAIN,sdk6.zhangyuyidong.cn,extended-matching
+DOMAIN,sdkcfg.adintl.cn,extended-matching
+DOMAIN,sdktmp.hubcloud.com.cn,extended-matching
+DOMAIN,showtime.anythink.com,extended-matching
+DOMAIN,static.8ziben.com,extended-matching
+DOMAIN,static.adwangmai.com,extended-matching
+DOMAIN,test.s.adintl.cn,extended-matching
 DOMAIN,v66-ad.ndcjl.com,extended-matching
+DOMAIN,videoproxy.tanx.com,extended-matching
+DOMAIN,wxa.wxs.qq.com,extended-matching
+DOMAIN,wximg.wxs.qq.com,extended-matching
+DOMAIN,wxsmsdy.video.qq.com,extended-matching
+DOMAIN,wxsmw.wxs.qq.com,extended-matching
 DOMAIN-SUFFIX,66mobi.com,extended-matching
 DOMAIN-SUFFIX,adintl.cn,extended-matching
 DOMAIN-SUFFIX,adkwai.com,extended-matching
