@@ -38,11 +38,10 @@ merge:
   content_line_excludes:
   - Spotify.Crack.Dev.js
   - Spotify.Crack.js
-  # 微信 CDN 勿整域 REJECT（广告用 getappmsgad Map Local / Script；图床要直连）
+  # 微信 CDN：整域勿进合集；精准三域名由 custom-apps # @keep
   - DOMAIN-SUFFIX,wxs.qq.com,REJECT
-  - DOMAIN,wximg.wxs.qq.com,REJECT
-  - DOMAIN,wxsmw.wxs.qq.com,REJECT
-  - DOMAIN,wxa.wxs.qq.com,REJECT
+  # 奶思残缺 Body Rewrite
+  - "http-response ^https?:\\/\\/mp\\.weixin\\.qq\\.com\\/mp\\/getappmsgad advertisement fmz200"
   script_url_fixes:
     https://raw.githubusercontent.com/limbopro/Adblock4limbo/main/Adguard/cnys.js: https://raw.githubusercontent.com/limbopro/Adblock4limbo/main/Adguard/Adblock4limbo.js
     https://raw.perzikkop.com/Scripts/Weibo.js: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/fmz200/weibo/weibo_ads.js

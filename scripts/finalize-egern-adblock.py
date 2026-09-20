@@ -41,7 +41,7 @@ def main() -> None:
     for i, line in enumerate(lines[:40]):
         if line.startswith("#!desc="):
             lines[i] = (
-                "#!desc=微信公众号Map Local已加固(:443)+NBPro墨鱼脚本·强制更新本模块\n"
+                "#!desc=微信CDN精准三域名+Map Local+NBPro墨鱼脚本·强制更新本模块\n"
             )
             break
     text = "".join(lines)

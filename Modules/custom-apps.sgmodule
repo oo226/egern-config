@@ -68,6 +68,10 @@ DOMAIN,sdk-cfg.adx.adwangmai.com,REJECT,pre-matching # @keep
 DOMAIN,static.adwangmai.com,REJECT,pre-matching # @keep
 DOMAIN,open.e.kuaishou.com,REJECT,pre-matching # @keep
 DOMAIN,s.e.kuaishou.com,REJECT,pre-matching # @keep
+# 微信公众号/小程序广告素材 CDN（Lentin；勿整域拒 wxs.qq.com，免误伤正文图）
+DOMAIN,wxa.wxs.qq.com,REJECT,pre-matching # @keep
+DOMAIN,wximg.wxs.qq.com,REJECT,pre-matching # @keep
+DOMAIN,wxsmw.wxs.qq.com,REJECT,pre-matching # @keep
 # NB 控制口勿 AND REJECT：/nb/telnet=Network OK；/nb/app 用脚本改广告字段
 
 [URL Rewrite]
@@ -77,6 +81,7 @@ DOMAIN,s.e.kuaishou.com,REJECT,pre-matching # @keep
 # 动卡空间开屏（中信）
 ^https?:\/\/ump\.sz\.creditcard\.ecitic\.com\/citiccard\/cm-ump\/ump-gateway\/ump-net-app\/ump-net-app\/adv data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 ^https?:\/\/m\.creditcard\.ecitic\.com\/citiccard\/mbk\/appspace-getway\/getWay\/dkkj-system-web\/system\/v\d+\/init-config data-type=text data=" " status-code=200
+
 
 
 # NB全能助手 / NB Pro — 只拒开屏路径；telnet 假成功；/nb/app 走脚本（墨鱼 NBProAds）
@@ -111,6 +116,7 @@ DOMAIN,s.e.kuaishou.com,REJECT,pre-matching # @keep
 ^https?:\/\/47\.243\.71\.210(:\d+)?\/nb\/telnet data-type=text data="Network OK" status-code=200 header="Content-Type:text/plain"
 ^https?:\/\/cesapp\.goypzc\.cn(:\d+)?\/nb\/telnet data-type=text data="Network OK" status-code=200 header="Content-Type:text/plain"
 [Script]
+
 
 # NBPro /nb/app：墨鱼版解密改广告字段再写回（勿空正文）
 nbpro-ads = type=http-response, pattern=^https?:\/\/(?:[^:/]*nbtool8\.com|124\.222\.32\.246|117\.72\.39\.157|47\.243\.71\.210|cesapp\.goypzc\.cn)(?::\d+)?\/nb\/app, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/ddgksf2013/nbpro.ads.js, requires-body=true, max-size=-1, timeout=60

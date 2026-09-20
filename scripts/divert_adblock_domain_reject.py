@@ -27,16 +27,17 @@ from routing_list_utils import SET_KEYS, empty_sets, parse_egern_sets
 
 _IP_HOST_RE = re.compile(r"^\d{1,3}(?:\.\d{1,3}){3}$")
 
-# 整域 REJECT 会误杀业务 CDN；微信 wxs 改走 Reject-Hot（Direct-Priority 前，对齐 QingRex）。
+# 整域 REJECT 会误杀业务 CDN；微信广告素材改走 Reject-Hot 精准域名 + 合集 # @keep。
 # 勿再并入 Reject-Merged（日更 divert 也会跳过；顺序错了拦不住）。
+# 合集内带 # @keep 的 NEVER_REJECT 行会保留（只更新合集也能生效）。
 NEVER_REJECT_SUFFIXES = frozenset(
     {
-        "wxs.qq.com",  # Reject-Hot 早拦；合集 Map Local + wxgzhad 处理接口
+        "wxs.qq.com",  # 整域勿进 Reject-Merged；精准子域见 NEVER_REJECT_DOMAINS
     }
 )
 NEVER_REJECT_DOMAINS = frozenset(
     {
-        "wximg.wxs.qq.com",
+        "wximg.wxs.qq.com",  # Lentin：公众号/小程序广告素材
         "wxsmw.wxs.qq.com",
         "wxa.wxs.qq.com",
     }
@@ -147,9 +148,13 @@ def divert_module_text(
             continue
 
         kind, value = parsed
-        # 误杀业务 CDN：从合集剔除，且不进 Reject-Merged
+        # 误杀业务 CDN：默认不进 Reject-Merged；带 # @keep 则留在合集（更新合集即可生效）
         if _is_never_reject(kind, value):
-            stats["skipped_covered"] += 1
+            if "# @keep" in stripped:
+                stats["kept_dual"] += 1
+                out.append(line)
+            else:
+                stats["skipped_covered"] += 1
             continue
 
         # `# @keep` — still merge into Reject-Merged, but leave the line in the

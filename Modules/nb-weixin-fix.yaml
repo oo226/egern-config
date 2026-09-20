@@ -2,7 +2,7 @@ name: NB·微信修复
 description: |
   不拉主配置也能用：NB 控制口 + NBPro 脚本 + 微信公众号。
   NB：telnet=Network OK；/nb/app 用墨鱼脚本改广告（勿空 Map Local，否则「格式不正确」）。
-  微信：空 getappmsgad + wxgzhad；素材 CDN 仍靠 Reject-Hot 的 wxs。
+  微信：空 getappmsgad + wxgzhad；素材 CDN 靠合集/Reject-Hot 的 wxa/wximg/wxsmw。
 author: oo226/egern-config + ddgksf2013
 homepage: https://github.com/oo226/egern-config
 category: 去广告

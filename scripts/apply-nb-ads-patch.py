@@ -9,7 +9,7 @@ hard REJECT can still drift. This script forces:
 2. /nb/app → nbpro-ads script-response-body（墨鱼 AES 改广告字段）
 3. Egern.yaml 原生 map_locals + NBPro scripting（合集 Surge 写法在 Egern 偶发不命中）
 4. 去广告合集 Map Local + wxgzhad + nbpro-ads
-5. Reject-Hot：SDK（含 NBProAds）+ QingRex 同款 wxs.qq.com（须在 Direct-Priority 前）
+5. Reject-Hot：SDK（含 NBProAds）+ Lentin 精准 wxa/wximg/wxsmw.wxs.qq.com（须在 Direct-Priority 前）
 6. 主配置不挂独立微信模块；另提供 Modules/nb-weixin-fix.yaml 供不拉主配置时手动加
 
 Wire after apply-surge-heat-patch.py, before finalize-egern-adblock.py.
@@ -113,8 +113,8 @@ BROKEN_FMZ200_WX_LINE = (
 )
 
 REJECT_HOT_TEMPLATE = r"""# 热点去广告（须排在 Direct-Priority 之前）
-# 含 QingRex 同款：DOMAIN-SUFFIX wxs.qq.com → 公众号广告卡片在、图/视频黑
-# 完整清单仍在 Reject-Merged；Map Local / 脚本在去广告合集（apply-nb-ads-patch）
+# 微信广告素材：Lentin 精准三域名（勿整域 wxs.qq.com，免误伤正文图）
+# 接口空响应 / wxgzhad 在去广告合集（apply-nb-ads-patch）
 #
 # NB 控制口（nbtool8.com:9527 / 硬编码 IP）不要进本表 REJECT：
 # /nb/telnet 返回 "Network OK"；去开屏见合集 Map Local。
@@ -127,6 +127,10 @@ domain_set:
   - sdk6.zhangyuyidong.cn
   - v66-ad.ndcjl.com
   - wxsmsdy.video.qq.com
+  # 微信公众号/小程序广告素材（Lentin；须先于 Direct-Priority 的 wxs DIRECT）
+  - wxa.wxs.qq.com
+  - wximg.wxs.qq.com
+  - wxsmw.wxs.qq.com
   # NBPro 墨鱼版补充（ddgksf2013/NBProAds.conf；须 Reject-Hot 早拦，部分后缀在 China-Direct）
   - capsinfo.anythink.com
   - showtime.anythink.com
@@ -182,8 +186,6 @@ domain_suffix_set:
   - yximgs.com
   - yxings.com
   - zhangyuyidong.cn
-  # 微信公众号广告 CDN（QingRex 微信公众号去广告；须先于 Direct-Priority 的 wxs DIRECT）
-  - wxs.qq.com
 
 domain_keyword_set:
   - delicloud-operate-manager
@@ -532,7 +534,7 @@ def ensure_surge_conf() -> None:
 
 
 def ensure_reject_hot() -> None:
-    """Rewrite Reject-Hot（含 QingRex 同款 wxs.qq.com；永不含 nbtool8 控制口）。"""
+    """Rewrite Reject-Hot（含 Lentin 精准微信 CDN；永不含 nbtool8 控制口）。"""
     _write_if_changed(REJECT_HOT, REJECT_HOT_TEMPLATE)
 
 
@@ -545,6 +547,8 @@ def verify() -> None:
         errors.append("custom-apps missing nbpro-ads script")
     if "capsinfo.anythink.com" not in ca or "c.etoolads.cn" not in ca:
         errors.append("custom-apps missing NBProAds SDK hosts")
+    if "DOMAIN,wxa.wxs.qq.com,REJECT" not in ca:
+        errors.append("custom-apps missing Lentin WeChat CDN # @keep rules")
     if re.search(r"nbtool8.*data=\"\"|124\\.222\\.32\\.246.*data=\"\"", ca):
         errors.append("custom-apps still has empty-body NB Map Local (causes format error)")
     if re.search(r"/nb/app[^\n]*data=", ca):
@@ -572,8 +576,10 @@ def verify() -> None:
     rh = REJECT_HOT.read_text(encoding="utf-8")
     if "url_regex" in rh or rh.count("no_resolve:") != 1:
         errors.append("Reject-Hot malformed or still has url_regex")
-    if "wxs.qq.com" not in rh:
-        errors.append("Reject-Hot missing wxs.qq.com (QingRex-style creative reject)")
+    if "wxa.wxs.qq.com" not in rh or "wximg.wxs.qq.com" not in rh:
+        errors.append("Reject-Hot missing Lentin WeChat CDN hosts")
+    if re.search(r"^\s*-\s*wxs\.qq\.com\s*$", rh, re.M):
+        errors.append("Reject-Hot must not whole-suffix reject wxs.qq.com")
     if "capsinfo.anythink.com" not in rh or "c.etoolads.cn" not in rh:
         errors.append("Reject-Hot missing NBProAds SDK hosts")
     for path in ADBLOCK_FILES:
@@ -582,6 +588,8 @@ def verify() -> None:
         t = path.read_text(encoding="utf-8")
         if "Network OK" not in t or "124\\.222\\.32\\.246" not in t:
             errors.append(f"{path.name} missing Network OK / IP")
+        if "DOMAIN,wxa.wxs.qq.com,REJECT" not in t:
+            errors.append(f"{path.name} missing Lentin WeChat CDN rules")
         if re.search(r"^[^#\n]*/nb/app[^\n]*data=", t, re.M):
             errors.append(f"{path.name} still Map Locals /nb/app (remove it)")
         if re.search(r"nbtool8[^\n]*data=\"\"|124\\.222\\.32\\.246[^\n]*data=\"\"", t):
