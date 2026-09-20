@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-20T08:06:43Z",
+  "generated_at": "2026-09-20T08:06:58Z",
   "branch": "main",
   "repo": "oo226/egern-config",
   "raw_base": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main",
@@ -178,16 +178,26 @@
   ],
   "sync_digest": {
     "commit": {
-      "hash": "0eb6ba8",
-      "subject": "feat(adblock): 微信广告 CDN 改 Lentin 精准三域名并进合集",
+      "hash": "fa29517",
+      "subject": "chore: sync upstream on sync branch",
       "date": "2026-09-20"
     },
     "summary": [
+      "分流规则 更新 5 个文件",
+      "模块 更新 9 个文件",
+      "脚本 更新 14 个文件",
+      "模块站 更新 2 个文件",
+      "主配置 更新 1 个文件",
       "国内直连 31870 条"
     ],
-    "files_changed": 0
+    "files_changed": 49
   },
   "changelog": [
+    {
+      "hash": "9e955e2",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-09-20"
+    },
     {
       "hash": "7362507",
       "subject": "chore: publish curated snapshot from sync",
@@ -220,11 +230,6 @@
     },
     {
       "hash": "08f2e8f",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-09-19"
-    },
-    {
-      "hash": "55058f4",
       "subject": "chore: publish curated snapshot from sync",
       "date": "2026-09-19"
     }
