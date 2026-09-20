@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-09-09T07:42:15Z",
+  "generated_at": "2026-09-20T08:06:35Z",
   "collections_checked": [
     {
       "id": "fmz200-blockAds",
       "url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/Surge/module/blockAds.module",
       "group": "adblock",
       "ok": true,
-      "scripts": 82
+      "scripts": 81
     },
     {
       "id": "blackmatrix7-advertising",
@@ -70,13 +70,6 @@
       "group": "unlock",
       "ok": true,
       "scripts": 181
-    },
-    {
-      "id": "yu9191-shortcutstudio",
-      "url": "https://raw.githubusercontent.com/Yu9191/shortcutstudio-rewrite/refs/heads/baby/modules/ShortcutStudio.sgmodule",
-      "group": "unlock",
-      "ok": true,
-      "scripts": 2
     },
     {
       "id": "fmz200-cookies",
