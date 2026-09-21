@@ -1,5 +1,5 @@
 #!name=去广告合集（Surge）
-#!desc=heat15 202609200805 · 防烫补丁 · 含皮皮虾 · apply-surge-heat-patch
+#!desc=heat15 202609210824 · 防烫补丁 · 含皮皮虾 · apply-surge-heat-patch
 #!author=奶思[https://github.com/fmz200]
 #!icon=https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/AdblockPlus.png
 #!category=奶思的模块
@@ -12,7 +12,7 @@
 #!remark=下方的所有规则都标注了对应的hostname，可能存在错误或者遗漏，欢迎反馈。对于无法/可选MITM的hostname都特别做了“如开启可自行添加主机名”提示，如果提示后面没有标注主机名则包含所有主机名，否则只包含提示语后面的主机名。
 #!arguments=12306_enable:true
 
-# UPDATE-MARKER heat15-202609200805
+# UPDATE-MARKER heat15-202609210824
 
 # AUTO-MERGED by scripts/merge-adblock-modules.py (Surge copy)
 # 类型: 模块 — Surge MITM/改写合集（整域 REJECT 并入 Reject-Merged）
@@ -8148,7 +8148,7 @@ mdb = type=http-response, pattern=^https?:\/\/creditcardapp\.bankcomm\.(com|cn)\
 # > 美丽修行
 # hostname = api.bevol.com
 # 去除开屏 首页广告 美修盒广告 我的页面广告
-美丽修行广告 = type=http-response, pattern=^https:\/\/api\.bevol\.com\/(?:appmain\/app\/home\/page|usercenter\/account\/info|personal\/page|appmain\/app\/home\/launch|trialbox\/shop\/app\/homePage)$, script-path=https://github.com/fmz200/wool_scripts/raw/main/Scripts/mlxx/mlxx.js, requires-body=true, timeout=60
+美丽修行广告 = type=http-response, pattern=^https:\/\/api\.bevol\.com\/(?:appmain\/app\/home\/page|usercenter\/account\/info|personal\/page|appmain\/app\/home\/launch|trialbox\/shop\/app\/homePage)$, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/fmz200/wool_scripts/main/Scripts/mlxx/mlxx.js, requires-body=true, timeout=60
 
 # > 美柚
 # hostname = x.seeyouyima.com, axxd.xmseeyouyima.com, config-service.seeyouyima.com
