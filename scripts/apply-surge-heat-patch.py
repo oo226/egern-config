@@ -25,13 +25,17 @@ PANGOLIN_SCRIPT = ROOT / "surge" / "Scripts" / "pangolin-fake-log.js"
 TG_MITM_HEAT = ROOT / "surge" / "Modules" / "tg-mitm-heat.sgmodule"
 SURGE_CONF = ROOT / "surge" / "Surge.conf"
 
-HEAT_MARKER = "heat15"
+HEAT_MARKER = "heat16"
 SCRIPT_URL = (
     "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/surge/"
     "Scripts/pangolin-fake-log.js"
 )
 
-BARE_IP_MITM_INSERT = "hostname = %INSERT% -<ip-address>:0"
+# 裸 IP + Telegram 域名前置 SNI（www.google.com）一律不解密。
+BARE_IP_MITM_INSERT = (
+    "hostname = %INSERT% -<ip-address>:0, -www.google.com, -www.google.com.hk"
+)
+TG_FRONTING_MITM_HOSTS = frozenset({"www.google.com", "www.google.com.hk"})
 
 REQUIRED_MARKERS = (
     "DOMAIN,stats.jpush.cn,DIRECT",
@@ -169,25 +173,25 @@ DOMAIN,gd-stats.jpush.cn,DIRECT
 DOMAIN,ali-stats.jpush.cn,DIRECT
 
 [MITM]
-hostname = %INSERT% -<ip-address>:0
+hostname = %INSERT% -<ip-address>:0, -www.google.com, -www.google.com.hk
 hostname = %APPEND% log-api.pangolin-sdk-toutiao.com, log-api.pangolin-sdk-toutiao1.com, log-api.pangolin-sdk-toutiao-b.com, api-access.pangolin-sdk-toutiao.com, api-access.pangolin-sdk-toutiao1.com, api-access.pangolin-sdk-toutiao-b.com, gromore.pangolin-sdk-toutiao.com, mon.snssdk.com, mon.zijieapi.com, toblog.ctobsnssdk.com, applog.zijieapi.com, i-lq.snssdk.com, stats.jpush.cn, gd-stats.jpush.cn, ali-stats.jpush.cn, sdk.e.qq.com, snowflake.qq.com, mobads-logs.baidu.com
 """
 
 TG_MITM_HEAT_MODULE = """\
 #!name=Telegram 防烫（Surge）
-#!desc=heat14 · %INSERT% 裸 IP 跳过 MitM，打断 MitM Failed 狂重试
-# UPDATE-MARKER heat14-tg-mitm
+#!desc=heat16 · 裸 IP + www.google.com SNI 跳过 MitM，打断 TLS/MitM 狂重试
+# UPDATE-MARKER heat16-tg-mitm
 #!category=Surge专用
 
-# 最近请求里 194.221.250.50 / 91.108.* / 149.154.* 狂刷 MitM Failed → 烫机。
-# 根因：Telegram 用裸 IP + 证书钉扎；解密必失败然后立刻重试。
+# 最近请求里 194.221.250.50 (www.google.com) :443/:80/:5222 狂刷 TLS 连接失败 → 烫机。
+# 根因：Telegram 裸 IP + 证书钉扎，且常用 SNI=www.google.com 域名前置；
+# 去广告合集若 MitM www.google.com（内容农场），解密必失败然后立刻重试。
 #
 # 排除必须在最终 hostname 列表最前面：用 %INSERT%（%APPEND% 无效）。
-# 去广告大合集 heat14+ 已含同一 INSERT；本小模块可单独装。
-# 若仍开「解密全部 HTTPS」（hostname 含 *），请确认排除在 * 之前。
+# 去广告大合集 heat16+ 已含同一 INSERT 并剔除 www.google.com；本小模块可单独装。
 
 [MITM]
-hostname = %INSERT% -<ip-address>:0, -*.telegram.org, -*.telegram-cdn.org, -*.t.me, -*.whatsapp.com, -*.whatsapp.net, -*.wa.me
+hostname = %INSERT% -<ip-address>:0, -www.google.com, -www.google.com.hk, -*.telegram.org, -*.telegram-cdn.org, -*.t.me, -*.whatsapp.com, -*.whatsapp.net, -*.wa.me
 """
 
 PANGOLIN_FAKE_LOG_JS = """\
@@ -507,19 +511,100 @@ def ensure_script_block(text: str) -> str:
 
 
 def ensure_bare_ip_mitm_insert(text: str) -> str:
-    """Put -<ip-address>:0 at hostname front via %INSERT%.
+    """Put -<ip-address>:0 + TG fronting SNI excludes at hostname front via %INSERT%.
 
     Telegram / WhatsApp 常用裸 IP + 证书钉扎；MitM 必失败并秒级重试 → 烫机。
+    Telegram 还常用 SNI=www.google.com 域名前置；合集若 MitM 该主机名同样狂刷。
     排除必须在最终 hostname 列表最前；模块 %APPEND% 排在后面无效。
     用户只更新「去广告大合集」也能带上此排除，不必重导主配置。
     """
+    # Upgrade heat14-only INSERT (bare IP alone) to heat16 (+ google SNI).
+    old = "hostname = %INSERT% -<ip-address>:0"
     if BARE_IP_MITM_INSERT in text:
-        return text
-    m = re.search(r"^\[MITM\]\s*$", text, re.M)
+        pass
+    elif old in text:
+        text = text.replace(old, BARE_IP_MITM_INSERT, 1)
+    else:
+        m = re.search(r"^\[MITM\]\s*$", text, re.M)
+        if not m:
+            text = text.rstrip() + f"\n\n[MITM]\n{BARE_IP_MITM_INSERT}\n"
+        else:
+            insert_at = m.end()
+            text = text[:insert_at] + f"\n{BARE_IP_MITM_INSERT}\n" + text[insert_at:]
+    return strip_tg_fronting_mitm_hosts(text)
+
+
+def strip_tg_fronting_mitm_hosts(text: str) -> str:
+    """Drop www.google.com(.hk) from hostname %APPEND% so TG fronting is never decrypted."""
+
+    def _filter_line(match: re.Match[str]) -> str:
+        prefix, rest = match.group(1), match.group(2)
+        hosts = [h.strip() for h in rest.split(",") if h.strip()]
+        kept = [h for h in hosts if h.lower() not in TG_FRONTING_MITM_HOSTS]
+        if not kept:
+            return f"{prefix.strip()} "  # unlikely; keep line syntactically valid
+        return prefix + ", ".join(kept)
+
+    return re.sub(
+        r"^(hostname\s*=\s*%APPEND%\s*)(.+)$",
+        _filter_line,
+        text,
+        flags=re.M,
+    )
+
+
+EGERN_TG_MITM_EXCLUDES = (
+    "www.google.com",
+    "www.google.com.hk",
+    "*.telegram.org",
+    "*.telegram-cdn.org",
+    "*.t.me",
+    "194.221.250.50",
+    "149.154.*",
+    "91.108.*",
+    "91.105.*",
+)
+
+
+def ensure_egern_tg_mitm_excludes() -> None:
+    """Keep Egern.yaml mitm.excludes covering TG bare IP + google SNI fronting."""
+    path = ROOT / "Egern.yaml"
+    if not path.is_file():
+        print("skip Egern.yaml (missing)")
+        return
+    text = path.read_text(encoding="utf-8", errors="replace")
+    # excludes 块含注释行；勿只匹配 `      - `，否则会把注释当块结束并重复插入。
+    m = re.search(
+        r"(^mitm:\n(?:  .*\n)*?    excludes:\n)"
+        r"((?:      (?:#.*|- .*)\n)*)",
+        text,
+        re.M,
+    )
     if not m:
-        return text.rstrip() + f"\n\n[MITM]\n{BARE_IP_MITM_INSERT}\n"
-    insert_at = m.end()
-    return text[:insert_at] + f"\n{BARE_IP_MITM_INSERT}\n" + text[insert_at:]
+        print("warn: Egern.yaml has no mitm.excludes block")
+        return
+    existing = m.group(2)
+    existing_hosts = {
+        ln.strip()[2:].strip().strip('"').strip("'")
+        for ln in existing.splitlines()
+        if ln.strip().startswith("- ")
+    }
+    missing = [h for h in EGERN_TG_MITM_EXCLUDES if h not in existing_hosts]
+    if not missing:
+        print("Egern.yaml mitm.excludes already has TG/google SNI heat excludes")
+        return
+    insert = "".join(
+        f'      - "{h}"\n' if "*" in h or h[0].isdigit() else f"      - {h}\n"
+        for h in missing
+    )
+    note = (
+        "      # Telegram 裸 IP + SNI=www.google.com：MitM 会 TLS 失败狂重试烫机\n"
+        if "Telegram 裸 IP" not in existing
+        else ""
+    )
+    text = text[: m.end(1)] + note + insert + existing + text[m.end() :]
+    path.write_text(text, encoding="utf-8")
+    print(f"Egern.yaml mitm.excludes += {', '.join(missing)}")
 
 
 EXCLUDED_PANGOLIN_REWRITE = (
@@ -638,10 +723,11 @@ def ensure_surge_conf_ruleset() -> None:
         print("Surge.conf already has Telegram.ip.list RULE-SET")
 
     ip_excl = "-<ip-address>:0"
+    google_excl = "-www.google.com, -www.google.com.hk"
     if ip_excl not in text:
         text2, n = re.subn(
             r"^(hostname\s*=\s*)",
-            rf"\g<1>{ip_excl}, ",
+            rf"\g<1>{ip_excl}, {google_excl}, ",
             text,
             count=1,
             flags=re.M,
@@ -649,11 +735,38 @@ def ensure_surge_conf_ruleset() -> None:
         if n:
             text = text2
             changed = True
-            print("inserted -<ip-address>:0 into Surge.conf MITM hostname")
+            print("inserted -<ip-address>:0 + google SNI MitM excludes into Surge.conf")
         else:
             print("warn: Surge.conf has no hostname= line to patch")
     else:
         print("Surge.conf already has -<ip-address>:0 MitM exclude")
+        host_m = re.search(r"^(hostname\s*=\s*.+)$", text, re.M)
+        if host_m and "-www.google.com" not in host_m.group(1):
+            old_line = host_m.group(1)
+            new_line = re.sub(
+                r"(-<ip-address>:0)",
+                rf"\1, {google_excl}",
+                old_line,
+                count=1,
+            )
+            if new_line != old_line:
+                text = text[: host_m.start()] + new_line + text[host_m.end() :]
+                changed = True
+                print("inserted google SNI MitM excludes into Surge.conf hostname")
+            else:
+                # ip exclude may use different spelling; prepend after hostname =
+                text = (
+                    text[: host_m.start()]
+                    + re.sub(
+                        r"^(hostname\s*=\s*)",
+                        rf"\g<1>{google_excl}, ",
+                        old_line,
+                        count=1,
+                    )
+                    + text[host_m.end() :]
+                )
+                changed = True
+                print("prepended google SNI MitM excludes into Surge.conf hostname")
 
     if changed:
         SURGE_CONF.write_text(text, encoding="utf-8")
@@ -682,6 +795,7 @@ def main() -> None:
     patch_adblock_file(EGERN_ADBLOCK, label="egern")
     ensure_sidecars()
     ensure_surge_conf_ruleset()
+    ensure_egern_tg_mitm_excludes()
     print("apply-surge-heat-patch: ok")
 
 

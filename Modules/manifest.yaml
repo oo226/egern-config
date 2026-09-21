@@ -41,8 +41,12 @@ merge:
     - use-local-host-item-for-proxy
     - encrypted-dns-follow-outbound-mode
   # Avoid MITM on googleapis.com to prevent breaking Gemini (certificate pinning / sensitive APIs).
+  # www.google.com：limbopro 内容农场脚本用；Telegram 裸 IP 常用 SNI=www.google.com 域名前置，
+  # MitM 命中后 TLS 必败并秒级重试 → 烫机（连接里显示 194.221.250.50 (www.google.com)）。
   mitm_hostname_excludes:
     - "*.googleapis.com"
+    - "www.google.com"
+    - "www.google.com.hk"
   # 兼容旧字段（drop 后不再写入）；邮储/税务勿进主配置 skip-proxy，以免废去开屏 MITM
   skip_proxy_excludes:
     - "*.chinatax.gov.cn"

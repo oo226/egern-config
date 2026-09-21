@@ -48,6 +48,9 @@ merge:
     - "91.108.*"
     - "91.105.*"
     - "194.221.250.50"
+    # Telegram 域名前置 SNI；勿进解锁合集 MitM
+    - "www.google.com"
+    - "www.google.com.hk"
 
 
 modules:

@@ -1,14 +1,14 @@
 #!name=Telegram 防烫（Surge）
-#!desc=heat14 · %INSERT% 裸 IP 跳过 MitM，打断 MitM Failed 狂重试
-# UPDATE-MARKER heat14-tg-mitm
+#!desc=heat16 · 裸 IP + www.google.com SNI 跳过 MitM，打断 TLS/MitM 狂重试
+# UPDATE-MARKER heat16-tg-mitm
 #!category=Surge专用
 
-# 最近请求里 194.221.250.50 / 91.108.* / 149.154.* 狂刷 MitM Failed → 烫机。
-# 根因：Telegram 用裸 IP + 证书钉扎；解密必失败然后立刻重试。
+# 最近请求里 194.221.250.50 (www.google.com) :443/:80/:5222 狂刷 TLS 连接失败 → 烫机。
+# 根因：Telegram 裸 IP + 证书钉扎，且常用 SNI=www.google.com 域名前置；
+# 去广告合集若 MitM www.google.com（内容农场），解密必失败然后立刻重试。
 #
 # 排除必须在最终 hostname 列表最前面：用 %INSERT%（%APPEND% 无效）。
-# 去广告大合集 heat14+ 已含同一 INSERT；本小模块可单独装。
-# 若仍开「解密全部 HTTPS」（hostname 含 *），请确认排除在 * 之前。
+# 去广告大合集 heat16+ 已含同一 INSERT 并剔除 www.google.com；本小模块可单独装。
 
 [MITM]
-hostname = %INSERT% -<ip-address>:0, -*.telegram.org, -*.telegram-cdn.org, -*.t.me, -*.whatsapp.com, -*.whatsapp.net, -*.wa.me
+hostname = %INSERT% -<ip-address>:0, -www.google.com, -www.google.com.hk, -*.telegram.org, -*.telegram-cdn.org, -*.t.me, -*.whatsapp.com, -*.whatsapp.net, -*.wa.me
