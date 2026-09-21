@@ -7,15 +7,15 @@
 #   WeChat         — Repcz/Tool — 微信 (341 entries)
 #   Bilibili       — Repcz/Tool — 哔哩哔哩 (20 entries)
 #   AppleCN        — Repcz/Tool — 苹果中国 (167 entries)
-#   ChinaDomain    — Repcz/Tool — 国内域名 (13210 entries)
-#   ChinaIP        — Repcz/Tool — 国内 IP (7311 entries)
+#   ChinaDomain    — Repcz/Tool — 国内域名 (13212 entries)
+#   ChinaIP        — Repcz/Tool — 国内 IP (7312 entries)
 #   ChinaASN       — Repcz/Tool — 国内 ASN (5076 entries)
 #   Rabbit-China   — Rabbit-Spec — China.list (3762 entries)
 #   Rabbit-CIDR    — Rabbit-Spec — ChinaCIDR.list (9755 entries)
 #   ResourceSite   — eulac-dev/Proxy — 视频资源站 (22 entries)
 #   PanVod         — eulac-dev/Proxy — 网盘点播 (47 entries)
-# Overlap removed: 7876
-# Total unique entries: 31870
+# Overlap removed: 7877
+# Total unique entries: 31872
 
 no_resolve: true
 domain_set:
@@ -4149,6 +4149,7 @@ domain_suffix_set:
   - econtactsplus.com
   - ecp-cloud.com
   - ecp-cloud.net
+  - ecpan.cn
   - ectencent.cn
   - ectencent.com
   - ectencent.com.cn
@@ -19946,6 +19947,7 @@ ip_cidr_set:
   - 203.107.6.0/24
   - 203.107.69.0/24
   - 203.107.70.0/23
+  - 203.107.70.0/24
   - 203.107.72.0/21
   - 203.107.8.0/21
   - 203.107.80.0/20

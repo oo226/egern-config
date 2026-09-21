@@ -1,7 +1,7 @@
 # AUTO-EXPORTED from Routing/Foreign/AI-Merged.yaml
 # Format: Surge RULE-SET (no policy). scripts/export-surge-rulesets.py
 # Domain lines include extended-matching (SNI hit under always-real-ip / VIF).
-# Total entries: 428
+# Total entries: 430
 
 DOMAIN,accountcapabilities-pa.googleapis.com,extended-matching
 DOMAIN,ai.developer.meta.com,extended-matching
@@ -234,6 +234,7 @@ DOMAIN-SUFFIX,firefly.adobe.com,extended-matching
 DOMAIN-SUFFIX,firefly.adobe.io,extended-matching
 DOMAIN-SUFFIX,fireworks.ai,extended-matching
 DOMAIN-SUFFIX,flow.google,extended-matching
+DOMAIN-SUFFIX,flow.google.com,extended-matching
 DOMAIN-SUFFIX,flowgpt.com,extended-matching
 DOMAIN-SUFFIX,g.ai,extended-matching
 DOMAIN-SUFFIX,gamma.app,extended-matching
@@ -317,6 +318,7 @@ DOMAIN-SUFFIX,modelscope.com,extended-matching
 DOMAIN-SUFFIX,moonshot.ai,extended-matching
 DOMAIN-SUFFIX,moonshot.cn,extended-matching
 DOMAIN-SUFFIX,muthos.com,extended-matching
+DOMAIN-SUFFIX,notebook.google,extended-matching
 DOMAIN-SUFFIX,notebook.google.com,extended-matching
 DOMAIN-SUFFIX,notebooklm.google,extended-matching
 DOMAIN-SUFFIX,notebooklm.google.com,extended-matching

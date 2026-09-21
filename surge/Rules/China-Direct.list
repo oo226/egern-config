@@ -1,7 +1,7 @@
 # AUTO-EXPORTED from Routing/China-Direct.yaml
 # Format: Surge RULE-SET (no policy). scripts/export-surge-rulesets.py
 # Domain lines include extended-matching (SNI hit under always-real-ip / VIF).
-# Total entries: 31870
+# Total entries: 31872
 
 DOMAIN,0gr4uqmtt8y41hcjsgrzdrc31.ourdvsss.com,extended-matching
 DOMAIN,0gr4uqmtt8y41hcjsgrzdrc3s.ourdvsss.com,extended-matching
@@ -4132,6 +4132,7 @@ DOMAIN-SUFFIX,ecombdvod.com,extended-matching
 DOMAIN-SUFFIX,econtactsplus.com,extended-matching
 DOMAIN-SUFFIX,ecp-cloud.com,extended-matching
 DOMAIN-SUFFIX,ecp-cloud.net,extended-matching
+DOMAIN-SUFFIX,ecpan.cn,extended-matching
 DOMAIN-SUFFIX,ectencent.cn,extended-matching
 DOMAIN-SUFFIX,ectencent.com,extended-matching
 DOMAIN-SUFFIX,ectencent.com.cn,extended-matching
@@ -19927,6 +19928,7 @@ IP-CIDR,203.107.4.0/22
 IP-CIDR,203.107.6.0/24
 IP-CIDR,203.107.69.0/24
 IP-CIDR,203.107.70.0/23
+IP-CIDR,203.107.70.0/24
 IP-CIDR,203.107.72.0/21
 IP-CIDR,203.107.8.0/21
 IP-CIDR,203.107.80.0/20

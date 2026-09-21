@@ -1,5 +1,5 @@
 #!name=去广告合集（Surge）
-#!desc=heat15 202609210455 · 防烫补丁 · 含皮皮虾 · apply-surge-heat-patch
+#!desc=heat15 202609210824 · 防烫补丁 · 含皮皮虾 · apply-surge-heat-patch
 #!author=奶思[https://github.com/fmz200]
 #!icon=https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/AdblockPlus.png
 #!category=奶思的模块
@@ -12,7 +12,7 @@
 #!remark=下方的所有规则都标注了对应的hostname，可能存在错误或者遗漏，欢迎反馈。对于无法/可选MITM的hostname都特别做了“如开启可自行添加主机名”提示，如果提示后面没有标注主机名则包含所有主机名，否则只包含提示语后面的主机名。
 #!arguments=12306_enable:true
 
-# UPDATE-MARKER heat15-202609210455
+# UPDATE-MARKER heat15-202609210824
 
 # AUTO-MERGED by scripts/merge-adblock-modules.py (Surge copy)
 # 类型: 模块 — Surge MITM/改写合集（整域 REJECT 并入 Reject-Merged）
@@ -3854,7 +3854,6 @@ hostname - reject
 ^https?:\/\/m\.creditcard\.ecitic\.com\/citiccard\/mbk\/appspace-getway\/getWay\/dkkj-system-web\/system\/v\d+\/init-config data-type=text data=" " status-code=200
 
 
-
 # NB全能助手 / NB Pro — 只拒开屏路径；telnet 假成功；/nb/app 走脚本（墨鱼 NBProAds）
 ^https?:\/\/(api\.|www\.|app\.)?nbtool8\.com(:\d+)?\/.*(splash|startup|launch|open[Ss]creen|welcome|banner|popup|promo|advert|/ad/|/ads/) - reject-dict
 ^https?:\/\/[^:/]*nbtool8\.com(:\d+)?\/.*(splash|startup|launch|banner|popup|advert|/ad/|/ads/) - reject-dict
@@ -5003,23 +5002,6 @@ http-response ^https?:\/\/app\.zhuanzhuan\.com\/zz\/v2\/zzinfoshow\/getchoicegoo
 ^https?:\/\/117\.72\.39\.157(:\d+)?\/nb\/telnet data-type=text data="Network OK" status-code=200 header="Content-Type:text/plain"
 ^https?:\/\/47\.243\.71\.210(:\d+)?\/nb\/telnet data-type=text data="Network OK" status-code=200 header="Content-Type:text/plain"
 ^https?:\/\/cesapp\.goypzc\.cn(:\d+)?\/nb\/telnet data-type=text data="Network OK" status-code=200 header="Content-Type:text/plain"
-# heat8：base64 有 body（reject-200 空包会狂重试）；ss_app_log 格式
-^https?:\/\/log-api\.pangolin-sdk-toutiao[-\w]*\.com\/service\/2\/app_log data-type=base64 data="eyJjb2RlIjowLCJtZXNzYWdlIjoic3VjY2VzcyIsIm1hZ2ljX3RhZyI6InNzX2FwcF9sb2ciLCJzZXJ2ZXJfdGltZSI6MTcyNDIyMDAwMCwiZGF0YSI6e319" status-code=200 header="Content-Type:application/json"
-^https?:\/\/log-api\.pangolin-sdk-toutiao[-\w]*\.com data-type=base64 data="eyJjb2RlIjowLCJtZXNzYWdlIjoic3VjY2VzcyIsIm1hZ2ljX3RhZyI6InNzX2FwcF9sb2ciLCJzZXJ2ZXJfdGltZSI6MTcyNDIyMDAwMCwiZGF0YSI6e319" status-code=200 header="Content-Type:application/json"
-# heat9：api-access stats/batch 有 body（禁空 reject-200）
-^https?:\/\/api-access\.pangolin-sdk-toutiao[-\w]*\.com\/api\/ad\/union\/sdk\/stats data-type=base64 data="eyJjb2RlIjowLCJtZXNzYWdlIjoic3VjY2VzcyIsImRhdGEiOnt9fQ==" status-code=200 header="Content-Type:application/json"
-# heat9：JPush stats 有 body
-^https?:\/\/(stats|gd-stats|ali-stats)\.jpush\.cn data-type=base64 data="eyJjb2RlIjowLCJtZXNzYWdlIjoic3VjY2VzcyJ9" status-code=200 header="Content-Type:application/json"
-# heat5 字节埋点假 200（合集内处理，不依赖小模块）
-^https?:\/\/mon\.snssdk\.com\/monitor data-type=text data="{}" status-code=200 header="Content-Type:application/json"
-^https?:\/\/mon\.zijieapi\.com data-type=text data="{}" status-code=200 header="Content-Type:application/json"
-^https?:\/\/toblog\.ctobsnssdk\.com data-type=base64 data="eyJtZXNzYWdlIjoic3VjY2VzcyIsImNvZGUiOjAsImRldmljZV9pZCI6MSwiaW5zdGFsbF9pZCI6MSwic3NpZCI6IjAifQ==" status-code=200 header="Content-Type:application/json"
-# heat15：applog.zijieapi 皮皮虾狂刷 TCP Dial Failed → 假成功（须 MITM）
-^https?:\/\/applog\.zijieapi\.com data-type=base64 data="eyJtZXNzYWdlIjoic3VjY2VzcyIsImNvZGUiOjAsImRldmljZV9pZCI6MSwiaW5zdGFsbF9pZCI6MSwic3NpZCI6IjAifQ==" status-code=200 header="Content-Type:application/json"
-# heat11：doudou TTS 狂刷假成功
-^https?:\/\/tts\.doudou520\.online data-type=text data="{}" status-code=200 header="Content-Type:application/json"
-^https?:\/\/([-\w]+\.)*doudou520\.online data-type=text data="{}" status-code=200 header="Content-Type:application/json"
-
 # heat8：base64 有 body（reject-200 空包会狂重试）；ss_app_log 格式
 ^https?:\/\/log-api\.pangolin-sdk-toutiao[-\w]*\.com\/service\/2\/app_log data-type=base64 data="eyJjb2RlIjowLCJtZXNzYWdlIjoic3VjY2VzcyIsIm1hZ2ljX3RhZyI6InNzX2FwcF9sb2ciLCJzZXJ2ZXJfdGltZSI6MTcyNDIyMDAwMCwiZGF0YSI6e319" status-code=200 header="Content-Type:application/json"
 ^https?:\/\/log-api\.pangolin-sdk-toutiao[-\w]*\.com data-type=base64 data="eyJjb2RlIjowLCJtZXNzYWdlIjoic3VjY2VzcyIsIm1hZ2ljX3RhZyI6InNzX2FwcF9sb2ciLCJzZXJ2ZXJfdGltZSI6MTcyNDIyMDAwMCwiZGF0YSI6e319" status-code=200 header="Content-Type:application/json"
@@ -8166,7 +8148,7 @@ mdb = type=http-response, pattern=^https?:\/\/creditcardapp\.bankcomm\.(com|cn)\
 # > 美丽修行
 # hostname = api.bevol.com
 # 去除开屏 首页广告 美修盒广告 我的页面广告
-美丽修行广告 = type=http-response, pattern=^https:\/\/api\.bevol\.com\/(?:appmain\/app\/home\/page|usercenter\/account\/info|personal\/page|appmain\/app\/home\/launch|trialbox\/shop\/app\/homePage)$, script-path=https://github.com/fmz200/wool_scripts/raw/main/Scripts/mlxx/mlxx.js, requires-body=true, timeout=60
+美丽修行广告 = type=http-response, pattern=^https:\/\/api\.bevol\.com\/(?:appmain\/app\/home\/page|usercenter\/account\/info|personal\/page|appmain\/app\/home\/launch|trialbox\/shop\/app\/homePage)$, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/fmz200/wool_scripts/main/Scripts/mlxx/mlxx.js, requires-body=true, timeout=60
 
 # > 美柚
 # hostname = x.seeyouyima.com, axxd.xmseeyouyima.com, config-service.seeyouyima.com
