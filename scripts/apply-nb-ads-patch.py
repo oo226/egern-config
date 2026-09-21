@@ -98,6 +98,12 @@ map_locals:
     headers:
       Content-Type: application/json
     body: '{}'
+  # 穿山甲 app_log：- reject 会回 404，SDK 秒级重试烫机；假成功停重试
+  - match: '^https?://log-api\.pangolin-sdk-toutiao[-\w]*\.com(?:/.*)?'
+    status_code: 200
+    headers:
+      Content-Type: application/json
+    body: '{"code":0,"message":"success","magic_tag":"ss_app_log","server_time":1724220000,"data":{}}'
 """
 
 # Surge/合集 Map Local：公众号（与 QingRex / chxm1023 同源，合集日更后仍钉死）
