@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-21T08:25:27Z",
+  "generated_at": "2026-09-22T08:09:23Z",
   "branch": "main",
   "repo": "oo226/egern-config",
   "raw_base": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main",
@@ -178,16 +178,26 @@
   ],
   "sync_digest": {
     "commit": {
-      "hash": "2099028",
-      "subject": "fix(adblock): 穿山甲 app_log 假成功，停止 404 狂重试",
+      "hash": "1ca7086",
+      "subject": "chore: sync upstream on sync branch",
       "date": "2026-09-21"
     },
     "summary": [
-      "国内直连 31872 条"
+      "国内直连 31873 条"
     ],
     "files_changed": 0
   },
   "changelog": [
+    {
+      "hash": "d8e1df9",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-09-21"
+    },
+    {
+      "hash": "2983c7d",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-09-21"
+    },
     {
       "hash": "1cc6b14",
       "subject": "chore: publish curated snapshot from sync",
@@ -215,16 +225,6 @@
     },
     {
       "hash": "ca7fb80",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-09-19"
-    },
-    {
-      "hash": "eecc66e",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-09-19"
-    },
-    {
-      "hash": "2e9ec22",
       "subject": "chore: publish curated snapshot from sync",
       "date": "2026-09-19"
     }
