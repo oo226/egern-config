@@ -8,14 +8,14 @@
 #   Bilibili       — Repcz/Tool — 哔哩哔哩 (20 entries)
 #   AppleCN        — Repcz/Tool — 苹果中国 (167 entries)
 #   ChinaDomain    — Repcz/Tool — 国内域名 (13212 entries)
-#   ChinaIP        — Repcz/Tool — 国内 IP (7313 entries)
+#   ChinaIP        — Repcz/Tool — 国内 IP (7310 entries)
 #   ChinaASN       — Repcz/Tool — 国内 ASN (5076 entries)
 #   Rabbit-China   — Rabbit-Spec — China.list (3762 entries)
 #   Rabbit-CIDR    — Rabbit-Spec — ChinaCIDR.list (9755 entries)
 #   ResourceSite   — eulac-dev/Proxy — 视频资源站 (22 entries)
 #   PanVod         — eulac-dev/Proxy — 网盘点播 (47 entries)
-# Overlap removed: 7877
-# Total unique entries: 31873
+# Overlap removed: 7869
+# Total unique entries: 31878
 
 no_resolve: true
 domain_set:
@@ -20318,6 +20318,7 @@ ip_cidr_set:
   - 203.205.80.0/21
   - 203.205.88.0/22
   - 203.205.92.0/23
+  - 203.205.94.0/24
   - 203.207.104.0/22
   - 203.207.112.0/20
   - 203.207.128.0/17
@@ -23154,6 +23155,7 @@ ip_cidr_set:
   - 64.188.38.0/23
   - 64.188.40.0/22
   - 64.188.44.0/24
+  - 64.96.5.0/24
   - 66.102.240.0/21
   - 66.102.248.0/23
   - 66.102.251.0/24
@@ -24738,6 +24740,7 @@ ip_cidr6_set:
   - "2403:fc0:4000::/34"
   - "2403:fc0:400::/38"
   - "2403:fc0:8000::/33"
+  - "2403:fc0::/32"
   - "2403:fc0:c00::/38"
   - "2403:fc40::/32"
   - "2403:fe40::/32"
@@ -25576,6 +25579,7 @@ ip_cidr6_set:
   - "2406:840:820::/43"
   - "2406:840:82::/47"
   - "2406:840:8400::/38"
+  - "2406:840:840::/47"
   - "2406:840:840::/48"
   - "2406:840:843::/48"
   - "2406:840:844::/46"
@@ -25636,6 +25640,7 @@ ip_cidr6_set:
   - "2406:840:9818::/47"
   - "2406:840:981b::/48"
   - "2406:840:9820::/43"
+  - "2406:840:9840::/43"
   - "2406:840:9850::/44"
   - "2406:840:9860::/47"
   - "2406:840:9865::/48"
