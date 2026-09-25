@@ -1,0 +1,21 @@
+#!name=PingMe 签到（直连+自动抓取）
+#!desc=启用后在 App 里手点一次“签到”→脚本保存 URL/UA；此后每天 09:00 自动签到（可改 cronexp）。仅 UA=PingMe/* 直连，其他 App 不受影响。
+
+[Script]
+# 抓签到【请求】（无需解密）
+PingMe-Cap-Req = type=http-request,pattern=^https?:\/\/[^\/]+\/app\/checkIn\?.*,requires-body=0,timeout=15,script-path=https://raw.githubusercontent.com/oo226/quanx/main/.github/workflows/pingme_surge.js,script-update-interval=86400
+
+# 抓签到【响应】（便于二次确认与提示，需要 MITM）
+PingMe-Cap-Resp = type=http-response,pattern=^https?:\/\/[^\/]+\/app\/checkIn\?.*,requires-body=1,timeout=15,script-path=https://raw.githubusercontent.com/oo226/quanx/main/.github/workflows/pingme_surge.js,script-update-interval=86400
+
+# 定时签到（默认 09:00）
+PingMe-CheckIn = type=cron,cronexp=0 13 * * *,wake-system=1,timeout=30,script-path=https://raw.githubusercontent.com/oo226/quanx/main/.github/workflows/pingme_surge.js,argument=mode=checkin,script-update-interval=86400
+
+[MITM]
+hostname = %APPEND% api.pingmeapp.net, *.pingmeapp.net
+
+[Rule]
+# 仅白名单直连（只对白名单 UA 生效，不影响其它 App）
+USER-AGENT,PingMe/*,DIRECT
+# 补一手域名直连，确保走 Surge 栈（MITM/脚本才能触发），但不走代理
+DOMAIN-SUFFIX,pingmeapp.net,DIRECT

@@ -1,0 +1,19 @@
+# 自托管镜像：内容同 oo226/quanx/pingme.yaml，仅 script_url 指本仓 vendors（字节一致）
+name: PingMe 签到助手
+author: 怎么肥事 (Adapted for Egern)
+dns: {}
+scriptings:
+- schedule:
+    name: 签到
+    cron: 30 8,20 * * *
+    script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/vendors/quanx/PingMe.js
+    timeout: 300
+- http_request:
+    name: 参数
+    match: ^https:\/\/api\.pingmeapp\.net\/app\/queryBalanceAndBonus
+    script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/vendors/quanx/cook.js
+    timeout: 60
+mitm:
+  hostnames:
+    includes:
+    - api.pingmeapp.net
