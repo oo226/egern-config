@@ -22,8 +22,11 @@ merge:
   - hide-vpn-icon
   - use-local-host-item-for-proxy
   - encrypted-dns-follow-outbound-mode
+  # www.google.com：Telegram 域名前置 SNI；MitM 会 TLS 失败狂重试烫机
   mitm_hostname_excludes:
   - '*.googleapis.com'
+  - www.google.com
+  - www.google.com.hk
   skip_proxy_excludes:
   - '*.chinatax.gov.cn'
   - chinatax.gov.cn

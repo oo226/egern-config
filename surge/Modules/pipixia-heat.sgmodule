@@ -1,6 +1,6 @@
 #!name=皮皮虾防烫（Surge）
-#!desc=heat15 · Map Local有body · 每日合并后由 apply-surge-heat-patch 保持
-# UPDATE-MARKER heat15
+#!desc=heat16 · Map Local有body · 每日合并后由 apply-surge-heat-patch 保持
+# UPDATE-MARKER heat16
 #!category=Surge专用
 
 # 大合集经常「已是最新」刷不动时，单独装本小模块即可。
@@ -44,5 +44,5 @@ DOMAIN,gd-stats.jpush.cn,DIRECT
 DOMAIN,ali-stats.jpush.cn,DIRECT
 
 [MITM]
-hostname = %INSERT% -<ip-address>:0
+hostname = %INSERT% -<ip-address>:0, -www.google.com, -www.google.com.hk
 hostname = %APPEND% log-api.pangolin-sdk-toutiao.com, log-api.pangolin-sdk-toutiao1.com, log-api.pangolin-sdk-toutiao-b.com, api-access.pangolin-sdk-toutiao.com, api-access.pangolin-sdk-toutiao1.com, api-access.pangolin-sdk-toutiao-b.com, gromore.pangolin-sdk-toutiao.com, mon.snssdk.com, mon.zijieapi.com, toblog.ctobsnssdk.com, applog.zijieapi.com, i-lq.snssdk.com, stats.jpush.cn, gd-stats.jpush.cn, ali-stats.jpush.cn, sdk.e.qq.com, snowflake.qq.com, mobads-logs.baidu.com
