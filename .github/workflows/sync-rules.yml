@@ -135,22 +135,18 @@ jobs:
       - name: Mirror Yuheng BoxJS task scripts
         run: python3 scripts/sync-yuheng-scripts.py
 
-      - name: Merge adblock module
-        run: python scripts/merge-adblock-modules.py
+      # 可莉 1:1 → 本仓脚本 → 合集；奶思差集；墨鱼开屏差集。无 heat/NB 补丁。
+      - name: Build adblock (可莉 1:1 + 奶思差集 + 开屏)
+        run: python3 scripts/build-adblock-keli-nais.py
 
-      - name: Merge Surge-only adblock collection (full copy w/ 皮皮虾)
-        run: python scripts/merge-adblock-modules.py Modules/manifest.surge.yaml
-
-      # 每日上游合并会冲掉手调防烫；合并后强制回贴 Surge + Egern 去广告合集。
-      - name: Re-apply Surge/Egern heat (防烫) patches
-        run: python3 scripts/apply-surge-heat-patch.py
-
-      # 每日合并后回贴 NB 假成功（Network OK + IP 绕过）；勿硬 REJECT 控制口。
-      - name: Re-apply NB ads fake-ok patches
-        run: python3 scripts/apply-nb-ads-patch.py
+      - name: Divert domain REJECT into Reject-Merged
+        run: python3 scripts/divert_adblock_domain_reject.py Modules/adblock-collection.module
 
       - name: Publish Egern adblock aliases + jsDelivr Map Local assets
         run: python3 scripts/finalize-egern-adblock.py
+
+      - name: Sync Surge adblock snapshot from Egern collection
+        run: cp Modules/adblock-collection.module surge/Modules/adblock-collection.module
 
       - name: Merge unlock module
         run: python scripts/merge-adblock-modules.py Modules/unlock-manifest.yaml

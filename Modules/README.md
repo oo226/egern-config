@@ -12,7 +12,7 @@
 
 | 文件 | 中文名 | 说明 |
 |------|--------|------|
-| `adblock-collection.module` | 去广告合集 | **唯一入口** — 奶思 + blackmatrix7 + 补全（**不含** skip-proxy / 签到 cron） |
+| `adblock-collection.module` | 去广告合集 | **唯一入口** — 可莉原样拼合 + 奶思差集 + 墨鱼开屏差集（脚本镜像本仓；**不含** skip-proxy / 签到 cron） |
 | `unlock-collection.module` | 解锁合集 | **唯一入口** — 链接解锁、Spotify VIP、HTTPDNS、屏蔽更新等（**已含** Spotify，勿再装单独份） |
 | `cookie-collection.module` | Cookie 合集 | **按需** — 签到前抓 ck，抓完关掉 |
 | `qdreader.sgmodule` / `pingme.*` | 签到 | 带模版参数，单独保留 |
@@ -34,4 +34,4 @@ https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/unl
 https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/cookie-collection.module
 ```
 
-改 `custom-apps.sgmodule` 后 push，Actions 下次合并进去广告合集。
+重建去广告合集：`python3 scripts/build-adblock-keli-nais.py`（原样副本在 `Modules/vendors/{qingrex,fmz200,splash}/`，脚本在 `Scripts/vendors/`）。

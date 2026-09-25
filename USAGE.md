@@ -34,7 +34,7 @@ https://cdn.jsdelivr.net/gh/oo226/egern-config@main/site/index.html
 
 | 名称 | 类型 | raw 链接 | 说明 |
 |------|------|----------|------|
-| 去广告净化合集 | 模块 | `.../Modules/adblock-collection.module` | 默认开；**不含签到 cron** |
+| 去广告净化合集 | 模块 | `.../Modules/adblock-collection.module` | 默认开；可莉原样+奶思差集+开屏；**不含签到 cron** |
 | 解锁增强合集 | 模块 | `.../Modules/unlock-collection.module` | 默认开 |
 | PingMe 抓参签到 | 模块 | `.../Modules/pingme.sgmodule` | Surge/Egern 同用；抓完把参数改成 `#` |
 | 插件跳转 Egern | 模块 | `.../Modules/ibl3nd-plugin-hub.yaml` | 默认开 |

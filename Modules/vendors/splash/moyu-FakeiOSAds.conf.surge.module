@@ -1,0 +1,9 @@
+#!name=splash-moyu-FakeiOSAds.conf
+#!desc=墨鱼开屏(自托管转换)
+
+[URL Rewrite]
+# qx: ^http:\/\/[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+){1,4}(:\d+)?\/api\/v\d\/config\/getConfigList\.do url jsonjq-response-body '.data |= map(select(.keyName | test("config\\.(ad|search|recommend)") | not))'
+^http:\/\/[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+){1,4}(:\d+)?\/.*?\/v\d\/(version|notice\?|top_notice\?|advert\?position=[^2]+) - reject-200
+
+[MITM]
+hostname = %APPEND% app.dsx.ac
