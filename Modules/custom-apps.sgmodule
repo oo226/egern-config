@@ -90,6 +90,7 @@ DOMAIN,wxsmw.wxs.qq.com,REJECT,pre-matching # @keep
 
 
 
+
 # NB全能助手 / NB Pro — 只拒开屏路径；telnet 假成功；/nb/app 走脚本（墨鱼 NBProAds）
 ^https?:\/\/(api\.|www\.|app\.)?nbtool8\.com(:\d+)?\/.*(splash|startup|launch|open[Ss]creen|welcome|banner|popup|promo|advert|/ad/|/ads/) - reject-dict
 ^https?:\/\/[^:/]*nbtool8\.com(:\d+)?\/.*(splash|startup|launch|banner|popup|advert|/ad/|/ads/) - reject-dict
@@ -122,6 +123,7 @@ DOMAIN,wxsmw.wxs.qq.com,REJECT,pre-matching # @keep
 ^https?:\/\/47\.243\.71\.210(:\d+)?\/nb\/telnet data-type=text data="Network OK" status-code=200 header="Content-Type:text/plain"
 ^https?:\/\/cesapp\.goypzc\.cn(:\d+)?\/nb\/telnet data-type=text data="Network OK" status-code=200 header="Content-Type:text/plain"
 [Script]
+
 
 
 
