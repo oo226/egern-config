@@ -1,37 +1,35 @@
 # 模块（Modules）
 
-> 镜像合并自用，上游版权归原作者。不合理请联系删除，见 [DISCLAIMER.md](../DISCLAIMER.md)。
+> 镜像合并自用。版权归上游；不合理见 [DISCLAIMER.md](../DISCLAIMER.md)。
 
-目录名用英文，避免 raw 链接被 URL 编码。
+## 日常入口（只认这些）
 
-**模块**通过 URL Rewrite、MITM、Script 拦截 App 内广告和开屏。
-
-**分流 vs 模块：** 整域都是广告 → `Reject-Merged` 直接 REJECT。同域混业务才需要合集 MITM。合并时会把合集 `[Rule]` 里的 DOMAIN/IP REJECT 并进 `Reject-Merged.yaml`，合集只留改写/Script/AND。少量热点（如 NB助手 SDK）标 `# @keep`：仍并入分流，合集内也保留一行，避免只更新合集、Reject-Merged 未刷新时广告回潮。更新合集后请同时**强制更新**外部资源 `Reject-Merged`。
-
-## 文件对照
-
-| 文件 | 中文名 | 说明 |
-|------|--------|------|
-| `adblock-collection.module` | 去广告合集 | **唯一入口** — 奶思 + blackmatrix7 + 补全（**不含** skip-proxy / 签到 cron） |
-| `unlock-collection.module` | 解锁合集 | **唯一入口** — 链接解锁、Spotify VIP、HTTPDNS、屏蔽更新等（**已含** Spotify，勿再装单独份） |
-| `cookie-collection.module` | Cookie 合集 | **按需** — 签到前抓 ck，抓完关掉 |
-| `qdreader.sgmodule` / `pingme.*` | 签到 | 带模版参数，单独保留 |
-| `iringo-*.sgmodule` |  iRingo | 地图/天气/定位，与去广告无关 |
-
-已从 main **停发**：`skip-proxy-collection`、`spotify-unlock`（仅 sync 工厂合并用）。`skip-proxy` / `always-real-ip` 只写主配置。
-
-## 上游从哪来？
-
-完整清单：`scripts/upstream-sources.yaml`（每日同步写入 `site/upstreams.json`）。
-
-**原则：盯着的仓尽量全拉成本仓副本（防删库）；能进大合集的进合集；带 `#!arguments` 的签到模块单独保留，方便 Egern 里改模版参数。**
-
-## raw 链接（用户入口）
+| 文件 | 说明 |
+|------|------|
+| `adblock-collection.module` | **去广告唯一入口** |
+| `unlock-collection.module` | **解锁唯一入口**（已含 Spotify） |
+| `cookie-collection.module` | 按需抓 Cookie |
+| `pingme.sgmodule` | PingMe（带模版参数） |
+| `ibl3nd-plugin-hub.yaml` | 插件跳转 |
+| `iringo-*.sgmodule` + `iringo-mitm.yaml` |  iRingo |
+| `egern.boxjs.json` | 统一 BoxJS 订阅 |
 
 ```
 https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/adblock-collection.module
 https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/unlock-collection.module
-https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/cookie-collection.module
 ```
 
-改 `custom-apps.sgmodule` 后 push，Actions 下次合并进去广告合集。
+## 兼容 / 镜像（可忽略）
+
+| 文件 | 说明 |
+|------|------|
+| `adblock-egern.module` / `adblock-egern-v0815b/c.module` | 与合集**同内容**的旧别名，URL 不断 |
+| `pingme.yaml` | 已不推荐，请用 `pingme.sgmodule` |
+| `qingrex-signin/`、`yuheng/` | 带 `#!arguments` 的签到模块镜像 |
+| `nb-weixin-fix.yaml` | 不拉主配置时的独立 NB/微信模块 |
+
+工厂中间件（`custom-apps`、`*-extra`、`skip-proxy-collection` 等）**只在 sync**，不进 main。
+
+## 分流 vs 模块
+
+整域广告 → `Reject-Merged` REJECT。同域混业务 → 合集 MITM/改写。合集里的 DOMAIN REJECT 会并进 `Reject-Merged.yaml`；热点标 `# @keep` 的两边都留。更新合集后请强制更新 `Reject-Merged`。

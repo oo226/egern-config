@@ -1,5 +1,24 @@
 # Human metadata for the main-branch module hub (site/catalog.json).
 # Only items that need extra labels beyond auto-parsing.
+#
+# Declutter: hub_exclude_* hide noise from the web hub (files may still exist on main
+# for URL compatibility). BoxJS apps: only the subscription + featured_* are listed.
+
+# Module filenames (under Modules/) hidden from the hub grid.
+hub_exclude_modules:
+  - adblock-egern.module
+  - adblock-egern-v0815b.module
+  - adblock-egern-v0815c.module
+  - pingme.yaml
+  - yu9191-player.boxjs.json
+
+# Routing paths (repo-relative) hidden from the hub grid.
+hub_exclude_routing:
+  - Routing/Foreign/AI.yaml
+  - Routing/Foreign/AI-supplement.yaml
+
+# BoxJS: do not dump every app into the hub (100+ noise). Keep subscription + featured.
+boxjs_list_mode: featured  # all | featured | subscription
 
 config:
   - id: egern-main
@@ -18,6 +37,9 @@ routing:
   Routing/Reject-Merged.yaml:
     name: 去广告域名
     desc: 上游 Reject + 合集抽出的整域/IP REJECT，统一一张表。
+  Routing/Reject-Hot.yaml:
+    name: 热点去广告
+    desc: NB / 微信广告 CDN 等短表，优先于 Reject-Merged。
   Routing/Direct-Priority.yaml:
     name: 优先直连
     desc: 须在 ProxyGFW/China-Direct 之前直连的服务域。
@@ -37,14 +59,8 @@ routing:
     name: 追风挂机
     desc: 途游 sq-hlsg / open-hlsg 专用代理规则。
   Routing/Foreign/AI-Merged.yaml:
-    name: AI 分流（合并）
-    desc: VPSDance + Sukka AI 域名，合并去重。Egern.yaml 默认引用此项。
-  Routing/Foreign/AI.yaml:
-    name: AI 分流（Repcz）
-    desc: Repcz/Tool 原版 AI 规则。
-  Routing/Foreign/AI-supplement.yaml:
-    name: AI 分流（补充）
-    desc: AI 规则补充集。
+    name: AI 分流
+    desc: VPSDance + Sukka + 本地补充，合并去重。Egern.yaml 默认引用此项。
   Routing/Foreign/ProxyGFW.yaml:
     name: GFW 列表
     desc: 被墙域名兜底代理。
@@ -100,12 +116,12 @@ modules:
     group: 签到
     default_enabled: false
     tags: [PingMe, 签到, 抓参, 模版参数]
-    hint: "Egern/Surge 都用这份（同起点 #!arguments）。关抓参：参数改成 #。不要装 pingme.yaml。"
-  pingme.yaml:
-    group: 签到
+    hint: "Egern/Surge 都用这份（同起点 #!arguments）。关抓参：参数改成 #。"
+  nb-weixin-fix.yaml:
+    group: 工具
     default_enabled: false
-    tags: [PingMe, 签到, 抓参, Egern]
-    hint: "已不推荐。无参数面板；请改用 pingme.sgmodule。"
+    tags: [NB助手, 微信, 独立模块]
+    hint: "不拉主配置时用。日常用 Egern.yaml + 去广告合集即可，不必再加这份。"
   ibl3nd-plugin-hub.yaml:
     group: 工具
     default_enabled: true
@@ -135,7 +151,7 @@ modules:
 boxjs:
   egern.boxjs.json:
     name: 统一 BoxJS 订阅
-    desc: 播放器、签到、抓参、Cookie、Yuheng、iRingo 等全部 BoxJS 应用配置。
+    desc: 播放器、签到、抓参、Cookie、Yuheng、iRingo 等全部 BoxJS 应用配置。只需这一条订阅。
     icon: https://raw.githubusercontent.com/chavyleung/scripts/master/box/chavy.boxjs.png
 
 external_modules:
@@ -165,10 +181,6 @@ featured_widgets:
 
 featured_boxjs:
   - UnblockURLinWeChat
-  - PearVideoSettings
-  - QiyouShequSettings
-  - InsavSettings
-  - PorntubeSettings
   - xjh51_player
   - iRingo.WeatherKit
   - iRingo.Maps
@@ -176,6 +188,10 @@ featured_boxjs:
   - pingme_capture
   - ximalaya
   - lkBingPoint
+  - yuheng.qdreader
+  - yuheng.kuwo
+  - BAIDU
+  - sfexpress
 
 signin_bundle:
   name: 常用签到脚本包

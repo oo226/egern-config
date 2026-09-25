@@ -265,13 +265,24 @@ def config_items(meta_cfg: dict) -> list[dict]:
     return items
 
 
+def hub_exclude_modules(meta_cfg: dict) -> set[str]:
+    return {str(x) for x in (meta_cfg.get("hub_exclude_modules") or [])}
+
+
+def hub_exclude_routing(meta_cfg: dict) -> set[str]:
+    return {str(x).replace("\\", "/") for x in (meta_cfg.get("hub_exclude_routing") or [])}
+
+
 def routing_items(meta_cfg: dict) -> list[dict]:
     routing_meta = meta_cfg.get("routing") or {}
+    excluded = hub_exclude_routing(meta_cfg)
     items: list[dict] = []
     for path in sorted(ROUTING.rglob("*.yaml")):
         if "_upstream" in path.parts:
             continue
         rel = path.relative_to(ROOT).as_posix()
+        if rel in excluded:
+            continue
         info = routing_meta.get(rel) or {}
         name = info.get("name") or path.stem
         desc = info.get("desc", "")
@@ -322,15 +333,22 @@ def boxjs_items(meta_cfg: dict) -> list[dict]:
             "url": sub_url,
             "add_url": sub_url,
             "usage_tier": "daily",
-            "hint": "BoxJS 应用内添加此订阅链接；后端地址用 http://boxjs.com",
+            "hint": "BoxJS 应用内添加此订阅链接；后端地址用 http://boxjs.com。全部应用在订阅里，不必在中心页逐个翻。",
             "tags": ["BoxJS", "配置", "默认开启"],
         }
     )
 
+    mode = str(meta_cfg.get("boxjs_list_mode") or "featured").strip().lower()
+    if mode == "subscription":
+        return items
+
+    featured = {str(x) for x in (meta_cfg.get("featured_boxjs") or [])}
     data = json.loads(BOXJS_PATH.read_text(encoding="utf-8"))
     for app in data.get("apps") or []:
         app_id = app.get("id") or app.get("name")
         if not app_id:
+            continue
+        if mode == "featured" and str(app_id) not in featured:
             continue
         app_name = app.get("name") or app_id
         icons = app.get("icons") or []
@@ -830,9 +848,12 @@ def mark_featured(meta_cfg: dict, items: list[dict]) -> None:
 def build_catalog() -> dict:
     meta_cfg = load_yaml(CATALOG_META) if CATALOG_META.is_file() else {}
     egern_defaults = load_egern_module_defaults()
+    excluded_mods = hub_exclude_modules(meta_cfg)
     items: list[dict] = []
     items.extend(config_items(meta_cfg))
     for filename in published_module_files():
+        if filename in excluded_mods:
+            continue
         item = module_item(filename, meta_cfg, egern_defaults)
         if item:
             items.append(item)

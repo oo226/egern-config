@@ -1,5 +1,11 @@
 # Curated paths copied from sync branch → main after daily upstream build.
 # Egern raw URLs under main/ must stay stable — edit with care.
+#
+# Declutter policy (2026-09):
+# - main = what you open in Egern / the hub (lean names)
+# - sync = factory (merge scripts, intermediates, aliases sources)
+# - Compatibility aliases (adblock-egern*) stay published so old module URLs keep working,
+#   but are hidden from the hub catalog.
 
 files:
   - Egern.yaml
@@ -21,17 +27,24 @@ files:
 directories:
   - path: Routing
     exclude_dirs: [_upstream, Surge]
+    # Merge intermediates — Egern uses AI-Merged only; keep sources on sync.
+    exclude_files:
+      - Foreign/AI.yaml
+      - Foreign/AI-supplement.yaml
 
   - path: Modules
     include_only:
       - README.md
+      # Canonical entrance
       - adblock-collection.module
+      # Compatibility aliases (same bytes; old Egern URLs)
       - adblock-egern.module
       - adblock-egern-v0815b.module
       - adblock-egern-v0815c.module
       - unlock-collection.module
       - cookie-collection.module
       - pingme.sgmodule
+      # Deprecated duplicate of pingme.sgmodule — keep URL alive, hub-hidden
       - pingme.yaml
       - nb-weixin-fix.yaml
       - qdreader.sgmodule
@@ -43,7 +56,7 @@ directories:
       - iringo-others.sgmodule
       - yu9191-player.boxjs.json
       - egern.boxjs.json
-    # 逐个模块（保留 #!arguments，防删库镜像）
+    # Per-module mirrors with #!arguments (anti-delete)
     include_dirs:
       - yuheng
       - qingrex-signin
@@ -51,6 +64,10 @@ directories:
   - path: Scripts
     exclude_dirs: []
     include_root_glob: "*.js"
+    # Layer map (see Scripts/README.md):
+    #   root *.js     = check-ins you might enable
+    #   _external/    = collection black-box deps
+    #   <author>/     = full upstream mirrors (anti-delete)
     include_subdirs:
       - _external
       - _stubs
@@ -81,6 +98,8 @@ directories:
 prune_from_main:
   - Routing/_upstream
   - Routing/Surge
+  - Routing/Foreign/AI.yaml
+  - Routing/Foreign/AI-supplement.yaml
   - Surge.conf
   - surge
   - Modules/_upstream

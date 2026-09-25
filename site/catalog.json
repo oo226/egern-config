@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-25T08:23:36Z",
+  "generated_at": "2026-09-25T17:30:36Z",
   "branch": "main",
   "repo": "oo226/egern-config",
   "raw_base": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main",
@@ -10,14 +10,14 @@
       "name": "默认开启",
       "icon": "✅",
       "usage_tier": "daily",
-      "count": 9
+      "count": 8
     },
     {
       "id": "optional",
       "name": "按需开启",
       "icon": "🔧",
       "usage_tier": "optional",
-      "count": 166
+      "count": 72
     }
   ],
   "quick_start": [
@@ -60,7 +60,7 @@
     {
       "id": "egern-boxjs",
       "name": "统一 BoxJS 订阅",
-      "desc": "播放器、签到、抓参、Cookie、Yuheng、iRingo 等全部 BoxJS 应用配置。",
+      "desc": "播放器、签到、抓参、Cookie、Yuheng、iRingo 等全部 BoxJS 应用配置。只需这一条订阅。",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "kind": "boxjs",
@@ -115,6 +115,30 @@
       "name": "Bing积分",
       "group": "其他",
       "add_url": "http://boxjs.com/#/app/lkBingPoint"
+    },
+    {
+      "id": "yuheng.qdreader",
+      "name": "起点读书自动签到",
+      "group": "签到 / 抓参",
+      "add_url": "http://boxjs.com/#/app/yuheng.qdreader"
+    },
+    {
+      "id": "yuheng.kuwo",
+      "name": "酷我音乐",
+      "group": "Yuheng",
+      "add_url": "http://boxjs.com/#/app/yuheng.kuwo"
+    },
+    {
+      "id": "BAIDU",
+      "name": "百度签到",
+      "group": "签到 / 抓参",
+      "add_url": "http://boxjs.com/#/app/BAIDU"
+    },
+    {
+      "id": "sfexpress",
+      "name": "顺丰速运",
+      "group": "其他",
+      "add_url": "http://boxjs.com/#/app/sfexpress"
     }
   ],
   "bundles": [
@@ -178,16 +202,36 @@
   ],
   "sync_digest": {
     "commit": {
-      "hash": "d803aa2",
+      "hash": "ffc306f",
       "subject": "chore: sync upstream on sync branch",
-      "date": "2026-09-24"
+      "date": "2026-09-25"
     },
     "summary": [
+      "分流规则 更新 2 个文件",
+      "模块 更新 5 个文件",
+      "脚本 更新 1 个文件",
+      "模块站 更新 2 个文件",
+      "主配置 更新 1 个文件",
       "国内直连 31730 条"
     ],
-    "files_changed": 0
+    "files_changed": 17
   },
   "changelog": [
+    {
+      "hash": "0e32140",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-09-25"
+    },
+    {
+      "hash": "b245b46",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-09-25"
+    },
+    {
+      "hash": "2f504bf",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-09-25"
+    },
     {
       "hash": "a569293",
       "subject": "chore: publish curated snapshot from sync",
@@ -212,25 +256,10 @@
       "hash": "b276d8a",
       "subject": "chore: publish curated snapshot from sync",
       "date": "2026-09-22"
-    },
-    {
-      "hash": "cb05f07",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-09-22"
-    },
-    {
-      "hash": "d8e1df9",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-09-21"
-    },
-    {
-      "hash": "2983c7d",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-09-21"
     }
   ],
   "local_health": {
-    "checked": 126,
+    "checked": 120,
     "fail": 0,
     "broken_ids": []
   },
@@ -253,19 +282,19 @@
       "id": "modules",
       "name": "模块",
       "icon": "🧩",
-      "count": 32
+      "count": 28
     },
     {
       "id": "routing",
       "name": "分流规则",
       "icon": "🔀",
-      "count": 38
+      "count": 36
     },
     {
       "id": "boxjs",
       "name": "BoxJS",
       "icon": "📦",
-      "count": 107
+      "count": 13
     },
     {
       "id": "scripts",
@@ -326,81 +355,6 @@
         "模版参数"
       ],
       "share_url": "https://oo226.github.io/egern-config/#id=adblock-collection",
-      "health": "ok"
-    },
-    {
-      "id": "adblock-egern",
-      "kind": "module",
-      "category": "modules",
-      "group": "其他",
-      "name": "去广告合集",
-      "desc": "微信CDN精准三域名+Map Local+NBPro墨鱼脚本·强制更新本模块",
-      "icon": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/AdblockPlus.png",
-      "homepage": "https://github.com/fmz200/wool_scripts",
-      "path": "Modules/adblock-egern.module",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/adblock-egern.module",
-      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Fadblock-egern.module",
-      "default_enabled": null,
-      "usage_tier": "neutral",
-      "requires": [],
-      "hint": "Egern 编辑模块 → 模版参数可调；与 BoxJS 联动。",
-      "tags": [
-        "去广告",
-        "fmz200",
-        "奶思",
-        "模版参数"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=adblock-egern",
-      "health": "ok"
-    },
-    {
-      "id": "adblock-egern-v0815b",
-      "kind": "module",
-      "category": "modules",
-      "group": "其他",
-      "name": "去广告合集",
-      "desc": "微信CDN精准三域名+Map Local+NBPro墨鱼脚本·强制更新本模块",
-      "icon": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/AdblockPlus.png",
-      "homepage": "https://github.com/fmz200/wool_scripts",
-      "path": "Modules/adblock-egern-v0815b.module",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/adblock-egern-v0815b.module",
-      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Fadblock-egern-v0815b.module",
-      "default_enabled": null,
-      "usage_tier": "neutral",
-      "requires": [],
-      "hint": "Egern 编辑模块 → 模版参数可调；与 BoxJS 联动。",
-      "tags": [
-        "去广告",
-        "fmz200",
-        "奶思",
-        "模版参数"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=adblock-egern-v0815b",
-      "health": "ok"
-    },
-    {
-      "id": "adblock-egern-v0815c",
-      "kind": "module",
-      "category": "modules",
-      "group": "其他",
-      "name": "去广告合集",
-      "desc": "微信CDN精准三域名+Map Local+NBPro墨鱼脚本·强制更新本模块",
-      "icon": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/AdblockPlus.png",
-      "homepage": "https://github.com/fmz200/wool_scripts",
-      "path": "Modules/adblock-egern-v0815c.module",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/adblock-egern-v0815c.module",
-      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Fadblock-egern-v0815c.module",
-      "default_enabled": true,
-      "usage_tier": "daily",
-      "requires": [],
-      "hint": "Egern 编辑模块 → 模版参数可调；与 BoxJS 联动。",
-      "tags": [
-        "去广告",
-        "fmz200",
-        "奶思",
-        "模版参数"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=adblock-egern-v0815c",
       "health": "ok"
     },
     {
@@ -466,7 +420,7 @@
       "default_enabled": true,
       "usage_tier": "daily",
       "requires": [],
-      "hint": "Egern/Surge 都用这份（同起点 #!arguments）。关抓参：参数改成 #。不要装 pingme.yaml。",
+      "hint": "Egern/Surge 都用这份（同起点 #!arguments）。关抓参：参数改成 #。",
       "tags": [
         "PingMe",
         "签到",
@@ -477,35 +431,10 @@
       "health": "ok"
     },
     {
-      "id": "pingme",
-      "kind": "module",
-      "category": "modules",
-      "group": "签到",
-      "name": "PingMe",
-      "desc": "PingMe 抓参 + 定时签到（模块参数可开关抓参；v3）",
-      "icon": "",
-      "homepage": "https://github.com/oo226/egern-config",
-      "path": "Modules/pingme.yaml",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/pingme.yaml",
-      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Fpingme.yaml",
-      "default_enabled": false,
-      "usage_tier": "optional",
-      "requires": [],
-      "hint": "已不推荐。无参数面板；请改用 pingme.sgmodule。",
-      "tags": [
-        "PingMe",
-        "签到",
-        "抓参",
-        "Egern"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=pingme",
-      "health": "ok"
-    },
-    {
       "id": "nb-weixin-fix",
       "kind": "module",
       "category": "modules",
-      "group": "其他",
+      "group": "工具",
       "name": "NB·微信修复",
       "desc": "不拉主配置也能用：NB 控制口 + NBPro 脚本 + 微信公众号。\nNB：telnet=Network OK；/nb/app 用墨鱼脚本改广告（勿空 Map Local，否则「格式不正确」）。\n微信：空 getappmsgad + wxgzhad；素材 CDN 靠合集/Reject-Hot 的 wxa/wximg/wxsmw。\n",
       "icon": "",
@@ -513,11 +442,15 @@
       "path": "Modules/nb-weixin-fix.yaml",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/nb-weixin-fix.yaml",
       "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Fnb-weixin-fix.yaml",
-      "default_enabled": null,
-      "usage_tier": "neutral",
+      "default_enabled": false,
+      "usage_tier": "optional",
       "requires": [],
-      "hint": "",
-      "tags": [],
+      "hint": "不拉主配置时用。日常用 Egern.yaml + 去广告合集即可，不必再加这份。",
+      "tags": [
+        "NB助手",
+        "微信",
+        "独立模块"
+      ],
       "share_url": "https://oo226.github.io/egern-config/#id=nb-weixin-fix",
       "health": "ok"
     },
@@ -1097,8 +1030,8 @@
       "kind": "rule",
       "category": "routing",
       "group": "国外分流",
-      "name": "AI 分流（合并）",
-      "desc": "VPSDance + Sukka AI 域名，合并去重。Egern.yaml 默认引用此项。",
+      "name": "AI 分流",
+      "desc": "VPSDance + Sukka + 本地补充，合并去重。Egern.yaml 默认引用此项。",
       "icon": "",
       "path": "Routing/Foreign/AI-Merged.yaml",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/AI-Merged.yaml",
@@ -1109,44 +1042,6 @@
         "rule_set"
       ],
       "share_url": "https://oo226.github.io/egern-config/#id=Routing-Foreign-AI-Merged",
-      "health": "ok"
-    },
-    {
-      "id": "Routing-Foreign-AI-supplement",
-      "kind": "rule",
-      "category": "routing",
-      "group": "国外分流",
-      "name": "AI 分流（补充）",
-      "desc": "AI 规则补充集。",
-      "icon": "",
-      "path": "Routing/Foreign/AI-supplement.yaml",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/AI-supplement.yaml",
-      "add_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/AI-supplement.yaml",
-      "usage_tier": "neutral",
-      "tags": [
-        "分流",
-        "rule_set"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=Routing-Foreign-AI-supplement",
-      "health": "ok"
-    },
-    {
-      "id": "Routing-Foreign-AI",
-      "kind": "rule",
-      "category": "routing",
-      "group": "国外分流",
-      "name": "AI 分流（Repcz）",
-      "desc": "Repcz/Tool 原版 AI 规则。",
-      "icon": "",
-      "path": "Routing/Foreign/AI.yaml",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/AI.yaml",
-      "add_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Foreign/AI.yaml",
-      "usage_tier": "neutral",
-      "tags": [
-        "分流",
-        "rule_set"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=Routing-Foreign-AI",
       "health": "ok"
     },
     {
@@ -1667,8 +1562,8 @@
       "kind": "rule",
       "category": "routing",
       "group": "国内/通用",
-      "name": "Reject-Hot",
-      "desc": "热点去广告（须排在 Direct-Priority 之前）",
+      "name": "热点去广告",
+      "desc": "NB / 微信广告 CDN 等短表，优先于 Reject-Merged。",
       "icon": "",
       "path": "Routing/Reject-Hot.yaml",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/Reject-Hot.yaml",
@@ -1763,13 +1658,13 @@
       "category": "boxjs",
       "group": "订阅",
       "name": "统一 BoxJS 订阅",
-      "desc": "播放器、签到、抓参、Cookie、Yuheng、iRingo 等全部 BoxJS 应用配置。",
+      "desc": "播放器、签到、抓参、Cookie、Yuheng、iRingo 等全部 BoxJS 应用配置。只需这一条订阅。",
       "icon": "https://raw.githubusercontent.com/chavyleung/scripts/master/box/chavy.boxjs.png",
       "path": "Modules/egern.boxjs.json",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "add_url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
       "usage_tier": "daily",
-      "hint": "BoxJS 应用内添加此订阅链接；后端地址用 http://boxjs.com",
+      "hint": "BoxJS 应用内添加此订阅链接；后端地址用 http://boxjs.com。全部应用在订阅里，不必在中心页逐个翻。",
       "tags": [
         "BoxJS",
         "配置",
@@ -1777,96 +1672,6 @@
       ],
       "share_url": "https://oo226.github.io/egern-config/#id=egern-boxjs",
       "health": "ok"
-    },
-    {
-      "id": "boxjs-10000",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "其他",
-      "name": "10000",
-      "desc": "",
-      "icon": "https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/10000.png",
-      "path": "Modules/egern.boxjs.json#10000",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/10000",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "其他"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-10000"
-    },
-    {
-      "id": "boxjs-10010",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "其他",
-      "name": "10010",
-      "desc": "",
-      "icon": "https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/10010.png",
-      "path": "Modules/egern.boxjs.json#10010",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/10010",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "其他"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-10010"
-    },
-    {
-      "id": "boxjs-yuheng.4ksj",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "签到 / 抓参",
-      "name": "4K世界自动签到",
-      "desc": "",
-      "icon": "https://raw.githubusercontent.com/Yuheng0101/X/main/Assets/4ksj.png",
-      "path": "Modules/egern.boxjs.json#yuheng.4ksj",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/yuheng.4ksj",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "签到 / 抓参"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-yuheng.4ksj"
-    },
-    {
-      "id": "boxjs-AcFun",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "其他",
-      "name": "AcFun",
-      "desc": "",
-      "icon": "https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/acfun.png",
-      "path": "Modules/egern.boxjs.json#AcFun",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/AcFun",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "其他"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-AcFun"
-    },
-    {
-      "id": "boxjs-ApkTw",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "其他",
-      "name": "ApkTw",
-      "desc": "",
-      "icon": "https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/apktw.png",
-      "path": "Modules/egern.boxjs.json#ApkTw",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/ApkTw",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "其他"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-ApkTw"
     },
     {
       "id": "boxjs-lkBingPoint",
@@ -1887,96 +1692,6 @@
       "share_url": "https://oo226.github.io/egern-config/#id=boxjs-lkBingPoint"
     },
     {
-      "id": "boxjs-WxCode",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "其他",
-      "name": "Code Server",
-      "desc": "",
-      "icon": "https://raw.githubusercontent.com/FoKit/Scripts/main/images/WeChat.png",
-      "path": "Modules/egern.boxjs.json#WxCode",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/WxCode",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "其他"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-WxCode"
-    },
-    {
-      "id": "boxjs-yuheng.eshop",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "Yuheng",
-      "name": "Eshop打折监控",
-      "desc": "",
-      "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple112/v4/71/e3/98/71e39886-3a94-fb5d-e15b-45beadd64ac0/AppIcon-1x_U007emarketing-0-5-0-85-220.jpeg/144x144.png",
-      "path": "Modules/egern.boxjs.json#yuheng.eshop",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/yuheng.eshop",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "Yuheng"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-yuheng.eshop"
-    },
-    {
-      "id": "boxjs-Geocaching",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "其他",
-      "name": "Geocaching",
-      "desc": "",
-      "icon": "https://raw.githubusercontent.com/FoKit/Scripts/main/images/geocaching.png",
-      "path": "Modules/egern.boxjs.json#Geocaching",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/Geocaching",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "其他"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-Geocaching"
-    },
-    {
-      "id": "boxjs-nodeseek_capture",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "签到 / 抓参",
-      "name": "NodeSeek 抓参",
-      "desc": "",
-      "icon": "https://raw.githubusercontent.com/chavyleung/scripts/master/box/box.png",
-      "path": "Modules/egern.boxjs.json#nodeseek_capture",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/nodeseek_capture",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "签到 / 抓参"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-nodeseek_capture"
-    },
-    {
-      "id": "boxjs-pp_parking",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "其他",
-      "name": "PP 停车",
-      "desc": "",
-      "icon": "https://raw.githubusercontent.com/FoKit/Scripts/main/images/pp_parking.png",
-      "path": "Modules/egern.boxjs.json#pp_parking",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/pp_parking",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "其他"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-pp_parking"
-    },
-    {
       "id": "boxjs-pingme_capture",
       "kind": "boxjs-app",
       "category": "boxjs",
@@ -1993,312 +1708,6 @@
         "签到 / 抓参"
       ],
       "share_url": "https://oo226.github.io/egern-config/#id=boxjs-pingme_capture"
-    },
-    {
-      "id": "boxjs-fmz200_PingMe",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "签到 / 抓参",
-      "name": "PingMe每日签到",
-      "desc": "",
-      "icon": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/PingMe.png",
-      "path": "Modules/egern.boxjs.json#fmz200_PingMe",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/fmz200_PingMe",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "签到 / 抓参"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-fmz200_PingMe"
-    },
-    {
-      "id": "boxjs-lk.qqvip",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "签到 / 抓参",
-      "name": "QQ会员成长值签到",
-      "desc": "",
-      "icon": "https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/qqvip.png",
-      "path": "Modules/egern.boxjs.json#lk.qqvip",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/lk.qqvip",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "签到 / 抓参"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-lk.qqvip"
-    },
-    {
-      "id": "boxjs-soulsing_capture",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "签到 / 抓参",
-      "name": "Soul 唱歌抓参",
-      "desc": "",
-      "icon": "https://raw.githubusercontent.com/chavyleung/scripts/master/box/box.png",
-      "path": "Modules/egern.boxjs.json#soulsing_capture",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/soulsing_capture",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "签到 / 抓参"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-soulsing_capture"
-    },
-    {
-      "id": "boxjs-fmz200_testflight",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "其他",
-      "name": "TF自动加入",
-      "desc": "",
-      "icon": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/TestFlight_03.png",
-      "path": "Modules/egern.boxjs.json#fmz200_testflight",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/fmz200_testflight",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "其他"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-fmz200_testflight"
-    },
-    {
-      "id": "boxjs-TestFlightAccount",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "其他",
-      "name": "TF账户管理",
-      "desc": "",
-      "icon": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/TestFlight_01.png",
-      "path": "Modules/egern.boxjs.json#TestFlightAccount",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/TestFlightAccount",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "其他"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-TestFlightAccount"
-    },
-    {
-      "id": "boxjs-yuheng.testflight.autoJoin",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "Yuheng",
-      "name": "TestFlight公测自动加入",
-      "desc": "",
-      "icon": "https://raw.githubusercontent.com/githubdulong/Script/master/Images/testflight.png",
-      "path": "Modules/egern.boxjs.json#yuheng.testflight.autoJoin",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/yuheng.testflight.autoJoin",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "Yuheng"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-yuheng.testflight.autoJoin"
-    },
-    {
-      "id": "boxjs-tools",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "其他",
-      "name": "Tools",
-      "desc": "",
-      "icon": "https://raw.githubusercontent.com/FoKit/Scripts/main/images/debug.png",
-      "path": "Modules/egern.boxjs.json#tools",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/tools",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "其他"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-tools"
-    },
-    {
-      "id": "boxjs-V2EX",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "其他",
-      "name": "V2EX",
-      "desc": "",
-      "icon": "https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/v2ex.png",
-      "path": "Modules/egern.boxjs.json#V2EX",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/V2EX",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "其他"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-V2EX"
-    },
-    {
-      "id": "boxjs-WPS",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "其他",
-      "name": "WPS",
-      "desc": "",
-      "icon": "https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/wps.png",
-      "path": "Modules/egern.boxjs.json#WPS",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/WPS",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "其他"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-WPS"
-    },
-    {
-      "id": "boxjs-lk.wifi.assistant",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "其他",
-      "name": "Wi-Fi助手（surge专用）",
-      "desc": "",
-      "icon": "https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/WIFI.png",
-      "path": "Modules/egern.boxjs.json#lk.wifi.assistant",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/lk.wifi.assistant",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "其他"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-lk.wifi.assistant"
-    },
-    {
-      "id": "boxjs-fmz200_X_pinned_timelines",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "其他",
-      "name": "X(Twitter)顶部标签页",
-      "desc": "",
-      "icon": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/X.png",
-      "path": "Modules/egern.boxjs.json#fmz200_X_pinned_timelines",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/fmz200_X_pinned_timelines",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "其他"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-fmz200_X_pinned_timelines"
-    },
-    {
-      "id": "boxjs-chavyleung.bilibili.live",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "其他",
-      "name": "bilibili直播",
-      "desc": "",
-      "icon": "https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/bilibili.png",
-      "path": "Modules/egern.boxjs.json#chavyleung.bilibili.live",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/chavyleung.bilibili.live",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "其他"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-chavyleung.bilibili.live"
-    },
-    {
-      "id": "boxjs-lkHifiniSignIn",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "签到 / 抓参",
-      "name": "hifini签到",
-      "desc": "",
-      "icon": "https://raw.githubusercontent.com/lowking/Scripts/master/doc/icon/hifinisignin-dark.png",
-      "path": "Modules/egern.boxjs.json#lkHifiniSignIn",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/lkHifiniSignIn",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "签到 / 抓参"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-lkHifiniSignIn"
-    },
-    {
-      "id": "boxjs-iios_checkin",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "签到 / 抓参",
-      "name": "iios 签到",
-      "desc": "",
-      "icon": "https://raw.githubusercontent.com/chavyleung/scripts/master/box/box.png",
-      "path": "Modules/egern.boxjs.json#iios_checkin",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/iios_checkin",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "签到 / 抓参"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-iios_checkin"
-    },
-    {
-      "id": "boxjs-iMaoTai",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "Yuheng",
-      "name": "i茅台",
-      "desc": "",
-      "icon": "https://raw.githubusercontent.com/FoKit/Scripts/main/images/iMaoTai.png",
-      "path": "Modules/egern.boxjs.json#iMaoTai",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/iMaoTai",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "Yuheng"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-iMaoTai"
-    },
-    {
-      "id": "boxjs-yuheng.imaotai.v1.5",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "Yuheng",
-      "name": "i茅台预约",
-      "desc": "",
-      "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple116/v4/ae/f4/18/aef41811-955e-e6b0-5d23-6763c2eef1ab/AppIcon-0-0-1x_U007emarketing-0-0-0-7-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/144x144.png",
-      "path": "Modules/egern.boxjs.json#yuheng.imaotai.v1.5",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/yuheng.imaotai.v1.5",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "Yuheng"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-yuheng.imaotai.v1.5"
-    },
-    {
-      "id": "boxjs-fmz200_macat_signin",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "签到 / 抓参",
-      "name": "macat.vip网站签到",
-      "desc": "",
-      "icon": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/Macat.png",
-      "path": "Modules/egern.boxjs.json#fmz200_macat_signin",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/fmz200_macat_signin",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "签到 / 抓参"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-fmz200_macat_signin"
     },
     {
       "id": "boxjs-xjh51_player",
@@ -2319,240 +1728,6 @@
       "share_url": "https://oo226.github.io/egern-config/#id=boxjs-xjh51_player"
     },
     {
-      "id": "boxjs-iRingo.Watch",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "iRingo",
-      "name": "⌚️ WATCH",
-      "desc": "",
-      "icon": "https://developer.apple.com/assets/elements/icons/apple-watch-app/apple-watch-app-128x128.png",
-      "path": "Modules/egern.boxjs.json#iRingo.Watch",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/iRingo.Watch",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "iRingo"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-iRingo.Watch"
-    },
-    {
-      "id": "boxjs-iRingo.TestFlight",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "iRingo",
-      "name": "✈ TestFlight",
-      "desc": "",
-      "icon": "https://developer.apple.com/assets/elements/icons/testflight/testflight-128x128.png",
-      "path": "Modules/egern.boxjs.json#iRingo.TestFlight",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/iRingo.TestFlight",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "iRingo"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-iRingo.TestFlight"
-    },
-    {
-      "id": "boxjs-iRingo.Siri",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "iRingo",
-      "name": "⭕ Siri",
-      "desc": "",
-      "icon": "https://developer.apple.com/assets/elements/icons/siri/siri-128x128.png",
-      "path": "Modules/egern.boxjs.json#iRingo.Siri",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/iRingo.Siri",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "iRingo"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-iRingo.Siri"
-    },
-    {
-      "id": "boxjs-mixc_signin",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "签到 / 抓参",
-      "name": "一点万象签到",
-      "desc": "",
-      "icon": "https://raw.githubusercontent.com/chavyleung/scripts/master/box/box.png",
-      "path": "Modules/egern.boxjs.json#mixc_signin",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/mixc_signin",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "签到 / 抓参"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-mixc_signin"
-    },
-    {
-      "id": "boxjs-china_telecom",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "其他",
-      "name": "中国电信",
-      "desc": "",
-      "icon": "https://raw.githubusercontent.com/FoKit/Scripts/main/images/china_telecom.png",
-      "path": "Modules/egern.boxjs.json#china_telecom",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/china_telecom",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "其他"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-china_telecom"
-    },
-    {
-      "id": "boxjs-wskey",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "其他",
-      "name": "京东WSKEY",
-      "desc": "",
-      "icon": "https://raw.githubusercontent.com/FoKit/Scripts/main/images/jdjoy.png",
-      "path": "Modules/egern.boxjs.json#wskey",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/wskey",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "其他"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-wskey"
-    },
-    {
-      "id": "boxjs-fmz200_smzdm",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "签到 / 抓参",
-      "name": "什么值得买cookie",
-      "desc": "",
-      "icon": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/smzdm.png",
-      "path": "Modules/egern.boxjs.json#fmz200_smzdm",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/fmz200_smzdm",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "签到 / 抓参"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-fmz200_smzdm"
-    },
-    {
-      "id": "boxjs-fmz200_oil_price",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "其他",
-      "name": "今日油价",
-      "desc": "",
-      "icon": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/oil.png",
-      "path": "Modules/egern.boxjs.json#fmz200_oil_price",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/fmz200_oil_price",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "其他"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-fmz200_oil_price"
-    },
-    {
-      "id": "boxjs-qmkg",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "其他",
-      "name": "全民K歌",
-      "desc": "",
-      "icon": "https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/qmkg.png",
-      "path": "Modules/egern.boxjs.json#qmkg",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/qmkg",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "其他"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-qmkg"
-    },
-    {
-      "id": "boxjs-gdoil",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "其他",
-      "name": "加油广东",
-      "desc": "",
-      "icon": "https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/gdoil.png",
-      "path": "Modules/egern.boxjs.json#gdoil",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/gdoil",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "其他"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-gdoil"
-    },
-    {
-      "id": "boxjs-yuheng.wuai",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "Yuheng",
-      "name": "吾爱破解",
-      "desc": "",
-      "icon": "https://raw.githubusercontent.com/Yuheng0101/X/main/Assets/52pojie.png",
-      "path": "Modules/egern.boxjs.json#yuheng.wuai",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/yuheng.wuai",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "Yuheng"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-yuheng.wuai"
-    },
-    {
-      "id": "boxjs-lkBilibiliPrivilegeReceive",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "其他",
-      "name": "哔哩哔哩大会员特权领取",
-      "desc": "",
-      "icon": "https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/bilibili.png",
-      "path": "Modules/egern.boxjs.json#lkBilibiliPrivilegeReceive",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/lkBilibiliPrivilegeReceive",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "其他"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-lkBilibiliPrivilegeReceive"
-    },
-    {
-      "id": "boxjs-lkBilibiliBangumiMonitor",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "其他",
-      "name": "哔哩哔哩番剧监控",
-      "desc": "",
-      "icon": "https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/bilibili.png",
-      "path": "Modules/egern.boxjs.json#lkBilibiliBangumiMonitor",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/lkBilibiliBangumiMonitor",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "其他"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-lkBilibiliBangumiMonitor"
-    },
-    {
       "id": "boxjs-ximalaya",
       "kind": "boxjs-app",
       "category": "boxjs",
@@ -2569,186 +1744,6 @@
         "其他"
       ],
       "share_url": "https://oo226.github.io/egern-config/#id=boxjs-ximalaya"
-    },
-    {
-      "id": "boxjs-fmz200_dalanshu_authorization",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "签到 / 抓参",
-      "name": "大蓝树每日签到",
-      "desc": "",
-      "icon": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/dalanshu.png",
-      "path": "Modules/egern.boxjs.json#fmz200_dalanshu_authorization",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/fmz200_dalanshu_authorization",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "签到 / 抓参"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-fmz200_dalanshu_authorization"
-    },
-    {
-      "id": "boxjs-fmz200_chery_account",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "签到 / 抓参",
-      "name": "奇瑞汽车App签到",
-      "desc": "",
-      "icon": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/chery.png",
-      "path": "Modules/egern.boxjs.json#fmz200_chery_account",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/fmz200_chery_account",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "签到 / 抓参"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-fmz200_chery_account"
-    },
-    {
-      "id": "boxjs-yuheng.ncsp",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "Yuheng",
-      "name": "奶茶视频 VIP 解锁",
-      "desc": "",
-      "icon": "https://raw.githubusercontent.com/Yuheng0101/X/main/Assets/ncsp.png",
-      "path": "Modules/egern.boxjs.json#yuheng.ncsp",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/yuheng.ncsp",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "Yuheng"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-yuheng.ncsp"
-    },
-    {
-      "id": "boxjs-string_replace",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "其他",
-      "name": "字符串替换",
-      "desc": "",
-      "icon": "https://raw.githubusercontent.com/FoKit/Scripts/main/images/default.png",
-      "path": "Modules/egern.boxjs.json#string_replace",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/string_replace",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "其他"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-string_replace"
-    },
-    {
-      "id": "boxjs-yuheng.mi.step",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "Yuheng",
-      "name": "小米刷步",
-      "desc": "",
-      "icon": "https://raw.githubusercontent.com/Yuheng0101/X/main/Tasks/mi/mini.png",
-      "path": "Modules/egern.boxjs.json#yuheng.mi.step",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/yuheng.mi.step",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "Yuheng"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-yuheng.mi.step"
-    },
-    {
-      "id": "boxjs-MiSport",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "其他",
-      "name": "小米运动",
-      "desc": "",
-      "icon": "https://raw.githubusercontent.com/FoKit/Scripts/main/images/mi_sport.png",
-      "path": "Modules/egern.boxjs.json#MiSport",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/MiSport",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "其他"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-MiSport"
-    },
-    {
-      "id": "boxjs-fmz200_xiaohongshu",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "其他",
-      "name": "小红书功能增强",
-      "desc": "",
-      "icon": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/xiaohongshu.png",
-      "path": "Modules/egern.boxjs.json#fmz200_xiaohongshu",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/fmz200_xiaohongshu",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "其他"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-fmz200_xiaohongshu"
-    },
-    {
-      "id": "boxjs-yuheng.javbus",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "签到 / 抓参",
-      "name": "巴士论坛签到",
-      "desc": "",
-      "icon": "https://raw.githubusercontent.com/Yuheng0101/X/main/Assets/bus.png",
-      "path": "Modules/egern.boxjs.json#yuheng.javbus",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/yuheng.javbus",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "签到 / 抓参"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-yuheng.javbus"
-    },
-    {
-      "id": "boxjs-jhsh",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "其他",
-      "name": "建行生活",
-      "desc": "",
-      "icon": "https://raw.githubusercontent.com/FoKit/Scripts/main/images/jhsh.png",
-      "path": "Modules/egern.boxjs.json#jhsh",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/jhsh",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "其他"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-jhsh"
-    },
-    {
-      "id": "boxjs-fmz200_CCB_life",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "签到 / 抓参",
-      "name": "建行生活签到",
-      "desc": "",
-      "icon": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/ccbLife.jpg",
-      "path": "Modules/egern.boxjs.json#fmz200_CCB_life",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/fmz200_CCB_life",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "签到 / 抓参"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-fmz200_CCB_life"
     },
     {
       "id": "boxjs-UnblockURLinWeChat",
@@ -2769,366 +1764,6 @@
       "share_url": "https://oo226.github.io/egern-config/#id=boxjs-UnblockURLinWeChat"
     },
     {
-      "id": "boxjs-fmz200_weibo_token",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "签到 / 抓参",
-      "name": "微博每日签到token",
-      "desc": "",
-      "icon": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/Weibo-00.png",
-      "path": "Modules/egern.boxjs.json#fmz200_weibo_token",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/fmz200_weibo_token",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "签到 / 抓参"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-fmz200_weibo_token"
-    },
-    {
-      "id": "boxjs-fmz200_weibo_talk",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "签到 / 抓参",
-      "name": "微博超话签到",
-      "desc": "",
-      "icon": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/WeiboTalk.png",
-      "path": "Modules/egern.boxjs.json#fmz200_weibo_talk",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/fmz200_weibo_talk",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "签到 / 抓参"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-fmz200_weibo_talk"
-    },
-    {
-      "id": "boxjs-fmz200_ks_fruit",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "其他",
-      "name": "快手果园",
-      "desc": "",
-      "icon": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/kuaishou.png",
-      "path": "Modules/egern.boxjs.json#fmz200_ks_fruit",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/fmz200_ks_fruit",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "其他"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-fmz200_ks_fruit"
-    },
-    {
-      "id": "boxjs-fmz200_pdd_fruit",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "其他",
-      "name": "拼多多果园token",
-      "desc": "",
-      "icon": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/pinduoduo.png",
-      "path": "Modules/egern.boxjs.json#fmz200_pdd_fruit",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/fmz200_pdd_fruit",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "其他"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-fmz200_pdd_fruit"
-    },
-    {
-      "id": "boxjs-yuheng.moyu",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "Yuheng",
-      "name": "摸鱼",
-      "desc": "",
-      "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/67/04/ff/6704ff4c-b49b-de91-70ac-201c62d5296f/AppIcon-0-0-1x_U007emarketing-0-0-0-5-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/144x144bb.png",
-      "path": "Modules/egern.boxjs.json#yuheng.moyu",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/yuheng.moyu",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "Yuheng"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-yuheng.moyu"
-    },
-    {
-      "id": "boxjs-ql",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "其他",
-      "name": "数据同步",
-      "desc": "",
-      "icon": "https://raw.githubusercontent.com/FoKit/Scripts/main/images/sync.png",
-      "path": "Modules/egern.boxjs.json#ql",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/ql",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "其他"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-ql"
-    },
-    {
-      "id": "boxjs-fmz200_douyuYubaSign",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "签到 / 抓参",
-      "name": "斗鱼鱼吧签到",
-      "desc": "",
-      "icon": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/douyu.png",
-      "path": "Modules/egern.boxjs.json#fmz200_douyuYubaSign",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/fmz200_douyuYubaSign",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "签到 / 抓参"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-fmz200_douyuYubaSign"
-    },
-    {
-      "id": "boxjs-weibo",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "其他",
-      "name": "新浪微博",
-      "desc": "",
-      "icon": "https://cdn.jsdelivr.net/gh/Orz-3/mini@master/Alpha/weibo.png",
-      "path": "Modules/egern.boxjs.json#weibo",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/weibo",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "其他"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-weibo"
-    },
-    {
-      "id": "boxjs-everphoto",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "其他",
-      "name": "时光相册",
-      "desc": "",
-      "icon": "https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/everphoto.png",
-      "path": "Modules/egern.boxjs.json#everphoto",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/everphoto",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "其他"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-everphoto"
-    },
-    {
-      "id": "boxjs-fmz200_xxyx_token",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "其他",
-      "name": "晓晓优选token",
-      "desc": "",
-      "icon": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/xxyx_01.png",
-      "path": "Modules/egern.boxjs.json#fmz200_xxyx_token",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/fmz200_xxyx_token",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "其他"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-fmz200_xxyx_token"
-    },
-    {
-      "id": "boxjs-zxhc",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "其他",
-      "name": "智行火车票",
-      "desc": "",
-      "icon": "https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/zxhc.png",
-      "path": "Modules/egern.boxjs.json#zxhc",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/zxhc",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "其他"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-zxhc"
-    },
-    {
-      "id": "boxjs-lkPuPuCheckIn",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "签到 / 抓参",
-      "name": "朴朴签到",
-      "desc": "",
-      "icon": "https://raw.githubusercontent.com/lowking/Scripts/master/doc/icon/pupua.png",
-      "path": "Modules/egern.boxjs.json#lkPuPuCheckIn",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/lkPuPuCheckIn",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "签到 / 抓参"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-lkPuPuCheckIn"
-    },
-    {
-      "id": "boxjs-laichong_capture",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "签到 / 抓参",
-      "name": "来充抓参",
-      "desc": "",
-      "icon": "https://raw.githubusercontent.com/chavyleung/scripts/master/box/box.png",
-      "path": "Modules/egern.boxjs.json#laichong_capture",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/laichong_capture",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "签到 / 抓参"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-laichong_capture"
-    },
-    {
-      "id": "boxjs-yuheng.1024",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "Yuheng",
-      "name": "某榴最新技術推送",
-      "desc": "",
-      "icon": "https://raw.githubusercontent.com/Yuheng0101/X/main/Assets/1024.png",
-      "path": "Modules/egern.boxjs.json#yuheng.1024",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/yuheng.1024",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "Yuheng"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-yuheng.1024"
-    },
-    {
-      "id": "boxjs-fandeng",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "其他",
-      "name": "樊登读书",
-      "desc": "",
-      "icon": "https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/fandeng.png",
-      "path": "Modules/egern.boxjs.json#fandeng",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/fandeng",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "其他"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-fandeng"
-    },
-    {
-      "id": "boxjs-fmz200_wmbwc_data",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "签到 / 抓参",
-      "name": "歪麦霸王餐签到",
-      "desc": "",
-      "icon": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/wmbwc.png",
-      "path": "Modules/egern.boxjs.json#fmz200_wmbwc_data",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/fmz200_wmbwc_data",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "签到 / 抓参"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-fmz200_wmbwc_data"
-    },
-    {
-      "id": "boxjs-yuheng.60s",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "Yuheng",
-      "name": "每天60秒读懂世界",
-      "desc": "",
-      "icon": "https://raw.githubusercontent.com/Yuheng0101/X/main/Assets/60s.png",
-      "path": "Modules/egern.boxjs.json#yuheng.60s",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/yuheng.60s",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "Yuheng"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-yuheng.60s"
-    },
-    {
-      "id": "boxjs-yuheng.bdyy",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "签到 / 抓参",
-      "name": "波点音乐自动签到",
-      "desc": "",
-      "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/05/b9/57/05b9577c-3773-cd2b-5a99-49c0dc3f331d/AppIcon-0-0-1x_U007emarketing-0-0-0-7-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/144x144.png",
-      "path": "Modules/egern.boxjs.json#yuheng.bdyy",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/yuheng.bdyy",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "签到 / 抓参"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-yuheng.bdyy"
-    },
-    {
-      "id": "boxjs-fmz200_didi_fruit",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "其他",
-      "name": "滴滴橙心果园",
-      "desc": "",
-      "icon": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/didi.png",
-      "path": "Modules/egern.boxjs.json#fmz200_didi_fruit",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/fmz200_didi_fruit",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "其他"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-fmz200_didi_fruit"
-    },
-    {
-      "id": "boxjs-yuheng.top",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "Yuheng",
-      "name": "热搜聚合",
-      "desc": "",
-      "icon": "https://is3-ssl.mzstatic.com/image/thumb/Purple126/v4/9a/d8/77/9ad877c6-e3d7-61a1-3911-5036239a41a6/AppIcon-1x_U007emarketing-0-7-0-0-sRGB-85-220.png/144x144bb.png",
-      "path": "Modules/egern.boxjs.json#yuheng.top",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/yuheng.top",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "Yuheng"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-yuheng.top"
-    },
-    {
       "id": "boxjs-BAIDU",
       "kind": "boxjs-app",
       "category": "boxjs",
@@ -3145,294 +1780,6 @@
         "签到 / 抓参"
       ],
       "share_url": "https://oo226.github.io/egern-config/#id=boxjs-BAIDU"
-    },
-    {
-      "id": "boxjs-10086_coupons",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "其他",
-      "name": "移动话费券",
-      "desc": "",
-      "icon": "https://raw.githubusercontent.com/FoKit/Scripts/main/images/10086.png",
-      "path": "Modules/egern.boxjs.json#10086_coupons",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/10086_coupons",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "其他"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-10086_coupons"
-    },
-    {
-      "id": "boxjs-yuheng.cache",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "Yuheng",
-      "name": "第三方库缓存查看",
-      "desc": "",
-      "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/0d/31/0b/0d310b25-aa91-99c5-b23b-af1e8753c4d0/AppIcon-0-1x_U007emarketing-0-7-0-85-220.png/144x144.png",
-      "path": "Modules/egern.boxjs.json#yuheng.cache",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/yuheng.cache",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "Yuheng"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-yuheng.cache"
-    },
-    {
-      "id": "boxjs-yuheng.95598.web",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "Yuheng",
-      "name": "网上国网",
-      "desc": "",
-      "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple116/v4/83/d8/8a/83d88a92-5a4d-7a2f-118c-80d795e7a9f6/AppIcon-0-0-1x_U007emarketing-0-5-0-0-sRGB-85-220.png/144x144.png",
-      "path": "Modules/egern.boxjs.json#yuheng.95598.web",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/yuheng.95598.web",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "Yuheng"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-yuheng.95598.web"
-    },
-    {
-      "id": "boxjs-yuheng.wsgw",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "Yuheng",
-      "name": "网上国网小程序",
-      "desc": "",
-      "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple116/v4/83/d8/8a/83d88a92-5a4d-7a2f-118c-80d795e7a9f6/AppIcon-0-0-1x_U007emarketing-0-5-0-0-sRGB-85-220.png/144x144.png",
-      "path": "Modules/egern.boxjs.json#yuheng.wsgw",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/yuheng.wsgw",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "Yuheng"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-yuheng.wsgw"
-    },
-    {
-      "id": "boxjs-yanxuan_signin",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "签到 / 抓参",
-      "name": "网易严选签到",
-      "desc": "",
-      "icon": "https://raw.githubusercontent.com/chavyleung/scripts/master/box/box.png",
-      "path": "Modules/egern.boxjs.json#yanxuan_signin",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/yanxuan_signin",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "签到 / 抓参"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-yanxuan_signin"
-    },
-    {
-      "id": "boxjs-NeteaseMusic",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "其他",
-      "name": "网易云音乐",
-      "desc": "",
-      "icon": "https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/neteasemusic.png",
-      "path": "Modules/egern.boxjs.json#NeteaseMusic",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/NeteaseMusic",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "其他"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-NeteaseMusic"
-    },
-    {
-      "id": "boxjs-NeteaseNews",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "其他",
-      "name": "网易新闻",
-      "desc": "",
-      "icon": "https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/neteasenews.png",
-      "path": "Modules/egern.boxjs.json#NeteaseNews",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/NeteaseNews",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "其他"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-NeteaseNews"
-    },
-    {
-      "id": "boxjs-fmz200_mt_token",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "其他",
-      "name": "美团token",
-      "desc": "",
-      "icon": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/meituan.png",
-      "path": "Modules/egern.boxjs.json#fmz200_mt_token",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/fmz200_mt_token",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "其他"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-fmz200_mt_token"
-    },
-    {
-      "id": "boxjs-yuheng.meitu",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "Yuheng",
-      "name": "美图鉴赏",
-      "desc": "",
-      "icon": "https://raw.githubusercontent.com/Yuheng0101/X/main/Assets/meitu.png",
-      "path": "Modules/egern.boxjs.json#yuheng.meitu",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/yuheng.meitu",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "Yuheng"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-yuheng.meitu"
-    },
-    {
-      "id": "boxjs-videoqq",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "播放器",
-      "name": "腾讯视频",
-      "desc": "",
-      "icon": "https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/videoqq.png",
-      "path": "Modules/egern.boxjs.json#videoqq",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/videoqq",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "播放器"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-videoqq"
-    },
-    {
-      "id": "boxjs-chavyleung.mgtv",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "其他",
-      "name": "芒果TV",
-      "desc": "",
-      "icon": "https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/mgtv.png",
-      "path": "Modules/egern.boxjs.json#chavyleung.mgtv",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/chavyleung.mgtv",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "其他"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-chavyleung.mgtv"
-    },
-    {
-      "id": "boxjs-huachenghui",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "其他",
-      "name": "花城汇",
-      "desc": "",
-      "icon": "https://raw.githubusercontent.com/FoKit/Scripts/main/images/hch.png",
-      "path": "Modules/egern.boxjs.json#huachenghui",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/huachenghui",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "其他"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-huachenghui"
-    },
-    {
-      "id": "boxjs-chavyleung.suning",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "其他",
-      "name": "苏宁易购",
-      "desc": "",
-      "icon": "https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/suning.png",
-      "path": "Modules/egern.boxjs.json#chavyleung.suning",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/chavyleung.suning",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "其他"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-chavyleung.suning"
-    },
-    {
-      "id": "boxjs-yuheng.huluwa",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "Yuheng",
-      "name": "葫芦娃预约",
-      "desc": "",
-      "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple116/v4/70/a4/56/70a456c9-4df9-3bdb-03b6-ecf99f13e7c1/AppIcon-1x_U007epad-0-10-0-85-220.png/144x144bb.png",
-      "path": "Modules/egern.boxjs.json#yuheng.huluwa",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/yuheng.huluwa",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "Yuheng"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-yuheng.huluwa"
-    },
-    {
-      "id": "boxjs-yuheng.douban",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "Yuheng",
-      "name": "豆瓣电影日历",
-      "desc": "",
-      "icon": "https://is3-ssl.mzstatic.com/image/thumb/Purple126/v4/90/5d/f8/905df82a-0e2e-5a2c-2be6-cc690fb0bec0/AppIcon-0-0-1x_U007emarketing-0-0-0-6-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/144x144bb.png",
-      "path": "Modules/egern.boxjs.json#yuheng.douban",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/yuheng.douban",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "Yuheng"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-yuheng.douban"
-    },
-    {
-      "id": "boxjs-buy_helper",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "其他",
-      "name": "购物助手",
-      "desc": "",
-      "icon": "https://raw.githubusercontent.com/FoKit/Scripts/main/images/jingfen.png",
-      "path": "Modules/egern.boxjs.json#buy_helper",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/buy_helper",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "其他"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-buy_helper"
     },
     {
       "id": "boxjs-yuheng.qdreader",
@@ -3471,78 +1818,6 @@
       "share_url": "https://oo226.github.io/egern-config/#id=boxjs-yuheng.kuwo"
     },
     {
-      "id": "boxjs-fmz200_aliyun",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "签到 / 抓参",
-      "name": "阿里云盘cookie",
-      "desc": "",
-      "icon": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/AliYunDrive.png",
-      "path": "Modules/egern.boxjs.json#fmz200_aliyun",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/fmz200_aliyun",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "签到 / 抓参"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-fmz200_aliyun"
-    },
-    {
-      "id": "boxjs-lkAliYunPanCheckIn",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "签到 / 抓参",
-      "name": "阿里云盘签到",
-      "desc": "",
-      "icon": "https://raw.githubusercontent.com/lowking/Scripts/master/doc/icon/aliYunPana.png",
-      "path": "Modules/egern.boxjs.json#lkAliYunPanCheckIn",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/lkAliYunPanCheckIn",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "签到 / 抓参"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-lkAliYunPanCheckIn"
-    },
-    {
-      "id": "boxjs-ql_sync",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "其他",
-      "name": "青龙同步 BoxJS",
-      "desc": "在 BoxJS「我的 → 数据」中编辑 #ql_sync_keys（逗号分隔键名）与 ql_sync_notify。",
-      "icon": "https://raw.githubusercontent.com/chavyleung/scripts/master/box/box.png",
-      "path": "Modules/egern.boxjs.json#ql_sync",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/ql_sync",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "其他"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-ql_sync"
-    },
-    {
-      "id": "boxjs-yuheng.qinglong",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "Yuheng",
-      "name": "青龙面板",
-      "desc": "",
-      "icon": "https://raw.githubusercontent.com/Yuheng0101/X/main/Assets/ql.png",
-      "path": "Modules/egern.boxjs.json#yuheng.qinglong",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/yuheng.qinglong",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "Yuheng"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-yuheng.qinglong"
-    },
-    {
       "id": "boxjs-sfexpress",
       "kind": "boxjs-app",
       "category": "boxjs",
@@ -3559,42 +1834,6 @@
         "其他"
       ],
       "share_url": "https://oo226.github.io/egern-config/#id=boxjs-sfexpress"
-    },
-    {
-      "id": "boxjs-yuheng.javday",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "Yuheng",
-      "name": "𝐉𝐀𝐕𝐃𝐚𝐲每日推荐",
-      "desc": "",
-      "icon": "https://raw.githubusercontent.com/Yuheng0101/X/main/Assets/javday.png",
-      "path": "Modules/egern.boxjs.json#yuheng.javday",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/yuheng.javday",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "Yuheng"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-yuheng.javday"
-    },
-    {
-      "id": "boxjs-yuheng.zippo",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "签到 / 抓参",
-      "name": "𝐙𝐈𝐏𝐏𝐎会员中心签到",
-      "desc": "",
-      "icon": "https://raw.githubusercontent.com/Yuheng0101/X/main/Assets/zippo.jpg",
-      "path": "Modules/egern.boxjs.json#yuheng.zippo",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/yuheng.zippo",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "签到 / 抓参"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-yuheng.zippo"
     },
     {
       "id": "boxjs-iRingo.WeatherKit",
@@ -3631,42 +1870,6 @@
         "iRingo"
       ],
       "share_url": "https://oo226.github.io/egern-config/#id=boxjs-iRingo.LocationService"
-    },
-    {
-      "id": "boxjs-iRingo.News",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "iRingo",
-      "name": "📰 News",
-      "desc": "",
-      "icon": "https://developer.apple.com/assets/elements/icons/news/news-128x128.png",
-      "path": "Modules/egern.boxjs.json#iRingo.News",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/iRingo.News",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "iRingo"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-iRingo.News"
-    },
-    {
-      "id": "boxjs-iRingo.TV",
-      "kind": "boxjs-app",
-      "category": "boxjs",
-      "group": "iRingo",
-      "name": "📺 TV",
-      "desc": "",
-      "icon": "https://developer.apple.com/assets/elements/icons/apple-tv/apple-tv-128x128.png",
-      "path": "Modules/egern.boxjs.json#iRingo.TV",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
-      "add_url": "http://boxjs.com/#/app/iRingo.TV",
-      "usage_tier": "optional",
-      "tags": [
-        "BoxJS",
-        "iRingo"
-      ],
-      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-iRingo.TV"
     },
     {
       "id": "boxjs-iRingo.Maps",
@@ -4852,5 +3055,5 @@
       "health": "ok"
     }
   ],
-  "total": 232
+  "total": 132
 }

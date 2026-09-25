@@ -714,10 +714,10 @@ widgets:
 
 modules:
   - name: 去广告净化合集
-    # 稳定别名；日更会同步写 adblock-collection / adblock-egern-v0815c
+    # 唯一入口名；日更仍同步写 adblock-egern* 兼容别名（旧 URL 继续可用）
     # 用 raw 避免 jsDelivr 缓存拖住紧急改写（如 nbtool8:9527）
     # NB/微信 Map Local + 脚本在主配置；合集双保险；素材 CDN 见 Reject-Hot（wxs）
-    url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/adblock-egern-v0815c.module
+    url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/adblock-collection.module
     update_interval: 86400
     enabled: true
   - name: 解锁增强合集

@@ -50,6 +50,8 @@ def publish_routing(spec: dict) -> None:
     src_root = ROOT / "Routing"
     dst_root = WORKTREE / "Routing"
     exclude = set(spec.get("exclude_dirs") or [])
+    # Relative posix paths under Routing/, e.g. Foreign/AI.yaml (merge intermediates).
+    exclude_files = {p.replace("\\", "/").lstrip("/") for p in (spec.get("exclude_files") or [])}
     if dst_root.exists():
         shutil.rmtree(dst_root)
     dst_root.mkdir(parents=True, exist_ok=True)
@@ -61,7 +63,15 @@ def publish_routing(spec: dict) -> None:
             shutil.copytree(item, target)
         else:
             shutil.copy2(item, target)
-    print("copy Routing/ (excluding %s)" % ", ".join(sorted(exclude)) or "none")
+    for rel in sorted(exclude_files):
+        doomed = dst_root / rel
+        if doomed.is_file():
+            doomed.unlink()
+            print(f"prune Routing/{rel}")
+    print(
+        "copy Routing/ (excluding dirs=%s files=%s)"
+        % (", ".join(sorted(exclude)) or "none", ", ".join(sorted(exclude_files)) or "none")
+    )
 
 
 def publish_modules(spec: dict) -> None:
