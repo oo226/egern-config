@@ -612,26 +612,6 @@ scriptings:
       max_size: -1
       timeout: 60
       update_interval: 3600
-      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/ddgksf2013/nbpro.ads.js
-      body_required: true
-      max_size: -1
-      timeout: 60
-      update_interval: 3600
-      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/ddgksf2013/nbpro.ads.js
-      body_required: true
-      max_size: -1
-      timeout: 60
-      update_interval: 3600
-      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/ddgksf2013/nbpro.ads.js
-      body_required: true
-      max_size: -1
-      timeout: 60
-      update_interval: 3600
-      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/ddgksf2013/nbpro.ads.js
-      body_required: true
-      max_size: -1
-      timeout: 60
-      update_interval: 3600
   - http_response:
       name: NBPro去广告
       match: '^https?://(?:[^/]*nbtool8\.com|124\.222\.32\.246|117\.72\.39\.157|47\.243\.71\.210|cesapp\.goypzc\.cn)(?::\d+)?/nb/app'
@@ -675,6 +655,16 @@ mitm:
       - gspe1-ssl.ls.apple.com
       - dispatcher.is.autonavi.com
     excludes:
+      # Telegram 裸 IP + SNI=www.google.com 域名前置：合集若 MitM google 会 TLS 失败狂重试烫机
+      - www.google.com
+      - www.google.com.hk
+      - "*.telegram.org"
+      - "*.telegram-cdn.org"
+      - "*.t.me"
+      - "194.221.250.50"
+      - "149.154.*"
+      - "91.108.*"
+      - "91.105.*"
       # 仅排除聊天短链，保留 mp.weixin.qq.com 给公众号去广告（Surge 同理不整域排除）
       - short.weixin.qq.com
       - extshort.weixin.qq.com
