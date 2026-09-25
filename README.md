@@ -1,13 +1,11 @@
 # egern-config
 
-个人 Egern **自用** 配置仓库。目录英文命名，避免 raw 链接 URL 编码。
+个人 Egern **自用** 配置。去广告默认走 **上游原样合集**（不打本地补丁）。
 
-> **搬运说明**：规则/模块/脚本来自公开上游镜像与合并，仅供个人学习使用。  
-> **版权**：版权归原作者及原项目；若认为不合理请 [联系删除](DISCLAIMER.md)。  
-> **怎么用**：请看 **[USAGE.md](USAGE.md)**（菜单） · **[DISCLAIMER.md](DISCLAIMER.md)**（免责）
+> **搬运**：公开上游镜像，仅供个人学习。版权归原作者 → [DISCLAIMER.md](DISCLAIMER.md)  
+> **怎么用**：[USAGE.md](USAGE.md)
 
 [![Sync Rules](https://github.com/oo226/egern-config/actions/workflows/sync-rules.yml/badge.svg?branch=sync)](https://github.com/oo226/egern-config/actions/workflows/sync-rules.yml)
-[![Catalog Health](https://github.com/oo226/egern-config/actions/workflows/sync-rules.yml/badge.svg?branch=sync&label=catalog%20health)](https://github.com/oo226/egern-config/actions/workflows/sync-rules.yml)
 
 ## 快速导入
 
@@ -15,48 +13,44 @@
 https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Egern.yaml
 ```
 
-Surge（独立分支，不进 main）：
+模块中心：https://oo226.github.io/egern-config/
+
+## 去广告怎么来的
 
 ```
-https://raw.githubusercontent.com/oo226/egern-config/refs/heads/surge/Surge.conf
+上游 raw（奶思 / blackmatrix7 / 毒奶 / chxm）
+        │  1:1 下载，零改写
+        ▼
+Modules/vendors/*.module   ← 单源原样副本 + SHA256
+        │  只做段落拼接 + 去重
+        ▼
+Modules/adblock-verbatim.module   ← Egern 默认用这个
 ```
 
-**模块中心（网页浏览 / 一键添加）：** https://oo226.github.io/egern-config/
+旧版打补丁合集 `adblock-collection.module` 仍发布，仅作回滚。
 
-备用（无需开 Pages）：https://cdn.jsdelivr.net/gh/oo226/egern-config@main/site/index.html
-
-## main 里有什么（一眼看懂）
+## main 结构
 
 ```
 main/
-├── Egern.yaml              # Egern 主配置模板
-├── USAGE.md                # ← 你要的链接菜单
-├── DISCLAIMER.md           # 搬运工免责 / 删除联系
-├── Routing/                # Egern 分流 YAML（无 _upstream）
-├── Modules/                # 三个大合集 + 插件跳转
-├── Scripts/                # 签到 JS + 模块依赖镜像
-├── Assets/geoip/           # GeoIP 数据库
-└── Widgets/IBL3ND/         # 小组件脚本
+├── Egern.yaml
+├── Modules/
+│   ├── adblock-verbatim.module    # 默认去广告
+│   ├── vendors/                   # 上游原样子文件
+│   ├── unlock-collection.module
+│   └── …
+├── Routing/
+├── Scripts/
+├── Widgets/
+└── site/
 ```
-
-Surge 成品在 **`surge` 分支**（`Surge.conf` + `Rules/`），由 sync 工厂导出后单独发布。
-
-**不在 main**：`scripts/`（Python 工具）、`Modules/_upstream/`、`publish/` — 仅在 `sync` 分支。
 
 ## 分支
 
 | 分支 | 用途 |
 |------|------|
-| **`main`** | 日常用 — Egern 拉这个 |
-| **`surge`** | Surge 专用 — `Surge.conf` + `Rules/` |
-| **`sync`** | Actions 每日上游同步，发布到 main + surge |
+| **main** | Egern 日常 |
+| **surge** | Surge 成品 |
+| **sync** | 工厂：同步上游 → 发布 |
 
-## 常用链接
-
-```
-https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/adblock-collection.module
-https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/unlock-collection.module
-https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Routing/China-Direct.yaml
-```
-
-完整列表见 [USAGE.md](USAGE.md)。
+常用链接见 [USAGE.md](USAGE.md)。

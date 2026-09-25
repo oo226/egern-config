@@ -34,7 +34,7 @@ https://cdn.jsdelivr.net/gh/oo226/egern-config@main/site/index.html
 
 | 名称 | 类型 | raw 链接 | 说明 |
 |------|------|----------|------|
-| 去广告净化合集 | 模块 | `.../Modules/adblock-collection.module` | 默认开；**不含签到 cron** |
+| 去广告合集（原样） | 模块 | `.../Modules/adblock-verbatim.module` | **默认**；上游原样拼接，无本地补丁 |
 | 解锁增强合集 | 模块 | `.../Modules/unlock-collection.module` | 默认开 |
 | PingMe 抓参签到 | 模块 | `.../Modules/pingme.sgmodule` | Surge/Egern 同用；抓完把参数改成 `#` |
 | 插件跳转 Egern | 模块 | `.../Modules/ibl3nd-plugin-hub.yaml` | 默认开 |
@@ -43,6 +43,8 @@ https://cdn.jsdelivr.net/gh/oo226/egern-config@main/site/index.html
 
 完整前缀：`https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main`
 
+单源原样副本：`Modules/vendors/`。旧打补丁合集 `adblock-collection.module` 仅回滚用。
+
 ---
 
 ## 二、按需开关
@@ -50,6 +52,7 @@ https://cdn.jsdelivr.net/gh/oo226/egern-config@main/site/index.html
 | 名称 | raw 链接 | 何时开 |
 |------|----------|--------|
 | 抓参 Cookie 合集 | `.../Modules/cookie-collection.module` | 签到前抓 ck，**抓完关掉**省电 |
+| NB/微信独立补丁 | `.../Modules/nb-weixin-fix.yaml` | 原样合集不含 NB；需要再单独加 |
 |  iRingo 地图/天气/定位/其他 | `.../Modules/iringo-*.sgmodule` | 按需开；**同时开** `iringo-mitm.yaml` |
 | 追风 mitm 证书 | 系统设置 → 证书信任 | 仅挂机时段开信任，平时关 |
 

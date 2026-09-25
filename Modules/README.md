@@ -1,37 +1,35 @@
 # 模块（Modules）
 
-> 镜像合并自用，上游版权归原作者。不合理请联系删除，见 [DISCLAIMER.md](../DISCLAIMER.md)。
+> 镜像自用，版权归上游。见 [DISCLAIMER.md](../DISCLAIMER.md)。
 
-目录名用英文，避免 raw 链接被 URL 编码。
+## 去广告：两套合集
 
-**模块**通过 URL Rewrite、MITM、Script 拦截 App 内广告和开屏。
+| 文件 | 策略 | 何时用 |
+|------|------|--------|
+| **`adblock-verbatim.module`** | 上游 **原样** 拼接（奶思 / blackmatrix7 / 毒奶 / chxm） | **默认** — 不改 URL、不打 heat/NB 补丁 |
+| `adblock-collection.module` | 旧流水线：改写 + divert + heat/NB | 仅回滚 |
 
-**分流 vs 模块：** 整域都是广告 → `Reject-Merged` 直接 REJECT。同域混业务才需要合集 MITM。合并时会把合集 `[Rule]` 里的 DOMAIN/IP REJECT 并进 `Reject-Merged.yaml`，合集只留改写/Script/AND。少量热点（如 NB助手 SDK）标 `# @keep`：仍并入分流，合集内也保留一行，避免只更新合集、Reject-Merged 未刷新时广告回潮。更新合集后请同时**强制更新**外部资源 `Reject-Merged`。
-
-## 文件对照
-
-| 文件 | 中文名 | 说明 |
-|------|--------|------|
-| `adblock-collection.module` | 去广告合集 | **唯一入口** — 奶思 + blackmatrix7 + 补全（**不含** skip-proxy / 签到 cron） |
-| `unlock-collection.module` | 解锁合集 | **唯一入口** — 链接解锁、Spotify VIP、HTTPDNS、屏蔽更新等（**已含** Spotify，勿再装单独份） |
-| `cookie-collection.module` | Cookie 合集 | **按需** — 签到前抓 ck，抓完关掉 |
-| `qdreader.sgmodule` / `pingme.*` | 签到 | 带模版参数，单独保留 |
-| `iringo-*.sgmodule` |  iRingo | 地图/天气/定位，与去广告无关 |
-
-已从 main **停发**：`skip-proxy-collection`、`spotify-unlock`（仅 sync 工厂合并用）。`skip-proxy` / `always-real-ip` 只写主配置。
-
-## 上游从哪来？
-
-完整清单：`scripts/upstream-sources.yaml`（每日同步写入 `site/upstreams.json`）。
-
-**原则：盯着的仓尽量全拉成本仓副本（防删库）；能进大合集的进合集；带 `#!arguments` 的签到模块单独保留，方便 Egern 里改模版参数。**
-
-## raw 链接（用户入口）
+单源 1:1 副本在 **`Modules/vendors/`**（带 `SHA256SUMS`）。清单：`manifest.verbatim.yaml`（仅 sync）。
 
 ```
-https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/adblock-collection.module
-https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/unlock-collection.module
-https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/cookie-collection.module
+https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/adblock-verbatim.module
 ```
 
-改 `custom-apps.sgmodule` 后 push，Actions 下次合并进去广告合集。
+NB / 微信等本地补丁**不进**原样合集；需要时单独加 `nb-weixin-fix.yaml`。
+
+## 其他日常入口
+
+| 文件 | 说明 |
+|------|------|
+| `unlock-collection.module` | 解锁合集 |
+| `cookie-collection.module` | 按需抓 Cookie |
+| `pingme.sgmodule` | PingMe |
+| `ibl3nd-plugin-hub.yaml` | 插件跳转 |
+| `iringo-*` |  iRingo |
+| `egern.boxjs.json` | 统一 BoxJS |
+
+## 原则
+
+1. **原样优先**：合集内容 = 上游模块字节级副本的拼接去重，脚本 URL 仍指向上游。
+2. **补丁隔离**：自定义修复单独成模块，绝不再塞进「原样合集」。
+3. **防删库**：`vendors/` + 作者仓镜像在；坏了对照 `SHA256SUMS` 即可。

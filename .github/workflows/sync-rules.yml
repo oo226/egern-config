@@ -135,6 +135,10 @@ jobs:
       - name: Mirror Yuheng BoxJS task scripts
         run: python3 scripts/sync-yuheng-scripts.py
 
+      # 原样合集：只拉上游模块、只做拼接去重，不打 heat/NB/URL 补丁。
+      - name: Build verbatim adblock collection (no patches)
+        run: python3 scripts/merge-verbatim-collection.py
+
       - name: Merge adblock module
         run: python scripts/merge-adblock-modules.py
 
@@ -142,6 +146,7 @@ jobs:
         run: python scripts/merge-adblock-modules.py Modules/manifest.surge.yaml
 
       # 每日上游合并会冲掉手调防烫；合并后强制回贴 Surge + Egern 去广告合集。
+      # 注意：只作用于旧版 adblock-collection；adblock-verbatim 永不打补丁。
       - name: Re-apply Surge/Egern heat (防烫) patches
         run: python3 scripts/apply-surge-heat-patch.py
 

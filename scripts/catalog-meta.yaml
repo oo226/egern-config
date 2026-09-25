@@ -79,10 +79,16 @@ routing:
     name: Emby
 
 modules:
-  adblock-collection.module:
+  adblock-verbatim.module:
     group: 合集
     default_enabled: true
-    tags: [去广告, 开屏, 净化]
+    tags: [去广告, 原样, 上游]
+    hint: "奶思+blackmatrix7+毒奶+chxm 原样拼接，无本地补丁。单源见 Modules/vendors/。"
+  adblock-collection.module:
+    group: 合集
+    default_enabled: false
+    tags: [去广告, 旧版, 打补丁]
+    hint: "旧打补丁合集（heat/NB/URL 改写）。默认已切到 adblock-verbatim；仅回滚时用。"
   unlock-collection.module:
     group: 合集
     default_enabled: true
@@ -144,7 +150,7 @@ external_modules:
 
 quick_start:
   - egern-main
-  - adblock-collection
+  - adblock-verbatim
   - unlock-collection
   - ibl3nd-plugin-hub
   - egern-boxjs
@@ -193,8 +199,8 @@ onboarding:
     desc: 添加 Egern.yaml 订阅，或扫二维码导入
     ref: egern-main
   - title: 确认默认模块
-    desc: 去广告合集 + 解锁合集 + 插件跳转（Egern.yaml 里默认已开）
-    ref: adblock-collection
+    desc: 去广告原样合集 + 解锁合集 + 插件跳转（Egern.yaml 里默认已开）
+    ref: adblock-verbatim
   - title: 按需扩展
     desc: BoxJS 统一订阅 · iRingo 套装 · 签到脚本包
     ref: egern-boxjs

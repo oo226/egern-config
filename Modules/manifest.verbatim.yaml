@@ -1,0 +1,60 @@
+# Verbatim adblock collection — upstream modules only, no content patches.
+#
+# Policy:
+#   1. Download each source as-is → Modules/vendors/<id>.(sg)module
+#   2. Concatenate into adblock-verbatim.module with ONLY:
+#        - new #!name / #!desc header
+#        - section union + exact-line / rule-key dedupe
+#        - MITM hostname union
+#   3. NO script URL rewrites, NO line excludes, NO divert to Reject-Merged,
+#      NO cron stripping, NO custom-apps / heat / NB patches.
+#
+# Local Scripts mirrors (if any) are backups only — this module keeps upstream
+# script-path URLs so behavior matches the authors' modules.
+
+merge:
+  output: adblock-verbatim.module
+  vendors_dir: vendors
+  primary_name: 去广告合集（原样）
+  primary_desc: 奶思+blackmatrix7+毒奶+chxm 原样拼接·无本地改写·强制更新本模块
+  header_lines:
+    - "# VERBATIM MERGE by scripts/merge-verbatim-collection.py"
+    - "# 上游模块原样拼接；不做 URL 改写 / 行剔除 / Reject divert / 本地补丁"
+    - "# 单源副本见 Modules/vendors/ — 与上游 raw 字节一致（下载时刻）"
+    - "# Do not hand-edit. Regenerated on sync from Modules/manifest.verbatim.yaml"
+    - ""
+  merge_sections:
+    - General
+    - Rule
+    - URL Rewrite
+    - Header Rewrite
+    - Body Rewrite
+    - Map Local
+    - Script
+    - MITM
+
+modules:
+  - id: fmz200-blockAds
+    github: fmz200/wool_scripts
+    upstream: https://raw.githubusercontent.com/fmz200/wool_scripts/main/Surge/module/blockAds.module
+    note: "奶思 blockAds — 主去广告/去开屏"
+
+  - id: blackmatrix7-Advertising
+    github: blackmatrix7/ios_rule_script
+    upstream: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rewrite/Surge/Advertising/Advertising.sgmodule
+    note: "blackmatrix7 Advertising rewrite"
+
+  - id: blackmatrix7-AdvertisingScript
+    github: blackmatrix7/ios_rule_script
+    upstream: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rewrite/Surge/AdvertisingScript/AdvertisingScript.sgmodule
+    note: "blackmatrix7 AdvertisingScript"
+
+  - id: limbopro-Adblock4limbo
+    github: limbopro/Adblock4limbo
+    upstream: https://raw.githubusercontent.com/limbopro/Adblock4limbo/main/Adblock4limbo.sgmodule
+    note: "毒奶 网页去广告"
+
+  - id: chxm1023-AppAd
+    github: chxm1023/Advertising
+    upstream: https://raw.githubusercontent.com/chxm1023/Advertising/Shadowrocket/AppAd.sgmodule
+    note: "chxm1023 App/小程序开屏"

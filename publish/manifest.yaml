@@ -25,6 +25,9 @@ directories:
   - path: Modules
     include_only:
       - README.md
+      # 日常入口：上游原样拼接（无本地补丁）
+      - adblock-verbatim.module
+      # 旧版打补丁合集（回滚用；Egern 默认已切走）
       - adblock-collection.module
       - adblock-egern.module
       - adblock-egern-v0815b.module
@@ -47,6 +50,8 @@ directories:
     include_dirs:
       - yuheng
       - qingrex-signin
+      # 上游原样子模块（与 raw 字节一致）
+      - vendors
 
   - path: Scripts
     exclude_dirs: []
@@ -85,6 +90,8 @@ prune_from_main:
   - surge
   - Modules/_upstream
   - Modules/manifest.yaml
+  - Modules/manifest.verbatim.yaml
+  - Modules/manifest.surge.yaml
   - Modules/unlock-manifest.yaml
   - Modules/spotify-dualsubs.sgmodule
   - Modules/cookie-manifest.yaml

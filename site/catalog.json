@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-25T08:23:36Z",
+  "generated_at": "2026-09-25T17:48:05Z",
   "branch": "main",
   "repo": "oo226/egern-config",
   "raw_base": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main",
@@ -10,14 +10,14 @@
       "name": "默认开启",
       "icon": "✅",
       "usage_tier": "daily",
-      "count": 9
+      "count": 8
     },
     {
       "id": "optional",
       "name": "按需开启",
       "icon": "🔧",
       "usage_tier": "optional",
-      "count": 166
+      "count": 167
     }
   ],
   "quick_start": [
@@ -31,13 +31,13 @@
       "qr_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Egern.yaml"
     },
     {
-      "id": "adblock-collection",
-      "name": "去广告合集",
-      "desc": "微信CDN精准三域名+Map Local+NBPro墨鱼脚本·强制更新本模块",
-      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Fadblock-collection.module",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/adblock-collection.module",
+      "id": "adblock-verbatim",
+      "name": "去广告合集（原样）",
+      "desc": "奶思+blackmatrix7+毒奶+chxm 原样拼接·无本地改写·强制更新本模块",
+      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Fadblock-verbatim.module",
+      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/adblock-verbatim.module",
       "kind": "module",
-      "qr_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Fadblock-collection.module"
+      "qr_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Fadblock-verbatim.module"
     },
     {
       "id": "unlock-collection",
@@ -178,16 +178,36 @@
   ],
   "sync_digest": {
     "commit": {
-      "hash": "d803aa2",
+      "hash": "ffc306f",
       "subject": "chore: sync upstream on sync branch",
-      "date": "2026-09-24"
+      "date": "2026-09-25"
     },
     "summary": [
+      "分流规则 更新 2 个文件",
+      "模块 更新 5 个文件",
+      "脚本 更新 1 个文件",
+      "模块站 更新 2 个文件",
+      "主配置 更新 1 个文件",
       "国内直连 31730 条"
     ],
-    "files_changed": 0
+    "files_changed": 17
   },
   "changelog": [
+    {
+      "hash": "0e32140",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-09-25"
+    },
+    {
+      "hash": "b245b46",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-09-25"
+    },
+    {
+      "hash": "2f504bf",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-09-25"
+    },
     {
       "hash": "a569293",
       "subject": "chore: publish curated snapshot from sync",
@@ -212,35 +232,20 @@
       "hash": "b276d8a",
       "subject": "chore: publish curated snapshot from sync",
       "date": "2026-09-22"
-    },
-    {
-      "hash": "cb05f07",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-09-22"
-    },
-    {
-      "hash": "d8e1df9",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-09-21"
-    },
-    {
-      "hash": "2983c7d",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-09-21"
     }
   ],
   "local_health": {
-    "checked": 126,
+    "checked": 132,
     "fail": 0,
     "broken_ids": []
   },
   "upstream_health": {
-    "total_unique": 0,
-    "checked": 0,
-    "ok": 0,
+    "total_unique": 93,
+    "checked": 80,
+    "ok": 80,
     "fail": 0,
     "broken": [],
-    "truncated": false
+    "truncated": true
   },
   "categories": [
     {
@@ -253,7 +258,7 @@
       "id": "modules",
       "name": "模块",
       "icon": "🧩",
-      "count": 32
+      "count": 38
     },
     {
       "id": "routing",
@@ -302,6 +307,30 @@
       "health": "ok"
     },
     {
+      "id": "adblock-verbatim",
+      "kind": "module",
+      "category": "modules",
+      "group": "合集",
+      "name": "去广告合集（原样）",
+      "desc": "奶思+blackmatrix7+毒奶+chxm 原样拼接·无本地改写·强制更新本模块",
+      "icon": "",
+      "homepage": "",
+      "path": "Modules/adblock-verbatim.module",
+      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/adblock-verbatim.module",
+      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Fadblock-verbatim.module",
+      "default_enabled": true,
+      "usage_tier": "daily",
+      "requires": [],
+      "hint": "奶思+blackmatrix7+毒奶+chxm 原样拼接，无本地补丁。单源见 Modules/vendors/。",
+      "tags": [
+        "去广告",
+        "原样",
+        "上游"
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=adblock-verbatim",
+      "health": "ok"
+    },
+    {
       "id": "adblock-collection",
       "kind": "module",
       "category": "modules",
@@ -313,14 +342,14 @@
       "path": "Modules/adblock-collection.module",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/adblock-collection.module",
       "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Fadblock-collection.module",
-      "default_enabled": true,
-      "usage_tier": "daily",
+      "default_enabled": false,
+      "usage_tier": "optional",
       "requires": [],
-      "hint": "Egern 编辑模块 → 模版参数可调；与 BoxJS 联动。",
+      "hint": "旧打补丁合集（heat/NB/URL 改写）。默认已切到 adblock-verbatim；仅回滚时用。",
       "tags": [
         "去广告",
-        "开屏",
-        "净化",
+        "旧版",
+        "打补丁",
         "fmz200",
         "奶思",
         "模版参数"
@@ -390,8 +419,8 @@
       "path": "Modules/adblock-egern-v0815c.module",
       "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/adblock-egern-v0815c.module",
       "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Fadblock-egern-v0815c.module",
-      "default_enabled": true,
-      "usage_tier": "daily",
+      "default_enabled": null,
+      "usage_tier": "neutral",
       "requires": [],
       "hint": "Egern 编辑模块 → 模版参数可调；与 BoxJS 联动。",
       "tags": [
@@ -1033,6 +1062,111 @@
         "模版参数"
       ],
       "share_url": "https://oo226.github.io/egern-config/#id=qingrex-signin-联通余量.official",
+      "health": "ok"
+    },
+    {
+      "id": "vendors-blackmatrix7-Advertising",
+      "kind": "module",
+      "category": "modules",
+      "group": "其他",
+      "name": "Advertising",
+      "desc": "最后更新时间 2025-08-26 02:12:25",
+      "icon": "",
+      "homepage": "",
+      "path": "Modules/vendors/blackmatrix7-Advertising.sgmodule",
+      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/vendors/blackmatrix7-Advertising.sgmodule",
+      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Fvendors%2Fblackmatrix7-Advertising.sgmodule",
+      "default_enabled": null,
+      "usage_tier": "neutral",
+      "requires": [],
+      "hint": "",
+      "tags": [],
+      "share_url": "https://oo226.github.io/egern-config/#id=vendors-blackmatrix7-Advertising",
+      "health": "ok"
+    },
+    {
+      "id": "vendors-blackmatrix7-AdvertisingScript",
+      "kind": "module",
+      "category": "modules",
+      "group": "其他",
+      "name": "AdvertisingScript",
+      "desc": "最后更新时间 2025-06-06 09:20:18",
+      "icon": "",
+      "homepage": "",
+      "path": "Modules/vendors/blackmatrix7-AdvertisingScript.sgmodule",
+      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/vendors/blackmatrix7-AdvertisingScript.sgmodule",
+      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Fvendors%2Fblackmatrix7-AdvertisingScript.sgmodule",
+      "default_enabled": null,
+      "usage_tier": "neutral",
+      "requires": [],
+      "hint": "",
+      "tags": [],
+      "share_url": "https://oo226.github.io/egern-config/#id=vendors-blackmatrix7-AdvertisingScript",
+      "health": "ok"
+    },
+    {
+      "id": "vendors-chxm1023-AppAd",
+      "kind": "module",
+      "category": "modules",
+      "group": "其他",
+      "name": "App/小程序-AD净化",
+      "desc": "去一些App/小程序的广告！",
+      "icon": "",
+      "homepage": "https://github.com/chxm1023/Script_X/blob/main/README.md",
+      "path": "Modules/vendors/chxm1023-AppAd.sgmodule",
+      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/vendors/chxm1023-AppAd.sgmodule",
+      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Fvendors%2Fchxm1023-AppAd.sgmodule",
+      "default_enabled": null,
+      "usage_tier": "neutral",
+      "requires": [],
+      "hint": "",
+      "tags": [],
+      "share_url": "https://oo226.github.io/egern-config/#id=vendors-chxm1023-AppAd",
+      "health": "ok"
+    },
+    {
+      "id": "vendors-fmz200-blockAds",
+      "kind": "module",
+      "category": "modules",
+      "group": "其他",
+      "name": "广告拦截&净化合集",
+      "desc": "(支持约730款APP/小程序)针对部分APP和小程序广告进行拦截，某些APP要清除缓存或者重新安装拦截广告才会生效！规则明细可以查看本插件的注释",
+      "icon": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/AdblockPlus.png",
+      "homepage": "https://github.com/fmz200/wool_scripts",
+      "path": "Modules/vendors/fmz200-blockAds.module",
+      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/vendors/fmz200-blockAds.module",
+      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Fvendors%2Ffmz200-blockAds.module",
+      "default_enabled": null,
+      "usage_tier": "neutral",
+      "requires": [],
+      "hint": "Egern 编辑模块 → 模版参数可调；与 BoxJS 联动。",
+      "tags": [
+        "去广告",
+        "fmz200",
+        "奶思",
+        "模版参数"
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=vendors-fmz200-blockAds",
+      "health": "ok"
+    },
+    {
+      "id": "vendors-limbopro-Adblock4limbo",
+      "kind": "module",
+      "category": "modules",
+      "group": "其他",
+      "name": "毒奶特供(2026年09月15日更新)",
+      "desc": "毒奶去网页广告计划用户脚本 For Quantumult X & Surge & Shadowrocket & Loon & Stash & 油猴 ；1.新增页面右下角导航；2.通过 JavaScript 移除特定网站网页广告 —— 搜索引擎（Bing/Google）广告及内容农场结果清除/低端影视/欧乐影院/iyf爱壹帆/哔滴影视/Pornhub/Javbus/Supjav/Jable(支持抓取M3U8链接)/MissAv/91porn(支持视频下载)/hitomi/紳士漫畫/禁漫天堂/等视频&ACG&小说&漫画网站上的弹窗广告&视频广告&Gif图片广告等，保持网页清爽干净无打扰！ P.S. 欢迎提交issue",
+      "icon": "",
+      "homepage": "",
+      "path": "Modules/vendors/limbopro-Adblock4limbo.sgmodule",
+      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/vendors/limbopro-Adblock4limbo.sgmodule",
+      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2Fvendors%2Flimbopro-Adblock4limbo.sgmodule",
+      "default_enabled": null,
+      "usage_tier": "neutral",
+      "requires": [],
+      "hint": "",
+      "tags": [],
+      "share_url": "https://oo226.github.io/egern-config/#id=vendors-limbopro-Adblock4limbo",
       "health": "ok"
     },
     {
@@ -4852,5 +4986,5 @@
       "health": "ok"
     }
   ],
-  "total": 232
+  "total": 238
 }
