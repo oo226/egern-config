@@ -15,6 +15,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
 import re
 import ssl
 import sys
@@ -33,7 +34,13 @@ SCRIPTS_V = SCRIPTS / "vendors"
 OUT = MODULES / "adblock-collection.module"
 SHA_DIR = MODULES / "vendors"
 
-GITHUB_RAW = "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main"
+# 本分支自托管；勿写 main（sync 日更管 main/sync，与本合集无关）
+ADBLOCK_BRANCH = (
+    os.environ.get("ADBLOCK_BRANCH")
+    or os.environ.get("GITHUB_REF_NAME")
+    or "cursor/adblock-keli-nais-f611"
+)
+GITHUB_RAW = f"https://raw.githubusercontent.com/oo226/egern-config/refs/heads/{ADBLOCK_BRANCH}"
 CTX = ssl.create_default_context()
 UA = {"User-Agent": "egern-config-keli-nais/1.0"}
 
@@ -569,10 +576,11 @@ def main() -> None:
     base = merge_modules(
         q_sources,
         title="去广告合集",
-        desc="可莉原样拼合 + 奶思差集 + 开屏·强制更新本模块",
+        desc="可莉原样拼合 + 奶思差集 + 开屏（本分支有更新再重建）",
         notes=[
             "# PIPELINE: QingRex 1:1 → self-host scripts → merge; then fmz200 gaps; then splash gaps",
             f"# qingrex_modules={len(q_sources)}",
+            f"# branch={ADBLOCK_BRANCH}",
             "# originals: Modules/vendors/qingrex/*.sgmodule (byte-identical upstream)",
         ],
     )
@@ -605,11 +613,12 @@ def main() -> None:
         base = merge_modules(
             q_sources + [("fmz200-gaps", gap_mod)],
             title="去广告合集",
-            desc="可莉原样拼合 + 奶思差集 + 开屏·强制更新本模块",
+            desc="可莉原样拼合 + 奶思差集 + 开屏（本分支有更新再重建）",
             notes=[
                 "# PIPELINE: QingRex 1:1 → self-host scripts → merge; then fmz200 gaps; then splash gaps",
                 f"# qingrex_modules={len(q_sources)}",
                 f"# fmz200_gap_lines={gap_counts}",
+                f"# branch={ADBLOCK_BRANCH}",
                 "# originals: Modules/vendors/qingrex/*.sgmodule + vendors/fmz200/blockAds.module",
             ],
         )
@@ -663,15 +672,16 @@ def main() -> None:
     final = merge_modules(
         all_sources,
         title="去广告合集",
-        desc="可莉原样拼合 + 奶思差集 + 开屏·强制更新本模块",
+        desc="可莉原样拼合 + 奶思差集 + 开屏（本分支有更新再重建）",
         notes=[
             "# PIPELINE: QingRex 1:1 → self-host scripts → merge; then fmz200 gaps; then splash gaps",
             f"# qingrex_modules={len(q_sources)}",
             f"# fmz200_gap_lines={gap_counts}",
             f"# splash_gap_modules={len(splash_mods)}",
+            f"# branch={ADBLOCK_BRANCH}",
             "# 原样副本: Modules/vendors/{qingrex,fmz200,splash}/",
             "# 脚本镜像: Scripts/vendors/<host>/...",
-            "# 无 heat/NB 补丁；仅 script URL 改指本仓",
+            "# 无 heat/NB 补丁；仅 script URL 改指本分支；不介入 sync 日更",
         ],
     )
     OUT.write_text(final, encoding="utf-8")

@@ -1,0 +1,153 @@
+# 本分支专用：可莉 1:1 合集上游检测 / 手动重建
+# 不动 sync 日更（.github/workflows/sync-rules.yml）。
+
+name: Adblock 可莉合集（本分支）
+
+on:
+  # 收到可莉/奶思/墨鱼邮件或频道更新提示时：Actions → Run workflow
+  workflow_dispatch:
+    inputs:
+      force:
+        description: "强制重建（邮件提示 / 确认有更新时勾选）"
+        type: boolean
+        default: true
+  # 只做指纹检测；有变化才重建（不是无脑日更）
+  schedule:
+    - cron: "0 */12 * * *"
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: adblock-keli-nais
+  cancel-in-progress: true
+
+env:
+  ADBLOCK_BRANCH: cursor/adblock-keli-nais-f611
+
+jobs:
+  check-or-rebuild:
+    runs-on: ubuntu-latest
+    # 仅在本特性分支跑；其他分支的 schedule/dispatch 直接跳过
+    if: github.ref == 'refs/heads/cursor/adblock-keli-nais-f611' || github.event_name == 'workflow_dispatch'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ env.ADBLOCK_BRANCH }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Check upstream fingerprints
+        id: check
+        run: |
+          set +e
+          python3 scripts/check-adblock-upstream.py --json > /tmp/adblock-check.json
+          code=$?
+          set -e
+          echo "exit=$code"
+          cat /tmp/adblock-check.json
+          if [[ "$code" == "0" ]]; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          elif [[ "$code" == "2" ]]; then
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "fingerprint check failed"
+            exit 1
+          fi
+
+      - name: Decide rebuild
+        id: decide
+        run: |
+          FORCE="${{ github.event_name == 'workflow_dispatch' && (github.event.inputs.force == 'true' || github.event.inputs.force == true) }}"
+          CHANGED="${{ steps.check.outputs.changed }}"
+          if [[ "$FORCE" == "true" || "$CHANGED" == "true" ]]; then
+            echo "rebuild=true" >> "$GITHUB_OUTPUT"
+            echo "will rebuild (force=$FORCE changed=$CHANGED)"
+          else
+            echo "rebuild=false" >> "$GITHUB_OUTPUT"
+            echo "upstream unchanged; skip rebuild"
+          fi
+
+      - name: Open / update issue when upstream changed (notify)
+        if: steps.check.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          TITLE="可莉/奶思/开屏上游有更新"
+          BODY="检测到上游指纹变化，本分支合集可重建。
+
+          - 自动：本 workflow 将在同一次 run 里重建（若已启用）
+          - 手动：Actions → **Adblock 可莉合集（本分支）** → Run workflow（收到邮件提示时）
+
+          \`\`\`json
+          $(cat /tmp/adblock-check.json)
+          \`\`\`
+
+          Run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          "
+          EXISTING=$(gh issue list --label "adblock-upstream" --state open --json number,title --jq ".[] | select(.title==\"$TITLE\") | .number" | head -1)
+          if [[ -n "$EXISTING" ]]; then
+            gh issue comment "$EXISTING" --body "$BODY"
+          else
+            gh issue create --title "$TITLE" --label "adblock-upstream" --body "$BODY" || \
+              gh issue create --title "$TITLE" --body "$BODY"
+          fi
+
+      - name: Rebuild collection
+        if: steps.decide.outputs.rebuild == 'true'
+        env:
+          ADBLOCK_BRANCH: ${{ env.ADBLOCK_BRANCH }}
+        run: |
+          python3 scripts/build-adblock-keli-nais.py
+          python3 scripts/divert_adblock_domain_reject.py Modules/adblock-collection.module
+          # 本分支别名 + raw（不改 sync 用的 finalize-egern-adblock.py）
+          python3 - <<'PY'
+          from pathlib import Path
+          root = Path(".")
+          src = root / "Modules" / "adblock-collection.module"
+          text = src.read_text(encoding="utf-8")
+          branch = "cursor/adblock-keli-nais-f611"
+          # prefer branch raw over main / jsDelivr@main
+          text = text.replace(
+              "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/",
+              f"https://raw.githubusercontent.com/oo226/egern-config/refs/heads/{branch}/",
+          )
+          text = text.replace(
+              "https://cdn.jsdelivr.net/gh/oo226/egern-config@main/",
+              f"https://raw.githubusercontent.com/oo226/egern-config/refs/heads/{branch}/",
+          )
+          lines = text.splitlines(keepends=True)
+          for i, line in enumerate(lines[:40]):
+              if line.startswith("#!desc="):
+                  lines[i] = "#!desc=可莉原样+奶思差集+开屏（本分支·有更新再重建）\n"
+                  break
+          text = "".join(lines)
+          src.write_text(text, encoding="utf-8")
+          for name in (
+              "adblock-egern.module",
+              "adblock-egern-v0815b.module",
+              "adblock-egern-v0815c.module",
+          ):
+              (root / "Modules" / name).write_text(text, encoding="utf-8")
+          print("aliases updated for", branch)
+          PY
+          python3 scripts/check-adblock-upstream.py --write || true
+          # exit 2 means changed+wrote; treat as success
+          true
+
+      - name: Commit on this branch
+        if: steps.decide.outputs.rebuild == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --staged --quiet; then
+            echo "No file changes after rebuild."
+          else
+            git commit -m "chore: refresh 可莉合集 (upstream change or manual)"
+            git push origin HEAD:${{ env.ADBLOCK_BRANCH }}
+          fi

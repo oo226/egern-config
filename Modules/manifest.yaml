@@ -1,17 +1,15 @@
-# LEGACY manifest for merge-adblock-modules.py (unlock/cookie 仍用该脚本)。
-# 去广告合集已改由 scripts/build-adblock-keli-nais.py 构建：
-#   可莉 QingRex 1:1 → Scripts/vendors 自托管 → 合集；奶思 blockAds 差集；墨鱼开屏差集。
+# Mirrored ad-block sources, merged & deduplicated by Actions.
 # Output: Modules/adblock-collection.module
 
 merge:
   output: adblock-collection.module
   # Surge 认文件最前的 #!name；勿用 & 等特殊字符
   primary_name: 去广告合集
-  primary_desc: 可莉原样拼合 + 奶思差集 + 开屏（MITM/改写；整域 REJECT 并入 Reject-Merged）
+  primary_desc: 奶思 + blackmatrix7 + 银行税务NB + 皮皮虾（MITM/改写；整域 REJECT 并入 Reject-Merged）
   header_lines:
-    - "# BUILT by scripts/build-adblock-keli-nais.py (legacy merge fields kept for divert/tools)"
+    - "# AUTO-MERGED by scripts/merge-adblock-modules.py"
     - "# 类型: 模块 — MITM / URL Rewrite / Script / Map Local（整域 REJECT 并入 Reject-Merged）"
-    - "# Primary: QingRex 可莉 per-app | Gaps: fmz200 blockAds + 墨鱼 StartUpAds"
+    - "# Primary: fmz200 blockAds | Supplements: blackmatrix7 + 本仓库 NB/银行补全 + 皮皮虾"
     - "# Do not edit manually. Updated by GitHub Actions after upstream sync."
     - ""
   # 合集 [Rule] 里 DOMAIN*/IP-CIDR REJECT → 并入 Routing/Reject-Merged.yaml

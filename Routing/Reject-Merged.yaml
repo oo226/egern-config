@@ -2,8 +2,8 @@
 # 类型: 分流规则 — 去广告域名 REJECT（上游 + 去广告合集整域补全）
 # Do not edit manually. Updated by GitHub Actions after upstream sync / adblock merge.
 #
-# Includes ~83 unique hosts diverted from 去广告合集 [Rule] (DOMAIN/IP REJECT).
-# Total unique entries: 140453
+# Includes ~1265 unique hosts diverted from 去广告合集 [Rule] (DOMAIN/IP REJECT).
+# Total unique entries: 140370
 
 no_resolve: true
 domain_set:
@@ -29,11 +29,9 @@ domain_set:
   - aboard.apilocate.amap.com
   - abtest-ch.snssdk.com
   - abtest.alibaba.com
-  - abtest3-misc.zijieapi.com
   - abyss.cyapi.cn
   - ac.dun.163yun.com
   - ac3.msn.com
-  - access.if.iqiyi.com
   - access.open.uc.cn
   - acfeedbackws.icloud.com
   - ackee.tangly1024.com
@@ -86,7 +84,6 @@ domain_set:
   - ad.obuy.tw
   - ad.period-calendar.com
   - ad.qingting.fm
-  - ad.qtfm.cn
   - ad.quwin.cn
   - ad.seeyouyima.com
   - ad.sinovision.net
@@ -211,11 +208,9 @@ domain_set:
   - ads3-normal-hl.zijieapi.com
   - ads3-normal-lf.zijieapi.com
   - ads3-normal-lq.zijieapi.com
-  - ads3-normal.zijieapi.com
   - ads5-normal-hl.zijieapi.com
   - ads5-normal-lf.zijieapi.com
   - ads5-normal-lq.zijieapi.com
-  - ads5-normal.zijieapi.com
   - adsage.cn
   - adsapi.manhuaren.com
   - adsapi.snapchat.com
@@ -295,7 +290,6 @@ domain_set:
   - adwasu.wasu.tv
   - adwbs.ximalaya.com
   - adx-api.hupu.com
-  - adx-api.zdmimg.com
   - adx-bid.tianzhuobj.com
   - adx-os.bridgeturbo.com
   - adx.alimama.com
@@ -307,7 +301,6 @@ domain_set:
   - adx.op.cp18.ott.cibntv.net
   - adx.sogaha.cn
   - adx.yiche.com
-  - adx.zuoyebang.com
   - adxapi.readgps.com
   - adxlog.vivo.com.cn
   - ae.bdstatic.com
@@ -391,9 +384,7 @@ domain_set:
   - apiinit.amap.com
   - apis.alenable.com
   - apiv4-iyes.youku.com
-  - apm-a.pinduoduo.com
   - apm.gotokeep.com
-  - apm.pinduoduo.com
   - app-ad.variflight.com
   - app-monitor.ele.me
   - app.aplus.pptv.com
@@ -422,7 +413,6 @@ domain_set:
   - avn.innity.com
   - awaken.amap.com
   - awsusor0-cdn.fds-ssl.api.xiaomi.com
-  - axxd.xmseeyouyima.com
   - b.smartvideo.youku.com
   - bad.third-party.site
   - badjs.weixinbridge.com
@@ -471,10 +461,6 @@ domain_set:
   - cast.innity.com
   - cb.l.qq.com
   - cc.map.qq.com
-  - cd-1.pddpic.com
-  - cdl-1.pddpic.com
-  - cdl-p2.pddpic.com
-  - cdn-ad.wtzw.com
   - cdn-ads.oss-cn-shanghai.aliyuncs.com
   - cdn-haokanapk.baidu.com
   - cdn-new-ad.wtzw.com
@@ -618,7 +604,6 @@ domain_set:
   - dp.im.weibo.cn
   - dp3.qq.com
   - dpmtpush.dianping.com
-  - dr-danmu.youku.com
   - dr.netease.im
   - drd.hauchi.com.tw
   - dsa-mfp.fengshows.cn
@@ -643,7 +628,6 @@ domain_set:
   - eco.taobao.com
   - edgecast-vod.yahoo.net
   - edgecast-vod.yimg.com
-  - effect.snssdk.com
   - emma-414870e223.huodonghezi.com
   - emoji.uc.cn
   - emoticon.sns.iqiyi.com
@@ -702,13 +686,10 @@ domain_set:
   - game.weibo.com
   - game.wostore.cn
   - gas.data.pplive.com
-  - gather.colorfulclouds.net
   - gatherer.m.qq.com
   - gecko-hl.snssdk.com
   - gecko-lq.snssdk.com
   - gecko-pangle-lf.snssdk.com
-  - gecko3.zijieapi.com
-  - gecko5.zijieapi.com
   - gemini.yahoo.com
   - geo.hicloud.com
   - geo2.adobe.com
@@ -728,7 +709,6 @@ domain_set:
   - goblin.hupu.com
   - gorgon.youdao.com
   - gpm.samsungqbe.com
-  - group-ssl-danmu-ori.youku.com
   - grs.dbankcloud.asia
   - grs.dbankcloud.cn
   - grs.dbankcloud.com
@@ -738,7 +718,6 @@ domain_set:
   - guanggaoad.youku.com
   - gvideo.qpic.cn
   - gw.365you.com
-  - gwp.xiaojukeji.com
   - h-adashx.ut.youku.com
   - h-adashx4yt.ut.taobao.com
   - h.msn.com
@@ -794,11 +773,9 @@ domain_set:
   - httpdnsvip.meituan.com
   - httpsdns.baidu.com
   - huatuocode.huatuo.qq.com
-  - hudong.alicdn.com
   - hui.sohu.com
   - huichuan-mc.sm.cn
   - huichuan.sm.cn
-  - huodong.weibo.cn
   - huyafile.msstatic.com
   - hw.zuimeitianqi.com
   - hwad.zuimeitianqi.com
@@ -807,7 +784,6 @@ domain_set:
   - hydra.alibaba.com
   - i-lq.snssdk.com
   - i.ipinyou.com
-  - i.snssdk.com
   - i1.services.social.microsoft.com
   - iad.g.163.com
   - iad0ssl.pcauto.com.cn
@@ -828,7 +804,6 @@ domain_set:
   - iflyad.bj.openstorage.cn
   - im-x.jd.com
   - image.box.xiaomi.com
-  - images.pinduoduo.com
   - img-cdn-spot.ymcdn.cn
   - img-x.jd.com
   - img.ads.mobilefuse.net
@@ -848,10 +823,6 @@ domain_set:
   - inst.360safe.com
   - interest.mix.sina.com.cn
   - ipmatm.cp12.wasu.tv
-  - ipv4.kkmh.com
-  - ipv4.music.163.com
-  - ipv6.kkmh.com
-  - ipv6.music.163.com
   - iqiyim.adtrack.enlightent.cn
   - is-lq.snssdk.com
   - is.snssdk.com
@@ -889,8 +860,6 @@ domain_set:
   - lcprd2.samsungcloudsolution.net
   - lcs.dev.surepush.cn
   - lf-ad-ies.bytecdn.cn
-  - lf-normal-gr-sourcecdn.bytegecko.com
-  - lf-webcast-gr-sourcecdn.bytegecko.com
   - lf9-cdn-tos.bytegecko.com
   - line3-h5-mobile-api.biligame.com
   - links.services.disqus.com
@@ -925,8 +894,6 @@ domain_set:
   - log.yex.youdao.com
   - log.ys7.com
   - log.zijieapi.com
-  - log3-applog.fqnovel.com
-  - log5-applog.fqnovel.com
   - logs.chelaile.net.cn
   - logtj.kugou.com
   - logview.uc.alimama.com
@@ -937,7 +904,6 @@ domain_set:
   - m.game.weibo.cn
   - m.simba.taobao.com
   - ma-adx.ctrip.com
-  - ma.zijieapi.com
   - mads.suning.com
   - mamasearchad.cloudvideocdn.taobao.com
   - marketing-aibox.v.mitvos.com
@@ -948,7 +914,6 @@ domain_set:
   - mazu.3g.qq.com
   - mbdlog.iqiyi.com
   - mc.51.la
-  - mc.tencentmusic.com
   - mc.viglink.com
   - mcfg.sandai.net
   - mcgi.v.qq.com
@@ -959,7 +924,6 @@ domain_set:
   - mdevstat.qqlive.qq.com
   - mdrecv.app.cntvwb.cn
   - mercury-sdk.snssdk.com
-  - meta.pinduoduo.com
   - metrics.beam.cloud
   - mg.games.sina.com.cn
   - miav-cse.avlyun.com
@@ -967,8 +931,6 @@ domain_set:
   - mini.midonglab.com
   - miniapp-ad.cdn.bcebos.com
   - miniapp.qiluyidian.mobi
-  - minigame3-normal.zijieapi.com
-  - minigame5-normal.zijieapi.com
   - minisite.letv.com
   - mis.g.mi.com
   - misc.in.duokanbox.com
@@ -989,11 +951,7 @@ domain_set:
   - mobileads.msn.com
   - mobilelog.kugou.com
   - mon-va.byteoversea.com
-  - mon.toutiaocloud.com
-  - mon.toutiaocloud.net
   - mon.zijieapi.com
-  - mon11-misc.fqnovel.com
-  - mon3-misc.fqnovel.com
   - monitor-stsdk.vivo.com.cn
   - monitor-uu.play.aiseet.atianqi.com
   - monitor.uu.qq.com
@@ -1025,7 +983,6 @@ domain_set:
   - nadvideo2.baidu.com
   - nativeadv.dftoutiao.com
   - navigis.uc.cn
-  - nbsdk-baichuan.alicdn.com
   - newloc.map.n.shifen.com
   - news-l.play.ott.video.qq.com
   - news.l.qq.com
@@ -1070,7 +1027,6 @@ domain_set:
   - osb-ussvc.samsungqbe.com
   - osb.samsungqbe.com
   - osfota.cdn.aliyun.com
-  - ossgw.alicdn.com
   - osupdateservice.yunos.com
   - otel.cua.ai
   - otf.msn.com
@@ -1080,12 +1036,9 @@ domain_set:
   - p.kulp.in
   - p.l.qq.com
   - p.store.qq.com
-  - p11-webcast-sign.douyinpic.com
   - p2.l.qq.com
   - p2pupdate.gamedl.qq.com
   - p2pupgrade.gamedl.qq.com
-  - p3-developer.bytemaimg.com
-  - p3-webcast-sign.douyinpic.com
   - pangolin.snssdk.com
   - paopao-monitor.iqiyi.com
   - paopao.iqiyi.com
@@ -1117,11 +1070,9 @@ domain_set:
   - pms.mb.qq.com
   - pnrt-stsdk.vivo.com.cn
   - policy.video.iqiyi.com
-  - popup-api.b612kaji.com
   - popup.msn.com
   - pp-cdnfile2pcdn.msstatic.com
   - ppvabs.pplive.com
-  - pre-acs.youku.com
   - pre-ad.alimama.com
   - pre-adv.alimama.com
   - pre2-ad.alimama.com
@@ -1150,7 +1101,6 @@ domain_set:
   - qappcenterv6.3g.qq.com
   - qchannel04.cn
   - qgnu18wo.sina.cn
-  - qh-material.taobao.com
   - qm.redbullracing.com
   - qqdata.ab.qq.com
   - qring-tms.qq.com
@@ -1199,8 +1149,6 @@ domain_set:
   - rs.lovable.dev
   - rt.funshion.net
   - rtas.videocc.net
-  - rtlog3-applog.fqnovel.com
-  - rtlog5-applog.fqnovel.com
   - rttrack.ddxq.mobi
   - rum.cdnized.com
   - s.hex.pm
@@ -1209,7 +1157,6 @@ domain_set:
   - s.w-x.co
   - s3.pfp.sina.net
   - s3a.pstatp.com
-  - s3plus.meituan.net
   - sa.holopin.io
   - saad.ms.zhangyue.net
   - safe.ucweb.com
@@ -1244,7 +1191,6 @@ domain_set:
   - sdapprecv.app.cntvwb.cn
   - sdfp.snssdk.com
   - sdk.51.la
-  - sdk.ad.sfys365.com
   - sdk.m.youku.com
   - sdk.zsdfm.com
   - sdkapp.mobile.sina.cn
@@ -1257,7 +1203,6 @@ domain_set:
   - sec.umeng.com
   - securemetrics.apple.com
   - security-lq.snssdk.com
-  - security.snssdk.com
   - sentry.d.mi.com
   - sentry.netease.com
   - sf0.market.xiaomi.com
@@ -1332,7 +1277,6 @@ domain_set:
   - store.iqiyi.com
   - strip.taobaocdn.com
   - stun.smartgslb.com
-  - stun1.douyucdn.cn
   - susapi.dev.surepush.cn
   - susapi.lenovomm.com
   - sv-video.play.aiseet.atianqi.com
@@ -1344,7 +1288,6 @@ domain_set:
   - t1.g.mi.com
   - t7z.cupid.iqiyi.com
   - t7z.cupid.ptqy.gitv.tv
-  - ta-a.pinduoduo.com
   - ta.qq.com
   - ta.tuhu.cn
   - tab.volces.com
@@ -1359,12 +1302,8 @@ domain_set:
   - test.surepush.cn
   - textlink.simba.taobao.com
   - tf.logview.alimama.com
-  - th-a.pinduoduo.com
-  - th-b.pinduoduo.com
   - timejs.game.easebar.com
   - timeserver.cnzz.net
-  - timon.zijieapi.com
-  - titan.pinduoduo.com
   - tj.b.qq.com
   - tj.g.pptv.com
   - tj.video.qq.com
@@ -1455,7 +1394,6 @@ domain_set:
   - usage-ping.brave.com
   - user.ground.news
   - userimg.qunar.com
-  - ut.taobao.com
   - utoken.umeng.com
   - uuidapi.yunos.com
   - v.uc.cn
@@ -1466,11 +1404,9 @@ domain_set:
   - v66-ad.ndcjl.com
   - v923.thenewstack.io
   - valatm.cp12.wasu.tv
-  - vali-g1.cp31.ott.cibntv.net
   - vali-ugc.cp31.ott.cibntv.net
   - vali.cp31.ott.cibntv.net.302.myalicdn.com
   - vapi.tiandi.com
-  - vas.snssdk.com
   - vcardsdkservice.vivo.com.cn
   - vd.l.qq.com
   - vd0.market.xiaomi.com
@@ -1495,7 +1431,6 @@ domain_set:
   - vstat.my.tv.sohu.com
   - vstat.v.blog.sohu.com
   - vt.ipinyou.com
-  - vv6.video.qq.com
   - vv84.bj.bcebos.com
   - w.l.qq.com
   - w.m.taobao.com
@@ -1512,7 +1447,6 @@ domain_set:
   - weather-community-drcn.weather.dbankcloud.cn
   - web-track.go2yd.com
   - web.data.pplive.com
-  - webcast-open.douyin.com
   - webproxy-advp.iad-apple.com
   - webproxy-advp.iad-apple.com.akadns.net
   - weus2watcab01.blob.core.windows.net
@@ -1531,11 +1465,9 @@ domain_set:
   - www.clarity.ms
   - wxa79ef55c1a84e284.wx.ckjr001.com
   - wxaintpcos.wxqcloud.qq.com.cn
-  - wxsmsdy.video.qq.com
   - wxsnsad.tc.qq.com
   - xadx.file.market.xiaomi.com
   - xblgdvrassets3010.blob.core.windows.net
-  - xg.pinduoduo.com
   - xladapi.izuiyou.com
   - xray.jebe.renren.com
   - xuv.etherscan.com
@@ -1550,10 +1482,7 @@ domain_set:
   - ykrec.youku.com
   - ykugc.cp31.ott.cibntv.net.302.myalicdn.com
   - ylog.hiido.com
-  - ymg-api.terabox.com
   - youku-acs.m.taobao.com
-  - youku-crm-product.youku.com
-  - ysad.yy.com
   - ysm.hauchi.com.tw
   - yt-adp.nosdn.127.net
   - yt-adp.ws.126.net
@@ -1562,8 +1491,6 @@ domain_set:
   - yun.rili.cn
   - zgsdk.zhugeio.com
   - zhanzhang.toutiao.com
-  - zjres-ad.kajicam.com
-  - zlink.ugsdk.cn
   - zuimeitianqi.inveno.com
 domain_suffix_set:
   - -normal-lq.zijieapi.com
@@ -6061,7 +5988,6 @@ domain_suffix_set:
   - adligature.com
   - adlink-api.huan.tv
   - adlink.wurl.com
-  - adlog-ztjy.szy.cn
   - adlog.com.com
   - adlogists.com
   - adlooxtracking.com
@@ -55315,7 +55241,6 @@ domain_suffix_set:
   - innerskinresearch.com
   - innity.com
   - innity.net
-  - innoads.cn
   - innocentlamp.com
   - innovads-server.poster.appsinnova.com
   - innovate.bionix.com
@@ -100356,7 +100281,6 @@ domain_suffix_set:
   - shelter57.com
   - shengen.ru
   - shenghuo.xiaomi.com
-  - shenshiads.com
   - shenxianmaomao.com
   - sheoil.newyorkandcompany.com
   - sheregesh-io.traveler.today
@@ -132171,7 +132095,6 @@ domain_suffix_set:
   - v.oui.sncf
   - v.perfumesclub.com
   - v.shopify.com
-  - v.smtcdns.com
   - v.tampermonkey.net
   - v.topya.com
   - v.voloalto.eu
@@ -140423,14 +140346,10 @@ ip_cidr_set:
   - 101.227.97.240/32
   - 101.36.166.16/32
   - 103.41.167.237/32
-  - 103.44.59.54/32
-  - 111.206.98.63/32
-  - 111.63.147.158/32
   - 114.119.160.0/21
   - 114.132.165.205/32
   - 115.236.121.195/32
   - 115.236.121.51/32
-  - 116.211.198.237/32
   - 117.71.105.23/32
   - 117.92.229.188/32
   - 118.89.204.198/32
@@ -140444,7 +140363,6 @@ ip_cidr_set:
   - 154.7.80.158/32
   - 180.76.76.200/32
   - 180.96.2.114/32
-  - 182.61.194.7/32
   - 194.59.220.161/32
   - 203.107.1.1/24
   - 203.107.63.154/32
@@ -140453,7 +140371,6 @@ ip_cidr_set:
   - 218.94.207.205/32
   - 23.231.151.252/32
   - 47.110.187.87/32
-  - 47.243.147.125/32
   - 47.56.131.76/32
   - 47.97.215.55/32
   - 47.99.42.29/32
