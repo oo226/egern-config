@@ -94,7 +94,7 @@ dns:
       - https://223.5.5.5/dns-query
       - https://doh.pub/dns-query
   forward:
-    # ① 广告
+    # 广告拒（已有表）
     - proxy_rule_set:
         match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Loyalsoldier-广告拒绝.txt
         value: reject
@@ -103,60 +103,38 @@ dns:
         match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Sukka-广告拒绝.conf
         value: reject
         update_interval: 86400
-    # ② 厂商 DNS（规则集）
+    # HTTPDNS + 保留域 → reject（BlockHttpDNS，不新建表）
     - proxy_rule_set:
-        match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/DNS-阿里系.yaml
-        value: AliDNS
+        match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Rule/BlockHttpDNS.yaml
+        value: reject
+        update_interval: 604800
+    # 局域网 / 私有网络 → 系统 DNS（已有表，含 home.arpa）
+    - proxy_rule_set:
+        match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Repcz-局域网.yaml
+        value: system
         update_interval: 604800
     - proxy_rule_set:
-        match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/DNS-腾讯系.yaml
-        value: DNSPod
+        match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Loyalsoldier-私有网络.txt
+        value: system
         update_interval: 604800
-    - proxy_rule_set:
-        match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/DNS-字节系.yaml
-        value: ByteDNS
-        update_interval: 604800
-    - domain_suffix:
-        match: tytuyoo.com
-        value: DNSPod
-    # ③ 国内直连大名单
+    # 国内大名单 → DNSPod（覆盖原阿里/腾讯/字节细拆，不另建表）
     - proxy_rule_set:
         match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Loyalsoldier-直连大名单.txt
         value: DNSPod
         update_interval: 86400
-    # ④ App Store
+    # 追风域名 → DNSPod（复用本仓-追风）
+    - proxy_rule_set:
+        match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/本仓-追风.yaml
+        value: DNSPod
+        update_interval: 604800
+    # App Store（境外 CDN，走 Default；不进国内表）
     - domain_suffix:
         match: itunes.apple.com
         value: Default
     - domain_suffix:
         match: apps.apple.com
         value: Default
-    # ⑤ 局域网 / 保留域
-    - domain_suffix:
-        match: lan
-        value: system
-    - domain_suffix:
-        match: home.arpa
-        value: system
-    - domain_suffix:
-        match: local
-        value: reject
-    - domain_suffix:
-        match: arpa
-        value: reject
-    - domain_suffix:
-        match: internal
-        value: reject
-    - domain_suffix:
-        match: test
-        value: reject
-    - domain_suffix:
-        match: example
-        value: reject
-    - domain_suffix:
-        match: localhost
-        value: reject
-    # ⑥ Google / YouTube
+    # Google / YouTube（已有表）
     - proxy_rule_set:
         match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Repcz-YouTube.yaml
         value: Google
@@ -165,7 +143,7 @@ dns:
         match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Repcz-Google.yaml
         value: Google
         update_interval: 86400
-    # ⑦ 兜底
+    # 兜底
     - domain_suffix:
         match: cn
         value: DNSPod
@@ -432,12 +410,6 @@ rules:
       update_interval: 604800
 
   - rule_set:
-      name: 国内短视频
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/本仓-国内短视频.yaml
-      policy: DIRECT
-      update_interval: 604800
-
-  - rule_set:
       name: 苹果中国
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Repcz-苹果中国.yaml
       policy: DIRECT
@@ -490,9 +462,6 @@ rules:
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Repcz-Google.yaml
       policy: Proxy
       update_interval: 604800
-  - domain_suffix:
-      match: windowsupdate.com
-      policy: DIRECT
   - rule_set:
       name: 微软
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Repcz-Microsoft.yaml

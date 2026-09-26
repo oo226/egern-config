@@ -39,14 +39,16 @@ https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Prof
 
 ## 分流 / 策略（已收束）
 
-- DNS 厂商域合并为 `DNS-阿里系` / `DNS-腾讯系` / `DNS-字节系`（面板不再刷单条）
-- 国内短视频单条 → `本仓-国内短视频`；规则集显示短名（广告拦截、局域网…）
+- **不新建规则集**：DNS / 短视频都并进已有表
+  - 国内 DNS → 已有 `Loyalsoldier-直连大名单` → DNSPod（不再拆阿里/腾讯/字节三表）
+  - 保留域 reject → 已有 `BlockHttpDNS`；局域网/私有网 → system
+  - 短视频 → 已有 `Repcz-国内域名`；`windowsupdate.com` → 已有 `Repcz-Microsoft`
 - 去掉多余策略组：广告→REJECT，微信/苹果/微软→DIRECT，Google/GitHub→Proxy，Netflix/Disney+/Twitter/PayPal→美国，TikTok→台湾
 - 保留：地区池、Proxy、AIGC、YouTube、Spotify、Telegram、Emby、追风
 - 图标：追风=Loon，全部节点=Surge，其他节点=Egern
 - 追风：节点 IP 直连 + `tytuyoo.com` 国内 DNS / real_ip
 
-`fenliu/` 仍保留上游原件；Profile 用短名引用。
+`fenliu/` 仍保留上游原件；Profile 用短名引用。Egern「DNS 流量控制」面板会把规则集展开成行，属 UI 展开，不是 Profile 又写回单条。
 
 ## DNS 防污染（已写进 Profile）
 

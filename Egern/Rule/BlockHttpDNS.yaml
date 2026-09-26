@@ -29,6 +29,14 @@ domain_suffix_set:
 - httpdns.baidubce.com
 - httpdns.pro
 - httpsdns.baidu.com
+# 保留域：DNS 层 reject（与老书一致；规则层一并拒无害）
+- local
+- arpa
+- internal
+- test
+- example
+- localhost
+
 ip_cidr_set:
 - 101.124.19.122/32
 - 101.91.140.124/32
