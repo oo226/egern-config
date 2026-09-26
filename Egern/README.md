@@ -24,7 +24,7 @@ https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Prof
 ## 「Profile 不挂」是啥意思
 
 分流文件可以躺在 `Yuanban/heji/fenliu/` 里备用，但 **Profile.yaml 的 `rules:` 里不引用**就不生效。  
-网盘大半已在 `Repcz-国内域名`；剩下的网盘补缺 + 视频资源站已**合并**进 `本仓-直连补充.yaml` 并挂上（文件内注释标了「以下起为视频规则」）。
+网盘大半本就在 `Repcz-国内域名`；剩下的网盘补缺 + 视频资源站已**并进现有的** `Repcz-直连.yaml`（不另开分流；文件内注释标了「以下起为视频规则」）。
 
 ## 模块（已避免重复挂）
 

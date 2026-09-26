@@ -562,12 +562,7 @@ rules:
       policy: WeChat
       update_interval: 604800
 
-  # —— 11. 直连补充（网盘补缺+视频）→ 国内域名/IP → GeoIP → 直连大名单 ——
-  # 本仓-直连补充.yaml 注释标了「以下起为视频规则」
-  - rule_set:
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/本仓-直连补充.yaml
-      policy: DIRECT
-      update_interval: 604800
+  # —— 11. 国内域名/IP → GeoIP → 直连（Repcz-直连 已并入网盘补缺+视频，见文件内注释）——
   - rule_set:
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Repcz-国内域名.yaml
       policy: DIRECT

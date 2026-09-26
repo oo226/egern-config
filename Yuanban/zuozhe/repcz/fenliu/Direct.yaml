@@ -1,5 +1,6 @@
 # 规则名称: Direct
-# 规则统计: 36
+# 规则统计: 原版 36 + 网盘补缺/视频资源站（eulac 并入，不再另开分流）
+# 上游: Repcz/Tool Direct；后半段来自 eulac-dev/Proxy PanVod 差集 + ResourceSite
 
 domain_set:
   - alt1-mtalk.google.com
@@ -30,6 +31,28 @@ domain_set:
   - update.googleapis.com
   - vd.l.qq.com
   - vi.l.qq.com
+  # —— 网盘补缺（eulac PanVod，相对国内域名表未覆盖）——
+  - himg.bdimg.com
+  - matomo4397.123245.com
+  - static.xbase.cloud
+  - umini.shujupie.com
+  - ux.21cn.com
+  - www.123684.com
+  - www.123865.com
+  - www.123912.com
+  - ynuf.aliapp.org
+  # —— 以下起为视频规则（eulac ResourceSite：玩偶/木偶/闪电等）——
+  - fmao.fun
+  - sd.sduc.site
+  - shandian.blog
+  - tv.214521.xyz
+  - woog.430520.xyz
+  - woog.nxog.eu.org
+  - woog.nxog.fun
+  - www.miqk.cc
+  - www.muou.asia
+  - www.muou.site
+
 domain_suffix_set:
   - blog.google
   - cnspeedtest.cn
@@ -38,5 +61,33 @@ domain_suffix_set:
   - googletraveladservices.com
   - pianyuan.org
   - test-ipv6.com
+  # —— 网盘补缺 ——
+  - a.88cdn.com
+  - cmicapm.com
+  - dlife.cn
+  - guangyacdn.com
+  - guangyapan.com
+  # —— 以下起为视频规则 ——
+  - 666291.xyz
+  - mihdr.top
+  - xiaocgege.shop
+
+domain_keyword_set:
+  # —— 网盘补缺 ——
+  - 123pan
+  # —— 以下起为视频规则 ——
+  - 2xiaopan
+  - 2xiaozhan
+  - erixaopan
+  - erxiaopan
+  - erxiaozhan
+  - wexwp
+  - wogg
+  - yydsys
+
+ip_cidr_set:
+  # —— 视频规则 ——
+  - 121.205.88.174/32
+
 dest_port_set:
   - '22'
