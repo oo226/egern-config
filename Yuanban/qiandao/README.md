@@ -6,7 +6,7 @@
 
 - `keli/` — 可莉 Surge 根目录签到（WPS / 书香门第）
 - `official/` — QingRex Official 签到 / 抢券 / 联通余量
-- `local/` — 本仓 sync：PingMe、起点签到模块
+- `local/` — 本仓：`pingme.yaml`（Egern 原生，Profile 默认）/ `pingme.sgmodule`（Surge）/ 起点签到
 - `zenmofeishi/` — 怎么肥事签到（PingMe/一点万象/NodeSeek…，中文文件名）
 - `js/` — 其他 sync 签到脚本（fmz200 等）
 
