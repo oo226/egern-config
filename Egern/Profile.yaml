@@ -20,8 +20,13 @@ vif_only: true
 block_quic: true
 close_connections_on_policy_change: true
 hide_vpn_icon: false
+# 劫持系统/App 的 53 端口，以及常见硬编码 DNS（防绕过泄漏）
 hijack_dns:
   - '*:53'
+  - '8.8.8.8'
+  - '8.8.4.4'
+  - '1.1.1.1'
+  - '114.114.114.114'
 
 geoip_db_url: https://raw.githubusercontent.com/Loyalsoldier/geoip/release/Country.mmdb
 proxy_latency_test_url: http://www.gstatic.com/generate_204
@@ -45,12 +50,28 @@ vif_hairpin_addresses:
 
 # ------------------------------------------
 # 二、DNS（分流解析，顺序不可乱）
-# upstreams 与老书一致；forward 补齐高频域名直指（仍用本仓广告/直连/谷歌表）
+# 防污染要点：bootstrap 只用国内明文 IP（勿加 system）；
+#   hosts 钉死 DoH 域名；境外上游优先 IP 字面量 DoH；hijack 硬编码 DNS。
 # ------------------------------------------
 dns:
+  # 仅用国内可直连的明文 IP 引导；不要加 system（4G 运营商 DNS 易污染 → 证书伪装）
   bootstrap:
     - 223.5.5.5
     - 119.29.29.29
+  # DoH 域名写死 IP，避免「解析 dns.google 本身被污染」的鸡生蛋问题（对齐日用 main）
+  hosts:
+    dns.alidns.com:
+      - 223.5.5.5
+      - 223.6.6.6
+    doh.pub:
+      - 1.12.12.12
+      - 120.53.53.53
+    dns.google:
+      - 8.8.8.8
+      - 8.8.4.4
+    cloudflare-dns.com:
+      - 104.16.249.249
+      - 104.16.248.249
   upstreams:
     AliDNS:
       - h3://dns.alidns.com/dns-query
@@ -61,14 +82,16 @@ dns:
     ByteDNS:
       - udp://180.184.1.1:53
       - udp://180.184.2.2:53
+    # 境外：IP 字面量优先，不依赖再解析 dns.google 域名
     Google:
-      - h3://dns.google/dns-query
+      - https://8.8.8.8/dns-query
       - https://dns.google/dns-query
     Default:
-      - h3://dns.google/dns-query
+      - https://1.1.1.1/dns-query
+      - https://8.8.8.8/dns-query
       - https://cloudflare-dns.com/dns-query
     ProxyDNS:
-      - h3://dns.alidns.com/dns-query
+      - https://223.5.5.5/dns-query
       - https://doh.pub/dns-query
   forward:
     # ① DNS 层广告拒绝（本仓 Loyalsoldier + Sukka，比老书多一层）
@@ -280,8 +303,10 @@ dns:
     - domain_wildcard:
         match: '*'
         value: Default
+  # 解析「节点服务器域名」时用国内 DoH（隧道尚未建立）；hosts 已钉死
   proxy_nameservers:
     - ProxyDNS
+  # 丢弃污染/保留地址应答（防假 IP）
   block_ips:
     - 0.0.0.0/8
     - 10.0.0.0/8

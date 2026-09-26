@@ -50,6 +50,14 @@ https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Prof
 
 `fenliu/` 里仍保留各上游原件，方便单件订阅；Profile 不再全开叠用。
 
+## DNS 防污染（已写进 Profile）
+
+- bootstrap **只用** `223.5.5.5` / `119.29.29.29`，**不要**加 `system`（4G 易污染出证书伪装）
+- `hosts` 钉死 `dns.google` / `cloudflare-dns.com` / `dns.alidns.com` / `doh.pub`
+- 境外 DoH 优先 `https://8.8.8.8` / `https://1.1.1.1` 字面量
+- `hijack_dns` 含 `*:53` 与 `8.8.8.8` / `1.1.1.1` / `114.114.114.114`（防 App 硬编码绕过）
+- `block_ips` 丢掉假/保留地址应答
+
 ## 使用前
 
 1. 导入 Profile，信任 MITM CA  
