@@ -1890,12 +1890,9 @@ def heji_quguanggao(cache: dict[str, str]) -> None:
         rewritten = rewrite_js_urls(raw, "blackmatrix7", cache)
         bags.append((label, parse_sections(rewritten)))
 
-    # 6) 奶思 blockAds 整模块（不拆不改）
-    naisi = ZUOZHE / "naisi" / "mokuai" / "blockAds.module"
-    if naisi.is_file():
-        raw = naisi.read_text(encoding="utf-8", errors="replace")
-        rewritten = rewrite_js_urls(raw, "naisi", cache)
-        bags.append(("奶思 · blockAds 整模块", parse_sections(rewritten)))
+    # 6) 奶思 blockAds 整模块 — 不再并入
+    # main 日更以奶思为主；guize 以可莉全量为主。两边整包叠在一起会
+    # Rule/MapLocal/Script/MITM 翻倍，iOS 易爆内存断连。单件仍在 zuozhe/naisi。
 
     # 7) 怎么肥事净化
     zm = ZUOZHE / "zenmofeishi" / "mokuai"
@@ -1926,13 +1923,14 @@ def heji_quguanggao(cache: dict[str, str]) -> None:
     text = merge_section_bags(
         bags,
         name="去广告合集",
-        desc="可莉+墨鱼(含开屏)+毒奶+老书+BMJ+奶思+怎么肥事（原文，脚本全自托管）",
+        desc="可莉+墨鱼(含开屏)+毒奶+老书+BMJ+怎么肥事（不含奶思整包，避叠层爆内存）",
         notes=[
             "# 合集类型: 去广告（含开屏）",
             "# 置顶基础: 1)广告平台拦截器 2)可莉广告过滤器 —— 须最先生效",
             "# 然后: 可莉各 App「××去广告」原样分段",
-            "# 然后: 墨鱼 AdBlock/NBPro + 毒奶 + 老书(jnlaoshu) + BMJ + 奶思 + 怎么肥事净化",
+            "# 然后: 墨鱼 AdBlock/NBPro + 毒奶 + 老书(jnlaoshu) + BMJ + 怎么肥事净化",
             "# 然后: 墨鱼 StartUpAds / FakeiOSAds（原 qukaiping 已并入）",
+            "# 不含奶思 blockAds 整包（与可莉大量重叠；叠层易 iOS 爆内存）",
             "# 脚本 URL 全部指向本仓 Yuanban/zuozhe/*/js（不依赖上游在线）",
         ],
     )
