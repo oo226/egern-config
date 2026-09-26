@@ -10,10 +10,19 @@
 # Spotify 用 Eevee（spotify-unlock），不含 Crack
 # Yu9191/WeiGiegie 已剥离 18+ 分段
 # 工具: Sub-Store + Script Hub + BoxJs + 插件跳转 + TG外链 + iRingo 天气/地图 + AntiRevoke + 屏蔽更新/P12
+# SkipProxy(mieqq): skip-proxy + always-real-ip + 农行 REJECT — 更新本合集资源即可
 # iRingo 定位/其他仍单件（qita/local），不进本合集
 # 已跳过可莉近重复: Google重定向 / 拦截HTTPDNS / Spotify歌词翻译（单件仍在 zuozhe）
 
 [General]
+
+# - - - - - - - - - - - - - - - - - - - - - - - - 
+# mieqq / sooyaaabo · SkipProxy（跳过部分应用代理检测）
+# 更新「解锁增强合集」资源即可生效，不必重拉主配置
+# - - - - - - - - - - - - - - - - - - - - - - - - 
+skip-proxy = %APPEND% www.baidu.com, yunbusiness.ccb.com, wxh.wo.cn, gate.lagou.com, www.abchina.com.cn, www.shanbay.com, login-service.mobile-bank.psbc.com, mobile-bank.psbc.com, id6.me, www.163.com
+always-real-ip = %APPEND% easy-login.10099.com.cn, *-update.xoyocdn.com, id6.me, open.e.189.cn
+
 
 # - - - - - - - - - - - - - - - - - - - - - - - - 
 # Chavy · BoxJs
@@ -289,8 +298,7 @@ AND,((GEOIP,CN),(DOMAIN,pitaya.bytedance.com,extended-matching)),DIRECT
 # - - - - - - - - - - - - - - - - - - - - - - - - 
 # 本仓 · 屏蔽更新/P12 等
 # - - - - - - - - - - - - - - - - - - - - - - - - 
-# 农行代理检测探针（sooyaaabo/mieqq SkipProxy 的 Rule 段）
-# skip-proxy / always-real-ip 写在 Profile：bypass_tunnel_proxy、real_ip_domains
+# 农行代理检测探针（sooyaaabo/mieqq SkipProxy 的 Rule 段；General 名单见上方 [General]）
 DOMAIN,msmp.abchina.com.cn,REJECT
 # 屏蔽 iOS/iPadOS 企业证书 OCSP 验证（P12 相关）
 DOMAIN-SUFFIX,ocsp-lb.apple.com.akadns.net,REJECT

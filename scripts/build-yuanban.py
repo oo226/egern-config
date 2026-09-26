@@ -1433,12 +1433,13 @@ def merge_section_bags(
             out.append("# " + "- " * 24)
             out.append(f"# {label}")
             out.append("# " + "- " * 24)
-            # drop skip-proxy knobs from General in heji
+            # SkipProxy（skip-proxy / always-real-ip）保留在解锁合集，更新模块即可
+            # 仍丢掉会改全局观感/DNS 行为的键，避免合集叠层
             if section == "General":
                 for line in lines:
                     key = line.split("=", 1)[0].strip().lower() if "=" in line else ""
                     if key in {
-                        "skip-proxy", "always-real-ip", "hide-vpn-icon",
+                        "hide-vpn-icon",
                         "use-local-host-item-for-proxy",
                         "encrypted-dns-follow-outbound-mode",
                     }:
@@ -2061,6 +2062,7 @@ def heji_jiesuo(cache: dict[str, str]) -> None:
             "# Spotify 用 Eevee（spotify-unlock），不含 Crack",
             "# Yu9191/WeiGiegie 已剥离 18+ 分段",
             "# 工具: Sub-Store + Script Hub + BoxJs + 插件跳转 + TG外链 + iRingo 天气/地图 + AntiRevoke + 屏蔽更新/P12",
+            "# SkipProxy(mieqq): skip-proxy + always-real-ip + 农行 REJECT — 更新本合集资源即可",
             "# iRingo 定位/其他仍单件（qita/local），不进本合集",
             "# 已跳过可莉近重复: Google重定向 / 拦截HTTPDNS / Spotify歌词翻译（单件仍在 zuozhe）",
         ],

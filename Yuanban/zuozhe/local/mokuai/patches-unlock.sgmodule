@@ -1,11 +1,16 @@
 #!name=本地解锁补全
-#!desc=屏蔽系统更新下载 + P12/OCSP（tf1）；点进更新页会「无法检查」属预期。勿拒 xp.apple.com（会卡 TestFlight）
-#!author=oo226/egern-config (规则源自 BlueGrave/Surge、社区惯例)
+#!desc=SkipProxy（跳过代理检测）+ 屏蔽系统更新/P12；点进更新页会「无法检查」属预期。勿拒 xp.apple.com（会卡 TestFlight）
+#!author=oo226/egern-config (SkipProxy=mieqq/sooyaaabo；更新规则源自 BlueGrave/Surge)
 #!category=解锁补全
 #!system=ios
 
+[General]
+# mieqq / sooyaaabo SkipProxy — 进解锁合集后「更新资源」即可，不必重拉主配置
+skip-proxy = %APPEND% www.baidu.com, yunbusiness.ccb.com, wxh.wo.cn, gate.lagou.com, www.abchina.com.cn, www.shanbay.com, login-service.mobile-bank.psbc.com, mobile-bank.psbc.com, id6.me, www.163.com
+always-real-ip = %APPEND% easy-login.10099.com.cn, *-update.xoyocdn.com, id6.me, open.e.189.cn
+
 [Rule]
-# 农行代理检测探针（原 skip-proxy-collection；skip-proxy 名单已收敛到主配置）
+# 农行代理检测探针（sooyaaabo/mieqq SkipProxy Rule）
 DOMAIN,msmp.abchina.com.cn,REJECT
 # 屏蔽 iOS/iPadOS 企业证书 OCSP 验证（P12 相关）
 DOMAIN-SUFFIX,ocsp-lb.apple.com.akadns.net,REJECT
