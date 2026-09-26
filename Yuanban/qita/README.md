@@ -1,6 +1,6 @@
 # 其他脚本 / 工具
 
-- **已进解锁合集 `heji/jiesuo`**：Sub-Store、Script Hub、BoxJs、iRingo 天气/地图原版、AntiRevoke
+- **已进解锁合集 `heji/jiesuo`**：Sub-Store、Script Hub、BoxJs、插件跳转、Telegram 外链跳转、iRingo 天气/地图、AntiRevoke
 - **仍单件**：iRingo 定位/其他、测速、official、ibl3nd 小组件
 - Egern 原生 yaml 备份仍在 `local/sub-store.egern.yaml`、`local/script-hub.egern.yaml`（合集用的是 Surge 段）
 

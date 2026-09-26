@@ -643,6 +643,7 @@ widgets:
 # 八、模块
 # 解锁合集已含：Sub-Store、Script Hub、BoxJs、天气/地图、AntiRevoke、屏蔽更新
 # YouTube 老书段在去广告合集；解锁里可莉字幕翻译用途不同，可并存
+# 解锁合集另含：插件跳转 Egern、Telegram 外链跳转（飞机）
 # 分流已去重：广告/AI/Google/GitHub/GFW 不再叠近重复表
 # ------------------------------------------
 modules:
@@ -667,9 +668,6 @@ modules:
     update_interval: 86400
     enabled: false
 
-  - name: 插件跳转 Egern
-    url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/qita/ibl3nd/ibl3nd-plugin-hub.yaml
-    enabled: true
   - name: PingMe
     url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/qiandao/local/pingme.sgmodule
     enabled: false

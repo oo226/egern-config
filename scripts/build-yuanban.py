@@ -2019,6 +2019,8 @@ def heji_jiesuo(cache: dict[str, str]) -> None:
         ("local", "patches-alicloud.sgmodule", "本仓 · 阿里云盘倍速"),
         ("local", "boxjs.sgmodule", "Chavy · BoxJs"),
         ("local", "script-hub.sgmodule", "Script Hub · 重写/规则转换"),
+        ("local", "plugin-hub.sgmodule", "IBL3ND · 插件跳转 Egern"),
+        ("local", "tg-redirect.sgmodule", "Telegram · 外链跳转飞机"),
         ("local", "iringo-weather.sgmodule", "NSRingo · WeatherKit 原版"),
         ("local", "iringo-maps.sgmodule", "NSRingo · Maps 原版"),
         # 日常解锁：已剥离 18+（完整/18+ 见 heji/shibajia）
@@ -2054,7 +2056,7 @@ def heji_jiesuo(cache: dict[str, str]) -> None:
             "# 墨鱼: UnblockURLinWeChat(微信110) + ForOwnUse(专属VIP) + Function(TF/Emby/…)",
             "# Spotify 用 Eevee（spotify-unlock），不含 Crack",
             "# Yu9191/WeiGiegie 已剥离 18+ 分段",
-            "# 工具: Sub-Store(iEwha) + Script Hub + BoxJs + iRingo 天气/地图 + AntiRevoke + 屏蔽更新/P12",
+            "# 工具: Sub-Store + Script Hub + BoxJs + 插件跳转 + TG外链 + iRingo 天气/地图 + AntiRevoke + 屏蔽更新/P12",
             "# iRingo 定位/其他仍单件（qita/local），不进本合集",
             "# 已跳过可莉近重复: Google重定向 / 拦截HTTPDNS / Spotify歌词翻译（单件仍在 zuozhe）",
         ],

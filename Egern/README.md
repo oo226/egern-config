@@ -30,7 +30,7 @@ https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Prof
 
 | 模块 | 说明 |
 |------|------|
-| 去广告 / 去开屏 / 解锁 | 默认开；解锁含 Sub-Store、Script Hub、BoxJs、天气/地图、证书、屏蔽更新 |
+| 去广告 / 去开屏 / 解锁 | 默认开；解锁含 Sub-Store、Script Hub、BoxJs、插件跳转、TG外链跳转、天气/地图、证书、屏蔽更新 |
 | YouTube | 去广告合集里有老书段；解锁里是可莉字幕，用途不同 |
 | 18+ / 抓参 / PingMe / iRingo 定位·其他 | 默认关 |
 
@@ -43,7 +43,7 @@ https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Prof
 - Google：只留 `Repcz-Google`（DNS/规则都不再叠 Loyalsoldier-Google）
 - GitHub：只留 `BMJ-GitHub`
 - GFW：去掉 `Repcz-GFW代理`（留 Loyalsoldier GFW + 代理）
-- 直连：`本仓-直连补充`（网盘补缺+视频）+ Repcz 国内域名/IP + GeoIP + 直连大名单
+- 直连：Repcz 国内域名/IP + GeoIP + 直连大名单 + `Repcz-直连`（含网盘补缺/视频）
 
 `fenliu/` 里仍保留各上游原件，方便单件订阅；Profile 不再全开叠用。
 

@@ -29,7 +29,7 @@ function qget(qs, k) {
 
 (function () {
   if (typeof $request === "undefined" || !$request.url) return $done({});
-  const m = String($request.url).match(/^https?:\/\/t\.me\/(.+)$/i);
+  const m = String($request.url).match(/^https?:\/\/(?:t\.me|telegram\.me)\/(.+)$/i);
   if (!m) return $done({});
 
   const a = parseArg();
