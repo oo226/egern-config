@@ -219,8 +219,7 @@ proxies:
       tfo: false
 
 # ------------------------------------------
-# 四、策略组（精简：广告/微信/支付/流媒体等固定出口）
-# 图标：追风=Loon · 全部节点=Surge · 其他节点=Egern
+# 四、策略组（图标统一 Qure Color，无白底方框）
 # ------------------------------------------
 policy_groups:
   - auto_test:
@@ -233,14 +232,14 @@ policy_groups:
       latency_test_url: http://www.gstatic.com/generate_204
       tolerance: 100
       timeout: 5
-      icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/surge.png
+      icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Airport.png
       hidden: true
 
   - select:
       name: 追风挂机
       policies:
         - 追风
-      icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/loon.png
+      icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Game.png
       hidden: true
 
   - smart:
@@ -263,7 +262,7 @@ policy_groups:
         - 全部节点
       flatten: true
       filter: (?i)(?:🇹🇼|台湾|\b(?:TW|TWN|Taiwan)\b)
-      icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/01Country/taiwan.png
+      icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Taiwan.png
   - smart:
       name: 日本节点
       policies:
@@ -291,7 +290,7 @@ policy_groups:
         - 全部节点
       flatten: true
       filter: (?i)^(?!.*(?:🇭🇰|香港|\bHK\b|🇺🇸|美国|\bUS\b|🇹🇼|台湾|\bTW\b|🇯🇵|日本|\bJP\b|🇸🇬|新加坡|\bSG\b|🇰🇷|韩国|\bKR\b)).*$
-      icon: https://avatars.githubusercontent.com/u/168847985?s=200&v=4
+      icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Global.png
 
   - select:
       name: Proxy
@@ -303,7 +302,7 @@ policy_groups:
         - 台湾节点
         - 韩国节点
         - 其他节点
-      icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/02ProxySoftLogo/quanx.png
+      icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Proxy.png
 
   - select:
       name: AIGC
@@ -320,7 +319,7 @@ policy_groups:
         - Proxy
       flatten: true
       block_quic: false
-      icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/03AppLogo/youtube.png
+      icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/YouTube.png
 
   - select:
       name: Spotify
