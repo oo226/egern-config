@@ -1,0 +1,24 @@
+# DNS forward：字节系（含 CDN）→ ByteDNS
+domain_suffix_set:
+  - bytedance.com
+  - bytecdn.com
+  - bytecdn.cn
+  - bytedns.net
+  - bytednsdoc.com
+  - douyin.com
+  - douyincdn.com
+  - douyinvod.com
+  - pstatp.com
+  - amemv.com
+  - toutiao.com
+  - ixigua.com
+  - snssdk.com
+  - isnssdk.com
+  - awemeughun.com
+  - byteimg.com
+  - bytegoofy.com
+  - toutiaocdn.com
+  - douyinpic.com
+  - douyinstatic.com
+  - idouyinvod.com
+  - iesdouyin.com

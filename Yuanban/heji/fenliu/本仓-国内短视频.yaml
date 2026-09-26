@@ -1,0 +1,26 @@
+# 分流：国内短视频 / 内容 App 直连（广告规则之后）
+domain_suffix_set:
+  - snssdk.com
+  - isnssdk.com
+  - awemeughun.com
+  - amemv.com
+  - bytecdn.com
+  - bytecdn.cn
+  - byteimg.com
+  - bytegoofy.com
+  - toutiao.com
+  - toutiaocdn.com
+  - douyin.com
+  - douyincdn.com
+  - douyinpic.com
+  - douyinstatic.com
+  - douyinvod.com
+  - idouyinvod.com
+  - iesdouyin.com
+  - pstatp.com
+  - kuaishou.com
+  - kuaishoupay.com
+  - gifshow.com
+  - yximgs.com
+  - xiaohongshu.com
+  - xhscdn.com

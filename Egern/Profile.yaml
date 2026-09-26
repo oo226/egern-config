@@ -94,7 +94,7 @@ dns:
       - https://223.5.5.5/dns-query
       - https://doh.pub/dns-query
   forward:
-    # ① DNS 层广告拒绝（本仓 Loyalsoldier + Sukka，比老书多一层）
+    # ① 广告
     - proxy_rule_set:
         match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Loyalsoldier-广告拒绝.txt
         value: reject
@@ -103,166 +103,35 @@ dns:
         match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Sukka-广告拒绝.conf
         value: reject
         update_interval: 86400
-    # ② 阿里系 → AliDNS
-    - domain_suffix:
-        match: alibaba.com
+    # ② 厂商 DNS（规则集）
+    - proxy_rule_set:
+        match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/DNS-阿里系.yaml
         value: AliDNS
-    - domain_suffix:
-        match: alipay.com
-        value: AliDNS
-    - domain_suffix:
-        match: alipayobjects.com
-        value: AliDNS
-    - domain_suffix:
-        match: aliapp.org
-        value: AliDNS
-    - domain_suffix:
-        match: alicdn.com
-        value: AliDNS
-    - domain_suffix:
-        match: aliyun.com
-        value: AliDNS
-    - domain_suffix:
-        match: aliyuncs.com
-        value: AliDNS
-    - domain_suffix:
-        match: taobao.com
-        value: AliDNS
-    - domain_suffix:
-        match: tmall.com
-        value: AliDNS
-    - domain_suffix:
-        match: amap.com
-        value: AliDNS
-    - domain_suffix:
-        match: ele.me
-        value: AliDNS
-    - domain_suffix:
-        match: dingtalk.com
-        value: AliDNS
-    - domain_suffix:
-        match: mzstatic.com
-        value: AliDNS
-    # ③ 腾讯 / 快手 / 小红书 → DNSPod（早于直连大名单，解析更稳）
-    - domain_suffix:
-        match: qq.com
+        update_interval: 604800
+    - proxy_rule_set:
+        match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/DNS-腾讯系.yaml
         value: DNSPod
+        update_interval: 604800
+    - proxy_rule_set:
+        match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/DNS-字节系.yaml
+        value: ByteDNS
+        update_interval: 604800
     - domain_suffix:
-        match: wechat.com
+        match: tytuyoo.com
         value: DNSPod
-    - domain_suffix:
-        match: weixin.com
-        value: DNSPod
-    - domain_suffix:
-        match: tencent.com
-        value: DNSPod
-    - domain_suffix:
-        match: qcloud.com
-        value: DNSPod
-    - domain_suffix:
-        match: myqcloud.com
-        value: DNSPod
-    - domain_suffix:
-        match: tencdns.cn
-        value: DNSPod
-    - domain_suffix:
-        match: kuaishou.com
-        value: DNSPod
-    - domain_suffix:
-        match: gifshow.com
-        value: DNSPod
-    - domain_suffix:
-        match: yximgs.com
-        value: DNSPod
-    - domain_suffix:
-        match: kuaishoupay.com
-        value: DNSPod
-    - domain_suffix:
-        match: xiaohongshu.com
-        value: DNSPod
-    - domain_suffix:
-        match: xhscdn.com
-        value: DNSPod
-    # ④ 字节系 → ByteDNS（含 CDN；保留 snssdk.com）
-    - domain_suffix:
-        match: bytedance.com
-        value: ByteDNS
-    - domain_suffix:
-        match: bytecdn.com
-        value: ByteDNS
-    - domain_suffix:
-        match: bytecdn.cn
-        value: ByteDNS
-    - domain_suffix:
-        match: bytedns.net
-        value: ByteDNS
-    - domain_suffix:
-        match: bytednsdoc.com
-        value: ByteDNS
-    - domain_suffix:
-        match: douyin.com
-        value: ByteDNS
-    - domain_suffix:
-        match: douyincdn.com
-        value: ByteDNS
-    - domain_suffix:
-        match: douyinvod.com
-        value: ByteDNS
-    - domain_suffix:
-        match: pstatp.com
-        value: ByteDNS
-    - domain_suffix:
-        match: amemv.com
-        value: ByteDNS
-    - domain_suffix:
-        match: toutiao.com
-        value: ByteDNS
-    - domain_suffix:
-        match: ixigua.com
-        value: ByteDNS
-    - domain_suffix:
-        match: snssdk.com
-        value: ByteDNS
-    - domain_suffix:
-        match: isnssdk.com
-        value: ByteDNS
-    - domain_suffix:
-        match: awemeughun.com
-        value: ByteDNS
-    - domain_suffix:
-        match: byteimg.com
-        value: ByteDNS
-    - domain_suffix:
-        match: bytegoofy.com
-        value: ByteDNS
-    - domain_suffix:
-        match: toutiaocdn.com
-        value: ByteDNS
-    - domain_suffix:
-        match: douyinpic.com
-        value: ByteDNS
-    - domain_suffix:
-        match: douyinstatic.com
-        value: ByteDNS
-    - domain_suffix:
-        match: idouyinvod.com
-        value: ByteDNS
-    - domain_suffix:
-        match: iesdouyin.com
-        value: ByteDNS
-    # ⑤ 国内直连大名单 → DNSPod（本仓 Loyalsoldier，不改用老书 Direct.yaml）
+    # ③ 国内直连大名单
     - proxy_rule_set:
         match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Loyalsoldier-直连大名单.txt
         value: DNSPod
         update_interval: 86400
-    # ⑥ App Store 走国际 DNS（对齐老书）
+    # ④ App Store
     - domain_suffix:
         match: itunes.apple.com
         value: Default
     - domain_suffix:
         match: apps.apple.com
         value: Default
-    # ⑦ 局域网 / 保留域
+    # ⑤ 局域网 / 保留域
     - domain_suffix:
         match: lan
         value: system
@@ -287,7 +156,7 @@ dns:
     - domain_suffix:
         match: localhost
         value: reject
-    # ⑧ Google / YouTube → Google DNS（Repcz；无单独 YouTubeMusic 表）
+    # ⑥ Google / YouTube
     - proxy_rule_set:
         match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Repcz-YouTube.yaml
         value: Google
@@ -296,13 +165,14 @@ dns:
         match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Repcz-Google.yaml
         value: Google
         update_interval: 86400
-    # ⑨ 兜底
+    # ⑦ 兜底
     - domain_suffix:
         match: cn
         value: DNSPod
     - domain_wildcard:
         match: '*'
         value: Default
+
   # 解析「节点服务器域名」时用国内 DoH（隧道尚未建立）；hosts 已钉死
   proxy_nameservers:
     - ProxyDNS
@@ -342,6 +212,7 @@ real_ip_domains:
   - '*.ts.net'
   - '*.tailscale.com'
   - '*.tailscale.net'
+  - '*.tytuyoo.com'
   # Apple 基础服务
   - '*.apple-dns.net'
   - '*.safebrowsing.apple'
@@ -388,12 +259,10 @@ proxies:
       tfo: false
 
 # ------------------------------------------
-# 四、策略组
-# 顺序：节点池 → 追风 → 地区 → Proxy → AI → 系统 → 开发 → 金融 → 影音 → 社交 → 拦截
-# 图标与 main/Egern.yaml 日用配置对齐（iili + lige47）
+# 四、策略组（精简：广告/微信/支付/流媒体等固定出口）
+# 图标：追风=Loon · 全部节点=Surge · 其他节点=Egern
 # ------------------------------------------
 policy_groups:
-  # —— 4.1 节点池（隐藏）：Sub-Store 合集 AllServer ——
   - auto_test:
       name: 全部节点
       policies: []
@@ -404,17 +273,16 @@ policy_groups:
       latency_test_url: http://www.gstatic.com/generate_204
       tolerance: 100
       timeout: 5
-      icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/04ProxySoft/mega.png
+      icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/surge.png
       hidden: true
 
   - select:
       name: 追风挂机
       policies:
         - 追风
-      icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/04ProxySoft/mega.png
+      icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/loon.png
       hidden: true
 
-  # —— 4.2 地区（smart）——
   - smart:
       name: 香港节点
       policies:
@@ -463,9 +331,8 @@ policy_groups:
         - 全部节点
       flatten: true
       filter: (?i)^(?!.*(?:🇭🇰|香港|\bHK\b|🇺🇸|美国|\bUS\b|🇹🇼|台湾|\bTW\b|🇯🇵|日本|\bJP\b|🇸🇬|新加坡|\bSG\b|🇰🇷|韩国|\bKR\b)).*$
-      icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/04ProxySoft/mega.png
+      icon: https://avatars.githubusercontent.com/u/168847985?s=200&v=4
 
-  # —— 4.3 总入口 ——
   - select:
       name: Proxy
       policies:
@@ -478,7 +345,6 @@ policy_groups:
         - 其他节点
       icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/02ProxySoftLogo/quanx.png
 
-  # —— 4.4 AI ——
   - select:
       name: AIGC
       policies:
@@ -488,47 +354,6 @@ policy_groups:
       block_quic: false
       icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/04ProxySoft/chatgpt4.0.png
 
-  # —— 4.5 系统生态 ——
-  - select:
-      name: Apple
-      policies:
-        - DIRECT
-        - Proxy
-      flatten: true
-      icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/03AppLogo/apple.png
-  - select:
-      name: Google
-      policies:
-        - Proxy
-      flatten: true
-      block_quic: false
-      icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/03AppLogo/google.png
-  - select:
-      name: Microsoft
-      policies:
-        - DIRECT
-        - Proxy
-      flatten: true
-      icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/03AppLogo/microsoft.png
-
-  # —— 4.6 开发 ——
-  - select:
-      name: GitHub
-      policies:
-        - Proxy
-      flatten: true
-      icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/icon/qure/color/GitHub.png
-
-  # —— 4.7 金融 ——
-  - select:
-      name: PayPal
-      policies:
-        - 美国节点
-        - Proxy
-      flatten: true
-      icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/03AppLogo/paypal.png
-
-  # —— 4.8 影音 ——
   - select:
       name: YouTube
       policies:
@@ -536,43 +361,14 @@ policy_groups:
       flatten: true
       block_quic: false
       icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/03AppLogo/youtube.png
+
   - select:
       name: Spotify
       policies:
         - Proxy
       flatten: true
       icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/04ProxySoft/spotify(green).png
-  - select:
-      name: TikTok
-      policies:
-        - 台湾节点
-        - Proxy
-      flatten: true
-      block_quic: false
-      icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/03AppLogo/tiktok.png
-  - select:
-      name: Netflix
-      policies:
-        - Proxy
-      flatten: true
-      block_quic: false
-      icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/03AppLogo/netflix.png
-  - select:
-      name: Disney
-      policies:
-        - Proxy
-      flatten: true
-      block_quic: false
-      icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/03AppLogo/disney.png
-  - select:
-      name: Emby
-      policies:
-        - Proxy
-        - DIRECT
-      flatten: true
-      icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/04ProxySoft/emby.png
 
-  # —— 4.9 社交 ——
   - select:
       name: Telegram
       policies:
@@ -581,178 +377,166 @@ policy_groups:
         - Proxy
       flatten: true
       icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/04ProxySoft/telegram(1).png
-  - select:
-      name: Twitter
-      policies:
-        - Proxy
-      flatten: true
-      icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/03AppLogo/twitter.png
-  - select:
-      name: WeChat
-      policies:
-        - DIRECT
-        - Proxy
-      flatten: true
-      icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/03AppLogo/wechat.png
 
-  # —— 4.10 广告拦截（隐藏）——
   - select:
-      name: 猎杀广告
+      name: Emby
       policies:
-        - REJECT
-      icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/04ProxySoft/adguard.png
-      hidden: true
+        - Proxy
+        - DIRECT
+      flatten: true
+      icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/04ProxySoft/emby.png
 
 # ------------------------------------------
-# 五、分流规则（自上而下首个命中）
-# LAN → 广告 → 国内 App → 服务 → GeoIP → 直连大名单 → 兜底 Proxy
+# 五、分流规则（名称短；固定出口不单开策略组）
 # ------------------------------------------
 rules:
-  # —— 0. 追风挂机（途游 sq-hlsg / open-hlsg）——
+  - ip_cidr:
+      match: 120.53.245.215/32
+      policy: DIRECT
   - rule_set:
+      name: 追风挂机
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/本仓-追风.yaml
       policy: 追风挂机
       update_interval: 604800
 
-  # —— 1. 局域网 ——
   - rule_set:
+      name: 局域网
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Repcz-局域网.yaml
       policy: DIRECT
       update_interval: 604800
   - rule_set:
+      name: 私有网络
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Loyalsoldier-私有网络.txt
       policy: DIRECT
       update_interval: 604800
 
-  # —— 2. 广告（Loyalsoldier+Sukka；去掉重叠的 Repcz-广告拒绝）——
   - rule_set:
+      name: 广告拦截
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Loyalsoldier-广告拒绝.txt
-      policy: 猎杀广告
+      policy: REJECT
       update_interval: 86400
   - rule_set:
+      name: 广告拦截·补
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Sukka-广告拒绝.conf
-      policy: 猎杀广告
+      policy: REJECT
       update_interval: 86400
   - rule_set:
+      name: 广告拦截·再补
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Sukka-广告拒绝补充.conf
-      policy: 猎杀广告
+      policy: REJECT
       update_interval: 86400
   - rule_set:
+      name: 拦截HTTPDNS
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Rule/BlockHttpDNS.yaml
-      policy: 猎杀广告
+      policy: REJECT
       update_interval: 604800
 
-  # —— 3. 高频国内 App 直连（广告之后）——
-  - domain_suffix:
-      match: snssdk.com
-      policy: DIRECT
-  - domain_suffix:
-      match: douyin.com
-      policy: DIRECT
-  - domain_suffix:
-      match: toutiao.com
-      policy: DIRECT
-  - domain_suffix:
-      match: kuaishou.com
-      policy: DIRECT
-  - domain_suffix:
-      match: xiaohongshu.com
-      policy: DIRECT
-  - domain_suffix:
-      match: xhscdn.com
-      policy: DIRECT
-
-  # —— 4. Apple（Repcz；去掉重叠的 Loyalsoldier-苹果）——
   - rule_set:
+      name: 国内短视频
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/本仓-国内短视频.yaml
+      policy: DIRECT
+      update_interval: 604800
+
+  - rule_set:
+      name: 苹果中国
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Repcz-苹果中国.yaml
-      policy: Apple
+      policy: DIRECT
       update_interval: 604800
   - rule_set:
+      name: 苹果服务
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Repcz-苹果服务.yaml
-      policy: Apple
+      policy: DIRECT
       update_interval: 604800
 
-  # —— 5. AI（只留 VPSDance，已覆盖其余近重复表）——
   - rule_set:
+      name: AI
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/VPSDance-AI合集.yaml
       policy: AIGC
       update_interval: 86400
 
-  # —— 6. 影音 ——
   - rule_set:
+      name: YouTube
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Repcz-YouTube.yaml
       policy: YouTube
       update_interval: 604800
   - rule_set:
+      name: Spotify
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Repcz-Spotify.yaml
       policy: Spotify
       update_interval: 604800
   - rule_set:
+      name: TikTok
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Repcz-TikTok.yaml
-      policy: TikTok
+      policy: 台湾节点
       update_interval: 604800
   - rule_set:
+      name: Netflix
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Repcz-Netflix.yaml
-      policy: Netflix
+      policy: 美国节点
       update_interval: 604800
   - rule_set:
+      name: Disney+
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Repcz-Disney.yaml
-      policy: Disney
+      policy: 美国节点
       update_interval: 604800
   - rule_set:
+      name: Emby
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Repcz-Emby.yaml
       policy: Emby
       update_interval: 604800
 
-  # —— 7. Google（Repcz）——
   - rule_set:
+      name: Google
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Repcz-Google.yaml
-      policy: Google
+      policy: Proxy
       update_interval: 604800
-
-  # —— 8. 微软 / GitHub（BMJ；去掉过窄的 Repcz-GitHub）——
   - domain_suffix:
       match: windowsupdate.com
       policy: DIRECT
   - rule_set:
+      name: 微软
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Repcz-Microsoft.yaml
-      policy: Microsoft
+      policy: DIRECT
       update_interval: 604800
   - rule_set:
+      name: GitHub
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/BMJ-GitHub.list
-      policy: GitHub
+      policy: Proxy
       update_interval: 604800
-
-  # —— 9. 支付 ——
   - rule_set:
+      name: PayPal
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/BMJ-PayPal.list
-      policy: PayPal
+      policy: 美国节点
       update_interval: 604800
 
-  # —— 10. 社交 ——
   - rule_set:
+      name: Telegram
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Repcz-Telegram.yaml
       policy: Telegram
       update_interval: 604800
   - rule_set:
+      name: Telegram·IP
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Loyalsoldier-Telegram-CIDR.txt
       policy: Telegram
       update_interval: 604800
   - rule_set:
+      name: Twitter
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Repcz-Twitter.yaml
-      policy: Twitter
+      policy: 美国节点
       update_interval: 604800
   - rule_set:
+      name: 微信
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Repcz-微信.yaml
-      policy: WeChat
+      policy: DIRECT
       update_interval: 604800
 
-  # —— 11. 国内域名/IP → GeoIP → 直连（Repcz-直连 已并入网盘补缺+视频，见文件内注释）——
   - rule_set:
+      name: 国内域名
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Repcz-国内域名.yaml
       policy: DIRECT
       update_interval: 86400
   - rule_set:
+      name: 国内IP
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Repcz-国内IP.yaml
       policy: DIRECT
       update_interval: 86400
@@ -761,25 +545,27 @@ rules:
       policy: DIRECT
       no_resolve: true
   - rule_set:
+      name: 直连大名单
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Loyalsoldier-直连大名单.txt
       policy: DIRECT
       update_interval: 86400
   - rule_set:
+      name: 直连补充
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Repcz-直连.yaml
       policy: DIRECT
       update_interval: 86400
 
-  # —— 12. GFW / 代理底（Loyalsoldier；去掉重叠的 Repcz-GFW）——
   - rule_set:
+      name: GFW列表
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Loyalsoldier-GFW列表.txt
       policy: Proxy
       update_interval: 86400
   - rule_set:
+      name: 代理列表
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Loyalsoldier-代理.txt
       policy: Proxy
       update_interval: 86400
 
-  # —— 13. 兜底 ——
   - default:
       policy: Proxy
 
