@@ -1,0 +1,11 @@
+#!name=Telegram 外链跳转
+#!desc=t.me / telegram.me 跳到所选 TG 客户端（Yu9191 Surge 版；默认 tg）
+#!category=工具
+#!arguments=client:Nicegram
+#!arguments-desc=client: Telegram / Nagram / Swiftgram / Turrit / iMe / Nicegram / Lingogram，或 tg/sg/turrit/ime/ng/lingo
+
+[Script]
+Telegram外链跳转 = type=http-request, pattern=^https?:\/\/(t\.me|telegram\.me)\/.+, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/yu9191/js/TgRedirect.js, timeout=10, argument=client={{{client}}}
+
+[MITM]
+hostname = %APPEND% t.me, telegram.me

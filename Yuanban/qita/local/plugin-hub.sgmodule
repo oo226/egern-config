@@ -1,0 +1,10 @@
+#!name=插件跳转 Egern
+#!desc=kelee/qingrex 插件中心安装链改成 Egern（原 ibl3nd-plugin-hub）
+#!category=工具
+
+[Script]
+插件跳转·kelee = type=http-response, pattern=^https?:\/\/(pluginhub|hub)\.kelee\.one\/, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/local/js/plugin-hub-egern.js, requires-body=true, max-size=-1, timeout=30
+插件跳转·qingrex = type=http-response, pattern=^https?:\/\/surge\.qingr\.moe\/, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/local/js/plugin-hub-egern.js, requires-body=true, max-size=-1, timeout=30
+
+[MITM]
+hostname = %APPEND% pluginhub.kelee.one, hub.kelee.one, surge.qingr.moe

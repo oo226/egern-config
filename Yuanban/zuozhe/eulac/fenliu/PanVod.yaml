@@ -1,0 +1,56 @@
+# 规则名称: 网盘点播（PanVod）
+# 上游: eulac-dev/Proxy Loon/Rules
+# 镜像: Yuanban/zuozhe/eulac/fenliu/PanVod.yaml
+# Total unique entries: 47
+
+no_resolve: true
+domain_set:
+  - fhnfile.oss-cn-shenzhen.aliyuncs.com
+  - himg.bdimg.com
+  - matomo4397.123245.com
+  - static.xbase.cloud
+  - umini.shujupie.com
+  - ux.21cn.com
+  - www.123684.com
+  - www.123865.com
+  - www.123912.com
+  - ynuf.aliapp.org
+domain_suffix_set:
+  - 10086.cn
+  - 115.com
+  - 115cdn.com
+  - 115cdn.net
+  - 115img.com
+  - 116cd.cn
+  - 116cd.com
+  - 116cd.net
+  - 123295.com
+  - 139.com
+  - 189.cn
+  - a.88cdn.com
+  - alibaba.com
+  - alicdn.com
+  - alipan.com
+  - aliyun.com
+  - aliyuncs.com
+  - aliyundrive.com
+  - aliyundrive.net
+  - anxia.com
+  - baidu.com
+  - baidupcs.com
+  - bcebos.com
+  - bdstatic.com
+  - cjjd19.com
+  - cmecloud.cn
+  - cmicapm.com
+  - cnzz.com
+  - dlife.cn
+  - guangyacdn.com
+  - guangyapan.com
+  - quark.cn
+  - sq.cc
+  - taobao.com
+  - uc.cn
+  - xunlei.com
+domain_keyword_set:
+  - 123pan

@@ -1,0 +1,6 @@
+# 类型: 分流规则 — 追风挂机（途游小程序游戏辅助）
+# 仅这两条域名走专用 HTTP 代理，其余流量不受影响。
+
+domain_suffix_set:
+  - sq-hlsg.tytuyoo.com
+  - open-hlsg.tytuyoo.com

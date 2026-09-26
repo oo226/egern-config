@@ -1,0 +1,164 @@
+#!name=18+解锁合集
+#!desc=成人向 Rewrite/解锁，与日常 jiesuo 分开订阅（Yu9191 为主，WeiGiegie 少量）
+# built_at=2026-09-26T05:30Z
+# branch=guize
+# 作者规则正文不改；仅 script-path 改指 Yuanban/zuozhe/*/js 自托管
+# 合集类型: 18+
+# 主要来源: Yu9191/Rewrite（haijiao/javhd/porntube/黄豆…）
+# 另含: WeiGiegie 18pcs/18top/91fenglou/含羞/mjgs/奇游 等
+# Yuheng 巴士/JAVDay/黑料/1024/4K世界 为签到推送脚本，见 zuozhe/yuheng/js（不做 rewrite 合集）
+# 日常解锁请用 heji/jiesuo.module
+
+[Rule]
+
+# - - - - - - - - - - - - - - - - - - - - - - - - 
+# Yu9191 · 18+ Rewrite 解锁
+# - - - - - - - - - - - - - - - - - - - - - - - - 
+# >>> merged from huangguoduanju/modules/huangguo.sgmodule (unique only)
+URL-REGEX,^https?://[^/]*adsdk[12]\.cc,REJECT
+
+
+
+[URL Rewrite]
+
+# - - - - - - - - - - - - - - - - - - - - - - - - 
+# Yu9191 · 18+ Rewrite 解锁
+# - - - - - - - - - - - - - - - - - - - - - - - - 
+# >>> merged from huanyu/modules/huanyu.sgmodule (unique only)
+^https?://(?:huanyuxingqiu\.\w+|daoyu\.\w+|\w*hyxq\w*\.\w+)/(?!.*\.(?:png|jpe?g|gif|webp|svg|ico|css|js|woff2?|ttf|eot|mp[34]|zip|rar)(?:\?|$))(.*) https://huanyu-proxy.daoyufan.workers.dev/$1 header
+
+# >>> merged from lsp/MJGS.sgmodule (unique only)
+#游戏
+^https:\/\/(mfjk|gnjk|buyaoda).+\.com\/request_game\/v3\/game\/list - reject-dict
+
+
+[Script]
+
+# - - - - - - - - - - - - - - - - - - - - - - - - 
+# WeiGiegie · 18+ 解锁
+# - - - - - - - - - - - - - - - - - - - - - - - - 
+# --- 18pcs.js ---
+18pcs_1 = type=http-request, pattern=^https?:\/\/18pcs.(fun|bond|cfd)\/record\/\d+ url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/weigiegie/js/18pcs.js, requires-body=true, max-size=-1, timeout=60
+# --- 18top.js ---
+18top_1 = type=http-request, pattern=^https?:\/\/(boylove|toptoon).(online|click|cyou|monster)\/(buychapter|comic\/\d+) url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/weigiegie/js/18top.js, requires-body=true, max-size=-1, timeout=60
+# --- 7semao.js ---
+7semao_1 = type=http-response, pattern=^https?:\/\/.+.(cn|com)\/api\/(Login\/login|login\/mobile_login|index\/loufeng_info|home\/video_info|user\/info) url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/weigiegie/js/7semao.js, requires-body=true, max-size=-1, timeout=60
+7semao_2 = type=http-response, pattern=^https?:\/\/.+.(cn|com)\/api\/(index|home|ent)\/(cate_list|zuire|zuixin|index|loufeng|new_zuanti|cate_list|novel|comic|audio_no) url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/weigiegie/js/7semao.js, requires-body=true, max-size=-1, timeout=60
+# --- 7semaoad.js ---
+7semaoad_1 = type=http-response, pattern=^https?:\/\/jiekou.antciti.cn\/api\/(login\/mobile_login|index\/loufeng_info|home\/video_info|user\/info) url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/weigiegie/js/7semaoad.js, requires-body=true, max-size=-1, timeout=60
+7semaoad_2 = type=http-response, pattern=^https?:\/\/jiekou.antciti.cn\/api\/(index|home)\/(cate_list|zuire|zuixin|index|loufeng|new_zuanti|cate_list) url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/weigiegie/js/7semaoad.js, requires-body=true, max-size=-1, timeout=60
+# --- 91fenglou.js ---
+91fenglou_1 = type=http-request, pattern=^https?:\/\/91fengliu.club\/(index\/user\/userinfo|index\/data\/show).html url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/weigiegie/js/91fenglou.js, requires-body=true, max-size=-1, timeout=60
+# --- huanxiu.js ---
+huanxiu_1 = type=http-response, pattern=^https?:\/\/api.shaolinzen.com\/user/v1\/info url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/weigiegie/js/huanxiu.js, requires-body=true, max-size=-1, timeout=60
+# --- mjgsad.js ---
+mjgsad_1 = type=http-response, pattern=^https?:\/\/.+\.com\/(playerinfo|api\/get_advert|api\/home\/popup) url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/weigiegie/js/mjgsad.js, requires-body=true, max-size=-1, timeout=60
+mjgsad_2 = type=http-request, pattern=^https?:\/\/.+\.com\/api\/(comic|video|short_movie_info|novel|gallery|audio) url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/weigiegie/js/mjgsad.js, requires-body=true, max-size=-1, timeout=60
+# --- mjgshd.js ---
+mjgshd_1 = type=http-response, pattern=^https:\/\/.+\.com\/(playerinfo|api\/get_advert|api\/home\/popup) url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/weigiegie/js/mjgshd.js, requires-body=true, max-size=-1, timeout=60
+mjgshd_2 = type=http-request, pattern=^https?:\/\/.+\.com\/api\/(comic|video|short_movie_info|novel) url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/weigiegie/js/mjgshd.js, requires-body=true, max-size=-1, timeout=60
+# --- qiyou.js ---
+qiyou_1 = type=http-response, pattern=^https?:\/\/api.qiyou.cn\/api\/common_bll\/.+\/(member\/login_status|members).*$ url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/weigiegie/js/qiyou.js, requires-body=true, max-size=-1, timeout=60
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - 
+# Yu9191 · 18+ Rewrite 解锁
+# - - - - - - - - - - - - - - - - - - - - - - - - 
+1808-page = type=http-response,pattern=^https?://1808\.online/movies/[^/?]+\.html,requires-body=1,max-size=-1,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/yu9191/js/page.js
+1808-fake = type=http-response,pattern=^https?://1808\.online/papi/paidtime/,requires-body=1,max-size=-1,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/yu9191/js/fake.js
+
+# >>> merged from Hanxiucao/6lpu5.sgmodule (unique only)
+# ── 广告拦截 (API 响应修改) ──
+含羞草_广告 = type=http-response,pattern=^https?:\/\/[a-z0-9]+\.wt33k\.com\/(home\/getAds|base\/getBulletin|panel\/(list|get)),requires-body=1,max-size=262144,timeout=15,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/yu9191/js/6lpu5.response.js
+
+# ── 视频解锁 (播放页 HTML 注入) ──
+# hook fetch/XHR 截获 getPreUrl 响应，去掉 start/end → 完整播放
+含羞草_视频 = type=http-response,pattern=^https?:\/\/www\.6lpu5\.com\/play\/video\/,requires-body=1,max-size=0,timeout=15,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/yu9191/js/6lpu5.response.js
+
+# >>> merged from haijiao/modules/haijiao.sgmodule (unique only)
+海角API = type=http-response, pattern="^https?:\/\/(www\.)?haijiao\.com\/api\/(banner\/banner_list|attachment|topic\/\d+)", requires-body=1, max-size=-1, timeout=20, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/yu9191/js/haijiao.js
+海角m3u8 = type=http-response, pattern="^https?:\/\/ts\d+\.hj\d+\.top\/.*\.m3u8$", requires-body=1, max-size=-1, timeout=20, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/yu9191/js/haijiao.js
+
+# >>> merged from huangdouduanju/huangdou.sgmodule (unique only)
+黄豆短剧请求 = type=http-request, pattern="^https?:\/\/(cocoaview\.cc|hdmgdj\.com|sxqirtho\.top|qicuknlj\.top|ferncider\.cc|hvthtcpa\.top|onyxripple\.cc|vivifable\.top|kucvcxrv\.cc|larkgarden\.top|niniharbor\.top|larksummit\.icu|lzlukvca\.cc)\/api\/(drama\/play|up\/episodePreview|up\/unlock|up\/access|up\/subscribe)", requires-body=1, binary-body-mode=1, max-size=-1, timeout=30, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/yu9191/js/huangdou.js, argument=logLevel={{{日志级别}}}
+黄豆短剧 = type=http-response, pattern="^https?:\/\/(cocoaview\.cc|hdmgdj\.com|sxqirtho\.top|qicuknlj\.top|ferncider\.cc|hvthtcpa\.top|onyxripple\.cc|vivifable\.top|kucvcxrv\.cc|larkgarden\.top|niniharbor\.top|larksummit\.icu|lzlukvca\.cc)\/api\/.+", requires-body=1, binary-body-mode=1, max-size=-1, timeout=30, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/yu9191/js/huangdou.js, argument=logLevel={{{日志级别}}}
+
+# >>> merged from huangdouduanju/modules/huangdou.sgmodule (unique only)
+
+# >>> merged from huangguoduanju/modules/huangguo.sgmodule (unique only)
+黄果短剧 = type=http-response, pattern=^https?://huangguoai\.com, requires-body=1, max-size=-1, timeout=30, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/yu9191/js/huangguo.js
+
+# >>> merged from insav-tv/modules/insav.sgmodule (unique only)
+insav = type=http-request, pattern="^https?:\/\/(\w+\.)?(insav\.tv|[a-z]{4,}\d{2,}\.(top|com|net|cc|xyz))\/api\/(extend\/lists|banner\/lists|config\/lists|config\/links|notice\/lists|user\/(getVipStatus|info|login)|video\/(info|getVideoUrl))", requires-body=1, max-size=-1, timeout=20, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/yu9191/js/insav.js
+
+# >>> merged from insav.tv.sgmodule (unique only)
+insav.tv = type=http-request, pattern="^https?:\/\/(insav\.tv|4k\.insav\.tv|dm\.insav\.tv|wuma\.[a-zA-Z0-9][-a-zA-Z0-9]{0,62}(\.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+(:[0-9]+)?|.*\.[a-z]{4}\d{3}\.com)\/api\/(extend\/lists|config\/lists|config\/links|notice\/lists|user\/(getVipStatus|info|login)|video\/getVideoUrl)", script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/yu9191/js/insav.tv.js, requires-body=true, max-size=-1, timeout=60
+
+# >>> merged from javhd/modules/javhd.sgmodule (unique only)
+JAVHD播放 = type=http-response, pattern="^https?:\/\/(www\.|zh\.)?javhd\.com\/.*player_api", requires-body=1, max-size=-1, timeout=20, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/yu9191/js/javhd.js
+JAVHD页面 = type=http-response, pattern="^https?:\/\/(www\.|zh\.)?javhd\.com\/(zh\/studio\/room\/[\w-]+\/video\/[\w-]+|zh\/sex-categories|zh\/japanese-porn-videos|zh\/sex-videos|zh\/studio\/room|zh\/?$)", requires-body=1, max-size=-1, timeout=20, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/yu9191/js/javhd.js
+JAVHD分类 = type=http-response, pattern="^https?:\/\/(www\.|zh\.)?javhd\.com\/zh\/japanese-porn-videos\/category\/.+", requires-body=1, max-size=-1, timeout=20, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/yu9191/js/javhd.js
+JAVHD API = type=http-response, pattern="^https?:\/\/(www\.|zh\.)?javhd\.com\/api\/.*", requires-body=1, max-size=-1, timeout=20, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/yu9191/js/javhd.js
+JAVHD m3u8 = type=http-response, pattern="^https?:\/\/.*\.cdnjhd\.com\/.*\.m3u8(\?.*)?$", requires-body=1, max-size=-1, timeout=20, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/yu9191/js/javhd.js
+
+# >>> merged from lsp/MJGS.sgmodule (unique only)
+#广告
+mjgsad = type=http-response, pattern=https:\/\/(mfjk|gnjk|buyaoda).+\.com\/(playerinfo|api\/home\/popup|api\/get_advert), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/yu9191/js/mjgsad.js, requires-body=true, max-size=-1, timeout=60
+
+#视频
+mjgshd = type=http-request, pattern=https?:\/\/(mfjk|gnjk|buyaoda).+\.com\/api\/(comic|video|short_movie_info|novel|gallery|vip|index), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/yu9191/js/mjgshd.js, timeout=60
+
+# >>> merged from luolita/modules/luolita.sgmodule (unique only)
+luolita API = type=http-response, pattern=^https?:\/\/api2\.vhmqswjb\.cc\/api\/, requires-body=1, max-size=-1, timeout=20, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/yu9191/js/luolita.js, argument=logLevel={{{日志级别}}}&player={{{播放器}}}&scheme={{{自定义scheme}}}&encode={{{URL编码}}}&jump={{{播放器跳转}}}
+
+# >>> merged from modules/javhd.sgmodule (unique only)
+JAVHD页面 = type=http-response, pattern="^https?:\/\/(www\.|zh\.)?javhd\.com\/zh\/studio\/room\/[\w-]+\/video\/[\w-]+", requires-body=1, max-size=-1, timeout=20, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/yu9191/js/javhd.js
+
+# >>> merged from pear.sgmodule (unique only)
+
+Pear视频解析 = type=http-request, pattern=^https?:\/\/[^\/]+\/api\/(movie\/(LikeUserLikeMovie|DetailInfo)|anime\/DetailRecommend), requires-body=0, max-size=0, timeout=60, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/yu9191/js/pear.js
+
+Pear短视频解析 = type=http-request, pattern=^https?:\/\/[^\/]+\/api\/video\/(watch|Detail), requires-body=1, max-size=0, timeout=60, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/yu9191/js/pear.js
+
+Pear磁力下载 = type=http-request, pattern=^https?:\/\/[^\/]+\/api\/download\/MovieWithTorrentInfo, requires-body=0, max-size=0, timeout=60, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/yu9191/js/pear.js
+
+PearVIP伪装 = type=http-response, pattern=^https?:\/\/[^\/]+\/api\/(account\/(IndexDetail|IsVip)|cartoon\/VipInfo|download\/CheckDownloadTorrent), requires-body=1, max-size=0, timeout=60, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/yu9191/js/pear.js
+
+Pear种子详情 = type=http-request, pattern=^https?:\/\/[^\/]+\/api\/Search\/TorrentDetail\/, requires-body=0, max-size=0, timeout=60, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/yu9191/js/pear.js
+
+
+# >>> merged from porntube/modules/porntube.sgmodule (unique only)
+porntube 请求 = type=http-request, pattern=^https?:\/\/v2\.(?:cdn199\.com|kekecdn\.net|luchu\.org|madou\.ws|papapa\.biz|tianmtv\.com|xiaoshuo\.info|xiaoshuo\.la)\/js, requires-body=1, max-size=-1, timeout=10, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/yu9191/js/porntube-request.js
+porntube API = type=http-response, pattern=^https?:\/\/v2\.(?:cdn199\.com|kekecdn\.net|luchu\.org|madou\.ws|papapa\.biz|tianmtv\.com|xiaoshuo\.info|xiaoshuo\.la)\/js, requires-body=1, max-size=-1, timeout=20, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/yu9191/js/porntube.js
+porntube 前端 = type=http-response, pattern=^https?:\/\/(?:porntube\.(?:cool|fit|site|store)|91porn\.(?:coach|top|band|name|plus|porn|red|sex)|91pornny\.com|91\.wtf|91forum\.com|91dabiaojie\.com|91zpc\.(?:app|pro|org|co|com)|chineseselfie\.(?:com|net|org)|xchina\.(?:day|cloud|plus|tube|cool|red)|xasian\.org|theporny\.com|madoumedia\.org|1024(?:videos|movies)\.com|bdsmzoo\.com|pornshop\.one|pilipili\.cool|dsdav\.net|x91\.club|x91porn\.com|chinesebdsm\.\w+)\/(?:video\/[^/?]+|videos\?|videos$|$|\?), requires-body=1, max-size=-1, timeout=20, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/yu9191/js/porntube-frontend.js
+
+# >>> merged from porntube/modules/porntube.shadowrocket.sgmodule (unique only)
+http-request ^https?:\/\/v2\.(?:cdn199\.com|kekecdn\.net|luchu\.org|madou\.ws|papapa\.biz|tianmtv\.com|xiaoshuo\.info|xiaoshuo\.la)\/js script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/yu9191/js/porntube-request.js, requires-body=true, max-size=-1, timeout=10, tag=porntube 请求
+http-response ^https?:\/\/v2\.(?:cdn199\.com|kekecdn\.net|luchu\.org|madou\.ws|papapa\.biz|tianmtv\.com|xiaoshuo\.info|xiaoshuo\.la)\/js script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/yu9191/js/porntube.js, requires-body=true, max-size=-1, timeout=20, tag=porntube API
+http-response ^https?:\/\/(?:porntube\.(?:cool|fit|site|store)|91porn\.(?:coach|top|band|name|plus|porn|red|sex)|91pornny\.com|91\.wtf|91forum\.com|91dabiaojie\.com|91zpc\.(?:app|pro|org|co|com)|chineseselfie\.(?:com|net|org)|xchina\.(?:day|cloud|plus|tube|cool|red)|xasian\.org|theporny\.com|madoumedia\.org|1024(?:videos|movies)\.com|bdsmzoo\.com|pornshop\.one|pilipili\.cool|dsdav\.net|x91\.club|x91porn\.com|chinesebdsm\.\w+)\/(?:video\/[^/?]+|videos\?|videos$|$|\?) script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/yu9191/js/porntube-frontend.js, requires-body=true, max-size=-1, timeout=20, tag=porntube 前端
+
+# >>> merged from qishe/qishe.sgmodule (unique only)
+妻社 = type=http-response,pattern=^https?:\/\/[\w-]+\.qsh\d+\.(?:com|cn|org\.cn)\/(?:source\/plugin\/qsts_app\/index\.php|mserver)\/,requires-body=true,max-size=-1,timeout=30,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/yu9191/js/qishe.js
+
+# >>> merged from qiyoushe/modules/qiyoushequ.sgmodule (unique only)
+妻友社区启动页 = type=http-response, pattern="^https?:\/\/d1kmvkv4iwtiup\.cloudfront\.net\/js\/index-Dg2qL6uR\.\d+\.js", requires-body=1, max-size=-1, timeout=20, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/yu9191/js/qiyoushequ.js
+妻友社区 = type=http-response, pattern="^https?:\/\/d1kmvkv4iwtiup\.cloudfront\.net\/api\/app\/(ping\/config|login\/guest|user\/info|media\/(play|home|short\/hot)|card\/(promotion|list|advance\/status)|post\/(detail|list|pay|rent\/check))", requires-body=1, max-size=-1, timeout=20, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/yu9191/js/qiyoushequ.js
+
+# >>> merged from skbz.sgmodule (unique only)
+AGC = type=http-response, pattern=https://boringday.api.neuronlabs.art/v1/wallpaper/detail, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/yu9191/js/skbz.js, requires-body=true, max-size=-1, timeout=60
+
+# >>> merged from tlsm.sgmodule (unique only)
+套路SM = type=http-response,pattern=^https?:\/\/(?:www\.)?(?:tlsm\.one|taolusm\.com|itaolu\.com)\/v\/\d+(?:[\/?#]|$),requires-body=true,max-size=-1,timeout=10,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/yu9191/js/tlsm.js
+
+# >>> merged from xjh51/modules/xjh51.sgmodule (unique only)
+xjh51 API = type=http-response, pattern=^https?:\/\/www\.xjh51\.tv\/api\/(?:init|index|ucp\/index|v2\/vod\/(?:reqplay|listing)|vod\/(?:reqplay|show)|getLikeRows|special\/listing|game\/broadcasts), requires-body=1, max-size=-1, timeout=30, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/yu9191/js/xjh51.js
+xjh51 Frontend = type=http-response, pattern=^https?:\/\/www\.xjh51\.tv\/(?:index|pc)\.html, requires-body=1, max-size=-1, timeout=10, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/yu9191/js/xjh51-frontend.js
+
+# >>> merged from xv.sgmodule (unique only)
+XV暗网 = type=http-response,pattern=^https:\/\/d18psf29jvwgay\.cloudfront\.net\/api\/app\/(media\/play|user\/info|login\/guest|ping\/config|card\/list),requires-body=1,max-size=5097152,binary-body-mode=0,timeout=888,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/yu9191/js/xv.js
+
+
+
+[MITM]
+hostname = %APPEND% *.huangguoai.com, *.pearhot.com, *.pearkin.com, 1808.online, 4k.insav.tv, 91porn.band, 91porn.coach, 91porn.name, 91porn.plus, 91porn.porn, 91porn.red, 91porn.sex, 91porn.top, 91pornny.com, dm.insav.tv, haijiao.com, huangguoai.com, huanyuxingqiu.*, insav.tv, javhd.com, lite.pearhot.com, madoumedia.org, porntube.cool, porntube.fit, porntube.site, porntube.store, tlsm.one, v2.madou.ws, www.6lpu5.com, www.haijiao.com, www.javhd.com, www.tlsm.one, www.xjh51.tv, x91porn.com, xchina.cloud, xchina.cool, xchina.day, xchina.plus, xchina.red, xchina.tube
+hostname = %APPEND% zh.javhd.com, 18pcs.bond, 18pcs.cfd, 18pcs.fun, api.qiyou.cn, apifast.qiyou.cn

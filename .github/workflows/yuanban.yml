@@ -1,0 +1,38 @@
+# guize 分支专用：手动重建 Yuanban（邮件/更新提示时跑）
+name: Yuanban 重建
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: yuanban-guize
+  cancel-in-progress: true
+
+jobs:
+  rebuild:
+    if: github.ref == 'refs/heads/guize'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: guize
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Rebuild
+        env:
+          ADBLOCK_BRANCH: guize
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 scripts/build-yuanban.py
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --staged --quiet; then echo "no changes"; else
+            git commit -m "chore: refresh Yuanban"
+            git push origin HEAD:guize
+          fi

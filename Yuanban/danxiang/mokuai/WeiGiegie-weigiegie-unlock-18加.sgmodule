@@ -1,0 +1,30 @@
+#!name=18+解锁
+#!desc=成人向，与日常解锁分开订阅
+#!category=18+
+
+[Script]
+# --- 18pcs.js ---
+18pcs_1 = type=http-request, pattern=^https?:\/\/18pcs.(fun|bond|cfd)\/record\/\d+ url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/weigiegie/js/18pcs.js, requires-body=true, max-size=-1, timeout=60
+# --- 18top.js ---
+18top_1 = type=http-request, pattern=^https?:\/\/(boylove|toptoon).(online|click|cyou|monster)\/(buychapter|comic\/\d+) url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/weigiegie/js/18top.js, requires-body=true, max-size=-1, timeout=60
+# --- 7semao.js ---
+7semao_1 = type=http-response, pattern=^https?:\/\/.+.(cn|com)\/api\/(Login\/login|login\/mobile_login|index\/loufeng_info|home\/video_info|user\/info) url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/weigiegie/js/7semao.js, requires-body=true, max-size=-1, timeout=60
+7semao_2 = type=http-response, pattern=^https?:\/\/.+.(cn|com)\/api\/(index|home|ent)\/(cate_list|zuire|zuixin|index|loufeng|new_zuanti|cate_list|novel|comic|audio_no) url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/weigiegie/js/7semao.js, requires-body=true, max-size=-1, timeout=60
+# --- 7semaoad.js ---
+7semaoad_1 = type=http-response, pattern=^https?:\/\/jiekou.antciti.cn\/api\/(login\/mobile_login|index\/loufeng_info|home\/video_info|user\/info) url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/weigiegie/js/7semaoad.js, requires-body=true, max-size=-1, timeout=60
+7semaoad_2 = type=http-response, pattern=^https?:\/\/jiekou.antciti.cn\/api\/(index|home)\/(cate_list|zuire|zuixin|index|loufeng|new_zuanti|cate_list) url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/weigiegie/js/7semaoad.js, requires-body=true, max-size=-1, timeout=60
+# --- 91fenglou.js ---
+91fenglou_1 = type=http-request, pattern=^https?:\/\/91fengliu.club\/(index\/user\/userinfo|index\/data\/show).html url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/weigiegie/js/91fenglou.js, requires-body=true, max-size=-1, timeout=60
+# --- huanxiu.js ---
+huanxiu_1 = type=http-response, pattern=^https?:\/\/api.shaolinzen.com\/user/v1\/info url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/weigiegie/js/huanxiu.js, requires-body=true, max-size=-1, timeout=60
+# --- mjgsad.js ---
+mjgsad_1 = type=http-response, pattern=^https?:\/\/.+\.com\/(playerinfo|api\/get_advert|api\/home\/popup) url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/weigiegie/js/mjgsad.js, requires-body=true, max-size=-1, timeout=60
+mjgsad_2 = type=http-request, pattern=^https?:\/\/.+\.com\/api\/(comic|video|short_movie_info|novel|gallery|audio) url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/weigiegie/js/mjgsad.js, requires-body=true, max-size=-1, timeout=60
+# --- mjgshd.js ---
+mjgshd_1 = type=http-response, pattern=^https:\/\/.+\.com\/(playerinfo|api\/get_advert|api\/home\/popup) url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/weigiegie/js/mjgshd.js, requires-body=true, max-size=-1, timeout=60
+mjgshd_2 = type=http-request, pattern=^https?:\/\/.+\.com\/api\/(comic|video|short_movie_info|novel) url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/weigiegie/js/mjgshd.js, requires-body=true, max-size=-1, timeout=60
+# --- qiyou.js ---
+qiyou_1 = type=http-response, pattern=^https?:\/\/api.qiyou.cn\/api\/common_bll\/.+\/(member\/login_status|members).*$ url, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/weigiegie/js/qiyou.js, requires-body=true, max-size=-1, timeout=60
+
+[MITM]
+hostname = %APPEND% 18pcs.bond, 18pcs.cfd, 18pcs.fun, api.qiyou.cn, apifast.qiyou.cn
