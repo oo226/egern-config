@@ -1,6 +1,6 @@
 # 合集上游说明
 
-构建：2026-09-26 05:19 UTC
+构建：2026-09-26 05:30 UTC
 分支：`guize`
 
 ## zuozhe 作者统计
@@ -22,8 +22,8 @@
 - **sukka**: mokuai=0 js=0 fenliu=12
 - **vpsdance**: mokuai=0 js=0 fenliu=1
 - **weigiegie**: mokuai=1 js=376 fenliu=0
-- **yu9191**: mokuai=2 js=32 fenliu=0
-- **yuheng**: mokuai=1 js=0 fenliu=0
+- **yu9191**: mokuai=2 js=301 fenliu=0
+- **yuheng**: mokuai=5 js=22 fenliu=0
 - **zenmofeishi**: mokuai=23 js=27 fenliu=0
 
 ## qiandao 签到单件（无合集）
@@ -36,9 +36,9 @@
 
 ## heji 分段袋数 / 分流文件数
 
-`{'quguanggao': 241, 'qukaiping': 2, 'jiesuo': 38, 'zhuacan': 3, 'fenliu': 120}`
+`{'quguanggao': 241, 'qukaiping': 2, 'jiesuo': 38, 'shibajia': 2, 'zhuacan': 3, 'fenliu': 120}`
 
-脚本镜像成功约 1099，占位/失败 108（仍写本仓占位，不留外站）
+脚本镜像成功约 1505，占位/失败 108（仍写本仓占位，不留外站）
 合集外站泄漏: ?
 
 ## 自依赖
@@ -81,6 +81,16 @@
 ## 抓参
 
 - `heji/zhuacan`：sync Cookie合集 + 奶思原版 + NobyDa GetCookie + 莫离京东 + 起点
+
+## 18+
+
+- `heji/shibajia`：Yu9191 Rewrite 成人段 + WeiGiegie 少量（18pcs/含羞/mjgs…）
+- 日常解锁 `jiesuo` 已剥离上述分段
+- Yuheng 巴士/JAVDay/黑料/1024/4K世界：签到推送脚本在 `zuozhe/yuheng/js`
+
+## kelee.one
+
+- 可莉官方 CDN；常 403，构建时改走 GitHub 镜像/本仓占位，合集不挂外链
 
 ## js 镜像失败（节选）
 
