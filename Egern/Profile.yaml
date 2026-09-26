@@ -121,6 +121,11 @@ dns:
         match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Routing/China-Direct.yaml
         value: DNSPod
         update_interval: 86400
+    # 大名单体量大、Profile 只占一行（外观仍短）
+    - proxy_rule_set:
+        match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Loyalsoldier-直连大名单.txt
+        value: DNSPod
+        update_interval: 86400
     - domain_suffix:
         match: cn
         value: DNSPod
@@ -505,6 +510,11 @@ rules:
   - rule_set:
       name: 国内直连
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Routing/China-Direct.yaml
+      policy: DIRECT
+      update_interval: 86400
+  - rule_set:
+      name: 直连大名单
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Loyalsoldier-直连大名单.txt
       policy: DIRECT
       update_interval: 86400
   - geoip:
