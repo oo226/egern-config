@@ -102,6 +102,10 @@ dns:
         value: system
         update_interval: 604800
     - proxy_rule_set:
+        match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Loyalsoldier-私有网络.txt
+        value: system
+        update_interval: 604800
+    - proxy_rule_set:
         match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Routing/Zhuifeng.yaml
         value: DNSPod
         update_interval: 604800
@@ -117,6 +121,9 @@ dns:
         match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Routing/China-Direct.yaml
         value: DNSPod
         update_interval: 86400
+    - domain_suffix:
+        match: cn
+        value: DNSPod
     - domain_wildcard:
         match: '*'
         value: Default
