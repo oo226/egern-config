@@ -1,4 +1,3 @@
-// MISSING mirror of:
-// https://kelee.one/Resource/JavaScript/iMaiCai/iMaiCai_remove_ads.js
-// 已自托管占位：不依赖上游；待补文件后重建
-throw new Error('script not mirrored: iMaiCai-iMaiCai_remove_ads.js');
+let data = JSON.parse($response.body);
+data.aidata_dd_resource_config?.data?.customer?.feature_src_list?.ad && delete data.aidata_dd_resource_config.data.customer.feature_src_list.ad;
+$done({ body: JSON.stringify(data) });

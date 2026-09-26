@@ -1,4 +1,4 @@
-// MISSING mirror of:
-// https://kelee.one/Resource/JavaScript/WexinMiniPrograms/coco/coco.js
-// 已自托管占位：不依赖上游；待补文件后重建
-throw new Error('script not mirrored: coco-coco.js');
+let obj=JSON.parse($response.body);
+delete obj.data.top_background_url ;
+delete obj.data.bottom_banner_list ;
+$done({body: JSON.stringify(obj)});

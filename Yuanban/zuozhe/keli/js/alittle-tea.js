@@ -1,4 +1,3 @@
-// MISSING mirror of:
-// https://raw.perzikkop.com/Scripts/MiniPrograms/alittle-tea.js
-// 已自托管占位：不依赖上游；待补文件后重建
-throw new Error('script not mirrored: alittle-tea.js');
+let obj=JSON.parse($response.body);
+delete obj.data;
+$done({body: JSON.stringify(obj)});

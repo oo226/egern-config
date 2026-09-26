@@ -1,4 +1,9 @@
-// MISSING mirror of:
-// https://kelee.one/Resource/JavaScript/TV_Assistant/TV_Assistant_remove_ads.js
-// 已自托管占位：不依赖上游；待补文件后重建
-throw new Error('script not mirrored: TV_Assistant-TV_Assistant_remove_ads.js');
+// 2024-07-11 01:56:32
+var json = JSON.parse($response.body);
+
+// 删除底栏视频标签
+if (json.data && Array.isArray(json.data) && json.data.length > 1) {
+    json.data[1] = {};
+}
+
+$done({ body: JSON.stringify(json) });

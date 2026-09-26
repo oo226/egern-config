@@ -1,4 +1,2 @@
-// MISSING mirror of:
-// https://kelee.one/Resource/JavaScript/Umetrip/Umetrip_remove_ads.js
-// 已自托管占位：不依赖上游；待补文件后重建
-throw new Error('script not mirrored: Umetrip-Umetrip_remove_ads.js');
+const version = 'V1.0.1';
+var ua=$request.headers.rpid||$request.headers.Rpid;ua.includes("1000002")||ua.includes("1000019")?$done({status:"HTTP/1.1 404 Not Found"}):$done({});

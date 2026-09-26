@@ -1,4 +1,3 @@
-// MISSING mirror of:
-// https://kelee.one/Resource/JavaScript/WexinMiniPrograms/FamilyMart/FamilyMart.js
-// 已自托管占位：不依赖上游；待补文件后重建
-throw new Error('script not mirrored: FamilyMart-FamilyMart.js');
+let obj=JSON.parse($response.body);
+delete obj.data.topBanner ;
+$done({body: JSON.stringify(obj)});

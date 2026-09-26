@@ -39,8 +39,8 @@ https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/he
 
 签到：`Yuanban/qiandao/`　其他/小组件：`Yuanban/qita/`　分流：`heji/fenliu/README.md`
 
-说明：`kelee.one` 是可莉 CDN，常 403，脚本已自托管到本仓（缺文件时写占位）。
-Yu9191（Rewrite/18+）与 Yuheng（签到推送）在 `zuozhe/yu9191`、`zuozhe/yuheng`。
+可莉：模块←QingRex 作者仓；js←kelee.one（Surge UA，不是 sync）。
+Yu9191：作者仓若删则用 sync 防删；Yuheng←Yuheng0101/X；老书←jnlaoshu/MySelf。
 
 重建：`python3 scripts/build-yuanban.py`
 

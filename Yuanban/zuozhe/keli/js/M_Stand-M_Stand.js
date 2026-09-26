@@ -1,4 +1,15 @@
-// MISSING mirror of:
-// https://kelee.one/Resource/JavaScript/WexinMiniPrograms/M_Stand/M_Stand.js
-// 已自托管占位：不依赖上游；待补文件后重建
-throw new Error('script not mirrored: M_Stand-M_Stand.js');
+let obj=JSON.parse($response.body);
+delete obj.data.homeNewsAdv.jumpValue ;
+delete obj.data.homeDineInAdv ;
+delete obj.data.homePickupAdv ;
+delete obj.data.nearbyShopInfo ;
+delete obj.data.homeEventThemesAdv ;
+delete obj.data.eventThemes ;
+delete obj.data.homeRootAdv ;
+delete obj.data.homeTopAdv ;
+delete obj.data.homeDialogAdv ;
+delete obj.data.homeBannerAdv ;
+delete obj.data.homeCouponAdv ;
+delete obj.data.homeCompanyAdv ;
+delete obj.data.homeDeliveryAdv ;
+$done({body: JSON.stringify(obj)});

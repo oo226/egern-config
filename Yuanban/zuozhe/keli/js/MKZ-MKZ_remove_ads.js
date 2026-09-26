@@ -1,4 +1,13 @@
-// MISSING mirror of:
-// https://kelee.one/Resource/JavaScript/MKZ/MKZ_remove_ads.js
-// 已自托管占位：不依赖上游；待补文件后重建
-throw new Error('script not mirrored: MKZ-MKZ_remove_ads.js');
+// 2024-07-18 21:07:11
+const url = $request.url;
+const body = $response.body;
+
+if (!body) $done({});
+
+let obj = JSON.parse(body);
+
+if (url.includes("/app/config/")) {
+    delete obj.data.vip_subscribe_switch;
+}
+
+$done({ body: JSON.stringify(obj) });

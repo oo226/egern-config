@@ -1,4 +1,11 @@
-// MISSING mirror of:
-// https://kelee.one/Resource/JavaScript/BooHee/BooHee_remove_ads.js
-// 已自托管占位：不依赖上游；待补文件后重建
-throw new Error('script not mirrored: BooHee-BooHee_remove_ads.js');
+// 2024-08-16 18:28:28
+const url = $request.url;
+if (url.includes("/index/plaza-flow?")) {
+    let obj = JSON.parse($response.body);
+    if (obj.data && obj.data.contents && Array.isArray(obj.data.contents)) {
+        obj.data.contents = obj.data.contents.filter(item => item.type !== 4);
+    }
+    $done({ body: JSON.stringify(obj) });
+} else {
+    $done({});
+}

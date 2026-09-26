@@ -71,6 +71,8 @@ SYNC_RAW = "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/sync
 CTX = ssl.create_default_context()
 # Quantumult X UA：墨鱼 ddgksf2013.top 对普通爬虫常回 HTML 首页
 UA = {"User-Agent": "Quantumult%20X/1.4.0 (egern-yuanban)"}
+# kelee.one Cloudflare：QX/普通 UA 常 403，Surge UA 可下
+KELEE_UA = {"User-Agent": "Surge iOS/3200"}
 
 QINGREX_API = "https://api.github.com/repos/QingRex/LoonKissSurge/git/trees/main?recursive=1"
 QINGREX_RAW = "https://raw.githubusercontent.com/QingRex/LoonKissSurge/main/"
@@ -342,7 +344,22 @@ AUTHOR_CN = {
     "yu9191": "Yu9191",
     "yuheng": "Yuheng",
     "miranquil": "miranquil",
+    "laoshu": "老书",
 }
+
+# jnlaoshu/MySelf Egern 精选模块（Rule+Map Local 为主，脚本指 Maasea/墨鱼等）
+LAOSHU_EGERN_MODULES = (
+    "VideoAdBlock.yaml",
+    "MusicAdBlock.yaml",
+    "YouTube.yaml",
+    "EcommerceAdBlock.yaml",
+    "MapAdBlock.yaml",
+    "TravelAdBlock.yaml",
+    "Audi_AdBlock.yaml",
+    "JDPrice.yaml",
+    "Xueqiu.yaml",
+)
+LAOSHU_RAW = "https://raw.githubusercontent.com/jnlaoshu/MySelf/main/Egern/Module/"
 FENLIU_CN = {
     "ChinaDomain": "国内域名", "ChinaIP": "国内IP", "ChinaASN": "国内ASN",
     "ChinaMax": "国内域名Max", "Direct": "直连", "Lan": "局域网",
@@ -419,8 +436,10 @@ def encode_url(url: str) -> str:
 def fetch(url: str, *, timeout: int = 90) -> bytes:
     url = encode_url(url)
     headers = dict(UA)
-    # GitHub API/raw：普通 UA；ddgksf2013.top 仍用 QX UA
-    if "api.github.com" in url or "raw.githubusercontent.com" in url:
+    # GitHub API/raw：普通 UA；ddgksf2013.top 仍用 QX UA；kelee 用 Surge UA
+    if "kelee.one" in url:
+        headers = dict(KELEE_UA)
+    elif "api.github.com" in url or "raw.githubusercontent.com" in url:
         headers["User-Agent"] = "egern-yuanban/1.0"
     if "api.github.com" in url:
         headers["Accept"] = "application/vnd.github+json"
@@ -433,19 +452,39 @@ def fetch(url: str, *, timeout: int = 90) -> bytes:
         with urllib.request.urlopen(req, context=CTX, timeout=timeout) as resp:
             return resp.read()
 
-    req = urllib.request.Request(url, headers=headers)
-    try:
-        data = _read(req)
-    except Exception:
-        # 401：去掉 Authorization 再试（公共仓库）
-        headers.pop("Authorization", None)
+    attempts: list[dict[str, str]] = [headers]
+    # kelee：若 Surge UA 失败再试 QX（少数路径策略不同）
+    if "kelee.one" in url:
+        attempts.append(dict(UA))
+    attempts.append({"User-Agent": "egern-yuanban/1.0"})
+
+    data: bytes | None = None
+    last_exc: Exception | None = None
+    for hdr in attempts:
+        h = dict(hdr)
+        if "api.github.com" in url and "Accept" not in h:
+            h["Accept"] = "application/vnd.github+json"
         try:
-            data = _read(urllib.request.Request(url, headers=headers))
-        except Exception:
-            proxy_headers = {"User-Agent": headers.get("User-Agent", "egern-yuanban/1.0")}
+            data = _read(urllib.request.Request(url, headers=h))
+            break
+        except Exception as exc:
+            last_exc = exc
+            # 401：去掉 Authorization 再试（公共仓库）
+            h.pop("Authorization", None)
+            try:
+                data = _read(urllib.request.Request(url, headers=h))
+                break
+            except Exception as exc2:
+                last_exc = exc2
+                continue
+    if data is None:
+        try:
+            proxy_headers = {"User-Agent": "egern-yuanban/1.0"}
             data = _read(
                 urllib.request.Request("https://ghproxy.net/" + url, headers=proxy_headers)
             )
+        except Exception as exc:
+            raise last_exc or exc
     if data.lstrip()[:20].lower().startswith((b"<!doctype", b"<html")):
         raise ValueError(f"HTML {url}")
     return data
@@ -561,34 +600,104 @@ def _readable_js_name(url: str) -> str:
 
 
 def _js_fetch_candidates(url: str) -> list[str]:
-    """自托管拉取候选：原链 → sync 镜像 → kelee 替身 → 本仓 main Scripts。"""
+    """自托管拉取候选：原链 → 作者仓/已知替身 → sync 镜像 → 本仓 Scripts。
+
+    可莉模块正文来自 QingRex/LoonKissSurge；script-path 多指向 kelee.one CDN
+    （不在 GitHub 仓内）。禁止把 sync 当唯一来源。
+    """
     url = _normalize_js_url(url)
     out: list[str] = [url]
-    base = Path(unquote(urlparse(url).path)).name
+    path = unquote(urlparse(url).path)
+    base = Path(path).name
 
-    # oo226 sync / main 已镜像路径
+    # oo226 本仓已是终态镜像时不再绕
     if "raw.githubusercontent.com/oo226/" in url or "github.com/oo226/" in url:
         return out
 
-    # 通用：github raw → 本仓 sync _external
+    # perzikkop（可莉小程序镜像站，常 404）→ kelee WexinMiniPrograms
+    if "raw.perzikkop.com" in url:
+        m = re.search(r"/Scripts/(?:MiniPrograms/)?(.+)$", path)
+        if m:
+            rel = m.group(1)
+            stem = Path(rel).stem
+            out.append(f"https://kelee.one/Resource/Script/WexinMiniPrograms/{stem}/{base}")
+            out.append(f"https://kelee.one/Resource/JavaScript/{stem}/{base}")
+            out.append(f"https://kelee.one/Resource/JavaScript/{stem}/{stem}_remove_ads.js")
+
+    # 已知作者仓替身（jnlaoshu 等同款：Maasea / app2smile / ddgksf2013 / mieqq）
+    KELEE_AUTHOR_ALTS: dict[str, list[str]] = {
+        "YouTube_Subtitles_request.js": [
+            "https://raw.githubusercontent.com/Maasea/sgmodule/master/Script/Youtube/youtube.request.js",
+        ],
+        "YouTube_Subtitles_response.js": [
+            "https://raw.githubusercontent.com/Maasea/sgmodule/master/Script/Youtube/youtube.response.js",
+        ],
+        "YouTube_Composite_Subtitles_response.js": [
+            "https://raw.githubusercontent.com/Maasea/sgmodule/master/Script/Youtube/youtube.response.js",
+        ],
+        "YouTube_Subtitles_Translate_response.js": [
+            "https://raw.githubusercontent.com/Maasea/sgmodule/master/Script/Youtube/youtube.response.js",
+        ],
+        "Bilibili_proto_kokoryh.js": [
+            "https://raw.githubusercontent.com/app2smile/rules/master/js/bilibili-proto.js",
+        ],
+        "bilibili.protobuf.js": [
+            "https://raw.githubusercontent.com/app2smile/rules/master/js/bilibili-proto.js",
+        ],
+        "bilibili.helper.beta.js": [
+            "https://raw.githubusercontent.com/Maasea/sgmodule/master/Script/Bilibili/bilibili.helper.js",
+        ],
+        "bilibili.helper.v2.beta.js": [
+            "https://raw.githubusercontent.com/Maasea/sgmodule/master/Script/Bilibili/bilibili.helper.v2.js",
+        ],
+        "bilibili.airborne.js": [
+            "https://raw.githubusercontent.com/kokoryh/Sparkle/master/dist/bilibili.json.js",
+        ],
+        "UnblockURLinWeChat.js": [
+            "https://raw.githubusercontent.com/ddgksf2013/Scripts/master/weixin110.js",
+        ],
+        "replace-body.js": [
+            "https://raw.githubusercontent.com/mieqq/mieqq/master/replace-body.js",
+        ],
+        "Tieba_remove_ads.js": [
+            "https://raw.githubusercontent.com/app2smile/rules/master/js/tieba-json.js",
+        ],
+        "tieba-json.js": [
+            "https://raw.githubusercontent.com/app2smile/rules/master/js/tieba-json.js",
+        ],
+        "NeteaseCloudMusic_remove_ads.js": [
+            "https://kelee.one/Resource/JavaScript/NeteaseCloudMusic/NeteaseCloudMusic_remove_ads.js",
+            "https://raw.githubusercontent.com/app2smile/rules/master/js/netease.js",
+        ],
+        "Auto_join_TF.js": [
+            "https://raw.githubusercontent.com/NobyDa/Script/master/TestFlight/TestFlightAccount.js",
+        ],
+        "TF_keys.js": [
+            "https://raw.githubusercontent.com/NobyDa/Script/master/TestFlight/TestFlightAccount.js",
+        ],
+    }
+    if base in KELEE_AUTHOR_ALTS:
+        out.extend(KELEE_AUTHOR_ALTS[base])
+
+    # 通用：github raw → 本仓 sync _external（仅作备份，不优先）
     m = re.match(
         r"https?://raw\.githubusercontent\.com/([^/]+)/([^/]+)/([^/]+)/(.*)",
         url,
         re.I,
     )
     if m:
-        owner, repo, ref, path = m.groups()
+        owner, repo, ref, gpath = m.groups()
         for branch in ("sync", "main", BRANCH):
             out.append(
                 f"https://raw.githubusercontent.com/oo226/egern-config/refs/heads/"
-                f"{branch}/Scripts/_external/github-raw/{owner}/{repo}/{ref}/{path}"
+                f"{branch}/Scripts/_external/github-raw/{owner}/{repo}/{ref}/{gpath}"
             )
             out.append(
                 f"https://raw.githubusercontent.com/oo226/egern-config/refs/heads/"
-                f"{branch}/Scripts/{owner}/{Path(path).name}"
+                f"{branch}/Scripts/{owner}/{Path(gpath).name}"
             )
 
-    # Zenmo / 已知作者 → sync Scripts/<id>/
+    # Zenmo / 已知作者 → sync Scripts/<id>/（备份）
     for prefix, dest in (
         ("ZenmoFeiShi/Qx", "zenmofeishi"),
         ("fmz200/wool_scripts", "fmz200"),
@@ -596,6 +705,8 @@ def _js_fetch_candidates(url: str) -> list[str]:
         ("NobyDa/Script", "NobyDa"),
         ("WeiGiegie/666", "weigiegie"),
         ("liul0ng/quanx", "liul0ng"),
+        ("Yuheng0101/X", "yuheng"),
+        ("Yu9191/", "yu9191"),
     ):
         if prefix.lower() in url.lower() and base:
             for branch in ("sync", "main"):
@@ -606,12 +717,10 @@ def _js_fetch_candidates(url: str) -> list[str]:
 
     if base in KELEE_FALLBACKS:
         out.append(KELEE_FALLBACKS[base])
-    # kelee path basename fallbacks
     for k, alt in KELEE_FALLBACKS.items():
         if k in url:
             out.append(alt)
 
-    # gist
     gm = re.match(
         r"https?://gist\.githubusercontent\.com/([^/]+)/([^/]+)/raw/(.*)",
         url,
@@ -1012,6 +1121,92 @@ def mirror_sync_modules_tree(author: str, sync_prefix: str) -> int:
         n += 1
         print(f"  {author}/mokuai/{fname}")
     return n
+
+
+def mirror_github_scripts(
+    author: str,
+    repo: str,
+    prefix: str,
+    name_map: dict[str, str] | None = None,
+    *,
+    also_json: bool = False,
+    branch: str = "main",
+) -> int:
+    """从作者 GitHub 仓拉 Scripts（优先于 sync 日更备份）。"""
+    name_map = name_map or {}
+    api = (
+        f"https://api.github.com/repos/{repo}/git/trees/{quote(branch)}?recursive=1"
+    )
+    try:
+        tree = json.loads(fetch(api).decode())["tree"]
+    except Exception as exc:
+        print(f"  ! github tree {repo}: {exc}")
+        return 0
+    paths = ensure_author(author)
+    raw_base = f"https://raw.githubusercontent.com/{repo}/{branch}/"
+    n = 0
+    for t in tree:
+        if t.get("type") != "blob":
+            continue
+        rel = t["path"]
+        if not rel.startswith(prefix.rstrip("/") + "/") and rel != prefix.rstrip("/"):
+            if not rel.startswith(prefix):
+                continue
+        fname = Path(rel).name
+        if rel.endswith(".js"):
+            pass
+        elif also_json and fname == "boxjs.json":
+            pass
+        else:
+            continue
+        parts = rel.split("/")
+        if "node_modules" in parts or ".git" in parts or "src" in parts:
+            continue
+        if fname.endswith(
+            (".config.js", "rollup.config.js", "rollup.default.config.js",
+             "rollup.dev.config.js", "package.json", "package-lock.json")
+        ):
+            continue
+        clear = name_map.get(fname) or name_map.get(rel) or fname
+        try:
+            data = fetch(raw_base + quote(rel, safe="/"))
+        except Exception as exc:
+            print(f"  ! {author}/js {fname}: {exc}")
+            continue
+        dest = paths["js"] / clear
+        if dest.exists() and dest.stat().st_size == len(data):
+            n += 1
+            continue
+        if dest.exists():
+            dest = paths["js"] / f"{Path(rel).parent.name}-{clear}"
+        save_bytes(dest, data, author=author, kind="js")
+        n += 1
+        print(f"  {author}/js/{dest.name} ← {repo}")
+    return n
+
+
+def mirror_laoshu(cache: dict[str, str]) -> None:
+    """jnlaoshu/MySelf Egern/Module — 精选去广告 yaml（作者仓直拉）。"""
+    paths = ensure_author("laoshu")
+    for fname in LAOSHU_EGERN_MODULES:
+        url = LAOSHU_RAW + quote(fname, safe="/")
+        try:
+            raw = fetch(url)
+        except Exception as exc:
+            print(f"  ! laoshu {fname}: {exc}")
+            continue
+        dest = paths["mokuai"] / fname
+        save_bytes(dest, raw, author="laoshu", kind="mokuai")
+        rewrite_js_urls(raw.decode("utf-8", errors="replace"), "laoshu", cache)
+        print(f"  laoshu/mokuai/{fname}")
+    (paths["mokuai"] / "README.md").write_text(
+        "老书 jnlaoshu/MySelf Egern/Module（作者仓直拉）。\n"
+        "风格：Rule + Map Local 为主，脚本多用 Maasea/墨鱼/app2smile；\n"
+        "部分仍引用 kelee.one（构建时自托管，Surge UA 拉取）。\n"
+        "进 heji/quguanggao。\n"
+        "上游：https://github.com/jnlaoshu/MySelf/tree/main/Egern/Module\n",
+        encoding="utf-8",
+    )
 
 
 def assert_self_hosted() -> None:
@@ -1637,6 +1832,17 @@ def heji_quguanggao(cache: dict[str, str]) -> None:
         title, _ = strip_module_header(raw)
         bags.append((f"毒奶 · {title or 'Adblock4limbo'}", parse_sections(rewritten)))
 
+    # 4b) 老书 jnlaoshu Egern 精选（Video/Music/YouTube…）
+    laoshu_m = ZUOZHE / "laoshu" / "mokuai"
+    for fname in LAOSHU_EGERN_MODULES:
+        path = laoshu_m / fname
+        if not path.is_file():
+            continue
+        raw = path.read_text(encoding="utf-8", errors="replace")
+        rewritten = rewrite_js_urls(raw, "laoshu", cache)
+        title, _ = strip_module_header(raw)
+        bags.append((f"老书 · {title or path.stem}", parse_sections(rewritten)))
+
     # 5) blackmatrix7 Advertising(+Script)
     bmj_m = ZUOZHE / "blackmatrix7" / "mokuai"
     for fname, label in (
@@ -1672,12 +1878,12 @@ def heji_quguanggao(cache: dict[str, str]) -> None:
     text = merge_section_bags(
         bags,
         name="去广告合集",
-        desc="可莉+墨鱼+毒奶+BMJ+奶思+怎么肥事（原文，脚本全自托管）",
+        desc="可莉+墨鱼+毒奶+老书+BMJ+奶思+怎么肥事（原文，脚本全自托管）",
         notes=[
             "# 合集类型: 去广告",
             "# 置顶基础: 1)广告平台拦截器 2)可莉广告过滤器 —— 须最先生效",
             "# 然后: 可莉各 App「××去广告」原样分段",
-            "# 然后: 墨鱼 AdBlock/NBPro + 毒奶 + BMJ + 奶思 + 怎么肥事净化",
+            "# 然后: 墨鱼 AdBlock/NBPro + 毒奶 + 老书(jnlaoshu) + BMJ + 奶思 + 怎么肥事净化",
             "# 脚本 URL 全部指向本仓 Yuanban/zuozhe/*/js（不依赖上游在线）",
             "# 不含开屏（见 heji/qukaiping.module）",
         ],
@@ -2087,8 +2293,8 @@ def write_docs() -> None:
                 "",
                 "签到：`Yuanban/qiandao/`　其他/小组件：`Yuanban/qita/`　分流：`heji/fenliu/README.md`",
                 "",
-                "说明：`kelee.one` 是可莉 CDN，常 403，脚本已自托管到本仓（缺文件时写占位）。",
-                "Yu9191（Rewrite/18+）与 Yuheng（签到推送）在 `zuozhe/yu9191`、`zuozhe/yuheng`。",
+                "可莉：模块←QingRex 作者仓；js←kelee.one（Surge UA，不是 sync）。",
+                "Yu9191：作者仓若删则用 sync 防删；Yuheng←Yuheng0101/X；老书←jnlaoshu/MySelf。",
                 "",
                 "重建：`python3 scripts/build-yuanban.py`",
                 "",
@@ -2175,9 +2381,17 @@ def write_docs() -> None:
         "- 日常解锁 `jiesuo` 已剥离上述分段",
         "- Yuheng 巴士/JAVDay/黑料/1024/4K世界：签到推送脚本在 `zuozhe/yuheng/js`",
         "",
-        "## kelee.one",
+        "## 可莉来源说明（不是 sync 日更）",
         "",
-        "- 可莉官方 CDN；常 403，构建时改走 GitHub 镜像/本仓占位，合集不挂外链",
+        "- **模块**：`QingRex/LoonKissSurge` 作者仓直拉 → `zuozhe/keli/mokuai`",
+        "- **脚本 CDN**：`kelee.one`（不在 GitHub 仓内）；需 **Surge UA**，QX UA 会 403",
+        "- 规则/Map Local **不依赖** js，可莉主体（域名拦截）一直有效",
+        "- js 拉不到时才写占位；已用 Surge UA + Maasea/app2smile/墨鱼替身补齐绝大多数",
+        "",
+        "## 老书 jnlaoshu",
+        "",
+        "- `zuozhe/laoshu` ← https://github.com/jnlaoshu/MySelf/tree/main/Egern/Module",
+        "- Video/Music/YouTube 等进 `heji/quguanggao`（Rule+Map Local 为主）",
         "",
     ]
     if STATS["js_fail"]:
@@ -2190,8 +2404,8 @@ def write_docs() -> None:
         "作者拼音目录。每人下有 fenliu / mokuai / js；可莉另有 official/。内容与上游字节一致。\n\n"
         "拼音：keli可莉 naisi奶思 moyu墨鱼 dunai毒奶 moli莫离 zenmofeishi怎么肥事 "
         "nobyda blackmatrix7 loyalsoldier iewha chxm weigiegie liulong yu9191 "
-        "repcz sukka vpsdance yuheng local miranquil\n"
-        "原则：文件名尽量中文直白；脚本全自托管，合集不留外站 URL。\n",
+        "repcz sukka vpsdance yuheng laoshu local miranquil\n"
+        "原则：优先作者仓直拉；sync 仅备份；文件名直白；合集 script-path 全自托管。\n",
         encoding="utf-8",
     )
 
@@ -2331,28 +2545,70 @@ def main() -> None:
     ):
         mirror_sync_module(author, src_name, cache)
 
-    print("=== zuozhe/yu9191 + yuheng 全量 Scripts / Modules（sync）===")
-    n_yu = mirror_sync_scripts_tree("yu9191", "Scripts/yu9191")
-    n_yh = mirror_sync_scripts_tree(
-        "yuheng", "Scripts/yuheng", YUHENG_JS_NAMES, also_json=True
+    print("=== zuozhe/yu9191 + yuheng（作者仓优先，删库则 sync 防删备份）===")
+    # Yu9191/Rewrite 目前 GitHub 404（已删/私有）→ sync Scripts/yu9191 是防删镜像
+    n_yu = mirror_github_scripts("yu9191", "Yu9191/Rewrite", "", also_json=False)
+    if n_yu == 0:
+        n_yu = mirror_sync_scripts_tree("yu9191", "Scripts/yu9191")
+        print(f"  yu9191: 作者仓不可用，用 sync 防删镜像 js={n_yu}")
+    # Yuheng0101/X 仍在 → 作者仓直拉
+    n_yh = mirror_github_scripts(
+        "yuheng", "Yuheng0101/X", "Tasks", YUHENG_JS_NAMES, also_json=True
     )
-    n_yhm = mirror_sync_modules_tree("yuheng", "Modules/yuheng")
+    if n_yh == 0:
+        n_yh = mirror_sync_scripts_tree(
+            "yuheng", "Scripts/yuheng", YUHENG_JS_NAMES, also_json=True
+        )
+        print(f"  yuheng fallback sync js={n_yh}")
+    n_yhm = 0
+    try:
+        yh_api = "https://api.github.com/repos/Yuheng0101/X/git/trees/main?recursive=1"
+        yh_tree = json.loads(fetch(yh_api).decode())["tree"]
+        paths_yh = ensure_author("yuheng")
+        for t in yh_tree:
+            if t.get("type") != "blob":
+                continue
+            rel = t["path"]
+            if not rel.endswith(".sgmodule"):
+                continue
+            # Tasks/.../profiles/*.sgmodule 或 Scripts/*/*.sgmodule
+            if not (rel.startswith("Tasks/") or rel.startswith("Scripts/")):
+                continue
+            fname = Path(rel).name
+            # 避免 Scripts/*/surge.sgmodule 与 Tasks 重名互相覆盖
+            if fname in {"surge.sgmodule", "scripable.sgmodule"}:
+                fname = f"{Path(rel).parent.name}-{fname}"
+            try:
+                data = fetch(
+                    f"https://raw.githubusercontent.com/Yuheng0101/X/main/{quote(rel, safe='/')}"
+                )
+            except Exception:
+                continue
+            save_bytes(paths_yh["mokuai"] / fname, data, author="yuheng", kind="mokuai")
+            n_yhm += 1
+            print(f"  yuheng/mokuai/{fname} ← Yuheng0101/X")
+    except Exception as exc:
+        print(f"  ! yuheng author modules: {exc}")
+    if n_yhm == 0:
+        n_yhm = mirror_sync_modules_tree("yuheng", "Modules/yuheng")
     print(f"  yu9191 js={n_yu}  yuheng js={n_yh} mokuai+={n_yhm}")
     (ZUOZHE / "yu9191" / "mokuai" / "README.md").write_text(
-        "Yu9191/Rewrite：解锁合并模块 + ShortcutStudio。\n"
+        "Yu9191：优先 Yu9191/Rewrite 作者仓；若 404 则用 sync 防删镜像（Scripts/yu9191）。\n"
         "- `yu9191-rewrite-unlock.sgmodule` 完整版（含 18+）\n"
         "- `yu9191-rewrite-unlock-日常.sgmodule` → heji/jiesuo\n"
-        "- `yu9191-rewrite-unlock-18加.sgmodule` → heji/shibajia\n"
-        "js：sync `Scripts/yu9191` 全量镜像。\n",
+        "- `yu9191-rewrite-unlock-18加.sgmodule` → heji/shibajia\n",
         encoding="utf-8",
     )
     (ZUOZHE / "yuheng" / "mokuai" / "README.md").write_text(
-        "Yuheng0101/X：\n"
-        "- mokuai：起点抓参 + Modules/yuheng（笔趣阁/云盘/美图/国网）\n"
-        "- js：Tasks 全量（含巴士/JAVDay/黑料/1024/4K世界 等 18+ 签到推送，中文直白名）\n"
-        "18+ 签到不做 rewrite 合集，见 `js/`；Rewrite 18+ 合集在 heji/shibajia（Yu9191）。\n",
+        "Yuheng0101/X（作者仓直拉）。\n"
+        "- mokuai：Tasks/Scripts 下 sgmodule + 起点抓参\n"
+        "- js：Tasks（巴士/JAVDay/黑料/1024/4K世界…中文直白名）\n"
+        "上游：https://github.com/Yuheng0101/X\n",
         encoding="utf-8",
     )
+
+    print("=== zuozhe/laoshu（jnlaoshu Egern 精选）===")
+    mirror_laoshu(cache)
 
     print("=== 拆分 18+（Yu9191 / WeiGiegie）===")
     write_split_unlock("yu9191", "yu9191-rewrite-unlock.sgmodule", cache)

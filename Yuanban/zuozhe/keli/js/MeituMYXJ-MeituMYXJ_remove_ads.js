@@ -1,4 +1,22 @@
-// MISSING mirror of:
-// https://kelee.one/Resource/JavaScript/MeituMYXJ/MeituMYXJ_remove_ads.js
-// 已自托管占位：不依赖上游；待补文件后重建
-throw new Error('script not mirrored: MeituMYXJ-MeituMYXJ_remove_ads.js');
+// 2024-09-07 23:02:42
+const url = $request.url;
+if (!$response.body) $done({});
+let obj = JSON.parse($response.body);
+
+if (url.includes("/operation/home.json")) {
+    // 遍历 func_list
+    if (obj.response.list) {
+      for (let i in obj.response.list) {
+        obj.response.list[i].func_list = obj.response.list[i].func_list.filter(item => {
+          return item.name !== "借钱" && item.name !== "AI剪辑";
+        });
+      }
+    }
+
+    // 遍历 func_bar_type
+    if (obj.response.list && obj.response.list.func_bar_type) {
+        obj.response.list.func_bar_type = obj.response.list.func_bar_type.filter(item => {
+            return item.func_bar_type !== 8;
+        });
+    }
+}
