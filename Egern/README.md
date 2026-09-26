@@ -35,6 +35,8 @@ https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Prof
 | 起点读书签到 | 默认开；先抓 CK 再关「抓取重写」参数 |
 | 18+ / 抓参 / PingMe / iRingo 定位·其他 | 默认关 |
 
+全局含 `vif_hairpin_addresses: 10.7.0.1`（回流）；DNS forward / real_ip 已按老书补齐高频域名与 NAS/路由项。
+
 ## 分流去重（Profile 已瘦身）
 
 相对早期叠表版，去掉近重复引用：
