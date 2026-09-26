@@ -289,7 +289,8 @@ AND,((GEOIP,CN),(DOMAIN,pitaya.bytedance.com,extended-matching)),DIRECT
 # - - - - - - - - - - - - - - - - - - - - - - - - 
 # 本仓 · 屏蔽更新/P12 等
 # - - - - - - - - - - - - - - - - - - - - - - - - 
-# 农行代理检测探针（原 skip-proxy-collection；skip-proxy 名单已收敛到主配置）
+# 农行代理检测探针（sooyaaabo/mieqq SkipProxy 的 Rule 段）
+# skip-proxy / always-real-ip 写在 Profile：bypass_tunnel_proxy、real_ip_domains
 DOMAIN,msmp.abchina.com.cn,REJECT
 # 屏蔽 iOS/iPadOS 企业证书 OCSP 验证（P12 相关）
 DOMAIN-SUFFIX,ocsp-lb.apple.com.akadns.net,REJECT

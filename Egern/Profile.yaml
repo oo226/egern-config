@@ -160,8 +160,38 @@ dns:
   skip_tls_verify: false
 
 # ------------------------------------------
+# 二点五、跳过隧道代理（Surge skip-proxy / sooyaaabo SkipProxy）
+# 解锁合集只留农行 REJECT；名单写主配置，避免模块叠层
+# ------------------------------------------
+bypass_tunnel_proxy:
+  # Tailscale + 局域网
+  - '*.ts.net'
+  - tailscale.com
+  - '*.tailscale.com'
+  - tailscale.net
+  - '*.tailscale.net'
+  - 100.64.0.0/10
+  - 'fd7a:115c:a1e0::/48'
+  - '*.local'
+  - '*.lan'
+  - 192.168.0.0/16
+  - 10.0.0.0/8
+  - 172.16.0.0/12
+  # mieqq / sooyaaabo SkipProxy：跳过部分应用代理检测
+  - www.baidu.com
+  - yunbusiness.ccb.com
+  - wxh.wo.cn
+  - gate.lagou.com
+  - www.abchina.com.cn
+  - www.shanbay.com
+  - login-service.mobile-bank.psbc.com
+  - mobile-bank.psbc.com
+  - id6.me
+  - www.163.com
+
+# ------------------------------------------
 # 三、真实 IP 域名（不用 Fake-IP）
-# 保留 Tailscale；补齐 NAS/路由/游戏/Apple（对齐老书有好处的项）
+# 保留 Tailscale；补齐 NAS/路由/游戏/Apple；含 SkipProxy always-real-ip
 # ------------------------------------------
 real_ip_domains:
   # 局域网 / 家庭网络
@@ -173,6 +203,11 @@ real_ip_domains:
   - '*.tailscale.com'
   - '*.tailscale.net'
   - '*.tytuyoo.com'
+  # mieqq / sooyaaabo SkipProxy · always-real-ip
+  - easy-login.10099.com.cn
+  - '*-update.xoyocdn.com'
+  - id6.me
+  - open.e.189.cn
   # Apple 基础服务
   - '*.apple-dns.net'
   - '*.safebrowsing.apple'
@@ -571,8 +606,19 @@ mitm:
       - '*.claude.ai'
 
 # ------------------------------------------
-# 七、小组件（今日油价：浙江宁波；勿写 scriptings.generic）
+# 七、通用脚本 + 小组件（今日油价：浙江宁波）
+# widgets 与 generic 同名；脚本带 6h 缓存，减轻配置重载时的重复请求
 # ------------------------------------------
+scriptings:
+  - generic:
+      name: 今日油价
+      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/qita/ibl3nd/Oil_Widget.JS
+      update_interval: 86400
+      timeout: 15
+      env:
+        region: zhejiang/ningbo
+        SHOW_TREND: "true"
+
 widgets:
   - name: 今日油价
     env:
@@ -582,6 +628,7 @@ widgets:
 # ------------------------------------------
 # 八、模块（日常三件：去广告·解锁·签到；可选两件默认关）
 # 解锁已含：Sub-Store、Script Hub、BoxJs、天气/地图、AntiRevoke、屏蔽更新、插件跳转、TG外链
+# SkipProxy（mieqq）名单在主配置 bypass_tunnel_proxy / real_ip_domains；解锁仅农行探针 REJECT
 # 去广告已含开屏；YouTube 老书段在去广告，解锁里字幕翻译可并存
 # 18+ / 抓参 / iRingo定位·TV·News 按需开；分流已去重
 # ------------------------------------------
