@@ -1,0 +1,6 @@
+#!name=代理检测补充
+#!desc=同 skip-proxy-collection，供 unlock 合并引用
+#!category=代理检测
+
+[Rule]
+DOMAIN,msmp.abchina.com.cn,REJECT

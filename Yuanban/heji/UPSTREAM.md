@@ -1,6 +1,6 @@
 # 合集上游说明
 
-构建：2026-09-26 02:12 UTC
+构建：2026-09-26 03:41 UTC
 分支：`guize`
 
 ## zuozhe 作者统计
@@ -9,7 +9,7 @@
 - **iewha**: mokuai=2 js=8 fenliu=0
 - **keli**: mokuai=283 js=82 fenliu=0
 - **liulong**: mokuai=1 js=13 fenliu=0
-- **local**: mokuai=3 js=6 fenliu=0
+- **local**: mokuai=3 js=103 fenliu=0
 - **miranquil**: mokuai=1 js=1 fenliu=0
 - **moyu**: mokuai=27 js=41 fenliu=0
 - **naisi**: mokuai=3 js=143 fenliu=0
@@ -22,13 +22,17 @@
 
 ## qiandao 签到单件（无合集）
 
-`{'keli': 2, 'official': 9, 'local': 2}`
+`{'keli': 2, 'official': 9, 'local': 2, 'js': 18}`
+
+## qita 其他脚本（无合集）
+
+`{'official': 45, 'local': 9}`
 
 ## heji 分段袋数 / 分流文件数
 
 `{'quguanggao': 220, 'qukaiping': 2, 'jiesuo': 26, 'zhuacan': 2, 'fenliu': 28}`
 
-脚本镜像成功约 883，失败 131（多为 kelee.one 403，合集保留上游 URL）
+脚本镜像成功约 980，失败 132（多为 kelee.one 403，合集保留上游 URL）
 
 ## 解锁近重复（合集已跳过，单件仍保留）
 
@@ -38,10 +42,11 @@
 
 ## 去广告置顶
 
-1. `zuozhe/keli/mokuai/广告平台拦截器.sgmodule` — 所有去广告插件的基础，须排顶部
+1. `zuozhe/keli/mokuai/广告平台拦截器.sgmodule`
 2. `zuozhe/keli/mokuai/可莉广告过滤器.sgmodule`
 3. 可莉各 App `*去广告.sgmodule`
-4. 奶思 `blockAds.module` 整块
+4. 墨鱼 AdBlock + NBPro
+5. 奶思 `blockAds.module` 整块
 
 ## js 镜像失败（节选）
 

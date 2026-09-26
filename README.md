@@ -7,7 +7,8 @@
 ```
 Yuanban/
   zuozhe/     # 作者拼音 / fenliu · mokuai · js · official（原样）
-  qiandao/    # 签到单件（无合集）：keli / official / local
+  qiandao/    # 签到单件（无合集）：keli / official / local / js
+  qita/       # 其他脚本/工具（无合集）：official / local
   danxiang/   # 单件备份
   heji/       # 四个合集 + 分流清单
     quguanggao.module   # 去广告
@@ -28,7 +29,7 @@ https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/he
 https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/zhuacan.module
 ```
 
-签到：`Yuanban/qiandao/` 自选。分流：`Yuanban/heji/fenliu/README.md`。
+签到：`Yuanban/qiandao/`　其他脚本：`Yuanban/qita/`　分流：`Yuanban/heji/fenliu/README.md`
 
 重建：`python3 scripts/build-yuanban.py`
 

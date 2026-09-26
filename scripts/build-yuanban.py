@@ -8,7 +8,9 @@
     zuozhe/keli/official/                   # QingRex Surge/Official（非签到）
     danxiang/{fenliu,mokuai,js}/            # 单件汇总备份（文件名带作者前缀）
     qiandao/                                # 签到：只放单件，不做合集
-      keli/  official/  local/
+      keli/  official/  local/  js/
+    qita/                                   # 其他脚本/工具：只放单件，不做合集
+      official/  local/
     heji/
       quguanggao.module   # 去广告
       qukaiping.module    # 去开屏
@@ -21,7 +23,7 @@
   - 不改作者规则正文；仅 script-path URL 改指本仓自托管 js
   - Fan.a.tail 风格：按 App/模块分段注释写清楚
   - 去广告合集最上方强制：广告平台拦截器 → 可莉广告过滤器（基础、最先生效）
-  - 签到不做 heji，只进 qiandao/
+  - 签到 / 其他脚本不做 heji，只进 qiandao/、qita/
 """
 
 from __future__ import annotations
@@ -45,6 +47,7 @@ ZUOZHE = YUAN / "zuozhe"
 DAN = YUAN / "danxiang"
 HEJI = YUAN / "heji"
 QIANDAO = YUAN / "qiandao"
+QITA = YUAN / "qita"
 
 
 def _detect_branch() -> str:
@@ -161,6 +164,43 @@ QIANDAO_OFFICIAL_EXTRA = frozenset({
     "联通余量.official.sgmodule",
 })
 
+# Official 文件名含这些 → 仍是去广告，不进 qita（原料留 keli/official）
+OFFICIAL_AD_KW = ("去广告", "广告联盟", "BiliADBlock", "ADBlock")
+
+# sync 签到脚本（无独立 sgmodule 的，进 qiandao/js/）
+QIANDAO_SYNC_JS = (
+    "Scripts/Nodeseek_NsCheckin.js",
+    "Scripts/iios_checkin.js",
+    "Scripts/mixc_signin.js",
+    "Scripts/PingMe-signin.js",
+    "Scripts/PingMe-capture.js",
+    "Scripts/fmz200/PingMe/PingMeSignin.js",
+    "Scripts/fmz200/ccbLife/ccbLife_signin.js",
+    "Scripts/fmz200/chery/cheryAppSignin.js",
+    "Scripts/fmz200/dalanshu/dalanshu_checkin.js",
+    "Scripts/fmz200/macat/macat_signin.js",
+    "Scripts/fmz200/weibo/weibo_signin.js",
+    "Scripts/fmz200/weibo/weibotalk_signin.js",
+    "Scripts/fmz200/weibo/weibotalk.cookie.js",
+    "Scripts/fmz200/xxyx/xxyx_signin.js",
+    "Scripts/fmz200/douyu/yubaSign.js",
+    "Scripts/zenmofeishi/Nodeseek_NsCheckin.js",
+    "Scripts/zenmofeishi/iios_checkin.js",
+    "Scripts/zenmofeishi/mixc_signin.js",
+)
+
+# sync 工具模块 → qita/local
+QITA_SYNC_MODULES = (
+    "boxjs.sgmodule",
+    "proxy-detect-extra.sgmodule",
+    "skip-proxy-collection.module",
+    "iringo-location.sgmodule",
+    "iringo-maps.sgmodule",
+    "iringo-weather.sgmodule",
+    "iringo-others.sgmodule",
+    "fmz200-extra.sgmodule",
+)
+
 SCRIPT_URL_RE = re.compile(
     r"(https?://[^\s,\"']+\.(?:js|mjs)(?:\?[^\s,\"']*)?)",
     re.IGNORECASE,
@@ -170,6 +210,7 @@ STATS: dict = {
     "zuozhe": {},
     "heji": {},
     "qiandao": {},
+    "qita": {},
     "js_ok": 0,
     "js_fail": [],
 }
@@ -185,18 +226,33 @@ def encode_url(url: str) -> str:
 def fetch(url: str, *, timeout: int = 90) -> bytes:
     url = encode_url(url)
     headers = dict(UA)
-    token = os.environ.get("GITHUB_TOKEN") or os.environ.get("GH_TOKEN")
-    if token and "api.github.com" in url:
-        headers["Authorization"] = f"Bearer {token}"
+    # GitHub API/raw：普通 UA；ddgksf2013.top 仍用 QX UA
+    if "api.github.com" in url or "raw.githubusercontent.com" in url:
+        headers["User-Agent"] = "egern-yuanban/1.0"
+    if "api.github.com" in url:
         headers["Accept"] = "application/vnd.github+json"
+        # 坏掉的 GITHUB_TOKEN 会导致 401；仅显式 FORCE 时带 token
+        token = os.environ.get("ADBLOCK_GH_TOKEN") or ""
+        if token:
+            headers["Authorization"] = f"Bearer {token}"
+
+    def _read(req: urllib.request.Request) -> bytes:
+        with urllib.request.urlopen(req, context=CTX, timeout=timeout) as resp:
+            return resp.read()
+
     req = urllib.request.Request(url, headers=headers)
     try:
-        with urllib.request.urlopen(req, context=CTX, timeout=timeout) as resp:
-            data = resp.read()
+        data = _read(req)
     except Exception:
-        req = urllib.request.Request("https://ghproxy.net/" + url, headers=UA)
-        with urllib.request.urlopen(req, context=CTX, timeout=timeout) as resp:
-            data = resp.read()
+        # 401：去掉 Authorization 再试（公共仓库）
+        headers.pop("Authorization", None)
+        try:
+            data = _read(urllib.request.Request(url, headers=headers))
+        except Exception:
+            proxy_headers = {"User-Agent": headers.get("User-Agent", "egern-yuanban/1.0")}
+            data = _read(
+                urllib.request.Request("https://ghproxy.net/" + url, headers=proxy_headers)
+            )
     if data.lstrip()[:20].lower().startswith((b"<!doctype", b"<html")):
         raise ValueError(f"HTML {url}")
     return data
@@ -208,6 +264,12 @@ def is_signin_name(name: str) -> bool:
     if base in QIANDAO_OFFICIAL_EXTRA:
         return True
     return any(k in base for k in SIGNIN_KW)
+
+
+def is_official_ad_name(name: str) -> bool:
+    """Official 去广告类：留 keli/official，不进 qita。"""
+    base = Path(name).name
+    return any(k in base for k in OFFICIAL_AD_KW)
 
 
 def ensure_author(pinyin: str) -> dict[str, Path]:
@@ -232,8 +294,24 @@ def qiandao_dir(bucket: str) -> Path:
 
 def save_qiandao(bucket: str, filename: str, data: bytes) -> Path:
     dest = qiandao_dir(bucket) / filename
+    dest.parent.mkdir(parents=True, exist_ok=True)
     dest.write_bytes(data)
     STATS["qiandao"][bucket] = STATS["qiandao"].get(bucket, 0) + 1
+    return dest
+
+
+def qita_dir(bucket: str) -> Path:
+    d = QITA / bucket
+    d.mkdir(parents=True, exist_ok=True)
+    STATS["qita"].setdefault(bucket, 0)
+    return d
+
+
+def save_qita(bucket: str, filename: str, data: bytes) -> Path:
+    dest = qita_dir(bucket) / filename
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    dest.write_bytes(data)
+    STATS["qita"][bucket] = STATS["qita"].get(bucket, 0) + 1
     return dest
 
 
@@ -563,7 +641,7 @@ def mirror_keli_official(cache: dict[str, str]) -> None:
 
 
 def build_qiandao_local(cache: dict[str, str]) -> None:
-    """本仓/sync 签到相关单件 → qiandao/local（不做合集）。"""
+    """本仓/sync 签到相关单件 → qiandao/local + js（不做合集）。"""
     ensure_author("local")
     items = [
         ("pingme.sgmodule", f"{SYNC_RAW}/Modules/pingme.sgmodule"),
@@ -578,6 +656,19 @@ def build_qiandao_local(cache: dict[str, str]) -> None:
         save_qiandao("local", fname, raw)
         rewrite_js_urls(raw.decode("utf-8", errors="replace"), "local", cache)
         print(f"  qiandao/local {fname}")
+
+    # 无独立模块的签到/抓参脚本：原样放 qiandao/js/
+    for rel in QIANDAO_SYNC_JS:
+        url = f"{SYNC_RAW}/{quote(rel, safe='/')}"
+        fname = rel.replace("Scripts/", "").replace("/", "__")
+        try:
+            raw = fetch(url)
+        except Exception as exc:
+            print(f"  ! qiandao/js {fname}: {exc}")
+            continue
+        save_qiandao("js", fname, raw)
+        print(f"  qiandao/js/{fname}")
+
     (QIANDAO / "README.md").write_text(
         "\n".join(
             [
@@ -585,11 +676,67 @@ def build_qiandao_local(cache: dict[str, str]) -> None:
                 "",
                 "签到模块差异大、依赖 Cookie/BoxJs，**不做 heji 合集**，按来源分文件夹自取。",
                 "",
-                "- `keli/` — 可莉 Surge 根目录签到（WPS / 书香门第 等）",
-                "- `official/` — QingRex Official 签到 / 抢券 / 联通余量",
-                "- `local/` — 本仓 sync：PingMe、起点签到等",
+                "上游能做成 Surge 模块的就这些；更多是 **Task/JS**（BoxJs 或手动），放在 `js/`。",
                 "",
-                "抓参见 `heji/zhuacan.module`（抓完关掉）。",
+                "- `keli/` — 可莉 Surge 根目录签到（WPS / 书香门第）",
+                "- `official/` — QingRex Official 签到 / 抢券 / 联通余量",
+                "- `local/` — 本仓 sync：PingMe、起点签到模块",
+                "- `js/` — sync 签到脚本（fmz200 / 怎么肥事 / Nodeseek…，无独立 module）",
+                "",
+                "抓参合集见 `heji/zhuacan.module`（抓完关掉）。工具类见 `Yuanban/qita/`。",
+                "",
+            ]
+        ),
+        encoding="utf-8",
+    )
+
+
+def build_qita(cache: dict[str, str]) -> None:
+    """其他脚本/工具单件 → qita/（不做合集）。"""
+    # Official 非广告、非签到 → qita/official
+    official_dir = ZUOZHE / "keli" / "official"
+    if official_dir.is_dir():
+        for path in sorted(official_dir.glob("*.sgmodule")):
+            if is_signin_name(path.name) or is_official_ad_name(path.name):
+                continue
+            raw = path.read_bytes()
+            save_qita("official", path.name, raw)
+            rewrite_js_urls(raw.decode("utf-8", errors="replace"), "keli", cache)
+            print(f"  qita/official {path.name}")
+
+    # sync 工具模块
+    for fname in QITA_SYNC_MODULES:
+        url = f"{SYNC_RAW}/Modules/{quote(fname, safe='/')}"
+        try:
+            raw = fetch(url)
+        except Exception as exc:
+            print(f"  ! qita/local {fname}: {exc}")
+            continue
+        save_qita("local", fname, raw)
+        rewrite_js_urls(raw.decode("utf-8", errors="replace"), "local", cache)
+        print(f"  qita/local {fname}")
+
+    # boxjs json 可选
+    for fname in ("egern.boxjs.json",):
+        url = f"{SYNC_RAW}/Modules/{quote(fname, safe='/')}"
+        try:
+            raw = fetch(url)
+            save_qita("local", fname, raw)
+            print(f"  qita/local {fname}")
+        except Exception as exc:
+            print(f"  ! qita/local {fname}: {exc}")
+
+    (QITA / "README.md").write_text(
+        "\n".join(
+            [
+                "# 其他脚本 / 工具（单件，无合集）",
+                "",
+                "BoxJs、Sub-Store、面板、定位/天气增强、测速等——**不做 heji**，按需自取。",
+                "",
+                "- `official/` — QingRex Official 工具/增强（已排除去广告与签到）",
+                "- `local/` — 本仓 sync：BoxJs、IRingo、proxy-detect、skip-proxy、fmz200-extra 等",
+                "",
+                "去广告/开屏/解锁/抓参合集仍在 `heji/`；签到在 `qiandao/`。",
                 "",
             ]
         ),
@@ -664,17 +811,25 @@ def build_danxiang() -> None:
                     dest = DAN / "js" / f"{author}__{rel}"
                     dest.parent.mkdir(parents=True, exist_ok=True)
                     shutil.copy2(f, dest)
-    # qiandao 单件也备份一份到 danxiang/mokuai
-    if QIANDAO.is_dir():
-        for bucket in sorted(QIANDAO.iterdir()):
+    # qiandao / qita 单件也备份
+    for root, prefix, kind_default in (
+        (QIANDAO, "qiandao", "mokuai"),
+        (QITA, "qita", "mokuai"),
+    ):
+        if not root.is_dir():
+            continue
+        for bucket in sorted(root.iterdir()):
             if not bucket.is_dir():
                 continue
-            for f in bucket.iterdir():
+            kind = "js" if bucket.name == "js" else kind_default
+            for f in bucket.rglob("*"):
                 if f.is_file() and f.name != "README.md":
-                    dest = DAN / "mokuai" / f"qiandao_{bucket.name}__{f.name}"
+                    rel = f.relative_to(bucket).as_posix().replace("/", "__")
+                    dest = DAN / kind / f"{prefix}_{bucket.name}__{rel}"
+                    dest.parent.mkdir(parents=True, exist_ok=True)
                     shutil.copy2(f, dest)
     (DAN / "README.md").write_text(
-        "单件备份：从 zuozhe / qiandao 汇总，文件名 `作者__原名`。原样，不改内容。\n",
+        "单件备份：从 zuozhe / qiandao / qita 汇总，文件名带前缀。原样，不改内容。\n",
         encoding="utf-8",
     )
 
@@ -935,7 +1090,7 @@ def write_docs() -> None:
             [
                 "# Yuanban — 原版资源根（拼音目录）",
                 "",
-                "全部去广告 / 开屏 / 解锁 / 抓参 / 签到单件 / 分流都在这一个文件夹下。",
+                "全部去广告 / 开屏 / 解锁 / 抓参 / 签到 / 其他脚本 / 分流都在这一个文件夹下。",
                 "",
                 "## 结构",
                 "",
@@ -944,27 +1099,22 @@ def write_docs() -> None:
                 "  zuozhe/                 # 按作者",
                 "    keli/                 # 可莉",
                 "      fenliu/  mokuai/  js/  official/",
-                "    naisi/                # 奶思",
-                "    moyu/                 # 墨鱼",
-                "    …",
+                "    naisi/  moyu/  …",
                 "  qiandao/                # 签到单件（无合集）",
-                "    keli/  official/  local/",
-                "  danxiang/               # 单件备份（作者__文件名）",
-                "    fenliu/  mokuai/  js/",
+                "    keli/  official/  local/  js/",
+                "  qita/                   # 其他脚本/工具（无合集）",
+                "    official/  local/",
+                "  danxiang/               # 单件备份",
                 "  heji/                   # 合集（四分）+ 分流清单",
-                "    quguanggao.module     # 去广告",
-                "    qukaiping.module      # 去开屏",
-                "    jiesuo.module         # 解锁增强",
-                "    zhuacan.module        # 抓参",
-                "    fenliu/               # 分流规则集单件",
+                "    quguanggao / qukaiping / jiesuo / zhuacan / fenliu/",
                 "```",
                 "",
                 "## 原则",
                 "",
-                "- `zuozhe` / `danxiang` / `qiandao`：**原作者照搬**，文件字节不改",
-                "- `heji`：只拼装 + Fan.a.tail 风格分段注释；**规则正文不改**；script URL 改指本仓 `zuozhe/*/js`",
-                "- 去广告合集最上方：`广告平台拦截器` → `可莉广告过滤器`（基础，最先生效）",
-                "- **签到不做合集**，只在 `qiandao/` 按来源放单件",
+                "- `zuozhe` / `danxiang` / `qiandao` / `qita`：**原作者照搬**，文件字节不改",
+                "- `heji`：只拼装 + Fan.a.tail 分段；**规则正文不改**；script URL 改指本仓",
+                "- 去广告置顶：`广告平台拦截器` → `可莉广告过滤器`",
+                "- **签到 / 其他脚本不做合集**",
                 "",
                 "## 订阅（合集）",
                 "",
@@ -975,11 +1125,11 @@ def write_docs() -> None:
                 f"{RAW}/Yuanban/heji/zhuacan.module",
                 "```",
                 "",
-                "签到：打开 `Yuanban/qiandao/` 自选模块。分流：见 `Yuanban/heji/fenliu/README.md`。",
+                "签到：`Yuanban/qiandao/`　其他脚本：`Yuanban/qita/`　分流：`heji/fenliu/README.md`",
                 "",
                 "重建：`python3 scripts/build-yuanban.py`",
                 "",
-                "与 sync 日更的 `Modules/` `Routing/` 并行，不覆盖。",
+                "与 sync 日更并行，不覆盖。",
                 "",
             ]
         ),
@@ -1004,6 +1154,10 @@ def write_docs() -> None:
         "",
         f"`{STATS.get('qiandao', {})}`",
         "",
+        "## qita 其他脚本（无合集）",
+        "",
+        f"`{STATS.get('qita', {})}`",
+        "",
         "## heji 分段袋数 / 分流文件数",
         "",
         f"`{STATS['heji']}`",
@@ -1018,10 +1172,10 @@ def write_docs() -> None:
         "",
         "## 去广告置顶",
         "",
-        "1. `zuozhe/keli/mokuai/广告平台拦截器.sgmodule` — 所有去广告插件的基础，须排顶部",
+        "1. `zuozhe/keli/mokuai/广告平台拦截器.sgmodule`",
         "2. `zuozhe/keli/mokuai/可莉广告过滤器.sgmodule`",
         "3. 可莉各 App `*去广告.sgmodule`",
-        "4. 墨鱼 AdBlock（微博/闲鱼/网易云/…）+ NBProAds + NBPro-egern 补全",
+        "4. 墨鱼 AdBlock + NBPro",
         "5. 奶思 `blockAds.module` 整块",
         "",
     ]
@@ -1042,7 +1196,7 @@ def write_docs() -> None:
 def main() -> None:
     if YUAN.exists():
         shutil.rmtree(YUAN)
-    for d in (ZUOZHE, DAN / "fenliu", DAN / "mokuai", DAN / "js", HEJI, QIANDAO):
+    for d in (ZUOZHE, DAN / "fenliu", DAN / "mokuai", DAN / "js", HEJI, QIANDAO, QITA):
         d.mkdir(parents=True, exist_ok=True)
 
     cache: dict[str, str] = {}
@@ -1053,8 +1207,11 @@ def main() -> None:
     print("=== zuozhe/keli/official + qiandao/official ===")
     mirror_keli_official(cache)
 
-    print("=== qiandao/local ===")
+    print("=== qiandao/local + js ===")
     build_qiandao_local(cache)
+
+    print("=== qita（其他脚本/工具）===")
+    build_qita(cache)
 
     print("=== zuozhe/naisi ===")
     mirror_url_module(
@@ -1177,6 +1334,7 @@ def main() -> None:
     print(
         "done heji=", STATS["heji"],
         "qiandao=", STATS["qiandao"],
+        "qita=", STATS["qita"],
         "js_ok=", STATS["js_ok"],
         "js_fail=", len(STATS["js_fail"]),
     )
