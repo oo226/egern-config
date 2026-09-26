@@ -29,7 +29,9 @@ https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/he
 https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/zhuacan.module
 ```
 
-签到：`Yuanban/qiandao/`　其他/小组件：`Yuanban/qita/`（IBL3ND 在 `qita/ibl3nd/`）　分流：`Yuanban/heji/fenliu/README.md`
+签到：`Yuanban/qiandao/`（含怎么肥事）　其他/小组件：`Yuanban/qita/ibl3nd/`　分流：`Yuanban/heji/fenliu/README.md`
+
+原则：**文件名直白**（如 `莫离-国内域名.list`、`怎么肥事/PingMe签到.js`）；**脚本全自托管**，合集不挂外站，上游删库也能用。
 
 重建：`python3 scripts/build-yuanban.py`
 

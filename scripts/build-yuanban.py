@@ -252,10 +252,140 @@ QIANDAO_SYNC_JS = (
     "Scripts/fmz200/weibo/weibotalk.cookie.js",
     "Scripts/fmz200/xxyx/xxyx_signin.js",
     "Scripts/fmz200/douyu/yubaSign.js",
-    "Scripts/zenmofeishi/Nodeseek_NsCheckin.js",
-    "Scripts/zenmofeishi/iios_checkin.js",
-    "Scripts/zenmofeishi/mixc_signin.js",
 )
+
+# 怎么肥事 ZenmoFeiShi — 直白中文名（一眼知道干啥）
+ZENMO_JS_NAMES = {
+    "CalShot.js": "CalShot打卡.js",
+    "hongze.js": "洪泽论坛签到.js",
+    "mixc_signin.js": "一点万象签到.js",
+    "Nodeseek_NsCheckin.js": "NodeSeek签到.js",
+    "PingMe.js": "PingMe签到.js",
+    "WeTalk.js": "WeTalk签到.js",
+    "QQMusic.js": "QQ音乐绿钻签到.js",
+    "LKXDYF.js": "老百姓大药房签到.js",
+    "SLY.js": "随乐游签到.js",
+    "LaiChong.js": "来充签到.js",
+    "SoulSing.js": "Soul唱歌签到.js",
+    "iios_checkin.js": "iios签到.js",
+    "bili_view_ad.js": "B站去广告.js",
+    "hlwxx_remove_ads.js": "黑料不打烊去广告.js",
+    "MeiTuanNoAd.js": "美团去广告.js",
+    "TilingSales_getNav.js": "瓜子影视导航净化.js",
+    "youtube.response.js": "油管去广告.js",
+    "yt-zh-sub.js": "油管简体字幕.js",
+    "yt-sub-clean.js": "油管字幕清理.js",
+    "BPZJ.js": "表盘专辑解锁.js",
+    "MTB.js": "磨题帮解锁.js",
+    "mgtv_vip.js": "芒果TV解锁.js",
+    "migu_vip.js": "咪咕视频解锁.js",
+    "XMLYVIP.js": "喜马拉雅VIP解锁.js",
+    "gyrfalcon_unlock.js": "Gyrfalcon解锁.js",
+    "xzimu-unlock.js": "X字幕解锁.js",
+    "TaskHotBiliVideo.js": "B站热播任务.js",
+}
+ZENMO_SNIPPET_NAMES = {
+    "bili_view_ad_rewrite.snippet": "B站去广告.conf",
+    "WB.snippet": "微博净化.conf",
+    "Soul.snippet": "Soul净化.conf",
+    "Keep.snippet": "Keep净化.conf",
+    "Smzdm.snippet": "什么值得买净化.conf",
+    "HP.snippet": "虎扑净化.conf",
+    "KuAn.snippet": "酷安净化.conf",
+    "TB.snippet": "贴吧净化.conf",
+    "TH.snippet": "途虎养车净化.conf",
+    "SF.snippet": "顺丰净化.conf",
+    "Pinduoduo.snippet": "拼多多净化.conf",
+    "Didichuxing.snippet": "滴滴出行净化.conf",
+    "T3.snippet": "T3出行净化.conf",
+    "Cwkj.snippet": "畅玩空间净化.conf",
+    "hlwxx_remove_ads.snippet": "黑料不打烊去广告.conf",
+    "TilingSales_ad_remove.snippet": "瓜子影视去广告.conf",
+    "WxPureDominion.snippet": "微信净化.conf",
+    "Youtube.snippet": "油管去广告.conf",
+    "Yt-zh.snippet": "油管简体字幕.conf",
+    "mgtv_vip.snippet": "芒果TV解锁.conf",
+    "migu_vip_share.snippet": "咪咕视频解锁.conf",
+    "xzimu-unlock.snippet": "X字幕解锁.conf",
+    "xTerm256.snippet": "xTerm256解锁.conf",
+}
+ZENMO_AD_CONFS = (
+    "B站去广告.conf", "微博净化.conf", "Soul净化.conf", "Keep净化.conf",
+    "什么值得买净化.conf", "虎扑净化.conf", "酷安净化.conf", "贴吧净化.conf",
+    "途虎养车净化.conf", "顺丰净化.conf", "拼多多净化.conf", "滴滴出行净化.conf",
+    "T3出行净化.conf", "畅玩空间净化.conf", "黑料不打烊去广告.conf",
+    "瓜子影视去广告.conf", "微信净化.conf", "油管去广告.conf",
+)
+ZENMO_UNLOCK_CONFS = (
+    "芒果TV解锁.conf", "咪咕视频解锁.conf", "X字幕解锁.conf",
+    "xTerm256解锁.conf", "油管简体字幕.conf",
+)
+ZENMO_UNLOCK_JS = (
+    "表盘专辑解锁.js", "磨题帮解锁.js", "芒果TV解锁.js", "咪咕视频解锁.js",
+    "喜马拉雅VIP解锁.js", "Gyrfalcon解锁.js", "X字幕解锁.js", "美团去广告.js",
+)
+ZENMO_QIANDAO_JS = (
+    "CalShot打卡.js", "洪泽论坛签到.js", "一点万象签到.js", "NodeSeek签到.js",
+    "PingMe签到.js", "WeTalk签到.js", "QQ音乐绿钻签到.js", "老百姓大药房签到.js",
+    "随乐游签到.js", "来充签到.js", "Soul唱歌签到.js", "iios签到.js",
+)
+
+# 分流公开名：作者-用途（一眼能懂）
+AUTHOR_CN = {
+    "repcz": "Repcz",
+    "moli": "莫离",
+    "sukka": "Sukka",
+    "loyalsoldier": "Loyalsoldier",
+    "vpsdance": "VPSDance",
+    "blackmatrix7": "BMJ",
+    "keli": "可莉",
+    "naisi": "奶思",
+    "moyu": "墨鱼",
+    "dunai": "毒奶",
+    "zenmofeishi": "怎么肥事",
+    "nobyda": "NobyDa",
+    "local": "本仓",
+    "iewha": "iEwha",
+    "chxm": "chxm",
+    "weigiegie": "WeiGiegie",
+    "liulong": "liul0ng",
+    "yu9191": "Yu9191",
+    "yuheng": "Yuheng",
+    "miranquil": "miranquil",
+}
+FENLIU_CN = {
+    "ChinaDomain": "国内域名", "ChinaIP": "国内IP", "ChinaASN": "国内ASN",
+    "ChinaMax": "国内域名Max", "Direct": "直连", "Lan": "局域网",
+    "Reject": "广告拒绝", "reject": "广告拒绝", "reject_extra": "广告拒绝补充",
+    "reject.txt": "广告拒绝", "Anti-Ad": "广告拦截",
+    "Proxy": "代理", "ProxyGFW": "GFW代理", "proxy": "代理", "gfw": "GFW列表",
+    "direct": "直连大名单", "AI": "AI", "ai": "AI", "OpenAI": "OpenAI",
+    "Claude": "Claude", "Gemini": "Gemini", "Google": "Google", "google": "Google",
+    "Telegram": "Telegram", "telegram": "Telegram", "telegram_ip": "Telegram-IP",
+    "telegramcidr": "Telegram-CIDR", "Twitter": "Twitter", "TikTok": "TikTok",
+    "YouTube": "YouTube", "Netflix": "Netflix", "Disney": "Disney",
+    "Spotify": "Spotify", "Emby": "Emby", "Github": "GitHub", "GitHub": "GitHub",
+    "Microsoft": "Microsoft", "microsoft": "Microsoft", "AppleCN": "苹果中国",
+    "AppleServers": "苹果服务", "Apple": "苹果", "apple": "苹果",
+    "apple_cn": "苹果中国", "apple_services": "苹果服务", "icloud": "iCloud",
+    "WeChat": "微信", "Bilibili": "哔哩哔哩", "Game": "游戏",
+    "Steam": "Steam", "PayPal": "PayPal", "GlobalMedia": "全球流媒体",
+    "AdvertisingLite": "广告精简", "Cloudflare": "Cloudflare",
+    "cdn": "CDN", "download": "下载", "stream": "流媒体",
+    "china_ip": "国内IP", "cncidr": "国内CIDR", "private": "私有网络",
+    "tld-not-cn": "非中国TLD", "greatfire": "GreatFire", "all": "AI合集",
+}
+
+# kelee.one 常 403：换已知 GitHub 镜像（内容自托管后不再依赖）
+KELEE_FALLBACKS = {
+    "VVebo_repair.js": (
+        "https://raw.githubusercontent.com/suiyuran/stash/main/scripts/"
+        "fix-vvebo-user-timeline.js"
+    ),
+    "TikTok_redirect.js": (
+        "https://raw.githubusercontent.com/VirgilClyne/GetSomeFries/main/js/TikTok.request.js"
+    ),
+}
 
 # sync 工具模块 → qita/local
 QITA_SYNC_MODULES = (
@@ -415,46 +545,178 @@ def _normalize_js_url(url: str) -> str:
     return url
 
 
+def _readable_js_name(url: str) -> str:
+    """扁平、直白的脚本文件名（不要 raw.githubusercontent.com/... 长路径）。"""
+    u = urlparse(url)
+    path = unquote(u.path).rstrip("/")
+    base = Path(path).name or "script.js"
+    if base.lower() in {"raw", "index.js", "script.js", "main.js"} and Path(path).parent.name:
+        base = Path(path).parent.name + ".js"
+    base = ZENMO_JS_NAMES.get(base, base)
+    # kelee: .../VVebo/VVebo_repair.js → VVebo时间线修复.js
+    if "kelee.one" in (u.netloc or "") or "/Resource/JavaScript/" in path or "/Resource/Script/" in path:
+        parts = [p for p in path.split("/") if p]
+        if len(parts) >= 2:
+            app, fname = parts[-2], parts[-1]
+            stem = Path(fname).stem
+            base = f"{app}-{stem}.js"
+    if u.query:
+        qh = hashlib.sha1(u.query.encode()).hexdigest()[:6]
+        p = Path(base)
+        base = f"{p.stem}_{qh}{p.suffix}"
+    base = re.sub(r"[^\w.\u4e00-\u9fff\-]+", "-", base)
+    if not base.lower().endswith((".js", ".mjs")):
+        base += ".js"
+    return base
+
+
+def _js_fetch_candidates(url: str) -> list[str]:
+    """自托管拉取候选：原链 → sync 镜像 → kelee 替身 → 本仓 main Scripts。"""
+    url = _normalize_js_url(url)
+    out: list[str] = [url]
+    base = Path(unquote(urlparse(url).path)).name
+
+    # oo226 sync / main 已镜像路径
+    if "raw.githubusercontent.com/oo226/" in url or "github.com/oo226/" in url:
+        return out
+
+    # 通用：github raw → 本仓 sync _external
+    m = re.match(
+        r"https?://raw\.githubusercontent\.com/([^/]+)/([^/]+)/([^/]+)/(.*)",
+        url,
+        re.I,
+    )
+    if m:
+        owner, repo, ref, path = m.groups()
+        for branch in ("sync", "main", BRANCH):
+            out.append(
+                f"https://raw.githubusercontent.com/oo226/egern-config/refs/heads/"
+                f"{branch}/Scripts/_external/github-raw/{owner}/{repo}/{ref}/{path}"
+            )
+            out.append(
+                f"https://raw.githubusercontent.com/oo226/egern-config/refs/heads/"
+                f"{branch}/Scripts/{owner}/{Path(path).name}"
+            )
+
+    # Zenmo / 已知作者 → sync Scripts/<id>/
+    for prefix, dest in (
+        ("ZenmoFeiShi/Qx", "zenmofeishi"),
+        ("fmz200/wool_scripts", "fmz200"),
+        ("chavyleung/scripts", "chavyleung"),
+        ("NobyDa/Script", "NobyDa"),
+        ("WeiGiegie/666", "weigiegie"),
+        ("liul0ng/quanx", "liul0ng"),
+    ):
+        if prefix.lower() in url.lower() and base:
+            for branch in ("sync", "main"):
+                out.append(
+                    f"https://raw.githubusercontent.com/oo226/egern-config/refs/heads/"
+                    f"{branch}/Scripts/{dest}/{base}"
+                )
+
+    if base in KELEE_FALLBACKS:
+        out.append(KELEE_FALLBACKS[base])
+    # kelee path basename fallbacks
+    for k, alt in KELEE_FALLBACKS.items():
+        if k in url:
+            out.append(alt)
+
+    # gist
+    gm = re.match(
+        r"https?://gist\.githubusercontent\.com/([^/]+)/([^/]+)/raw/(.*)",
+        url,
+        re.I,
+    )
+    if gm:
+        user, gid, rest = gm.groups()
+        for branch in ("sync", "main"):
+            out.append(
+                f"https://raw.githubusercontent.com/oo226/egern-config/refs/heads/"
+                f"{branch}/Scripts/_external/gist/{user}/{gid}/raw/{rest}"
+            )
+    return list(dict.fromkeys(out))  # dedupe keep order
+
+
+def _find_existing_js(basename: str) -> Path | None:
+    """已在 Yuanban/zuozhe/*/js 或 sync 拉取目录中的同名脚本。"""
+    if not basename:
+        return None
+    for p in ZUOZHE.glob(f"*/js/{basename}"):
+        if p.is_file() and p.stat().st_size > 0:
+            return p
+    for p in ZUOZHE.glob(f"*/js/**/{basename}"):
+        if p.is_file() and p.stat().st_size > 0:
+            return p
+    return None
+
+
 def mirror_js(url: str, author: str, cache: dict[str, str]) -> str:
-    """Download script into zuozhe/<author>/js/... ; return self-host URL for heji rewrite."""
+    """镜像到 zuozhe/<author>/js/<直白名>.js；**永远**返回本仓 URL（不留上游）。"""
     url = _normalize_js_url(url)
     if url in cache:
         return cache[url]
-    # 解锁合集用 Eevee；Crack 不进自托管（spotify.crack 路径）
     low = url.lower()
     if "spotify.crack" in low or "/spotify-crack" in low:
-        cache[url] = url
-        return url
+        # Crack 不收录：指向本仓占位，避免合集挂上游
+        ensure_author(author)
+        dest = ZUOZHE / author / "js" / "跳过-SpotifyCrack.js"
+        if not dest.is_file():
+            dest.write_text(
+                "// intentionally skipped: Spotify Crack\n"
+                "console.log('spotify crack skipped');\n",
+                encoding="utf-8",
+            )
+        local = f"{RAW}/{dest.relative_to(ROOT).as_posix()}"
+        cache[url] = local
+        return local
+
     ensure_author(author)
-    u = urlparse(url)
-    host = u.netloc.replace(":", "_")
-    path = unquote(u.path).lstrip("/") or "index.js"
-    if u.query:
-        qh = hashlib.sha1(u.query.encode()).hexdigest()[:8]
-        p = Path(path)
-        path = str(p.with_name(p.stem + f"_{qh}" + p.suffix))
-    dest = ZUOZHE / author / "js" / host / path
-    if not dest.is_file():
+    name = _readable_js_name(url)
+    dest = ZUOZHE / author / "js" / name
+    # 碰撞：不同 URL 同名 → 加短哈希
+    if dest.is_file():
+        # 已有文件则直接复用路径
+        STATS["js_ok"] += 1
+        local = f"{RAW}/{dest.relative_to(ROOT).as_posix()}"
+        cache[url] = local
+        return local
+
+    data: bytes | None = None
+    used = ""
+    for cand in _js_fetch_candidates(url):
         try:
-            data = fetch(url)
-            save_bytes(dest, data, author=author, kind="js")
-            STATS["js_ok"] += 1
-            print(f"  js/{author} ← {url}")
-        except Exception as exc:
-            STATS["js_fail"].append(f"{url} ({exc})")
-            print(f"  ! js fail {url}: {exc}")
-            cache[url] = url
-            return url
+            data = fetch(cand)
+            used = cand
+            break
+        except Exception:
+            continue
+    if data is None:
+        hit = _find_existing_js(Path(unquote(urlparse(url).path)).name)
+        if hit is not None:
+            data = hit.read_bytes()
+            used = str(hit)
+
+    if data is None:
+        STATS["js_fail"].append(url)
+        print(f"  ! js miss (仍自托管占位) {url}")
+        data = (
+            f"// MISSING mirror of:\n// {url}\n"
+            "// 已自托管占位：不依赖上游；待补文件后重建\n"
+            "throw new Error('script not mirrored: " + name + "');\n"
+        ).encode()
+        used = "placeholder"
     else:
         STATS["js_ok"] += 1
-    rel = dest.relative_to(ROOT).as_posix()
-    local = f"{RAW}/{rel}"
+        print(f"  js/{author}/{name} ← {used if used != url else 'ok'}")
+
+    save_bytes(dest, data, author=author, kind="js")
+    local = f"{RAW}/{dest.relative_to(ROOT).as_posix()}"
     cache[url] = local
     return local
 
 
 def rewrite_js_urls(text: str, author: str, cache: dict[str, str]) -> str:
-    """仅重写 script-path / QX script-* 的脚本 URL；reject 里的 .js 保持原文。"""
+    """仅重写 script-path / QX script-*；结果必须是本仓 URL。"""
 
     def _sub(m: re.Match[str]) -> str:
         return m.group(1) + mirror_js(m.group(2), author, cache)
@@ -462,6 +724,36 @@ def rewrite_js_urls(text: str, author: str, cache: dict[str, str]) -> str:
     text = SCRIPT_PATH_RE.sub(_sub, text)
     text = QX_SCRIPT_URL_RE.sub(_sub, text)
     return text
+
+
+def fenliu_public_name(author: str, filename: str) -> str:
+    """heji/danxiang 用的直白分流名：莫离-国内域名.list"""
+    stem = Path(filename).stem
+    ext = Path(filename).suffix
+    cn = FENLIU_CN.get(filename) or FENLIU_CN.get(stem) or stem
+    label = AUTHOR_CN.get(author, author)
+    return f"{label}-{cn}{ext}"
+
+
+def assert_self_hosted() -> None:
+    """合集里不得残留外站 script-path（完全自依赖）。"""
+    bad: list[str] = []
+    for path in HEJI.glob("*.module"):
+        text = path.read_text(encoding="utf-8", errors="replace")
+        for m in re.finditer(r"script-path\s*=\s*(\S+)", text, re.I):
+            u = m.group(1).strip().strip('"').strip("'")
+            if not u.startswith("http"):
+                continue
+            if "raw.githubusercontent.com/oo226/egern-config" not in u:
+                bad.append(f"{path.name}: {u[:120]}")
+    if bad:
+        print(f"WARN self-host leaks: {len(bad)}")
+        for line in bad[:20]:
+            print(" ", line)
+        STATS["self_host_leaks"] = len(bad)
+    else:
+        print("self-host OK: heji script-path 全部指向本仓")
+        STATS["self_host_leaks"] = 0
 
 
 def strip_module_header(text: str) -> tuple[str, str]:
@@ -784,7 +1076,8 @@ def build_qiandao_local(cache: dict[str, str]) -> None:
                 "- `keli/` — 可莉 Surge 根目录签到（WPS / 书香门第）",
                 "- `official/` — QingRex Official 签到 / 抢券 / 联通余量",
                 "- `local/` — 本仓 sync：PingMe、起点签到模块",
-                "- `js/` — sync 签到脚本（fmz200 / 怎么肥事 / Nodeseek…，无独立 module）",
+                "- `zenmofeishi/` — 怎么肥事签到（PingMe/一点万象/NodeSeek…，中文文件名）",
+                "- `js/` — 其他 sync 签到脚本（fmz200 等）",
                 "",
                 "抓参合集见 `heji/zhuacan.module`（抓完关掉）。工具类见 `Yuanban/qita/`。",
                 "",
@@ -935,39 +1228,44 @@ def mirror_local_module(author: str, src: Path, filename: str | None = None) -> 
 
 
 def build_danxiang() -> None:
-    """Flatten copies with author prefix — 以备不时之需."""
+    """单件备份：文件名用「作者中文-原名」，一眼能懂。"""
     for kind in ("fenliu", "mokuai", "js"):
         (DAN / kind).mkdir(parents=True, exist_ok=True)
     for author_dir in sorted(ZUOZHE.iterdir()):
         if not author_dir.is_dir() or author_dir.name == "README.md":
             continue
         author = author_dir.name
+        label = AUTHOR_CN.get(author, author)
         for kind in ("fenliu", "mokuai"):
             src_dir = author_dir / kind
             if not src_dir.is_dir():
                 continue
             for f in src_dir.iterdir():
                 if f.is_file() and f.name != "README.md":
-                    dest = DAN / kind / f"{author}__{f.name}"
+                    if kind == "fenliu":
+                        dest = DAN / kind / fenliu_public_name(author, f.name)
+                    else:
+                        dest = DAN / kind / f"{label}-{f.name}"
                     shutil.copy2(f, dest)
         official = author_dir / "official"
         if official.is_dir():
             for f in official.iterdir():
                 if f.is_file() and f.name != "README.md":
-                    dest = DAN / "mokuai" / f"{author}__official__{f.name}"
+                    dest = DAN / "mokuai" / f"{label}-Official-{f.name}"
                     shutil.copy2(f, dest)
         js_dir = author_dir / "js"
         if js_dir.is_dir():
             for f in js_dir.rglob("*"):
                 if f.is_file() and f.name != "README.md":
-                    rel = f.relative_to(js_dir).as_posix().replace("/", "__")
-                    dest = DAN / "js" / f"{author}__{rel}"
+                    dest = DAN / "js" / f"{label}-{f.name}"
+                    # 重名加父目录
+                    if dest.exists():
+                        dest = DAN / "js" / f"{label}-{f.parent.name}-{f.name}"
                     dest.parent.mkdir(parents=True, exist_ok=True)
                     shutil.copy2(f, dest)
-    # qiandao / qita 单件也备份
     for root, prefix, kind_default in (
-        (QIANDAO, "qiandao", "mokuai"),
-        (QITA, "qita", "mokuai"),
+        (QIANDAO, "签到", "mokuai"),
+        (QITA, "其他", "mokuai"),
     ):
         if not root.is_dir():
             continue
@@ -977,12 +1275,11 @@ def build_danxiang() -> None:
             kind = "js" if bucket.name == "js" else kind_default
             for f in bucket.rglob("*"):
                 if f.is_file() and f.name != "README.md":
-                    rel = f.relative_to(bucket).as_posix().replace("/", "__")
-                    dest = DAN / kind / f"{prefix}_{bucket.name}__{rel}"
+                    dest = DAN / kind / f"{prefix}-{bucket.name}-{f.name}"
                     dest.parent.mkdir(parents=True, exist_ok=True)
                     shutil.copy2(f, dest)
     (DAN / "README.md").write_text(
-        "单件备份：从 zuozhe / qiandao / qita 汇总，文件名带前缀。原样，不改内容。\n",
+        "单件备份：文件名「作者-用途」。内容与 zuozhe/qiandao/qita 一致。\n",
         encoding="utf-8",
     )
 
@@ -1081,19 +1378,29 @@ def heji_quguanggao(cache: dict[str, str]) -> None:
         rewritten = rewrite_js_urls(raw, "naisi", cache)
         bags.append(("奶思 · blockAds 整模块", parse_sections(rewritten)))
 
+    # 7) 怎么肥事净化
+    zm = ZUOZHE / "zenmofeishi" / "mokuai"
+    for fname in ZENMO_AD_CONFS:
+        path = zm / fname
+        if not path.is_file():
+            continue
+        raw = path.read_text(encoding="utf-8", errors="replace")
+        rewrite_js_urls(raw, "zenmofeishi", cache)
+        surge = qx_conf_to_surge_body(raw, script_prefix="zenmo-" + path.stem[:10])
+        surge = rewrite_js_urls(surge, "zenmofeishi", cache)
+        bags.append((f"怎么肥事 · {path.stem}", parse_sections(surge)))
+
     text = merge_section_bags(
         bags,
         name="去广告合集",
-        desc="可莉基础置顶 + 可莉逐App + 墨鱼AdBlock/NBPro + 毒奶 + BMJ + 奶思（原文，URL自托管）",
+        desc="可莉+墨鱼+毒奶+BMJ+奶思+怎么肥事（原文，脚本全自托管）",
         notes=[
             "# 合集类型: 去广告",
             "# 置顶基础: 1)广告平台拦截器 2)可莉广告过滤器 —— 须最先生效",
             "# 然后: 可莉各 App「××去广告」原样分段",
-            "# 然后: 墨鱼 ddgksf2013 AdBlock（微博/闲鱼/网易云/NBPro…）+ Egern NBPro 补全",
-            "# 然后: 毒奶 limbopro/Adblock4limbo（网页广告）",
-            "# 然后: blackmatrix7 Advertising + AdvertisingScript",
-            "# 然后: 奶思 blockAds.module 整块",
-            "# 不含开屏（见 heji/qukaiping.module：StartUpAds / FakeiOSAds）",
+            "# 然后: 墨鱼 AdBlock/NBPro + 毒奶 + BMJ + 奶思 + 怎么肥事净化",
+            "# 脚本 URL 全部指向本仓 Yuanban/zuozhe/*/js（不依赖上游在线）",
+            "# 不含开屏（见 heji/qukaiping.module）",
         ],
     )
     (HEJI / "quguanggao.module").write_text(text, encoding="utf-8")
@@ -1172,6 +1479,18 @@ def heji_jiesuo(cache: dict[str, str]) -> None:
         if bag:
             bags.append(bag)
 
+    # 怎么肥事解锁（有 rewrite conf 的进合集；纯 js 见 zuozhe/zenmofeishi/js）
+    zm = ZUOZHE / "zenmofeishi" / "mokuai"
+    for fname in ZENMO_UNLOCK_CONFS:
+        path = zm / fname
+        if not path.is_file():
+            continue
+        raw = path.read_text(encoding="utf-8", errors="replace")
+        rewrite_js_urls(raw, "zenmofeishi", cache)
+        surge = qx_conf_to_surge_body(raw, script_prefix="zenmo-js-" + path.stem[:8])
+        surge = rewrite_js_urls(surge, "zenmofeishi", cache)
+        bags.append((f"怎么肥事 · {path.stem}", parse_sections(surge)))
+
     extras = [
         ("iewha", "Unlock.sgmodule", "iEwha · Unlock"),
         ("iewha", "Script.sgmodule", "iEwha · Script"),
@@ -1224,26 +1543,26 @@ def heji_fenliu() -> None:
             continue
         for f in fen.iterdir():
             if f.is_file() and f.name != "README.md":
-                dest = out / f"{author_dir.name}__{f.name}"
+                dest = out / fenliu_public_name(author_dir.name, f.name)
                 shutil.copy2(f, dest)
                 n += 1
     lines = [
         "# 分流规则集（单件）",
         "",
-        "不合并成一个 module（用途不同，按策略组自选）。原料在 `zuozhe/*/fenliu/`。",
+        "文件名：`作者-用途.扩展名`（一眼能懂）。原料在 `zuozhe/*/fenliu/`。",
         "",
-        "## 上游怎么选",
+        "## 怎么选",
         "",
-        "| 前缀 | 上游 | 适合 |",
-        "|------|------|------|",
-        "| `repcz__` | Repcz/Tool Egern | **骨架**：国内/代理/流媒体，Egern 原生 yaml |",
-        "| `moli__` | 莫离 Moli-X Ruleset | **分类多**：Ads/CDN/Claude/Steam/PayPal… |",
-        "| `sukka__` | Sukka ruleset.skk.moe | reject/AI/CDN/流媒体/Apple |",
-        "| `loyalsoldier__` | Loyalsoldier surge-rules | **大名单底**：direct/proxy/gfw/reject |",
-        "| `vpsdance__` | VPSDance | AI 专项最全 |",
-        "| `blackmatrix7__` | blackmatrix7 | 细分补洞：ChinaMax/Steam/GlobalMedia… |",
+        "| 文件名前缀 | 适合 |",
+        "|------------|------|",
+        "| `Repcz-` | **骨架**：国内/代理/流媒体（Egern 原生） |",
+        "| `莫离-` | 分类多：Ads/CDN/Claude/Steam… |",
+        "| `Sukka-` | reject/AI/CDN/流媒体/Apple |",
+        "| `Loyalsoldier-` | **大名单底**：直连/代理/GFW/广告拒绝 |",
+        "| `VPSDance-` | AI 专项最全 |",
+        "| `BMJ-` | 细分补洞：国内Max/Steam/流媒体… |",
         "",
-        "广告类 Reject 与去广告合集会叠，别无脑全开。",
+        "广告拒绝类与去广告合集会叠，别重复全开。全部文件已自托管，不依赖上游在线。",
         "",
         "## 订阅示例",
         "",
@@ -1289,6 +1608,77 @@ def heji_zhuacan(cache: dict[str, str]) -> None:
     (HEJI / "zhuacan.module").write_text(text, encoding="utf-8")
     STATS["heji"]["zhuacan"] = len(bags)
     print(f"heji zhuacan bags={len(bags)}")
+
+
+def mirror_zenmofeishi(cache: dict[str, str]) -> None:
+    """怎么肥事 ZenmoFeiShi/Qx：js + snippet→conf，中文直白名；签到进 qiandao。"""
+    paths = ensure_author("zenmofeishi")
+    # 1) 上游 tree
+    try:
+        tree = json.loads(
+            fetch(
+                "https://api.github.com/repos/ZenmoFeiShi/Qx/git/trees/main?recursive=1"
+            ).decode()
+        )["tree"]
+    except Exception as exc:
+        print(f"  ! zenmo tree: {exc}")
+        tree = []
+    upstream_files = {
+        t["path"]: t
+        for t in tree
+        if t.get("type") == "blob" and not t["path"].endswith("README.md")
+    }
+    # 2) sync 可能多出的旧脚本
+    sync_extra = (
+        "LaiChong.js", "SoulSing.js", "iios_checkin.js", "XMLYVIP.js",
+    )
+    raw_base = "https://raw.githubusercontent.com/ZenmoFeiShi/Qx/main/"
+
+    for fname, clear in ZENMO_JS_NAMES.items():
+        url = raw_base + fname
+        if fname in sync_extra and fname not in upstream_files:
+            url = f"{SYNC_RAW}/Scripts/zenmofeishi/{fname}"
+        elif fname not in upstream_files and fname not in sync_extra:
+            # 仍尝试 sync
+            url = f"{SYNC_RAW}/Scripts/zenmofeishi/{fname}"
+        try:
+            data = fetch(url)
+        except Exception:
+            try:
+                data = fetch(f"{SYNC_RAW}/Scripts/zenmofeishi/{fname}")
+            except Exception as exc:
+                print(f"  ! zenmo js {fname}: {exc}")
+                continue
+        dest = paths["js"] / clear
+        save_bytes(dest, data, author="zenmofeishi", kind="js")
+        print(f"  zenmofeishi/js/{clear}")
+        if clear in ZENMO_QIANDAO_JS:
+            save_qiandao("zenmofeishi", clear, data)
+
+    for fname, clear in ZENMO_SNIPPET_NAMES.items():
+        if fname not in upstream_files:
+            continue
+        try:
+            raw = fetch(raw_base + fname).decode("utf-8", errors="replace")
+        except Exception as exc:
+            print(f"  ! zenmo snippet {fname}: {exc}")
+            continue
+        # 原样存 conf + 抽脚本自托管
+        rewrite_js_urls(raw, "zenmofeishi", cache)
+        dest = paths["mokuai"] / clear
+        save_bytes(dest, raw.encode("utf-8"), author="zenmofeishi", kind="mokuai")
+        print(f"  zenmofeishi/mokuai/{clear}")
+
+    (paths["mokuai"] / "README.md").write_text(
+        "怎么肥事 ZenmoFeiShi/Qx — 净化/解锁重写（中文文件名）。\n"
+        "签到脚本见 `js/` 与 `Yuanban/qiandao/zenmofeishi/`。\n"
+        "上游：https://github.com/ZenmoFeiShi/Qx（已全量自托管，不依赖在线）。\n",
+        encoding="utf-8",
+    )
+    (QIANDAO / "zenmofeishi" / "README.md").write_text(
+        "怎么肥事签到脚本（单件，无合集）。抓参+签到二合一的，开 MITM 抓一次再跑定时。\n",
+        encoding="utf-8",
+    )
 
 
 def mirror_moli_ruleset() -> int:
@@ -1407,7 +1797,14 @@ def write_docs() -> None:
         "",
         f"`{STATS['heji']}`",
         "",
-        f"脚本镜像成功约 {STATS['js_ok']}，失败 {len(STATS['js_fail'])}（多为 kelee.one 403，合集保留上游 URL）",
+        f"脚本镜像成功约 {STATS['js_ok']}，占位/失败 {len(STATS['js_fail'])}（仍写本仓占位，不留外站）",
+        f"合集外站泄漏: {STATS.get('self_host_leaks', '?')}",
+        "",
+        "## 自依赖",
+        "",
+        "- 所有 `script-path` 指向 `raw.githubusercontent.com/oo226/egern-config/.../Yuanban/`",
+        "- 上游删库不影响：规则与脚本都在本仓",
+        "- 文件名：`作者-用途` / 中文直白名（怎么肥事、分流 heji 等）",
         "",
         "## 解锁近重复（合集已跳过，单件仍保留）",
         "",
@@ -1453,9 +1850,10 @@ def write_docs() -> None:
     (HEJI / "UPSTREAM.md").write_text("\n".join(lines), encoding="utf-8")
     (ZUOZHE / "README.md").write_text(
         "作者拼音目录。每人下有 fenliu / mokuai / js；可莉另有 official/。内容与上游字节一致。\n\n"
-        "拼音：keli可莉 naisi奶思 moyu墨鱼 dunai毒奶 moli莫离 nobyda blackmatrix7 "
-        "loyalsoldier iewha chxm weigiegie liulong yu9191 repcz sukka vpsdance "
-        "yuheng local miranquil\n",
+        "拼音：keli可莉 naisi奶思 moyu墨鱼 dunai毒奶 moli莫离 zenmofeishi怎么肥事 "
+        "nobyda blackmatrix7 loyalsoldier iewha chxm weigiegie liulong yu9191 "
+        "repcz sukka vpsdance yuheng local miranquil\n"
+        "原则：文件名尽量中文直白；脚本全自托管，合集不留外站 URL。\n",
         encoding="utf-8",
     )
 
@@ -1494,6 +1892,9 @@ def main() -> None:
         cache,
     )
     mirror_sync_module("naisi", "fmz200-unlock-extra.sgmodule", cache)
+
+    print("=== zuozhe/zenmofeishi（怎么肥事）===")
+    mirror_zenmofeishi(cache)
 
     print("=== zuozhe/moyu（开屏 + AdBlock + NBPro + Function + VIP）===")
     paths = ensure_author("moyu")
@@ -1664,6 +2065,7 @@ def main() -> None:
     heji_fenliu()
 
     write_docs()
+    assert_self_hosted()
     for p in sorted(YUAN.rglob("*"), reverse=True):
         if p.is_dir() and not any(p.iterdir()):
             try:
@@ -1676,6 +2078,7 @@ def main() -> None:
         "qita=", STATS["qita"],
         "js_ok=", STATS["js_ok"],
         "js_fail=", len(STATS["js_fail"]),
+        "self_host_leaks=", STATS.get("self_host_leaks"),
     )
 
 

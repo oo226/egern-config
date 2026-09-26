@@ -7,6 +7,7 @@
 - `keli/` — 可莉 Surge 根目录签到（WPS / 书香门第）
 - `official/` — QingRex Official 签到 / 抢券 / 联通余量
 - `local/` — 本仓 sync：PingMe、起点签到模块
-- `js/` — sync 签到脚本（fmz200 / 怎么肥事 / Nodeseek…，无独立 module）
+- `zenmofeishi/` — 怎么肥事签到（PingMe/一点万象/NodeSeek…，中文文件名）
+- `js/` — 其他 sync 签到脚本（fmz200 等）
 
 抓参合集见 `heji/zhuacan.module`（抓完关掉）。工具类见 `Yuanban/qita/`。
