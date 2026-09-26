@@ -589,10 +589,6 @@ modules:
     url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/quguanggao.module
     update_interval: 86400
     enabled: true
-  - name: 去开屏合集
-    url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/qukaiping.module
-    update_interval: 86400
-    enabled: true
   - name: 解锁增强合集
     url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/jiesuo.module
     update_interval: 86400

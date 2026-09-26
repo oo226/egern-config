@@ -146,8 +146,8 @@ MOYU_FUNCTION_CONFS = (
     ("Bilibili_CC.conf", "B站繁体 CC 转简体"),
 )
 
-# 墨鱼通用去广告（进 quguanggao）；开屏 StartUpAds/FakeiOSAds 另见 qukaiping
-# WeChat.conf 上游已划掉仍保留原件；FakeiOSAds 只进开屏合集
+# 墨鱼通用去广告 + 开屏 StartUpAds/FakeiOSAds 一并进 quguanggao（Profile 只挂一份）
+# WeChat.conf 上游已划掉仍保留原件
 MOYU_ADBLOCK_CONFS = (
     "Applet.conf",
     "WeiboAds.conf",
@@ -1908,27 +1908,7 @@ def heji_quguanggao(cache: dict[str, str]) -> None:
         surge = rewrite_js_urls(surge, "zenmofeishi", cache)
         bags.append((f"怎么肥事 · {path.stem}", parse_sections(surge)))
 
-    text = merge_section_bags(
-        bags,
-        name="去广告合集",
-        desc="可莉+墨鱼+毒奶+老书+BMJ+奶思+怎么肥事（原文，脚本全自托管）",
-        notes=[
-            "# 合集类型: 去广告",
-            "# 置顶基础: 1)广告平台拦截器 2)可莉广告过滤器 —— 须最先生效",
-            "# 然后: 可莉各 App「××去广告」原样分段",
-            "# 然后: 墨鱼 AdBlock/NBPro + 毒奶 + 老书(jnlaoshu) + BMJ + 奶思 + 怎么肥事净化",
-            "# 脚本 URL 全部指向本仓 Yuanban/zuozhe/*/js（不依赖上游在线）",
-            "# 不含开屏（见 heji/qukaiping.module）",
-        ],
-    )
-    (HEJI / "quguanggao.module").write_text(text, encoding="utf-8")
-    STATS["heji"]["quguanggao"] = len(bags)
-    print(f"heji quguanggao bags={len(bags)} chars={len(text)}")
-
-
-def heji_qukaiping(cache: dict[str, str]) -> None:
-    bags: list[tuple[str, dict[str, list[str]]]] = []
-    moyu_m = ZUOZHE / "moyu" / "mokuai"
+    # 8) 墨鱼开屏（原 qukaiping，并入以免 Profile 挂两份）
     for fname, label in (
         ("StartUpAds.conf", "墨鱼 · 去开屏 StartUpAds"),
         ("FakeiOSAds.conf", "墨鱼 · FakeiOSAds"),
@@ -1937,7 +1917,6 @@ def heji_qukaiping(cache: dict[str, str]) -> None:
         if not path.is_file():
             continue
         raw = path.read_text(encoding="utf-8", errors="replace")
-        # harvest js from original QX urls first
         rewrite_js_urls(raw, "moyu", cache)
         surge_body = qx_conf_to_surge_body(raw, script_prefix="moyu-kp")
         surge_body = rewrite_js_urls(surge_body, "moyu", cache)
@@ -1945,17 +1924,41 @@ def heji_qukaiping(cache: dict[str, str]) -> None:
 
     text = merge_section_bags(
         bags,
-        name="去开屏合集",
-        desc="墨鱼 StartUpAds / FakeiOSAds（QX→Surge 仅格式，规则原文）",
+        name="去广告合集",
+        desc="可莉+墨鱼(含开屏)+毒奶+老书+BMJ+奶思+怎么肥事（原文，脚本全自托管）",
         notes=[
-            "# 合集类型: 去开屏",
-            "# 主源: 墨鱼 ddgksf2013 StartUpAds.conf + FakeiOSAds.conf",
-            "# 与去广告合集分开订阅，互不掺和",
+            "# 合集类型: 去广告（含开屏）",
+            "# 置顶基础: 1)广告平台拦截器 2)可莉广告过滤器 —— 须最先生效",
+            "# 然后: 可莉各 App「××去广告」原样分段",
+            "# 然后: 墨鱼 AdBlock/NBPro + 毒奶 + 老书(jnlaoshu) + BMJ + 奶思 + 怎么肥事净化",
+            "# 然后: 墨鱼 StartUpAds / FakeiOSAds（原 qukaiping 已并入）",
+            "# 脚本 URL 全部指向本仓 Yuanban/zuozhe/*/js（不依赖上游在线）",
         ],
     )
+    (HEJI / "quguanggao.module").write_text(text, encoding="utf-8")
+    STATS["heji"]["quguanggao"] = len(bags)
+    print(f"heji quguanggao bags={len(bags)} chars={len(text)}")
+
+
+def heji_qukaiping(cache: dict[str, str]) -> None:
+    """兼容旧订阅 URL：内容已并入 quguanggao，这里只留跳转说明。"""
+    text = "\n".join(
+        [
+            "#!name=去开屏合集（已并入去广告）",
+            "#!desc=已并入 heji/quguanggao.module，请只订去广告合集，避免重复挂载",
+            f"# built_at={datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%MZ')}",
+            f"# branch={BRANCH}",
+            "# 合集类型: 去开屏（stub）",
+            "# 主源已迁入: Yuanban/heji/quguanggao.module（墨鱼 StartUpAds + FakeiOSAds）",
+            f"# 请改订: {RAW}/Yuanban/heji/quguanggao.module",
+            "",
+            "[General]",
+            "",
+        ]
+    )
     (HEJI / "qukaiping.module").write_text(text, encoding="utf-8")
-    STATS["heji"]["qukaiping"] = len(bags)
-    print(f"heji qukaiping bags={len(bags)}")
+    STATS["heji"]["qukaiping"] = 0
+    print("heji qukaiping stub (merged into quguanggao)")
 
 
 def classify_keli_unlock(name: str) -> bool:
@@ -2314,14 +2317,14 @@ def write_docs() -> None:
                 "    official/  local/  ibl3nd/",
                 "  danxiang/               # 单件备份",
                 "  heji/                   # 合集 + 分流清单",
-                "    quguanggao / qukaiping / jiesuo / shibajia(18+) / zhuacan / fenliu/",
+                "    quguanggao(含开屏) / jiesuo / shibajia(18+) / zhuacan / fenliu/",
                 "```",
                 "",
                 "## 原则",
                 "",
                 "- `zuozhe` / `danxiang` / `qiandao` / `qita`：**原作者照搬**，文件字节不改",
                 "- `heji`：只拼装 + Fan.a.tail 分段；**规则正文不改**；script URL 改指本仓",
-                "- 去广告置顶：`广告平台拦截器` → `可莉广告过滤器`",
+                "- 去广告置顶：`广告平台拦截器` → `可莉广告过滤器`；开屏已并入 `quguanggao`",
                 "- **18+ 单独 `shibajia`，不进日常 `jiesuo`**",
                 "- **签到 / 其他脚本 / IBL3ND 小组件不做合集**",
                 "",
@@ -2329,11 +2332,12 @@ def write_docs() -> None:
                 "",
                 "```",
                 f"{RAW}/Yuanban/heji/quguanggao.module",
-                f"{RAW}/Yuanban/heji/qukaiping.module",
                 f"{RAW}/Yuanban/heji/jiesuo.module",
                 f"{RAW}/Yuanban/heji/shibajia.module",
                 f"{RAW}/Yuanban/heji/zhuacan.module",
                 "```",
+                "",
+                "`qukaiping.module` 已并入去广告合集（旧 URL 仅留 stub）。",
                 "",
                 "签到：`Yuanban/qiandao/`　其他/小组件：`Yuanban/qita/`　分流：`heji/fenliu/README.md`",
                 "",
@@ -2538,8 +2542,7 @@ def main() -> None:
         print("  moyu/mokuai/NBPro-egern.sgmodule ← sync custom-apps")
     (paths["mokuai"] / "README.md").write_text(
         "墨鱼 ddgksf2013：\n"
-        "- 开屏 StartUpAds / FakeiOSAds → heji/qukaiping\n"
-        "- AdBlock/*.conf + NBProAds + NBPro-egern → heji/quguanggao\n"
+        "- AdBlock/*.conf + NBProAds + NBPro-egern + 开屏 StartUpAds/FakeiOSAds → heji/quguanggao\n"
         "- Function（微信110 / TF / Emby…）+ ForOwnUse（专属VIP）→ heji/jiesuo\n",
         encoding="utf-8",
     )

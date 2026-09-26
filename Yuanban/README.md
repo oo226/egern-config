@@ -16,14 +16,14 @@ Yuanban/
     official/  local/  ibl3nd/
   danxiang/               # 单件备份
   heji/                   # 合集 + 分流清单
-    quguanggao / qukaiping / jiesuo / shibajia(18+) / zhuacan / fenliu/
+    quguanggao(含开屏) / jiesuo / shibajia(18+) / zhuacan / fenliu/
 ```
 
 ## 原则
 
 - `zuozhe` / `danxiang` / `qiandao` / `qita`：**原作者照搬**，文件字节不改
 - `heji`：只拼装 + Fan.a.tail 分段；**规则正文不改**；script URL 改指本仓
-- 去广告置顶：`广告平台拦截器` → `可莉广告过滤器`
+- 去广告置顶：`广告平台拦截器` → `可莉广告过滤器`；开屏已并入 `quguanggao`
 - **18+ 单独 `shibajia`，不进日常 `jiesuo`**
 - **签到 / 其他脚本 / IBL3ND 小组件不做合集**
 
@@ -31,7 +31,6 @@ Yuanban/
 
 ```
 https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/quguanggao.module
-https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/qukaiping.module
 https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/jiesuo.module
 https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/shibajia.module
 https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/zhuacan.module
