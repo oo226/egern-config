@@ -1,29 +1,19 @@
 #!/usr/bin/env python3
-"""Yuanban/ — 拼音目录：作者原样 + 单件备份 + 四分合集 + 签到文件夹。
+"""Yuanban/ — 拼音目录：作者原样 + 单件备份 + 合集 + 签到文件夹。
 
 目录（全部在 Yuanban 下）::
 
   Yuanban/
-    zuozhe/<作者拼音>/{fenliu,mokuai,js}/   # 原作者照搬，字节不改
-    zuozhe/keli/official/                   # QingRex Surge/Official（非签到）
-    danxiang/{fenliu,mokuai,js}/            # 单件汇总备份（文件名带作者前缀）
-    qiandao/                                # 签到：只放单件，不做合集
-      keli/  official/  local/  js/
-    qita/                                   # 其他脚本/工具：只放单件，不做合集
-      official/  local/  ibl3nd/             # IBL3ND 小组件（单件）
+    zuozhe/<作者拼音>/{fenliu,mokuai,js}/   # 原作者照搬
+    qiandao/  qita/  danxiang/
     heji/
-      quguanggao.module   # 去广告
-      qukaiping.module    # 去开屏
-      jiesuo.module       # 解锁增强
-      zhuacan.module      # 抓参
-      fenliu/             # 分流规则集（单件，非巨型 module）
-      UPSTREAM.md
+      quguanggao / qukaiping / jiesuo / zhuacan / shibajia(18+) / fenliu/
 
 合集规则：
-  - 不改作者规则正文；仅 script-path URL 改指本仓自托管 js
-  - Fan.a.tail 风格：按 App/模块分段注释写清楚
-  - 去广告合集最上方强制：广告平台拦截器 → 可莉广告过滤器（基础、最先生效）
-  - 签到 / 其他脚本不做 heji，只进 qiandao/、qita/
+  - 不改作者规则正文；script-path 改指本仓自托管 js（不留外站）
+  - Fan.a.tail 分段；去广告置顶：广告平台拦截器 → 可莉广告过滤器
+  - 18+ 单独 heji/shibajia.module，不进日常解锁合集
+  - 签到 / 其他脚本不做 heji
 """
 
 from __future__ import annotations
@@ -733,6 +723,295 @@ def fenliu_public_name(author: str, filename: str) -> str:
     cn = FENLIU_CN.get(filename) or FENLIU_CN.get(stem) or stem
     label = AUTHOR_CN.get(author, author)
     return f"{label}-{cn}{ext}"
+
+
+# 18+ 识别（文件名 / merged-from 注释 / 脚本名）
+ADULT_RE = re.compile(
+    r"haijiao|huangdou|huangguo|insav|javhd|porntube|\blsp\b|pear|qiyoushe|skbz|tlsm|"
+    r"xjh51|\bxv\b|1808|6lpu5|hanxiucao|mjgs|luolita|含羞|18pcs|18top|qiyou|"
+    r"javbus|javday|hlbdy|4ksj|成人|18\+|罗莉|91fenglou|7semao|huanxiu|huanyu|qishe|"
+    r"91porn|madou|xchina|黑料",
+    re.I,
+)
+
+# Yuheng Tasks 直白名（含 18+ 签到/推送，单件在 zuozhe；合集见 shibajia 说明）
+YUHENG_JS_NAMES = {
+    "javbus.js": "巴士论坛签到.js",
+    "javday.js": "JAVDay每日推荐.js",
+    "hlbdy.js": "黑料不打烊.js",
+    "1024.js": "1024技术推送.js",
+    "4ksj.js": "4K世界签到.js",
+    "52pojie.js": "吾爱破解签到.js",
+    "60s.js": "60秒读懂世界.js",
+    "AutoJoinTF.js": "自动加入TestFlight.js",
+    "douban.js": "豆瓣.js",
+    "moyu.js": "墨鱼签到.js",
+    "ql.js": "青龙.js",
+    "top.js": "TOP.js",
+    "zippo.js": "Zippo签到.js",
+    "qdreader.js": "起点读书.js",
+    "bdyy.js": "笔趣阁阅读.js",
+    "95598.js": "国家电网95598.js",
+    "cloud139.js": "移动云盘139.js",
+    "capture.js": "移动云盘抓参.js",
+    "meitu.js": "美图秀秀.js",
+    "step.js": "小米运动步数.js",
+    "eshop.js": "Eshop.js",
+}
+
+
+def _chunk_is_adult(chunk: str) -> bool:
+    first = chunk.splitlines()[0] if chunk.strip() else ""
+    js_names = " ".join(re.findall(r"[\w.-]+\.js", chunk)[:12])
+    return bool(ADULT_RE.search(first) or ADULT_RE.search(js_names))
+
+
+def _split_section_lines(lines: list[str]) -> tuple[list[str], list[str]]:
+    """按 # >>> merged / # --- file.js --- 把 section 行拆成 (sfw, adult)。"""
+    text = "\n".join(lines)
+    if "# >>> merged from " in text:
+        chunks = re.split(r"(?=^# >>> merged from )", text, flags=re.M)
+    elif re.search(r"^# --- .+\.js ---", text, re.M):
+        chunks = re.split(r"(?=^# --- .+\.js ---)", text, flags=re.M)
+    else:
+        blob = text.strip()
+        if not blob:
+            return [], []
+        if _chunk_is_adult(blob):
+            return [], lines[:]
+        return lines[:], []
+
+    sfw: list[str] = []
+    adult: list[str] = []
+    for i, ch in enumerate(chunks):
+        if not ch.strip():
+            continue
+        # 首段若无 marker，按内容归类（可能是无注释的前导规则）
+        is_marker = ch.lstrip().startswith("# >>>") or bool(
+            re.match(r"^# --- .+\.js ---", ch.lstrip())
+        )
+        if i == 0 and not is_marker:
+            (adult if _chunk_is_adult(ch) else sfw).extend(ch.splitlines())
+            continue
+        (adult if _chunk_is_adult(ch) else sfw).extend(ch.splitlines())
+    return sfw, adult
+
+
+def _filter_mitm_hostnames(hostname_line: str) -> tuple[str, str]:
+    """把 hostname = %APPEND% a, b, c 拆成 (日常, 18+)。识别不出时两边都保留。"""
+    m = re.match(r"^(\s*hostname\s*=\s*%APPEND%\s*)(.+)$", hostname_line, re.I)
+    if not m:
+        return hostname_line, hostname_line
+    prefix, rest = m.group(1), m.group(2)
+    hosts = [h.strip() for h in rest.split(",") if h.strip()]
+    sfw_h = [h for h in hosts if not ADULT_RE.search(h)]
+    adult_h = [h for h in hosts if ADULT_RE.search(h)]
+    # 拆不出成人主机时：日常保留全量，成人也保留全量（避免漏 MITM）
+    if not adult_h:
+        return hostname_line, hostname_line
+    sfw_line = prefix + ", ".join(sfw_h) if sfw_h else ""
+    adult_line = prefix + ", ".join(adult_h)
+    return sfw_line, adult_line
+
+
+def split_module_adult(text: str) -> tuple[str, str]:
+    """按分段注释拆成 (日常/SFW正文, 18+正文)，保留 section 结构。"""
+    head_lines: list[str] = []
+    body_start = 0
+    lines = text.splitlines()
+    for i, line in enumerate(lines):
+        if line.startswith("[") and line.endswith("]"):
+            body_start = i
+            break
+        head_lines.append(line)
+    else:
+        if ADULT_RE.search(text[:800]):
+            return ("", text if text.endswith("\n") else text + "\n")
+        return (text if text.endswith("\n") else text + "\n", "")
+
+    # 无分段标记且整体非 18+ 分类 → 整份日常
+    head_blob = "\n".join(head_lines)
+    has_markers = ("# >>> merged from " in text) or bool(
+        re.search(r"^# --- .+\.js ---", text, re.M)
+    )
+    if not has_markers:
+        if ADULT_RE.search(head_blob):
+            return ("", text if text.endswith("\n") else text + "\n")
+        return (text if text.endswith("\n") else text + "\n", "")
+
+    sections = parse_sections(text)
+    sfw_sec: dict[str, list[str]] = {}
+    adult_sec: dict[str, list[str]] = {}
+
+    for sec, sec_lines in sections.items():
+        if sec.upper() == "MITM":
+            sfw_m: list[str] = []
+            adult_m: list[str] = []
+            for line in sec_lines:
+                if re.match(r"^\s*hostname\s*=", line, re.I):
+                    s_line, a_line = _filter_mitm_hostnames(line)
+                    if s_line:
+                        sfw_m.append(s_line)
+                    if a_line:
+                        adult_m.append(a_line)
+                else:
+                    sfw_m.append(line)
+                    adult_m.append(line)
+            if sfw_m:
+                sfw_sec[sec] = sfw_m
+            if adult_m:
+                adult_sec[sec] = adult_m
+            continue
+
+        s_lines, a_lines = _split_section_lines(sec_lines)
+        if s_lines:
+            sfw_sec[sec] = s_lines
+        if a_lines:
+            adult_sec[sec] = a_lines
+
+    def _emit(name: str, desc: str, category: str | None, secmap: dict[str, list[str]]) -> str:
+        if not secmap:
+            return ""
+        # 至少要有规则行（不只是空 MITM）
+        has_rule = any(
+            any(l.strip() and not l.strip().startswith("#") for l in ls)
+            for k, ls in secmap.items()
+            if k.upper() != "MITM"
+        )
+        if not has_rule and "MITM" in {k.upper() for k in secmap}:
+            # 仅 MITM 无脚本 → 不算独立合集
+            return ""
+        if not has_rule and not secmap:
+            return ""
+        out = [f"#!name={name}", f"#!desc={desc}"]
+        if category:
+            out.append(f"#!category={category}")
+        out.append("")
+        # 保持常见顺序
+        order = ["Script", "Rule", "URL Rewrite", "MITM", "Map Local", "General"]
+        seen = set()
+        for key in order:
+            for sec, ls in secmap.items():
+                if sec.lower() == key.lower() and sec not in seen:
+                    out.append(f"[{sec}]")
+                    out.extend(ls)
+                    out.append("")
+                    seen.add(sec)
+        for sec, ls in secmap.items():
+            if sec not in seen:
+                out.append(f"[{sec}]")
+                out.extend(ls)
+                out.append("")
+        return "\n".join(out).rstrip() + "\n"
+
+    sfw = _emit("解锁日常", "已剥离18+（见 heji/shibajia）", None, sfw_sec)
+    adult = _emit("18+解锁", "成人向，与日常解锁分开订阅", "18+", adult_sec)
+    return sfw, adult
+
+
+def write_split_unlock(author: str, src_name: str, cache: dict[str, str]) -> None:
+    """从完整解锁模块写出「日常」与「18+」两份。"""
+    src = ZUOZHE / author / "mokuai" / src_name
+    if not src.is_file():
+        return
+    raw = src.read_text(encoding="utf-8", errors="replace")
+    sfw, adult = split_module_adult(raw)
+    base = src.stem.replace("-unlock", "").replace("_unlock", "")
+    if sfw:
+        p = ZUOZHE / author / "mokuai" / f"{base}-unlock-日常.sgmodule"
+        # 再跑一遍 URL 自托管
+        sfw = rewrite_js_urls(sfw, author, cache)
+        p.write_text(sfw, encoding="utf-8")
+        print(f"  {author}/mokuai/{p.name}")
+    if adult:
+        p = ZUOZHE / author / "mokuai" / f"{base}-unlock-18加.sgmodule"
+        adult = rewrite_js_urls(adult, author, cache)
+        p.write_text(adult, encoding="utf-8")
+        print(f"  {author}/mokuai/{p.name}")
+
+
+def _git_show_sync(rel: str) -> bytes:
+    """本地 origin/sync 读文件（比逐个 HTTP 快）。"""
+    return subprocess.check_output(
+        ["git", "show", f"origin/sync:{rel}"],
+        cwd=ROOT,
+        stderr=subprocess.DEVNULL,
+    )
+
+
+def mirror_sync_scripts_tree(
+    author: str,
+    sync_prefix: str,
+    name_map: dict[str, str] | None = None,
+    *,
+    also_json: bool = False,
+) -> int:
+    """git ls-tree origin/sync 下列出的 Scripts 树 → zuozhe/<author>/js（直白名）。"""
+    name_map = name_map or {}
+    try:
+        out = subprocess.check_output(
+            ["git", "ls-tree", "-r", "--name-only", "origin/sync", sync_prefix],
+            cwd=ROOT,
+            text=True,
+            stderr=subprocess.DEVNULL,
+        )
+    except Exception as exc:
+        print(f"  ! ls-tree {sync_prefix}: {exc}")
+        return 0
+    paths = ensure_author(author)
+    n = 0
+    for rel in out.splitlines():
+        rel = rel.strip()
+        if not (rel.endswith(".js") or (also_json and rel.endswith(".json"))):
+            continue
+        fname = Path(rel).name
+        clear = name_map.get(fname) or name_map.get(rel) or fname
+        try:
+            data = _git_show_sync(rel)
+        except Exception as exc:
+            print(f"  ! {author}/js {fname}: {exc}")
+            continue
+        dest = paths["js"] / clear
+        if dest.exists() and dest.stat().st_size == len(data):
+            n += 1
+            continue
+        if dest.exists():
+            dest = paths["js"] / f"{Path(rel).parent.name}-{clear}"
+        save_bytes(dest, data, author=author, kind="js")
+        n += 1
+        print(f"  {author}/js/{dest.name}")
+    return n
+
+
+def mirror_sync_modules_tree(author: str, sync_prefix: str) -> int:
+    """Modules/<author>/ 下 sgmodule → zuozhe/<author>/mokuai。"""
+    try:
+        out = subprocess.check_output(
+            ["git", "ls-tree", "-r", "--name-only", "origin/sync", sync_prefix],
+            cwd=ROOT,
+            text=True,
+            stderr=subprocess.DEVNULL,
+        )
+    except Exception as exc:
+        print(f"  ! ls-tree {sync_prefix}: {exc}")
+        return 0
+    paths = ensure_author(author)
+    n = 0
+    for rel in out.splitlines():
+        rel = rel.strip()
+        if not rel.endswith((".sgmodule", ".module", ".conf")):
+            continue
+        fname = Path(rel).name
+        try:
+            data = _git_show_sync(rel)
+        except Exception as exc:
+            print(f"  ! {author}/mokuai {fname}: {exc}")
+            continue
+        dest = paths["mokuai"] / fname
+        save_bytes(dest, data, author=author, kind="mokuai")
+        n += 1
+        print(f"  {author}/mokuai/{fname}")
+    return n
 
 
 def assert_self_hosted() -> None:
@@ -1499,11 +1778,51 @@ def heji_jiesuo(cache: dict[str, str]) -> None:
         ("local", "spotify-unlock.sgmodule", "本仓 · Spotify Eevee VIP"),
         ("local", "patches-unlock.sgmodule", "本仓 · 屏蔽更新/P12 等"),
         ("local", "patches-alicloud.sgmodule", "本仓 · 阿里云盘倍速"),
-        ("weigiegie", "weigiegie-unlock.sgmodule", "WeiGiegie · 解锁合集"),
+        # 日常解锁：已剥离 18+（完整/18+ 见 heji/shibajia）
+        ("weigiegie", "weigiegie-unlock-日常.sgmodule", "WeiGiegie · 解锁日常"),
         ("liulong", "liul0ng-unlock.sgmodule", "liul0ng · 解锁合集"),
-        ("yu9191", "yu9191-rewrite-unlock.sgmodule", "Yu9191 · Rewrite 解锁"),
+        ("yu9191", "yu9191-rewrite-unlock-日常.sgmodule", "Yu9191 · Rewrite 日常解锁"),
         ("yu9191", "yu9191-ShortcutStudio.sgmodule", "Yu9191 · ShortcutStudio"),
         # 奶思 unlock-extra 含 Spotify Crack，解锁合集不用；原件仍在 zuozhe/naisi 备份
+    ]
+    for author, fname, label in extras:
+        path = ZUOZHE / author / "mokuai" / fname
+        if not path.is_file():
+            # 回退：尚未拆分时用完整版（避免空袋）
+            if fname.endswith("-日常.sgmodule"):
+                alt = fname.replace("-日常.sgmodule", ".sgmodule")
+                path = ZUOZHE / author / "mokuai" / alt
+            if not path.is_file():
+                continue
+        raw = path.read_text(encoding="utf-8", errors="replace")
+        rewritten = rewrite_js_urls(raw, author, cache)
+        bags.append((label, parse_sections(rewritten)))
+
+    text = merge_section_bags(
+        bags,
+        name="解锁增强合集",
+        desc="可莉解锁 + 墨鱼微信110/VIP/Function + iEwha/chxm/…（不含18+，见 shibajia）",
+        notes=[
+            "# 合集类型: 解锁增强（日常/SFW）",
+            "# 18+ 成人向请订阅 heji/shibajia.module",
+            "# 分段注释标明每个作者/模块用途",
+            "# 墨鱼: UnblockURLinWeChat(微信110) + ForOwnUse(专属VIP) + Function(TF/Emby/…)",
+            "# Spotify 用 Eevee（spotify-unlock），不含 Crack",
+            "# Yu9191/WeiGiegie 已剥离 18+ 分段",
+            "# 已跳过可莉近重复: Google重定向 / 拦截HTTPDNS / Spotify歌词翻译（单件仍在 zuozhe）",
+        ],
+    )
+    (HEJI / "jiesuo.module").write_text(text, encoding="utf-8")
+    STATS["heji"]["jiesuo"] = len(bags)
+    print(f"heji jiesuo bags={len(bags)}")
+
+
+def heji_shibajia(cache: dict[str, str]) -> None:
+    """18+ 单独合集：Yu9191 Rewrite 成人段 + WeiGiegie 成人段。"""
+    bags: list[tuple[str, dict[str, list[str]]]] = []
+    extras = [
+        ("yu9191", "yu9191-rewrite-unlock-18加.sgmodule", "Yu9191 · 18+ Rewrite 解锁"),
+        ("weigiegie", "weigiegie-unlock-18加.sgmodule", "WeiGiegie · 18+ 解锁"),
     ]
     for author, fname, label in extras:
         path = ZUOZHE / author / "mokuai" / fname
@@ -1513,21 +1832,25 @@ def heji_jiesuo(cache: dict[str, str]) -> None:
         rewritten = rewrite_js_urls(raw, author, cache)
         bags.append((label, parse_sections(rewritten)))
 
+    if not bags:
+        print("heji shibajia SKIP (no adult splits)")
+        return
+
     text = merge_section_bags(
         bags,
-        name="解锁增强合集",
-        desc="可莉解锁 + 墨鱼微信110/VIP/Function + iEwha/chxm/…（作者原文，URL自托管）",
+        name="18+解锁合集",
+        desc="成人向 Rewrite/解锁，与日常 jiesuo 分开订阅（Yu9191 为主，WeiGiegie 少量）",
         notes=[
-            "# 合集类型: 解锁增强",
-            "# 分段注释标明每个作者/模块用途",
-            "# 墨鱼: UnblockURLinWeChat(微信110) + ForOwnUse(专属VIP) + Function(TF/Emby/…)",
-            "# Spotify 用 Eevee（spotify-unlock），不含 Crack",
-            "# 已跳过可莉近重复: Google重定向 / 拦截HTTPDNS / Spotify歌词翻译（单件仍在 zuozhe）",
+            "# 合集类型: 18+",
+            "# 主要来源: Yu9191/Rewrite（haijiao/javhd/porntube/黄豆…）",
+            "# 另含: WeiGiegie 18pcs/18top/91fenglou/含羞/mjgs/奇游 等",
+            "# Yuheng 巴士/JAVDay/黑料/1024/4K世界 为签到推送脚本，见 zuozhe/yuheng/js（不做 rewrite 合集）",
+            "# 日常解锁请用 heji/jiesuo.module",
         ],
     )
-    (HEJI / "jiesuo.module").write_text(text, encoding="utf-8")
-    STATS["heji"]["jiesuo"] = len(bags)
-    print(f"heji jiesuo bags={len(bags)}")
+    (HEJI / "shibajia.module").write_text(text, encoding="utf-8")
+    STATS["heji"]["shibajia"] = len(bags)
+    print(f"heji shibajia bags={len(bags)}")
 
 
 def heji_fenliu() -> None:
@@ -1740,8 +2063,8 @@ def write_docs() -> None:
                 "  qita/                   # 其他脚本/工具（无合集）",
                 "    official/  local/  ibl3nd/",
                 "  danxiang/               # 单件备份",
-                "  heji/                   # 合集（四分）+ 分流清单",
-                "    quguanggao / qukaiping / jiesuo / zhuacan / fenliu/",
+                "  heji/                   # 合集 + 分流清单",
+                "    quguanggao / qukaiping / jiesuo / shibajia(18+) / zhuacan / fenliu/",
                 "```",
                 "",
                 "## 原则",
@@ -1749,6 +2072,7 @@ def write_docs() -> None:
                 "- `zuozhe` / `danxiang` / `qiandao` / `qita`：**原作者照搬**，文件字节不改",
                 "- `heji`：只拼装 + Fan.a.tail 分段；**规则正文不改**；script URL 改指本仓",
                 "- 去广告置顶：`广告平台拦截器` → `可莉广告过滤器`",
+                "- **18+ 单独 `shibajia`，不进日常 `jiesuo`**",
                 "- **签到 / 其他脚本 / IBL3ND 小组件不做合集**",
                 "",
                 "## 订阅（合集）",
@@ -1757,10 +2081,14 @@ def write_docs() -> None:
                 f"{RAW}/Yuanban/heji/quguanggao.module",
                 f"{RAW}/Yuanban/heji/qukaiping.module",
                 f"{RAW}/Yuanban/heji/jiesuo.module",
+                f"{RAW}/Yuanban/heji/shibajia.module",
                 f"{RAW}/Yuanban/heji/zhuacan.module",
                 "```",
                 "",
                 "签到：`Yuanban/qiandao/`　其他/小组件：`Yuanban/qita/`　分流：`heji/fenliu/README.md`",
+                "",
+                "说明：`kelee.one` 是可莉 CDN，常 403，脚本已自托管到本仓（缺文件时写占位）。",
+                "Yu9191（Rewrite/18+）与 Yuheng（签到推送）在 `zuozhe/yu9191`、`zuozhe/yuheng`。",
                 "",
                 "重建：`python3 scripts/build-yuanban.py`",
                 "",
@@ -1840,6 +2168,16 @@ def write_docs() -> None:
         "## 抓参",
         "",
         "- `heji/zhuacan`：sync Cookie合集 + 奶思原版 + NobyDa GetCookie + 莫离京东 + 起点",
+        "",
+        "## 18+",
+        "",
+        "- `heji/shibajia`：Yu9191 Rewrite 成人段 + WeiGiegie 少量（18pcs/含羞/mjgs…）",
+        "- 日常解锁 `jiesuo` 已剥离上述分段",
+        "- Yuheng 巴士/JAVDay/黑料/1024/4K世界：签到推送脚本在 `zuozhe/yuheng/js`",
+        "",
+        "## kelee.one",
+        "",
+        "- 可莉官方 CDN；常 403，构建时改走 GitHub 镜像/本仓占位，合集不挂外链",
         "",
     ]
     if STATS["js_fail"]:
@@ -1993,6 +2331,33 @@ def main() -> None:
     ):
         mirror_sync_module(author, src_name, cache)
 
+    print("=== zuozhe/yu9191 + yuheng 全量 Scripts / Modules（sync）===")
+    n_yu = mirror_sync_scripts_tree("yu9191", "Scripts/yu9191")
+    n_yh = mirror_sync_scripts_tree(
+        "yuheng", "Scripts/yuheng", YUHENG_JS_NAMES, also_json=True
+    )
+    n_yhm = mirror_sync_modules_tree("yuheng", "Modules/yuheng")
+    print(f"  yu9191 js={n_yu}  yuheng js={n_yh} mokuai+={n_yhm}")
+    (ZUOZHE / "yu9191" / "mokuai" / "README.md").write_text(
+        "Yu9191/Rewrite：解锁合并模块 + ShortcutStudio。\n"
+        "- `yu9191-rewrite-unlock.sgmodule` 完整版（含 18+）\n"
+        "- `yu9191-rewrite-unlock-日常.sgmodule` → heji/jiesuo\n"
+        "- `yu9191-rewrite-unlock-18加.sgmodule` → heji/shibajia\n"
+        "js：sync `Scripts/yu9191` 全量镜像。\n",
+        encoding="utf-8",
+    )
+    (ZUOZHE / "yuheng" / "mokuai" / "README.md").write_text(
+        "Yuheng0101/X：\n"
+        "- mokuai：起点抓参 + Modules/yuheng（笔趣阁/云盘/美图/国网）\n"
+        "- js：Tasks 全量（含巴士/JAVDay/黑料/1024/4K世界 等 18+ 签到推送，中文直白名）\n"
+        "18+ 签到不做 rewrite 合集，见 `js/`；Rewrite 18+ 合集在 heji/shibajia（Yu9191）。\n",
+        encoding="utf-8",
+    )
+
+    print("=== 拆分 18+（Yu9191 / WeiGiegie）===")
+    write_split_unlock("yu9191", "yu9191-rewrite-unlock.sgmodule", cache)
+    write_split_unlock("weigiegie", "weigiegie-unlock.sgmodule", cache)
+
     print("=== zuozhe cookie / 抓参模块 ===")
     mirror_sync_module("local", "cookie-collection.module", cache)
     mirror_url_module("nobyda", NOBYDA_GETCOOKIE, "GetCookie.sgmodule", cache)
@@ -2061,6 +2426,7 @@ def main() -> None:
     heji_quguanggao(cache)
     heji_qukaiping(cache)
     heji_jiesuo(cache)
+    heji_shibajia(cache)
     heji_zhuacan(cache)
     heji_fenliu()
 
