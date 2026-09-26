@@ -1,0 +1,32 @@
+#!name= iRingo 可选
+#!desc=定位 + TV/News（天气/地图已在解锁合集）。默认不必开；需要再开本模块。
+#!author=VirgilClyne / oo226
+#!category= iRingo
+#!arguments=GeoCountryCode:"US",Dispatcher.Hybrid:true,ThirdParty:false,isWorkaroundSSLPinning:true,CountryCode:"US",NewsPlusUser:true,LogLevel:"WARN",Proxy:Proxy
+#!arguments-desc=定位 GeoCountryCode / Dispatcher.Hybrid；TV ThirdParty / isWorkaroundSSLPinning；News CountryCode / NewsPlusUser；Proxy 给 News RULE-SET；LogLevel 共用。\n单件仍在 iringo-location.sgmodule / iringo-others.sgmodule。
+
+# —— 定位 LocationService ——
+[Rule]
+DOMAIN,gspe1-ssl.ls.apple.com,DIRECT
+DOMAIN,dispatcher.is.autonavi.com,DIRECT
+DOMAIN,known-issues.apple.com,REJECT-DROP
+DOMAIN,gateway.icloud.com,{{{Proxy}}}
+RULE-SET,https://github.com/NSRingo/News/releases/download/v3.2.1/News.list,{{{Proxy}}}
+
+[URL Rewrite]
+^https?:\/\/play-cdn\.itunes\.apple\.com https://play.itunes.apple.com header
+^https?:\/\/play-edge-cdn\.itunes\.apple\.com https://play-edge.itunes.apple.com header
+
+[Script]
+📍 LocationService.pep.gcc.response = type=http-response, pattern=^https?:\/\/gspe1-ssl\.ls\.apple\.com\/pep\/gcc, requires-body=1, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-releases/NSRingo/LocationService/v1.0.1/response.bundle.js, argument=GeoCountryCode="{{{GeoCountryCode}}}"&Dispatcher.Hybrid="{{{Dispatcher.Hybrid}}}"&LogLevel="{{{LogLevel}}}", script-update-interval=0, timeout=10
+📍 LocationService.Dispatcher.request = type=http-request, pattern=^https?:\/\/dispatcher\.is\.autonavi\.com\/dispatcher, requires-body=1, binary-body-mode=1, debug=1, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-releases/NSRingo/LocationService/v1.0.1/request.bundle.js, argument=GeoCountryCode="{{{GeoCountryCode}}}"&Dispatcher.Hybrid="{{{Dispatcher.Hybrid}}}"&LogLevel="{{{LogLevel}}}", script-update-interval=0
+📍 LocationService.Dispatcher.response = type=http-response, pattern=^https?:\/\/dispatcher\.is\.autonavi\.com\/dispatcher, requires-body=1, binary-body-mode=1, debug=1, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-releases/NSRingo/LocationService/v1.0.1/response.bundle.js, argument=GeoCountryCode="{{{GeoCountryCode}}}"&Dispatcher.Hybrid="{{{Dispatcher.Hybrid}}}"&LogLevel="{{{LogLevel}}}", script-update-interval=0, timeout=10
+📺 TV.uts.request = type=http-request, pattern=^https?:\/\/uts-api\.itunes\.apple\.com\/uts\/(v1|v2|v3)\/, requires-body=1, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-releases/NSRingo/TV/v3.4.4/request.bundle.js, argument=ThirdParty="{{{ThirdParty}}}"&isWorkaroundSSLPinning="{{{isWorkaroundSSLPinning}}}"&LogLevel="{{{LogLevel}}}", script-update-interval=0
+📺 TV.uts.response = type=http-response, pattern=^https?:\/\/uts-api\.itunes\.apple\.com\/uts\/(v1|v2|v3)\/, requires-body=1, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-releases/NSRingo/TV/v3.4.4/response.bundle.js, argument=ThirdParty="{{{ThirdParty}}}"&isWorkaroundSSLPinning="{{{isWorkaroundSSLPinning}}}"&LogLevel="{{{LogLevel}}}", script-update-interval=0, timeout=10
+📺 TV.umc.request = type=http-request, pattern=^https?:\/\/umc-tempo-api\.apple\.com\/(v1|v2|v3)\/, requires-body=1, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-releases/NSRingo/TV/v3.4.4/request.bundle.js, argument=, script-update-interval=0
+📰 News.v1.configs.request = type=http-request, pattern=^https?:\/\/news(-todayconfig)?-edge\.apple\.com\/v1\/configs, requires-body=1, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-releases/NSRingo/News/v3.2.1/request.bundle.js, argument=CountryCode="{{{CountryCode}}}"&NewsPlusUser="{{{NewsPlusUser}}}"&LogLevel="{{{LogLevel}}}", script-update-interval=0
+📰 News.analyticseventsv2.async.request = type=http-request, pattern=^https?:\/\/news(-sports)?-events\.apple\.com\/analyticseventsv2\/async, requires-body=1, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-releases/NSRingo/News/v3.2.1/request.bundle.js, argument=CountryCode="{{{CountryCode}}}"&NewsPlusUser="{{{NewsPlusUser}}}"&LogLevel="{{{LogLevel}}}", script-update-interval=0
+📰 News.v1.search.request = type=http-request, pattern=^https?:\/\/news-client-search\.apple\.com\/v1\/search, requires-body=0, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-releases/NSRingo/News/v3.2.1/request.bundle.js, argument=CountryCode="{{{CountryCode}}}"&NewsPlusUser="{{{NewsPlusUser}}}"&LogLevel="{{{LogLevel}}}", script-update-interval=0
+
+[MITM]
+hostname = %APPEND% gspe1-ssl.ls.apple.com, dispatcher.is.autonavi.com, news-client-search.apple.com, news-client.apple.com, news-edge.apple.com, news-events.apple.com, news-sports-events.apple.com, news-todayconfig-edge.apple.com, play-cdn.itunes.apple.com, play-edge-cdn.itunes.apple.com, umc-tempo-api.apple.com, uts-api.itunes.apple.com

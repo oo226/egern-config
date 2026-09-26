@@ -578,11 +578,10 @@ widgets:
       SHOW_TREND: "true"
 
 # ------------------------------------------
-# 八、模块
-# 解锁合集已含：Sub-Store、Script Hub、BoxJs、天气/地图、AntiRevoke、屏蔽更新
-# YouTube 老书段在去广告合集；解锁里可莉字幕翻译用途不同，可并存
-# 解锁合集另含：插件跳转 Egern、Telegram 外链跳转（飞机）
-# 分流已去重：广告/AI/Google/GitHub/GFW 不再叠近重复表
+# 八、模块（日常三件：去广告·解锁·签到；可选两件默认关）
+# 解锁已含：Sub-Store、Script Hub、BoxJs、天气/地图、AntiRevoke、屏蔽更新、插件跳转、TG外链
+# 去广告已含开屏；YouTube 老书段在去广告，解锁里字幕翻译可并存
+# 18+ / 抓参 / iRingo定位·TV·News 按需开；分流已去重
 # ------------------------------------------
 modules:
   - name: 去广告合集
@@ -593,6 +592,11 @@ modules:
     url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/jiesuo.module
     update_interval: 86400
     enabled: true
+  - name: 签到合集
+    url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/qiandao/local/qiandao.sgmodule
+    update_interval: 86400
+    enabled: true
+
   - name: 18+解锁合集
     url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/shibajia.module
     update_interval: 86400
@@ -601,23 +605,8 @@ modules:
     url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/zhuacan.module
     update_interval: 86400
     enabled: false
-
-  - name: PingMe
-    url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/qiandao/local/pingme.yaml
-    update_interval: 86400
-    enabled: true
-  - name: 起点读书签到
-    url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/qiandao/local/qdreader.sgmodule
-    update_interval: 86400
-    enabled: true
-
-  # —— iRingo 定位/其他（天气/地图已在解锁合集）——
-  - name: " iRingo 定位"
-    url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/qita/local/iringo-location.sgmodule
-    update_interval: 86400
-    enabled: false
-  - name: " iRingo 其他"
-    url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/qita/local/iringo-others.sgmodule
+  - name: " iRingo 可选"
+    url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/qita/local/iringo-extra.sgmodule
     update_interval: 86400
     enabled: false
 
