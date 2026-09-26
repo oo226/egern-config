@@ -607,8 +607,9 @@ modules:
     enabled: false
 
   - name: PingMe
-    url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/qiandao/local/pingme.sgmodule
-    enabled: false
+    url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/qiandao/local/pingme.yaml
+    update_interval: 86400
+    enabled: true
   - name: 起点读书签到
     url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/qiandao/local/qdreader.sgmodule
     update_interval: 86400

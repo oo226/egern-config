@@ -26,9 +26,9 @@ const ckKey = 'pingme_capture_v3';
 const SECRET = '0fOiukQq7jXZV2GRi9LGlO';
 const MAX_VIDEO = 5;
 const VIDEO_DELAY = 8000;
+// 与 quanx / 怎么肥事 原版一致：签名只刷新 sign/signDate，其余参数原样参与
 const SIGN_DROP_KEYS = {
-    sign: 1, signDate: 1, timestamp: 1, ts: 1, nonce: 1, random: 1,
-    reqTime: 1, reqId: 1, requestId: 1
+    sign: 1, signDate: 1
 };
 const CAPTURE_MAX_AGE_MS = 7 * 24 * 60 * 60 * 1000;
 
@@ -328,15 +328,9 @@ function buildSignedParamsRaw(capture) {
     return params;
 }
 
-function encodeQueryValue(key, value, capture) {
-    if (key === 'signDate' || key === 'sign') return encodeURIComponent(value);
-    if (capture.paramsRaw && capture.paramsRaw[key] === value) return value;
-    return encodeURIComponent(value);
-}
-
 function buildUrl(path, capture) {
     const params = buildSignedParamsRaw(capture);
-    const qs = Object.keys(params).map(k => `${k}=${encodeQueryValue(k, params[k], capture)}`).join('&');
+    const qs = Object.keys(params).map(k => `${k}=${encodeURIComponent(params[k])}`).join('&');
     return `https://api.pingmeapp.net/app/${path}?${qs}`;
 }
 
