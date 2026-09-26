@@ -1,6 +1,5 @@
-# 本分支正式去广告树：有上游变化或手动（邮件提示）才重建。不动 sync 日更。
-
-name: Adblock formal（本分支）
+# 本分支 Yuanban 树：手动或检测到需要时重建。不动 sync 日更。
+name: Yuanban 重建（本分支）
 
 on:
   workflow_dispatch:
@@ -9,15 +8,12 @@ on:
         description: "强制重建（邮件/频道更新提示时勾选）"
         type: boolean
         default: true
-  schedule:
-    - cron: "30 */12 * * *"
 
 permissions:
   contents: write
-  issues: write
 
 concurrency:
-  group: adblock-formal
+  group: yuanban-formal
   cancel-in-progress: true
 
 env:
@@ -31,103 +27,20 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: ${{ env.ADBLOCK_BRANCH }}
-
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-
-      - name: Rebuild Adblock tree
-        if: github.event_name == 'workflow_dispatch'
+      - name: Rebuild Yuanban
         env:
           ADBLOCK_BRANCH: ${{ env.ADBLOCK_BRANCH }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: python3 scripts/build-adblock-formal.py
-
-      - name: Check fingerprints on schedule
-        if: github.event_name == 'schedule'
-        id: check
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          python3 - <<'PY'
-          import hashlib, json, os, ssl, urllib.request
-          from pathlib import Path
-          from urllib.parse import quote, unquote, urlparse
-
-          CTX = ssl.create_default_context()
-          UA = {"User-Agent": "egern-adblock-formal-check/1.0"}
-          token = os.environ.get("GITHUB_TOKEN")
-
-          def fetch(url: str) -> bytes:
-              p = urlparse(url)
-              url = p._replace(path=quote(unquote(p.path), safe="/:@!$&'()*+,;=-._~")).geturl()
-              h = dict(UA)
-              if token and "api.github.com" in url:
-                  h["Authorization"] = f"Bearer {token}"
-                  h["Accept"] = "application/vnd.github+json"
-              req = urllib.request.Request(url, headers=h)
-              with urllib.request.urlopen(req, context=CTX, timeout=90) as r:
-                  return r.read()
-
-          def sha(b: bytes) -> str:
-              return hashlib.sha256(b).hexdigest()
-
-          tree = json.loads(fetch("https://api.github.com/repos/QingRex/LoonKissSurge/git/trees/main?recursive=1"))["tree"]
-          rows = []
-          for t in tree:
-              if t.get("type") != "blob":
-                  continue
-              p = t["path"]
-              if p.startswith("Surge/") and p.count("/") == 1 and p.endswith(".sgmodule") and "去广告" in p:
-                  rows.append(f"{t.get('sha','')}  {p}")
-          rows.sort()
-          remote = {
-              "qingrex_tree": sha("\n".join(rows).encode()),
-              "qingrex_count": len(rows),
-              "fmz": sha(fetch("https://raw.githubusercontent.com/fmz200/wool_scripts/main/Surge/module/blockAds.module")),
-              "startup": sha(fetch("https://ddgksf2013.top/rewrite/StartUpAds.conf")),
-              "fakeios": sha(fetch("https://raw.githubusercontent.com/ddgksf2013/Rewrite/master/AdBlock/FakeiOSAds.conf")),
-          }
-          fp = Path("Adblock/upstream-fingerprint.json")
-          local = json.loads(fp.read_text()) if fp.is_file() else None
-          changed = local != remote
-          fp.write_text(json.dumps(remote, indent=2) + "\n")
-          Path("/tmp/adblock-changed").write_text("1" if changed else "0")
-          print(json.dumps({"changed": changed, "remote": remote, "local": local}, indent=2))
-          PY
-          echo "changed=$(cat /tmp/adblock-changed)" >> "$GITHUB_OUTPUT"
-
-      - name: Rebuild if upstream changed
-        if: github.event_name == 'schedule' && steps.check.outputs.changed == '1'
-        env:
-          ADBLOCK_BRANCH: ${{ env.ADBLOCK_BRANCH }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: python3 scripts/build-adblock-formal.py
-
-      - name: Notify issue on change
-        if: github.event_name == 'schedule' && steps.check.outputs.changed == '1'
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          TITLE="正式去广告树：上游有更新"
-          BODY="指纹变化，本 run 已重建 \`Adblock/\`。详见 \`Adblock/UPSTREAM.md\`。
-          Run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
-          N=$(gh issue list --state open --json number,title --jq ".[] | select(.title==\"$TITLE\") | .number" | head -1)
-          if [[ -n "$N" ]]; then gh issue comment "$N" --body "$BODY"
-          else gh issue create --title "$TITLE" --body "$BODY" || true
-          fi
-
+        run: python3 scripts/build-yuanban.py
       - name: Commit
-        if: github.event_name == 'workflow_dispatch' || (github.event_name == 'schedule' && steps.check.outputs.changed == '1')
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          # persist fingerprint after rebuild too
-          if [[ ! -f Adblock/upstream-fingerprint.json ]]; then
-            python3 -c "import json;from pathlib import Path;Path('Adblock/upstream-fingerprint.json').write_text('{}\n')"
-          fi
           git add -A
           if git diff --staged --quiet; then echo "no changes"; else
-            git commit -m "chore: refresh Adblock formal tree"
+            git commit -m "chore: refresh Yuanban"
             git push origin HEAD:${{ env.ADBLOCK_BRANCH }}
           fi

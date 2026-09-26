@@ -1,8 +1,0 @@
-#!name=moyu-FakeiOSAds.conf
-#!desc=墨鱼开屏
-
-[URL Rewrite]
-^http:\/\/[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+){1,4}(:\d+)?\/.*?\/v\d\/(version|notice\?|top_notice\?|advert\?position=[^2]+) - reject-200
-
-[MITM]
-hostname = %APPEND% app.dsx.ac
