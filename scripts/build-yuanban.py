@@ -860,7 +860,11 @@ def rewrite_js_urls(text: str, author: str, cache: dict[str, str]) -> str:
     """仅重写 script-path / QX script-*；结果必须是本仓 URL。"""
 
     def _sub(m: re.Match[str]) -> str:
-        return m.group(1) + mirror_js(m.group(2), author, cache)
+        url = m.group(2)
+        # 已是本仓 raw，勿再镜像（否则会把 nsringo/js 拷进 local/js）
+        if "raw.githubusercontent.com/oo226/egern-config" in url:
+            return m.group(1) + url
+        return m.group(1) + mirror_js(url, author, cache)
 
     text = SCRIPT_PATH_RE.sub(_sub, text)
     text = QX_SCRIPT_URL_RE.sub(_sub, text)
@@ -2029,6 +2033,7 @@ def heji_jiesuo(cache: dict[str, str]) -> None:
         ("local", "antirevoke.sgmodule", "Salem · AntiRevoke 苹果证书"),
         ("local", "patches-alicloud.sgmodule", "本仓 · 阿里云盘倍速"),
         ("local", "boxjs.sgmodule", "Chavy · BoxJs"),
+        ("local", "script-hub.sgmodule", "Script Hub · 重写/规则转换"),
         ("local", "iringo-weather.sgmodule", "NSRingo · WeatherKit 原版"),
         ("local", "iringo-maps.sgmodule", "NSRingo · Maps 原版"),
         # 日常解锁：已剥离 18+（完整/18+ 见 heji/shibajia）
@@ -2037,7 +2042,7 @@ def heji_jiesuo(cache: dict[str, str]) -> None:
         ("yu9191", "yu9191-rewrite-unlock-日常.sgmodule", "Yu9191 · Rewrite 日常解锁"),
         ("yu9191", "yu9191-ShortcutStudio.sgmodule", "Yu9191 · ShortcutStudio"),
         # 奶思 unlock-extra 含 Spotify Crack，解锁合集不用；原件仍在 zuozhe/naisi 备份
-        # Sub-Store / Script Hub 为 Egern 原生 yaml，见 qita/local（Profile 模块），不进 Surge 合集
+        # Sub-Store 脚本已在 iEwha · Script；Script Hub 见上
         # iRingo 定位/其他：qita/local 单件，不进合集
     ]
     for author, fname, label in extras:
@@ -2064,8 +2069,8 @@ def heji_jiesuo(cache: dict[str, str]) -> None:
             "# 墨鱼: UnblockURLinWeChat(微信110) + ForOwnUse(专属VIP) + Function(TF/Emby/…)",
             "# Spotify 用 Eevee（spotify-unlock），不含 Crack",
             "# Yu9191/WeiGiegie 已剥离 18+ 分段",
-            "# 工具: BoxJs + iRingo WeatherKit/Maps 原版 + AntiRevoke + 屏蔽更新/P12",
-            "# Sub-Store/Script Hub 为 Egern yaml → Yuanban/qita/local（Profile 单独模块）",
+            "# 工具: Sub-Store(iEwha) + Script Hub + BoxJs + iRingo 天气/地图 + AntiRevoke + 屏蔽更新/P12",
+            "# iRingo 定位/其他仍单件（qita/local），不进本合集",
             "# 已跳过可莉近重复: Google重定向 / 拦截HTTPDNS / Spotify歌词翻译（单件仍在 zuozhe）",
         ],
     )

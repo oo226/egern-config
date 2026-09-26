@@ -2,7 +2,12 @@
 # 配置文件: Egern@oo226 懒人配置（结构对齐 jnlaoshu）
 # 底座: Yuanban/heji 合集 + fenliu 分流（guize 自托管）
 # 引用: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Profile.yaml
-# 说明: 先装 Sub-Store 并建 AllServer 合集；节点池依赖 sub.store
+#
+# AllServer 是啥：不是仓库里的文件。
+#   1) 开解锁合集（已含 Sub-Store 脚本）→ 浏览器打开 sub.store
+#   2) 在 Sub-Store 里把你的机场订阅加进一个「组合订阅」
+#   3) 组合名字必须叫 AllServer（和下面节点池 URL 对得上）
+#   没有这一步，面板「全部节点」是空的。
 # ==========================================
 
 # ------------------------------------------
@@ -439,15 +444,11 @@ rules:
       policy: DIRECT
       update_interval: 604800
 
-  # —— 1.5 eulac 视频/网盘（默认关闭；需要时把 disabled 改 false）——
+  # —— 1.5 eulac 视频资源站（玩偶/木偶等；网盘与国内直连大量重叠，不再单挂）——
+  # 默认关闭；需要时 disabled 改 false。原料仍在 fenliu/eulac-*
   - rule_set:
       name: 视频规则
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/eulac-视频资源站.yaml
-      policy: DIRECT
-      disabled: true
-  - rule_set:
-      name: 网盘规则
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/eulac-网盘点播.yaml
       policy: DIRECT
       disabled: true
 
@@ -693,21 +694,10 @@ widgets:
 
 # ------------------------------------------
 # 八、模块
-# Sub-Store/Script Hub = Egern 原生 yaml（自托管）
-# BoxJs / WeatherKit / Maps / AntiRevoke / 屏蔽更新 已并进解锁合集
+# 解锁合集已含：Sub-Store、Script Hub、BoxJs、天气/地图、AntiRevoke、屏蔽更新
+# YouTube 老书段在去广告合集，不再单独挂
 # ------------------------------------------
 modules:
-  # —— 订阅与转换（Egern 原生，须单独开）——
-  - name: Sub-Store
-    url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/qita/local/sub-store.egern.yaml
-    update_interval: 259200
-    enabled: true
-  - name: Script Hub
-    url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/qita/local/script-hub.egern.yaml
-    update_interval: 259200
-    enabled: true
-
-  # —— Yuanban 合集（自托管）——
   - name: 去广告合集
     url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/quguanggao.module
     update_interval: 86400
@@ -717,7 +707,6 @@ modules:
     update_interval: 86400
     enabled: true
   - name: 解锁增强合集
-    # 含：解锁 + BoxJs + iRingo 天气/地图原版 + AntiRevoke + 屏蔽更新/P12
     url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/jiesuo.module
     update_interval: 86400
     enabled: true
@@ -730,19 +719,14 @@ modules:
     update_interval: 86400
     enabled: false
 
-  # —— 插件跳转（进常用；YouTube 老书已在去广告合集，单件可选）——
   - name: 插件跳转 Egern
     url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/qita/ibl3nd/ibl3nd-plugin-hub.yaml
     enabled: true
   - name: PingMe
     url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/qiandao/local/pingme.sgmodule
     enabled: false
-  - name: YouTube增强（老书精选）
-    url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/laoshu/mokuai/YouTube.yaml
-    update_interval: 86400
-    enabled: false
 
-  # —— iRingo 其余（天气/地图已在解锁合集；定位/其他单件）——
+  # —— iRingo 定位/其他（天气/地图已在解锁合集）——
   - name: " iRingo 定位"
     url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/qita/local/iringo-location.sgmodule
     update_interval: 86400

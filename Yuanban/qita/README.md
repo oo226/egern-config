@@ -1,8 +1,8 @@
 # 其他脚本 / 工具
 
-- **已进解锁合集 `heji/jiesuo`**：BoxJs、iRingo WeatherKit/Maps 原版、AntiRevoke（苹果证书）
-- **Profile 单独模块（Egern 原生 yaml）**：`local/sub-store.egern.yaml`、`local/script-hub.egern.yaml`
+- **已进解锁合集 `heji/jiesuo`**：Sub-Store、Script Hub、BoxJs、iRingo 天气/地图原版、AntiRevoke
 - **仍单件**：iRingo 定位/其他、测速、official、ibl3nd 小组件
+- Egern 原生 yaml 备份仍在 `local/sub-store.egern.yaml`、`local/script-hub.egern.yaml`（合集用的是 Surge 段）
 
 目录：
 
