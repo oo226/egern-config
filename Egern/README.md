@@ -37,18 +37,16 @@ https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Prof
 
 全局含 `vif_hairpin_addresses: 10.7.0.1`（回流）；DNS forward / real_ip 已按老书补齐高频域名与 NAS/路由项。
 
-## 分流去重（Profile 已瘦身）
+## 分流 / 策略（已收束）
 
-相对早期叠表版，去掉近重复引用：
+- DNS 厂商域合并为 `DNS-阿里系` / `DNS-腾讯系` / `DNS-字节系`（面板不再刷单条）
+- 国内短视频单条 → `本仓-国内短视频`；规则集显示短名（广告拦截、局域网…）
+- 去掉多余策略组：广告→REJECT，微信/苹果/微软→DIRECT，Google/GitHub→Proxy，Netflix/Disney+/Twitter/PayPal→美国，TikTok→台湾
+- 保留：地区池、Proxy、AIGC、YouTube、Spotify、Telegram、Emby、追风
+- 图标：追风=Loon，全部节点=Surge，其他节点=Egern
+- 追风：节点 IP 直连 + `tytuyoo.com` 国内 DNS / real_ip
 
-- 广告：去掉 `Repcz-广告拒绝`（留 Loyalsoldier + Sukka）
-- AI：只留 `VPSDance-AI合集`
-- Google：只留 `Repcz-Google`（DNS/规则都不再叠 Loyalsoldier-Google）
-- GitHub：只留 `BMJ-GitHub`
-- GFW：去掉 `Repcz-GFW代理`（留 Loyalsoldier GFW + 代理）
-- 直连：Repcz 国内域名/IP + GeoIP + 直连大名单 + `Repcz-直连`（含网盘补缺/视频）
-
-`fenliu/` 里仍保留各上游原件，方便单件订阅；Profile 不再全开叠用。
+`fenliu/` 仍保留上游原件；Profile 用短名引用。
 
 ## DNS 防污染（已写进 Profile）
 
