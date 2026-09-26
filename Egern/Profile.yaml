@@ -3,11 +3,10 @@
 # 底座: Yuanban/heji 合集 + fenliu 分流（guize 自托管）
 # 引用: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Profile.yaml
 #
-# AllServer 是啥：不是仓库里的文件。
-#   1) 开解锁合集（已含 Sub-Store 脚本）→ 浏览器打开 sub.store
-#   2) 在 Sub-Store 里把你的机场订阅加进一个「组合订阅」
-#   3) 组合名字必须叫 AllServer（和下面节点池 URL 对得上）
-#   没有这一步，面板「全部节点」是空的。
+# 节点隐私：sub.store 是你手机本地的 Sub-Store（MITM），别人导入本配置
+#   只会连他们自己设备上的 sub.store，拉不到你的机场节点。
+# AllServer：在你自己的 Sub-Store 里建「组合订阅」，名字填 AllServer，
+#   把自己的订阅加进去即可。仓库里没有任何节点链接。
 # ==========================================
 
 # ------------------------------------------
@@ -135,17 +134,13 @@ dns:
     - domain_suffix:
         match: localhost
         value: reject
-    # ⑥ Google / YouTube → Google DNS
+    # ⑥ Google / YouTube → Google DNS（Repcz；不再叠 Loyalsoldier-Google）
     - proxy_rule_set:
         match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Repcz-YouTube.yaml
         value: Google
         update_interval: 86400
     - proxy_rule_set:
         match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Repcz-Google.yaml
-        value: Google
-        update_interval: 86400
-    - proxy_rule_set:
-        match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Loyalsoldier-Google.txt
         value: Google
         update_interval: 86400
     # ⑦ 兜底
@@ -444,19 +439,7 @@ rules:
       policy: DIRECT
       update_interval: 604800
 
-  # —— 1.5 eulac 视频资源站（玩偶/木偶等；网盘与国内直连大量重叠，不再单挂）——
-  # 默认关闭；需要时 disabled 改 false。原料仍在 fenliu/eulac-*
-  - rule_set:
-      name: 视频规则
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/eulac-视频资源站.yaml
-      policy: DIRECT
-      disabled: true
-
-  # —— 2. 广告（须早于国内 App 直连）——
-  - rule_set:
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Repcz-广告拒绝.yaml
-      policy: 猎杀广告
-      update_interval: 86400
+  # —— 2. 广告（Loyalsoldier+Sukka；去掉重叠的 Repcz-广告拒绝）——
   - rule_set:
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Loyalsoldier-广告拒绝.txt
       policy: 猎杀广告
@@ -494,7 +477,7 @@ rules:
       match: xhscdn.com
       policy: DIRECT
 
-  # —— 4. Apple ——
+  # —— 4. Apple（Repcz；去掉重叠的 Loyalsoldier-苹果）——
   - rule_set:
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Repcz-苹果中国.yaml
       policy: Apple
@@ -503,34 +486,10 @@ rules:
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Repcz-苹果服务.yaml
       policy: Apple
       update_interval: 604800
-  - rule_set:
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Loyalsoldier-苹果.txt
-      policy: Apple
-      update_interval: 604800
 
-  # —— 5. AI ——
+  # —— 5. AI（只留 VPSDance，已覆盖其余近重复表）——
   - rule_set:
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/VPSDance-AI合集.yaml
-      policy: AIGC
-      update_interval: 86400
-  - rule_set:
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Repcz-AI.yaml
-      policy: AIGC
-      update_interval: 86400
-  - rule_set:
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Sukka-AI.conf
-      policy: AIGC
-      update_interval: 86400
-  - rule_set:
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/BMJ-OpenAI.list
-      policy: AIGC
-      update_interval: 86400
-  - rule_set:
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/BMJ-Claude.list
-      policy: AIGC
-      update_interval: 86400
-  - rule_set:
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/BMJ-Gemini.list
       policy: AIGC
       update_interval: 86400
 
@@ -560,27 +519,19 @@ rules:
       policy: Emby
       update_interval: 604800
 
-  # —— 7. Google ——
+  # —— 7. Google（Repcz）——
   - rule_set:
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Repcz-Google.yaml
       policy: Google
       update_interval: 604800
-  - rule_set:
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Loyalsoldier-Google.txt
-      policy: Google
-      update_interval: 604800
 
-  # —— 8. 微软 / GitHub ——
+  # —— 8. 微软 / GitHub（BMJ；去掉过窄的 Repcz-GitHub）——
   - domain_suffix:
       match: windowsupdate.com
       policy: DIRECT
   - rule_set:
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Repcz-Microsoft.yaml
       policy: Microsoft
-      update_interval: 604800
-  - rule_set:
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Repcz-GitHub.yaml
-      policy: GitHub
       update_interval: 604800
   - rule_set:
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/BMJ-GitHub.list
@@ -611,11 +562,12 @@ rules:
       policy: WeChat
       update_interval: 604800
 
-  # —— 11. GeoIP CN + 直连大名单 ——
-  - geoip:
-      match: CN
+  # —— 11. 直连补充（网盘补缺+视频）→ 国内域名/IP → GeoIP → 直连大名单 ——
+  # 本仓-直连补充.yaml 注释标了「以下起为视频规则」
+  - rule_set:
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/本仓-直连补充.yaml
       policy: DIRECT
-      no_resolve: true
+      update_interval: 604800
   - rule_set:
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Repcz-国内域名.yaml
       policy: DIRECT
@@ -624,6 +576,10 @@ rules:
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Repcz-国内IP.yaml
       policy: DIRECT
       update_interval: 86400
+  - geoip:
+      match: CN
+      policy: DIRECT
+      no_resolve: true
   - rule_set:
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Loyalsoldier-直连大名单.txt
       policy: DIRECT
@@ -633,11 +589,7 @@ rules:
       policy: DIRECT
       update_interval: 86400
 
-  # —— 12. GFW / 代理底 ——
-  - rule_set:
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Repcz-GFW代理.yaml
-      policy: Proxy
-      update_interval: 86400
+  # —— 12. GFW / 代理底（Loyalsoldier；去掉重叠的 Repcz-GFW）——
   - rule_set:
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Loyalsoldier-GFW列表.txt
       policy: Proxy
@@ -695,7 +647,8 @@ widgets:
 # ------------------------------------------
 # 八、模块
 # 解锁合集已含：Sub-Store、Script Hub、BoxJs、天气/地图、AntiRevoke、屏蔽更新
-# YouTube 老书段在去广告合集，不再单独挂
+# YouTube 老书段在去广告合集；解锁里可莉字幕翻译用途不同，可并存
+# 分流已去重：广告/AI/Google/GitHub/GFW 不再叠近重复表
 # ------------------------------------------
 modules:
   - name: 去广告合集
