@@ -1,22 +1,25 @@
 # 合集上游说明
 
-构建：2026-09-26 04:31 UTC
+构建：2026-09-26 05:05 UTC
 分支：`guize`
 
 ## zuozhe 作者统计
 
-- **blackmatrix7**: mokuai=2 js=2 fenliu=0
+- **blackmatrix7**: mokuai=2 js=2 fenliu=10
 - **chxm**: mokuai=1 js=181 fenliu=0
 - **dunai**: mokuai=1 js=1 fenliu=0
 - **iewha**: mokuai=2 js=8 fenliu=0
 - **keli**: mokuai=283 js=82 fenliu=0
 - **liulong**: mokuai=1 js=13 fenliu=0
-- **local**: mokuai=3 js=112 fenliu=0
+- **local**: mokuai=4 js=186 fenliu=0
+- **loyalsoldier**: mokuai=0 js=0 fenliu=12
 - **miranquil**: mokuai=1 js=1 fenliu=0
+- **moli**: mokuai=1 js=1 fenliu=60
 - **moyu**: mokuai=34 js=47 fenliu=0
 - **naisi**: mokuai=3 js=143 fenliu=0
+- **nobyda**: mokuai=1 js=0 fenliu=0
 - **repcz**: mokuai=0 js=0 fenliu=25
-- **sukka**: mokuai=0 js=0 fenliu=2
+- **sukka**: mokuai=0 js=0 fenliu=12
 - **vpsdance**: mokuai=0 js=0 fenliu=1
 - **weigiegie**: mokuai=1 js=376 fenliu=0
 - **yu9191**: mokuai=2 js=32 fenliu=0
@@ -32,9 +35,9 @@
 
 ## heji 分段袋数 / 分流文件数
 
-`{'quguanggao': 223, 'qukaiping': 2, 'jiesuo': 33, 'zhuacan': 2, 'fenliu': 28}`
+`{'quguanggao': 223, 'qukaiping': 2, 'jiesuo': 33, 'zhuacan': 3, 'fenliu': 120}`
 
-脚本镜像成功约 998，失败 124（多为 kelee.one 403，合集保留上游 URL）
+脚本镜像成功约 1073，失败 124（多为 kelee.one 403，合集保留上游 URL）
 
 ## 解锁近重复（合集已跳过，单件仍保留）
 
@@ -61,6 +64,15 @@
 ## 小组件
 
 - `Yuanban/qita/ibl3nd/` — IBL3ND/module 原样（单件）
+
+## 分流上游
+
+- Repcz（Egern 骨架）+ 莫离 Ruleset + Sukka + Loyalsoldier 大名单 + VPSDance AI + BMJ 细分
+- 清单见 `heji/fenliu/README.md`
+
+## 抓参
+
+- `heji/zhuacan`：sync Cookie合集 + 奶思原版 + NobyDa GetCookie + 莫离京东 + 起点
 
 ## js 镜像失败（节选）
 

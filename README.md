@@ -15,10 +15,10 @@ Yuanban/
     qukaiping.module    # 去开屏
     jiesuo.module       # 解锁增强（含微信110 / 墨鱼VIP）
     zhuacan.module      # 抓参
-    fenliu/             # 分流规则集单件
+    fenliu/             # 分流单件（Repcz+莫离+Sukka+Loyalsoldier+…）
 ```
 
-说明见 [`Yuanban/README.md`](Yuanban/README.md)。
+说明见 [`Yuanban/README.md`](Yuanban/README.md)。分流怎么选见 [`Yuanban/heji/fenliu/README.md`](Yuanban/heji/fenliu/README.md)。
 
 ## 订阅
 

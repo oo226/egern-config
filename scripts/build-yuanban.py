@@ -106,6 +106,44 @@ BMJ_ADVERTISING_SCRIPT = (
 IBL3ND_API = "https://api.github.com/repos/IBL3ND/module/git/trees/main?recursive=1"
 IBL3ND_RAW = "https://raw.githubusercontent.com/IBL3ND/module/main/"
 
+MOLI_API = "https://api.github.com/repos/Moli-X/Resources/git/trees/main?recursive=1"
+MOLI_RAW = "https://raw.githubusercontent.com/Moli-X/Resources/main/"
+MOLI_JD_COOKIE = MOLI_RAW + "Surge/Module/JD_Cookie.sgmodule"
+
+NOBYDA_GETCOOKIE = (
+    "https://raw.githubusercontent.com/NobyDa/Script/master/Surge/Module/GetCookie.sgmodule"
+)
+
+LOYALSOLDIER_RAW = "https://raw.githubusercontent.com/Loyalsoldier/surge-rules/release/"
+LOYALSOLDIER_FENLIU = (
+    "direct.txt", "proxy.txt", "gfw.txt", "reject.txt", "cncidr.txt",
+    "google.txt", "apple.txt", "icloud.txt", "private.txt",
+    "telegramcidr.txt", "tld-not-cn.txt", "greatfire.txt",
+)
+
+SUKKA_LIST = "https://ruleset.skk.moe/"
+SUKKA_FENLIU = (
+    ("domainset/reject.conf", "reject.conf"),
+    ("domainset/reject_extra.conf", "reject_extra.conf"),
+    ("non_ip/ai.conf", "ai.conf"),
+    ("non_ip/cdn.conf", "cdn.conf"),
+    ("non_ip/download.conf", "download.conf"),
+    ("non_ip/stream.conf", "stream.conf"),
+    ("non_ip/telegram.conf", "telegram.conf"),
+    ("non_ip/apple_services.conf", "apple_services.conf"),
+    ("non_ip/apple_cn.conf", "apple_cn.conf"),
+    ("non_ip/microsoft.conf", "microsoft.conf"),
+    ("ip/china_ip.conf", "china_ip.conf"),
+    ("ip/telegram.conf", "telegram_ip.conf"),
+)
+
+# blackmatrix7 细分补洞（Repcz/莫离没有或偏薄的）
+BMJ_RULE = "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/"
+BMJ_FENLIU = (
+    "ChinaMax", "OpenAI", "Claude", "Gemini", "Steam", "PayPal",
+    "GlobalMedia", "AdvertisingLite", "Cloudflare", "GitHub",
+)
+
 # 墨鱼 Function（进 jiesuo）：微信110 / TF / Emby 等
 MOYU_FUNCTION_CONFS = (
     ("UnblockURLinWeChat.conf", "微信110外链解锁"),
@@ -1192,14 +1230,29 @@ def heji_fenliu() -> None:
     lines = [
         "# 分流规则集（单件）",
         "",
-        "不合并成一个 module（规则集用途不同）。文件在本目录，订阅示例：",
+        "不合并成一个 module（用途不同，按策略组自选）。原料在 `zuozhe/*/fenliu/`。",
+        "",
+        "## 上游怎么选",
+        "",
+        "| 前缀 | 上游 | 适合 |",
+        "|------|------|------|",
+        "| `repcz__` | Repcz/Tool Egern | **骨架**：国内/代理/流媒体，Egern 原生 yaml |",
+        "| `moli__` | 莫离 Moli-X Ruleset | **分类多**：Ads/CDN/Claude/Steam/PayPal… |",
+        "| `sukka__` | Sukka ruleset.skk.moe | reject/AI/CDN/流媒体/Apple |",
+        "| `loyalsoldier__` | Loyalsoldier surge-rules | **大名单底**：direct/proxy/gfw/reject |",
+        "| `vpsdance__` | VPSDance | AI 专项最全 |",
+        "| `blackmatrix7__` | blackmatrix7 | 细分补洞：ChinaMax/Steam/GlobalMedia… |",
+        "",
+        "广告类 Reject 与去广告合集会叠，别无脑全开。",
+        "",
+        "## 订阅示例",
         "",
         "```",
     ]
     for f in sorted(out.iterdir()):
         if f.is_file() and f.name != "README.md":
             lines.append(f"{RAW}/Yuanban/heji/fenliu/{f.name}")
-    lines += ["```", "", f"共 {n} 个文件。原料仍在 `zuozhe/*/fenliu/`。", ""]
+    lines += ["```", "", f"共 {n} 个文件。", ""]
     (out / "README.md").write_text("\n".join(lines), encoding="utf-8")
     STATS["heji"]["fenliu"] = n
     print(f"heji fenliu files={n}")
@@ -1207,9 +1260,12 @@ def heji_fenliu() -> None:
 
 def heji_zhuacan(cache: dict[str, str]) -> None:
     bags: list[tuple[str, dict[str, list[str]]]] = []
+    # cookie-collection = sync 合并版（已含奶思+起点）；合集不再叠原版以免双倍 MITM
+    # 奶思/起点原件仍在 zuozhe 单件备份
     items = [
-        ("naisi", "cookies.module", "奶思 · cookies 抓参"),
-        ("yuheng", "qdreader-cookie-extra.sgmodule", "Yuheng · 起点抓参"),
+        ("local", "cookie-collection.module", "本仓 · Cookie合集（奶思+起点+自托管）"),
+        ("nobyda", "GetCookie.sgmodule", "NobyDa · 签到Cookie（爱奇艺/贴吧/B漫/快看/携程）"),
+        ("moli", "JD_Cookie.sgmodule", "莫离 · 京东Cookie"),
     ]
     for author, fname, label in items:
         path = ZUOZHE / author / "mokuai" / fname
@@ -1222,15 +1278,49 @@ def heji_zhuacan(cache: dict[str, str]) -> None:
     text = merge_section_bags(
         bags,
         name="抓参合集",
-        desc="签到 Cookie/Token 抓取（按需开，抓完关掉）",
+        desc="签到 Cookie/Token 抓取：奶思合集 + NobyDa + 莫离京东 + 起点（按需开，抓完关掉）",
         notes=[
             "# 合集类型: 抓参",
-            "# 默认建议关闭；抓完关掉省电",
+            "# 默认建议关闭；抓完关掉省电 / 少 MITM",
+            "# 主源: sync cookie-collection（奶思 cookies + 起点 + 脚本自托管）",
+            "# 补充: 奶思原版 / NobyDa GetCookie / 莫离京东 JD_Cookie / Yuheng 起点",
         ],
     )
     (HEJI / "zhuacan.module").write_text(text, encoding="utf-8")
     STATS["heji"]["zhuacan"] = len(bags)
     print(f"heji zhuacan bags={len(bags)}")
+
+
+def mirror_moli_ruleset() -> int:
+    """莫离 Moli-X/Resources Ruleset/*.list → zuozhe/moli/fenliu。"""
+    paths = ensure_author("moli")
+    try:
+        tree = json.loads(fetch(MOLI_API).decode())["tree"]
+    except Exception as exc:
+        print(f"  ! moli tree: {exc}")
+        return 0
+    n = 0
+    for t in tree:
+        if t.get("type") != "blob":
+            continue
+        rel = t["path"]
+        if not (rel.startswith("Ruleset/") and rel.endswith(".list")):
+            continue
+        name = Path(rel).name
+        try:
+            raw = fetch(MOLI_RAW + quote(rel, safe="/"))
+        except Exception as exc:
+            print(f"  ! moli/{name}: {exc}")
+            continue
+        save_bytes(paths["fenliu"] / name, raw, author="moli", kind="fenliu")
+        n += 1
+        print(f"  moli/fenliu/{name}")
+    (paths["fenliu"] / "README.md").write_text(
+        "莫离 Moli-X/Resources Ruleset（Surge/QX 通用 .list 原样）。\n"
+        "上游：https://github.com/Moli-X/Resources\n",
+        encoding="utf-8",
+    )
+    return n
 
 
 def mirror_sync_module(author: str, filename: str, cache: dict[str, str]) -> Path | None:
@@ -1345,6 +1435,15 @@ def write_docs() -> None:
         "",
         "- `Yuanban/qita/ibl3nd/` — IBL3ND/module 原样（单件）",
         "",
+        "## 分流上游",
+        "",
+        "- Repcz（Egern 骨架）+ 莫离 Ruleset + Sukka + Loyalsoldier 大名单 + VPSDance AI + BMJ 细分",
+        "- 清单见 `heji/fenliu/README.md`",
+        "",
+        "## 抓参",
+        "",
+        "- `heji/zhuacan`：sync Cookie合集 + 奶思原版 + NobyDa GetCookie + 莫离京东 + 起点",
+        "",
     ]
     if STATS["js_fail"]:
         lines += ["## js 镜像失败（节选）", ""]
@@ -1354,8 +1453,9 @@ def write_docs() -> None:
     (HEJI / "UPSTREAM.md").write_text("\n".join(lines), encoding="utf-8")
     (ZUOZHE / "README.md").write_text(
         "作者拼音目录。每人下有 fenliu / mokuai / js；可莉另有 official/。内容与上游字节一致。\n\n"
-        "拼音：keli可莉 naisi奶思 moyu墨鱼 dunai毒奶 blackmatrix7 iewha chxm weigiegie "
-        "liulong yu9191 repcz sukka vpsdance yuheng local miranquil\n",
+        "拼音：keli可莉 naisi奶思 moyu墨鱼 dunai毒奶 moli莫离 nobyda blackmatrix7 "
+        "loyalsoldier iewha chxm weigiegie liulong yu9191 repcz sukka vpsdance "
+        "yuheng local miranquil\n",
         encoding="utf-8",
     )
 
@@ -1492,7 +1592,17 @@ def main() -> None:
     ):
         mirror_sync_module(author, src_name, cache)
 
-    print("=== zuozhe fenliu ===")
+    print("=== zuozhe cookie / 抓参模块 ===")
+    mirror_sync_module("local", "cookie-collection.module", cache)
+    mirror_url_module("nobyda", NOBYDA_GETCOOKIE, "GetCookie.sgmodule", cache)
+    mirror_url_module("moli", MOLI_JD_COOKIE, "JD_Cookie.sgmodule", cache)
+    (ZUOZHE / "nobyda" / "mokuai" / "README.md").write_text(
+        "NobyDa GetCookie — 爱奇艺/B漫/贴吧/快看/携程签到 Cookie。\n",
+        encoding="utf-8",
+    )
+
+    print("=== zuozhe fenliu（多上游）===")
+    # 1) Repcz Egern 原生骨架
     repcz = "https://raw.githubusercontent.com/Repcz/Tool/X/Egern/Rules"
     for name in (
         "Reject", "Direct", "WeChat", "Bilibili", "AppleCN",
@@ -1502,12 +1612,45 @@ def main() -> None:
         "Github", "Microsoft", "AppleServers", "Game", "ProxyGFW", "Proxy",
     ):
         mirror_url_fenliu("repcz", f"{repcz}/{name}.yaml", f"{name}.yaml")
-    mirror_url_fenliu("sukka", "https://ruleset.skk.moe/List/domainset/reject.conf", "reject.conf")
-    mirror_url_fenliu("sukka", "https://ruleset.skk.moe/List/non_ip/ai.conf", "ai.conf")
+
+    # 2) 莫离 Ruleset 全量（60 类）
+    print("  --- moli Ruleset ---")
+    mirror_moli_ruleset()
+
+    # 3) Sukka 扩充
+    for rel, fname in SUKKA_FENLIU:
+        mirror_url_fenliu("sukka", SUKKA_LIST + "List/" + rel, fname)
+
+    # 4) Loyalsoldier 大名单
+    for fname in LOYALSOLDIER_FENLIU:
+        mirror_url_fenliu("loyalsoldier", LOYALSOLDIER_RAW + fname, fname)
+
+    # 5) VPSDance AI
     mirror_url_fenliu(
         "vpsdance",
         "https://cdn.jsdelivr.net/gh/VPSDance/ai-proxy-rules@main/rules/egern/all.yaml",
         "all.yaml",
+    )
+
+    # 6) blackmatrix7 细分补洞
+    for name in BMJ_FENLIU:
+        mirror_url_fenliu(
+            "blackmatrix7",
+            f"{BMJ_RULE}{name}/{name}.list",
+            f"{name}.list",
+        )
+    (ZUOZHE / "loyalsoldier" / "fenliu" / "README.md").write_text(
+        "Loyalsoldier/surge-rules release DOMAIN-SET（大名单底）。\n",
+        encoding="utf-8",
+    )
+    (ZUOZHE / "sukka" / "fenliu" / "README.md").write_text(
+        "Sukka ruleset.skk.moe — reject/AI/CDN/流媒体/Apple/…\n",
+        encoding="utf-8",
+    )
+    (ZUOZHE / "blackmatrix7" / "fenliu" / "README.md").write_text(
+        "blackmatrix7 细分补洞（ChinaMax/AI/Steam/GlobalMedia…）。\n"
+        "广告 Advertising 模块另见 mokuai/。\n",
+        encoding="utf-8",
     )
 
     print("=== danxiang ===")
