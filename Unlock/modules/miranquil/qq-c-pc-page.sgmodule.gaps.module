@@ -1,0 +1,5 @@
+#!name=miranquil/qq-c-pc-page.sgmodule-gaps
+
+[Script]
+# >>> miranquil/qq-c-pc-page.sgmodule gaps
+c-pc-page = type=http-request,pattern=^https:\/\/c\.pc\.qq\.com\/,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/cursor/adblock-formal-f611/Unlock/js/github.com/miranquil/surge-scripts/raw/main/tencent/c-pc-page/script.js

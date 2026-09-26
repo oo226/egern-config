@@ -1,0 +1,12 @@
+#!name=local/yu9191-ShortcutStudio.sgmodule-gaps
+
+[Script]
+# >>> local/yu9191-ShortcutStudio.sgmodule gaps
+ShortcutStudio Generate = type=http-request, pattern="^https:\/\/api\.shortcutstudio\.app\/generate(?:[/?#]|$)", requires-body=1, max-size=0, timeout=30, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/cursor/adblock-formal-f611/Unlock/js/raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/yu9191/request.js, argument=thinkingMode={{{思考模式}}}&searchWebMode={{{搜索模式}}}&deviceIdReuseLimit={{{设备ID复用次数}}}&signRewrite={{{sign接口替换}}}&logLevel={{{日志级别}}}
+ShortcutStudio Limits = type=http-request, pattern="^https:\/\/api\.shortcutstudio\.app\/users\/me\/limits(?:[/?#]|$)", requires-body=0, max-size=0, timeout=30, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/cursor/adblock-formal-f611/Unlock/js/raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/yu9191/request.js, argument=thinkingMode={{{思考模式}}}&searchWebMode={{{搜索模式}}}&deviceIdReuseLimit={{{设备ID复用次数}}}&signRewrite={{{sign接口替换}}}&logLevel={{{日志级别}}}
+ShortcutStudio Sign = type=http-request, pattern="^https:\/\/api\.shortcutstudio\.app\/sign(?:[/?#]|$)", requires-body=0, max-size=0, timeout=30, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/cursor/adblock-formal-f611/Unlock/js/raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/yu9191/request.js, argument=thinkingMode={{{思考模式}}}&searchWebMode={{{搜索模式}}}&deviceIdReuseLimit={{{设备ID复用次数}}}&signRewrite={{{sign接口替换}}}&logLevel={{{日志级别}}}
+ShortcutStudio Limits Mock = type=http-response, pattern="^https:\/\/api\.shortcutstudio\.app\/users\/me\/limits(?:[/?#]|$)", requires-body=1, max-size=0, timeout=30, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/cursor/adblock-formal-f611/Unlock/js/raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/yu9191/response.js, argument=limitsMock={{{limits响应mock}}}&messagesLimit={{{消息额度}}}&downloadsLimit={{{下载额度}}}&searchesLimit={{{搜索额度}}}&uploadsLimit={{{上传额度}}}&marketplaceDownloadsLimit={{{市场下载额度}}}&chatInputCharsLimit={{{输入字数}}}&logLevel={{{日志级别}}}
+
+[MITM]
+# >>> local/yu9191-ShortcutStudio.sgmodule gaps
+hostname = %APPEND% api.shortcutstudio.app

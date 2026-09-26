@@ -1,0 +1,22 @@
+#!name=阿里云盘解锁补全
+#!desc=ddgksf2013 阿里云盘净化+本地会员倍速码率（gist 源，替代 script.hub 链接）
+#!author=ddgksf2013 via oo226/egern-config
+#!category=解锁补全
+#!system=ios
+
+[URL Rewrite]
+^https?:\/\/member\.(aliyundrive|alipan)\.com\/v1\/users\/onboard_list - reject
+^https?:\/\/api\.(aliyundrive|alipan)\.com\/adrive\/v2\/backup\/device - reject
+
+[Script]
+阿里云盘VIP = type=http-response, pattern=^https?:\/\/api\.(aliyundrive|alipan)\.com\/business\/v1\.1\/users\/me\/vip\/info, script-path=https://gist.githubusercontent.com/ddgksf2013/f4752e632fd3375ea2811985c5b635dc/raw/alicloud.js, requires-body=true, max-size=-1, timeout=60
+阿里云盘VIP = type=http-response, pattern=^https?:\/\/member\.(aliyundrive|alipan)\.com\/v1\/users\/tools, script-path=https://gist.githubusercontent.com/ddgksf2013/f4752e632fd3375ea2811985c5b635dc/raw/alicloud.js, requires-body=true, max-size=-1, timeout=60
+阿里云盘VIP = type=http-response, pattern=^https?:\/\/member\.(aliyundrive|alipan)\.com\/v1\/users\/me, script-path=https://gist.githubusercontent.com/ddgksf2013/f4752e632fd3375ea2811985c5b635dc/raw/alicloud.js, requires-body=true, max-size=-1, timeout=60
+阿里云盘VIP = type=http-response, pattern=^https?:\/\/api\.(aliyundrive|alipan)\.com\/business\/v1\.0\/users\/vip\/info, script-path=https://gist.githubusercontent.com/ddgksf2013/f4752e632fd3375ea2811985c5b635dc/raw/alicloud.js, requires-body=true, max-size=-1, timeout=60
+阿里云盘VIP = type=http-response, pattern=^https?:\/\/api\.(aliyundrive|alipan)\.com\/business\/v1\.0\/users\/feature\/list, script-path=https://gist.githubusercontent.com/ddgksf2013/f4752e632fd3375ea2811985c5b635dc/raw/alicloud.js, requires-body=true, max-size=-1, timeout=60
+阿里云盘VIP = type=http-response, pattern=^https?:\/\/api\.(aliyundrive|alipan)\.com\/apps\/v2\/users\/home\/widgets, script-path=https://gist.githubusercontent.com/ddgksf2013/f4752e632fd3375ea2811985c5b635dc/raw/alicloud.js, requires-body=true, max-size=-1, timeout=60
+阿里云盘VIP = type=http-response, pattern=^https?:\/\/user\.(aliyundrive|alipan)\.com\/v2\/user\/get, script-path=https://gist.githubusercontent.com/ddgksf2013/f4752e632fd3375ea2811985c5b635dc/raw/alicloud.js, requires-body=true, max-size=-1, timeout=60
+阿里云盘VIP = type=http-response, pattern=^https?:\/\/member\.(aliyundrive|alipan)\.com\/v2\/activity\/sign_in_info, script-path=https://gist.githubusercontent.com/ddgksf2013/f4752e632fd3375ea2811985c5b635dc/raw/alicloud.js, requires-body=true, max-size=-1, timeout=60
+
+[MITM]
+hostname = %APPEND% api.alipan.com, member.aliyundrive.com, member.alipan.com, api.aliyundrive.com, user.alipan.com, user.aliyundrive.com

@@ -18,3 +18,5 @@ https://raw.githubusercontent.com/oo226/egern-config/refs/heads/cursor/adblock-f
 重建：`python3 scripts/build-adblock-formal.py`
 
 与 `sync` 日更无关；分流 / 解锁下一批再做。
+
+总览见仓库根目录 [Formal.md](../Formal.md)。
