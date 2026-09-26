@@ -632,6 +632,11 @@ scriptings:
       max_size: -1
       timeout: 60
       update_interval: 3600
+      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/ddgksf2013/nbpro.ads.js
+      body_required: true
+      max_size: -1
+      timeout: 60
+      update_interval: 3600
   - http_response:
       name: NBPro去广告
       match: '^https?://(?:[^/]*nbtool8\.com|124\.222\.32\.246|117\.72\.39\.157|47\.243\.71\.210|cesapp\.goypzc\.cn)(?::\d+)?/nb/app'
