@@ -1,8 +1,0 @@
-#!name=🐻 巴哈姆特 [签到]
-#!desc=每日定时签到，包含主站签到、公会签到、动画疯答题等；模块参数可调整签到时间。\n使用前需要进入BoxJs填写账号密码，BoxJs订阅链接可查看脚本注释。
-#!arguments=定时签到:20 8 * * *
-#!arguments-desc=定时签到：Cron表达式，默认每天早上 08:20 执行。（如需动画疯答题，不建议在凌晨0:00-0:30执行）
-#!category=🐻 NobyDa
-
-[Script]
-巴哈姆特[签到] = type=cron,cronexp="{{{定时签到}}}",wake-system=1,script-update-interval=0,timeout=300,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/NobyDa/Script/master/Bahamut/BahamutDailyBonus.js

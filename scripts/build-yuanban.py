@@ -42,7 +42,7 @@ HEJI = YUAN / "heji"
 BRANCH = (
     os.environ.get("ADBLOCK_BRANCH")
     or os.environ.get("GITHUB_REF_NAME")
-    or "cursor/adblock-formal-f611"
+    or "guize"
 )
 RAW = f"https://raw.githubusercontent.com/oo226/egern-config/refs/heads/{BRANCH}"
 

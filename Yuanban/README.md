@@ -30,10 +30,10 @@ Yuanban/
 ## 订阅
 
 ```
-https://raw.githubusercontent.com/oo226/egern-config/refs/heads/cursor/adblock-formal-f611/Yuanban/heji/quguanggao.module
-https://raw.githubusercontent.com/oo226/egern-config/refs/heads/cursor/adblock-formal-f611/Yuanban/heji/qukaiping.module
-https://raw.githubusercontent.com/oo226/egern-config/refs/heads/cursor/adblock-formal-f611/Yuanban/heji/jiesuo.module
-https://raw.githubusercontent.com/oo226/egern-config/refs/heads/cursor/adblock-formal-f611/Yuanban/heji/zhuacan.module
+https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/quguanggao.module
+https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/qukaiping.module
+https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/jiesuo.module
+https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/zhuacan.module
 ```
 
 重建：`python3 scripts/build-yuanban.py`

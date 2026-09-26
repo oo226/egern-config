@@ -1,7 +1,7 @@
 # 合集上游说明
 
 构建：2026-09-26 00:46 UTC
-分支：`cursor/adblock-formal-f611`
+分支：`guize`
 
 ## zuozhe 作者统计
 
