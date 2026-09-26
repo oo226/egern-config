@@ -1,11 +1,12 @@
 #!name=解锁增强合集
 #!desc=可莉解锁相关 + iEwha/chxm/奶思/WeiGiegie/…（作者原文，URL自托管）
-# built_at=2026-09-26T00:46Z
+# built_at=2026-09-26T01:57Z
 # branch=guize
 # 作者规则正文不改；仅 script-path 改指 Yuanban/zuozhe/*/js 自托管
 # 合集类型: 解锁增强
 # 分段注释标明每个作者/模块用途
 # Spotify 用 Eevee（spotify-unlock），不含 Crack
+# 已跳过可莉近重复: Google重定向 / 拦截HTTPDNS / Spotify歌词翻译（单件仍在 zuozhe）
 
 [General]
 
@@ -216,168 +217,6 @@ AND,((GEOIP,CN),(DOMAIN,pitaya.bytedance.com,extended-matching)),DIRECT
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - 
-# 可莉 · 拦截HTTPDNS
-# - - - - - - - - - - - - - - - - - - - - - - - - 
-DOMAIN,yyapp-httpdns.gslb.yy.com,REJECT,extended-matching,pre-matching
-DOMAIN,union-httpdns.gslb.yy.com,REJECT,extended-matching,pre-matching
-DOMAIN,httpdns-v6.gslb.yy.com,REJECT,extended-matching,pre-matching
-URL-REGEX,"^http:\/\/103\.44\.58\.64\/md\?",REJECT,extended-matching
-URL-REGEX,"^http:\/\/cdn\.wup\.huya\.com\/launch\/queryHttpDns",REJECT,extended-matching
-DOMAIN,dns2.q2cdn.com,REJECT,extended-matching,pre-matching
-URL-REGEX,"^http:\/\/xmc\.ximalaya\.com\/xmlymain-login-web\/login\/",REJECT,extended-matching
-IP-CIDR,8.134.241.67/32,REJECT,no-resolve,pre-matching
-DOMAIN,httpdns.volcengineapi.com,REJECT,extended-matching,pre-matching
-DOMAIN,dig.bdurl.net,REJECT,extended-matching,pre-matching
-DOMAIN,dig.zjurl.cn,REJECT,extended-matching,pre-matching
-DOMAIN,dns.weixin.qq.com,REJECT,extended-matching,pre-matching
-DOMAIN,dns.weixin.qq.com.cn,REJECT,extended-matching,pre-matching
-DOMAIN,aedns.weixin.qq.com,REJECT,extended-matching,pre-matching
-DOMAIN,paydns.wechatpay.cn,REJECT,extended-matching,pre-matching
-IP-CIDR,39.156.140.30/32,REJECT,no-resolve,pre-matching
-IP-CIDR,39.156.140.47/32,REJECT,no-resolve,pre-matching
-IP-CIDR,39.156.140.245/32,REJECT,no-resolve,pre-matching
-IP-CIDR,42.81.232.18/32,REJECT,no-resolve,pre-matching
-IP-CIDR,42.187.182.106/32,REJECT,no-resolve,pre-matching
-IP-CIDR,42.187.182.123/32,REJECT,no-resolve,pre-matching
-IP-CIDR,42.187.184.154/32,REJECT,no-resolve,pre-matching
-IP-CIDR,43.130.30.237/32,REJECT,no-resolve,pre-matching
-IP-CIDR,43.130.30.240/32,REJECT,no-resolve,pre-matching
-IP-CIDR,43.137.153.151/32,REJECT,no-resolve,pre-matching
-IP-CIDR,43.137.159.31/32,REJECT,no-resolve,pre-matching
-IP-CIDR,43.152.112.101/32,REJECT,no-resolve,pre-matching
-IP-CIDR,43.153.248.120/32,REJECT,no-resolve,pre-matching
-IP-CIDR,60.28.172.100/32,REJECT,no-resolve,pre-matching
-IP-CIDR,61.151.231.157/32,REJECT,no-resolve,pre-matching
-IP-CIDR,101.32.104.104/32,REJECT,no-resolve,pre-matching
-IP-CIDR,106.39.206.21/32,REJECT,no-resolve,pre-matching
-IP-CIDR,106.39.206.25/32,REJECT,no-resolve,pre-matching
-IP-CIDR,106.39.206.70/32,REJECT,no-resolve,pre-matching
-IP-CIDR,111.31.201.194/32,REJECT,no-resolve,pre-matching
-IP-CIDR,111.31.241.76/32,REJECT,no-resolve,pre-matching
-IP-CIDR,111.31.241.140/32,REJECT,no-resolve,pre-matching
-IP-CIDR,111.206.147.156/32,REJECT,no-resolve,pre-matching
-IP-CIDR,111.206.147.210/32,REJECT,no-resolve,pre-matching
-IP-CIDR,111.206.148.27/32,REJECT,no-resolve,pre-matching
-IP-CIDR,116.128.177.249/32,REJECT,no-resolve,pre-matching
-IP-CIDR,116.130.224.150/32,REJECT,no-resolve,pre-matching
-IP-CIDR,116.130.224.205/32,REJECT,no-resolve,pre-matching
-IP-CIDR,117.185.247.73/32,REJECT,no-resolve,pre-matching
-IP-CIDR,123.151.48.171/32,REJECT,no-resolve,pre-matching
-IP-CIDR,123.151.48.193/32,REJECT,no-resolve,pre-matching
-IP-CIDR,123.151.48.208/32,REJECT,no-resolve,pre-matching
-IP-CIDR,123.151.54.50/32,REJECT,no-resolve,pre-matching
-IP-CIDR,180.153.202.85/32,REJECT,no-resolve,pre-matching
-IP-CIDR,183.192.196.31/32,REJECT,no-resolve,pre-matching
-IP-CIDR,203.205.129.102/32,REJECT,no-resolve,pre-matching
-IP-CIDR,203.205.234.132/32,REJECT,no-resolve,pre-matching
-IP-CIDR,220.196.159.73/32,REJECT,no-resolve,pre-matching
-IP-CIDR6,240e:928:1400:10::25/128,REJECT,no-resolve,pre-matching
-IP-CIDR6,2402:4e00:8030:1::17/128,REJECT,no-resolve,pre-matching
-IP-CIDR6,2402:4e00:1900:1700:0:9554:1ad9:c3a/128,REJECT,no-resolve,pre-matching
-IP-CIDR6,2408:8711:10:10::20/128,REJECT,no-resolve,pre-matching
-IP-CIDR6,2409:8702:4860:10::4d/128,REJECT,no-resolve,pre-matching
-DOMAIN,httpdns.kg.qq.com,REJECT,extended-matching,pre-matching
-URL-REGEX,"^http:\/\/182\.256\.116\.116\/d",REJECT,extended-matching
-DOMAIN,httpdns.bilivideo.com,REJECT,extended-matching,pre-matching
-URL-REGEX,"^http:\/\/47\.101\.175\.206\/resolve",REJECT,extended-matching
-URL-REGEX,"^http:\/\/47\.100\.123\.169\/resolve",REJECT,extended-matching
-URL-REGEX,"^http:\/\/120\.46\.169\.234\/resolve",REJECT,extended-matching
-URL-REGEX,"^http:\/\/121\.36\.72\.124\/resolve",REJECT,extended-matching
-URL-REGEX,"^http:\/\/116\.63\.10\.135\/resolve",REJECT,extended-matching
-URL-REGEX,"^http:\/\/117\.185\.228\.108\/resolve",REJECT,extended-matching
-URL-REGEX,"^http:\/\/117\.144\.238\.29\/resolve",REJECT,extended-matching
-URL-REGEX,"^http:\/\/122\.9\.7\.134\/resolve",REJECT,extended-matching
-URL-REGEX,"^http:\/\/101\.91\.140\.124\/resolve",REJECT,extended-matching
-URL-REGEX,"^http:\/\/101\.91\.140\.224\/resolve",REJECT,extended-matching
-URL-REGEX,"^http:\/\/122\.9\.13\.79\/resolve",REJECT,extended-matching
-URL-REGEX,"^http:\/\/122\.9\.15\.129\/resolve",REJECT,extended-matching
-URL-REGEX,"^http:\/\/112\.65\.200\.117\/resolve",REJECT,extended-matching
-URL-REGEX,"^http:\/\/112\.64\.218\.119\/resolve",REJECT,extended-matching
-URL-REGEX,"^http:\/\/114\.116\.215\.110\/resolve",REJECT,extended-matching
-URL-REGEX,"^http:\/\/116\.63\.10\.31\/resolve",REJECT,extended-matching
-DOMAIN,httpdns.browser.miui.com,REJECT,extended-matching,pre-matching
-DOMAIN,resolver.msg.xiaomi.net,REJECT,extended-matching,pre-matching
-DOMAIN,httpdns.alicdn.com,REJECT,extended-matching,pre-matching
-DOMAIN,httpdns-api.aliyuncs.com,REJECT,extended-matching,pre-matching
-DOMAIN,httpdns-sc.aliyuncs.com,REJECT,extended-matching,pre-matching
-IP-CIDR,203.107.1.0/24,REJECT,no-resolve,pre-matching
-DOMAIN,httpdns.danuoyi.tbcache.com,REJECT,extended-matching,pre-matching
-DOMAIN,httpdns.cctv.com,REJECT,extended-matching,pre-matching
-DOMAIN,httpdns-browser.platform.dbankcloud.cn,REJECT,extended-matching,pre-matching
-DOMAIN,httpdns.huaweicloud.com,REJECT,extended-matching,pre-matching
-DOMAIN,httpdns.c.cdnhwc2.com,REJECT,extended-matching,pre-matching
-DOMAIN,httpdns.platform.dbankcloud.cn,REJECT,extended-matching,pre-matching
-DOMAIN,httpdns.platform.dbankcloud.com,REJECT,extended-matching,pre-matching
-DOMAIN,httpdns1.cc.cdnhwc5.com,REJECT,extended-matching,pre-matching
-DOMAIN,doh.ptqy.gitv.tv,REJECT,extended-matching,pre-matching
-DOMAIN,httpdns.baidu.com,REJECT,extended-matching,pre-matching
-DOMAIN,httpsdns.baidu.com,REJECT,extended-matching,pre-matching
-DOMAIN,httpdns.bcelive.com,REJECT,extended-matching,pre-matching
-DOMAIN,httpdns.baidubce.com,REJECT,extended-matching,pre-matching
-DOMAIN,dns.iqiyi.com,REJECT,extended-matching,pre-matching
-DOMAIN,doh.iqiyi.com,REJECT,extended-matching,pre-matching
-DOMAIN,dns.qiyipic.iqiyi.com,REJECT,extended-matching,pre-matching
-DOMAIN,httpdns.n.shifen.com,REJECT,extended-matching,pre-matching
-URL-REGEX,"^http:\/\/180\.76\.76\.112\/v\d\/",REJECT,extended-matching
-URL-REGEX,"^http:\/\/180\.76\.76\.112\/v\d\/resolve",REJECT,extended-matching
-URL-REGEX,"^http:\/\/180\.76\.76\.220\/v\d\/resolve",REJECT,extended-matching
-IP-CIDR,186.76.76.200/32,REJECT,no-resolve,pre-matching
-DOMAIN,httpdns.ocloud.heytapmobi.com,REJECT,extended-matching,pre-matching
-DOMAIN,httpdns.push.heytapmobi.com,REJECT,extended-matching,pre-matching
-DOMAIN,dns.jd.com,REJECT,extended-matching,pre-matching
-IP-CIDR,101.124.19.122/32,REJECT,no-resolve,pre-matching
-IP-CIDR6,2402:db40:5100:1011::5/128,REJECT,no-resolve,pre-matching
-IP-CIDR,103.224.222.208/32,REJECT,no-resolve,pre-matching
-IP-CIDR,119.29.29.98/32,REJECT,no-resolve,pre-matching
-IP-CIDR,119.29.29.99/32,REJECT,no-resolve,pre-matching
-URL-REGEX,"^http:\/\/182\.254\.116\.116\/d",REJECT,extended-matching
-DOMAIN,dotserver.douyucdn.cn,REJECT,extended-matching,pre-matching
-DOMAIN,hdns.ksyun.com,REJECT,extended-matching,pre-matching
-URL-REGEX,"^http:\/\/162\.14\.3\.250\/v4",REJECT,extended-matching
-DOMAIN,httpdns.push.oppomobile.com,REJECT,extended-matching,pre-matching
-DOMAIN,httpdns.ocloud.oppomobile.com,REJECT,extended-matching,pre-matching
-DOMAIN,kuaishou.httpdns.pro,REJECT,extended-matching,pre-matching
-DOMAIN,httpdns.kwd.inkuai.com,REJECT,extended-matching,pre-matching
-DOMAIN,apidns.kwd.inkuai.com,REJECT,extended-matching,pre-matching
-DOMAIN,apidns-js.kwd.inkuai.com,REJECT,extended-matching,pre-matching
-DOMAIN,httpdns.meituan.com,REJECT,extended-matching,pre-matching
-DOMAIN,httpdnsmultiapivip.meituan.com,REJECT,extended-matching,pre-matching
-URL-REGEX,"^http:\/\/103\.37\.155\.60\/fetch",REJECT,extended-matching
-URL-REGEX,"^http:\/\/81\.69\.130\.131\/d",REJECT,extended-matching
-URL-REGEX,"^http:\/\/101\.35\.204\.35\/d",REJECT,extended-matching
-URL-REGEX,"^http:\/\/101\.35\.212\.35\/d",REJECT,extended-matching
-URL-REGEX,"^http:\/\/114\.110\.96\.6\/d",REJECT,extended-matching
-URL-REGEX,"^http:\/\/114\.110\.96\.26\/d",REJECT,extended-matching
-URL-REGEX,"^http:\/\/114\.110\.97\.30\/d",REJECT,extended-matching
-URL-REGEX,"^http:\/\/114\.110\.97\.97\/d",REJECT,extended-matching
-URL-REGEX,"^http:\/\/121\.5\.84\.85\/d",REJECT,extended-matching
-URL-REGEX,"^http:\/\/\[2402:4e00:1411:201:0:9964:ba21:5a41\]\/d",REJECT,extended-matching
-DOMAIN,httpdns.music.163.com,REJECT,extended-matching,pre-matching
-DOMAIN,httpdns.n.netease.com,REJECT,extended-matching,pre-matching
-DOMAIN,httpdns-sdk.n.netease.com,REJECT,extended-matching,pre-matching
-DOMAIN,httpdns.yunxindns.com,REJECT,extended-matching,pre-matching
-DOMAIN,lofter.httpdns.c.163.com,REJECT,extended-matching,pre-matching
-DOMAIN,music.httpdns.c.163.com,REJECT,extended-matching,pre-matching
-DOMAIN,httpdns.yunxindns.com,REJECT,extended-matching,pre-matching
-IP-CIDR,59.111.239.61/32,REJECT,no-resolve,pre-matching
-IP-CIDR,59.111.239.62/32,REJECT,no-resolve,pre-matching
-IP-CIDR,115.236.121.51/32,REJECT,no-resolve,pre-matching
-IP-CIDR,115.236.121.195/32,REJECT,no-resolve,pre-matching
-DOMAIN,httpdns.zybang.com,REJECT,extended-matching,pre-matching
-DOMAIN,httpdns.calorietech.com,REJECT,extended-matching,pre-matching
-DOMAIN,dns.weibo.cn,REJECT,extended-matching,pre-matching
-IP-CIDR,39.97.130.51/32,REJECT,no-resolve,pre-matching
-IP-CIDR,39.97.128.148/32,REJECT,no-resolve,pre-matching
-URL-REGEX,"^http:\/\/api\.weibo\.cn\/2\/httpdns\/config",REJECT,extended-matching
-URL-REGEX,"^http:\/\/api\.weibo\.cn\/httpdns\/config",REJECT,extended-matching
-URL-REGEX,"^http:\/\/103\.41\.167\.237\/v2\/resolv",REJECT,extended-matching
-IP-CIDR,118.89.204.198/23,REJECT,no-resolve,pre-matching
-IP-CIDR6,2402:4e00:1200:ed00:0:9089:6dac:96b6/128,REJECT,no-resolve,pre-matching
-DOMAIN,hd.xiaojukeji.com,REJECT,extended-matching,pre-matching
-DOMAIN,httpdns.zybang.com,REJECT,extended-matching,pre-matching
-
-
-# - - - - - - - - - - - - - - - - - - - - - - - - 
 # 本仓 · 屏蔽更新/P12 等
 # - - - - - - - - - - - - - - - - - - - - - - - - 
 # 农行代理检测探针（原 skip-proxy-collection；skip-proxy 名单已收敛到主配置）
@@ -457,13 +296,6 @@ https:\/\/www.youtube.com\/api\/timedtext\?.+&lang=(?!(zh|zh\-Hans)&)((?!&tlang=
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - 
-# 可莉 · Google搜索重定向
-# - - - - - - - - - - - - - - - - - - - - - - - - 
-^https?:\/\/(www.)?(g|google)\.cn https://www.google.com 307
-^https?:\/\/(ditu|maps).google\.cn https://maps.google.com 307
-
-
-# - - - - - - - - - - - - - - - - - - - - - - - - 
 # 可莉 · HTTPDNS拦截器
 # - - - - - - - - - - - - - - - - - - - - - - - - 
 ^https?:\/\/cdn\.wup\.huya\.com\/monitor\/monitor\.jsp - reject
@@ -488,22 +320,6 @@ https:\/\/www.youtube.com\/api\/timedtext\?.+&lang=(?!(zh|zh\-Hans)&)((?!&tlang=
 ^https:\/\/duckduckgo\.com\/\?q=qm\+([^&]+).+ https://www.qimai.cn/search/index/country/cn/search/$1 307
 ^https:\/\/duckduckgo\.com\/\?q=gh\+([^&]+).+ https://github.com/search?q=$1 307
 ^https:\/\/duckduckgo\.com\/\?q=([^&]+).+ https://www.google.com/search?q=$1 307
-
-
-# - - - - - - - - - - - - - - - - - - - - - - - - 
-# 可莉 · 拦截HTTPDNS
-# - - - - - - - - - - - - - - - - - - - - - - - - 
-^https?:\/\/119\.29\.29\.29\/d - reject
-^https?:\/\/203\.107\.1\.1/\d+/ss - reject
-^https?:\/\/203\.107\.1\.33/\d+/ss - reject
-^https?:\/\/203\.107\.1\.66/\d+/ss - reject
-^https?:\/\/203\.107\.1\.67/\d+/ss - reject
-^https?:\/\/203\.107\.1\.97/\d+/ss - reject
-^https?:\/\/2401:b180:2000:30::1c\/\d+\/d - reject
-^https?:\/\/2401:b180:2000:20::10\/\d+\/d - reject
-^https?:\/\/180\.76\.76\.200\/v\d\/resolve - reject
-^https?:\/\/180\.76\.76\.112\/v\d\/resolve - reject
-^https?:\/\/cdn\.wup\.huya\.com\/monitor\/monitor\.jsp - reject
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -550,14 +366,6 @@ http-response ^https:\/\/articles\.zsxq\.com\/inline_form\/id_[a-z0-9]+\.html na
 ^https:\/\/msglb\.91160\.com\/msg\/outer\/broker\/get$ data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 
 ^https:\/\/ucdc\d?-upaas\.uc\.cn\/api\/v\d\/dns_query\? data-type=text data="{}" status-code=200 header="Content-Type:application/json"
-
-
-# - - - - - - - - - - - - - - - - - - - - - - - - 
-# 可莉 · 拦截HTTPDNS
-# - - - - - - - - - - - - - - - - - - - - - - - - 
-^https?:\/\/appconf\.mail\.163\.com\/mailmaster\/api\/http\/urlConfig\.do$ data-type=text data="{}" status-code=200
-
-^https:\/\/msglb\.91160\.com\/msg\/outer\/broker\/get$ data-type=text data="{}" status-code=200
 
 
 [Script]
@@ -1679,7 +1487,7 @@ yiyan = type=http-response, pattern=^https?:\/\/app\.yiyan\.art\/yiyan, script-p
 wsgj = type=http-response, pattern=^https?:\/\/api.*\.speedtest\.cn\/user\/info, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/chxm/js/raw.githubusercontent.com/chxm1023/Rewrite/main/wsgj.js, requires-body=true, max-size=-1, timeout=60
 
 #Emby(解锁播放权限) hostname = mb3admin.com
-embycrack = type=http-response, pattern=^https?:\/\/mb3admin\.com\/admin\/service(\/registration\/validateDevice|\/appstore\/register|\/registration\/validate|\/registration\/getStatus|\/supporter\/retrievekey), script-path=https://raw.githubusercontent.com/chxm1023/Rewrite/main/embycrack.js, requires-body=true, max-size=-1, timeout=60
+embycrack = type=http-response, pattern=^https?:\/\/mb3admin\.com\/admin\/service(\/registration\/validateDevice|\/appstore\/register|\/registration\/validate|\/registration\/getStatus|\/supporter\/retrievekey), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/chxm/js/raw.githubusercontent.com/chxm1023/Rewrite/main/embycrack.js, requires-body=true, max-size=-1, timeout=60
 
 #扫描全能王 hostname = *.camscanner.com, *.intsig.net
 CamScanner = type=http-response, pattern=^https?:\/\/.*\.(intsig\.net|camscanner\.com), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/chxm/js/raw.githubusercontent.com/chxm1023/Rewrite/main/CamScanner.js, requires-body=true, max-size=-1, timeout=60
@@ -2210,7 +2018,7 @@ shimingshizhong = type=http-response, pattern=^https?:\/\/api\.alar\.my\/v\d\/su
 搜索 = type=http-request,pattern=^https:\/\/ap(p|i)\.bili(bili|api)\.(com|net)\/x\/v\d\/search(\/type)?\?.+?%20(%E6%B8%AF|%E5%8F%B0|%E4%B8%AD)&,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/iewha/js/raw.githubusercontent.com/NobyDa/Script/master/Surge/JS/Bili_Auto_Regions.js
 
 # > Boxjs 
-boxjs = type=http-request,pattern=https?:\/\/boxjs\.(com|net),script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/iewha/js/raw.githubusercontent.com/chavyleung/scripts/master/box/chavy.boxjs.js, requires-body=true, timeout=120
+boxjs = type=http-request,pattern=https?:\/\/boxjs\.(com|net),script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/raw.githubusercontent.com/chavyleung/scripts/master/box/chavy.boxjs.js, requires-body=true, timeout=120
 
 # > Sub-Store
 Sub-Store Core=type=http-request,pattern=^https?:\/\/sub\.store\/((download)|api\/(preview|sync|(utils\/node-info))),script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/iewha/js/raw.githubusercontent.com/sub-store-org/Sub-Store/release/sub-store-1.min.js,requires-body=true,timeout=120
@@ -2231,8 +2039,8 @@ AdGuard=type=http-response,pattern=^https?:\/\/mobile-api\.adguard\.org\/api\/.+
 # > 小影 解锁高级功能
 小影 = type=http-response,pattern=^https:\/\/api-chn\.rthdo\.com\/api\/rest\/u\/vipVerifyReceipt, requires-body=1,max-size=0,script-path= https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/iewha/js/raw.githubusercontent.com/iEwha/Profiles/master/Script/vivavideo.js
 # > Spotify 部分解锁premium 
-spotify-json = type=http-request,type=http-request,pattern=^https:\/\/spclient\.wg\.spotify\.com\/(artistview\/v1\/artist|album-entity-view\/v2\/album)\/,requires-body=0,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/raw.githubusercontent.com/app2smile/rules/master/js/spotify-json.js
-spotify-proto = type=http-response,pattern=^https:\/\/spclient\.wg\.spotify\.com\/(bootstrap\/v1\/bootstrap|user-customization-service\/v1\/customize)$,requires-body=1,binary-body-mode=1,max-size=0,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/raw.githubusercontent.com/app2smile/rules/master/js/spotify-proto.js,script-update-interval=0
+spotify-json = type=http-request,type=http-request,pattern=^https:\/\/spclient\.wg\.spotify\.com\/(artistview\/v1\/artist|album-entity-view\/v2\/album)\/,requires-body=0,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/raw.githubusercontent.com/app2smile/rules/master/js/spotify-json.js
+spotify-proto = type=http-response,pattern=^https:\/\/spclient\.wg\.spotify\.com\/(bootstrap\/v1\/bootstrap|user-customization-service\/v1\/customize)$,requires-body=1,binary-body-mode=1,max-size=0,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/raw.githubusercontent.com/app2smile/rules/master/js/spotify-proto.js,script-update-interval=0
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -2296,24 +2104,6 @@ WARP Teams Response = type=http-response, pattern=^https?:\/\/(api|zero-trust-cl
 App Store API = type=http-request, pattern=^https:\/\/apple-api\.com, script-path=https://kelee.one/Resource/JavaScript/IPATool/AppStoreAPI.js, requires-body=true
 
 安装器 = type=http-request, pattern=^https:\/\/xiaobai\.app, script-path=https://kelee.one/Resource/JavaScript/IPATool/Installer.js
-
-
-# - - - - - - - - - - - - - - - - - - - - - - - - 
-# 可莉 · Spotify歌词增强
-# - - - - - - - - - - - - - - - - - - - - - - - - 
-跟踪响应·JSON = type=http-response, pattern=^https?:\/\/api\.spotify\.com\/v1\/tracks\?, script-path=https://kelee.one/Resource/JavaScript/Spotify/Spotify_response.js, requires-body=true
-
-歌词请求·JSON = type=http-request, pattern=^https?:\/\/spclient\.wg\.spotify\.com\/color-lyrics\/v2\/track\/(.+)\?(.*)format=json, script-path=https://kelee.one/Resource/JavaScript/Spotify/Spotify_request.js, requires-body=true
-
-歌词请求·Proto = type=http-request, pattern=^https?:\/\/spclient\.wg\.spotify\.com\/color-lyrics\/v2\/track\/\w+\?(.*), script-path=https://kelee.one/Resource/JavaScript/Spotify/Spotify_request.js, requires-body=true, binary-body-mode=true
-
-翻译歌词响应·JSON = type=http-response, pattern=^https?:\/\/spclient\.wg\.spotify\.com\/color-lyrics\/v2\/track\/(.+)\?(.*)format=json(.*)subtype=Translate, script-path=https://kelee.one/Resource/JavaScript/Spotify/Translate_response.js, requires-body=true
-
-翻译歌词响应·Proto = type=http-response, pattern=^https?:\/\/spclient\.wg\.spotify\.com\/color-lyrics\/v2\/track\/\w+\?(.*)subtype=Translate, script-path=https://kelee.one/Resource/JavaScript/Spotify/Translate_response.js, requires-body=true, binary-body-mode=true
-
-外部歌词响应·JSON = type=http-response, pattern=^https?:\/\/spclient\.wg\.spotify\.com\/color-lyrics\/v2\/track\/(.+)\?(.*)format=json(.*)subtype=External, script-path=https://kelee.one/Resource/JavaScript/Spotify/External_Lyrics_response.js, requires-body=true
-
-外部歌词响应·Proto = type=http-response, pattern=^https?:\/\/spclient\.wg\.spotify\.com\/color-lyrics\/v2\/track\/\w+\?(.*)subtype=External, script-path=https://kelee.one/Resource/JavaScript/Spotify/External_Lyrics_response.js, requires-body=true, binary-body-mode=true
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -2430,33 +2220,32 @@ spotifyProto = type=http-response, pattern=^https:\/\/(spclient\.wg\.spotify\.co
 
 
 [MITM]
-hostname = %APPEND% api.cloudflareclient.com, zero-trust-client.cloudflareclient.com, aliyun.example.com, quark.example.com, pikpak.example.com, www.google.cn, appconf.mail.163.com, msglb.91160.com, ucdc2-upaas.uc.cn, apple-api.com, xiaobai.app, api.spotify.com, spclient.wg.spotify.com, *.byteoversea.com, *.tik-tokapi.com, *.tiktokv.com, *.tiktokcdn.com, api.weibo.cn, www.youtube.com, m.youtube.com, tv.youtube.com, music.youtube.com, youtubei.googleapis.com, in.m.jd.com, apapia-sqk-weblogic.manmanbuy.com, weixin110.qq.com, security.wechat.com, duckduckgo.com, 119.29.29.29, 203.107.1.1, 203.107.1.33, 203.107.1.66, 203.107.1.67, 203.107.1.97, 2401:b180:2000:30::1c, 2401:b180:2000:20::10, amdc.alipay.com, 180.76.76.200, 180.76.76.112, api.zsxq.com
-hostname = %APPEND% testflight.apple.com, lcs-mobile-cops.adobe.io, mb3admin.com, mobile-api.adguard.org, api-chn.rthdo.com, ap?.bilibili.com, ap?.biliapi.net, boxjs.net, boxjs.com, sub.store, mp.weixin.qq.com, m.baidu.com, www.baidu.com, api.alar.my, api.everyday.app, ifttt.com, firstclass.tripsy.app, *-api.notedapp.io, qdq.9sm.net, rc.visionarytech.ltd, bzpp3.iwzbz.com, calendarsrv.iwzwh.com, *.cloudfunctions.net, *.appsflyersdk.com, *.linearity.io, nicegram.cloud, restore-access.indream.app, api.mbrx.app, moyin-gateway.moyin.com, subscription-api.lyrebirdstudio.net, service.perfect365.com, yimuapp.com, appv2.filmix.com.cn, ouyangxunshufa.azurewebsites.net, api-*.facereplacerext.com, www.xiaomaigongkao.comtcb-api.tencentcloudapi.com, film-api.startupfun.vip, meitu.minecaller.com, www.huojiwangluo.cn, *.airdroid.cn
-hostname = %APPEND% 1jietu.com, app.yidiansz.com, www.dbbqb.com, api-v2.xdclass.net, mobile-new.chinaeew.cn, yimutodo.com, api.ivrfun.com, viart-api.afunapp.com, api-qsy.iiitool.com, api.trancy.org, lepai-api.faceqianyan.com, liujia95.xyz, apps-api.lianaishouce.cn, apps-api.lingege.cn, *.lingvist.com, zwpp.wzbz123.com, iosdzhtyqy.sanwubeixin.cn, otter-api.codefuture.top, api.weilaizhushou.com, *.vlognow.me, www.zhouyilive.com, *.kuaidi100.com, www.yunshangxiezuo.com, lentoapp.com, api.craft.do, apiv2.somuseai.com, api-wood.kaying.cc, masterwaynote.com, prod.dengziwl.com, *.hunliji.com, *.grammarly.com, *.jiemengjia.com, luyintu.cushuikeji.cn, api.changecollective.com, *.whalean.com, www.kaolahome.com, cat-revenuecat-qscqkotbrh.cn-hongkong.fcapp.run, bd-api.kuwo.cn, iosapi.yueshuian.com, question.tiku.cqxcj.top
-hostname = %APPEND% base.cmoe.top, yyapi.yayingtk.com, learn.cqrry.com, api.sryx.net, api.meigit.com, question.api.anjiazui.com, app.bftk.com.cn, question.civil.shaoeyy.com, gzfanyin.com, translator.felo.me, baimiao.uzero.cn, my.getslopes.com, *.ihuaben.com, w.5hzs.com, *-slidebox-ios-prod.cloudfunctions.net, www.luqijianggushi.com, cdn-bm.camera360.com, api.intelimeditor.com, open3.vistastory.com, www.xfx119.com, water*.yunxiaoguo.cn, *.cloudfront.net, ftmailbox.cn, standard.rhinox*.com, appss.rhinox*.com, appss.linhongshi.com, purchase-*-api.*.com, user-kaji-api.b612kaji.com, api.*lianqin*.*, kkr-user.tapque.com, subscription-api.notedapp.io, *.execute-api.ap-northeast-2.amazonaws.com, creaceed.com, *api.quthing.com, backend.getdrafts.com, api.love.823123.com, jz.jarstones.com, koan.bopulab.cn, calc.kuaicad.com, www.fuyoutech.club
-hostname = %APPEND% www.kkmop.com, play.wo1wan.com, api.mattingm.com, *.camera360.com, api.995120.cn, api.hujuvod.com, api.qwapp.top, api.polaxiong.com, diary-id.sumi.io, calendar.aiyohoo.com, api-production.endel.io, yopu.co, api.timetreeapp.com, zy6kcqa01a.execute-api.us-east-2.amazonaws.com, fl*app.com, api.hummingbird.businessreview.global, bzpp2.iwzbz.com, www.1314zhilv.com, *.kuso.xyz, receipt-verifier.cdwapi.com, *.api.moji.com, *.wps.cn, license.pdfexpert.com, api.yonekura.cn, ssl-api.itranslateapp.com, *.videoshowiosglobalserver.com, *.enjoy-mobi.com, api.getdailyart.com, p.du.163.com, snailsleep.net, yeguo.236api.com, jz.wacaijizhang.com, schedule-api.julanling.com, *.xiangha.com, api.boohee.com, www.40sishi.com, kongque.twan.cn, iosapi.peiyinxiu.com, *.qingning6.com, day-api.xixitime.com
-hostname = %APPEND% dj.palmestore.com, asia.gikken.co, xianbeikeji.com, fimo.appfimo.com, *.meiyan.com, ggs.manmeng168.com, xremit.xcurrency.com, explorer.tratao.com, iap.etm.tech, api.open.loveclip.site, www.skyjos.cn, www2.tigeroom.com, cn.czur.cc, *.imendon.com, api2.vlognow.me, service.ilovepdf.com, www.freshhome.top, *.dicallapp.com, format-api.netpock.com, widget-box-api.codefuture.top, cubox.*, *.radio.cn, accounts.agenda.com, *.aoscdn.com, *.apsapp.cn, apimboom2.globaldelight.net, *.duitang.com, billing-ios.wallpaperscraft.com, screen-lock.*.com, api.risingfalling.com, api.meiease.cn, pan.baidu.com, *.intsig.net, *.camscanner.com, api*.speedtest.cn, app.yiyan.art, *.cyapi.cn, *.soutushenqi.com, api.bluepulse.cn, *.snow.me
-hostname = %APPEND% *.apphud.com, api.qonversion.io, api.adapty.io, *.oracle.bendingspoonsapps.com, speechenglish.cn, buy.itunes.apple.com, api.rc-backup.com, api.revenuecat.com, *spclient.spotify.com, api.alipan.com, member.aliyundrive.com, member.alipan.com, api.aliyundrive.com, user.alipan.com, user.aliyundrive.com, *.*.mgtv.*, *.504*.xyz, *.aliyuncs.com, *.api.mgtv.com, *.artrg.cn, *.baidu.com, *.biliapi.*, *.bilibili.*, *.cqict.cn, *.dushu365.com, *.flare.com.51kuajing.net, *.funshion.com, *.gotokeep.*, *.himalaya.*, *.himalaya.com, *.if.qidian.com, *.kkmh.com, *.kuwo.*, *.kuwo.cn, *.l.qq.com, *.migu.cn, *.miguvideo.com, *.mysteel.*, *.pcs.baidu.com, *.qidian.com
-hostname = %APPEND% *.reader.qq.com, *.tencentcs.com, *.vo9ugl.xyz, *.ximalaya.*, *.ximalaya.com, *.xmcdn.com, *.xo2xo.live, *.zhimg.com, *api.h8h4h.com, *api.imendon.com, *hundun.cn, *igetcool.com, *jttv*, *kkmh.com, *mgtv.com, *music.163.com, *site, *toutiao.com, *wensan*com, *x-boy.*, *xdplt.com, *xima*, *xmcdn*, *xunlei.com, *yeyan*, *yyycb*, 0ncf2i3.wl8td88.xyz, 1.194.255.171, 1.24.81.*, 1.62.62.64, 101.33.11.106, 101.33.11.32, 101.33.20.34, 101.33.27.*, 101.33.29.110, 101.42.124.*, 101.42.133.54:443, 101.72.233.*, 101.72.254.*, 101.89.53.*
-hostname = %APPEND% 101.91.13*, 101.91.133.*, 101.91.133.96, 101.91.134.*, 101.91.135.*, 103.105.60.99, 103.215.78.*, 103.39.222.*, 103.41.167.*, 103.41.167.226, 103.41.167.234, 103.41.167.235, 103.41.167.236, 103.41.167.237, 103.44.236.*, 103.44.236.131:8001, 103.85.254.233, 106.41.204.126, 111.12.187.*, 111.13.143.140, 111.180.204.11, 111.30.171.170:443, 111.31.104.*, 111.31.104.108, 111.31.104.96, 111.31.33.*, 111.42.194.*, 111.6.167.*, 111.6.56.*, 111.6.56.228, 111.63.149.170, 111.63.149.21, 111.63.149.40, 112.64.213.*, 112.80.180.72, 112.84.131.*, 112.98.170.228, 112.99.146.108, 114*0.*, 114.116.104.132
-hostname = %APPEND% 114.80.139.2*, 114.80.139.237, 114.80.161.29, 114.80.99.*, 114.80.99.70, 114.80.99.71, 114.80.99.86, 114.80.99.87, 114.80.99.88, 114.80.99.89, 114.80.99.90, 114.80.99.91, 115.56.76.*, 116.114.96.*, 116.114.96.41, 116.136.12.*, 116.136.188.184, 116.153.*.*, 116.162.203.111, 116.177.225.247, 117.161.*.*, 117.161.169.*, 117.161.38.167, 117.161.96.7, 117.34.49.212, 118.180.43.252, 118.25.119.177, 118.31.70.61, 118.89.204.198, 119.188.123.*, 119.29.29.*, 120.22*.2*.*, 120.220.18.85, 120.221.238.133, 120.221.238.76, 120.222.152.124, 120.222.238.146, 120.232.165.228, 120.240.179.*, 120.53.74.*
-hostname = %APPEND% 120.92.107.*, 121.40.246.38, 121.41.11.0, 121.41.30.120, 123.12.235.*, 123.125.244.*, 123.138.8.*, 124.163.196.*, 125.39.43.*, 139fm.bond, 139fm.cfd, 139fm.click, 139fm.cyou, 139fm.fun, 140.249.84.135, 140.249.85.189, 150.109.90.80, 150.109.91.35, 150.138.136.145, 150.138.47.94, 152.67.253.*, 162.14.5.*, 163.177.58.*, 180.153.*.*, 180.153.140.*, 180.153.250.*, 180.153.255.*, 180.153.255.123, 182.242.50.*, 183.201.114.*, 183.201.114.101, 183.204.13.*, 183.204.35.*, 183.204.64.*, 183.232.157.73:13037, 18pcs.bond, 18pcs.cfd, 18pcs.fun, 198.18.1*.*, 198.18.2*.*
-hostname = %APPEND% 1zher0st.504824.xyz, 203.205.13*.*, 203.205.136.100, 203.205.136.102, 203.205.136.159, 203.205.136.87, 203.205.137.241, 203.205.137.27, 203.205.137.87, 203.205.250.*, 203.205.250.111, 203.205.250.113, 211.152.137.*, 211.152.137.25, 211.154.21.150, 211.154.21.150:8020, 211.204.166.*, 211.204.209.*, 211.204.58.*, 211.93.211.*, 211.99.98.*, 211.99.98.63, 218.29.50.*, 219.144.82.*, 219.159.26.*, 221.204.4*.*, 223.111.231.198, 23.236.99.89, 2402:4e00:1200:ed00:0:9089:6dac:96b6, 27.152.187.*, 27.221.72.*, 2h4q7lu.hjsn53p.xyz, 36.103.197.65, 36.131.221.*, 36.150.215.*, 36.170.27.*, 36.42.77.*, 36.99.200.135, 39.107.159.85, 39.156.12*.*:443
-hostname = %APPEND% 39.156.121.*:443, 39.156.121.20:443, 39.156.121.21:443, 39.156.121.60:80, 39.156.121.65:443, 39.156.123.46, 39.156.123.46:443, 39.156.8.*, 42.157.129.25, 42.187.199.*, 42.200.166.*, 42.202.164.*, 42.231.136.*, 42.56.64.*, 42.81.120.58, 42.81.26.128, 42.81.4.198, 43.132.8*.*, 43.132.80.77, 43.132.81.*, 43.132.83.175, 43.132.84.11, 43.141.11.*, 43.141.49*, 43.152.24.12, 43.152.24.18, 43.152.25.127, 43.152.29.38, 43.159.71.*, 43.174.54.*, 43.175.16.34, 43.175.170.*, 43.175.22.25, 43.175.44.15, 45.117.11.*, 47.100.227.85, 47.93.95.61, 49.119.120.*, 49.232.234.212, 49.51.224.95
-hostname = %APPEND% 49.7.69.197, 4dhuyek.dusgrec.xyz, 51*.com, 52.78.154.178, 58.144.235.61, 58.222.30.*, 58.251.62*, 58z8gxu.pzmn7ku.xyz, 59.37.143.*, 59.83.227.*, 5c8gqqf.to1ogvz.xyz, 5jsd6q7.jnfkdtm.xyz, 5sfc4hgy.504832.xyz, 5tlsw6r.7n26ytu.xyz, 60.28.220.*, 61.162.174.*, 61.164.145.12, 61.170.88.*, 61.172.1*.*, 61.172.194.*, 61.172.194.187, 61.172.194.196, 61.241.178.*, 74.226.216.*, 7x16kek.nwjnf0m.xyz, 85.211.193.*, 85tug87.nkwyzcp.xyz, 88.gbvdfe.com, 91acg.*, 91acg.website, 91fengliu.club, 9sdec0e.mls08ph.xyz, aawapi-v3.trh999.com, ab-bodian.kuwo.cn, ab-bodian.kuwo.cn:443, abt-kuwo.tencentmusic.com, accounts.felo.me, ad.qtfm.cn, ad.rhinox.cn, ad.tencentmusic.com
-hostname = %APPEND% ad.tencentmusic.com:443, adlaunch.qtfm.cn, admin.tanweixianzhi.com, adse*ximalaya.com, adse.ximalaya.com, adservice.sigmob.cn, ainieci.com, akappapi.vipduanju.cn, alien.kampfiregames.cn, amgaic.soundkey.net, anymatch.kuwo.cn, api-access.pangolin-sdk-toutiao-b.com, api-access.pangolin-sdk-toutiao.com, api-access.pangolin-sdk-toutiao1.com, api-ad.kajicam.com, api-cdn.kaimanhua.com, api-chn.jianbotaiapi.com, api-cn.hellotalk8.com, api-ipv6.acfunchina.com, api-ipv6.app.acfun.cn, api-poster.ycase.cn, api-qingtu.kajicam.com, api-shoulei-ssl.xunlei.com, api-sub.meitu.com, api.*.shop, api.528529.com, api.736136.com, api.9169kkxstzsjkdd222.app, api.account.meitu.com, api.ankiapp.com, api.banxueketang.com, api.bilibili.com, api.dailyworkout.cn, api.data.mgtv.com, api.dingcy.top, api.douhuawenxue.com, api.duoyolo.cn, api.ecook.xiaochushuo.com, api.fengkuangapp.com, api.flysheeep.com
-hostname = %APPEND% api.gotokeep.com, api.himalaya.com, api.ihuaben.com, api.itranscreen.com:8080, api.jingyuanw.top, api.juzikong.com, api.jycds.cn, api.kmovie.gifshow.com, api.lispod.cn, api.listenleap.com, api.live.bilibili.com, api.magictiger.ai, api.maibiq.top, api.manxinao.com, api.mimuapp.com, api.mycake.me, api.owhealth.com, api.qiyou.cn, api.qmxfs.com, api.read10.cn, api.selfiecity.meitu.com, api.shaolinzen.com, api.skyai.tech, api.timecaps.app, api.tongyutongye.cn, api.train2win.cn, api.wokanjian.com.cn, api.wotingfm.com, api.xgamevip.com, api.xinyulib.com, api.yikaobang.com.cn, api.zaowandushu.com, api.zhangdefenspace.com, api.zhengqi100.com, api.zhihu.com, api.zuidie.net, api0.easeprime.com, apidance.ctwh77.com, apifast.qiyou.cn, apigate.kaimanhua.com
-hostname = %APPEND% apimodel.ctwh77.com, apio.zhengqi100.com, apipc01.gushi.cn, apis.lifeweek.com.cn, apis.lifeweek.com.cn:443, apis40.qupeiyin.com, apisg.himalaya.com, apiv1.*.xyz, apm.zhihu.com, app-i.dj-5.com, app.666syh.com, app.api.bgwxc.com, app.bilibili.com, app.dongfamao.com, app.dongfamao.com:443, app.faxingwu.com, app.gaohaozuowen.com, app.hxxxaa.com, app.qtfm.cn, app.thepoemforyou.com, app.thwlqy.com, app.yinxiang.com, app.zhihu.com.www.zhihu.com, appcloud2.zhihu.com, appss.baomingding.com, appss.rhinox.cn, appss.rhinoxlab.com, appv3.filmix.com.cn, audio.xinmengma.com, b-gy.getui.net, b8u1lvlb.504867.xyz, base.mkzcdn.com, bd-api.kuwo.cn:443, bd-api.kuwo.com, bgg.baidu.com, bodianimgcdn.kuwo.cn, bor4lch.8l6ldmz.xyz, boylove.*, boylove.cyou, bpitbu.ouxf9g.live
-hostname = %APPEND% bread28resapi.wscreativity.com, bsxqtd.xk8q7w.xyz, buyaoda.*.com, byapi.*.com, call-recorder.xinmengmakeji.com, camera.xinmengma.com, candydjapi.winner1319.top, cb.uvogin.xyz, cdn.himalaya.com:443, ch.sleepcycle.com, cljssmb.5exg.cn, cmyd-10-88.getui.com, cn.invit.vip, cocamapi.imendon.com, comic.mkzcdn.com, commontgw.reader.qq.com, core.*.xyz, counting.movingshop.cn, csj.yy-5.com, cwt98ehs.cqict.cn, d1no17eycutrsi.cloudfront.net, dag29jmgma1g.site, data.*.xyz, datahub.zhihu.com, detailadr.reader.qq.com, dict-ai-subtitle.youdao.com, dict.youdao.com, dj.vjread.com, doc.lum*.xyz, dtpkwx-prod-web.gxpan.cn, duga.zhihu.com, duoting.tatatimes.com, e6xun6l.wy6z0uq.xyz, edith.xiaohongshu.com, eg8oppq.19fc5lg.xyz, entry.qtfm.cn, fancytext.ycase.cn, fceyeg.johjxe.com, ff.mofangzhice.com, file.*.xyz
-hostname = %APPEND% firebaseremoteconfig.googleapis.com, fjboni.jn6588.xyz, fqapi.tiantiangf.cn, fqohbx.bkljtx.live, freeapp-api.zhangdu.com, front-gw.kuque.com, front-gw.luckpik.com, fuciyuanbang.ciyuans.com, fufei.cfcpe.com.cn, fwroeor.revxcvx.xyz, fy.yunmiao.tech, g.catches.com, g20.manmeng168.com, game.dcgstd.cn, gameapi.mma.dstor.cc, gentlemanapp*, get-notes.luojilab.com, gnjk*.com, gnjk.*.com, gongdu.youshu.cc, gp1wpm.xcg3zr.xyz, gromore.pangolin-sdk-toutiao.com, grpc.biliapi.net, grvgdq.81fbg2.xyz, gs.gateway.gameley.cn, gw.qnniu.com, gw1.dushu365.com, gw2.dushu365.com, gy.gepush.com, gzapi.lanrentingshu.com, h5-tthd-server.jinkejoy.com, h5.jinliapp.top, h5app.kuwo.cn, h5s.kuwo.cn, hb-boom.api.mgtv.com, hkg2zx.stejnu.xyz, hqfyg.5exg.cn, hrp27mr.1ugq1uf.xyz, huibo.hcbnjy.com, hxxx51.com
-hostname = %APPEND% hxxx52.com, i.weread.qq.com, i.xinyulib.com.cn, ica.ooat88.com, id.kwaiying.com, idp2api.netpock.com, interface*.music.163.com, intervip.youdao.com, ios.bugly.qq.com, ioskgeyd.lmkaiger.sanwubeixin.cn, iosqwrmdj.sanwubeixin.cn, iosv2.cjapi.5fun.com, iosv2.cjapi.wufan88.com, ip.qtfm.cn, ip6vu33.im0684h.xyz, iphone.v0.mgtv.com, japaneselar.qupeiyin.com, javcomics.store, javelin.mandrillvr.com, jiekou.antciti.cn, jlpt.jingqueyun.com, jsqiapi.hspherecn.com, judouapp.com, kapi-action.shyuhuankj.com, kit.gotokeep.com, kky.logtk.com, kkyun.com, kpoe2e.x8w7t3.live, kuhikr.1t3vwf.xyz, laoniu.dicallapp.com, las23gsapi.cc, lasdasdgapi.cc, lb.h12345.net, lc.i7play.com, ldy.*.cn, ldy.syxsxl.com, ldy.yyycb.com, ldyc3rs.0mlptkl.xyz, leancloud.emotionwp.com, lentoapp.com:8091
-hostname = %APPEND% lieeys42jdi2kd.cx4c5mv7.info, linecamera-api.snow.me, lldajbfyobffkbg288-api.com, locnew-api.shoujicad.com, log-api.pangolin-sdk-toutiao-b.com, log-api.pangolin-sdk-toutiao.com, ly.autvideo.com, m-cloud.zhihu.com, m.ximalaya.com, m.yicaoting.com, m3pkeg2.v4l0p7y.xyz, man.api.mansenwenhua77.com, mapi.kouyuxingqiu.com, md.liaoliaoy.com, medi.dxzzywxk.top, medicine-books.meappstore.top, member.mkzcdn.com, mfjk.*.com, mi.gdt.qq.com, mobads-logs.baidu.com, mobads-pre-config.cdn.bcebos.com, mobads.baidu.com, mobile-stream.api.mgtv.com, mobile.ximalaya.com, mobilead.kuwo.cn, mobilebasedata.kuwo.cn, mobwsa.ximalaya.com, moolight.online, motu.motumap.com, mp.zhuzixi.cn, mqtt.zhihu.com, mssdk.volces.com, musicpay.kuwo.cn, mv-ps.xdplt.com, n05ggob.batlnhh.xyz, namibox.com, nanie.flyingeffect.com, napi.yunpub.cn, new.tianjinzhitongdaohe.com, newminerva-tgw.reader.qq.com
-hostname = %APPEND% newyimi-api.zhangyue.com, nfmq0v.lknlqz.xyz, nhppjkb.z5x6pzr.xyz, niceday.youloft.com, nj.xiaomumedia.com, nt7474f.u8kgc14.xyz, nuc.api.mgtv.com, omfnmh.x2b3w6.xyz, open-secret-api-v2.vcinema.cn, open.e.kuaishou.com, outcut.szsszykj.com, oxtoon.cyou, oxtoon.monster, oxtoon.net, oxtoon.work, paint.manyatang.cn, papi.xiaonandou.com.cn, passport.ximalaya.com, pc7dong.com, pm.funshion.com, pmmqls.gregdoro.com, poster.leminet.cn, purchase-foodiecn-api.yiruikecorp.com, purchase-qingtu-api.b612kaji.com, purchase-tianyan-api.tianyancam.com, pvip.funshion.com, qiip.fushizhengli.cn, qijk.accessco.cn, qijk.fantor.cn, qijk.slrrj.com, qq.baiduan*.com, qrdure.youngnoble.cn, qs.szqibu.cn, qsukip.9jts57.live, quickapi.xiegangsir.com, quiz.istarl.com, rdxijq.vo9ugl.xyz, rec.xiaohongshu.com, recpage-c.qtfm.cn, relaxed.navolove.com
-hostname = %APPEND% res5.haotgame.com, rich.kuwo.cn, riwnkx.sw05uv.xyz, roa6fi.lyr6if.live, rylzit.wqws5z.xyz, s1jyc4asdr14nsa.504824.xyz, s4788x.taqndh.xyz, sc.szsszykj.com, sc.youshu.cc, sdk.open.talk.gepush.com, sdk.open.talk.getui.com, sdk.open.talk.getui.net, service.gpstool.com, service.hhdd.com, settings.itranscreen.com, sf3-fe-tos.pglstatp-toutiao.com, sgwitxgwit231sr.xunwxc.com, shapi.lanrentingshu.com, shapi.mting.info, shapi.mting.info:443, shiri.jingqueyun.com, shopapi.pandatrek.cn, siajksslwiso.anningsh.com, simplestorage.landintheair.com, sixth.xxcjpt.com, sketch.manyatang.cn, sleep.navolove.com, sm.szsszykj.com, ss.landintheair.com, ssgwew231s.uzqew4qi.info, standard.rhinoxlab.com, standard.rhinoxlab.com.appss.rhinoxlab.com, star.jvplay.cn, stream.*.xyz, suning.679134.xyz, svc.core*.xyz, svc.heartlylab.com, talkshow.wfkids.net, tasky-api.codefuture.top, temple-release.dskystudio.com
-hostname = %APPEND% test.*.xyz, text-to-speech.xinmengmakeji.com, tfbook.taoyuewenhua.net, theater-api.sylangyue.xyz, timewp.szsszykj.com, tjactb.xk2nsy.live, tmeadcomm.y.qq.com, toblog.ctobsnssdk.com, todo.i99yun.com, token.safebrowsing.apple, toptoon.*, toptoon.monster, toptoons.click, toptoons.online, toxxres8api.wscreativity.com, tth.txh*.com, tu.dfgfdg.win, tuoba.dida110.com, tx.*.cn, tx.*.com, txh*.com, txh057.com, txh066.com, tybook.taoyuewenhua.net, udl.lesejie.com, uetuys234ls.pbog5txn.app, ulogs.umeng.com, ulogs.umengcloud.com, umcuy46v9yr3gn4.504843.xyz, us-central1-project*, us6tp7.dkr9cv.live, user.ihuaben.com, user.qtfm.cn, v1a.*.xyz, vcryyw.uc86fy.xyz, vdop.fqoas.com, videocloud.cn-hangzhou.log.aliyuncs.com, videohub.xdplt.com, vip1.kuwo.cn, vkfqb.ojyrz.com
-hostname = %APPEND% voiceapi.jimetec.com, voicechanger.szsszykj.com, w1c2.ooat88.com, wallpaper.soutushenqi.com, wapi.koudailc.net, watch.taotiangou.cn, water-fst.yifanxinmei.com, watershandiana.yunxiaoguo.cn, wfjava.wfkids.net, wkqyx6.qdokqj.live, woqt2.qtfm.cn, ws.wensangq.com, www.asmr.red, www.auth.open.52kuajing002.51kuajing.net, www.duobeidanci.com, www.helloshiyu.com, www.himalaya.com, www.hxxxaa.com, www.icgame.top, www.listenleap.com, www.lovewith.me, www.mhzcookbook.xyz, www.pozhu.com, www.shutiaoapp.com, www.shutiaomh.com, www.taobao.com, www.wordvector.com, www.xiaohongshu.com, www.yearsmap.com, www.yearsmap.com:443, www.yueliangfm.com, www.zhihu.com, wx-bingdu.lanfeitech.com, wx.voxpie.com, xianying-api.fansxiaoshuo.cn, xiaohe.sjs.com.cn, xiaoshuo.xmxsapp.com, xieyi.cfcpe.com.cn, xihongshi.dicallapp.com, xkewutdekf873sr.chairsr.com
-hostname = %APPEND% xospby.mldo9k.xyz, xpc.autvideo.com, xs.gdt.qq.com, xw.jietuguanjia.com, xxm.ximalaya.com, xxz-xyzw-res.hortorgames.com, y7uyqg.hl8dbl.live, yixiu.tuanduixiangce.com, ykofye.qklmoq.xyz, yr-game-api.feigo.fun, yubaoyu.oss-cn-shenzhen.aliyuncs.com, yun.tuitiger.com, yw4pk9h.7fw2snb.xyz, zd7uwox.8ewxvhz.xyz, zhcn.api.wordln.com, zhuanlan.zhihu.com, zihjyv.jajrc1.live, zimu.yunmiaomiao.cn, zqlhcn.kl9117.xyz, zvqldx.xv8gvn.xyz, api.contextai.pro, api.diveplus.cn, api.kotobaheworld.com, api.mindline.cn, api.mojidict.com, apipro.colorby.cn, diary.aiyouaiyou.cn, du.baicizhan.com, easycompanyinformation.keeprisk.com, newtest.zoooy111.com, quinn-prod.herokuapp.com, ys.qquanyun.top, *.adsdk1.cc, *.adsdk2.cc, *.baidu.com2.club, *.cdnjhd.com, *.chinesebdsm.com, *.cocoaview.cc, *.ferncider.cc, *.gcwe44p.com
-hostname = %APPEND% *.hdmgdj.com, *.hj260302818.top, *.huangguoai.com, *.hvthtcpa.top, *.kucvcxrv.cc, *.kugou.com, *.larkgarden.top, *.larksummit.icu, *.lzlukvca.cc, *.niniharbor.top, *.onyxripple.cc, *.pbfk364.com, *.pearhot.com, *.pearkin.com, *.qicuknlj.top, *.qsh526215.org.cn, *.qsh526724.com, *.rahc448.com, *.rftn469.com, *.supdogth.com, *.sxqirtho.top, *.vivifable.top, *.wt33k.com, *hyxq.*, 1024movies.com, 1024videos.com, 1808.online, 4k.insav.tv, 91.wtf, 91dabiaojie.com, 91forum.com, 91porn.band, 91porn.coach, 91porn.name, 91porn.plus, 91porn.porn, 91porn.red, 91porn.sex, 91porn.top, 91pornny.com
-hostname = %APPEND% 91zpc.app, 91zpc.co, 91zpc.org, 91zpc.pro, 91zpcs.com, a74d.uwegu.com, api.agcplayer.com, api.vistopia.com.cn, api2.vhmqswjb.cc, bdsmzoo.com, boringday.api.neuronlabs.art, carrotweather.herokuapp.com, chineseselfie.com, chineseselfie.net, chineseselfie.org, cocoaview.cc, d18psf29jvwgay.cloudfront.net, daoyu.*, dm.insav.tv, dsdav.net, ferncider.cc, haijiao.com, hdmgdj.com, huangguoai.com, huanyuxingqiu.*, hvthtcpa.top, hyxq.*, ihyxq.*, insav.tv, itaolu.com, javhd.com, kucvcxrv.cc, larkgarden.top, larksummit.icu, lite.pearhot.com, lzlukvca.cc, madoumedia.org, niniharbor.top, onyxripple.cc, pilipili.cool
-hostname = %APPEND% pornshop.one, porntube.cool, porntube.fit, porntube.site, porntube.store, proxy.linearity.io, qicuknlj.top, souhu.mett.me, sxqirtho.top, taolusm.com, theporny.com, tlsm.one, user-api.speedtest.net, v2.cdn199.com, v2.kekecdn.net, v2.luchu.org, v2.madou.ws, v2.papapa.biz, v2.tianmtv.com, v2.xiaoshuo.info, v2.xiaoshuo.la, vivifable.top, wuma.*.*, wuma.*.com, wuma.*.top, www.6lpu5.com, www.haijiao.com, www.itaolu.com, www.javhd.com, www.speedtest.net, www.taolusm.com, www.tlsm.one, www.xjh51.tv, x91.club, x91porn.com, xasian.org, xchina.cloud, xchina.cool, xchina.day, xchina.plus
-hostname = %APPEND% xchina.red, xchina.tube, zh.javhd.com, api.shortcutstudio.app
+hostname = %APPEND% api.cloudflareclient.com, zero-trust-client.cloudflareclient.com, aliyun.example.com, quark.example.com, pikpak.example.com, www.google.cn, appconf.mail.163.com, msglb.91160.com, ucdc2-upaas.uc.cn, apple-api.com, xiaobai.app, api.spotify.com, spclient.wg.spotify.com, *.byteoversea.com, *.tik-tokapi.com, *.tiktokv.com, *.tiktokcdn.com, api.weibo.cn, www.youtube.com, m.youtube.com, tv.youtube.com, music.youtube.com, youtubei.googleapis.com, in.m.jd.com, apapia-sqk-weblogic.manmanbuy.com, weixin110.qq.com, security.wechat.com, duckduckgo.com, api.zsxq.com, testflight.apple.com, lcs-mobile-cops.adobe.io, mb3admin.com, mobile-api.adguard.org, api-chn.rthdo.com, ap?.bilibili.com, ap?.biliapi.net, boxjs.net, boxjs.com, sub.store, mp.weixin.qq.com
+hostname = %APPEND% m.baidu.com, www.baidu.com, api.alar.my, api.everyday.app, ifttt.com, firstclass.tripsy.app, *-api.notedapp.io, qdq.9sm.net, rc.visionarytech.ltd, bzpp3.iwzbz.com, calendarsrv.iwzwh.com, *.cloudfunctions.net, *.appsflyersdk.com, *.linearity.io, nicegram.cloud, restore-access.indream.app, api.mbrx.app, moyin-gateway.moyin.com, subscription-api.lyrebirdstudio.net, service.perfect365.com, yimuapp.com, appv2.filmix.com.cn, ouyangxunshufa.azurewebsites.net, api-*.facereplacerext.com, www.xiaomaigongkao.comtcb-api.tencentcloudapi.com, film-api.startupfun.vip, meitu.minecaller.com, www.huojiwangluo.cn, *.airdroid.cn, 1jietu.com, app.yidiansz.com, www.dbbqb.com, api-v2.xdclass.net, mobile-new.chinaeew.cn, yimutodo.com, api.ivrfun.com, viart-api.afunapp.com, api-qsy.iiitool.com, api.trancy.org, lepai-api.faceqianyan.com
+hostname = %APPEND% liujia95.xyz, apps-api.lianaishouce.cn, apps-api.lingege.cn, *.lingvist.com, zwpp.wzbz123.com, iosdzhtyqy.sanwubeixin.cn, otter-api.codefuture.top, api.weilaizhushou.com, *.vlognow.me, www.zhouyilive.com, *.kuaidi100.com, www.yunshangxiezuo.com, lentoapp.com, api.craft.do, apiv2.somuseai.com, api-wood.kaying.cc, masterwaynote.com, prod.dengziwl.com, *.hunliji.com, *.grammarly.com, *.jiemengjia.com, luyintu.cushuikeji.cn, api.changecollective.com, *.whalean.com, www.kaolahome.com, cat-revenuecat-qscqkotbrh.cn-hongkong.fcapp.run, bd-api.kuwo.cn, iosapi.yueshuian.com, question.tiku.cqxcj.top, base.cmoe.top, yyapi.yayingtk.com, learn.cqrry.com, api.sryx.net, api.meigit.com, question.api.anjiazui.com, app.bftk.com.cn, question.civil.shaoeyy.com, gzfanyin.com, translator.felo.me, baimiao.uzero.cn
+hostname = %APPEND% my.getslopes.com, *.ihuaben.com, w.5hzs.com, *-slidebox-ios-prod.cloudfunctions.net, www.luqijianggushi.com, cdn-bm.camera360.com, api.intelimeditor.com, open3.vistastory.com, www.xfx119.com, water*.yunxiaoguo.cn, *.cloudfront.net, ftmailbox.cn, standard.rhinox*.com, appss.rhinox*.com, appss.linhongshi.com, purchase-*-api.*.com, user-kaji-api.b612kaji.com, api.*lianqin*.*, kkr-user.tapque.com, subscription-api.notedapp.io, *.execute-api.ap-northeast-2.amazonaws.com, creaceed.com, *api.quthing.com, backend.getdrafts.com, api.love.823123.com, jz.jarstones.com, koan.bopulab.cn, calc.kuaicad.com, www.fuyoutech.club, www.kkmop.com, play.wo1wan.com, api.mattingm.com, *.camera360.com, api.995120.cn, api.hujuvod.com, api.qwapp.top, api.polaxiong.com, diary-id.sumi.io, calendar.aiyohoo.com, api-production.endel.io
+hostname = %APPEND% yopu.co, api.timetreeapp.com, zy6kcqa01a.execute-api.us-east-2.amazonaws.com, fl*app.com, api.hummingbird.businessreview.global, bzpp2.iwzbz.com, www.1314zhilv.com, *.kuso.xyz, receipt-verifier.cdwapi.com, *.api.moji.com, *.wps.cn, license.pdfexpert.com, api.yonekura.cn, ssl-api.itranslateapp.com, *.videoshowiosglobalserver.com, *.enjoy-mobi.com, api.getdailyart.com, p.du.163.com, snailsleep.net, yeguo.236api.com, jz.wacaijizhang.com, schedule-api.julanling.com, *.xiangha.com, api.boohee.com, www.40sishi.com, kongque.twan.cn, iosapi.peiyinxiu.com, *.qingning6.com, day-api.xixitime.com, dj.palmestore.com, asia.gikken.co, xianbeikeji.com, fimo.appfimo.com, *.meiyan.com, ggs.manmeng168.com, xremit.xcurrency.com, explorer.tratao.com, iap.etm.tech, api.open.loveclip.site, www.skyjos.cn
+hostname = %APPEND% www2.tigeroom.com, cn.czur.cc, *.imendon.com, api2.vlognow.me, service.ilovepdf.com, www.freshhome.top, *.dicallapp.com, format-api.netpock.com, widget-box-api.codefuture.top, cubox.*, *.radio.cn, accounts.agenda.com, *.aoscdn.com, *.apsapp.cn, apimboom2.globaldelight.net, *.duitang.com, billing-ios.wallpaperscraft.com, screen-lock.*.com, api.risingfalling.com, api.meiease.cn, pan.baidu.com, *.intsig.net, *.camscanner.com, api*.speedtest.cn, app.yiyan.art, *.cyapi.cn, *.soutushenqi.com, api.bluepulse.cn, *.snow.me, *.apphud.com, api.qonversion.io, api.adapty.io, *.oracle.bendingspoonsapps.com, speechenglish.cn, buy.itunes.apple.com, api.rc-backup.com, api.revenuecat.com, *spclient.spotify.com, api.alipan.com, member.aliyundrive.com
+hostname = %APPEND% member.alipan.com, api.aliyundrive.com, user.alipan.com, user.aliyundrive.com, *.*.mgtv.*, *.504*.xyz, *.aliyuncs.com, *.api.mgtv.com, *.artrg.cn, *.baidu.com, *.biliapi.*, *.bilibili.*, *.cqict.cn, *.dushu365.com, *.flare.com.51kuajing.net, *.funshion.com, *.gotokeep.*, *.himalaya.*, *.himalaya.com, *.if.qidian.com, *.kkmh.com, *.kuwo.*, *.kuwo.cn, *.l.qq.com, *.migu.cn, *.miguvideo.com, *.mysteel.*, *.pcs.baidu.com, *.qidian.com, *.reader.qq.com, *.tencentcs.com, *.vo9ugl.xyz, *.ximalaya.*, *.ximalaya.com, *.xmcdn.com, *.xo2xo.live, *.zhimg.com, *api.h8h4h.com, *api.imendon.com, *hundun.cn
+hostname = %APPEND% *igetcool.com, *jttv*, *kkmh.com, *mgtv.com, *music.163.com, *site, *toutiao.com, *wensan*com, *x-boy.*, *xdplt.com, *xima*, *xmcdn*, *xunlei.com, *yeyan*, *yyycb*, 0ncf2i3.wl8td88.xyz, 1.194.255.171, 1.24.81.*, 1.62.62.64, 101.33.11.106, 101.33.11.32, 101.33.20.34, 101.33.27.*, 101.33.29.110, 101.42.124.*, 101.42.133.54:443, 101.72.233.*, 101.72.254.*, 101.89.53.*, 101.91.13*, 101.91.133.*, 101.91.133.96, 101.91.134.*, 101.91.135.*, 103.105.60.99, 103.215.78.*, 103.39.222.*, 103.41.167.*, 103.41.167.226, 103.41.167.234
+hostname = %APPEND% 103.41.167.235, 103.41.167.236, 103.41.167.237, 103.44.236.*, 103.44.236.131:8001, 103.85.254.233, 106.41.204.126, 111.12.187.*, 111.13.143.140, 111.180.204.11, 111.30.171.170:443, 111.31.104.*, 111.31.104.108, 111.31.104.96, 111.31.33.*, 111.42.194.*, 111.6.167.*, 111.6.56.*, 111.6.56.228, 111.63.149.170, 111.63.149.21, 111.63.149.40, 112.64.213.*, 112.80.180.72, 112.84.131.*, 112.98.170.228, 112.99.146.108, 114*0.*, 114.116.104.132, 114.80.139.2*, 114.80.139.237, 114.80.161.29, 114.80.99.*, 114.80.99.70, 114.80.99.71, 114.80.99.86, 114.80.99.87, 114.80.99.88, 114.80.99.89, 114.80.99.90
+hostname = %APPEND% 114.80.99.91, 115.56.76.*, 116.114.96.*, 116.114.96.41, 116.136.12.*, 116.136.188.184, 116.153.*.*, 116.162.203.111, 116.177.225.247, 117.161.*.*, 117.161.169.*, 117.161.38.167, 117.161.96.7, 117.34.49.212, 118.180.43.252, 118.25.119.177, 118.31.70.61, 118.89.204.198, 119.188.123.*, 119.29.29.*, 120.22*.2*.*, 120.220.18.85, 120.221.238.133, 120.221.238.76, 120.222.152.124, 120.222.238.146, 120.232.165.228, 120.240.179.*, 120.53.74.*, 120.92.107.*, 121.40.246.38, 121.41.11.0, 121.41.30.120, 123.12.235.*, 123.125.244.*, 123.138.8.*, 124.163.196.*, 125.39.43.*, 139fm.bond, 139fm.cfd
+hostname = %APPEND% 139fm.click, 139fm.cyou, 139fm.fun, 140.249.84.135, 140.249.85.189, 150.109.90.80, 150.109.91.35, 150.138.136.145, 150.138.47.94, 152.67.253.*, 162.14.5.*, 163.177.58.*, 180.153.*.*, 180.153.140.*, 180.153.250.*, 180.153.255.*, 180.153.255.123, 182.242.50.*, 183.201.114.*, 183.201.114.101, 183.204.13.*, 183.204.35.*, 183.204.64.*, 183.232.157.73:13037, 18pcs.bond, 18pcs.cfd, 18pcs.fun, 198.18.1*.*, 198.18.2*.*, 1zher0st.504824.xyz, 203.205.13*.*, 203.205.136.100, 203.205.136.102, 203.205.136.159, 203.205.136.87, 203.205.137.241, 203.205.137.27, 203.205.137.87, 203.205.250.*, 203.205.250.111
+hostname = %APPEND% 203.205.250.113, 211.152.137.*, 211.152.137.25, 211.154.21.150, 211.154.21.150:8020, 211.204.166.*, 211.204.209.*, 211.204.58.*, 211.93.211.*, 211.99.98.*, 211.99.98.63, 218.29.50.*, 219.144.82.*, 219.159.26.*, 221.204.4*.*, 223.111.231.198, 23.236.99.89, 2402:4e00:1200:ed00:0:9089:6dac:96b6, 27.152.187.*, 27.221.72.*, 2h4q7lu.hjsn53p.xyz, 36.103.197.65, 36.131.221.*, 36.150.215.*, 36.170.27.*, 36.42.77.*, 36.99.200.135, 39.107.159.85, 39.156.12*.*:443, 39.156.121.*:443, 39.156.121.20:443, 39.156.121.21:443, 39.156.121.60:80, 39.156.121.65:443, 39.156.123.46, 39.156.123.46:443, 39.156.8.*, 42.157.129.25, 42.187.199.*, 42.200.166.*
+hostname = %APPEND% 42.202.164.*, 42.231.136.*, 42.56.64.*, 42.81.120.58, 42.81.26.128, 42.81.4.198, 43.132.8*.*, 43.132.80.77, 43.132.81.*, 43.132.83.175, 43.132.84.11, 43.141.11.*, 43.141.49*, 43.152.24.12, 43.152.24.18, 43.152.25.127, 43.152.29.38, 43.159.71.*, 43.174.54.*, 43.175.16.34, 43.175.170.*, 43.175.22.25, 43.175.44.15, 45.117.11.*, 47.100.227.85, 47.93.95.61, 49.119.120.*, 49.232.234.212, 49.51.224.95, 49.7.69.197, 4dhuyek.dusgrec.xyz, 51*.com, 52.78.154.178, 58.144.235.61, 58.222.30.*, 58.251.62*, 58z8gxu.pzmn7ku.xyz, 59.37.143.*, 59.83.227.*, 5c8gqqf.to1ogvz.xyz
+hostname = %APPEND% 5jsd6q7.jnfkdtm.xyz, 5sfc4hgy.504832.xyz, 5tlsw6r.7n26ytu.xyz, 60.28.220.*, 61.162.174.*, 61.164.145.12, 61.170.88.*, 61.172.1*.*, 61.172.194.*, 61.172.194.187, 61.172.194.196, 61.241.178.*, 74.226.216.*, 7x16kek.nwjnf0m.xyz, 85.211.193.*, 85tug87.nkwyzcp.xyz, 88.gbvdfe.com, 91acg.*, 91acg.website, 91fengliu.club, 9sdec0e.mls08ph.xyz, aawapi-v3.trh999.com, ab-bodian.kuwo.cn, ab-bodian.kuwo.cn:443, abt-kuwo.tencentmusic.com, accounts.felo.me, ad.qtfm.cn, ad.rhinox.cn, ad.tencentmusic.com, ad.tencentmusic.com:443, adlaunch.qtfm.cn, admin.tanweixianzhi.com, adse*ximalaya.com, adse.ximalaya.com, adservice.sigmob.cn, ainieci.com, akappapi.vipduanju.cn, alien.kampfiregames.cn, amgaic.soundkey.net, anymatch.kuwo.cn
+hostname = %APPEND% api-access.pangolin-sdk-toutiao-b.com, api-access.pangolin-sdk-toutiao.com, api-access.pangolin-sdk-toutiao1.com, api-ad.kajicam.com, api-cdn.kaimanhua.com, api-chn.jianbotaiapi.com, api-cn.hellotalk8.com, api-ipv6.acfunchina.com, api-ipv6.app.acfun.cn, api-poster.ycase.cn, api-qingtu.kajicam.com, api-shoulei-ssl.xunlei.com, api-sub.meitu.com, api.*.shop, api.528529.com, api.736136.com, api.9169kkxstzsjkdd222.app, api.account.meitu.com, api.ankiapp.com, api.banxueketang.com, api.bilibili.com, api.dailyworkout.cn, api.data.mgtv.com, api.dingcy.top, api.douhuawenxue.com, api.duoyolo.cn, api.ecook.xiaochushuo.com, api.fengkuangapp.com, api.flysheeep.com, api.gotokeep.com, api.himalaya.com, api.ihuaben.com, api.itranscreen.com:8080, api.jingyuanw.top, api.juzikong.com, api.jycds.cn, api.kmovie.gifshow.com, api.lispod.cn, api.listenleap.com, api.live.bilibili.com
+hostname = %APPEND% api.magictiger.ai, api.maibiq.top, api.manxinao.com, api.mimuapp.com, api.mycake.me, api.owhealth.com, api.qiyou.cn, api.qmxfs.com, api.read10.cn, api.selfiecity.meitu.com, api.shaolinzen.com, api.skyai.tech, api.timecaps.app, api.tongyutongye.cn, api.train2win.cn, api.wokanjian.com.cn, api.wotingfm.com, api.xgamevip.com, api.xinyulib.com, api.yikaobang.com.cn, api.zaowandushu.com, api.zhangdefenspace.com, api.zhengqi100.com, api.zhihu.com, api.zuidie.net, api0.easeprime.com, apidance.ctwh77.com, apifast.qiyou.cn, apigate.kaimanhua.com, apimodel.ctwh77.com, apio.zhengqi100.com, apipc01.gushi.cn, apis.lifeweek.com.cn, apis.lifeweek.com.cn:443, apis40.qupeiyin.com, apisg.himalaya.com, apiv1.*.xyz, apm.zhihu.com, app-i.dj-5.com, app.666syh.com
+hostname = %APPEND% app.api.bgwxc.com, app.bilibili.com, app.dongfamao.com, app.dongfamao.com:443, app.faxingwu.com, app.gaohaozuowen.com, app.hxxxaa.com, app.qtfm.cn, app.thepoemforyou.com, app.thwlqy.com, app.yinxiang.com, app.zhihu.com.www.zhihu.com, appcloud2.zhihu.com, appss.baomingding.com, appss.rhinox.cn, appss.rhinoxlab.com, appv3.filmix.com.cn, audio.xinmengma.com, b-gy.getui.net, b8u1lvlb.504867.xyz, base.mkzcdn.com, bd-api.kuwo.cn:443, bd-api.kuwo.com, bgg.baidu.com, bodianimgcdn.kuwo.cn, bor4lch.8l6ldmz.xyz, boylove.*, boylove.cyou, bpitbu.ouxf9g.live, bread28resapi.wscreativity.com, bsxqtd.xk8q7w.xyz, buyaoda.*.com, byapi.*.com, call-recorder.xinmengmakeji.com, camera.xinmengma.com, candydjapi.winner1319.top, cb.uvogin.xyz, cdn.himalaya.com:443, ch.sleepcycle.com, cljssmb.5exg.cn
+hostname = %APPEND% cmyd-10-88.getui.com, cn.invit.vip, cocamapi.imendon.com, comic.mkzcdn.com, commontgw.reader.qq.com, core.*.xyz, counting.movingshop.cn, csj.yy-5.com, cwt98ehs.cqict.cn, d1no17eycutrsi.cloudfront.net, dag29jmgma1g.site, data.*.xyz, datahub.zhihu.com, detailadr.reader.qq.com, dict-ai-subtitle.youdao.com, dict.youdao.com, dj.vjread.com, doc.lum*.xyz, dtpkwx-prod-web.gxpan.cn, duga.zhihu.com, duoting.tatatimes.com, e6xun6l.wy6z0uq.xyz, edith.xiaohongshu.com, eg8oppq.19fc5lg.xyz, entry.qtfm.cn, fancytext.ycase.cn, fceyeg.johjxe.com, ff.mofangzhice.com, file.*.xyz, firebaseremoteconfig.googleapis.com, fjboni.jn6588.xyz, fqapi.tiantiangf.cn, fqohbx.bkljtx.live, freeapp-api.zhangdu.com, front-gw.kuque.com, front-gw.luckpik.com, fuciyuanbang.ciyuans.com, fufei.cfcpe.com.cn, fwroeor.revxcvx.xyz, fy.yunmiao.tech
+hostname = %APPEND% g.catches.com, g20.manmeng168.com, game.dcgstd.cn, gameapi.mma.dstor.cc, gentlemanapp*, get-notes.luojilab.com, gnjk*.com, gnjk.*.com, gongdu.youshu.cc, gp1wpm.xcg3zr.xyz, gromore.pangolin-sdk-toutiao.com, grpc.biliapi.net, grvgdq.81fbg2.xyz, gs.gateway.gameley.cn, gw.qnniu.com, gw1.dushu365.com, gw2.dushu365.com, gy.gepush.com, gzapi.lanrentingshu.com, h5-tthd-server.jinkejoy.com, h5.jinliapp.top, h5app.kuwo.cn, h5s.kuwo.cn, hb-boom.api.mgtv.com, hkg2zx.stejnu.xyz, hqfyg.5exg.cn, hrp27mr.1ugq1uf.xyz, huibo.hcbnjy.com, hxxx51.com, hxxx52.com, i.weread.qq.com, i.xinyulib.com.cn, ica.ooat88.com, id.kwaiying.com, idp2api.netpock.com, interface*.music.163.com, intervip.youdao.com, ios.bugly.qq.com, ioskgeyd.lmkaiger.sanwubeixin.cn, iosqwrmdj.sanwubeixin.cn
+hostname = %APPEND% iosv2.cjapi.5fun.com, iosv2.cjapi.wufan88.com, ip.qtfm.cn, ip6vu33.im0684h.xyz, iphone.v0.mgtv.com, japaneselar.qupeiyin.com, javcomics.store, javelin.mandrillvr.com, jiekou.antciti.cn, jlpt.jingqueyun.com, jsqiapi.hspherecn.com, judouapp.com, kapi-action.shyuhuankj.com, kit.gotokeep.com, kky.logtk.com, kkyun.com, kpoe2e.x8w7t3.live, kuhikr.1t3vwf.xyz, laoniu.dicallapp.com, las23gsapi.cc, lasdasdgapi.cc, lb.h12345.net, lc.i7play.com, ldy.*.cn, ldy.syxsxl.com, ldy.yyycb.com, ldyc3rs.0mlptkl.xyz, leancloud.emotionwp.com, lentoapp.com:8091, lieeys42jdi2kd.cx4c5mv7.info, linecamera-api.snow.me, lldajbfyobffkbg288-api.com, locnew-api.shoujicad.com, log-api.pangolin-sdk-toutiao-b.com, log-api.pangolin-sdk-toutiao.com, ly.autvideo.com, m-cloud.zhihu.com, m.ximalaya.com, m.yicaoting.com, m3pkeg2.v4l0p7y.xyz
+hostname = %APPEND% man.api.mansenwenhua77.com, mapi.kouyuxingqiu.com, md.liaoliaoy.com, medi.dxzzywxk.top, medicine-books.meappstore.top, member.mkzcdn.com, mfjk.*.com, mi.gdt.qq.com, mobads-logs.baidu.com, mobads-pre-config.cdn.bcebos.com, mobads.baidu.com, mobile-stream.api.mgtv.com, mobile.ximalaya.com, mobilead.kuwo.cn, mobilebasedata.kuwo.cn, mobwsa.ximalaya.com, moolight.online, motu.motumap.com, mp.zhuzixi.cn, mqtt.zhihu.com, mssdk.volces.com, musicpay.kuwo.cn, mv-ps.xdplt.com, n05ggob.batlnhh.xyz, namibox.com, nanie.flyingeffect.com, napi.yunpub.cn, new.tianjinzhitongdaohe.com, newminerva-tgw.reader.qq.com, newyimi-api.zhangyue.com, nfmq0v.lknlqz.xyz, nhppjkb.z5x6pzr.xyz, niceday.youloft.com, nj.xiaomumedia.com, nt7474f.u8kgc14.xyz, nuc.api.mgtv.com, omfnmh.x2b3w6.xyz, open-secret-api-v2.vcinema.cn, open.e.kuaishou.com, outcut.szsszykj.com
+hostname = %APPEND% oxtoon.cyou, oxtoon.monster, oxtoon.net, oxtoon.work, paint.manyatang.cn, papi.xiaonandou.com.cn, passport.ximalaya.com, pc7dong.com, pm.funshion.com, pmmqls.gregdoro.com, poster.leminet.cn, purchase-foodiecn-api.yiruikecorp.com, purchase-qingtu-api.b612kaji.com, purchase-tianyan-api.tianyancam.com, pvip.funshion.com, qiip.fushizhengli.cn, qijk.accessco.cn, qijk.fantor.cn, qijk.slrrj.com, qq.baiduan*.com, qrdure.youngnoble.cn, qs.szqibu.cn, qsukip.9jts57.live, quickapi.xiegangsir.com, quiz.istarl.com, rdxijq.vo9ugl.xyz, rec.xiaohongshu.com, recpage-c.qtfm.cn, relaxed.navolove.com, res5.haotgame.com, rich.kuwo.cn, riwnkx.sw05uv.xyz, roa6fi.lyr6if.live, rylzit.wqws5z.xyz, s1jyc4asdr14nsa.504824.xyz, s4788x.taqndh.xyz, sc.szsszykj.com, sc.youshu.cc, sdk.open.talk.gepush.com, sdk.open.talk.getui.com
+hostname = %APPEND% sdk.open.talk.getui.net, service.gpstool.com, service.hhdd.com, settings.itranscreen.com, sf3-fe-tos.pglstatp-toutiao.com, sgwitxgwit231sr.xunwxc.com, shapi.lanrentingshu.com, shapi.mting.info, shapi.mting.info:443, shiri.jingqueyun.com, shopapi.pandatrek.cn, siajksslwiso.anningsh.com, simplestorage.landintheair.com, sixth.xxcjpt.com, sketch.manyatang.cn, sleep.navolove.com, sm.szsszykj.com, ss.landintheair.com, ssgwew231s.uzqew4qi.info, standard.rhinoxlab.com, standard.rhinoxlab.com.appss.rhinoxlab.com, star.jvplay.cn, stream.*.xyz, suning.679134.xyz, svc.core*.xyz, svc.heartlylab.com, talkshow.wfkids.net, tasky-api.codefuture.top, temple-release.dskystudio.com, test.*.xyz, text-to-speech.xinmengmakeji.com, tfbook.taoyuewenhua.net, theater-api.sylangyue.xyz, timewp.szsszykj.com, tjactb.xk2nsy.live, tmeadcomm.y.qq.com, toblog.ctobsnssdk.com, todo.i99yun.com, token.safebrowsing.apple, toptoon.*
+hostname = %APPEND% toptoon.monster, toptoons.click, toptoons.online, toxxres8api.wscreativity.com, tth.txh*.com, tu.dfgfdg.win, tuoba.dida110.com, tx.*.cn, tx.*.com, txh*.com, txh057.com, txh066.com, tybook.taoyuewenhua.net, udl.lesejie.com, uetuys234ls.pbog5txn.app, ulogs.umeng.com, ulogs.umengcloud.com, umcuy46v9yr3gn4.504843.xyz, us-central1-project*, us6tp7.dkr9cv.live, user.ihuaben.com, user.qtfm.cn, v1a.*.xyz, vcryyw.uc86fy.xyz, vdop.fqoas.com, videocloud.cn-hangzhou.log.aliyuncs.com, videohub.xdplt.com, vip1.kuwo.cn, vkfqb.ojyrz.com, voiceapi.jimetec.com, voicechanger.szsszykj.com, w1c2.ooat88.com, wallpaper.soutushenqi.com, wapi.koudailc.net, watch.taotiangou.cn, water-fst.yifanxinmei.com, watershandiana.yunxiaoguo.cn, wfjava.wfkids.net, wkqyx6.qdokqj.live, woqt2.qtfm.cn
+hostname = %APPEND% ws.wensangq.com, www.asmr.red, www.auth.open.52kuajing002.51kuajing.net, www.duobeidanci.com, www.helloshiyu.com, www.himalaya.com, www.hxxxaa.com, www.icgame.top, www.listenleap.com, www.lovewith.me, www.mhzcookbook.xyz, www.pozhu.com, www.shutiaoapp.com, www.shutiaomh.com, www.taobao.com, www.wordvector.com, www.xiaohongshu.com, www.yearsmap.com, www.yearsmap.com:443, www.yueliangfm.com, www.zhihu.com, wx-bingdu.lanfeitech.com, wx.voxpie.com, xianying-api.fansxiaoshuo.cn, xiaohe.sjs.com.cn, xiaoshuo.xmxsapp.com, xieyi.cfcpe.com.cn, xihongshi.dicallapp.com, xkewutdekf873sr.chairsr.com, xospby.mldo9k.xyz, xpc.autvideo.com, xs.gdt.qq.com, xw.jietuguanjia.com, xxm.ximalaya.com, xxz-xyzw-res.hortorgames.com, y7uyqg.hl8dbl.live, yixiu.tuanduixiangce.com, ykofye.qklmoq.xyz, yr-game-api.feigo.fun, yubaoyu.oss-cn-shenzhen.aliyuncs.com
+hostname = %APPEND% yun.tuitiger.com, yw4pk9h.7fw2snb.xyz, zd7uwox.8ewxvhz.xyz, zhcn.api.wordln.com, zhuanlan.zhihu.com, zihjyv.jajrc1.live, zimu.yunmiaomiao.cn, zqlhcn.kl9117.xyz, zvqldx.xv8gvn.xyz, api.contextai.pro, api.diveplus.cn, api.kotobaheworld.com, api.mindline.cn, api.mojidict.com, apipro.colorby.cn, diary.aiyouaiyou.cn, du.baicizhan.com, easycompanyinformation.keeprisk.com, newtest.zoooy111.com, quinn-prod.herokuapp.com, ys.qquanyun.top, *.adsdk1.cc, *.adsdk2.cc, *.baidu.com2.club, *.cdnjhd.com, *.chinesebdsm.com, *.cocoaview.cc, *.ferncider.cc, *.gcwe44p.com, *.hdmgdj.com, *.hj260302818.top, *.huangguoai.com, *.hvthtcpa.top, *.kucvcxrv.cc, *.kugou.com, *.larkgarden.top, *.larksummit.icu, *.lzlukvca.cc, *.niniharbor.top, *.onyxripple.cc
+hostname = %APPEND% *.pbfk364.com, *.pearhot.com, *.pearkin.com, *.qicuknlj.top, *.qsh526215.org.cn, *.qsh526724.com, *.rahc448.com, *.rftn469.com, *.supdogth.com, *.sxqirtho.top, *.vivifable.top, *.wt33k.com, *hyxq.*, 1024movies.com, 1024videos.com, 1808.online, 4k.insav.tv, 91.wtf, 91dabiaojie.com, 91forum.com, 91porn.band, 91porn.coach, 91porn.name, 91porn.plus, 91porn.porn, 91porn.red, 91porn.sex, 91porn.top, 91pornny.com, 91zpc.app, 91zpc.co, 91zpc.org, 91zpc.pro, 91zpcs.com, a74d.uwegu.com, api.agcplayer.com, api.vistopia.com.cn, api2.vhmqswjb.cc, bdsmzoo.com, boringday.api.neuronlabs.art
+hostname = %APPEND% carrotweather.herokuapp.com, chineseselfie.com, chineseselfie.net, chineseselfie.org, cocoaview.cc, d18psf29jvwgay.cloudfront.net, daoyu.*, dm.insav.tv, dsdav.net, ferncider.cc, haijiao.com, hdmgdj.com, huangguoai.com, huanyuxingqiu.*, hvthtcpa.top, hyxq.*, ihyxq.*, insav.tv, itaolu.com, javhd.com, kucvcxrv.cc, larkgarden.top, larksummit.icu, lite.pearhot.com, lzlukvca.cc, madoumedia.org, niniharbor.top, onyxripple.cc, pilipili.cool, pornshop.one, porntube.cool, porntube.fit, porntube.site, porntube.store, proxy.linearity.io, qicuknlj.top, souhu.mett.me, sxqirtho.top, taolusm.com, theporny.com
+hostname = %APPEND% tlsm.one, user-api.speedtest.net, v2.cdn199.com, v2.kekecdn.net, v2.luchu.org, v2.madou.ws, v2.papapa.biz, v2.tianmtv.com, v2.xiaoshuo.info, v2.xiaoshuo.la, vivifable.top, wuma.*.*, wuma.*.com, wuma.*.top, www.6lpu5.com, www.haijiao.com, www.itaolu.com, www.javhd.com, www.speedtest.net, www.taolusm.com, www.tlsm.one, www.xjh51.tv, x91.club, x91porn.com, xasian.org, xchina.cloud, xchina.cool, xchina.day, xchina.plus, xchina.red, xchina.tube, zh.javhd.com, api.shortcutstudio.app

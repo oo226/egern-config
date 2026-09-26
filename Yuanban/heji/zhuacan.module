@@ -1,6 +1,6 @@
 #!name=抓参合集
 #!desc=签到 Cookie/Token 抓取（按需开，抓完关掉）
-# built_at=2026-09-26T00:46Z
+# built_at=2026-09-26T01:57Z
 # branch=guize
 # 作者规则正文不改；仅 script-path 改指 Yuanban/zuozhe/*/js 自托管
 # 合集类型: 抓参
@@ -12,7 +12,7 @@
 # Yuheng · 起点抓参
 # - - - - - - - - - - - - - - - - - - - - - - - - 
 # hostname = h5.if.qidian.com
-起点读书获取Cookie@Yuheng = type=http-response,pattern=^https?:\/\/h5\.if\.qidian\.com\/argus\/api\/v1\/user\/getlogininfo,requires-body=1,max-size=-1,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/yuheng/js/raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/yuheng/Tasks/QDReader/qdreader.js,timeout=60
+起点读书获取Cookie@Yuheng = type=http-response,pattern=^https?:\/\/h5\.if\.qidian\.com\/argus\/api\/v1\/user\/getlogininfo,requires-body=1,max-size=-1,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/local/js/raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/yuheng/Tasks/QDReader/qdreader.js,timeout=60
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -30,16 +30,16 @@ APK.TW = type=http-request, pattern=^https://apk.tw\/member.php(.*?)action=login
 阿里云盘@lowking = type=http-response, pattern=^https:\/\/auth.aliyundrive.com\/v2\/account\/token, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/naisi/js/raw.githubusercontent.com/lowking/Scripts/master/ali/aliYunPanCheckIn.js, requires-body=true, timeout=60
 
 # hostname = 
-爱奇艺 = type=http-request, pattern=^https:\/\/passport\.iqiyi\.com\/apis\/user\/, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/naisi/js/raw.githubusercontent.com/NobyDa/Script/master/iQIYI-DailyBonus/iQIYI.js, timeout=60
+爱奇艺 = type=http-request, pattern=^https:\/\/passport\.iqiyi\.com\/apis\/user\/, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/raw.githubusercontent.com/NobyDa/Script/master/iQIYI-DailyBonus/iQIYI.js, timeout=60
 
 # hostname = 
 bing获取积分cookie = type=http-request, pattern=^https:\/\/rewards\.bing\.com, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/naisi/js/raw.githubusercontent.com/lowking/Scripts/master/bing/bingPoint.js, timeout=60
 
 # hostname = 
-百度贴吧@NobyDa = type=http-request, pattern=https?:\/\/(c\.tieba\.baidu\.com|180\.97\.\d+\.\d+)\/c\/s\/login, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/naisi/js/raw.githubusercontent.com/NobyDa/Script/master/BDTieBa-DailyBonus/TieBa.js, timeout=60
+百度贴吧@NobyDa = type=http-request, pattern=https?:\/\/(c\.tieba\.baidu\.com|180\.97\.\d+\.\d+)\/c\/s\/login, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/raw.githubusercontent.com/NobyDa/Script/master/BDTieBa-DailyBonus/TieBa.js, timeout=60
 
 # hostname = 
-哔哩哔哩漫画@NobyDa = type=http-request, pattern=^https:\/\/passport\.biligame\.com\/api\/login\/sso.+?version%22%3A%22(3|4|5), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/naisi/js/raw.githubusercontent.com/NobyDa/Script/master/Bilibili-DailyBonus/Manga.js, timeout=60
+哔哩哔哩漫画@NobyDa = type=http-request, pattern=^https:\/\/passport\.biligame\.com\/api\/login\/sso.+?version%22%3A%22(3|4|5), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/raw.githubusercontent.com/NobyDa/Script/master/Bilibili-DailyBonus/Manga.js, timeout=60
 
 # 哔哩哔哩大会员特权领取cookie
 哔哩哔哩大会员特权获取cookie@lowking = type=http-request, pattern=https:\/\/api.bilibili.com\/x\/vip\/privilege\/receive, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/naisi/js/raw.githubusercontent.com/lowking/Scripts/master/bilibili/privilegeReceive.js, timeout=60
@@ -115,7 +115,7 @@ hifini-签到cookie = type=http-request, pattern=https:\/\/www.hifini.com\/my.ht
 快手果园-获取cookie = type=http-request, pattern=^https://ug-fission.kuaishou.com/rest/n/darwin/orchard/water/watering, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/naisi/js/raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/kuaishou/ks_getCookie.js, timeout=60
 
 # hostname = 
-快看漫画-cookie = type=http-request, pattern=^https:\/\/api\.kkmh\.com\/v\d\/passport\/user, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/naisi/js/raw.githubusercontent.com/NobyDa/Script/master/KuaiKan-DailyBonus/KKMH.js, timeout=60
+快看漫画-cookie = type=http-request, pattern=^https:\/\/api\.kkmh\.com\/v\d\/passport\/user, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/raw.githubusercontent.com/NobyDa/Script/master/KuaiKan-DailyBonus/KKMH.js, timeout=60
 
 # hostname = 
 Luka-获取cookie = type=http-request, pattern=^https?:\/\/luka\-graphql\.ling\.cn\/graphql\/mobile\?operation=UserInfoWithPendingRobotQuery, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/naisi/js/raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/script/luka/luka_signin.js, timeout=60

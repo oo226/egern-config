@@ -1,22 +1,27 @@
 #!/usr/bin/env python3
-"""Yuanban/ — 拼音目录：作者原样 + 单件备份 + 四分合集。
+"""Yuanban/ — 拼音目录：作者原样 + 单件备份 + 四分合集 + 签到文件夹。
 
 目录（全部在 Yuanban 下）::
 
   Yuanban/
     zuozhe/<作者拼音>/{fenliu,mokuai,js}/   # 原作者照搬，字节不改
+    zuozhe/keli/official/                   # QingRex Surge/Official（非签到）
     danxiang/{fenliu,mokuai,js}/            # 单件汇总备份（文件名带作者前缀）
+    qiandao/                                # 签到：只放单件，不做合集
+      keli/  official/  local/
     heji/
       quguanggao.module   # 去广告
       qukaiping.module    # 去开屏
       jiesuo.module       # 解锁增强
       zhuacan.module      # 抓参
+      fenliu/             # 分流规则集（单件，非巨型 module）
       UPSTREAM.md
 
 合集规则：
   - 不改作者规则正文；仅 script-path URL 改指本仓自托管 js
   - Fan.a.tail 风格：按 App/模块分段注释写清楚
   - 去广告合集最上方强制：广告平台拦截器 → 可莉广告过滤器（基础、最先生效）
+  - 签到不做 heji，只进 qiandao/
 """
 
 from __future__ import annotations
@@ -27,6 +32,7 @@ import os
 import re
 import shutil
 import ssl
+import subprocess
 import sys
 import urllib.request
 from datetime import datetime, timezone
@@ -38,13 +44,36 @@ YUAN = ROOT / "Yuanban"
 ZUOZHE = YUAN / "zuozhe"
 DAN = YUAN / "danxiang"
 HEJI = YUAN / "heji"
+QIANDAO = YUAN / "qiandao"
 
-BRANCH = (
-    os.environ.get("ADBLOCK_BRANCH")
-    or os.environ.get("GITHUB_REF_NAME")
-    or "guize"
-)
+
+def _detect_branch() -> str:
+    """Prefer current git branch so stale ADBLOCK_BRANCH env cannot poison URLs."""
+    override = os.environ.get("ADBLOCK_BRANCH_FORCE")
+    if override:
+        return override
+    try:
+        git_b = subprocess.check_output(
+            ["git", "rev-parse", "--abbrev-ref", "HEAD"],
+            cwd=ROOT,
+            text=True,
+            stderr=subprocess.DEVNULL,
+        ).strip()
+        if git_b and git_b != "HEAD":
+            return git_b
+    except Exception:
+        pass
+    return (
+        os.environ.get("ADBLOCK_BRANCH")
+        or os.environ.get("GITHUB_REF_NAME")
+        or "guize"
+    )
+
+
+BRANCH = _detect_branch()
 RAW = f"https://raw.githubusercontent.com/oo226/egern-config/refs/heads/{BRANCH}"
+# guize 根目录不保留 Modules/；本仓补丁从 sync 日更拉取
+SYNC_RAW = "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/sync"
 
 CTX = ssl.create_default_context()
 UA = {"User-Agent": "egern-yuanban/1.0"}
@@ -64,7 +93,17 @@ UNLOCK_NAME_KW = (
     "拦截HTTPDNS", "歌词增强", "歌词翻译", "TestFlight", "去水印", "翻译",
     "比价", "1.1.1.1", "IPA", "VVebo", "自动加入TF",
 )
-SIGNIN_KW = ("签到", "每日签到")
+# 可莉上游近重复：合集只留较新/较完整的一份（单件仍在 zuozhe/keli/mokuai）
+KELI_UNLOCK_DEDUP_SKIP = frozenset({
+    "Google重定向.sgmodule",          # 留 Google搜索重定向
+    "拦截HTTPDNS.sgmodule",           # 留 HTTPDNS拦截器（更新）
+    "Spotify歌词翻译.sgmodule",       # 留 Spotify歌词增强（正文几乎相同）
+})
+SIGNIN_KW = ("签到", "每日签到", "抢券")
+# Official 里跟签到文件夹放一起的非「签到」字样模块
+QIANDAO_OFFICIAL_EXTRA = frozenset({
+    "联通余量.official.sgmodule",
+})
 
 SCRIPT_URL_RE = re.compile(
     r"(https?://[^\s,\"']+\.(?:js|mjs)(?:\?[^\s,\"']*)?)",
@@ -74,6 +113,7 @@ SCRIPT_URL_RE = re.compile(
 STATS: dict = {
     "zuozhe": {},
     "heji": {},
+    "qiandao": {},
     "js_ok": 0,
     "js_fail": [],
 }
@@ -106,6 +146,14 @@ def fetch(url: str, *, timeout: int = 90) -> bytes:
     return data
 
 
+def is_signin_name(name: str) -> bool:
+    """判断是否应进 qiandao/（签到单件，不做合集）。"""
+    base = Path(name).name
+    if base in QIANDAO_OFFICIAL_EXTRA:
+        return True
+    return any(k in base for k in SIGNIN_KW)
+
+
 def ensure_author(pinyin: str) -> dict[str, Path]:
     base = ZUOZHE / pinyin
     paths = {
@@ -117,6 +165,20 @@ def ensure_author(pinyin: str) -> dict[str, Path]:
         p.mkdir(parents=True, exist_ok=True)
     STATS["zuozhe"].setdefault(pinyin, {"mokuai": 0, "js": 0, "fenliu": 0})
     return paths
+
+
+def qiandao_dir(bucket: str) -> Path:
+    d = QIANDAO / bucket
+    d.mkdir(parents=True, exist_ok=True)
+    STATS["qiandao"].setdefault(bucket, 0)
+    return d
+
+
+def save_qiandao(bucket: str, filename: str, data: bytes) -> Path:
+    dest = qiandao_dir(bucket) / filename
+    dest.write_bytes(data)
+    STATS["qiandao"][bucket] = STATS["qiandao"].get(bucket, 0) + 1
+    return dest
 
 
 def save_bytes(dest: Path, data: bytes, *, author: str, kind: str) -> None:
@@ -133,6 +195,7 @@ def mirror_js(url: str, author: str, cache: dict[str, str]) -> str:
     if "spotify.crack" in url.lower() or "/crack" in url.lower():
         cache[url] = url
         return url
+    ensure_author(author)
     u = urlparse(url)
     host = u.netloc.replace(":", "_")
     path = unquote(u.path).lstrip("/") or "index.js"
@@ -344,10 +407,20 @@ def merge_section_bags(
 
 # ── mirror authors ──────────────────────────────────────────────
 
+_QINGREX_TREE_CACHE: list[dict] | None = None
+
+
+def _qingrex_tree() -> list[dict]:
+    global _QINGREX_TREE_CACHE
+    if _QINGREX_TREE_CACHE is None:
+        _QINGREX_TREE_CACHE = json.loads(fetch(QINGREX_API).decode())["tree"]
+    return _QINGREX_TREE_CACHE
+
+
 def mirror_keli(cache: dict[str, str]) -> dict[str, Path]:
-    """可莉：全部 Surge 根 sgmodule 原样 → mokuai；脚本进 js。"""
+    """可莉：全部 Surge 根 sgmodule 原样 → mokuai；签到另拷 qiandao/keli。"""
     paths = ensure_author("keli")
-    tree = json.loads(fetch(QINGREX_API).decode())["tree"]
+    tree = _qingrex_tree()
     mods = []
     for t in tree:
         if t.get("type") != "blob":
@@ -369,14 +442,93 @@ def mirror_keli(cache: dict[str, str]) -> dict[str, Path]:
             continue
         dest = paths["mokuai"] / name
         save_bytes(dest, raw, author="keli", kind="mokuai")
-        # still harvest js for self-host (does not modify the saved original)
         rewrite_js_urls(raw.decode("utf-8", errors="replace"), "keli", cache)
-        print(f"  mokuai {name}")
+        if is_signin_name(name):
+            save_qiandao("keli", name, raw)
+            print(f"  mokuai+qiandao {name}")
+        else:
+            print(f"  mokuai {name}")
     (paths["mokuai"] / "README.md").write_text(
-        "可莉 QingRex/LoonKissSurge — Surge 根目录模块原样（含广告平台拦截器 / 可莉广告过滤器）。\n",
+        "可莉 QingRex/LoonKissSurge — Surge 根目录模块原样（含广告平台拦截器 / 可莉广告过滤器）。\n"
+        "签到类另见 Yuanban/qiandao/keli/（单件，无合集）。\n",
         encoding="utf-8",
     )
     return paths
+
+
+def mirror_keli_official(cache: dict[str, str]) -> None:
+    """QingRex Surge/Official：非签到 → zuozhe/keli/official；签到 → qiandao/official。"""
+    paths = ensure_author("keli")
+    official_dir = paths["mokuai"].parent / "official"
+    official_dir.mkdir(parents=True, exist_ok=True)
+    tree = _qingrex_tree()
+    mods = sorted(
+        t["path"]
+        for t in tree
+        if t.get("type") == "blob"
+        and t["path"].startswith("Surge/Official/")
+        and t["path"].endswith(".sgmodule")
+    )
+    print(f"keli official modules: {len(mods)}")
+    n_off = n_qd = 0
+    for rel in mods:
+        name = rel.split("/")[-1]
+        try:
+            raw = fetch(QINGREX_RAW + quote(rel, safe="/"))
+        except Exception as exc:
+            print(f"  ! official {name}: {exc}")
+            continue
+        rewrite_js_urls(raw.decode("utf-8", errors="replace"), "keli", cache)
+        if is_signin_name(name):
+            save_qiandao("official", name, raw)
+            n_qd += 1
+            print(f"  qiandao/official {name}")
+        else:
+            dest = official_dir / name
+            dest.write_bytes(raw)
+            n_off += 1
+            STATS["zuozhe"]["keli"]["mokuai"] = STATS["zuozhe"]["keli"].get("mokuai", 0) + 1
+            print(f"  keli/official {name}")
+    (official_dir / "README.md").write_text(
+        "可莉 QingRex Surge/Official 非签到模块原样。签到/抢券/联通余量见 Yuanban/qiandao/official/。\n",
+        encoding="utf-8",
+    )
+    print(f"  official kept={n_off} qiandao={n_qd}")
+
+
+def build_qiandao_local(cache: dict[str, str]) -> None:
+    """本仓/sync 签到相关单件 → qiandao/local（不做合集）。"""
+    ensure_author("local")
+    items = [
+        ("pingme.sgmodule", f"{SYNC_RAW}/Modules/pingme.sgmodule"),
+        ("qdreader.sgmodule", f"{SYNC_RAW}/Modules/qdreader.sgmodule"),
+    ]
+    for fname, url in items:
+        try:
+            raw = fetch(url)
+        except Exception as exc:
+            print(f"  ! qiandao/local {fname}: {exc}")
+            continue
+        save_qiandao("local", fname, raw)
+        rewrite_js_urls(raw.decode("utf-8", errors="replace"), "local", cache)
+        print(f"  qiandao/local {fname}")
+    (QIANDAO / "README.md").write_text(
+        "\n".join(
+            [
+                "# 签到（单件，无合集）",
+                "",
+                "签到模块差异大、依赖 Cookie/BoxJs，**不做 heji 合集**，按来源分文件夹自取。",
+                "",
+                "- `keli/` — 可莉 Surge 根目录签到（WPS / 书香门第 等）",
+                "- `official/` — QingRex Official 签到 / 抢券 / 联通余量",
+                "- `local/` — 本仓 sync：PingMe、起点签到等",
+                "",
+                "抓参见 `heji/zhuacan.module`（抓完关掉）。",
+                "",
+            ]
+        ),
+        encoding="utf-8",
+    )
 
 
 def mirror_url_module(author: str, url: str, filename: str, cache: dict[str, str]) -> Path | None:
@@ -421,7 +573,7 @@ def build_danxiang() -> None:
     for kind in ("fenliu", "mokuai", "js"):
         (DAN / kind).mkdir(parents=True, exist_ok=True)
     for author_dir in sorted(ZUOZHE.iterdir()):
-        if not author_dir.is_dir():
+        if not author_dir.is_dir() or author_dir.name == "README.md":
             continue
         author = author_dir.name
         for kind in ("fenliu", "mokuai"):
@@ -432,6 +584,12 @@ def build_danxiang() -> None:
                 if f.is_file() and f.name != "README.md":
                     dest = DAN / kind / f"{author}__{f.name}"
                     shutil.copy2(f, dest)
+        official = author_dir / "official"
+        if official.is_dir():
+            for f in official.iterdir():
+                if f.is_file() and f.name != "README.md":
+                    dest = DAN / "mokuai" / f"{author}__official__{f.name}"
+                    shutil.copy2(f, dest)
         js_dir = author_dir / "js"
         if js_dir.is_dir():
             for f in js_dir.rglob("*"):
@@ -440,8 +598,17 @@ def build_danxiang() -> None:
                     dest = DAN / "js" / f"{author}__{rel}"
                     dest.parent.mkdir(parents=True, exist_ok=True)
                     shutil.copy2(f, dest)
+    # qiandao 单件也备份一份到 danxiang/mokuai
+    if QIANDAO.is_dir():
+        for bucket in sorted(QIANDAO.iterdir()):
+            if not bucket.is_dir():
+                continue
+            for f in bucket.iterdir():
+                if f.is_file() and f.name != "README.md":
+                    dest = DAN / "mokuai" / f"qiandao_{bucket.name}__{f.name}"
+                    shutil.copy2(f, dest)
     (DAN / "README.md").write_text(
-        "单件备份：从 zuozhe 汇总，文件名 `作者__原名`。原样，不改内容。\n",
+        "单件备份：从 zuozhe / qiandao 汇总，文件名 `作者__原名`。原样，不改内容。\n",
         encoding="utf-8",
     )
 
@@ -538,7 +705,9 @@ def classify_keli_unlock(name: str) -> bool:
         return False  # 去广告基础，不进解锁
     if "去广告" in name:
         return False
-    if any(k in name for k in SIGNIN_KW):
+    if is_signin_name(name):
+        return False
+    if name in KELI_UNLOCK_DEDUP_SKIP:
         return False
     return any(k.lower() in name.lower() for k in UNLOCK_NAME_KW)
 
@@ -584,11 +753,44 @@ def heji_jiesuo(cache: dict[str, str]) -> None:
             "# 合集类型: 解锁增强",
             "# 分段注释标明每个作者/模块用途",
             "# Spotify 用 Eevee（spotify-unlock），不含 Crack",
+            "# 已跳过可莉近重复: Google重定向 / 拦截HTTPDNS / Spotify歌词翻译（单件仍在 zuozhe）",
         ],
     )
     (HEJI / "jiesuo.module").write_text(text, encoding="utf-8")
     STATS["heji"]["jiesuo"] = len(bags)
     print(f"heji jiesuo bags={len(bags)}")
+
+
+def heji_fenliu() -> None:
+    """分流：复制 zuozhe 规则集到 heji/fenliu，并写订阅清单（不做巨型 .module）。"""
+    out = HEJI / "fenliu"
+    if out.exists():
+        shutil.rmtree(out)
+    out.mkdir(parents=True, exist_ok=True)
+    n = 0
+    for author_dir in sorted(ZUOZHE.iterdir()):
+        fen = author_dir / "fenliu"
+        if not fen.is_dir():
+            continue
+        for f in fen.iterdir():
+            if f.is_file() and f.name != "README.md":
+                dest = out / f"{author_dir.name}__{f.name}"
+                shutil.copy2(f, dest)
+                n += 1
+    lines = [
+        "# 分流规则集（单件）",
+        "",
+        "不合并成一个 module（规则集用途不同）。文件在本目录，订阅示例：",
+        "",
+        "```",
+    ]
+    for f in sorted(out.iterdir()):
+        if f.is_file() and f.name != "README.md":
+            lines.append(f"{RAW}/Yuanban/heji/fenliu/{f.name}")
+    lines += ["```", "", f"共 {n} 个文件。原料仍在 `zuozhe/*/fenliu/`。", ""]
+    (out / "README.md").write_text("\n".join(lines), encoding="utf-8")
+    STATS["heji"]["fenliu"] = n
+    print(f"heji fenliu files={n}")
 
 
 def heji_zhuacan(cache: dict[str, str]) -> None:
@@ -619,13 +821,19 @@ def heji_zhuacan(cache: dict[str, str]) -> None:
     print(f"heji zhuacan bags={len(bags)}")
 
 
+def mirror_sync_module(author: str, filename: str, cache: dict[str, str]) -> Path | None:
+    """从 sync 分支 Modules/ 拉取本仓补丁（guize 根目录不保留 Modules）。"""
+    url = f"{SYNC_RAW}/Modules/{quote(filename, safe='/')}"
+    return mirror_url_module(author, url, filename, cache)
+
+
 def write_docs() -> None:
     (YUAN / "README.md").write_text(
         "\n".join(
             [
                 "# Yuanban — 原版资源根（拼音目录）",
                 "",
-                "全部去广告 / 开屏 / 解锁 / 抓参 / 分流原材料与合集都在这一个文件夹下。",
+                "全部去广告 / 开屏 / 解锁 / 抓参 / 签到单件 / 分流都在这一个文件夹下。",
                 "",
                 "## 结构",
                 "",
@@ -633,26 +841,30 @@ def write_docs() -> None:
                 "Yuanban/",
                 "  zuozhe/                 # 按作者",
                 "    keli/                 # 可莉",
-                "      fenliu/  mokuai/  js/",
+                "      fenliu/  mokuai/  js/  official/",
                 "    naisi/                # 奶思",
                 "    moyu/                 # 墨鱼",
                 "    …",
+                "  qiandao/                # 签到单件（无合集）",
+                "    keli/  official/  local/",
                 "  danxiang/               # 单件备份（作者__文件名）",
                 "    fenliu/  mokuai/  js/",
-                "  heji/                   # 合集（四分）",
+                "  heji/                   # 合集（四分）+ 分流清单",
                 "    quguanggao.module     # 去广告",
                 "    qukaiping.module      # 去开屏",
                 "    jiesuo.module         # 解锁增强",
                 "    zhuacan.module        # 抓参",
+                "    fenliu/               # 分流规则集单件",
                 "```",
                 "",
                 "## 原则",
                 "",
-                "- `zuozhe` / `danxiang`：**原作者照搬**，文件字节不改",
+                "- `zuozhe` / `danxiang` / `qiandao`：**原作者照搬**，文件字节不改",
                 "- `heji`：只拼装 + Fan.a.tail 风格分段注释；**规则正文不改**；script URL 改指本仓 `zuozhe/*/js`",
                 "- 去广告合集最上方：`广告平台拦截器` → `可莉广告过滤器`（基础，最先生效）",
+                "- **签到不做合集**，只在 `qiandao/` 按来源放单件",
                 "",
-                "## 订阅",
+                "## 订阅（合集）",
                 "",
                 "```",
                 f"{RAW}/Yuanban/heji/quguanggao.module",
@@ -660,6 +872,8 @@ def write_docs() -> None:
                 f"{RAW}/Yuanban/heji/jiesuo.module",
                 f"{RAW}/Yuanban/heji/zhuacan.module",
                 "```",
+                "",
+                "签到：打开 `Yuanban/qiandao/` 自选模块。分流：见 `Yuanban/heji/fenliu/README.md`。",
                 "",
                 "重建：`python3 scripts/build-yuanban.py`",
                 "",
@@ -679,14 +893,26 @@ def write_docs() -> None:
         "",
     ]
     for author, st in sorted(STATS["zuozhe"].items()):
-        lines.append(f"- **{author}**: mokuai={st.get('mokuai',0)} js={st.get('js',0)} fenliu={st.get('fenliu',0)}")
+        lines.append(
+            f"- **{author}**: mokuai={st.get('mokuai',0)} js={st.get('js',0)} fenliu={st.get('fenliu',0)}"
+        )
     lines += [
         "",
-        "## heji 分段袋数",
+        "## qiandao 签到单件（无合集）",
+        "",
+        f"`{STATS.get('qiandao', {})}`",
+        "",
+        "## heji 分段袋数 / 分流文件数",
         "",
         f"`{STATS['heji']}`",
         "",
         f"脚本镜像成功约 {STATS['js_ok']}，失败 {len(STATS['js_fail'])}（多为 kelee.one 403，合集保留上游 URL）",
+        "",
+        "## 解锁近重复（合集已跳过，单件仍保留）",
+        "",
+        "- 跳过 `Google重定向` → 用 `Google搜索重定向`",
+        "- 跳过 `拦截HTTPDNS` → 用 `HTTPDNS拦截器`",
+        "- 跳过 `Spotify歌词翻译` → 用 `Spotify歌词增强`",
         "",
         "## 去广告置顶",
         "",
@@ -696,26 +922,36 @@ def write_docs() -> None:
         "4. 奶思 `blockAds.module` 整块",
         "",
     ]
+    if STATS["js_fail"]:
+        lines += ["## js 镜像失败（节选）", ""]
+        for item in STATS["js_fail"][:30]:
+            lines.append(f"- `{item}`")
+        lines.append("")
     (HEJI / "UPSTREAM.md").write_text("\n".join(lines), encoding="utf-8")
     (ZUOZHE / "README.md").write_text(
-        "作者拼音目录。每人下有 fenliu / mokuai / js。内容与上游字节一致。\n\n"
+        "作者拼音目录。每人下有 fenliu / mokuai / js；可莉另有 official/。内容与上游字节一致。\n\n"
         "拼音：keli可莉 naisi奶思 moyu墨鱼 iewha chxm weigiegie liulong yu9191 "
-        "repcz sukka vpsdance rabbit yuheng local miranquil\n",
+        "repcz sukka vpsdance yuheng local miranquil\n",
         encoding="utf-8",
     )
 
 
 def main() -> None:
     if YUAN.exists():
-        # clean rebuild of generated trees
         shutil.rmtree(YUAN)
-    for d in (ZUOZHE, DAN / "fenliu", DAN / "mokuai", DAN / "js", HEJI):
+    for d in (ZUOZHE, DAN / "fenliu", DAN / "mokuai", DAN / "js", HEJI, QIANDAO):
         d.mkdir(parents=True, exist_ok=True)
 
     cache: dict[str, str] = {}
 
     print("=== zuozhe/keli ===")
     mirror_keli(cache)
+
+    print("=== zuozhe/keli/official + qiandao/official ===")
+    mirror_keli_official(cache)
+
+    print("=== qiandao/local ===")
+    build_qiandao_local(cache)
 
     print("=== zuozhe/naisi ===")
     mirror_url_module(
@@ -730,7 +966,7 @@ def main() -> None:
         "cookies.module",
         cache,
     )
-    mirror_local_module("naisi", ROOT / "Modules" / "fmz200-unlock-extra.sgmodule")
+    mirror_sync_module("naisi", "fmz200-unlock-extra.sgmodule", cache)
 
     print("=== zuozhe/moyu ===")
     for fname, url in (
@@ -762,7 +998,7 @@ def main() -> None:
     ):
         mirror_url_module(author, url, fname, cache)
 
-    print("=== zuozhe local copies ===")
+    print("=== zuozhe sync Modules copies ===")
     for author, src_name in (
         ("local", "spotify-unlock.sgmodule"),
         ("local", "patches-unlock.sgmodule"),
@@ -773,7 +1009,7 @@ def main() -> None:
         ("yu9191", "yu9191-ShortcutStudio.sgmodule"),
         ("yuheng", "qdreader-cookie-extra.sgmodule"),
     ):
-        mirror_local_module(author, ROOT / "Modules" / src_name, src_name)
+        mirror_sync_module(author, src_name, cache)
 
     print("=== zuozhe fenliu ===")
     repcz = "https://raw.githubusercontent.com/Repcz/Tool/X/Egern/Rules"
@@ -801,16 +1037,21 @@ def main() -> None:
     heji_qukaiping(cache)
     heji_jiesuo(cache)
     heji_zhuacan(cache)
+    heji_fenliu()
 
     write_docs()
-    # drop empty kelee dirs
-    for p in YUAN.rglob("*"):
+    for p in sorted(YUAN.rglob("*"), reverse=True):
         if p.is_dir() and not any(p.iterdir()):
             try:
                 p.rmdir()
             except OSError:
                 pass
-    print("done", STATS["heji"], "js_ok", STATS["js_ok"], "js_fail", len(STATS["js_fail"]))
+    print(
+        "done heji=", STATS["heji"],
+        "qiandao=", STATS["qiandao"],
+        "js_ok=", STATS["js_ok"],
+        "js_fail=", len(STATS["js_fail"]),
+    )
 
 
 if __name__ == "__main__":
