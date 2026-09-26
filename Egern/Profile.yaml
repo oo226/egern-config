@@ -48,7 +48,9 @@ vif_hairpin_addresses:
 # upstreams 与老书一致；forward 补齐高频域名直指（仍用本仓广告/直连/谷歌表）
 # ------------------------------------------
 dns:
+  # bootstrap 含 system：对齐日用 main，DoH 自身解析失败时可回落系统 DNS
   bootstrap:
+    - system
     - 223.5.5.5
     - 119.29.29.29
   upstreams:
@@ -71,15 +73,9 @@ dns:
       - h3://dns.alidns.com/dns-query
       - https://doh.pub/dns-query
   forward:
-    # ① DNS 层广告拒绝（本仓 Loyalsoldier + Sukka，比老书多一层）
-    - proxy_rule_set:
-        match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Loyalsoldier-广告拒绝.txt
-        value: reject
-        update_interval: 86400
-    - proxy_rule_set:
-        match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Sukka-广告拒绝.conf
-        value: reject
-        update_interval: 86400
+    # ① 广告不在 DNS 层 reject（日用 main 也是交给上游/规则层）。
+    #    DNS 直接 reject 若误伤机场订阅域名，Sub-Store 会 NetworkError。
+    #    广告仍由 rules → 猎杀广告 拦截。
     # ② 阿里系 → AliDNS
     - domain_suffix:
         match: alibaba.com
