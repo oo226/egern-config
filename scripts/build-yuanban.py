@@ -435,12 +435,13 @@ EULAC_FENLIU = (
 )
 
 # 只改写脚本引用，勿动 reject/URL-Rewrite 里出现的广告 .js 链接
+# 扩展名必须先匹配更长的 mjs/json，再匹配 js，否则 .json 会被截成 .js + 残留 on
 SCRIPT_PATH_RE = re.compile(
-    r"(script-path\s*=\s*)(https?://[^\s,\"']+\.(?:js|mjs)(?:\?[^\s,\"']*)?)",
+    r"(script-path\s*=\s*)(https?://[^\s,\"']+\.(?:mjs|json|js)(?:\?[^\s,\"']*)?)",
     re.IGNORECASE,
 )
 QX_SCRIPT_URL_RE = re.compile(
-    r"(url\s+script-[\w-]+\s+)(https?://[^\s,\"']+\.(?:js|mjs)(?:\?[^\s,\"']*)?)",
+    r"(url\s+script-[\w-]+\s+)(https?://[^\s,\"']+\.(?:mjs|json|js)(?:\?[^\s,\"']*)?)",
     re.IGNORECASE,
 )
 
@@ -622,7 +623,7 @@ def _readable_js_name(url: str) -> str:
         p = Path(base)
         base = f"{p.stem}_{qh}{p.suffix}"
     base = re.sub(r"[^\w.\u4e00-\u9fff\-]+", "-", base)
-    if not base.lower().endswith((".js", ".mjs")):
+    if not base.lower().endswith((".js", ".mjs", ".json")):
         base += ".js"
     return base
 
