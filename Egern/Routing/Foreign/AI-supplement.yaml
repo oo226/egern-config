@@ -1,0 +1,22 @@
+# 本仓 AI 补强（merge-ai-rules.py 会并入 AI-Merged）
+# 保证 Cursor / ChatGPT / Claude / Gemini 走 AIGC，不被 GFW 整 TLD 后缀误伤
+
+no_resolve: true
+domain_suffix_set:
+  - anthropic.com
+  - chatgpt.com
+  - claude.ai
+  - claude.com
+  - cursor-cdn.com
+  - cursor.com
+  - cursor.sh
+  - cursorapi.com
+  - gemini.google.com
+  - google.ai
+  - openai.com
+  - openaiapi-site.azureedge.net
+domain_keyword_set:
+  - cursor
+  - chatgpt
+  - openai
+  - anthropic

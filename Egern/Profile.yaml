@@ -409,6 +409,13 @@ rules:
       policy: REJECT
       update_interval: 86400
 
+  # AI 靠前：避免被 GFW/Google 抢（曾出现 DOMAIN-SUFFIX,sh 误伤 Cursor）
+  - rule_set:
+      name: AI
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Routing/Foreign/AI-Merged.yaml
+      policy: AIGC
+      update_interval: 86400
+
   - rule_set:
       name: 哔哩哔哩
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Routing/Foreign/App/Bilibili.yaml
@@ -435,11 +442,6 @@ rules:
       policy: 狮城节点
       update_interval: 86400
 
-  - rule_set:
-      name: AI
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Routing/Foreign/AI-Merged.yaml
-      policy: AIGC
-      update_interval: 86400
   - rule_set:
       name: Telegram
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Routing/Foreign/Telegram.yaml

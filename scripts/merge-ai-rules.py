@@ -16,11 +16,15 @@ VPSDANCE_AI = ROUTING_UPSTREAM / "ai" / "vpsdance-all.yaml"
 SKK_AI = ROUTING_UPSTREAM / "skk" / "ai.conf"
 LOCAL_SUPPLEMENT = ROUTING_FOREIGN / "AI-supplement.yaml"
 
+# Egern rule_set：只写 domain_*（regex/url_regex 部分客户端会整表加载失败，导致 AI 从未命中）
 SET_KEYS = (
     "domain_set",
     "domain_suffix_set",
     "domain_keyword_set",
     "domain_wildcard_set",
+)
+# 解析时仍可读，但不写出
+_PARSE_ONLY_KEYS = (
     "domain_regex_set",
     "url_regex_set",
 )
@@ -34,6 +38,7 @@ SOURCE_LABELS = {
 
 
 def parse_egern_sets(path: Path) -> dict[str, set[str]]:
+    all_keys = SET_KEYS + _PARSE_ONLY_KEYS
     sets: dict[str, set[str]] = {k: set() for k in SET_KEYS}
     if not path.is_file():
         return sets
@@ -42,9 +47,9 @@ def parse_egern_sets(path: Path) -> dict[str, set[str]]:
         stripped = line.strip()
         if not stripped or stripped.startswith("#"):
             continue
-        for key in SET_KEYS:
+        for key in all_keys:
             if stripped == f"{key}:":
-                current = key
+                current = key if key in SET_KEYS else None
                 break
         else:
             if current and stripped.startswith("- "):

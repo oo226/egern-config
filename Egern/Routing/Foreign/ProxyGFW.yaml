@@ -18,6 +18,23 @@ domain_set:
   - store.ui.com.cn
   - wego.here.com
 domain_keyword_set:
+  - aws
+  - bet
+  - cafe
+  - chrome
+  - community
+  - gle
+  - goog
+  - guru
+  - lol
+  - network
+  - new
+  - one
+  - party
+  - rip
+  - rocks
+  - sex
+  - xxx
   - 1drv
   - 1e100
   - abema
@@ -234,7 +251,6 @@ domain_suffix_set:
   - about.me
   - abplive.com
   - abs.edu
-  - ac
   - acast.com
   - accim.org
   - accountkit.com
@@ -287,7 +303,6 @@ domain_suffix_set:
   - agoogleaday.com
   - agro.hk
   - ahcdn.com
-  - ai
   - ai-kan.net
   - ai-wen.net
   - ai.dev
@@ -424,7 +439,6 @@ domain_suffix_set:
   - ant.design
   - antd.org
   - anthonycalzadilla.com
-  - anthropic.com
   - anti1984.com
   - antichristendom.com
   - antiwave.net
@@ -535,7 +549,6 @@ domain_suffix_set:
   - assimp.org
   - astrill.com
   - astrill.org
-  - at
   - atc.org.au
   - atchinese.com
   - atgfw.org
@@ -547,7 +560,6 @@ domain_suffix_set:
   - atmeta.com
   - atnext.com
   - atom.com
-  - au
   - audacy.com
   - audionow.com
   - auth0.com
@@ -580,7 +592,6 @@ domain_suffix_set:
   - avtoday.io
   - avyahoo.com
   - aweber.com
-  - aws
   - aws.dev
   - awscloud.com
   - axios.com
@@ -667,7 +678,6 @@ domain_suffix_set:
   - bcrncdn.com
   - bcvcdn.com
   - bdsmvideos.net
-  - be
   - beacondb.net
   - beaconevents.com
   - bearteach.com
@@ -699,7 +709,6 @@ domain_suffix_set:
   - bestvpnserver.com
   - bestvpnservice.com
   - bestvpnusa.com
-  - bet
   - bet365.com
   - betaclouds.net
   - betfair.com
@@ -713,7 +722,6 @@ domain_suffix_set:
   - beyondfirewall.com
   - bfnn.org
   - bfsh.hk
-  - bg
   - bgm.tv
   - bgme.me
   - bgp.tools
@@ -964,7 +972,6 @@ domain_suffix_set:
   - c100tibet.org
   - c2cx.com
   - c3pool.com
-  - ca
   - cableav.tv
   - cablegatesearch.net
   - cachefly.com
@@ -972,7 +979,6 @@ domain_suffix_set:
   - cachinese.com
   - cacnw.com
   - cactusvpn.com
-  - cafe
   - cafepress.com
   - cahr.org.tw
   - cal.com
@@ -1096,7 +1102,6 @@ domain_suffix_set:
   - cftfc.com
   - cgdepot.org
   - cgst.edu
-  - ch
   - ch.shvoong.com
   - change.org
   - changeip.name
@@ -1112,8 +1117,6 @@ domain_suffix_set:
   - chapm25.com
   - character.ai
   - chat.com
-  - chat.openai.com
-  - chatgpt.com
   - chatnook.com
   - chatpdf.com
   - chaturbate.com
@@ -1208,7 +1211,6 @@ domain_suffix_set:
   - christiantimes.org.hk
   - christusrex.org
   - chrlawyers.hk
-  - chrome
   - chrome.com
   - chromecast.com
   - chromeenterprise.google
@@ -1254,7 +1256,6 @@ domain_suffix_set:
   - cla-assistant.io
   - clarionproject.org
   - classicalguitarblog.net
-  - claude.ai
   - clb.org.hk
   - cleansite.biz
   - cleansite.info
@@ -1354,7 +1355,6 @@ domain_suffix_set:
   - comments.app
   - commentshk.com
   - communistcrimes.org
-  - community
   - community.windy.com
   - communitychoicecu.com
   - comparitech.com
@@ -1389,7 +1389,6 @@ domain_suffix_set:
   - cpu-monkey.com
   - cpuid.com
   - cq99.us
-  - cr
   - crackle.com
   - crashlytics.com
   - crazypool.org
@@ -1446,14 +1445,11 @@ domain_suffix_set:
   - cuty.io
   - cw.com.tw
   - cws.conviva.com
-  - cx
-  - cy
   - cyberctm.com
   - cyberghost.app
   - cyberghostvpn.com
   - cynscribe.com
   - cytode.us
-  - cz
   - cz.cc
   - d-fukyu.com
   - d.cash
@@ -1541,7 +1537,6 @@ domain_suffix_set:
   - ddns.net
   - ddns.us
   - ddys.mov
-  - de
   - de-sci.org
   - deadhouse.org
   - deadline.com
@@ -1625,7 +1620,6 @@ domain_suffix_set:
   - dizhuzhishang.com
   - djangosnippets.org
   - djorz.com
-  - dk
   - dl-laby.jp
   - dlive.tv
   - dlsite.com
@@ -1807,7 +1801,6 @@ domain_suffix_set:
   - ebookbrowse.com
   - ebookee.com
   - ebtcbank.com
-  - ec
   - ecfa.org.tw
   - echainhost.com
   - echofon.com
@@ -1825,11 +1818,9 @@ domain_suffix_set:
   - edns.biz
   - edns.ip-api.com
   - edoors.com
-  - edu
   - edubridge.com
   - edupro.org
   - edx-cdn.org
-  - ee
   - eesti.ee
   - eevpn.com
   - efcc.org.hk
@@ -1914,7 +1905,6 @@ domain_suffix_set:
   - eroprofile.com
   - eroterest.net
   - eroticsaloon.net
-  - es
   - eslite.com
   - esmtp.biz
   - esurance.com
@@ -1932,7 +1922,6 @@ domain_suffix_set:
   - etsy.com
   - ettoday.net
   - etvonline.hk
-  - eu
   - eu.org
   - eucasino.com
   - eulam.com
@@ -2165,11 +2154,9 @@ domain_suffix_set:
   - flyvpn.com
   - flyzy2005.com
   - flzbcdn.xyz
-  - fm
   - fmnnow.com
   - fnac.be
   - fnac.com
-  - fo
   - fochk.org
   - focustaiwan.tw
   - focusvpn.com
@@ -2206,7 +2193,6 @@ domain_suffix_set:
   - fpmtmexico.org
   - fqok.org
   - fqrouter.com
-  - fr
   - framer.com
   - frank2019.me
   - franklc.com
@@ -2405,7 +2391,6 @@ domain_suffix_set:
   - gcmasia.com
   - gcpnews.com
   - gcr.io
-  - gd
   - gdaily.org
   - gdbt.net
   - gdzf.org
@@ -2455,7 +2440,6 @@ domain_suffix_set:
   - gfwatch.org
   - gfwlist.end
   - gfwlist.start
-  - gg
   - ggpht.com
   - ggssl.com
   - gh.io
@@ -2497,10 +2481,8 @@ domain_suffix_set:
   - gitmemory.com
   - gizlen.net
   - gjczz.com
-  - gl
   - glarity.app
   - glass8.eu
-  - gle
   - glitch.com
   - global.ssl.fastly.net
   - globaljihad.net
@@ -2579,14 +2561,12 @@ domain_suffix_set:
   - goodtv.com.tw
   - goodtv.tv
   - goofind.com
-  - goog
   - googl.com
   - google-analytics.com
   - google.ac
   - google.ad
   - google.ae
   - google.af
-  - google.ai
   - google.al
   - google.am
   - google.as
@@ -2855,7 +2835,6 @@ domain_suffix_set:
   - gotquestions.org
   - gotrusted.com
   - gotw.ca
-  - gov
   - gov.ir
   - gov.taipei
   - gov.tw
@@ -2899,7 +2878,6 @@ domain_suffix_set:
   - grotty-monday.com
   - ground.news
   - grow.google
-  - gs
   - gs-discuss.com
   - gsearch.media
   - gstatic.cn
@@ -2922,7 +2900,6 @@ domain_suffix_set:
   - gunsamerica.com
   - gunsandammo.com
   - guo.media
-  - guru
   - guruonline.hk
   - gutteruncensored.com
   - gv.com
@@ -3072,7 +3049,6 @@ domain_suffix_set:
   - hizbuttahrir.org
   - hjclub.info
   - hjd2048.com
-  - hk
   - hk-pub.com
   - hk01.com
   - hk32168.com
@@ -3295,7 +3271,6 @@ domain_suffix_set:
   - iconfinder.com
   - iconpaper.org
   - icu-project.org
-  - id
   - idaiwan.com
   - idcflare.com
   - iddddg.com
@@ -3309,7 +3284,6 @@ domain_suffix_set:
   - idrive.com
   - idsam.com
   - idv.tw
-  - ie
   - ieasy5.com
   - ied2k.net
   - ienergy1.com
@@ -3337,7 +3311,6 @@ domain_suffix_set:
   - iina.io
   - ikstar.com
   - ikwb.com
-  - il
   - ilbe.com
   - ilhamtohtiinstitute.org
   - illawarramercury.com.au
@@ -3374,7 +3347,6 @@ domain_suffix_set:
   - impact.org.au
   - impp.mn
   - improd.works
-  - in
   - in-disguise.com
   - in.com
   - in99.org
@@ -3453,7 +3425,6 @@ domain_suffix_set:
   - iptv.com.tw
   - iptvbin.com
   - ipvanish.com
-  - ir
   - irangov.ir
   - iredmail.org
   - irib.ir
@@ -3461,7 +3432,6 @@ domain_suffix_set:
   - ironbigfools.compython.net
   - ironpython.net
   - ironsocket.com
-  - is
   - is-a-hunter.com
   - is.gd
   - isaacmao.com
@@ -3490,7 +3460,6 @@ domain_suffix_set:
   - isunaffairs.com
   - isuntv.com
   - isupportuyghurs.org
-  - it
   - itaboo.info
   - italiatibet.org
   - itasoftware.com
@@ -3619,7 +3588,6 @@ domain_suffix_set:
   - journalofdemocracy.org
   - joymiihub.com
   - joyourself.com
-  - jp
   - jpopforum.net
   - jqueryui.com
   - jsbin.com
@@ -3701,7 +3669,6 @@ domain_suffix_set:
   - keso.cn
   - kex.com
   - keycdn.com
-  - kg
   - khabdha.org
   - khatrimaza.org
   - khmusic.com.tw
@@ -3749,7 +3716,6 @@ domain_suffix_set:
   - korenan2.com
   - kpkuang.org
   - kqes.net
-  - kr
   - kraken.com
   - krtco.com.tw
   - ksdl.org
@@ -3939,7 +3905,6 @@ domain_suffix_set:
   - logmein.com
   - logos.com.hk
   - logto.io
-  - lol
   - londonchinese.ca
   - longhair.hk
   - longmusic.com
@@ -3976,7 +3941,6 @@ domain_suffix_set:
   - luxebc.com
   - lvhai.org
   - lvv2.com
-  - ly
   - lyfhk.net
   - lynxjs.org
   - lzjscript.com
@@ -4072,7 +4036,6 @@ domain_suffix_set:
   - mcfog.com
   - mcreasite.com
   - mcusercontent.com
-  - md
   - md-t.org
   - me.me
   - meansys.com
@@ -4140,7 +4103,6 @@ domain_suffix_set:
   - meyou.jp
   - meyul.com
   - mfxmedia.com
-  - mg
   - mgoon.com
   - mgstage.com
   - mh4u.org
@@ -4158,7 +4120,6 @@ domain_suffix_set:
   - mikesoltys.com
   - mikocon.com
   - mikrotik.com
-  - mil
   - milph.net
   - milsurps.com
   - mimiai.net
@@ -4229,7 +4190,6 @@ domain_suffix_set:
   - mm-cg.com
   - mmaaxx.com
   - mmmca.com
-  - mn
   - mnewstv.com
   - mobatek.net
   - mobile01.com
@@ -4298,7 +4258,6 @@ domain_suffix_set:
   - mrface.com
   - mrslove.com
   - mrtweet.com
-  - ms
   - msa-it.org
   - msguancha.com
   - msha.gov
@@ -4328,9 +4287,7 @@ domain_suffix_set:
   - muzu.tv
   - mvg.jp
   - mvnrepository.com
-  - mx
   - mx981.com
-  - my
   - my-formosa.com
   - my-private-network.co.uk
   - my-proxy.com
@@ -4464,13 +4421,11 @@ domain_suffix_set:
   - netme.cc
   - netsarang.com
   - netsneak.com
-  - network
   - network54.com
   - networkedblogs.com
   - networktunnel.net
   - neulion.com
   - neverforget8964.org
-  - new
   - new-3lunch.net
   - new-akiba.com
   - new96.ca
@@ -4562,11 +4517,9 @@ domain_suffix_set:
   - njav.com
   - njav.tv
   - njuice.com
-  - nl
   - nlfreevpn.com
   - nmsl.website
   - nnews.eu
-  - no
   - no-ip.com
   - no-ip.org
   - nobel.se
@@ -4670,7 +4623,6 @@ domain_suffix_set:
   - nytlog.com
   - nytstyle.com
   - nyunews.com
-  - nz
   - nzchinese.com
   - nzchinese.net.nz
   - o3o.ca
@@ -4729,7 +4681,6 @@ domain_suffix_set:
   - on.cc
   - on2.com
   - onapp.com
-  - one
   - one.com
   - one.one
   - oneclient.sfx.ms
@@ -4759,7 +4710,6 @@ domain_suffix_set:
   - oojj.de
   - oopsforum.com
   - open.com.hk
-  - openai.com
   - openallweb.com
   - openbase.com
   - opencollective.com
@@ -4866,7 +4816,6 @@ domain_suffix_set:
   - parler.com
   - parse.com
   - parsevideo.com
-  - party
   - partycasino.com
   - partypoker.com
   - passion.com
@@ -4894,7 +4843,6 @@ domain_suffix_set:
   - pct.org.tw
   - pdetails.com
   - pdproxy.com
-  - pe
   - peace.ca
   - peacefire.org
   - peacehall.com
@@ -4926,7 +4874,6 @@ domain_suffix_set:
   - persiankitty.com
   - pewresearch.org
   - pfd.org.hk
-  - ph
   - phapluan.org
   - phayul.com
   - philborges.com
@@ -4992,12 +4939,10 @@ domain_suffix_set:
   - pixivsketch.net
   - pixnet.in
   - pixnet.net
-  - pk
   - pk.com
   - pki.goog
   - pkqjiasu.com
   - pkuanvil.com
-  - pl
   - placemix.com
   - play-asia.com
   - playartifact.com
@@ -5014,7 +4959,6 @@ domain_suffix_set:
   - plus.codes
   - plus28.com
   - plusbb.com
-  - pm
   - pmatehunter.com
   - pmates.com
   - po2b.com
@@ -5153,7 +5097,6 @@ domain_suffix_set:
   - proxz.com
   - proyectoclubes.com
   - prozz.net
-  - ps
   - psblog.name
   - pscp.tv
   - pshvpn.com
@@ -5289,7 +5232,6 @@ domain_suffix_set:
   - rcinet.ca
   - rd.com
   - rdtcdn.com
-  - re
   - reabble.com
   - read01.com
   - read100.com
@@ -5373,7 +5315,6 @@ domain_suffix_set:
   - rigpa.org
   - riku.me
   - rileyguide.com
-  - rip
   - ripe.net
   - riseup.net
   - ritouki.jp
@@ -5385,7 +5326,6 @@ domain_suffix_set:
   - rmbl.ws
   - rmjdw.com
   - rmjdw132.info
-  - ro
   - roadshow.hk
   - roboflow.com
   - roboforex.com
@@ -5394,7 +5334,6 @@ domain_suffix_set:
   - rocket.chat
   - rocketbbs.com
   - rocketcdn.me
-  - rocks
   - rocksdb.org
   - rojo.com
   - rolfoundation.org
@@ -5408,7 +5347,6 @@ domain_suffix_set:
   - rou.video
   - roucdn.link
   - rpglogs.com
-  - rs
   - rsdlmonitor.com
   - rsf-chinese.org
   - rsf.org
@@ -5423,7 +5361,6 @@ domain_suffix_set:
   - rti.tw
   - rtings.com
   - rtycminnesota.org
-  - ru
   - ruanyifeng.com
   - rukor.org
   - rule34.xxx
@@ -5447,7 +5384,6 @@ domain_suffix_set:
   - s1s1s1.com
   - s4miniarchive.com
   - s8forum.com
-  - sa
   - saboom.com
   - sacks.com
   - sacom.hk
@@ -5485,7 +5421,6 @@ domain_suffix_set:
   - saveuighur.org
   - savevid.com
   - say2.info
-  - sb
   - sb-cd.com
   - sbme.me
   - sbs.com.au
@@ -5504,7 +5439,6 @@ domain_suffix_set:
   - scramble.io
   - scribd.com
   - scriptspot.com
-  - se
   - seapuff.com
   - search.com
   - search.xxx
@@ -5551,7 +5485,6 @@ domain_suffix_set:
   - setn.com
   - settv.com.tw
   - sevenload.com
-  - sex
   - sex-11.com
   - sex.com
   - sex3.com
@@ -5569,10 +5502,8 @@ domain_suffix_set:
   - sfshibao.com
   - sftindia.org
   - sftuk.org
-  - sg
   - sgwritings.com
   - sgzhan.com
-  - sh
   - shadeyouvpn.com
   - shadow.ma
   - shadowsky.xyz
@@ -5636,7 +5567,6 @@ domain_suffix_set:
   - shw.io
   - shwchurch.org
   - shwchurch3.com
-  - si
   - siddharthasintent.org
   - sidelinesnews.com
   - sidelinessportseatery.com
@@ -5689,7 +5619,6 @@ domain_suffix_set:
   - sixth.biz
   - sjrt.org
   - sjum.cn
-  - sk
   - sketch.cloud
   - sketch.com
   - sketchappsources.com
@@ -5748,7 +5677,6 @@ domain_suffix_set:
   - sntp.uk
   - sobees.com
   - soc.mil
-  - social
   - social.edu.ci
   - socialblade.com
   - socialwhale.com
@@ -5873,7 +5801,6 @@ domain_suffix_set:
   - sstm.moe
   - sstmlt.moe
   - sstmlt.net
-  - st
   - stackblitz.com
   - stackexchange.com
   - stackoverflow.com
@@ -5942,11 +5869,9 @@ domain_suffix_set:
   - strongwindpress.com
   - student.tw
   - studentsforafreetibet.org
-  - studio
   - stumbleupon.com
   - stupidvideos.com
   - stweetly.com
-  - su
   - subacme.rerouted.org
   - subhd.tv
   - substack.com
@@ -5994,7 +5919,6 @@ domain_suffix_set:
   - swissvpn.net
   - switch1.jp
   - switchvpn.net
-  - sx
   - sydneytoday.com
   - sylfoundation.org
   - synapse.org
@@ -6027,7 +5951,6 @@ domain_suffix_set:
   - tahr.org.tw
   - tailfin.cc
   - tailwindcss.com
-  - taipei
   - taipeisociety.org
   - taipeitimes.com
   - taisounds.com
@@ -6359,7 +6282,6 @@ domain_suffix_set:
   - tngrnow.net
   - tnp.org
   - tnt-ea.com
-  - to
   - to-porno.com
   - togetter.com
   - toh.info
@@ -6413,7 +6335,6 @@ domain_suffix_set:
   - toytractorshow.com
   - tparents.org
   - tpi.org.tw
-  - tr
   - tracfone.com
   - tradingview.com
   - traffichaus.com
@@ -6452,7 +6373,6 @@ domain_suffix_set:
   - tsquare.tv
   - tsu.org.tw
   - tsunagarumon.com
-  - tt
   - tt1069.com
   - tttan.com
   - ttv.com.tw
@@ -6514,7 +6434,6 @@ domain_suffix_set:
   - tvmost.com.hk
   - tvplayvideos.com
   - tvunetworks.com
-  - tw
   - tw-blog.com
   - tw-npo.org
   - tw01.org
@@ -6652,7 +6571,6 @@ domain_suffix_set:
   - ui.com
   - uighur.nl
   - uighurbiz.net
-  - uk
   - ukcdp.co.uk
   - ukliferadio.co.uk
   - uku.im
@@ -6720,7 +6638,6 @@ domain_suffix_set:
   - urlborg.com
   - urlparser.com
   - urlscan.io
-  - us
   - us.to
   - usacn.com
   - usaip.eu
@@ -6771,7 +6688,6 @@ domain_suffix_set:
   - v2mm.tech
   - v2ray.com
   - v2raycn.com
-  - va
   - valeursactuelles.com
   - valvesoftware.com
   - van001.com
@@ -6853,7 +6769,6 @@ domain_suffix_set:
   - vmixcore.com
   - vmpsoft.com
   - vmware.com
-  - vn
   - vnet.link
   - voa.mobi
   - voacambodia.com
@@ -6971,7 +6886,6 @@ domain_suffix_set:
   - waselpro.com
   - washeng.net
   - washingtonpost.com
-  - watch
   - watch8x.com
   - watchinese.com
   - watchmygf.net
@@ -7174,7 +7088,6 @@ domain_suffix_set:
   - wrchina.org
   - wretch.cc
   - writesonic.com
-  - ws
   - wsj.com
   - wsj.net
   - wsjhk.com
@@ -7308,7 +7221,6 @@ domain_suffix_set:
   - xxbbx.com
   - xxlmovies.com
   - xxuz.com
-  - xxx
   - xxx.com
   - xxx.xxx
   - xxxfuckmom.com
@@ -7434,7 +7346,6 @@ domain_suffix_set:
   - z-library.ec
   - z-library.sk
   - z.com
-  - za
   - zacebook.com
   - zalmos.com
   - zamimg.com

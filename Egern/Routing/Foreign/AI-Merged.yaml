@@ -9,6 +9,7 @@
 #   local        — oo226/egern-config — AI-supplement.yaml (94 entries)
 # Overlap removed: 131
 # Total unique entries: 433
+# NOTE: no domain_regex/url_regex — avoid rule_set load failure on Egern
 
 no_resolve: true
 domain_set:
@@ -125,6 +126,7 @@ domain_set:
   - www.googleapis.com
   - yiyan.baidu.com
 domain_suffix_set:
+  - google.ai
   - abtestvm-sg.bytedance.com
   - ai.cloudflare.com
   - ai.com
@@ -249,7 +251,6 @@ domain_suffix_set:
   - g.ai
   - gamma.app
   - geller-pa.googleapis.com
-  - gemini.google
   - gemini.google.com
   - gemini.gstatic.com
   - generativeai.google
@@ -438,14 +439,12 @@ domain_suffix_set:
   - zhipuai.cn
   - zhipucn.com
 domain_keyword_set:
+  - anthropic
+  - chatgpt
+  - cursor
   - alkalimakersuite-pa.clients6.google.com
   - chatgpt-async-webps-prod
   - datadog
   - openai
   - sentry
   - sift
-domain_regex_set:
-  - "^chatgpt-async-webps-prod-\\S+-\\d+\\.webpubsub\\.azure\\.com$"
-url_regex_set:
-  - "https://chat\\.openai\\.com/.*"
-  - "https://www\.google\.com/.*continue=https://gemini\.google\.com.+"
