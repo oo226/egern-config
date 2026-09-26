@@ -800,26 +800,12 @@ def mirror_js(url: str, author: str, cache: dict[str, str]) -> str:
     ensure_author(author)
     name = _readable_js_name(url)
     dest = ZUOZHE / author / "js" / name
-    # 碰撞：不同 URL 同名 → 加短哈希（WeatherKit/Maps 都叫 request.bundle.js）
+    # 已有同名：复用（WeatherKit/Maps 请用产品-版本前缀命名，见 apply-tools）
     if dest.is_file():
-        marker = dest.with_suffix(dest.suffix + ".src")
-        prev = marker.read_text(encoding="utf-8").strip() if marker.is_file() else ""
-        if prev == url or not prev:
-            if not prev:
-                marker.write_text(url + "\n", encoding="utf-8")
-            STATS["js_ok"] += 1
-            local = f"{RAW}/{dest.relative_to(ROOT).as_posix()}"
-            cache[url] = local
-            return local
-        h = hashlib.sha1(url.encode()).hexdigest()[:8]
-        stem, suf = Path(name).stem, Path(name).suffix
-        name = f"{stem}-{h}{suf}"
-        dest = ZUOZHE / author / "js" / name
-        if dest.is_file():
-            STATS["js_ok"] += 1
-            local = f"{RAW}/{dest.relative_to(ROOT).as_posix()}"
-            cache[url] = local
-            return local
+        STATS["js_ok"] += 1
+        local = f"{RAW}/{dest.relative_to(ROOT).as_posix()}"
+        cache[url] = local
+        return local
 
     data: bytes | None = None
     used = ""
@@ -850,7 +836,6 @@ def mirror_js(url: str, author: str, cache: dict[str, str]) -> str:
         print(f"  js/{author}/{name} ← {used if used != url else 'ok'}")
 
     save_bytes(dest, data, author=author, kind="js")
-    dest.with_suffix(dest.suffix + ".src").write_text(url + "\n", encoding="utf-8")
     local = f"{RAW}/{dest.relative_to(ROOT).as_posix()}"
     cache[url] = local
     return local

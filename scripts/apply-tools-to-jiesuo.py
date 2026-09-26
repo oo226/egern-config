@@ -102,7 +102,6 @@ def mirror_tools(cache: dict[str, str]) -> None:
             if not dest.is_file():
                 dest.write_bytes(by.fetch(u))
                 print(f"  js/nsringo/{dest_name}")
-            dest.with_suffix(dest.suffix + ".src").write_text(u + "\n", encoding="utf-8")
             local = f"{RAW}/Yuanban/zuozhe/nsringo/js/{dest_name}"
             url_map[u] = local
             cache[u] = local
