@@ -1,11 +1,8 @@
 # ==========================================
-# 配置文件: Egern@oo226 懒人配置（guize 自托管）
-# 模块 / 分流 / DNS 全部挂本分支 Yuanban/heji + Egern/Rule
-# 引用: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Profile.yaml
-#
-# 节点隐私：sub.store 是你手机本地的 Sub-Store（MITM），别人导入本配置
-#   只会连他们自己设备上的 sub.store，拉不到你的机场节点。
-# AllServer：在你自己的 Sub-Store 里建「组合订阅」，名字填 AllServer。
+# Egern 懒人配置（guize）
+# 分流: Egern/Routing（本分支合并表，面板短）
+# 模块: Yuanban/heji
+# https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Profile.yaml
 # ==========================================
 
 # ------------------------------------------
@@ -87,14 +84,13 @@ dns:
     ProxyDNS:
       - https://223.5.5.5/dns-query
       - https://doh.pub/dns-query
-  # 全部 guize 本仓表；国内统一直连大名单→DNSPod（不拆厂商三表）
   forward:
     - proxy_rule_set:
-        match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Loyalsoldier-广告拒绝.txt
+        match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Routing/Reject-Hot.yaml
         value: reject
         update_interval: 86400
     - proxy_rule_set:
-        match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Sukka-广告拒绝.conf
+        match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Routing/Reject-Merged.yaml
         value: reject
         update_interval: 86400
     - proxy_rule_set:
@@ -102,32 +98,25 @@ dns:
         value: reject
         update_interval: 604800
     - proxy_rule_set:
-        match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Repcz-局域网.yaml
+        match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Routing/Lan.yaml
         value: system
         update_interval: 604800
     - proxy_rule_set:
-        match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Loyalsoldier-私有网络.txt
-        value: system
-        update_interval: 604800
-    - proxy_rule_set:
-        match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/本仓-追风.yaml
+        match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Routing/Zhuifeng.yaml
         value: DNSPod
         update_interval: 604800
     - proxy_rule_set:
-        match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Repcz-YouTube.yaml
+        match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Routing/Foreign/YouTube.yaml
         value: Google
         update_interval: 86400
     - proxy_rule_set:
-        match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Repcz-Google.yaml
+        match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Routing/Foreign/Google.yaml
         value: Google
         update_interval: 86400
     - proxy_rule_set:
-        match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Loyalsoldier-直连大名单.txt
+        match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Routing/China-Direct.yaml
         value: DNSPod
         update_interval: 86400
-    - domain_suffix:
-        match: cn
-        value: DNSPod
     - domain_wildcard:
         match: '*'
         value: Default
@@ -346,46 +335,56 @@ policy_groups:
       icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/04ProxySoft/emby.png
 
 # ------------------------------------------
-# 五、分流规则（全部 guize/Yuanban；顺序：基建→追风→Spotify→广告→服务→国内→GFW）
+# 五、分流（Egern/Routing 合并表 —— 短、干净）
 # ------------------------------------------
 rules:
   - ip_cidr:
       match: 120.53.245.215/32
       policy: DIRECT
 
-  # ── 基建 / 追风 ──
+  - rule_set:
+      name: Tailscale
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Routing/Tailscale-Direct.yaml
+      policy: DIRECT
+      update_interval: 86400
+  - rule_set:
+      name: Bootstrap
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Routing/Bootstrap-Direct.yaml
+      policy: DIRECT
+      update_interval: 86400
   - rule_set:
       name: 局域网
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Repcz-局域网.yaml
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Routing/Lan.yaml
       policy: DIRECT
       update_interval: 604800
   - rule_set:
-      name: 私有网络
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Loyalsoldier-私有网络.txt
+      name: Unbreak
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Routing/Unbreak.yaml
       policy: DIRECT
-      update_interval: 604800
+      update_interval: 86400
   - rule_set:
-      name: 追风挂机
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/本仓-追风.yaml
-      policy: 追风挂机
-      update_interval: 604800
-
-  # ── Spotify 须在广告表之前（广告表误含播流 CDN）──
-  - rule_set:
-      name: Spotify
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Repcz-Spotify.yaml
-      policy: Spotify
-      update_interval: 604800
-
-  # ── 广告（两张上游 + HTTPDNS；不再叠第三张补充）──
-  - rule_set:
-      name: 广告拦截
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Loyalsoldier-广告拒绝.txt
+      name: 广告·热点
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Routing/Reject-Hot.yaml
       policy: REJECT
       update_interval: 86400
   - rule_set:
-      name: 广告拦截·补
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Sukka-广告拒绝.conf
+      name: 优先直连
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Routing/Direct-Priority.yaml
+      policy: DIRECT
+      update_interval: 86400
+  - rule_set:
+      name: 追风挂机
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Routing/Zhuifeng.yaml
+      policy: 追风挂机
+      update_interval: 604800
+  - rule_set:
+      name: Spotify
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Routing/Foreign/Spotify.yaml
+      policy: Spotify
+      update_interval: 86400
+  - rule_set:
+      name: 广告拦截
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Routing/Reject-Merged.yaml
       policy: REJECT
       update_interval: 86400
   - rule_set:
@@ -393,121 +392,113 @@ rules:
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Rule/BlockHttpDNS.yaml
       policy: REJECT
       update_interval: 604800
+  - rule_set:
+      name: 隐私拒绝
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Routing/Privacy-Reject.yaml
+      policy: REJECT
+      update_interval: 86400
 
-  # ── 苹果 / AI / 流媒体 / 社交 ──
   - rule_set:
-      name: 苹果中国
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Repcz-苹果中国.yaml
-      policy: DIRECT
-      update_interval: 604800
+      name: 哔哩哔哩
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Routing/Foreign/App/Bilibili.yaml
+      policy: 香港节点
+      update_interval: 86400
   - rule_set:
-      name: 苹果服务
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Repcz-苹果服务.yaml
-      policy: DIRECT
-      update_interval: 604800
+      name: 抖音
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Routing/Foreign/App/Douyin.yaml
+      policy: 台湾节点
+      update_interval: 86400
+  - rule_set:
+      name: TikTok
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Routing/Foreign/App/TikTok.yaml
+      policy: 台湾节点
+      update_interval: 86400
+  - rule_set:
+      name: 小红书
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Routing/Foreign/App/RedBook.yaml
+      policy: 狮城节点
+      update_interval: 86400
+  - rule_set:
+      name: 快手
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Routing/Foreign/App/KuaiShou.yaml
+      policy: 狮城节点
+      update_interval: 86400
+
   - rule_set:
       name: AI
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/VPSDance-AI合集.yaml
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Routing/Foreign/AI-Merged.yaml
       policy: AIGC
       update_interval: 86400
   - rule_set:
-      name: YouTube
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Repcz-YouTube.yaml
-      policy: YouTube
-      update_interval: 604800
-  - rule_set:
-      name: TikTok
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Repcz-TikTok.yaml
-      policy: 台湾节点
-      update_interval: 604800
-  - rule_set:
-      name: Netflix
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Repcz-Netflix.yaml
-      policy: 美国节点
-      update_interval: 604800
-  - rule_set:
-      name: Disney+
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Repcz-Disney.yaml
-      policy: 美国节点
-      update_interval: 604800
-  - rule_set:
-      name: Emby
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Repcz-Emby.yaml
-      policy: Emby
-      update_interval: 604800
-  - rule_set:
-      name: Google
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Repcz-Google.yaml
-      policy: Proxy
-      update_interval: 604800
-  - rule_set:
-      name: 微软
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Repcz-Microsoft.yaml
-      policy: DIRECT
-      update_interval: 604800
-  - rule_set:
-      name: GitHub
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/BMJ-GitHub.list
-      policy: Proxy
-      update_interval: 604800
-  - rule_set:
-      name: PayPal
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/BMJ-PayPal.list
-      policy: 美国节点
-      update_interval: 604800
-  - rule_set:
       name: Telegram
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Repcz-Telegram.yaml
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Routing/Foreign/Telegram.yaml
       policy: Telegram
-      update_interval: 604800
+      update_interval: 86400
   - rule_set:
       name: Telegram·IP
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Loyalsoldier-Telegram-CIDR.txt
       policy: Telegram
       update_interval: 604800
   - rule_set:
+      name: GitHub
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Routing/Foreign/Github.yaml
+      policy: Proxy
+      update_interval: 86400
+  - rule_set:
+      name: Emby
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Routing/Foreign/Emby.yaml
+      policy: Emby
+      update_interval: 86400
+  - rule_set:
+      name: YouTube
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Routing/Foreign/YouTube.yaml
+      policy: YouTube
+      update_interval: 86400
+  - rule_set:
+      name: Netflix
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Routing/Foreign/Netflix.yaml
+      policy: 美国节点
+      update_interval: 86400
+  - rule_set:
+      name: Disney+
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Routing/Foreign/Disney.yaml
+      policy: 美国节点
+      update_interval: 86400
+  - rule_set:
       name: Twitter
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Repcz-Twitter.yaml
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Routing/Foreign/Twitter.yaml
+      policy: 美国节点
+      update_interval: 86400
+  - rule_set:
+      name: Google
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Routing/Foreign/Google.yaml
+      policy: Proxy
+      update_interval: 86400
+  - rule_set:
+      name: PayPal
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/BMJ-PayPal.list
       policy: 美国节点
       update_interval: 604800
-  - rule_set:
-      name: 微信
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Repcz-微信.yaml
-      policy: DIRECT
-      update_interval: 604800
 
-  # ── 国内（域名 + IP；大名单只给 DNS，规则层不再叠第四张）──
   - rule_set:
-      name: 国内域名
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Repcz-国内域名.yaml
-      policy: DIRECT
+      name: GFW列表
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Routing/Foreign/ProxyGFW.yaml
+      policy: Proxy
       update_interval: 86400
   - rule_set:
-      name: 国内IP
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Repcz-国内IP.yaml
-      policy: DIRECT
+      name: 代理列表
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Routing/Foreign/Proxy.yaml
+      policy: Proxy
       update_interval: 86400
   - rule_set:
-      name: 直连补充
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Repcz-直连.yaml
+      name: 国内直连
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Routing/China-Direct.yaml
       policy: DIRECT
       update_interval: 86400
   - geoip:
       match: CN
       policy: DIRECT
       no_resolve: true
-
-  # ── 被墙 ──
-  - rule_set:
-      name: GFW列表
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Loyalsoldier-GFW列表.txt
-      policy: Proxy
-      update_interval: 86400
-  - rule_set:
-      name: 代理列表
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Loyalsoldier-代理.txt
-      policy: Proxy
-      update_interval: 86400
   - default:
       policy: Proxy
 
