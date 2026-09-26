@@ -482,6 +482,11 @@ rules:
       policy: Proxy
       update_interval: 86400
   - rule_set:
+      name: 微软
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Routing/Foreign/Microsoft.yaml
+      policy: DIRECT
+      update_interval: 86400
+  - rule_set:
       name: PayPal
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/BMJ-PayPal.list
       policy: 美国节点
