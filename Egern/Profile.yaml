@@ -219,7 +219,7 @@ proxies:
       tfo: false
 
 # ------------------------------------------
-# 四、策略组（图标统一 Qure Color，无白底方框）
+# 四、策略组（追风=Loon · 全部节点=Surge · 其他节点=Egern；lige 透明底无白框）
 # ------------------------------------------
 policy_groups:
   - auto_test:
@@ -232,14 +232,14 @@ policy_groups:
       latency_test_url: http://www.gstatic.com/generate_204
       tolerance: 100
       timeout: 5
-      icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Airport.png
+      icon: https://raw.githubusercontent.com/lige47/lige_icon/main/icon/02ProxySoftLogo/Surge%281%29.png
       hidden: true
 
   - select:
       name: 追风挂机
       policies:
         - 追风
-      icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Game.png
+      icon: https://raw.githubusercontent.com/lige47/lige_icon/main/icon/02ProxySoftLogo/Loon.png
       hidden: true
 
   - smart:
@@ -290,7 +290,7 @@ policy_groups:
         - 全部节点
       flatten: true
       filter: (?i)^(?!.*(?:🇭🇰|香港|\bHK\b|🇺🇸|美国|\bUS\b|🇹🇼|台湾|\bTW\b|🇯🇵|日本|\bJP\b|🇸🇬|新加坡|\bSG\b|🇰🇷|韩国|\bKR\b)).*$
-      icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Global.png
+      icon: https://raw.githubusercontent.com/lige47/lige_icon/main/icon/02ProxySoftLogo/Egern.png
 
   - select:
       name: Proxy
