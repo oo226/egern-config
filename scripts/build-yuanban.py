@@ -76,10 +76,66 @@ RAW = f"https://raw.githubusercontent.com/oo226/egern-config/refs/heads/{BRANCH}
 SYNC_RAW = "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/sync"
 
 CTX = ssl.create_default_context()
-UA = {"User-Agent": "egern-yuanban/1.0"}
+# Quantumult X UA：墨鱼 ddgksf2013.top 对普通爬虫常回 HTML 首页
+UA = {"User-Agent": "Quantumult%20X/1.4.0 (egern-yuanban)"}
 
 QINGREX_API = "https://api.github.com/repos/QingRex/LoonKissSurge/git/trees/main?recursive=1"
 QINGREX_RAW = "https://raw.githubusercontent.com/QingRex/LoonKissSurge/main/"
+MOYU_REWRITE = "https://raw.githubusercontent.com/ddgksf2013/Rewrite/master/AdBlock/"
+
+# 墨鱼通用去广告（进 quguanggao）；开屏 StartUpAds/FakeiOSAds 另见 qukaiping
+# WeChat.conf 上游已划掉仍保留原件；FakeiOSAds 只进开屏合集
+MOYU_ADBLOCK_CONFS = (
+    "Applet.conf",
+    "WeiboAds.conf",
+    "YoutubeAds.conf",
+    "Ximalaya.conf",
+    "KeepAds.conf",
+    "AmapAds.conf",
+    "NeteaseAds.conf",
+    "CainiaoAds.conf",
+    "BingSimplify.conf",
+    "SmzdmAds.conf",
+    "CaiYunAds.conf",
+    "TieBaAds.conf",
+    "RedditAds.conf",
+    "NeteaseMailAds.conf",
+    "GoofishAds.conf",
+    "QiShuiMusicAds.conf",
+    "XiaoYuZhouAds.conf",
+    "CheLaiLeAds.conf",
+    "MoJiWeatherAds.conf",
+    "TaoPiaoPiaoAds.conf",
+    "ChinaUnicomAds.conf",
+    "BiliBiliComicsAds.conf",
+    "WeChat.conf",
+)
+MOYU_ADBLOCK_LABEL = {
+    "Applet.conf": "微信小程序去广告",
+    "WeiboAds.conf": "微博/轻享版去广告",
+    "YoutubeAds.conf": "油管去广告",
+    "Ximalaya.conf": "喜马拉雅去广告",
+    "KeepAds.conf": "Keep超级净化",
+    "AmapAds.conf": "高德地图去广告",
+    "NeteaseAds.conf": "网易云去广告",
+    "CainiaoAds.conf": "菜鸟裹裹去广告",
+    "BingSimplify.conf": "Bing首页简化",
+    "SmzdmAds.conf": "什么值得买去广告",
+    "CaiYunAds.conf": "彩云天气净化",
+    "TieBaAds.conf": "贴吧去广告",
+    "RedditAds.conf": "Reddit去广告",
+    "NeteaseMailAds.conf": "网易邮箱大师净化",
+    "GoofishAds.conf": "闲鱼净化",
+    "QiShuiMusicAds.conf": "汽水音乐净化",
+    "XiaoYuZhouAds.conf": "小宇宙FM去广告",
+    "CheLaiLeAds.conf": "车来了净化",
+    "MoJiWeatherAds.conf": "墨迹天气去广告",
+    "TaoPiaoPiaoAds.conf": "淘票票净化",
+    "ChinaUnicomAds.conf": "中国联通去广告",
+    "BiliBiliComicsAds.conf": "哔哩漫画去广告",
+    "WeChat.conf": "公众号图文去广告(旧)",
+    "NBProAds.conf": "NBPro净化",
+}
 
 # 去广告基础：必须置顶（广告平台拦截器说明里写了始终排顶部）
 KELI_FOUNDATION = (
@@ -258,7 +314,7 @@ def parse_sections(text: str) -> dict[str, list[str]]:
     return sections
 
 
-def qx_conf_to_surge_body(text: str) -> str:
+def qx_conf_to_surge_body(text: str, *, script_prefix: str = "moyu") -> str:
     """Format-only QX conf → Surge sections (patterns unchanged)."""
     rules, rewrites, scripts, mitm = [], [], [], []
     script_i = 0
@@ -280,7 +336,12 @@ def qx_conf_to_surge_body(text: str) -> str:
                     if low.startswith("host-suffix")
                     else ("DOMAIN-KEYWORD" if low.startswith("host-keyword") else "DOMAIN")
                 )
-                rules.append(f"{kind},{parts[1]},REJECT")
+                # host, x, reject|direct
+                action = parts[2].upper() if len(parts) >= 3 else "REJECT"
+                if action in {"REJECT", "DIRECT"}:
+                    rules.append(f"{kind},{parts[1]},{action}")
+                else:
+                    rules.append(f"{kind},{parts[1]},REJECT")
             continue
         if " url reject" in s or " url reject-" in s:
             pat, rest = s.split(" url ", 1)
@@ -297,9 +358,14 @@ def qx_conf_to_surge_body(text: str) -> str:
                 req_body = "true" if ("body" in stype or "analyze" in stype) else "false"
                 script_i += 1
                 scripts.append(
-                    f"moyu-{script_i} = type={surge_type},pattern={pat},"
+                    f"{script_prefix}-{script_i} = type={surge_type},pattern={pat},"
                     f"script-path={surl},requires-body={req_body},timeout=60"
                 )
+            continue
+        # QX response-body 替换：Surge 无等价，保留注释便于对照
+        if " url response-body " in s:
+            rewrites.append(f"# QX-response-body (未转): {s}")
+            continue
     out = []
     if rules:
         out += ["[Rule]", *rules, ""]
@@ -615,8 +681,20 @@ def build_danxiang() -> None:
 
 # ── heji builders ───────────────────────────────────────────────
 
+def _moyu_conf_to_bag(
+    path: Path, label: str, cache: dict[str, str]
+) -> tuple[str, dict[str, list[str]]] | None:
+    if not path.is_file():
+        return None
+    raw = path.read_text(encoding="utf-8", errors="replace")
+    rewrite_js_urls(raw, "moyu", cache)
+    surge_body = qx_conf_to_surge_body(raw, script_prefix="moyu-" + path.stem[:12])
+    surge_body = rewrite_js_urls(surge_body, "moyu", cache)
+    return (label, parse_sections(surge_body))
+
+
 def heji_quguanggao(cache: dict[str, str]) -> None:
-    """去广告：基础二件置顶 → 可莉全部*去广告 → 奶思 blockAds 整块。"""
+    """去广告：基础置顶 → 可莉 → 墨鱼 AdBlock/NBPro → 奶思 blockAds。"""
     keli_m = ZUOZHE / "keli" / "mokuai"
     bags: list[tuple[str, dict[str, list[str]]]] = []
 
@@ -643,7 +721,31 @@ def heji_quguanggao(cache: dict[str, str]) -> None:
             label = f"可莉 · {title}（{app}）"
         bags.append((label, parse_sections(rewritten)))
 
-    # 3) 奶思 blockAds 整模块（不拆不改）
+    # 3) 墨鱼 AdBlock（含 NBPro）— QX→Surge 仅格式
+    moyu_m = ZUOZHE / "moyu" / "mokuai"
+    for fname in MOYU_ADBLOCK_CONFS:
+        bag = _moyu_conf_to_bag(
+            moyu_m / fname,
+            f"墨鱼 · {MOYU_ADBLOCK_LABEL.get(fname, fname)}",
+            cache,
+        )
+        if bag:
+            bags.append(bag)
+    bag = _moyu_conf_to_bag(
+        moyu_m / "NBProAds.conf",
+        f"墨鱼 · {MOYU_ADBLOCK_LABEL['NBProAds.conf']}",
+        cache,
+    )
+    if bag:
+        bags.append(bag)
+    # Egern 补全：telnet Map Local + 自托管脚本（sync custom-apps）
+    egern_nb = moyu_m / "NBPro-egern.sgmodule"
+    if egern_nb.is_file():
+        raw = egern_nb.read_text(encoding="utf-8", errors="replace")
+        rewritten = rewrite_js_urls(raw, "moyu", cache)
+        bags.append(("墨鱼 · NBPro Egern补全（telnet+脚本）", parse_sections(rewritten)))
+
+    # 4) 奶思 blockAds 整模块（不拆不改）
     naisi = ZUOZHE / "naisi" / "mokuai" / "blockAds.module"
     if naisi.is_file():
         raw = naisi.read_text(encoding="utf-8", errors="replace")
@@ -653,13 +755,14 @@ def heji_quguanggao(cache: dict[str, str]) -> None:
     text = merge_section_bags(
         bags,
         name="去广告合集",
-        desc="可莉基础置顶 + 可莉逐App去广告 + 奶思blockAds（作者原文，URL自托管）",
+        desc="可莉基础置顶 + 可莉逐App + 墨鱼AdBlock/NBPro + 奶思blockAds（原文，URL自托管）",
         notes=[
             "# 合集类型: 去广告",
             "# 置顶基础: 1)广告平台拦截器 2)可莉广告过滤器 —— 须最先生效",
             "# 然后: 可莉各 App「××去广告」原样分段",
+            "# 然后: 墨鱼 ddgksf2013 AdBlock（微博/闲鱼/网易云/NBPro…）+ Egern NBPro 补全",
             "# 然后: 奶思 blockAds.module 整块",
-            "# 不含开屏（见 heji/qukaiping.module）",
+            "# 不含开屏（见 heji/qukaiping.module：StartUpAds / FakeiOSAds）",
         ],
     )
     (HEJI / "quguanggao.module").write_text(text, encoding="utf-8")
@@ -680,11 +783,10 @@ def heji_qukaiping(cache: dict[str, str]) -> None:
         raw = path.read_text(encoding="utf-8", errors="replace")
         # harvest js from original QX urls first
         rewrite_js_urls(raw, "moyu", cache)
-        surge_body = qx_conf_to_surge_body(raw)
+        surge_body = qx_conf_to_surge_body(raw, script_prefix="moyu-kp")
         surge_body = rewrite_js_urls(surge_body, "moyu", cache)
         bags.append((label, parse_sections(surge_body)))
 
-    # 可莉里带开屏语义的个别模块也可加：当前开屏主源是墨鱼
     text = merge_section_bags(
         bags,
         name="去开屏合集",
@@ -919,7 +1021,8 @@ def write_docs() -> None:
         "1. `zuozhe/keli/mokuai/广告平台拦截器.sgmodule` — 所有去广告插件的基础，须排顶部",
         "2. `zuozhe/keli/mokuai/可莉广告过滤器.sgmodule`",
         "3. 可莉各 App `*去广告.sgmodule`",
-        "4. 奶思 `blockAds.module` 整块",
+        "4. 墨鱼 AdBlock（微博/闲鱼/网易云/…）+ NBProAds + NBPro-egern 补全",
+        "5. 奶思 `blockAds.module` 整块",
         "",
     ]
     if STATS["js_fail"]:
@@ -968,22 +1071,47 @@ def main() -> None:
     )
     mirror_sync_module("naisi", "fmz200-unlock-extra.sgmodule", cache)
 
-    print("=== zuozhe/moyu ===")
-    for fname, url in (
+    print("=== zuozhe/moyu（开屏 + AdBlock + NBPro）===")
+    paths = ensure_author("moyu")
+    moyu_items: list[tuple[str, str]] = [
         ("StartUpAds.conf", "https://ddgksf2013.top/rewrite/StartUpAds.conf"),
-        (
-            "FakeiOSAds.conf",
-            "https://raw.githubusercontent.com/ddgksf2013/Rewrite/master/AdBlock/FakeiOSAds.conf",
-        ),
-    ):
+        ("FakeiOSAds.conf", MOYU_REWRITE + "FakeiOSAds.conf"),
+        ("NBProAds.conf", "https://ddgksf2013.top/rewrite/NBProAds.conf"),
+    ]
+    for fname in MOYU_ADBLOCK_CONFS:
+        moyu_items.append((fname, MOYU_REWRITE + fname))
+    for fname, url in moyu_items:
         try:
             raw = fetch(url)
-            paths = ensure_author("moyu")
             save_bytes(paths["mokuai"] / fname, raw, author="moyu", kind="mokuai")
             rewrite_js_urls(raw.decode("utf-8", errors="replace"), "moyu", cache)
             print(f"  moyu/mokuai/{fname}")
         except Exception as exc:
             print(f"  ! moyu {fname}: {exc}")
+    # NBPro 脚本：优先墨鱼站点，失败则 sync 镜像
+    for js_url in (
+        "https://ddgksf2013.top/scripts/nbpro.ads.js",
+        f"{SYNC_RAW}/Scripts/ddgksf2013/nbpro.ads.js",
+    ):
+        try:
+            mirror_js(js_url, "moyu", cache)
+            break
+        except Exception as exc:
+            print(f"  ! moyu nbpro.ads.js via {js_url}: {exc}")
+    # Egern 侧已调过的 NBPro 补全（含 telnet Map Local）
+    mirror_sync_module("moyu", "custom-apps.sgmodule", cache)
+    custom = paths["mokuai"] / "custom-apps.sgmodule"
+    if custom.is_file():
+        dest = paths["mokuai"] / "NBPro-egern.sgmodule"
+        dest.write_bytes(custom.read_bytes())
+        custom.unlink(missing_ok=True)
+        print("  moyu/mokuai/NBPro-egern.sgmodule ← sync custom-apps")
+    (paths["mokuai"] / "README.md").write_text(
+        "墨鱼 ddgksf2013：StartUpAds/FakeiOSAds（开屏）+ AdBlock/*.conf + NBProAds + "
+        "NBPro-egern（sync custom-apps 补全）。\n"
+        "去广告合集见 heji/quguanggao；开屏见 heji/qukaiping。\n",
+        encoding="utf-8",
+    )
 
     print("=== zuozhe remote unlock ===")
     for author, fname, url in (

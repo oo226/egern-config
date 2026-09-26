@@ -1,6 +1,6 @@
 #!name=去开屏合集
 #!desc=墨鱼 StartUpAds / FakeiOSAds（QX→Surge 仅格式，规则原文）
-# built_at=2026-09-26T01:57Z
+# built_at=2026-09-26T02:12Z
 # branch=guize
 # 作者规则正文不改；仅 script-path 改指 Yuanban/zuozhe/*/js 自托管
 # 合集类型: 去开屏
@@ -12,7 +12,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - 
 # 墨鱼 · 去开屏 StartUpAds
 # - - - - - - - - - - - - - - - - - - - - - - - - 
-DOMAIN,ad.12306.cn,REJECT
+DOMAIN,ad.12306.cn,DIRECT
 DOMAIN-SUFFIX,shenshiads.com,REJECT
 DOMAIN-SUFFIX,yfanads.com,REJECT
 DOMAIN-SUFFIX,iyes.youku.com,REJECT
@@ -70,6 +70,7 @@ DOMAIN-SUFFIX,adlog-ztjy.szy.cn,REJECT
 ^https?://advertise\.bczeducation\.cn\/rpc\/advertise - reject-200
 ^https?:\/\/bp-api\.bestv\.com\.cn\/cms\/api\/free\/open\/advertisingV2 - reject-200
 ^https?:\/\/js-ad\.ayximgs\.com\.ad-universe-cdn\.hzhcbkj\.cn\/xgapp\.php\/v2\/top_notice - reject-200
+# QX-response-body (未转): https://beta-api.crunchyroll.com/cms url response-body offset_ms":\d+ response-body offset_ms":99999999999999
 ^https?:\/\/learn\.chaoxing\.com\/apis\/service\/appConfig - reject-200
 ^https?:\/\/emdcadvertise\.eastmoney\.com\/infoService\/v\d - reject-200
 ^https?:\/\/api\.caijingmobile\.com\/(ad|advert)\/ - reject-200
@@ -107,6 +108,7 @@ https?:\/\/res\.xiaojukeji\.com\/resapi\/activity\/get(Ruled|Preload|PasMultiNot
 ^https?:\/\/vip7\.fzwdyy\.cn:8083\/api\/(getAdvertInfo|getGOOGAdvert) - reject-200
 ^https?:\/\/dq\.dxy\.cn\/api\.php\?action=getpostbanners - reject-200
 ^https?:\/\/entree-ws\.igetget\.com\/oms\/front\/start\/push - reject-200
+# QX-response-body (未转): ^https?:\/\/maicai\.api\.ddxq\.mobi\/advert\/getAd url response-body rt_time":\d{2} response-body rt_time":40
 ^https?:\/\/maicai\.api\.ddxq\.mobi\/advert\/startUpScreen - reject-200
 ^https?:\/\/dj\.palmestore\.com\/zybk\/api\/ad - reject-200
 ^https?:\/\/saad\.ms\.zhangyue\.net\/ad\/ - reject-200
@@ -125,6 +127,7 @@ https?:\/\/res\.xiaojukeji\.com\/resapi\/activity\/get(Ruled|Preload|PasMultiNot
 ^https:\/\/acs\.m\.taobao\.com\/gw\/mtop\.fliggy\.crm\.screen\.availablesplashstrategies - reject-200
 ^https?:\/\/.*flyert.*\/api\/mobile\/index\.php\?module=advis - reject-200
 ^https?:\/\/.*flyert.*\/source\/plugin\/mobile\/mobile\.php\?module=advis - reject-200
+# QX-response-body (未转): ^https?:\/\/.*flyert.*\/api\/mobile\/index\.php\?version=\d&mobile=yes&module=basicdata&type=forumlist url response-body adv response-body ddgksf2013
 ^https?:\/\/carapp\.gtmc\.com\.cn\/api\/appgtmc\/homePage\/HomePageAction\/queryHomePageImg\.json - reject-200
 ^https?:\/\/app\.flymodem\.com\.cn\/Appapi\/Public\/welecome - reject-200
 ^http:\/\/gateway2\.etnet\.com\.hk\/etnetApp\/theme\/seasonal\/v30\/theme.json - reject-200
@@ -172,6 +175,8 @@ https://fbchina.flipchina.cn/v2/ad/query/* - reject-200
 ^https?:\/\/api\.m\.jd\.com\/client\.action\?functionId=(start|queryMaterialAdverts) - reject-200
 ^https?:\/\/(bdsp-x|dsp-x)\.jd\.com\/adx\/ - reject-200
 ^https?:\/\/ms\.jr\.jd\.com\/gw\/generic\/aladdin\/(new)?na\/m\/getLoadingPicture - reject-200
+# QX-response-body (未转): ^https?:\/\/api\.m\.jd\.com\/client\.action\?functionId=lite_advertising url response-body jdLiteAdvertisingVO response-body ddgksf2013
+# QX-response-body (未转): ^https?:\/\/api\.m\.jd\.com\/client\.action\?functionId=lite_SmartPush url response-body pushData response-body ddgksf2013
 ^https:\/\/router-app-api\.jdcloud\.com\/v\d\/board\/routerAppSplash - reject-200
 ^https?:\/\/lop-proxy\.jd\.com\/queryAppHomePageMarketingRecommendRuleConfigInfo - reject-200
 ^https?:\/\/api\.tipsoon\.com\/api\/v\d\/top\/ad - reject-200
@@ -190,6 +195,7 @@ https://fbchina.flipchina.cn/v2/ad/query/* - reject-200
 ^https?:\/\/hoapp\.juneyaoair\.com\/data\/index\/getLoadPic - reject-200
 ^https?:\/\/galaxy-app\.geely\.com\/app\/v\d\/advertising - reject-200
 ^https?:\/\/res.kfc.com.cn\/advertisement\/ - reject-200
+# QX-response-body (未转): ^https?:\/\/res.kfc.com.cn\/CRM\/kfcad\/apphome6\/apphome.*json url response-body bootStrapAd response-body ddgksf2013
 https://dynamicad.kfc.com.cn/api/app5/homepage/ai/popup - reject-200
 ^https?:\/\/api.kkmh.com\/v\d\/(ad|advertisement)\/ - reject-200
 ^https?:\/\/api\.coolapk\.com\/v6\/search\?.*type=hotSearch - reject-dict
@@ -235,6 +241,7 @@ https?:\/\/helper\.2bulu\.com\/(greenPea\/queryTasks|proSpecial\/allData|saveSpl
 ^http:\/\/s3plus\.meituan\.net\/.*\/brandcpt-vedio\/.*\?time - reject-200
 ^https?:\/\/capi.mwee.cn\/app-api\/V12\/app\/getstartad - reject-200
 ^https://mapi.mafengwo.cn\/ad\/get_launch_ad_list\/v2 - reject-200
+# QX-response-body (未转): ^https?:\/\/apapia-sqk\.manmanbuy\.com\/index_json\.ashx url response-body splashAD response-body ddgksf2013
 ^https?:\/\/mob\.mddcloud\.com\.cn\/adApi\/advert - reject-200
 ^https?:\/\/.*mangaapi\.manhuaren\.\w{2,4}\/v\d\/public\/(getStartUpMessage|getStartPageAds|getShelfActivity) - reject-200
 ^https?:\/\/.*mangaapi\.manhuaren\.\w{2,4}\/v\d\/ad - reject-200
@@ -273,11 +280,13 @@ https?:\/\/helper\.2bulu\.com\/(greenPea\/queryTasks|proSpecial\/allData|saveSpl
 ^https?:\/\/slapi\.oray\.net\/client\/ad - reject-200
 ^https?:\/\/slapi\.oray\.net\/adver - reject-200
 ^https?:\/\/api\.21ec74\.com\/v2\.5\/ad - reject-200
+# QX-response-body (未转): ^https?:\/\/careapi\.oclean\.com\/mall\/v\d\/User\/GetUserCenter url response-body banner" response-body ddgksf2013"
 ^https?:\/\/careapi\.oclean\.com\/mall\/v\d\/Temporary\/SafetyGetStartAdvert - reject-200
 ^https?:\/\/api\.(pinduoduo|yangkeduo)\.com\/api\/cappuccino\/splash - reject-200
 ^https?:\/\/pss\.txffp\.com\/piaogen\/images\/launchScreen/ - reject-200
 ^https?:\/\/adpai\.thepaper\.cn\/.+&ad= - reject-200
 ^https?:\/\/lban\.spdb\.com\.cn\/mspmk-web-component\/(getAdvList|prefetchAdvList)\.ah - reject-200
+# QX-response-body (未转): ^https?:\/\/j1\.pupuapi\.com\/client\/marketing\/advertisement\/v url response-body launch_time_close":\d+ response-body launch_time_close":1660716799999
 ^https?:\/\/.*tipatipa\.xyz\/announcements - reject-200
 ^https?:\/\/www\.pansearch\.me\/api\/adsite - reject-dict
 ^https?:\/\/m\.stock\.pingan\.com\/restapi\/rmd\/open\/O\/api\/openAd - reject-200
@@ -312,6 +321,7 @@ https://apis.lifeweek.com.cn/api/baseConfig/getIosNewConfig - reject-200
 https://ccsp-egmas.sf-express.com/cx-app-base/base/app/ad/queryAdImages - reject-200
 ^https?:\/\/shopic\.sf-express\.com\/crm\/mobile\/common\/flashscreen - reject-200
 ^https?:\/\/203\.107\.1\.97\/v - reject
+# QX-response-body (未转): ^https?:\/\/sh-gateway\.shihuo\.cn\/v\d\/services\/sh-adapi\/home\/screen url response-body egin_time":"\d{4} response-body egin_time":"2099
 ^https:\/\/data-collector\.soulapp\.cn\/api\/data\/report$ - reject-200
 ^https?:\/\/mpcs\.suning\.com\/mpcs\/dm\/getDmInfo - reject-200
 ^https?:\/\/api-sams\.walmartmobile\.cn\/api\/v1\/sams\/sams-user\/(window\/getGoUpPlus|screen_promotion\/get) - reject-200
@@ -323,6 +333,7 @@ https://ccsp-egmas.sf-express.com/cx-app-base/base/app/ad/queryAdImages - reject
 ^https?:\/\/api1\.34580\.com\/wx\/Home\/AdvertisementPhotoshootRequest - reject-200
 ^https?:\/\/vidz\.3hxq\.cn\/api\/app\/(miscs\/mine\/extensions|announcements\/home) - reject-dict
 ^https?:\/\/m-adphone\.wenhua\.com\.cn\/ - reject-200
+# QX-response-body (未转): ^https?:\/\/tft-app\.cdtft\.cn\/gateway-customer\/tftapp\/tft-ams\/api\/appAd url response-body officialAdvertResultVo response-body ddgksf2013
 ^https?:\/\/t1\.market\.xiaomi\.com\/thumbnail\/webp\/w1170q100\/ - reject-200
 ^https?:\/\/api\.cloud\.189\.cn\/guns\/getOpenscreenBanners - reject-200
 ^https?:\/\/zconfig\.alibabausercontent\.com\/zconfig - reject-200
@@ -359,6 +370,7 @@ https://support.you.163.com/appversync/check.do - reject-200
 ^https?:\/\/yanxuan\.nosdn\.127\.net\/.*\.mp4 - reject-200
 ^https?:\/\/mp\.weixin\.qq\.com\/mp\/cps_product_info - reject-200
 ^https?:\/\/mp\.weixin\.qq\.com\/mp\/relatedsearchword - reject-200
+# QX-response-body (未转): ^https?:\/\/mp\.weixin\.qq\.com\/mp\/getappmsgad url response-body advertisement response-body ddgksf2013
 ^https?:\/\/api\.wfdata\.club\/v2\/yesfeng\/(infoCenterAd|yesList) - reject-200
 ^https?:\/\/overseas.weico.cc\/portal.php\?a=get_coopen_ads - reject-200
 ^https?:\/\/easyreadfs\.nosdn\.127\.net\/ad-material\/ - reject-200
@@ -375,6 +387,7 @@ https://support.you.163.com/appversync/check.do - reject-200
 ^https?:\/\/rfs-fitness\.rfsvr\.net\/indoor\/v\d\/app\/adverts - reject
 ^https?:\/\/bgw\.xinyue\.qq\.com\/xyapi\.PageService\/GetIndexPopFlash - reject-200
 ^https?:\/\/wcprd\.hilton\.com\.cn\/app-middleware\/graphql\?type=splashAd - reject-200
+# QX-response-body (未转): ^https?:\/\/lcen\.xiaote\.net\/api\/graphql url response-body screenSplashAd response-body ddgksf2013
 ^https?:\/\/api.psy-1.com\/cosleep\/startup - reject-200
 ^https:\/\/ma-adx\.ctrip\.com\/_ma\.gif - reject-200
 ^https:\/\/mbd\.baidu\.com\/newspage\/api\/getmobads\?page\=landingshare - reject-200
@@ -397,6 +410,7 @@ https://support.you.163.com/appversync/check.do - reject-200
 ^https?:\/\/.*1rtb\.net\/sdk\/req_ad\? - reject-200
 ^https?:\/\/ad\.cj\.sina\.cn\/(osa\/adpreload|fax\/impress) - reject-200
 ^https?:\/\/qcwx\.medproad\.com:8080\/ad\/ - reject-200
+# QX-response-body (未转): ^https?:\/\/apps\.workair\.cn\/app\/version url response-body ads" response-body ddgksf2013"
 ^https?:\/\/shop-api\.retail\.mi\.com\/mtop\/navi\/skywheel\/mishop\/splash - reject-200
 ^https?:\/\/xapi\.xinmanhua\.net\/splashgroups\?include=splashs - reject-200
 ^https?:\/\/cmt\.comp\.360os\.com\/adv - reject-200
@@ -407,6 +421,7 @@ https://support.you.163.com/appversync/check.do - reject-200
 ^https?:\/\/siteapi\.zaixs\.com\/.*\/start_ad - reject-200
 ^https?:\/\/acs\.m\.goofish\.com\/gw\/mtop.*splash\.ads - reject-200
 ^https?:\/\/api\.ssp\.xcultur\.com\/api\/v\d\/ad - reject
+# QX-response-body (未转): ^https:\/\/gw\.xiaocantech\.com\/rpc url response-body "vip_pop_up":0 response-body "vip_pop_up":2
 ^https?:\/\/advertise\.zhiduodev\.com\/adv\/app\/getAdvSpaceInfo - reject-200
 ^https?:\/\/pipi\.4kya\.com\/\/xgapp\.php\/v3\/advert\.position=[^2]+ - reject-200
 ^https?:\/\/cdn\.cmgadx\.com\/sdk\/pool\/\w+\.json - reject-200
@@ -491,33 +506,33 @@ https?:\/\/m\.sd\.10086\.cn\/zapi\/app_common\/homeWelcome\/welcome.do - reject-
 # - - - - - - - - - - - - - - - - - - - - - - - - 
 # 墨鱼 · 去开屏 StartUpAds
 # - - - - - - - - - - - - - - - - - - - - - - - - 
-moyu-1 = type=http-response,pattern=^https?:\/\/api\.369cx\.cn\/v\d\/Splash\/GetSplashAd,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/dict.js,requires-body=true,timeout=60
-moyu-2 = type=http-response,pattern=^https?:\/\/[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+){1,4}(:\d+)?\/api\/v\d\/movie\/index_recommend,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/555Ad.js,requires-body=true,timeout=60
-moyu-3 = type=http-response,pattern=^https?:\/\/www\.123pan\.com\/s\/[0-9a-zA-Z=_/-]+\.html,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/123pan.js,requires-body=true,timeout=60
-moyu-4 = type=http-response,pattern=^https?:\/\/ad\.12306\.cn\/ad\/ser\/getAdList,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/12306.js,requires-body=true,timeout=60
-moyu-5 = type=http-response,pattern=^http:\/\/[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+){1,4}(:\d+)?\/amdc\/mobileDispatch,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/amdc.js,requires-body=true,timeout=60
-moyu-6 = type=http-response,pattern=^https?:\/\/.*(xbwpys|ahhhhfs)\.com\/($|[0-9a-zA-Z_/]+\/$),script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/ahfs.js,requires-body=true,timeout=60
-moyu-7 = type=http-response,pattern=^https:\/\/newclient\.map\.baidu\.com\/client\/phpui2\/\?qt=ads,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/raw.githubusercontent.com/app2smile/rules/master/js/baidumap.js,requires-body=true,timeout=60
-moyu-8 = type=http-response,pattern=^https?:\/\/bp-api\.bestv\.com\.cn\/cms\/api\/audit\/home\/getCommonMixData,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/raw.githubusercontent.com/ddgksf2013/Scripts/master/baishitv.js,requires-body=true,timeout=60
-moyu-9 = type=http-response,pattern=^https?:\/\/gg\.caixin\.com\/s\?z=caixin&op=1&c=3362,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/caixinads.js,requires-body=true,timeout=60
-moyu-10 = type=http-response,pattern=^https?:\/\/.*flyert.*\/source\/plugin\/mobile\/mobile\.php\?module=threadpost&.+?&page=1,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/fly.js,requires-body=true,timeout=60
-moyu-11 = type=http-response,pattern=^https?:\/\/.*umetrip\.com\.cn\/gateway\/api\/umetrip\/native$,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/hanglvzongheng.js,requires-body=false,timeout=60
-moyu-12 = type=http-response,pattern=^https?:\/\/.*cupid\.iqiyi\.com\/mixer\?,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/iqiyi_open_ads.js,requires-body=true,timeout=60
-moyu-13 = type=http-response,pattern=^https?:\/\/napi\.ithome\.com\/api\/news\/indexv\d\/iphone,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/ithome.js,requires-body=true,timeout=60
-moyu-14 = type=http-response,pattern=^https?:\/\/api\.m\.jd\.com\/api\?functionId=delivery_show,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/startup.js,requires-body=true,timeout=60
-moyu-15 = type=http-response,pattern=^https?:\/\/api\.m\.jd\.com\/client\.action\?functionId=(hotWords|hotSearchTerms),script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/jd_json.js,requires-body=true,timeout=60
-moyu-16 = type=http-response,pattern=^https?:\/\/api\.coolapk\.com\/v6\/(feed\/(replyList|detail)|main\/indexV8|dataList),script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/coolapk.js,requires-body=true,timeout=60
-moyu-17 = type=http-response,pattern=^https?:\/\/api.coolapk.com\/v6\/main\/init,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/coolapk.js,requires-body=true,timeout=60
-moyu-18 = type=http-response,pattern=^https?:\/\/open-cms-api\.(uc|quark)\.cn\/open-cms,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/raw.githubusercontent.com/ddgksf2013/Scripts/master/quark.js,requires-body=true,timeout=60
-moyu-19 = type=http-response,pattern=^https?:\/\/mobilepaas\.abchina\.com\.cn:441\/mgw\.htm,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/raw.githubusercontent.com/ddgksf2013/Scripts/master/abchina.js,requires-body=false,timeout=60
-moyu-20 = type=http-response,pattern=^https?:\/\/j1\.pupuapi\.com\/client\/marketing\/banner\/v\d\?position,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/raw.githubusercontent.com/ddgksf2013/Scripts/master/pupumarket.js,requires-body=true,timeout=60
-moyu-21 = type=http-response,pattern=^https?:\/\/api\.jk\.cn\/m\.api,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/raw.githubusercontent.com/ddgksf2013/Scripts/master/pinganads.js,requires-body=false,timeout=60
-moyu-22 = type=http-response,pattern=^https?:\/\/apps\.teamair\.cn\/app\/version,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/qidian.js,requires-body=true,timeout=60
-moyu-23 = type=http-response,pattern=https://ccsp-egmas.sf-express.com/cx-app-base/base/app/ad/queryInfoFlow,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/shunfeng_json.js,requires-body=true,timeout=60
-moyu-24 = type=http-response,pattern=^https?:\/\/api\.shenyin\.name\/stay-fork\/browse\/featured$,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/stay.js,requires-body=true,timeout=60
-moyu-25 = type=http-response,pattern=^https?:\/\/.*zdmimg\.com\/cpm\/api\/v\d\/advert_distribution\/get_all_advertise,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/smzdm_json.js,requires-body=true,timeout=60
-moyu-26 = type=http-response,pattern=^https?:\/\/apiproxy\.zuche\.com\/resource\/cardes\/toufang\/marketing,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/dict.js,requires-body=true,timeout=60
-moyu-27 = type=http-response,pattern=^https?:\/\/api\.zhihu\.com\/commercial_api.*launch_v2,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/zhihu_openads.js,requires-body=true,timeout=60
+moyu-kp-1 = type=http-response,pattern=^https?:\/\/api\.369cx\.cn\/v\d\/Splash\/GetSplashAd,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/dict.js,requires-body=true,timeout=60
+moyu-kp-2 = type=http-response,pattern=^https?:\/\/[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+){1,4}(:\d+)?\/api\/v\d\/movie\/index_recommend,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/555Ad.js,requires-body=true,timeout=60
+moyu-kp-3 = type=http-response,pattern=^https?:\/\/www\.123pan\.com\/s\/[0-9a-zA-Z=_/-]+\.html,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/123pan.js,requires-body=true,timeout=60
+moyu-kp-4 = type=http-response,pattern=^https?:\/\/ad\.12306\.cn\/ad\/ser\/getAdList,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/12306.js,requires-body=true,timeout=60
+moyu-kp-5 = type=http-response,pattern=^http:\/\/[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+){1,4}(:\d+)?\/amdc\/mobileDispatch,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/amdc.js,requires-body=true,timeout=60
+moyu-kp-6 = type=http-response,pattern=^https?:\/\/.*(xbwpys|ahhhhfs)\.com\/($|[0-9a-zA-Z_/]+\/$),script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/ahfs.js,requires-body=true,timeout=60
+moyu-kp-7 = type=http-response,pattern=^https:\/\/newclient\.map\.baidu\.com\/client\/phpui2\/\?qt=ads,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/raw.githubusercontent.com/app2smile/rules/master/js/baidumap.js,requires-body=true,timeout=60
+moyu-kp-8 = type=http-response,pattern=^https?:\/\/bp-api\.bestv\.com\.cn\/cms\/api\/audit\/home\/getCommonMixData,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/raw.githubusercontent.com/ddgksf2013/Scripts/master/baishitv.js,requires-body=true,timeout=60
+moyu-kp-9 = type=http-response,pattern=^https?:\/\/gg\.caixin\.com\/s\?z=caixin&op=1&c=3362,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/caixinads.js,requires-body=true,timeout=60
+moyu-kp-10 = type=http-response,pattern=^https?:\/\/.*flyert.*\/source\/plugin\/mobile\/mobile\.php\?module=threadpost&.+?&page=1,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/fly.js,requires-body=true,timeout=60
+moyu-kp-11 = type=http-response,pattern=^https?:\/\/.*umetrip\.com\.cn\/gateway\/api\/umetrip\/native$,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/hanglvzongheng.js,requires-body=false,timeout=60
+moyu-kp-12 = type=http-response,pattern=^https?:\/\/.*cupid\.iqiyi\.com\/mixer\?,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/iqiyi_open_ads.js,requires-body=true,timeout=60
+moyu-kp-13 = type=http-response,pattern=^https?:\/\/napi\.ithome\.com\/api\/news\/indexv\d\/iphone,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/ithome.js,requires-body=true,timeout=60
+moyu-kp-14 = type=http-response,pattern=^https?:\/\/api\.m\.jd\.com\/api\?functionId=delivery_show,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/startup.js,requires-body=true,timeout=60
+moyu-kp-15 = type=http-response,pattern=^https?:\/\/api\.m\.jd\.com\/client\.action\?functionId=(hotWords|hotSearchTerms),script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/jd_json.js,requires-body=true,timeout=60
+moyu-kp-16 = type=http-response,pattern=^https?:\/\/api\.coolapk\.com\/v6\/(feed\/(replyList|detail)|main\/indexV8|dataList),script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/coolapk.js,requires-body=true,timeout=60
+moyu-kp-17 = type=http-response,pattern=^https?:\/\/api.coolapk.com\/v6\/main\/init,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/coolapk.js,requires-body=true,timeout=60
+moyu-kp-18 = type=http-response,pattern=^https?:\/\/open-cms-api\.(uc|quark)\.cn\/open-cms,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/raw.githubusercontent.com/ddgksf2013/Scripts/master/quark.js,requires-body=true,timeout=60
+moyu-kp-19 = type=http-response,pattern=^https?:\/\/mobilepaas\.abchina\.com\.cn:441\/mgw\.htm,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/raw.githubusercontent.com/ddgksf2013/Scripts/master/abchina.js,requires-body=false,timeout=60
+moyu-kp-20 = type=http-response,pattern=^https?:\/\/j1\.pupuapi\.com\/client\/marketing\/banner\/v\d\?position,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/raw.githubusercontent.com/ddgksf2013/Scripts/master/pupumarket.js,requires-body=true,timeout=60
+moyu-kp-21 = type=http-response,pattern=^https?:\/\/api\.jk\.cn\/m\.api,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/raw.githubusercontent.com/ddgksf2013/Scripts/master/pinganads.js,requires-body=false,timeout=60
+moyu-kp-22 = type=http-response,pattern=^https?:\/\/apps\.teamair\.cn\/app\/version,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/qidian.js,requires-body=true,timeout=60
+moyu-kp-23 = type=http-response,pattern=https://ccsp-egmas.sf-express.com/cx-app-base/base/app/ad/queryInfoFlow,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/shunfeng_json.js,requires-body=true,timeout=60
+moyu-kp-24 = type=http-response,pattern=^https?:\/\/api\.shenyin\.name\/stay-fork\/browse\/featured$,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/stay.js,requires-body=true,timeout=60
+moyu-kp-25 = type=http-response,pattern=^https?:\/\/.*zdmimg\.com\/cpm\/api\/v\d\/advert_distribution\/get_all_advertise,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/smzdm_json.js,requires-body=true,timeout=60
+moyu-kp-26 = type=http-response,pattern=^https?:\/\/apiproxy\.zuche\.com\/resource\/cardes\/toufang\/marketing,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/dict.js,requires-body=true,timeout=60
+moyu-kp-27 = type=http-response,pattern=^https?:\/\/api\.zhihu\.com\/commercial_api.*launch_v2,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/zhihu_openads.js,requires-body=true,timeout=60
 
 
 [MITM]

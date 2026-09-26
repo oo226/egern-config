@@ -1,6 +1,6 @@
 # 合集上游说明
 
-构建：2026-09-26 01:57 UTC
+构建：2026-09-26 02:12 UTC
 分支：`guize`
 
 ## zuozhe 作者统计
@@ -11,7 +11,7 @@
 - **liulong**: mokuai=1 js=13 fenliu=0
 - **local**: mokuai=3 js=6 fenliu=0
 - **miranquil**: mokuai=1 js=1 fenliu=0
-- **moyu**: mokuai=2 js=27 fenliu=0
+- **moyu**: mokuai=27 js=41 fenliu=0
 - **naisi**: mokuai=3 js=143 fenliu=0
 - **repcz**: mokuai=0 js=0 fenliu=25
 - **sukka**: mokuai=0 js=0 fenliu=2
@@ -26,9 +26,9 @@
 
 ## heji 分段袋数 / 分流文件数
 
-`{'quguanggao': 195, 'qukaiping': 2, 'jiesuo': 26, 'zhuacan': 2, 'fenliu': 28}`
+`{'quguanggao': 220, 'qukaiping': 2, 'jiesuo': 26, 'zhuacan': 2, 'fenliu': 28}`
 
-脚本镜像成功约 869，失败 129（多为 kelee.one 403，合集保留上游 URL）
+脚本镜像成功约 883，失败 131（多为 kelee.one 403，合集保留上游 URL）
 
 ## 解锁近重复（合集已跳过，单件仍保留）
 
