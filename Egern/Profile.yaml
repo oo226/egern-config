@@ -59,7 +59,11 @@ dns:
     - 223.5.5.5
     - 119.29.29.29
   # DoH 域名写死 IP，避免「解析 dns.google 本身被污染」的鸡生蛋问题（对齐日用 main）
+  # 主机映射：只钉「解析基础设施」用的域名（DoH / App Store CDN），不是业务分流表
   hosts:
+    # 对齐每日 main：App Store 走金山 CDN，减少境外解析抖动
+    iosapps.itunes.apple.com:
+      - iosapps.itunes.apple.com.download.ks-cdn.com
     dns.alidns.com:
       - 223.5.5.5
       - 223.6.6.6

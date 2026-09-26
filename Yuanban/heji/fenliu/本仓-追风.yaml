@@ -1,7 +1,7 @@
 # 类型: 分流规则 — 追风挂机（途游小程序游戏辅助）
-# 仅游戏域名走专用 HTTP 代理（节点 IP 须 DIRECT，见 Profile 单独规则）。
+# 与每日 main Routing/Zhuifeng.yaml 一致：仅这两条走专用 HTTP 代理。
+# 节点 IP 须 DIRECT（见 Profile）；节点宕机时会「代理连接超时: 追风」。
 
 domain_suffix_set:
   - sq-hlsg.tytuyoo.com
   - open-hlsg.tytuyoo.com
-  - tytuyoo.com

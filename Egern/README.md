@@ -46,14 +46,18 @@ https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Prof
 - 去掉多余策略组：广告→REJECT，微信/苹果/微软→DIRECT，Google/GitHub→Proxy，Netflix/Disney+/Twitter/PayPal→美国，TikTok→台湾
 - 保留：地区池、Proxy、AIGC、YouTube、Spotify、Telegram、Emby、追风
 - 图标：追风=Loon，全部节点=Surge，其他节点=Egern
-- 追风：节点 IP 直连 + `tytuyoo.com` 国内 DNS / real_ip
+- 追风：与每日 `main` 一致，仅 `sq-hlsg` / `open-hlsg`；节点 IP `120.53.245.215/32` DIRECT。节点 `8688` 宕则超时（配置对、服务端挂）
+- 小桔充电脚本改走本仓 raw（`kelee.one` 要 Surge UA，Egern 拉会 TLS/403）
 
 `fenliu/` 仍保留上游原件；Profile 用短名引用。Egern「DNS 流量控制」面板会把规则集展开成行，属 UI 展开，不是 Profile 又写回单条。
 
+相对每日 IBL3ND（3d）懒人：他看着行少，是因为广告/国内表在 CI 里**合并去重**过；不是覆盖更弱。我们这边 DNS 防污染（无 system bootstrap、`block_ips`、IP 字面量 DoH）反而更严。
+
 ## DNS 防污染（已写进 Profile）
 
+- **主机映射 `hosts`**：只钉 DoH / App Store CDN 域名→IP（或 CNAME），避免「解析 dns.google 本身被污染」；不是业务分流表
 - bootstrap **只用** `223.5.5.5` / `119.29.29.29`，**不要**加 `system`（4G 易污染出证书伪装）
-- `hosts` 钉死 `dns.google` / `cloudflare-dns.com` / `dns.alidns.com` / `doh.pub`
+- `hosts` 钉死 `dns.google` / `cloudflare-dns.com` / `dns.alidns.com` / `doh.pub`，并跟 main 补 `iosapps…ks-cdn.com`
 - 境外 DoH 优先 `https://8.8.8.8` / `https://1.1.1.1` 字面量
 - `hijack_dns` 含 `*:53` 与 `8.8.8.8` / `1.1.1.1` / `114.114.114.114`（防 App 硬编码绕过）
 - `block_ips` 丢掉假/保留地址应答
