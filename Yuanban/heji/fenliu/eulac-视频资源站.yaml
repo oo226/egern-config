@@ -1,0 +1,31 @@
+# 规则名称: 视频资源站（ResourceSite）
+# 上游: eulac-dev/Proxy
+# Total unique entries: 22
+
+no_resolve: true
+domain_set:
+  - fmao.fun
+  - sd.sduc.site
+  - shandian.blog
+  - tv.214521.xyz
+  - woog.430520.xyz
+  - woog.nxog.eu.org
+  - woog.nxog.fun
+  - www.miqk.cc
+  - www.muou.asia
+  - www.muou.site
+domain_suffix_set:
+  - 666291.xyz
+  - mihdr.top
+  - xiaocgege.shop
+domain_keyword_set:
+  - 2xiaopan
+  - 2xiaozhan
+  - erixaopan
+  - erxiaopan
+  - erxiaozhan
+  - wexwp
+  - wogg
+  - yydsys
+ip_cidr_set:
+  - 121.205.88.174/32

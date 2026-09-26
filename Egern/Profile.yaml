@@ -193,8 +193,19 @@ real_ip_domains:
   - '*.steamcommunity.com'
 
 # ------------------------------------------
+# 三点五、追风挂机专用 HTTP 节点（途游小程序）
+# ------------------------------------------
+proxies:
+  - http:
+      name: 追风
+      server: 120.53.245.215
+      port: 8688
+      tfo: false
+
+# ------------------------------------------
 # 四、策略组
-# 顺序：节点池 → 地区 → Proxy → AI → 系统 → 开发 → 金融 → 影音 → 社交 → 拦截
+# 顺序：节点池 → 追风 → 地区 → Proxy → AI → 系统 → 开发 → 金融 → 影音 → 社交 → 拦截
+# 图标与 main/Egern.yaml 日用配置对齐（iili + lige47）
 # ------------------------------------------
 policy_groups:
   # —— 4.1 节点池（隐藏）：Sub-Store 合集 AllServer ——
@@ -211,6 +222,13 @@ policy_groups:
       icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/04ProxySoft/mega.png
       hidden: true
 
+  - select:
+      name: 追风挂机
+      policies:
+        - 追风
+      icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/04ProxySoft/mega.png
+      hidden: true
+
   # —— 4.2 地区（smart）——
   - smart:
       name: 香港节点
@@ -218,14 +236,14 @@ policy_groups:
         - 全部节点
       flatten: true
       filter: (?i)(?:🇭🇰|香港|\b(?:HK|HKG|Hong)\b)
-      icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/01Country/hongkong.png
+      icon: https://iili.io/FaAI3Bt.png
   - smart:
       name: 美国节点
       policies:
         - 全部节点
       flatten: true
       filter: (?i)(?:🇺🇸|美国|洛杉矶|硅谷|西雅图|芝加哥|达拉斯|纽约|\b(?:US|USA|America)\b)
-      icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/01Country/usa.png
+      icon: https://iili.io/FaAug7s.png
   - smart:
       name: 台湾节点
       policies:
@@ -253,7 +271,7 @@ policy_groups:
         - 全部节点
       flatten: true
       filter: (?i)(?:🇰🇷|韩国|首尔|\b(?:KR|KOR|Korea)\b)
-      icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/01Country/korea.png
+      icon: https://iili.io/Fa5Mdn1.png
   - select:
       name: 其他节点
       policies:
@@ -283,7 +301,7 @@ policy_groups:
         - Proxy
       flatten: true
       block_quic: false
-      icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/03AppLogo/openai.png
+      icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/04ProxySoft/chatgpt4.0.png
 
   # —— 4.5 系统生态 ——
   - select:
@@ -314,7 +332,7 @@ policy_groups:
       policies:
         - Proxy
       flatten: true
-      icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/03AppLogo/github.png
+      icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/icon/qure/color/GitHub.png
 
   # —— 4.7 金融 ——
   - select:
@@ -338,7 +356,7 @@ policy_groups:
       policies:
         - Proxy
       flatten: true
-      icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/03AppLogo/spotify.png
+      icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/04ProxySoft/spotify(green).png
   - select:
       name: TikTok
       policies:
@@ -367,7 +385,7 @@ policy_groups:
         - Proxy
         - DIRECT
       flatten: true
-      icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/03AppLogo/emby.png
+      icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/04ProxySoft/emby.png
 
   # —— 4.9 社交 ——
   - select:
@@ -405,6 +423,12 @@ policy_groups:
 # LAN → 广告 → 国内 App → 服务 → GeoIP → 直连大名单 → 兜底 Proxy
 # ------------------------------------------
 rules:
+  # —— 0. 追风挂机（途游 sq-hlsg / open-hlsg）——
+  - rule_set:
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/本仓-追风.yaml
+      policy: 追风挂机
+      update_interval: 604800
+
   # —— 1. 局域网 ——
   - rule_set:
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Repcz-局域网.yaml
@@ -414,6 +438,18 @@ rules:
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Loyalsoldier-私有网络.txt
       policy: DIRECT
       update_interval: 604800
+
+  # —— 1.5 eulac 视频/网盘（默认关闭；需要时把 disabled 改 false）——
+  - rule_set:
+      name: 视频规则
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/eulac-视频资源站.yaml
+      policy: DIRECT
+      disabled: true
+  - rule_set:
+      name: 网盘规则
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/eulac-网盘点播.yaml
+      policy: DIRECT
+      disabled: true
 
   # —— 2. 广告（须早于国内 App 直连）——
   - rule_set:
@@ -647,27 +683,31 @@ mitm:
       - ocsp2.apple.com
 
 # ------------------------------------------
-# 七、模块（去广告/开屏/解锁用 Yuanban 合集）
+# 七、小组件（今日油价：浙江宁波；勿写 scriptings.generic）
+# ------------------------------------------
+widgets:
+  - name: 今日油价
+    env:
+      region: zhejiang/ningbo
+      SHOW_TREND: "true"
+
+# ------------------------------------------
+# 八、模块
+# Sub-Store/Script Hub = Egern 原生 yaml（自托管）
+# BoxJs / WeatherKit / Maps / AntiRevoke / 屏蔽更新 已并进解锁合集
 # ------------------------------------------
 modules:
+  # —— 订阅与转换（Egern 原生，须单独开）——
   - name: Sub-Store
-    url: https://raw.githubusercontent.com/sub-store-org/Sub-Store/refs/heads/master/config/Egern.yaml
-    update_interval: 259200
-    enabled: true
-  - name: BoxJs
-    url: https://raw.githubusercontent.com/chavyleung/scripts/master/box/rewrite/boxjs.rewrite.surge.sgmodule
+    url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/qita/local/sub-store.egern.yaml
     update_interval: 259200
     enabled: true
   - name: Script Hub
-    url: https://raw.githubusercontent.com/Script-Hub-Org/Script-Hub/refs/heads/main/modules/script-hub.beta.egern.yaml
-    update_interval: 259200
-    enabled: true
-  - name: WeatherKit
-    url: https://github.com/NSRingo/WeatherKit/releases/latest/download/iRingo.WeatherKit.sgmodule
+    url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/qita/local/script-hub.egern.yaml
     update_interval: 259200
     enabled: true
 
-  # —— Yuanban 合集（自托管，脚本不挂外站）——
+  # —— Yuanban 合集（自托管）——
   - name: 去广告合集
     url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/quguanggao.module
     update_interval: 86400
@@ -677,6 +717,7 @@ modules:
     update_interval: 86400
     enabled: true
   - name: 解锁增强合集
+    # 含：解锁 + BoxJs + iRingo 天气/地图原版 + AntiRevoke + 屏蔽更新/P12
     url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/jiesuo.module
     update_interval: 86400
     enabled: true
@@ -689,15 +730,25 @@ modules:
     update_interval: 86400
     enabled: false
 
-  # —— 可选增强 ——
+  # —— 插件跳转（进常用；YouTube 老书已在去广告合集，单件可选）——
+  - name: 插件跳转 Egern
+    url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/qita/ibl3nd/ibl3nd-plugin-hub.yaml
+    enabled: true
   - name: PingMe
     url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/qiandao/local/pingme.sgmodule
     enabled: false
-  - name: 插件跳转 Egern
-    url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/qita/ibl3nd/ibl3nd-plugin-hub.yaml
-    enabled: false
   - name: YouTube增强（老书精选）
     url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/laoshu/mokuai/YouTube.yaml
+    update_interval: 86400
+    enabled: false
+
+  # —— iRingo 其余（天气/地图已在解锁合集；定位/其他单件）——
+  - name: " iRingo 定位"
+    url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/qita/local/iringo-location.sgmodule
+    update_interval: 86400
+    enabled: false
+  - name: " iRingo 其他"
+    url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/qita/local/iringo-others.sgmodule
     update_interval: 86400
     enabled: false
 

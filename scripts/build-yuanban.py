@@ -345,6 +345,9 @@ AUTHOR_CN = {
     "yuheng": "Yuheng",
     "miranquil": "miranquil",
     "laoshu": "老书",
+    "eulac": "eulac",
+    "nsringo": "NSRingo",
+    "scripthub": "ScriptHub",
 }
 
 # jnlaoshu/MySelf Egern 精选模块（Rule+Map Local 为主，脚本指 Maasea/墨鱼等）
@@ -381,6 +384,7 @@ FENLIU_CN = {
     "cdn": "CDN", "download": "下载", "stream": "流媒体",
     "china_ip": "国内IP", "cncidr": "国内CIDR", "private": "私有网络",
     "tld-not-cn": "非中国TLD", "greatfire": "GreatFire", "all": "AI合集",
+    "ResourceSite": "视频资源站", "PanVod": "网盘点播", "Zhuifeng": "追风",
 }
 
 # kelee.one 常 403：换已知 GitHub 镜像（内容自托管后不再依赖）
@@ -394,7 +398,7 @@ KELEE_FALLBACKS = {
     ),
 }
 
-# sync 工具模块 → qita/local
+# sync 工具模块 → qita/local（定位/其他仍单件；天气/地图另拉 NSRingo 原版进解锁合集）
 QITA_SYNC_MODULES = (
     "boxjs.sgmodule",
     "proxy-detect-extra.sgmodule",
@@ -404,6 +408,30 @@ QITA_SYNC_MODULES = (
     "iringo-weather.sgmodule",
     "iringo-others.sgmodule",
     "fmz200-extra.sgmodule",
+)
+
+# 工具/分流补充（进仓库；天气地图+BoxJs+AntiRevoke 进 jiesuo）
+TOOL_EGERN_MODULES = (
+    (
+        "sub-store.egern.yaml",
+        "https://raw.githubusercontent.com/sub-store-org/Sub-Store/refs/heads/master/config/Egern.yaml",
+    ),
+    (
+        "script-hub.egern.yaml",
+        "https://raw.githubusercontent.com/Script-Hub-Org/Script-Hub/refs/heads/main/modules/script-hub.beta.egern.yaml",
+    ),
+)
+EULAC_FENLIU = (
+    (
+        "ResourceSite",
+        "视频资源站",
+        "https://raw.githubusercontent.com/eulac-dev/Proxy/refs/heads/main/Loon/Rules/ResourceSite.lsr",
+    ),
+    (
+        "PanVod",
+        "网盘点播",
+        "https://raw.githubusercontent.com/eulac-dev/Proxy/refs/heads/main/Loon/Rules/PanVod.lsr",
+    ),
 )
 
 # 只改写脚本引用，勿动 reject/URL-Rewrite 里出现的广告 .js 链接
@@ -772,13 +800,26 @@ def mirror_js(url: str, author: str, cache: dict[str, str]) -> str:
     ensure_author(author)
     name = _readable_js_name(url)
     dest = ZUOZHE / author / "js" / name
-    # 碰撞：不同 URL 同名 → 加短哈希
+    # 碰撞：不同 URL 同名 → 加短哈希（WeatherKit/Maps 都叫 request.bundle.js）
     if dest.is_file():
-        # 已有文件则直接复用路径
-        STATS["js_ok"] += 1
-        local = f"{RAW}/{dest.relative_to(ROOT).as_posix()}"
-        cache[url] = local
-        return local
+        marker = dest.with_suffix(dest.suffix + ".src")
+        prev = marker.read_text(encoding="utf-8").strip() if marker.is_file() else ""
+        if prev == url or not prev:
+            if not prev:
+                marker.write_text(url + "\n", encoding="utf-8")
+            STATS["js_ok"] += 1
+            local = f"{RAW}/{dest.relative_to(ROOT).as_posix()}"
+            cache[url] = local
+            return local
+        h = hashlib.sha1(url.encode()).hexdigest()[:8]
+        stem, suf = Path(name).stem, Path(name).suffix
+        name = f"{stem}-{h}{suf}"
+        dest = ZUOZHE / author / "js" / name
+        if dest.is_file():
+            STATS["js_ok"] += 1
+            local = f"{RAW}/{dest.relative_to(ROOT).as_posix()}"
+            cache[url] = local
+            return local
 
     data: bytes | None = None
     used = ""
@@ -809,6 +850,7 @@ def mirror_js(url: str, author: str, cache: dict[str, str]) -> str:
         print(f"  js/{author}/{name} ← {used if used != url else 'ok'}")
 
     save_bytes(dest, data, author=author, kind="js")
+    dest.with_suffix(dest.suffix + ".src").write_text(url + "\n", encoding="utf-8")
     local = f"{RAW}/{dest.relative_to(ROOT).as_posix()}"
     cache[url] = local
     return local
@@ -1650,11 +1692,12 @@ def build_qita(cache: dict[str, str]) -> None:
             [
                 "# 其他脚本 / 工具（单件，无合集）",
                 "",
-                "BoxJs、Sub-Store、面板、定位/天气增强、测速、小组件等——**不做 heji**，按需自取。",
+                "工具单件。**BoxJs / iRingo 天气·地图原版 / AntiRevoke** 已并进 `heji/jiesuo`；",
+                "Sub-Store / Script Hub 为 Egern 原生 yaml，Profile 单独启用；定位/其他仍单件。",
                 "",
                 "- `official/` — QingRex Official 工具/增强（已排除去广告与签到）",
-                "- `local/` — 本仓 sync：BoxJs、IRingo、proxy-detect、skip-proxy、fmz200-extra 等",
-                "- `ibl3nd/` — IBL3ND 小组件 + Surge 模块 + plugin-hub",
+                "- `local/` — BoxJs、Sub-Store/ScriptHub（Egern yaml）、IRingo、AntiRevoke、测速等",
+                "- `ibl3nd/` — IBL3ND 小组件 + Surge 模块 + plugin-hub（插件跳转）",
                 "",
                 "去广告/开屏/解锁/抓参合集仍在 `heji/`；签到在 `qiandao/`。",
                 "",
@@ -1983,13 +2026,19 @@ def heji_jiesuo(cache: dict[str, str]) -> None:
         ("miranquil", "qq-c-pc-page.sgmodule", "miranquil · QQ解锁"),
         ("local", "spotify-unlock.sgmodule", "本仓 · Spotify Eevee VIP"),
         ("local", "patches-unlock.sgmodule", "本仓 · 屏蔽更新/P12 等"),
+        ("local", "antirevoke.sgmodule", "Salem · AntiRevoke 苹果证书"),
         ("local", "patches-alicloud.sgmodule", "本仓 · 阿里云盘倍速"),
+        ("local", "boxjs.sgmodule", "Chavy · BoxJs"),
+        ("local", "iringo-weather.sgmodule", "NSRingo · WeatherKit 原版"),
+        ("local", "iringo-maps.sgmodule", "NSRingo · Maps 原版"),
         # 日常解锁：已剥离 18+（完整/18+ 见 heji/shibajia）
         ("weigiegie", "weigiegie-unlock-日常.sgmodule", "WeiGiegie · 解锁日常"),
         ("liulong", "liul0ng-unlock.sgmodule", "liul0ng · 解锁合集"),
         ("yu9191", "yu9191-rewrite-unlock-日常.sgmodule", "Yu9191 · Rewrite 日常解锁"),
         ("yu9191", "yu9191-ShortcutStudio.sgmodule", "Yu9191 · ShortcutStudio"),
         # 奶思 unlock-extra 含 Spotify Crack，解锁合集不用；原件仍在 zuozhe/naisi 备份
+        # Sub-Store / Script Hub 为 Egern 原生 yaml，见 qita/local（Profile 模块），不进 Surge 合集
+        # iRingo 定位/其他：qita/local 单件，不进合集
     ]
     for author, fname, label in extras:
         path = ZUOZHE / author / "mokuai" / fname
@@ -2015,6 +2064,8 @@ def heji_jiesuo(cache: dict[str, str]) -> None:
             "# 墨鱼: UnblockURLinWeChat(微信110) + ForOwnUse(专属VIP) + Function(TF/Emby/…)",
             "# Spotify 用 Eevee（spotify-unlock），不含 Crack",
             "# Yu9191/WeiGiegie 已剥离 18+ 分段",
+            "# 工具: BoxJs + iRingo WeatherKit/Maps 原版 + AntiRevoke + 屏蔽更新/P12",
+            "# Sub-Store/Script Hub 为 Egern yaml → Yuanban/qita/local（Profile 单独模块）",
             "# 已跳过可莉近重复: Google重定向 / 拦截HTTPDNS / Spotify歌词翻译（单件仍在 zuozhe）",
         ],
     )
