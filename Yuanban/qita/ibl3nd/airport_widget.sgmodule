@@ -1,0 +1,29 @@
+name: "📡 机场流量小组件"
+author: "iBL3ND"
+description: "直接复制机场订阅地址进去就行"
+
+scriptings:
+  - generic:
+      name: "airport-traffic"
+      script_url: "https://raw.githubusercontent.com/IBL3ND/module/refs/heads/main/airport_widget.js"
+      timeout: 20
+
+widgets:
+  - name: "📡 机场流量"
+    script_name: "airport-traffic"
+    env:
+      A名称: "订阅A名称"
+      A地址: "订阅A地址"
+      A重置: "重置日"
+      B名称: "订阅B名称"
+      B地址: "订阅B地址"
+      B重置: "重置日"
+      C名称: "订阅C名称"
+      C地址: "订阅C地址"
+      C重置: "重置日"
+      D名称: "订阅D名称"
+      D地址: "订阅D地址"
+      D重置: "重置日"
+      E名称: "订阅E名称"
+      E地址: "订阅E地址"
+      E重置: "重置日"

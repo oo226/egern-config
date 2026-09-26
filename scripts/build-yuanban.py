@@ -10,7 +10,7 @@
     qiandao/                                # 签到：只放单件，不做合集
       keli/  official/  local/  js/
     qita/                                   # 其他脚本/工具：只放单件，不做合集
-      official/  local/
+      official/  local/  ibl3nd/             # IBL3ND 小组件（单件）
     heji/
       quguanggao.module   # 去广告
       qukaiping.module    # 去开屏
@@ -85,6 +85,36 @@ UA = {"User-Agent": "Quantumult%20X/1.4.0 (egern-yuanban)"}
 QINGREX_API = "https://api.github.com/repos/QingRex/LoonKissSurge/git/trees/main?recursive=1"
 QINGREX_RAW = "https://raw.githubusercontent.com/QingRex/LoonKissSurge/main/"
 MOYU_REWRITE = "https://raw.githubusercontent.com/ddgksf2013/Rewrite/master/AdBlock/"
+MOYU_FUNCTION = "https://raw.githubusercontent.com/ddgksf2013/Rewrite/master/Function/"
+MOYU_FOROWNUSE = "https://raw.githubusercontent.com/ddgksf2013/dev/master/ForOwnUse.conf"
+
+# 毒奶 limbopro/Adblock4limbo（网页广告用户脚本）
+DUNAI_SGMODULE = (
+    "https://raw.githubusercontent.com/limbopro/Adblock4limbo/main/Adblock4limbo.sgmodule"
+)
+
+# blackmatrix7 通用广告（规则 + 脚本）
+BMJ_ADVERTISING = (
+    "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/"
+    "rewrite/Surge/Advertising/Advertising.sgmodule"
+)
+BMJ_ADVERTISING_SCRIPT = (
+    "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/"
+    "rewrite/Surge/AdvertisingScript/AdvertisingScript.sgmodule"
+)
+
+IBL3ND_API = "https://api.github.com/repos/IBL3ND/module/git/trees/main?recursive=1"
+IBL3ND_RAW = "https://raw.githubusercontent.com/IBL3ND/module/main/"
+
+# 墨鱼 Function（进 jiesuo）：微信110 / TF / Emby 等
+MOYU_FUNCTION_CONFS = (
+    ("UnblockURLinWeChat.conf", "微信110外链解锁"),
+    ("ForceInstallTF.conf", "Mac M 系列解除 iOS TF 下载限制"),
+    ("TFDownload.conf", "国区 TF 下载补丁"),
+    ("EmbyPlugin.conf", "Emby 外置播放器"),
+    ("UposRedirect.conf", "B站 Upos 重定向"),
+    ("Bilibili_CC.conf", "B站繁体 CC 转简体"),
+)
 
 # 墨鱼通用去广告（进 quguanggao）；开屏 StartUpAds/FakeiOSAds 另见 qukaiping
 # WeChat.conf 上游已划掉仍保留原件；FakeiOSAds 只进开屏合集
@@ -201,8 +231,13 @@ QITA_SYNC_MODULES = (
     "fmz200-extra.sgmodule",
 )
 
-SCRIPT_URL_RE = re.compile(
-    r"(https?://[^\s,\"']+\.(?:js|mjs)(?:\?[^\s,\"']*)?)",
+# 只改写脚本引用，勿动 reject/URL-Rewrite 里出现的广告 .js 链接
+SCRIPT_PATH_RE = re.compile(
+    r"(script-path\s*=\s*)(https?://[^\s,\"']+\.(?:js|mjs)(?:\?[^\s,\"']*)?)",
+    re.IGNORECASE,
+)
+QX_SCRIPT_URL_RE = re.compile(
+    r"(url\s+script-[\w-]+\s+)(https?://[^\s,\"']+\.(?:js|mjs)(?:\?[^\s,\"']*)?)",
     re.IGNORECASE,
 )
 
@@ -321,12 +356,35 @@ def save_bytes(dest: Path, data: bytes, *, author: str, kind: str) -> None:
     STATS["zuozhe"][author][kind] = STATS["zuozhe"][author].get(kind, 0) + 1
 
 
+def _normalize_js_url(url: str) -> str:
+    """github.com/.../raw/... → raw.githubusercontent.com（避免 HTML 中间页）。"""
+    m = re.match(
+        r"^https?://github\.com/([^/]+)/([^/]+)/raw/([^/]+)/(.*)$",
+        url,
+        re.I,
+    )
+    if m:
+        owner, repo, ref, path = m.groups()
+        return f"https://raw.githubusercontent.com/{owner}/{repo}/{ref}/{path}"
+    m = re.match(
+        r"^https?://github\.com/([^/]+)/([^/]+)/refs/heads/([^/]+)/(.*)$",
+        url,
+        re.I,
+    )
+    if m:
+        owner, repo, ref, path = m.groups()
+        return f"https://raw.githubusercontent.com/{owner}/{repo}/{ref}/{path}"
+    return url
+
+
 def mirror_js(url: str, author: str, cache: dict[str, str]) -> str:
     """Download script into zuozhe/<author>/js/... ; return self-host URL for heji rewrite."""
+    url = _normalize_js_url(url)
     if url in cache:
         return cache[url]
-    # 解锁合集用 Eevee；Crack 不进自托管
-    if "spotify.crack" in url.lower() or "/crack" in url.lower():
+    # 解锁合集用 Eevee；Crack 不进自托管（spotify.crack 路径）
+    low = url.lower()
+    if "spotify.crack" in low or "/spotify-crack" in low:
         cache[url] = url
         return url
     ensure_author(author)
@@ -358,7 +416,14 @@ def mirror_js(url: str, author: str, cache: dict[str, str]) -> str:
 
 
 def rewrite_js_urls(text: str, author: str, cache: dict[str, str]) -> str:
-    return SCRIPT_URL_RE.sub(lambda m: mirror_js(m.group(1), author, cache), text)
+    """仅重写 script-path / QX script-* 的脚本 URL；reject 里的 .js 保持原文。"""
+
+    def _sub(m: re.Match[str]) -> str:
+        return m.group(1) + mirror_js(m.group(2), author, cache)
+
+    text = SCRIPT_PATH_RE.sub(_sub, text)
+    text = QX_SCRIPT_URL_RE.sub(_sub, text)
+    return text
 
 
 def strip_module_header(text: str) -> tuple[str, str]:
@@ -691,6 +756,52 @@ def build_qiandao_local(cache: dict[str, str]) -> None:
     )
 
 
+def mirror_ibl3nd(cache: dict[str, str]) -> None:
+    """IBL3ND/module 小组件 + sgmodule → qita/ibl3nd（单件，不做合集）。"""
+    skip_suffix = {".yaml", ".lpx", ".txt", ".md"}
+    skip_names = {"README.md", "weather.TXT", "surge-loon-to-egern.yaml", "Telegram.yaml"}
+    try:
+        tree = json.loads(fetch(IBL3ND_API).decode())["tree"]
+    except Exception as exc:
+        print(f"  ! ibl3nd tree: {exc}")
+        return
+    n = 0
+    for t in tree:
+        if t.get("type") != "blob":
+            continue
+        rel = t["path"]
+        name = Path(rel).name
+        if name in skip_names or Path(name).suffix.lower() in skip_suffix:
+            continue
+        suf = Path(name).suffix.lower()
+        if suf not in {".js", ".jsx", ".sgmodule"} and not name.endswith(".JS"):
+            continue
+        try:
+            raw = fetch(IBL3ND_RAW + quote(rel, safe="/"))
+        except Exception as exc:
+            print(f"  ! ibl3nd {name}: {exc}")
+            continue
+        save_qita("ibl3nd", name, raw)
+        if suf == ".sgmodule" or name.endswith(".sgmodule"):
+            rewrite_js_urls(raw.decode("utf-8", errors="replace"), "local", cache)
+        n += 1
+        print(f"  qita/ibl3nd/{name}")
+    # sync 插件中心跳转（Egern）
+    try:
+        hub = fetch(f"{SYNC_RAW}/Modules/ibl3nd-plugin-hub.yaml")
+        save_qita("ibl3nd", "ibl3nd-plugin-hub.yaml", hub)
+        print("  qita/ibl3nd/ibl3nd-plugin-hub.yaml ← sync")
+        n += 1
+    except Exception as exc:
+        print(f"  ! ibl3nd-plugin-hub: {exc}")
+    (QITA / "ibl3nd" / "README.md").write_text(
+        "IBL3ND/module 小组件与 Surge 模块原样（单件自取，不做合集）。\n"
+        "插件中心跳转：`ibl3nd-plugin-hub.yaml`（sync 镜像）。\n"
+        f"上游：https://github.com/IBL3ND/module\n共约 {n} 个文件。\n",
+        encoding="utf-8",
+    )
+
+
 def build_qita(cache: dict[str, str]) -> None:
     """其他脚本/工具单件 → qita/（不做合集）。"""
     # Official 非广告、非签到 → qita/official
@@ -726,15 +837,19 @@ def build_qita(cache: dict[str, str]) -> None:
         except Exception as exc:
             print(f"  ! qita/local {fname}: {exc}")
 
+    print("=== qita/ibl3nd（小组件）===")
+    mirror_ibl3nd(cache)
+
     (QITA / "README.md").write_text(
         "\n".join(
             [
                 "# 其他脚本 / 工具（单件，无合集）",
                 "",
-                "BoxJs、Sub-Store、面板、定位/天气增强、测速等——**不做 heji**，按需自取。",
+                "BoxJs、Sub-Store、面板、定位/天气增强、测速、小组件等——**不做 heji**，按需自取。",
                 "",
                 "- `official/` — QingRex Official 工具/增强（已排除去广告与签到）",
                 "- `local/` — 本仓 sync：BoxJs、IRingo、proxy-detect、skip-proxy、fmz200-extra 等",
+                "- `ibl3nd/` — IBL3ND 小组件 + Surge 模块 + plugin-hub",
                 "",
                 "去广告/开屏/解锁/抓参合集仍在 `heji/`；签到在 `qiandao/`。",
                 "",
@@ -849,7 +964,7 @@ def _moyu_conf_to_bag(
 
 
 def heji_quguanggao(cache: dict[str, str]) -> None:
-    """去广告：基础置顶 → 可莉 → 墨鱼 AdBlock/NBPro → 奶思 blockAds。"""
+    """去广告：基础置顶 → 可莉 → 墨鱼 AdBlock/NBPro → 毒奶 → BMJ → 奶思。"""
     keli_m = ZUOZHE / "keli" / "mokuai"
     bags: list[tuple[str, dict[str, list[str]]]] = []
 
@@ -900,7 +1015,28 @@ def heji_quguanggao(cache: dict[str, str]) -> None:
         rewritten = rewrite_js_urls(raw, "moyu", cache)
         bags.append(("墨鱼 · NBPro Egern补全（telnet+脚本）", parse_sections(rewritten)))
 
-    # 4) 奶思 blockAds 整模块（不拆不改）
+    # 4) 毒奶 Adblock4limbo
+    dunai = ZUOZHE / "dunai" / "mokuai" / "Adblock4limbo.sgmodule"
+    if dunai.is_file():
+        raw = dunai.read_text(encoding="utf-8", errors="replace")
+        rewritten = rewrite_js_urls(raw, "dunai", cache)
+        title, _ = strip_module_header(raw)
+        bags.append((f"毒奶 · {title or 'Adblock4limbo'}", parse_sections(rewritten)))
+
+    # 5) blackmatrix7 Advertising(+Script)
+    bmj_m = ZUOZHE / "blackmatrix7" / "mokuai"
+    for fname, label in (
+        ("Advertising.sgmodule", "blackmatrix7 · Advertising"),
+        ("AdvertisingScript.sgmodule", "blackmatrix7 · AdvertisingScript"),
+    ):
+        path = bmj_m / fname
+        if not path.is_file():
+            continue
+        raw = path.read_text(encoding="utf-8", errors="replace")
+        rewritten = rewrite_js_urls(raw, "blackmatrix7", cache)
+        bags.append((label, parse_sections(rewritten)))
+
+    # 6) 奶思 blockAds 整模块（不拆不改）
     naisi = ZUOZHE / "naisi" / "mokuai" / "blockAds.module"
     if naisi.is_file():
         raw = naisi.read_text(encoding="utf-8", errors="replace")
@@ -910,12 +1046,14 @@ def heji_quguanggao(cache: dict[str, str]) -> None:
     text = merge_section_bags(
         bags,
         name="去广告合集",
-        desc="可莉基础置顶 + 可莉逐App + 墨鱼AdBlock/NBPro + 奶思blockAds（原文，URL自托管）",
+        desc="可莉基础置顶 + 可莉逐App + 墨鱼AdBlock/NBPro + 毒奶 + BMJ + 奶思（原文，URL自托管）",
         notes=[
             "# 合集类型: 去广告",
             "# 置顶基础: 1)广告平台拦截器 2)可莉广告过滤器 —— 须最先生效",
             "# 然后: 可莉各 App「××去广告」原样分段",
             "# 然后: 墨鱼 ddgksf2013 AdBlock（微博/闲鱼/网易云/NBPro…）+ Egern NBPro 补全",
+            "# 然后: 毒奶 limbopro/Adblock4limbo（网页广告）",
+            "# 然后: blackmatrix7 Advertising + AdvertisingScript",
             "# 然后: 奶思 blockAds.module 整块",
             "# 不含开屏（见 heji/qukaiping.module：StartUpAds / FakeiOSAds）",
         ],
@@ -980,6 +1118,22 @@ def heji_jiesuo(cache: dict[str, str]) -> None:
         title, _ = strip_module_header(raw)
         bags.append((f"可莉 · {title or path.stem}", parse_sections(rewritten)))
 
+    # 墨鱼：微信110 + ForOwnUse VIP + Function
+    moyu_m = ZUOZHE / "moyu" / "mokuai"
+    for fname, label in (
+        ("UnblockURLinWeChat.conf", "墨鱼 · 微信110外链解锁"),
+        ("ForOwnUse.conf", "墨鱼 · 专属VIP合集 ForOwnUse"),
+    ):
+        bag = _moyu_conf_to_bag(moyu_m / fname, label, cache)
+        if bag:
+            bags.append(bag)
+    for fname, label in MOYU_FUNCTION_CONFS:
+        if fname == "UnblockURLinWeChat.conf":
+            continue  # 已上
+        bag = _moyu_conf_to_bag(moyu_m / fname, f"墨鱼 · {label}", cache)
+        if bag:
+            bags.append(bag)
+
     extras = [
         ("iewha", "Unlock.sgmodule", "iEwha · Unlock"),
         ("iewha", "Script.sgmodule", "iEwha · Script"),
@@ -1005,10 +1159,11 @@ def heji_jiesuo(cache: dict[str, str]) -> None:
     text = merge_section_bags(
         bags,
         name="解锁增强合集",
-        desc="可莉解锁相关 + iEwha/chxm/奶思/WeiGiegie/…（作者原文，URL自托管）",
+        desc="可莉解锁 + 墨鱼微信110/VIP/Function + iEwha/chxm/…（作者原文，URL自托管）",
         notes=[
             "# 合集类型: 解锁增强",
             "# 分段注释标明每个作者/模块用途",
+            "# 墨鱼: UnblockURLinWeChat(微信110) + ForOwnUse(专属VIP) + Function(TF/Emby/…)",
             "# Spotify 用 Eevee（spotify-unlock），不含 Crack",
             "# 已跳过可莉近重复: Google重定向 / 拦截HTTPDNS / Spotify歌词翻译（单件仍在 zuozhe）",
         ],
@@ -1103,7 +1258,7 @@ def write_docs() -> None:
                 "  qiandao/                # 签到单件（无合集）",
                 "    keli/  official/  local/  js/",
                 "  qita/                   # 其他脚本/工具（无合集）",
-                "    official/  local/",
+                "    official/  local/  ibl3nd/",
                 "  danxiang/               # 单件备份",
                 "  heji/                   # 合集（四分）+ 分流清单",
                 "    quguanggao / qukaiping / jiesuo / zhuacan / fenliu/",
@@ -1114,7 +1269,7 @@ def write_docs() -> None:
                 "- `zuozhe` / `danxiang` / `qiandao` / `qita`：**原作者照搬**，文件字节不改",
                 "- `heji`：只拼装 + Fan.a.tail 分段；**规则正文不改**；script URL 改指本仓",
                 "- 去广告置顶：`广告平台拦截器` → `可莉广告过滤器`",
-                "- **签到 / 其他脚本不做合集**",
+                "- **签到 / 其他脚本 / IBL3ND 小组件不做合集**",
                 "",
                 "## 订阅（合集）",
                 "",
@@ -1125,7 +1280,7 @@ def write_docs() -> None:
                 f"{RAW}/Yuanban/heji/zhuacan.module",
                 "```",
                 "",
-                "签到：`Yuanban/qiandao/`　其他脚本：`Yuanban/qita/`　分流：`heji/fenliu/README.md`",
+                "签到：`Yuanban/qiandao/`　其他/小组件：`Yuanban/qita/`　分流：`heji/fenliu/README.md`",
                 "",
                 "重建：`python3 scripts/build-yuanban.py`",
                 "",
@@ -1176,7 +1331,19 @@ def write_docs() -> None:
         "2. `zuozhe/keli/mokuai/可莉广告过滤器.sgmodule`",
         "3. 可莉各 App `*去广告.sgmodule`",
         "4. 墨鱼 AdBlock + NBPro",
-        "5. 奶思 `blockAds.module` 整块",
+        "5. 毒奶 `Adblock4limbo.sgmodule`",
+        "6. blackmatrix7 Advertising(+Script)",
+        "7. 奶思 `blockAds.module` 整块",
+        "",
+        "## 解锁补充（墨鱼）",
+        "",
+        "- 微信110：`UnblockURLinWeChat.conf` + `weixin110.js`",
+        "- 专属VIP：`ForOwnUse.conf`（ddgksf2013/dev）",
+        "- Function：TF / Emby / Upos / Bilibili_CC",
+        "",
+        "## 小组件",
+        "",
+        "- `Yuanban/qita/ibl3nd/` — IBL3ND/module 原样（单件）",
         "",
     ]
     if STATS["js_fail"]:
@@ -1187,8 +1354,8 @@ def write_docs() -> None:
     (HEJI / "UPSTREAM.md").write_text("\n".join(lines), encoding="utf-8")
     (ZUOZHE / "README.md").write_text(
         "作者拼音目录。每人下有 fenliu / mokuai / js；可莉另有 official/。内容与上游字节一致。\n\n"
-        "拼音：keli可莉 naisi奶思 moyu墨鱼 iewha chxm weigiegie liulong yu9191 "
-        "repcz sukka vpsdance yuheng local miranquil\n",
+        "拼音：keli可莉 naisi奶思 moyu墨鱼 dunai毒奶 blackmatrix7 iewha chxm weigiegie "
+        "liulong yu9191 repcz sukka vpsdance yuheng local miranquil\n",
         encoding="utf-8",
     )
 
@@ -1228,15 +1395,18 @@ def main() -> None:
     )
     mirror_sync_module("naisi", "fmz200-unlock-extra.sgmodule", cache)
 
-    print("=== zuozhe/moyu（开屏 + AdBlock + NBPro）===")
+    print("=== zuozhe/moyu（开屏 + AdBlock + NBPro + Function + VIP）===")
     paths = ensure_author("moyu")
     moyu_items: list[tuple[str, str]] = [
         ("StartUpAds.conf", "https://ddgksf2013.top/rewrite/StartUpAds.conf"),
         ("FakeiOSAds.conf", MOYU_REWRITE + "FakeiOSAds.conf"),
         ("NBProAds.conf", "https://ddgksf2013.top/rewrite/NBProAds.conf"),
+        ("ForOwnUse.conf", MOYU_FOROWNUSE),
     ]
     for fname in MOYU_ADBLOCK_CONFS:
         moyu_items.append((fname, MOYU_REWRITE + fname))
+    for fname, _label in MOYU_FUNCTION_CONFS:
+        moyu_items.append((fname, MOYU_FUNCTION + fname))
     for fname, url in moyu_items:
         try:
             raw = fetch(url)
@@ -1255,6 +1425,12 @@ def main() -> None:
             break
         except Exception as exc:
             print(f"  ! moyu nbpro.ads.js via {js_url}: {exc}")
+    # 微信110 脚本（Function/UnblockURLinWeChat 引用）
+    mirror_js(
+        "https://raw.githubusercontent.com/ddgksf2013/Scripts/master/weixin110.js",
+        "moyu",
+        cache,
+    )
     # Egern 侧已调过的 NBPro 补全（含 telnet Map Local）
     mirror_sync_module("moyu", "custom-apps.sgmodule", cache)
     custom = paths["mokuai"] / "custom-apps.sgmodule"
@@ -1264,9 +1440,29 @@ def main() -> None:
         custom.unlink(missing_ok=True)
         print("  moyu/mokuai/NBPro-egern.sgmodule ← sync custom-apps")
     (paths["mokuai"] / "README.md").write_text(
-        "墨鱼 ddgksf2013：StartUpAds/FakeiOSAds（开屏）+ AdBlock/*.conf + NBProAds + "
-        "NBPro-egern（sync custom-apps 补全）。\n"
-        "去广告合集见 heji/quguanggao；开屏见 heji/qukaiping。\n",
+        "墨鱼 ddgksf2013：\n"
+        "- 开屏 StartUpAds / FakeiOSAds → heji/qukaiping\n"
+        "- AdBlock/*.conf + NBProAds + NBPro-egern → heji/quguanggao\n"
+        "- Function（微信110 / TF / Emby…）+ ForOwnUse（专属VIP）→ heji/jiesuo\n",
+        encoding="utf-8",
+    )
+
+    print("=== zuozhe/dunai（毒奶 Adblock4limbo）===")
+    mirror_url_module("dunai", DUNAI_SGMODULE, "Adblock4limbo.sgmodule", cache)
+    (ZUOZHE / "dunai" / "mokuai" / "README.md").write_text(
+        "毒奶 limbopro/Adblock4limbo — 网页广告用户脚本（Surge sgmodule 原样）。\n"
+        "进 heji/quguanggao。上游：https://github.com/limbopro/Adblock4limbo\n",
+        encoding="utf-8",
+    )
+
+    print("=== zuozhe/blackmatrix7（Advertising）===")
+    mirror_url_module("blackmatrix7", BMJ_ADVERTISING, "Advertising.sgmodule", cache)
+    mirror_url_module(
+        "blackmatrix7", BMJ_ADVERTISING_SCRIPT, "AdvertisingScript.sgmodule", cache
+    )
+    (ZUOZHE / "blackmatrix7" / "mokuai" / "README.md").write_text(
+        "blackmatrix7 Advertising + AdvertisingScript（Surge 原样）。\n"
+        "进 heji/quguanggao。\n",
         encoding="utf-8",
     )
 

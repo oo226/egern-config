@@ -1,17 +1,19 @@
 # 合集上游说明
 
-构建：2026-09-26 03:41 UTC
+构建：2026-09-26 04:31 UTC
 分支：`guize`
 
 ## zuozhe 作者统计
 
+- **blackmatrix7**: mokuai=2 js=2 fenliu=0
 - **chxm**: mokuai=1 js=181 fenliu=0
+- **dunai**: mokuai=1 js=1 fenliu=0
 - **iewha**: mokuai=2 js=8 fenliu=0
 - **keli**: mokuai=283 js=82 fenliu=0
 - **liulong**: mokuai=1 js=13 fenliu=0
-- **local**: mokuai=3 js=103 fenliu=0
+- **local**: mokuai=3 js=112 fenliu=0
 - **miranquil**: mokuai=1 js=1 fenliu=0
-- **moyu**: mokuai=27 js=41 fenliu=0
+- **moyu**: mokuai=34 js=47 fenliu=0
 - **naisi**: mokuai=3 js=143 fenliu=0
 - **repcz**: mokuai=0 js=0 fenliu=25
 - **sukka**: mokuai=0 js=0 fenliu=2
@@ -26,13 +28,13 @@
 
 ## qita 其他脚本（无合集）
 
-`{'official': 45, 'local': 9}`
+`{'official': 45, 'local': 9, 'ibl3nd': 51}`
 
 ## heji 分段袋数 / 分流文件数
 
-`{'quguanggao': 220, 'qukaiping': 2, 'jiesuo': 26, 'zhuacan': 2, 'fenliu': 28}`
+`{'quguanggao': 223, 'qukaiping': 2, 'jiesuo': 33, 'zhuacan': 2, 'fenliu': 28}`
 
-脚本镜像成功约 980，失败 132（多为 kelee.one 403，合集保留上游 URL）
+脚本镜像成功约 998，失败 124（多为 kelee.one 403，合集保留上游 URL）
 
 ## 解锁近重复（合集已跳过，单件仍保留）
 
@@ -46,7 +48,19 @@
 2. `zuozhe/keli/mokuai/可莉广告过滤器.sgmodule`
 3. 可莉各 App `*去广告.sgmodule`
 4. 墨鱼 AdBlock + NBPro
-5. 奶思 `blockAds.module` 整块
+5. 毒奶 `Adblock4limbo.sgmodule`
+6. blackmatrix7 Advertising(+Script)
+7. 奶思 `blockAds.module` 整块
+
+## 解锁补充（墨鱼）
+
+- 微信110：`UnblockURLinWeChat.conf` + `weixin110.js`
+- 专属VIP：`ForOwnUse.conf`（ddgksf2013/dev）
+- Function：TF / Emby / Upos / Bilibili_CC
+
+## 小组件
+
+- `Yuanban/qita/ibl3nd/` — IBL3ND/module 原样（单件）
 
 ## js 镜像失败（节选）
 

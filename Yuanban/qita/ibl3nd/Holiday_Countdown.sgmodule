@@ -1,0 +1,24 @@
+# 📅 节日倒计时模块 - Egern 配置
+name: "📅 节日倒计时模块"
+author: "iBL3ND"
+description: "显示距离节日/节气/传统节日的天数"
+
+scriptings:
+  - generic:
+      name: "holiday-countdown"
+      script_url: "https://raw.githubusercontent.com/IBL3ND/module/refs/heads/main/Holiday_Countdown.js"
+      timeout: 15
+
+widgets:
+  # 默认布局（每行4个）
+  - name: "📅 节日倒计时"
+    script_name: "holiday-countdown"
+    env:
+      TITLE: "节日倒计时"
+      ITEMS_PER_ROW: "4"
+      MAX_ROWS: "5"
+      SHOW_HOLIDAYS: "true"
+      SHOW_TERMS: "true"
+      SHOW_TRADITIONAL: "true"
+
+
