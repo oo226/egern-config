@@ -32,7 +32,10 @@ https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Prof
 |------|------|
 | 去广告 / 去开屏 / 解锁 | 默认开；解锁含 Sub-Store、Script Hub、BoxJs、插件跳转、TG外链跳转、天气/地图、证书、屏蔽更新 |
 | YouTube | 去广告合集里有老书段；解锁里是可莉字幕，用途不同 |
+| 起点读书签到 | 默认开；先抓 CK 再关「抓取重写」参数 |
 | 18+ / 抓参 / PingMe / iRingo 定位·其他 | 默认关 |
+
+全局含 `vif_hairpin_addresses: 10.7.0.1`（回流）；DNS forward / real_ip 已按老书补齐高频域名与 NAS/路由项。
 
 ## 分流去重（Profile 已瘦身）
 

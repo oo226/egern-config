@@ -39,8 +39,13 @@ vif_excluded_routes:
   - fe80::/10
   - ff00::/8
 
+# 回环（Hairpin）地址：访问该地址时经 VIF 回环（对齐老书；内网穿透/自建服务）
+vif_hairpin_addresses:
+  - 10.7.0.1
+
 # ------------------------------------------
 # 二、DNS（分流解析，顺序不可乱）
+# upstreams 与老书一致；forward 补齐高频域名直指（仍用本仓广告/直连/谷歌表）
 # ------------------------------------------
 dns:
   bootstrap:
@@ -66,7 +71,7 @@ dns:
       - h3://dns.alidns.com/dns-query
       - https://doh.pub/dns-query
   forward:
-    # ① DNS 层广告拒绝（早挡，省解析）
+    # ① DNS 层广告拒绝（本仓 Loyalsoldier + Sukka，比老书多一层）
     - proxy_rule_set:
         match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Loyalsoldier-广告拒绝.txt
         value: reject
@@ -81,6 +86,15 @@ dns:
         value: AliDNS
     - domain_suffix:
         match: alipay.com
+        value: AliDNS
+    - domain_suffix:
+        match: alipayobjects.com
+        value: AliDNS
+    - domain_suffix:
+        match: aliapp.org
+        value: AliDNS
+    - domain_suffix:
+        match: alicdn.com
         value: AliDNS
     - domain_suffix:
         match: aliyun.com
@@ -100,25 +114,132 @@ dns:
     - domain_suffix:
         match: ele.me
         value: AliDNS
-    # ③ 字节系 → ByteDNS
+    - domain_suffix:
+        match: dingtalk.com
+        value: AliDNS
+    - domain_suffix:
+        match: mzstatic.com
+        value: AliDNS
+    # ③ 腾讯 / 快手 / 小红书 → DNSPod（早于直连大名单，解析更稳）
+    - domain_suffix:
+        match: qq.com
+        value: DNSPod
+    - domain_suffix:
+        match: wechat.com
+        value: DNSPod
+    - domain_suffix:
+        match: weixin.com
+        value: DNSPod
+    - domain_suffix:
+        match: tencent.com
+        value: DNSPod
+    - domain_suffix:
+        match: qcloud.com
+        value: DNSPod
+    - domain_suffix:
+        match: myqcloud.com
+        value: DNSPod
+    - domain_suffix:
+        match: tencdns.cn
+        value: DNSPod
+    - domain_suffix:
+        match: kuaishou.com
+        value: DNSPod
+    - domain_suffix:
+        match: gifshow.com
+        value: DNSPod
+    - domain_suffix:
+        match: yximgs.com
+        value: DNSPod
+    - domain_suffix:
+        match: kuaishoupay.com
+        value: DNSPod
+    - domain_suffix:
+        match: xiaohongshu.com
+        value: DNSPod
+    - domain_suffix:
+        match: xhscdn.com
+        value: DNSPod
+    # ④ 字节系 → ByteDNS（含 CDN；保留 snssdk.com）
+    - domain_suffix:
+        match: bytedance.com
+        value: ByteDNS
+    - domain_suffix:
+        match: bytecdn.com
+        value: ByteDNS
+    - domain_suffix:
+        match: bytecdn.cn
+        value: ByteDNS
+    - domain_suffix:
+        match: bytedns.net
+        value: ByteDNS
+    - domain_suffix:
+        match: bytednsdoc.com
+        value: ByteDNS
     - domain_suffix:
         match: douyin.com
+        value: ByteDNS
+    - domain_suffix:
+        match: douyincdn.com
+        value: ByteDNS
+    - domain_suffix:
+        match: douyinvod.com
+        value: ByteDNS
+    - domain_suffix:
+        match: pstatp.com
+        value: ByteDNS
+    - domain_suffix:
+        match: amemv.com
         value: ByteDNS
     - domain_suffix:
         match: toutiao.com
         value: ByteDNS
     - domain_suffix:
+        match: ixigua.com
+        value: ByteDNS
+    - domain_suffix:
         match: snssdk.com
         value: ByteDNS
     - domain_suffix:
-        match: bytedance.com
+        match: isnssdk.com
         value: ByteDNS
-    # ④ 国内直连大名单 → DNSPod
+    - domain_suffix:
+        match: awemeughun.com
+        value: ByteDNS
+    - domain_suffix:
+        match: byteimg.com
+        value: ByteDNS
+    - domain_suffix:
+        match: bytegoofy.com
+        value: ByteDNS
+    - domain_suffix:
+        match: toutiaocdn.com
+        value: ByteDNS
+    - domain_suffix:
+        match: douyinpic.com
+        value: ByteDNS
+    - domain_suffix:
+        match: douyinstatic.com
+        value: ByteDNS
+    - domain_suffix:
+        match: idouyinvod.com
+        value: ByteDNS
+    - domain_suffix:
+        match: iesdouyin.com
+        value: ByteDNS
+    # ⑤ 国内直连大名单 → DNSPod（本仓 Loyalsoldier，不改用老书 Direct.yaml）
     - proxy_rule_set:
         match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Loyalsoldier-直连大名单.txt
         value: DNSPod
         update_interval: 86400
-    # ⑤ 局域网 / 保留域
+    # ⑥ App Store 走国际 DNS（对齐老书）
+    - domain_suffix:
+        match: itunes.apple.com
+        value: Default
+    - domain_suffix:
+        match: apps.apple.com
+        value: Default
+    # ⑦ 局域网 / 保留域
     - domain_suffix:
         match: lan
         value: system
@@ -132,9 +253,18 @@ dns:
         match: arpa
         value: reject
     - domain_suffix:
+        match: internal
+        value: reject
+    - domain_suffix:
+        match: test
+        value: reject
+    - domain_suffix:
+        match: example
+        value: reject
+    - domain_suffix:
         match: localhost
         value: reject
-    # ⑥ Google / YouTube → Google DNS（Repcz；不再叠 Loyalsoldier-Google）
+    # ⑧ Google / YouTube → Google DNS（Repcz；无单独 YouTubeMusic 表）
     - proxy_rule_set:
         match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Repcz-YouTube.yaml
         value: Google
@@ -143,7 +273,7 @@ dns:
         match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Repcz-Google.yaml
         value: Google
         update_interval: 86400
-    # ⑦ 兜底
+    # ⑨ 兜底
     - domain_suffix:
         match: cn
         value: DNSPod
@@ -160,10 +290,15 @@ dns:
     - 172.16.0.0/12
     - 192.0.0.0/24
     - 192.0.2.0/24
+    - 192.88.99.0/24
     - 192.168.0.0/16
     - 198.18.0.0/15
+    - 198.51.100.0/24
+    - 203.0.113.0/24
     - 224.0.0.0/4
+    - 240.0.0.0/4
     - 255.255.255.255/32
+    - ::/128
     - ::1/128
     - ff00::/8
   public_ip_lookup_url: https://ifconfig.me/ip
@@ -171,26 +306,51 @@ dns:
 
 # ------------------------------------------
 # 三、真实 IP 域名（不用 Fake-IP）
+# 保留 Tailscale；补齐 NAS/路由/游戏/Apple（对齐老书有好处的项）
 # ------------------------------------------
 real_ip_domains:
+  # 局域网 / 家庭网络
   - '*.lan'
   - '*.local'
   - '*.home.arpa'
+  # Tailscale（本仓保留）
   - '*.ts.net'
   - '*.tailscale.com'
   - '*.tailscale.net'
+  # Apple 基础服务
+  - '*.apple-dns.net'
+  - '*.safebrowsing.apple'
   - '*.push.apple.com'
   - ocsp.apple.com
   - ocsp2.apple.com
   - setup.icloud.com
+  # NAS / 路由器管理页（避免 Fake-IP 打不开后台）
+  - find.synology.com
+  - '*.synology.me'
+  - '*.myqcloud.com'
+  - '*.myqnapcloud.com'
+  - '*.routerlogin.net'
+  - '*.unifi.ui.com'
+  - '*.gl-inet.com'
+  - router.asus.com
+  # 系统联网检测
   - '*.msftncsi.com'
   - '*.msftconnecttest.com'
+  # 游戏联机 / NAT
   - '*.battle.net'
+  - '*.blzstatic.cn'
+  - '*.battlenet.com'
+  - '*.battlenet.com.cn'
   - '*.xboxlive.com'
+  - xbox.*.microsoft.com
   - '*.stun.playstation.net'
   - '*.srv.nintendo.net'
+  - '*.epicgames.com'
+  - '*.riotgames.com'
   - '*.steampowered.com'
   - '*.steamcommunity.com'
+  - '*.steamstatic.com'
+  - '*.nvidia.com'
 
 # ------------------------------------------
 # 三点五、追风挂机专用 HTTP 节点（途游小程序）
@@ -671,6 +831,10 @@ modules:
   - name: PingMe
     url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/qiandao/local/pingme.sgmodule
     enabled: false
+  - name: 起点读书签到
+    url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/qiandao/local/qdreader.sgmodule
+    update_interval: 86400
+    enabled: true
 
   # —— iRingo 定位/其他（天气/地图已在解锁合集）——
   - name: " iRingo 定位"
