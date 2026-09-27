@@ -1363,6 +1363,7 @@ def merge_section_bags(
     name: str,
     desc: str,
     notes: list[str],
+    icon: str = "",
 ) -> str:
     """Merge section bags; keep every author line; label with Fan.a.tail-style banners."""
     order = [
@@ -1377,6 +1378,10 @@ def merge_section_bags(
     out = [
         f"#!name={name}",
         f"#!desc={desc}",
+    ]
+    if icon:
+        out.append(f"#!icon={icon}")
+    out += [
         f"# built_at={datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%MZ')}",
         f"# branch={BRANCH}",
         "# 作者规则正文不改；仅 script-path 改指 Yuanban/zuozhe/*/js 自托管",
@@ -1922,6 +1927,7 @@ def heji_quguanggao(cache: dict[str, str]) -> None:
         bags,
         name="去广告合集",
         desc="可莉+墨鱼(含开屏)+毒奶+老书+BMJ+怎么肥事（日常；奶思见 naisi-ads，勿同开）",
+        icon="https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Advertising.png",
         notes=[
             "# 合集类型: 去广告日常（含开屏）",
             "# 置顶基础: 1)广告平台拦截器 2)可莉广告过滤器 —— 须最先生效",
@@ -1951,6 +1957,7 @@ def heji_naisi_ads(cache: dict[str, str]) -> None:
         bags,
         name="奶思去广告（可选）",
         desc="fmz200/奶思 blockAds 整包。与「去广告合集」二选一，勿同时开启（叠层易爆内存）",
+        icon="https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/AdblockPlus.png",
         notes=[
             "# 合集类型: 去广告可选（奶思）",
             "# 日常请用 heji/quguanggao.module（可莉线）",
@@ -2075,6 +2082,7 @@ def heji_jiesuo(cache: dict[str, str]) -> None:
         bags,
         name="解锁增强合集",
         desc="可莉解锁 + 墨鱼微信110/VIP/Function + iEwha/chxm/…（不含18+，见 shibajia）",
+        icon="https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Unlock.png",
         notes=[
             "# 合集类型: 解锁增强（日常/SFW）",
             "# 18+ 成人向请订阅 heji/shibajia.module",
@@ -2116,6 +2124,7 @@ def heji_shibajia(cache: dict[str, str]) -> None:
         bags,
         name="18+解锁合集",
         desc="成人向 Rewrite/解锁，与日常 jiesuo 分开订阅（Yu9191 为主，WeiGiegie 少量）",
+        icon="https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Final.png",
         notes=[
             "# 合集类型: 18+",
             "# 主要来源: Yu9191/Rewrite（haijiao/javhd/porntube/黄豆…）",
@@ -2197,6 +2206,7 @@ def heji_zhuacan(cache: dict[str, str]) -> None:
         bags,
         name="抓参合集",
         desc="签到 Cookie/Token 抓取：奶思合集 + NobyDa + 莫离京东 + 起点（按需开，抓完关掉）",
+        icon="https://raw.githubusercontent.com/chavyleung/scripts/master/box/icons/BoxJs.png",
         notes=[
             "# 合集类型: 抓参",
             "# 默认建议关闭；抓完关掉省电 / 少 MITM",
