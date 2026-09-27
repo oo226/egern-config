@@ -6771,7 +6771,7 @@ https:\/\/(webboot\.zhangyue\.com|ih2\.ireader\.com)\/zyam\/app\/app\.php\? data
 # 微信公众号：兼容 :443 / http(s) / 无 query（对齐 QingRex；Egern 另有原生 map_locals）
 ^https?:\/\/mp\.weixin\.qq\.com(:\d+)?\/mp\/getappmsgad data-type=text data="{\"advertisement_num\":0,\"advertisement_info\":[]}" status-code=200 header="Content-Type:application/json"
 ^https?:\/\/mp\.weixin\.qq\.com(:\d+)?\/mp\/(cps_product_info|jsmonitor|masonryfeed|relatedarticle|relatedsearchword) data-type=text data="{}" status-code=200 header="Content-Type:application/json"
-# NB助手：仅 telnet=Network OK（/nb/app 用 nbpro-ads 脚本，勿空抓）
+# NB助手：仅 telnet=Network OK（/nb/app 用 moyu-NBProAds-1 脚本，勿空抓）
 ^https?:\/\/[^:/]*nbtool8\.com(:\d+)?\/nb\/telnet data-type=text data="Network OK" status-code=200 header="Content-Type:text/plain"
 ^https?:\/\/124\.222\.32\.246(:\d+)?\/nb\/telnet data-type=text data="Network OK" status-code=200 header="Content-Type:text/plain"
 ^https?:\/\/117\.72\.39\.157(:\d+)?\/nb\/telnet data-type=text data="Network OK" status-code=200 header="Content-Type:text/plain"
@@ -7327,13 +7327,8 @@ moyu-KeepAds-3 = type=http-response,pattern=^https?:\/\/api\.gotokeep\.com\/twin
 
 
 
-# NBPro /nb/app：墨鱼版解密改广告字段再写回（勿空正文）
-nbpro-ads = type=http-response, pattern=^https?:\/\/(?:[^:/]*nbtool8\.com|124\.222\.32\.246|117\.72\.39\.157|47\.243\.71\.210|cesapp\.goypzc\.cn)(?::\d+)?\/nb\/app, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/ddgksf2013/nbpro.ads.js, requires-body=true, max-size=-1, timeout=60
-
-# - - - - - - - - - - - - - - - - - - - - - - - - 
-# 墨鱼 · NBPro净化
-# - - - - - - - - - - - - - - - - - - - - - - - - 
-moyu-NBProAds-1 = type=http-response,pattern=^https?:\/\/(?:nbtool8\.com(?::(?:9527|9666))?|124\.222\.32\.246(?::9527)?|117\.72\.39\.157(?::9527)?|cesapp\.goypzc\.cn(?::9527)?|47\.243\.71\.210(?::9527)?)\/nb\/app(?:\?.*)?$,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/nbpro.ads.js,requires-body=true,timeout=60
+# NBPro /nb/app：只留一条（原先 nbpro-ads + moyu-NBProAds-1 重叠，后跑会 abort response）
+moyu-NBProAds-1 = type=http-response, pattern=^https?:\/\/(?:[^:/]*nbtool8\.com|124\.222\.32\.246|117\.72\.39\.157|47\.243\.71\.210|cesapp\.goypzc\.cn)(?::\d+)?\/nb\/app(?:\?.*)?$, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/nbpro.ads.js, requires-body=true, max-size=-1, timeout=60
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - 
