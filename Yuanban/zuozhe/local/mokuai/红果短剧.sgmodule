@@ -1,0 +1,28 @@
+#!name=红果短剧
+#!desc=红果短剧去广告（收藏整理）。未整域拒 zijieapi（易误伤抖音等）；字节广告子域仍拦。内容域直连防加载异常。可与去广告合集同开。
+#!icon=https://iili.io/nRYapHP.md.png
+# 源：社区红果短剧规则整理；zijieapi 整域 REJECT 已收窄
+
+[Rule]
+# 红果核心广告
+DOMAIN-SUFFIX,hongguoapp.com,REJECT
+DOMAIN-SUFFIX,hongguosdk.com,REJECT
+DOMAIN-SUFFIX,pangolin-sdk-toutiao.com,REJECT
+DOMAIN-SUFFIX,pglstatp-toutiao.com,REJECT
+DOMAIN-KEYWORD,ad-union-sdk,REJECT
+DOMAIN-KEYWORD,be-pack,REJECT
+DOMAIN-KEYWORD,hongguo.ad,REJECT
+
+# 字节广告（收窄：不整域拒 zijieapi.com）
+DOMAIN-SUFFIX,ad.pangle.cn,REJECT
+DOMAIN-SUFFIX,ad.pangolin.cn,REJECT
+DOMAIN,ad.zijieapi.com,REJECT
+DOMAIN-KEYWORD,ads3-normal,REJECT
+DOMAIN-KEYWORD,ads5-normal,REJECT
+DOMAIN-KEYWORD,-normal-lq.zijieapi,REJECT
+
+# 红果内容直连（避免加载异常；须在拒广告规则之后仍能命中内容域时靠策略顺序——本模块内直连置后）
+DOMAIN-SUFFIX,hongguo.com,DIRECT
+DOMAIN-SUFFIX,hongguo.douyin.com,DIRECT
+DOMAIN-SUFFIX,byteimg.com,DIRECT
+DOMAIN-SUFFIX,pstatp.com,DIRECT
