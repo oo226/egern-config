@@ -594,7 +594,7 @@ widgets:
 # ------------------------------------------
 # 八、模块（日常：去广告·解锁·签到；可选默认关）
 # 解锁已含：Sub-Store、Script Hub、BoxJs、天气/地图、AntiRevoke、屏蔽更新、插件跳转、TG外链、SkipProxy
-# 去广告=可莉线（含开屏）；奶思去广告另份默认关——勿与去广告合集同开（叠层易爆内存）
+# 去广告=可莉+墨鱼开屏/NBPro（瘦身）；叠层对照/奶思默认关——勿与日常去广告叠开（易爆内存）
 # 18+ / 抓参 / iRingo定位·TV·News 按需开
 # ------------------------------------------
 modules:
@@ -611,6 +611,10 @@ modules:
     update_interval: 86400
     enabled: true
 
+  - name: 去广告叠层（对照）
+    url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/quguanggao-diejia.module
+    update_interval: 86400
+    enabled: false
   - name: 奶思去广告（可选）
     url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/naisi-ads.module
     update_interval: 86400

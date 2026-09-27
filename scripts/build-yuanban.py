@@ -7,7 +7,8 @@
     zuozhe/<作者拼音>/{fenliu,mokuai,js}/   # 原作者照搬
     qiandao/  qita/  danxiang/
     heji/
-      quguanggao / qukaiping / jiesuo / zhuacan / shibajia(18+) / fenliu/
+      quguanggao / quguanggao-diejia(对照) / naisi-ads / qukaiping /
+      jiesuo / zhuacan / shibajia(18+) / fenliu/
 
 合集规则：
   - 不改作者规则正文；script-path 改指本仓自托管 js（不留外站）
@@ -1243,7 +1244,7 @@ def mirror_laoshu(cache: dict[str, str]) -> None:
         "老书 jnlaoshu/MySelf Egern/Module（作者仓直拉）。\n"
         "风格：Rule + Map Local 为主，脚本多用 Maasea/墨鱼/app2smile；\n"
         "部分仍引用 kelee.one（构建时自托管，Surge UA 拉取）。\n"
-        "进 heji/quguanggao。\n"
+        "进 heji/quguanggao-diejia（叠层对照；日常 quguanggao 不含）。\n"
         "上游：https://github.com/jnlaoshu/MySelf/tree/main/Egern/Module\n",
         encoding="utf-8",
     )
@@ -1372,8 +1373,12 @@ def merge_section_bags(
     desc: str,
     notes: list[str],
     icon: str = "",
+    dedupe_exact: bool = False,
 ) -> str:
-    """Merge section bags; keep every author line; label with Fan.a.tail-style banners."""
+    """Merge section bags; label with Fan.a.tail-style banners.
+
+    dedupe_exact: 同一 section 内正文行完全相同只留首次（跨作者去重）；注释行仍跟分段走。
+    """
     order = [
         "General", "Rule", "URL Rewrite", "Header Rewrite", "Body Rewrite",
         "Map Local", "Script", "MITM",
@@ -1441,15 +1446,11 @@ def merge_section_bags(
             return (3, label)
 
         pieces.sort(key=lambda x: _piece_rank(x[0]))
+        seen_body: set[str] = set()
         for label, lines in pieces:
-            out.append("")
-            out.append("# " + "- " * 24)
-            out.append(f"# {label}")
-            out.append("# " + "- " * 24)
-            # SkipProxy（skip-proxy / always-real-ip）保留在解锁合集，更新模块即可
-            # 仍丢掉会改全局观感/DNS 行为的键，避免合集叠层
-            if section == "General":
-                for line in lines:
+            kept: list[str] = []
+            for line in lines:
+                if section == "General":
                     key = line.split("=", 1)[0].strip().lower() if "=" in line else ""
                     if key in {
                         "hide-vpn-icon",
@@ -1457,9 +1458,20 @@ def merge_section_bags(
                         "encrypted-dns-follow-outbound-mode",
                     }:
                         continue
-                    out.append(line)
-            else:
-                out.extend(lines)
+                if dedupe_exact:
+                    s = line.strip()
+                    if s and not s.startswith("#"):
+                        if s in seen_body:
+                            continue
+                        seen_body.add(s)
+                kept.append(line)
+            if not kept:
+                continue
+            out.append("")
+            out.append("# " + "- " * 24)
+            out.append(f"# {label}")
+            out.append("# " + "- " * 24)
+            out.extend(kept)
         out.append("")
     return "\n".join(out).rstrip() + "\n"
 
@@ -1819,12 +1831,10 @@ def _moyu_conf_to_bag(
     return (label, parse_sections(surge_body))
 
 
-def heji_quguanggao(cache: dict[str, str]) -> None:
-    """去广告日常：基础置顶 → 可莉 → 墨鱼 AdBlock/NBPro → 毒奶 → BMJ（奶思见 heji_naisi_ads）。"""
+def _bags_keli_ads(cache: dict[str, str]) -> list[tuple[str, dict[str, list[str]]]]:
+    """可莉基础置顶 + 各 App 去广告。"""
     keli_m = ZUOZHE / "keli" / "mokuai"
     bags: list[tuple[str, dict[str, list[str]]]] = []
-
-    # 1) foundation first
     for fname in KELI_FOUNDATION:
         path = keli_m / fname
         if not path.is_file():
@@ -1833,10 +1843,7 @@ def heji_quguanggao(cache: dict[str, str]) -> None:
         raw = path.read_text(encoding="utf-8", errors="replace")
         rewritten = rewrite_js_urls(raw, "keli", cache)
         title, _ = strip_module_header(raw)
-        label = f"可莉 · {title or fname} 【基础·置顶】"
-        bags.append((label, parse_sections(rewritten)))
-
-    # 2) all 去广告 per-app
+        bags.append((f"可莉 · {title or fname} 【基础·置顶】", parse_sections(rewritten)))
     for path in sorted(keli_m.glob("*去广告.sgmodule")):
         raw = path.read_text(encoding="utf-8", errors="replace")
         rewritten = rewrite_js_urls(raw, "keli", cache)
@@ -1846,9 +1853,13 @@ def heji_quguanggao(cache: dict[str, str]) -> None:
         if title and title != path.stem:
             label = f"可莉 · {title}（{app}）"
         bags.append((label, parse_sections(rewritten)))
+    return bags
 
-    # 3) 墨鱼 AdBlock（含 NBPro）— QX→Surge 仅格式
+
+def _bags_moyu_ads_core(cache: dict[str, str]) -> list[tuple[str, dict[str, list[str]]]]:
+    """墨鱼 AdBlock/NBPro + 开屏（日常主力，不含叠层作者）。"""
     moyu_m = ZUOZHE / "moyu" / "mokuai"
+    bags: list[tuple[str, dict[str, list[str]]]] = []
     for fname in MOYU_ADBLOCK_CONFS:
         bag = _moyu_conf_to_bag(
             moyu_m / fname,
@@ -1864,60 +1875,11 @@ def heji_quguanggao(cache: dict[str, str]) -> None:
     )
     if bag:
         bags.append(bag)
-    # Egern 补全：telnet Map Local + 自托管脚本（sync custom-apps）
     egern_nb = moyu_m / "NBPro-egern.sgmodule"
     if egern_nb.is_file():
         raw = egern_nb.read_text(encoding="utf-8", errors="replace")
         rewritten = rewrite_js_urls(raw, "moyu", cache)
         bags.append(("墨鱼 · NBPro Egern补全（telnet+脚本）", parse_sections(rewritten)))
-
-    # 4) 毒奶 Adblock4limbo
-    dunai = ZUOZHE / "dunai" / "mokuai" / "Adblock4limbo.sgmodule"
-    if dunai.is_file():
-        raw = dunai.read_text(encoding="utf-8", errors="replace")
-        rewritten = rewrite_js_urls(raw, "dunai", cache)
-        title, _ = strip_module_header(raw)
-        bags.append((f"毒奶 · {title or 'Adblock4limbo'}", parse_sections(rewritten)))
-
-    # 4b) 老书 jnlaoshu Egern 精选（Video/Music/YouTube…）
-    laoshu_m = ZUOZHE / "laoshu" / "mokuai"
-    for fname in LAOSHU_EGERN_MODULES:
-        path = laoshu_m / fname
-        if not path.is_file():
-            continue
-        raw = path.read_text(encoding="utf-8", errors="replace")
-        rewritten = rewrite_js_urls(raw, "laoshu", cache)
-        title, _ = strip_module_header(raw)
-        bags.append((f"老书 · {title or path.stem}", parse_sections(rewritten)))
-
-    # 5) blackmatrix7 Advertising(+Script)
-    bmj_m = ZUOZHE / "blackmatrix7" / "mokuai"
-    for fname, label in (
-        ("Advertising.sgmodule", "blackmatrix7 · Advertising"),
-        ("AdvertisingScript.sgmodule", "blackmatrix7 · AdvertisingScript"),
-    ):
-        path = bmj_m / fname
-        if not path.is_file():
-            continue
-        raw = path.read_text(encoding="utf-8", errors="replace")
-        rewritten = rewrite_js_urls(raw, "blackmatrix7", cache)
-        bags.append((label, parse_sections(rewritten)))
-
-    # 6) 奶思 blockAds — 独立合集 heji_naisi_ads，勿与本合集同开（叠层易爆内存）
-
-    # 7) 怎么肥事净化
-    zm = ZUOZHE / "zenmofeishi" / "mokuai"
-    for fname in ZENMO_AD_CONFS:
-        path = zm / fname
-        if not path.is_file():
-            continue
-        raw = path.read_text(encoding="utf-8", errors="replace")
-        rewrite_js_urls(raw, "zenmofeishi", cache)
-        surge = qx_conf_to_surge_body(raw, script_prefix="zenmo-" + path.stem[:10])
-        surge = rewrite_js_urls(surge, "zenmofeishi", cache)
-        bags.append((f"怎么肥事 · {path.stem}", parse_sections(surge)))
-
-    # 8) 墨鱼开屏（原 qukaiping，并入以免 Profile 挂两份）
     for fname, label in (
         ("StartUpAds.conf", "墨鱼 · 去开屏 StartUpAds"),
         ("FakeiOSAds.conf", "墨鱼 · FakeiOSAds"),
@@ -1930,25 +1892,99 @@ def heji_quguanggao(cache: dict[str, str]) -> None:
         surge_body = qx_conf_to_surge_body(raw, script_prefix="moyu-kp")
         surge_body = rewrite_js_urls(surge_body, "moyu", cache)
         bags.append((label, parse_sections(surge_body)))
+    return bags
 
+
+def _bags_ads_diejia(cache: dict[str, str]) -> list[tuple[str, dict[str, list[str]]]]:
+    """叠层对照：毒奶 + 老书 + BMJ + 怎么肥事（默认不进日常合集）。"""
+    bags: list[tuple[str, dict[str, list[str]]]] = []
+    dunai = ZUOZHE / "dunai" / "mokuai" / "Adblock4limbo.sgmodule"
+    if dunai.is_file():
+        raw = dunai.read_text(encoding="utf-8", errors="replace")
+        rewritten = rewrite_js_urls(raw, "dunai", cache)
+        title, _ = strip_module_header(raw)
+        bags.append((f"毒奶 · {title or 'Adblock4limbo'}", parse_sections(rewritten)))
+    laoshu_m = ZUOZHE / "laoshu" / "mokuai"
+    for fname in LAOSHU_EGERN_MODULES:
+        path = laoshu_m / fname
+        if not path.is_file():
+            continue
+        raw = path.read_text(encoding="utf-8", errors="replace")
+        rewritten = rewrite_js_urls(raw, "laoshu", cache)
+        title, _ = strip_module_header(raw)
+        bags.append((f"老书 · {title or path.stem}", parse_sections(rewritten)))
+    bmj_m = ZUOZHE / "blackmatrix7" / "mokuai"
+    for fname, label in (
+        ("Advertising.sgmodule", "blackmatrix7 · Advertising"),
+        ("AdvertisingScript.sgmodule", "blackmatrix7 · AdvertisingScript"),
+    ):
+        path = bmj_m / fname
+        if not path.is_file():
+            continue
+        raw = path.read_text(encoding="utf-8", errors="replace")
+        rewritten = rewrite_js_urls(raw, "blackmatrix7", cache)
+        bags.append((label, parse_sections(rewritten)))
+    zm = ZUOZHE / "zenmofeishi" / "mokuai"
+    for fname in ZENMO_AD_CONFS:
+        path = zm / fname
+        if not path.is_file():
+            continue
+        raw = path.read_text(encoding="utf-8", errors="replace")
+        rewrite_js_urls(raw, "zenmofeishi", cache)
+        surge = qx_conf_to_surge_body(raw, script_prefix="zenmo-" + path.stem[:10])
+        surge = rewrite_js_urls(surge, "zenmofeishi", cache)
+        bags.append((f"怎么肥事 · {path.stem}", parse_sections(surge)))
+    return bags
+
+
+def heji_quguanggao(cache: dict[str, str]) -> None:
+    """去广告日常：可莉 + 墨鱼 AdBlock/NBPro/开屏；完全相同行去重。叠层见 diejia。"""
+    bags = _bags_keli_ads(cache) + _bags_moyu_ads_core(cache)
     text = merge_section_bags(
         bags,
         name="去广告合集",
-        desc="可莉+墨鱼(含开屏)+毒奶+老书+BMJ+怎么肥事（日常；奶思见 naisi-ads，勿同开）",
+        desc="可莉+墨鱼(含开屏/NBPro)；叠层对照见「去广告叠层」；奶思见 naisi-ads，勿同开",
         icon="https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Advertising.png",
+        dedupe_exact=True,
         notes=[
-            "# 合集类型: 去广告日常（含开屏）",
+            "# 合集类型: 去广告日常（瘦身）",
             "# 置顶基础: 1)广告平台拦截器 2)可莉广告过滤器 —— 须最先生效",
-            "# 然后: 可莉各 App「××去广告」原样分段",
-            "# 然后: 墨鱼 AdBlock/NBPro + 毒奶 + 老书(jnlaoshu) + BMJ + 怎么肥事净化",
-            "# 然后: 墨鱼 StartUpAds / FakeiOSAds（原 qukaiping 已并入）",
-            "# 奶思 blockAds 已拆到 heji/naisi-ads.module（Profile 默认关，勿与本合集同开）",
+            "# 然后: 可莉各 App「××去广告」+ 墨鱼 AdBlock/NBPro + StartUpAds/FakeiOSAds",
+            "# 完全相同正文行只留一份（跨作者去重）",
+            "# 毒奶/老书/BMJ/怎么肥事 → heji/quguanggao-diejia.module（对照，Profile 默认关）",
+            "# 奶思 blockAds → heji/naisi-ads.module（默认关，勿与本合集同开）",
             "# 脚本 URL 全部指向本仓 Yuanban/zuozhe/*/js（不依赖上游在线）",
         ],
     )
     (HEJI / "quguanggao.module").write_text(text, encoding="utf-8")
     STATS["heji"]["quguanggao"] = len(bags)
     print(f"heji quguanggao bags={len(bags)} chars={len(text)}")
+
+
+def heji_quguanggao_diejia(cache: dict[str, str]) -> None:
+    """去广告叠层对照：毒奶+老书+BMJ+怎么肥事。默认关，与日常合集对照测内存。"""
+    bags = _bags_ads_diejia(cache)
+    if not bags:
+        print("WARN quguanggao-diejia: no bags")
+        STATS["heji"]["quguanggao-diejia"] = 0
+        return
+    text = merge_section_bags(
+        bags,
+        name="去广告叠层（对照）",
+        desc="毒奶+老书+BMJ+怎么肥事。测内存用：日常去广告开着时再开本模块对照；确认后请关。勿与奶思同开",
+        icon="https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Reject.png",
+        dedupe_exact=True,
+        notes=[
+            "# 合集类型: 去广告叠层（对照/可选）",
+            "# 内容: 毒奶 Adblock4limbo + 老书 jnlaoshu + BMJ Advertising(+Script) + 怎么肥事净化",
+            "# 用法: 日常「去广告合集」保持开 → 再开本模块看是否更容易断连/Jetsam",
+            "# 完全相同正文行只留一份；原件仍在 zuozhe/*/mokuai",
+            "# 勿与 heji/naisi-ads.module 同开",
+        ],
+    )
+    (HEJI / "quguanggao-diejia.module").write_text(text, encoding="utf-8")
+    STATS["heji"]["quguanggao-diejia"] = len(bags)
+    print(f"heji quguanggao-diejia bags={len(bags)} chars={len(text)}")
 
 
 def heji_naisi_ads(cache: dict[str, str]) -> None:
@@ -2359,14 +2395,14 @@ def write_docs() -> None:
                 "    official/  local/  ibl3nd/",
                 "  danxiang/               # 单件备份",
                 "  heji/                   # 合集 + 分流清单",
-                "    quguanggao(含开屏) / naisi-ads(可选) / jiesuo / shibajia(18+) / zhuacan / fenliu/",
+                "    quguanggao(瘦身) / quguanggao-diejia(叠层对照) / naisi-ads / jiesuo / shibajia / zhuacan / fenliu/",
                 "```",
                 "",
                 "## 原则",
                 "",
                 "- `zuozhe` / `danxiang` / `qiandao` / `qita`：**原作者照搬**，文件字节不改",
                 "- `heji`：只拼装 + Fan.a.tail 分段；**规则正文不改**；script URL 改指本仓",
-                "- 去广告置顶：`广告平台拦截器` → `可莉广告过滤器`；开屏已并入 `quguanggao`；奶思整包见 `naisi-ads`（勿同开）",
+                "- 去广告日常：`quguanggao`（可莉+墨鱼开屏/NBPro，完全相同行去重）；叠层对照：`quguanggao-diejia`；奶思：`naisi-ads`（勿同开）",
                 "- **18+ 单独 `shibajia`，不进日常 `jiesuo`**",
                 "- **签到 / 其他脚本 / IBL3ND 小组件不做合集**",
                 "",
@@ -2374,6 +2410,7 @@ def write_docs() -> None:
                 "",
                 "```",
                 f"{RAW}/Yuanban/heji/quguanggao.module",
+                f"{RAW}/Yuanban/heji/quguanggao-diejia.module",
                 f"{RAW}/Yuanban/heji/naisi-ads.module",
                 f"{RAW}/Yuanban/heji/jiesuo.module",
                 f"{RAW}/Yuanban/heji/shibajia.module",
@@ -2482,7 +2519,7 @@ def write_docs() -> None:
         "## 老书 jnlaoshu",
         "",
         "- `zuozhe/laoshu` ← https://github.com/jnlaoshu/MySelf/tree/main/Egern/Module",
-        "- Video/Music/YouTube 等进 `heji/quguanggao`（Rule+Map Local 为主）",
+        "- Video/Music/YouTube 等进 `heji/quguanggao-diejia`（叠层对照）",
         "",
     ]
     if STATS["js_fail"]:
@@ -2594,7 +2631,7 @@ def main() -> None:
     mirror_url_module("dunai", DUNAI_SGMODULE, "Adblock4limbo.sgmodule", cache)
     (ZUOZHE / "dunai" / "mokuai" / "README.md").write_text(
         "毒奶 limbopro/Adblock4limbo — 网页广告用户脚本（Surge sgmodule 原样）。\n"
-        "进 heji/quguanggao。上游：https://github.com/limbopro/Adblock4limbo\n",
+        "进 heji/quguanggao-diejia（叠层对照）。上游：https://github.com/limbopro/Adblock4limbo\n",
         encoding="utf-8",
     )
 
@@ -2605,7 +2642,7 @@ def main() -> None:
     )
     (ZUOZHE / "blackmatrix7" / "mokuai" / "README.md").write_text(
         "blackmatrix7 Advertising + AdvertisingScript（Surge 原样）。\n"
-        "进 heji/quguanggao。\n",
+        "进 heji/quguanggao-diejia（叠层对照）。\n",
         encoding="utf-8",
     )
 
@@ -2770,6 +2807,7 @@ def main() -> None:
 
     print("=== heji ===")
     heji_quguanggao(cache)
+    heji_quguanggao_diejia(cache)
     heji_naisi_ads(cache)
     heji_qukaiping(cache)
     heji_jiesuo(cache)
