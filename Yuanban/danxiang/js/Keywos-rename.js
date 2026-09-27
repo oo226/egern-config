@@ -1,5 +1,5 @@
-# 镜像：https://raw.githubusercontent.com/Keywos/rule/main/rename.js
-# 用途：Sub-Store「脚本操作」— 节点重命名/地区标准化（非 Egern Profile 内置）
+// 镜像：https://raw.githubusercontent.com/Keywos/rule/main/rename.js
+// 用途：Sub-Store「脚本操作」— 节点重命名/地区标准化（非 Egern Profile 内置）
 
 /**
  * 更新日期：2024-04-05 15:30:15
