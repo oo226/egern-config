@@ -8,7 +8,8 @@
 # ------------------------------------------
 # 一、全局基础设置
 # ------------------------------------------
-ipv6: false
+# ipv6.osaka.test-ipv6.com 等只有 AAAA；关 ipv6 时只查 A →「无地址记录」
+ipv6: true
 http_port: 3080
 socks_port: 3090
 allow_external_connections: false
@@ -117,6 +118,13 @@ dns:
         match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Routing/Foreign/Google.yaml
         value: Google
         update_interval: 86400
+    # test-ipv6 测点多在境外且常为纯 AAAA；勿跟 China-Direct 走 DNSPod（A 空会被当成解析失败）
+    - domain_suffix:
+        match: test-ipv6.com
+        value: Default
+    - domain_suffix:
+        match: ipv6-test.com
+        value: Default
     - proxy_rule_set:
         match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Routing/China-Direct.yaml
         value: DNSPod
