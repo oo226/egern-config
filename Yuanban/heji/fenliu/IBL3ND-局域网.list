@@ -1,0 +1,25 @@
+# ===== IPv4 保留 / 内网 / 特殊地址 =====
+IP-CIDR,0.0.0.0/8,DIRECT,no-resolve
+IP-CIDR,10.0.0.0/8,DIRECT,no-resolve
+IP-CIDR,127.0.0.0/8,DIRECT,no-resolve
+IP-CIDR,169.254.0.0/16,DIRECT,no-resolve
+IP-CIDR,172.16.0.0/12,DIRECT,no-resolve
+IP-CIDR,192.0.0.0/24,DIRECT,no-resolve
+IP-CIDR,192.0.2.0/24,DIRECT,no-resolve
+IP-CIDR,192.168.0.0/16,DIRECT,no-resolve
+IP-CIDR,198.18.0.0/15,DIRECT,no-resolve
+IP-CIDR,198.51.100.0/24,DIRECT,no-resolve
+IP-CIDR,203.0.113.0/24,DIRECT,no-resolve
+IP-CIDR,224.0.0.0/4,DIRECT,no-resolve
+IP-CIDR,255.255.255.255/32,DIRECT,no-resolve
+IP-CIDR,100.64.0.0/10,DIRECT,no-resolve
+# ===== IPv6 本地 / 保留地址 =====
+IP-CIDR6,::1/128,DIRECT,no-resolve
+IP-CIDR6,fc00::/7,DIRECT,no-resolve
+IP-CIDR6,fe80::/10,DIRECT,no-resolve
+IP-CIDR6,ff00::/8,DIRECT,no-resolve
+# ===== 国内域名与局域网解析 =====
+DOMAIN-SUFFIX,local,DIRECT
+DOMAIN-SUFFIX,lan,DIRECT
+DOMAIN-SUFFIX,home.arpa,DIRECT
+GEOIP,CN,DIRECT

@@ -12,11 +12,10 @@
 | `Loyalsoldier-` | **大名单底**：直连/代理/GFW/广告拒绝 |
 | `VPSDance-` | AI 专项最全 |
 | `BMJ-` | 细分补洞：国内Max/Steam/流媒体… |
-| `Repcz-直连` | 原版 Direct + **已并入**网盘补缺/视频（文件内注释标「以下起为视频规则」） |
-| `eulac-*` | 上游原料备份；内容已并进 `Repcz-直连`，Profile 不单独挂 |
-| `本仓-追风` | 途游挂机专用域名 |
+| `IBL3ND-` | 3d 规则仓：局域网 LAN / Gemini / reject-200… |
 
 广告拒绝类与去广告合集会叠，别重复全开。全部文件已自托管，不依赖上游在线。
+局域网：Profile 已用 `Egern/Routing/Lan.yaml`；`IBL3ND-局域网.list` 作备份对照，不强制替换。
 
 ## 订阅示例
 
@@ -31,6 +30,10 @@ https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/he
 https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/BMJ-全球流媒体.list
 https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/BMJ-国内域名Max.list
 https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/BMJ-广告精简.list
+https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/IBL3ND-Gemini.list
+https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/IBL3ND-reject-200.txt
+https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/IBL3ND-sequence.list
+https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/IBL3ND-局域网.list
 https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Loyalsoldier-GFW列表.txt
 https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Loyalsoldier-Google.txt
 https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Loyalsoldier-GreatFire.txt
@@ -81,6 +84,11 @@ https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/he
 https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Sukka-苹果中国.conf
 https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Sukka-苹果服务.conf
 https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/VPSDance-AI合集.yaml
+https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/eulac-网盘点播.lsr
+https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/eulac-网盘点播.yaml
+https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/eulac-视频资源站.lsr
+https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/eulac-视频资源站.yaml
+https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/本仓-追风.yaml
 https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/莫离-AI.list
 https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/莫离-APNs.list
 https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/莫离-Ads_AWAvenue.list
@@ -143,4 +151,4 @@ https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/he
 https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/莫离-苹果.list
 ```
 
-共 120 个文件。
+共 129 个文件。

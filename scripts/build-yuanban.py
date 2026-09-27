@@ -98,6 +98,14 @@ BMJ_ADVERTISING_SCRIPT = (
 
 IBL3ND_API = "https://api.github.com/repos/IBL3ND/module/git/trees/main?recursive=1"
 IBL3ND_RAW = "https://raw.githubusercontent.com/IBL3ND/module/main/"
+# IBL3ND/rule：分流单件（此前只镜像了 module 小组件，漏了 rule）
+IBL3ND_RULE_RAW = "https://raw.githubusercontent.com/IBL3ND/rule/refs/heads/main/"
+IBL3ND_RULE_FENLIU = (
+    "LAN.list",
+    "Gemini.list",
+    "sequence.list",
+    "iBL3ND-reject-200.txt",
+)
 
 MOLI_API = "https://api.github.com/repos/Moli-X/Resources/git/trees/main?recursive=1"
 MOLI_RAW = "https://raw.githubusercontent.com/Moli-X/Resources/main/"
@@ -357,6 +365,7 @@ AUTHOR_CN = {
     "eulac": "eulac",
     "nsringo": "NSRingo",
     "scripthub": "ScriptHub",
+    "ibl3nd": "IBL3ND",
 }
 
 # jnlaoshu/MySelf Egern 精选模块（Rule+Map Local 为主，脚本指 Maasea/墨鱼等）
@@ -374,9 +383,10 @@ LAOSHU_EGERN_MODULES = (
 LAOSHU_RAW = "https://raw.githubusercontent.com/jnlaoshu/MySelf/main/Egern/Module/"
 FENLIU_CN = {
     "ChinaDomain": "国内域名", "ChinaIP": "国内IP", "ChinaASN": "国内ASN",
-    "ChinaMax": "国内域名Max", "Direct": "直连", "Lan": "局域网",
+    "ChinaMax": "国内域名Max", "Direct": "直连", "Lan": "局域网", "LAN": "局域网",
     "Reject": "广告拒绝", "reject": "广告拒绝", "reject_extra": "广告拒绝补充",
-    "reject.txt": "广告拒绝", "Anti-Ad": "广告拦截",
+    "reject.txt": "广告拒绝", "Anti-Ad": "广告拦截", "iBL3ND-reject-200": "reject-200",
+    "Gemini": "Gemini", "sequence": "sequence",
     "Proxy": "代理", "ProxyGFW": "GFW代理", "proxy": "代理", "gfw": "GFW列表",
     "direct": "直连大名单", "AI": "AI", "ai": "AI", "OpenAI": "OpenAI",
     "Claude": "Claude", "Gemini": "Gemini", "Google": "Google", "google": "Google",
@@ -1660,7 +1670,9 @@ def mirror_ibl3nd(cache: dict[str, str]) -> None:
     (QITA / "ibl3nd" / "README.md").write_text(
         "IBL3ND/module 小组件与 Surge 模块原样（单件自取，不做合集）。\n"
         "插件中心跳转：`ibl3nd-plugin-hub.yaml`（sync 镜像）。\n"
-        f"上游：https://github.com/IBL3ND/module\n共约 {n} 个文件。\n",
+        "分流规则在 `zuozhe/ibl3nd/fenliu/`（来自 IBL3ND/rule，如 LAN.list）。\n"
+        f"上游 module：https://github.com/IBL3ND/module\n共约 {n} 个文件。\n"
+        "上游 rule：https://github.com/IBL3ND/rule\n",
         encoding="utf-8",
     )
 
@@ -2216,8 +2228,10 @@ def heji_fenliu() -> None:
         "| `Loyalsoldier-` | **大名单底**：直连/代理/GFW/广告拒绝 |",
         "| `VPSDance-` | AI 专项最全 |",
         "| `BMJ-` | 细分补洞：国内Max/Steam/流媒体… |",
+        "| `IBL3ND-` | 3d 规则仓：局域网 LAN / Gemini / reject-200… |",
         "",
         "广告拒绝类与去广告合集会叠，别重复全开。全部文件已自托管，不依赖上游在线。",
+        "局域网：Profile 已用 `Egern/Routing/Lan.yaml`；`IBL3ND-局域网.list` 作备份对照，不强制替换。",
         "",
         "## 订阅示例",
         "",
@@ -2789,6 +2803,19 @@ def main() -> None:
             f"{BMJ_RULE}{name}/{name}.list",
             f"{name}.list",
         )
+
+    # 7) IBL3ND/rule（此前只镜像 module 小组件，漏了分流）
+    print("=== zuozhe/ibl3nd fenliu（IBL3ND/rule）===")
+    for fname in IBL3ND_RULE_FENLIU:
+        mirror_url_fenliu("ibl3nd", IBL3ND_RULE_RAW + fname, fname)
+    (ZUOZHE / "ibl3nd" / "fenliu" / "README.md").write_text(
+        "IBL3ND/rule 分流单件（LAN / Gemini / sequence / reject-200）。\n"
+        "Profile 局域网仍用 Egern/Routing/Lan.yaml；本目录自托管备份，需要可对照替换。\n"
+        "上游：https://github.com/IBL3ND/rule\n"
+        "成人向 list（missav/pornhub…）未镜像，需要请自行订上游。\n",
+        encoding="utf-8",
+    )
+
     (ZUOZHE / "loyalsoldier" / "fenliu" / "README.md").write_text(
         "Loyalsoldier/surge-rules release DOMAIN-SET（大名单底）。\n",
         encoding="utf-8",
