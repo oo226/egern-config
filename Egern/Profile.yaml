@@ -514,6 +514,11 @@ rules:
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Routing/China-Direct.yaml
       policy: DIRECT
       update_interval: 86400
+  - rule_set:
+      name: 直连大名单
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Loyalsoldier-直连大名单.txt
+      policy: DIRECT
+      update_interval: 86400
   - geoip:
       match: CN
       policy: DIRECT
