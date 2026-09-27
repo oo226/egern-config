@@ -1482,20 +1482,37 @@ DOMAIN-SUFFIX,optimus-ads.amap.com,DIRECT
 # - - - - - - - - - - - - - - - - - - - - - - - - 
 # 墨鱼 · NBPro Egern补全（telnet+脚本）
 # - - - - - - - - - - - - - - - - - - - - - - - - 
-# 邮储银行（与奶思合集互补，确保子域 MITM 生效）
+# 银行/信用卡开屏与广告（自奶思补进默认可莉线，避免只开 quguanggao 时缺段）
+# 邮储
 ^https?:\/\/static\.mobile-bank\.psbc\.com\/mgs - reject
+^https?:\/\/static\.psbc\.com:8090\/mbank_f\/images\/[0-9]+\.png data-type=text data=" " status-code=200
+^https?:\/\/mcc\.psbc\.com:9090\/mcc\/resources\/[0-9]+\.(jpg|png) data-type=text data=" " status-code=200
+^https?:\/\/d\.psbc\.com:9091\/mcc\/resources\/[0-9]+\.(jpg|png|jpeg) data-type=text data=" " status-code=200
 
-# 动卡空间开屏（中信）
+# 动卡空间（中信信用卡）
 ^https?:\/\/ump\.sz\.creditcard\.ecitic\.com\/citiccard\/cm-ump\/ump-gateway\/ump-net-app\/ump-net-app\/adv data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 ^https?:\/\/m\.creditcard\.ecitic\.com\/citiccard\/mbk\/appspace-getway\/getWay\/dkkj-system-web\/system\/v\d+\/init-config data-type=text data=" " status-code=200
 
+# 发现精彩
+^https?:\/\/static\.95508\.com\/mmg\/images\/ads\/.+\/(.+1125?.+2436|.+%.+%|.+_.+_) data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+^https?:\/\/static\.95508\.com\/mmg\/ciop\/sysabbr\/cmep\/images\/(apppopupads|popupads) data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+^https?:\/\/static\.95508\.com\/icppweb\/images\/modelMaterial\/accurate\/202\d{5}\/.*.(png|jpg) data-type=text data=" " status-code=200
+^https?:\/\/static\.95508\.com\/icppweb\/images\/modelMaterial\/advertising\/202\d{5}\/.*.(png|jpg) data-type=text data=" " status-code=200
+^https?:\/\/mps\.95508\.com\/mps\/club\/cardPortals\/adv\/\d{25}\.(png|jpg) data-type=tiny-gif status-code=200
 
+# 掌上生活 + 招商银行
+^https?:\/\/mbasecc\.(bas|bcs)\.cmbchina\.com\/Edge\/api\/mlife\.clientface\.clientservice\.api\.advertiseService\/preCacheAdvertiseSec data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+^https?:\/\/intellicc\.bcs\.cmbchina\.com\/Edge\/api\/mlife\.intelli\.adrender\.api\.AdWork\/getAdsBySlotId data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+^https?:\/\/intellicc\.bas\.cmbchina\.com\/Edge\/api\/mlife\.intelli\.render\.api\.render\/getDynamicDataSec - reject
+^https?:\/\/webappcfg\.paas\.cmbchina\.com\/v\d\/func\/getmarketconfig data-type=text data=" " status-code=200
+^https?:\/\/mbmodule-openapi\.paas\.cmbchina\.com\/graphic\/v2\/module\/graphic data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 
+# 广州农商银行
+^https?:\/\/mbank\.grcbank\.com\/ydyh\/resources\/startpage\/.*.(jpg|png) data-type=text data=" " status-code=200
 
-
-
-
-
+# 中信银行开屏
+^https?:\/\/wap\.bank\.ecitic\.com:6443\/NMBFOServer\/cbframework\.do\?act=CUBEPAGEDATA data-type=text data=" " status-code=200
+^https:\/\/imcs\.citicbank\.com\/cloud\/([a-fA-F0-9]{32})\.(jpg|png) - reject
 
 
 # NB全能助手 / NB Pro — 只拒开屏路径；telnet 假成功；/nb/app 走脚本（墨鱼 NBProAds）
@@ -7538,7 +7555,7 @@ hostname = %APPEND% g.syshhc.top, c.jxjt888.top, www.laoguikeji.cn, qj.bpojie.co
 hostname = %APPEND% m5-zb.amap.com, center.amap.com, amap-aos-info-nogw.amap.com, ai.amap.com, *.cainiao.com, acs4miniapp-inner.m.taobao.com, sapphire.api.microsoftapp.net, assets.msn.com, api.msn.com, *.zdmimg.com, baike-api.smzdm.com, zhiyou.m.smzdm.com, wrapper.cyapi.cn, ad.cyapi.cn, mail.163.com, 118.31.123.175, 112.124.203.116, 118.31.125.171, 47.57.181.112, 47.57.182.96, web.chelaile.net.cn, api.chelaile.net.cn, cdn.api.chelaile.net.cn, atrace.chelaile.net.cn, *.api.moji.com, img.client.10010.com, nbtool8.com, cesapp.goypzc.cn, 124.222.32.246, 117.72.39.157, 47.243.71.210, static.psbc.com, mcc.psbc.com, static.mobile-bank.psbc.com, d.psbc.com, mobile-bank.psbc.com, api.nbtool8.com, www.nbtool8.com, app.nbtool8.com, qt-api.delicloud.com
 hostname = %APPEND% *.delicloud.com, 101.226.30.36, 124.70.90.16, 123.249.33.119, 117.184.40.141, 140.207.67.231, ossx-link.ztehome.com.cn, yuudnn.lz-qs.com, marki.markiapp.com, misc.eol.cn, app.yuebuy.cn, rfs-fitness.rfsvr.net, api.ssp.xcultur.com, www.biguotk.com, api.szy.cn, advertise.zhiduodev.com, api-tx.dsocial.xyz, lens.leoao.com, appapi.lvcchong.com, api.qeeniao.com, apicloud.zol.com.cn, 203.107.1.97, choicegw2.eastmoney.com, m.mynj.cn, vod.pipi.cn, mobile.iqihang.com, mystore-gw.watsonsvip.com.cn, mobile-consumer.jetour.com.cn, galaxy-app.geely.com, hoapp.juneyaoair.com, ap.dongdianqiu.com, t.wind.com.cn, beijing-gateway-customer.app-prod.bjev.com.cn, api2.yaduo.com, api.ireaderm.net, ad.seeyouyima.com, data.hgold.cn, *ziben.com, *.zhijianmedia.cn, prod.zh.igpsport.com
 hostname = %APPEND% apptec.leapmotor.cn, admin-app.edifier.com, ac1.dcloud.net.cn, *.weathercn.com, *.tianmu.mobi, *.ranfenghd.com, adx.zuoyebang.com, www.hpoi.net.cn, www.ctm.net, yyfapi.huatu.com, pjlapi.paojd.cn, api.dnurse.com, sdk.tianmu.mobi, newsuperapp.ftms.com.cn, gw-app-gateway.gwmapp-w.com, *.zongheng.com, oneapp-api.faw-vw.com, api.369cx.cn, api.livelab.com.cn, pinggai*.caixin.com, *.5eplay.com, app.duxiaoman.com, *.flyert.*, lop-proxy.jd.com, 101.227.139.118, i.zhaojinapp.com, gateway.cotticoffee.com, app.jiantou8.com, api-access.pangolin-sdk-toutiao.*com, zjh5api.ott4china.com, api.qd-metro.com, api.smart.jd.com, mobileapi.xiamenair.com, apps.teamair.cn, api2.picooc.com, file.mylyg.net, www.ahzs10000.com, api.qbb6.com, cdns.chinastock.com.cn, api.futunn.com
-hostname = %APPEND% api.ireader.mobi, www.xqpark.cn, api.jk.cn, api.moomoo.com, cq11344-app-https-api-1.ictun.com, hxqapi.hiyun.tv, m-adphone.wenhua.com.cn, *.fenbi.com, api.medlive.cn, smsrebuild1.mail.10086.cn, comapi.reader.qq.com, commontgw.reader.qq.com, fuwu.nhsa.gov.cn, compus.xiaofubao.com, *.ubixioe.com, bp-api.bestv.com.cn, app.ibuscloud.com, www.kujiale.com, mama.dxy.com, vidz.3hxq.cn, xapi.xinmanhua.net, ads.closeli.cn, shop-api.retail.mi.com, m.stock.pingan.com, *.1rtb.net, careapi.oclean.com, apps.workair.cn, app-api.medsci.cn, ad.cj.sina.cn, api.merach.com, advertise.bczeducation.cn, notify.baicizhan.com, app.api.qjjfin.com, dynamicad.kfc.com.cn, ump.sz.creditcard.ecitic.com, *.didapinche.com, comicapi.manhuashe.com, acs-m.freshippo.com, zjmbank.js96008.com, www.flyert.com
+hostname = %APPEND% api.ireader.mobi, www.xqpark.cn, api.jk.cn, api.moomoo.com, cq11344-app-https-api-1.ictun.com, hxqapi.hiyun.tv, m-adphone.wenhua.com.cn, *.fenbi.com, api.medlive.cn, smsrebuild1.mail.10086.cn, comapi.reader.qq.com, commontgw.reader.qq.com, fuwu.nhsa.gov.cn, compus.xiaofubao.com, *.ubixioe.com, bp-api.bestv.com.cn, app.ibuscloud.com, www.kujiale.com, mama.dxy.com, vidz.3hxq.cn, xapi.xinmanhua.net, ads.closeli.cn, shop-api.retail.mi.com, m.stock.pingan.com, *.1rtb.net, careapi.oclean.com, apps.workair.cn, app-api.medsci.cn, ad.cj.sina.cn, api.merach.com, advertise.bczeducation.cn, notify.baicizhan.com, app.api.qjjfin.com, dynamicad.kfc.com.cn, ump.sz.creditcard.ecitic.com, m.creditcard.ecitic.com, static.95508.com, mps.95508.com, mbasecc.bas.cmbchina.com, mbasecc.bcs.cmbchina.com, intellicc.bas.cmbchina.com, intellicc.bcs.cmbchina.com, webappcfg.paas.cmbchina.com, mbmodule-openapi.paas.cmbchina.com, mbank.grcbank.com, wap.bank.ecitic.com, imcs.citicbank.com, *.didapinche.com, comicapi.manhuashe.com, acs-m.freshippo.com, zjmbank.js96008.com, www.flyert.com
 hostname = %APPEND% saad.ms.zhangyue.net, device-box.onethingpcs.com, *.anythinktech.com, mobilepaas.abchina.com.cn, api-one-wscn.awtmt.com, restapi.iyunmai.com, info.mina.mi.com, app-gateway.leisuapi.com, app.c.nf.migu.cn, app.flymodem.com.cn, *.ahhhhfs.com, promotion.medlive.cn, mobads.baidu.com, entree-ws.igetget.com, axxd.xmseeyouyima.com, *.mting.info, ad.lofter.com, entry.ubixioe.com, adv.ccb.com, www.pansearch.me, td.cgmcare.cn, *.yuanfudao.com, wallpaper.soutushenqi.com, 140.179.224.63, ap.dongqiudi.com, apapia-sqk.manmanbuy.com, *.tipatipa.xyz, superapp.xgimi.com, mix-api.camera360.com, api1.34580.com, api.wmpvp.com, gateway.abite.com, rengine-platform.llsapp.com, 1jietu.com, tcmobileapi.17usoft.com, m.msyc.cc, mgw.mpaas.cn-hangzhou.aliyuncs.com, ytmsout.radio.cn, igetcool-gateway.igetcool.com, *.xbwpys.com
 hostname = %APPEND% ftapi.10jqka.com.cn, wxa.wxs.qq.com, evs.500.com, dq.dxy.cn, m.you.163.com, open-cms-api.uc.cn, *.yuxueyuan.cn, client.tujia.com, vip7.fzwdyy.cn, *.qyfxgd.cn, *.weilai555.com, *.ecoliving168.com, *cupid.iqiyi.com, gateway.36kr.com, tk.lanjiyin.com, gongdu.youshu.cc, api.21ec74.com, ztoread.ziroom.com, iphone.ac.qq.com, gd.10086.cn, api.00bang.cn, app.hbooker.com, api.sfacg.com, api3.cls.cn, gateway-api.dushu365.com, jdread-api.jd.com, ms.jr.jd.com, bdsp-x.jd.com, dsp-x.jd.com, router-app-api.jdcloud.com, cdn-evone-ceph.echargenet.com, gg.caixin.com, app-gw.csdn.net, api.gameplus.qq.com, mrobot.pconline.com.cn, djcapp.game.qq.com, zjdr666.com, gx.10086.cn, emdcad*.eastmoney.com, api-sams.walmartmobile.cn
 hostname = %APPEND% creditcardapp.bankcomm.cn, lban.spdb.com.cn, adapi.izuiyou.com, gateway.shouqiev.com, api.caijingmobile.com, 3g.csair.com, client-api.oray.com, bgw.xinyue.qq.com, api-new.app.acfun.cn, open.fitdays.cn, gha.ghac.cn, sh-gateway.shihuo.cn, wcprd.hilton.com, 103.91.210.141, adx-cn.anythinktech.com, js-ad.ayximgs.com, api.dangdang.com, pzoap.moedot.com, pipi.4kya.com, sdk.alibaba.com.ailbaba.me, tft-app.cdtft.cn, yunbusiness.ccb.com, t1.market.xiaomi.com, api.cloud.189.cn, open.e.kuaishou.com, mi.gdt.qq.com, adm.10jqka.com.cn, a.qiumibao.com, api.tipsoon.com, b.appsimg.com, ios.sspai.com, zconfig.alibabausercontent.com, api.touker.com, mpcs.suning.com, api.yangkeduo.com, easyreadfs.nosdn.127.net, sp.kaola.com, gw.kaola.com, learn.chaoxing.com, mapi.dangdang.com
