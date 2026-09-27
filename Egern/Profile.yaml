@@ -121,11 +121,7 @@ dns:
         match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Routing/China-Direct.yaml
         value: DNSPod
         update_interval: 86400
-    # 大名单体量大、Profile 只占一行（外观仍短）
-    - proxy_rule_set:
-        match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Loyalsoldier-直连大名单.txt
-        value: DNSPod
-        update_interval: 86400
+    # 不加 Loyalsoldier 直连大名单（~1.5MB）：与 main/3d 一致，靠 China-Direct + .cn + GEOIP
     - domain_suffix:
         match: cn
         value: DNSPod
@@ -514,11 +510,6 @@ rules:
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Routing/China-Direct.yaml
       policy: DIRECT
       update_interval: 86400
-  - rule_set:
-      name: 直连大名单
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/Loyalsoldier-直连大名单.txt
-      policy: DIRECT
-      update_interval: 86400
   - geoip:
       match: CN
       policy: DIRECT
@@ -592,10 +583,10 @@ widgets:
       SHOW_TREND: "true"
 
 # ------------------------------------------
-# 八、模块（日常三件：去广告·解锁·签到；可选两件默认关）
+# 八、模块（日常：去广告·解锁·签到；可选默认关）
 # 解锁已含：Sub-Store、Script Hub、BoxJs、天气/地图、AntiRevoke、屏蔽更新、插件跳转、TG外链、SkipProxy
-# 去广告已含开屏；YouTube 老书段在去广告，解锁里字幕翻译可并存
-# 18+ / 抓参 / iRingo定位·TV·News 按需开；分流已去重
+# 去广告=可莉线（含开屏）；奶思去广告另份默认关——勿与去广告合集同开（叠层易爆内存）
+# 18+ / 抓参 / iRingo定位·TV·News 按需开
 # ------------------------------------------
 modules:
   - name: 去广告合集
@@ -611,6 +602,10 @@ modules:
     update_interval: 86400
     enabled: true
 
+  - name: 奶思去广告（可选）
+    url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/naisi-ads.module
+    update_interval: 86400
+    enabled: false
   - name: 18+解锁合集
     url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/shibajia.module
     update_interval: 86400
