@@ -7,7 +7,7 @@
     zuozhe/<作者拼音>/{fenliu,mokuai,js}/   # 原作者照搬
     qiandao/  qita/  danxiang/
     heji/
-      quguanggao / quguanggao-diejia(对照) / naisi-ads / qukaiping /
+      quguanggao(可莉) / naisi-ads(奶思+叠层) / qukaiping(stub) /
       jiesuo / zhuacan / shibajia(18+) / fenliu/
 
 合集规则：
@@ -1244,7 +1244,7 @@ def mirror_laoshu(cache: dict[str, str]) -> None:
         "老书 jnlaoshu/MySelf Egern/Module（作者仓直拉）。\n"
         "风格：Rule + Map Local 为主，脚本多用 Maasea/墨鱼/app2smile；\n"
         "部分仍引用 kelee.one（构建时自托管，Surge UA 拉取）。\n"
-        "进 heji/quguanggao-diejia（叠层对照；日常 quguanggao 不含）。\n"
+        "进 heji/naisi-ads（奶思线/可选；日常 quguanggao 不含）。\n"
         "上游：https://github.com/jnlaoshu/MySelf/tree/main/Egern/Module\n",
         encoding="utf-8",
     )
@@ -1943,7 +1943,7 @@ def heji_quguanggao(cache: dict[str, str]) -> None:
     text = merge_section_bags(
         bags,
         name="去广告合集",
-        desc="可莉+墨鱼(含开屏/NBPro)；叠层对照见「去广告叠层」；奶思见 naisi-ads，勿同开",
+        desc="可莉+墨鱼(含开屏/NBPro)。与「奶思去广告」二选一换着测，勿同开",
         icon="https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Advertising.png",
         dedupe_exact=True,
         notes=[
@@ -1951,8 +1951,8 @@ def heji_quguanggao(cache: dict[str, str]) -> None:
             "# 置顶基础: 1)广告平台拦截器 2)可莉广告过滤器 —— 须最先生效",
             "# 然后: 可莉各 App「××去广告」+ 墨鱼 AdBlock/NBPro + StartUpAds/FakeiOSAds",
             "# 完全相同正文行只留一份（跨作者去重）",
-            "# 毒奶/老书/BMJ/怎么肥事 → heji/quguanggao-diejia.module（对照，Profile 默认关）",
-            "# 奶思 blockAds → heji/naisi-ads.module（默认关，勿与本合集同开）",
+            "# 毒奶/老书/BMJ/怎么肥事 已收进 heji/naisi-ads.module（与可莉线二选一换着测）",
+            "# 奶思+叠层 → heji/naisi-ads.module（默认关，勿与本合集同开）",
             "# 脚本 URL 全部指向本仓 Yuanban/zuozhe/*/js（不依赖上游在线）",
         ],
     )
@@ -1962,50 +1962,52 @@ def heji_quguanggao(cache: dict[str, str]) -> None:
 
 
 def heji_quguanggao_diejia(cache: dict[str, str]) -> None:
-    """去广告叠层对照：毒奶+老书+BMJ+怎么肥事。默认关，与日常合集对照测内存。"""
-    bags = _bags_ads_diejia(cache)
-    if not bags:
-        print("WARN quguanggao-diejia: no bags")
-        STATS["heji"]["quguanggao-diejia"] = 0
-        return
-    text = merge_section_bags(
-        bags,
-        name="去广告叠层（对照）",
-        desc="毒奶+老书+BMJ+怎么肥事。测内存用：日常去广告开着时再开本模块对照；确认后请关。勿与奶思同开",
-        icon="https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Reject.png",
-        dedupe_exact=True,
-        notes=[
-            "# 合集类型: 去广告叠层（对照/可选）",
-            "# 内容: 毒奶 Adblock4limbo + 老书 jnlaoshu + BMJ Advertising(+Script) + 怎么肥事净化",
-            "# 用法: 日常「去广告合集」保持开 → 再开本模块看是否更容易断连/Jetsam",
-            "# 完全相同正文行只留一份；原件仍在 zuozhe/*/mokuai",
-            "# 勿与 heji/naisi-ads.module 同开",
-        ],
+    """兼容旧 URL：叠层已收进 naisi-ads，这里只留跳转说明。"""
+    text = "\n".join(
+        [
+            "#!name=去广告叠层（已并入奶思）",
+            "#!desc=毒奶/老书/BMJ/怎么肥事已收进 heji/naisi-ads.module，请改订奶思去广告，与可莉线二选一",
+            f"# built_at={datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%MZ')}",
+            f"# branch={BRANCH}",
+            "# 合集类型: 去广告叠层（stub）",
+            "# 主源已迁入: Yuanban/heji/naisi-ads.module",
+            f"# 请改订: {RAW}/Yuanban/heji/naisi-ads.module",
+            "",
+            "[General]",
+            "",
+        ]
     )
     (HEJI / "quguanggao-diejia.module").write_text(text, encoding="utf-8")
-    STATS["heji"]["quguanggao-diejia"] = len(bags)
-    print(f"heji quguanggao-diejia bags={len(bags)} chars={len(text)}")
+    STATS["heji"]["quguanggao-diejia"] = 0
+    print("heji quguanggao-diejia stub (merged into naisi-ads)")
 
 
 def heji_naisi_ads(cache: dict[str, str]) -> None:
-    """奶思 blockAds 独立可选合集 — 与 quguanggao 二选一，勿同开。"""
+    """奶思 + 原叠层（毒奶/老书/BMJ/怎么肥事）— 与 quguanggao 二选一换着测。"""
     naisi = ZUOZHE / "naisi" / "mokuai" / "blockAds.module"
-    if not naisi.is_file():
+    bags: list[tuple[str, dict[str, list[str]]]] = []
+    if naisi.is_file():
+        raw = naisi.read_text(encoding="utf-8", errors="replace")
+        rewritten = rewrite_js_urls(raw, "naisi", cache)
+        bags.append(("奶思 · blockAds 整模块", parse_sections(rewritten)))
+    else:
         print("WARN missing naisi blockAds.module")
+    bags.extend(_bags_ads_diejia(cache))
+    if not bags:
         STATS["heji"]["naisi-ads"] = 0
         return
-    raw = naisi.read_text(encoding="utf-8", errors="replace")
-    rewritten = rewrite_js_urls(raw, "naisi", cache)
-    bags = [("奶思 · blockAds 整模块", parse_sections(rewritten))]
     text = merge_section_bags(
         bags,
         name="奶思去广告（可选）",
-        desc="fmz200/奶思 blockAds 整包。与「去广告合集」二选一，勿同时开启（叠层易爆内存）",
+        desc="奶思 blockAds + 毒奶/老书/BMJ/怎么肥事。与「去广告合集」二选一换着测，勿同开",
         icon="https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/AdblockPlus.png",
+        dedupe_exact=True,
         notes=[
-            "# 合集类型: 去广告可选（奶思）",
-            "# 日常请用 heji/quguanggao.module（可莉线）",
-            "# 脚本 URL 指向本仓 Yuanban/zuozhe/naisi/js",
+            "# 合集类型: 去广告可选（奶思线，含原叠层）",
+            "# 内容: fmz200 blockAds + 毒奶 + 老书 + BMJ Advertising(+Script) + 怎么肥事净化",
+            "# 与 heji/quguanggao.module（可莉+墨鱼）二选一；勿同时开启",
+            "# 完全相同正文行只留一份",
+            "# 脚本 URL 指向本仓 Yuanban/zuozhe/*/js",
         ],
     )
     (HEJI / "naisi-ads.module").write_text(text, encoding="utf-8")
@@ -2395,14 +2397,14 @@ def write_docs() -> None:
                 "    official/  local/  ibl3nd/",
                 "  danxiang/               # 单件备份",
                 "  heji/                   # 合集 + 分流清单",
-                "    quguanggao(瘦身) / quguanggao-diejia(叠层对照) / naisi-ads / jiesuo / shibajia / zhuacan / fenliu/",
+                "    quguanggao(可莉线) / naisi-ads(奶思+叠层可选) / jiesuo / shibajia / zhuacan / fenliu/",
                 "```",
                 "",
                 "## 原则",
                 "",
                 "- `zuozhe` / `danxiang` / `qiandao` / `qita`：**原作者照搬**，文件字节不改",
                 "- `heji`：只拼装 + Fan.a.tail 分段；**规则正文不改**；script URL 改指本仓",
-                "- 去广告日常：`quguanggao`（可莉+墨鱼开屏/NBPro，完全相同行去重）；叠层对照：`quguanggao-diejia`；奶思：`naisi-ads`（勿同开）",
+                "- 去广告二选一：`quguanggao`（可莉+墨鱼）↔ `naisi-ads`（奶思+毒奶/老书/BMJ/怎么肥事）；勿同开",
                 "- **18+ 单独 `shibajia`，不进日常 `jiesuo`**",
                 "- **签到 / 其他脚本 / IBL3ND 小组件不做合集**",
                 "",
@@ -2410,7 +2412,6 @@ def write_docs() -> None:
                 "",
                 "```",
                 f"{RAW}/Yuanban/heji/quguanggao.module",
-                f"{RAW}/Yuanban/heji/quguanggao-diejia.module",
                 f"{RAW}/Yuanban/heji/naisi-ads.module",
                 f"{RAW}/Yuanban/heji/jiesuo.module",
                 f"{RAW}/Yuanban/heji/shibajia.module",
@@ -2519,7 +2520,7 @@ def write_docs() -> None:
         "## 老书 jnlaoshu",
         "",
         "- `zuozhe/laoshu` ← https://github.com/jnlaoshu/MySelf/tree/main/Egern/Module",
-        "- Video/Music/YouTube 等进 `heji/quguanggao-diejia`（叠层对照）",
+        "- Video/Music/YouTube 等进 `heji/naisi-ads`（奶思线/可选）",
         "",
     ]
     if STATS["js_fail"]:
@@ -2631,7 +2632,7 @@ def main() -> None:
     mirror_url_module("dunai", DUNAI_SGMODULE, "Adblock4limbo.sgmodule", cache)
     (ZUOZHE / "dunai" / "mokuai" / "README.md").write_text(
         "毒奶 limbopro/Adblock4limbo — 网页广告用户脚本（Surge sgmodule 原样）。\n"
-        "进 heji/quguanggao-diejia（叠层对照）。上游：https://github.com/limbopro/Adblock4limbo\n",
+        "进 heji/naisi-ads（奶思线/可选）。上游：https://github.com/limbopro/Adblock4limbo\n",
         encoding="utf-8",
     )
 
@@ -2642,7 +2643,7 @@ def main() -> None:
     )
     (ZUOZHE / "blackmatrix7" / "mokuai" / "README.md").write_text(
         "blackmatrix7 Advertising + AdvertisingScript（Surge 原样）。\n"
-        "进 heji/quguanggao-diejia（叠层对照）。\n",
+        "进 heji/naisi-ads（奶思线/可选）。\n",
         encoding="utf-8",
     )
 

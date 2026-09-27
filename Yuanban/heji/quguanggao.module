@@ -1,15 +1,15 @@
 #!name=去广告合集
-#!desc=可莉+墨鱼(含开屏/NBPro)；叠层对照见「去广告叠层」；奶思见 naisi-ads，勿同开
+#!desc=可莉+墨鱼(含开屏/NBPro)。与「奶思去广告」二选一换着测，勿同开
 #!icon=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Advertising.png
-# built_at=2026-09-27T05:19Z
+# built_at=2026-09-27T05:45Z
 # branch=guize
 # 作者规则正文不改；仅 script-path 改指 Yuanban/zuozhe/*/js 自托管
 # 合集类型: 去广告日常（瘦身）
 # 置顶基础: 1)广告平台拦截器 2)可莉广告过滤器 —— 须最先生效
 # 然后: 可莉各 App「××去广告」+ 墨鱼 AdBlock/NBPro + StartUpAds/FakeiOSAds
 # 完全相同正文行只留一份（跨作者去重）
-# 毒奶/老书/BMJ/怎么肥事 → heji/quguanggao-diejia.module（对照，Profile 默认关）
-# 奶思 blockAds → heji/naisi-ads.module（默认关，勿与本合集同开）
+# 毒奶/老书/BMJ/怎么肥事 已收进 heji/naisi-ads.module（与可莉线二选一换着测）
+# 奶思+叠层 → heji/naisi-ads.module（默认关，勿与本合集同开）
 # 脚本 URL 全部指向本仓 Yuanban/zuozhe/*/js（不依赖上游在线）
 
 [General]
