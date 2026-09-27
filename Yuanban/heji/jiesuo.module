@@ -7,13 +7,14 @@
 # 合集类型: 解锁增强（日常/SFW）
 # 18+ 成人向请订阅 heji/shibajia.module
 # 分段注释标明每个作者/模块用途
-# 墨鱼: UnblockURLinWeChat(微信110) + ForOwnUse(专属VIP) + Function(TF/Emby/…)
+# 墨鱼: UnblockURLinWeChat(微信110) + ForOwnUse(专属VIP) + Function(Emby/Upos/CC；不含 TF MitM)
 # Spotify 用 Eevee（spotify-unlock），不含 Crack
 # Yu9191/WeiGiegie 已剥离 18+ 分段
 # 工具: Sub-Store + Script Hub + BoxJs + 插件跳转 + TG外链 + iRingo 天气/地图 + AntiRevoke + 屏蔽更新/P12
 # SkipProxy(mieqq): skip-proxy + always-real-ip + 农行 REJECT — 更新本合集资源即可
 # iRingo 定位/其他仍单件（qita/local），不进本合集
 # 已跳过可莉近重复: Google重定向 / 拦截HTTPDNS / Spotify歌词翻译（单件仍在 zuozhe）
+# 不含 MitM testflight：可莉自动加入TF / 墨鱼 ForceInstallTF·TFDownload（会令 TF App 打不开；单件仍在 zuozhe）
 
 [General]
 
@@ -2204,16 +2205,6 @@ Proto·YouTube Music翻译歌词响应 = type=http-response, pattern=^https?:\/\
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - 
-# 可莉 · 自动加入TestFlight
-# - - - - - - - - - - - - - - - - - - - - - - - - 
-获取账号令牌 = type=http-request, pattern=^https?:\/\/testflight\.apple\.com\/v3\/accounts\/.*\/apps$, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/TestFlight-TF_keys.js
-
-应用ID捕获 = type=http-request, pattern=^https://testflight.apple.com/join/(.*), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/TestFlight-TF_keys.js
-
-自动加入TF = type=cron, cronexp={TimingParameters}, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/TestFlight-Auto_join_TF.js, timeout=180
-
-
-# - - - - - - - - - - - - - - - - - - - - - - - - 
 # 墨鱼 · B站繁体 CC 转简体
 # - - - - - - - - - - - - - - - - - - - - - - - - 
 moyu-Bilibili_CC-1 = type=http-response,pattern=^https?:\/\/.*\.hdslb\.com\/bfs\/subtitle\/.+\.json,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/bilibili_cc.js,requires-body=true,timeout=60
@@ -2227,12 +2218,6 @@ moyu-EmbyPlugin-2 = type=http-response,pattern=\/[Uu]sers\/\w{32}\/[Ii]tems\/\d+
 moyu-EmbyPlugin-3 = type=http-response,pattern=\/plugin\/scheme,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/emby-plugin.js,requires-body=false,timeout=60
 moyu-EmbyPlugin-4 = type=http-request,pattern=(\/[Vv]ideos\/\d+\/stream\/.+\?.+&filename)|(\/[Vv]ideos\/\d+\/\w{32}\/[Ss]ubtitles\/\d+\/.+\?.+&filename),script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/emby-plugin.js,requires-body=false,timeout=60
 moyu-EmbyPlugin-5 = type=http-response,pattern=(\/[Vv]ideos\/\d+\/stream\?.+&filename)|(\/[Vv]ideos\/\d+\/\w{32}\/[Ss]ubtitles\/.+&filename),script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/download_file_rename.js,requires-body=false,timeout=60
-
-
-# - - - - - - - - - - - - - - - - - - - - - - - - 
-# 墨鱼 · Mac M 系列解除 iOS TF 下载限制
-# - - - - - - - - - - - - - - - - - - - - - - - - 
-moyu-ForceInstall-1 = type=http-response,pattern=^https:\/\/testflight\.apple\.com((\/v3\/accounts\/.+?\/apps$)|(\/v2\/accounts\/.+?\/apps\/.+?\/builds\/.+)),script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/ForceInstall.js,requires-body=true,timeout=60
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -2298,7 +2283,7 @@ spotifyProto = type=http-response, pattern=^https:\/\/(spclient\.wg\.spotify\.co
 
 
 [MITM]
-hostname = %APPEND% api.cloudflareclient.com, zero-trust-client.cloudflareclient.com, aliyun.example.com, quark.example.com, pikpak.example.com, www.google.cn, appconf.mail.163.com, msglb.91160.com, ucdc2-upaas.uc.cn, apple-api.com, xiaobai.app, api.spotify.com, spclient.wg.spotify.com, *.byteoversea.com, *.tik-tokapi.com, *.tiktokv.com, *.tiktokcdn.com, api.weibo.cn, www.youtube.com, m.youtube.com, tv.youtube.com, music.youtube.com, youtubei.googleapis.com, in.m.jd.com, apapia-sqk-weblogic.manmanbuy.com, weixin110.qq.com, security.wechat.com, duckduckgo.com, api.zsxq.com, testflight.apple.com, ipadcms.caixin.com, mb3admin.com, *.emby.wtf, *.plusmedia.site, upos-hz-mirrorakam.akamaized.net, aisubtitle.hdslb.com, i0.hdslb.com, mobile-stream.api.mgtv.com, *.miguvideo.com, *.migu.cn
+hostname = %APPEND% api.cloudflareclient.com, zero-trust-client.cloudflareclient.com, aliyun.example.com, quark.example.com, pikpak.example.com, www.google.cn, appconf.mail.163.com, msglb.91160.com, ucdc2-upaas.uc.cn, apple-api.com, xiaobai.app, api.spotify.com, spclient.wg.spotify.com, *.byteoversea.com, *.tik-tokapi.com, *.tiktokv.com, *.tiktokcdn.com, api.weibo.cn, www.youtube.com, m.youtube.com, tv.youtube.com, music.youtube.com, youtubei.googleapis.com, in.m.jd.com, apapia-sqk-weblogic.manmanbuy.com, weixin110.qq.com, security.wechat.com, duckduckgo.com, api.zsxq.com, ipadcms.caixin.com, mb3admin.com, *.emby.wtf, *.plusmedia.site, upos-hz-mirrorakam.akamaized.net, aisubtitle.hdslb.com, i0.hdslb.com, mobile-stream.api.mgtv.com, *.miguvideo.com, *.migu.cn
 hostname = %APPEND% apps.tltgame.com, 47.251.39.178, buy.itunes.apple.com, lcs-mobile-cops.adobe.io, mobile-api.adguard.org, api-chn.rthdo.com, ap?.bilibili.com, ap?.biliapi.net, boxjs.net, boxjs.com, sub.store, mp.weixin.qq.com, m.baidu.com, www.baidu.com, api.alar.my, api.everyday.app, ifttt.com, firstclass.tripsy.app, *-api.notedapp.io, qdq.9sm.net, rc.visionarytech.ltd, bzpp3.iwzbz.com, calendarsrv.iwzwh.com, *.cloudfunctions.net, *.appsflyersdk.com, *.linearity.io, nicegram.cloud, restore-access.indream.app, api.mbrx.app, moyin-gateway.moyin.com, subscription-api.lyrebirdstudio.net, service.perfect365.com, yimuapp.com, appv2.filmix.com.cn, ouyangxunshufa.azurewebsites.net, api-*.facereplacerext.com, www.xiaomaigongkao.comtcb-api.tencentcloudapi.com, film-api.startupfun.vip, meitu.minecaller.com, www.huojiwangluo.cn
 hostname = %APPEND% *.airdroid.cn, 1jietu.com, app.yidiansz.com, www.dbbqb.com, api-v2.xdclass.net, mobile-new.chinaeew.cn, yimutodo.com, api.ivrfun.com, viart-api.afunapp.com, api-qsy.iiitool.com, api.trancy.org, lepai-api.faceqianyan.com, liujia95.xyz, apps-api.lianaishouce.cn, apps-api.lingege.cn, *.lingvist.com, zwpp.wzbz123.com, iosdzhtyqy.sanwubeixin.cn, otter-api.codefuture.top, api.weilaizhushou.com, *.vlognow.me, www.zhouyilive.com, *.kuaidi100.com, www.yunshangxiezuo.com, lentoapp.com, api.craft.do, apiv2.somuseai.com, api-wood.kaying.cc, masterwaynote.com, prod.dengziwl.com, *.hunliji.com, *.grammarly.com, *.jiemengjia.com, luyintu.cushuikeji.cn, api.changecollective.com, *.whalean.com, www.kaolahome.com, cat-revenuecat-qscqkotbrh.cn-hongkong.fcapp.run, bd-api.kuwo.cn, iosapi.yueshuian.com
 hostname = %APPEND% question.tiku.cqxcj.top, base.cmoe.top, yyapi.yayingtk.com, learn.cqrry.com, api.sryx.net, api.meigit.com, question.api.anjiazui.com, app.bftk.com.cn, question.civil.shaoeyy.com, gzfanyin.com, translator.felo.me, baimiao.uzero.cn, my.getslopes.com, *.ihuaben.com, w.5hzs.com, *-slidebox-ios-prod.cloudfunctions.net, www.luqijianggushi.com, cdn-bm.camera360.com, api.intelimeditor.com, open3.vistastory.com, www.xfx119.com, water*.yunxiaoguo.cn, *.cloudfront.net, ftmailbox.cn, standard.rhinox*.com, appss.rhinox*.com, appss.linhongshi.com, purchase-*-api.*.com, user-kaji-api.b612kaji.com, api.*lianqin*.*, kkr-user.tapque.com, subscription-api.notedapp.io, *.execute-api.ap-northeast-2.amazonaws.com, creaceed.com, *api.quthing.com, backend.getdrafts.com, api.love.823123.com, jz.jarstones.com, koan.bopulab.cn, calc.kuaicad.com

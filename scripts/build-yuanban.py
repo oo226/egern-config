@@ -136,14 +136,18 @@ BMJ_FENLIU = (
     "GlobalMedia", "AdvertisingLite", "Cloudflare", "GitHub",
 )
 
-# 墨鱼 Function（进 jiesuo）：微信110 / TF / Emby 等
+# 墨鱼 Function（进 jiesuo）：微信110 / Emby 等
+# ForceInstallTF / TFDownload MitM testflight.apple.com 会令 TF App 打不开（handshake EOF），
+# 原件仍在 zuozhe/moyu/mokuai，需要时单独订。
 MOYU_FUNCTION_CONFS = (
     ("UnblockURLinWeChat.conf", "微信110外链解锁"),
-    ("ForceInstallTF.conf", "Mac M 系列解除 iOS TF 下载限制"),
-    ("TFDownload.conf", "国区 TF 下载补丁"),
     ("EmbyPlugin.conf", "Emby 外置播放器"),
     ("UposRedirect.conf", "B站 Upos 重定向"),
     ("Bilibili_CC.conf", "B站繁体 CC 转简体"),
+)
+MOYU_TF_OPTIONAL_CONFS = (
+    ("ForceInstallTF.conf", "Mac M 系列解除 iOS TF 下载限制"),
+    ("TFDownload.conf", "国区 TF 下载补丁"),
 )
 
 # 墨鱼通用去广告 + 开屏 StartUpAds/FakeiOSAds 一并进 quguanggao（Profile 只挂一份）
@@ -217,6 +221,10 @@ KELI_UNLOCK_DEDUP_SKIP = frozenset({
     "Google重定向.sgmodule",          # 留 Google搜索重定向
     "拦截HTTPDNS.sgmodule",           # 留 HTTPDNS拦截器（更新）
     "Spotify歌词翻译.sgmodule",       # 留 Spotify歌词增强（正文几乎相同）
+})
+# MitM testflight.apple.com → TF 打不开；需要蹲名额时单独订 zuozhe/keli/mokuai/自动加入TF
+KELI_UNLOCK_SKIP = frozenset({
+    "自动加入TF.sgmodule",
 })
 SIGNIN_KW = ("签到", "每日签到", "抢券")
 # Official 里跟签到文件夹放一起的非「签到」字样模块
@@ -1997,7 +2005,7 @@ def classify_keli_unlock(name: str) -> bool:
         return False
     if is_signin_name(name):
         return False
-    if name in KELI_UNLOCK_DEDUP_SKIP:
+    if name in KELI_UNLOCK_DEDUP_SKIP or name in KELI_UNLOCK_SKIP:
         return False
     return any(k.lower() in name.lower() for k in UNLOCK_NAME_KW)
 
@@ -2087,13 +2095,14 @@ def heji_jiesuo(cache: dict[str, str]) -> None:
             "# 合集类型: 解锁增强（日常/SFW）",
             "# 18+ 成人向请订阅 heji/shibajia.module",
             "# 分段注释标明每个作者/模块用途",
-            "# 墨鱼: UnblockURLinWeChat(微信110) + ForOwnUse(专属VIP) + Function(TF/Emby/…)",
+            "# 墨鱼: UnblockURLinWeChat(微信110) + ForOwnUse(专属VIP) + Function(Emby/Upos/CC；不含 TF MitM)",
             "# Spotify 用 Eevee（spotify-unlock），不含 Crack",
             "# Yu9191/WeiGiegie 已剥离 18+ 分段",
             "# 工具: Sub-Store + Script Hub + BoxJs + 插件跳转 + TG外链 + iRingo 天气/地图 + AntiRevoke + 屏蔽更新/P12",
             "# SkipProxy(mieqq): skip-proxy + always-real-ip + 农行 REJECT — 更新本合集资源即可",
             "# iRingo 定位/其他仍单件（qita/local），不进本合集",
             "# 已跳过可莉近重复: Google重定向 / 拦截HTTPDNS / Spotify歌词翻译（单件仍在 zuozhe）",
+            "# 不含 MitM testflight：可莉自动加入TF / 墨鱼 ForceInstallTF·TFDownload（会令 TF App 打不开；单件仍在 zuozhe）",
         ],
     )
     (HEJI / "jiesuo.module").write_text(text, encoding="utf-8")
@@ -2442,7 +2451,7 @@ def write_docs() -> None:
         "",
         "- 微信110：`UnblockURLinWeChat.conf` + `weixin110.js`",
         "- 专属VIP：`ForOwnUse.conf`（ddgksf2013/dev）",
-        "- Function：TF / Emby / Upos / Bilibili_CC",
+        "- Function：Emby / Upos / Bilibili_CC（ForceInstallTF / TFDownload 不进合集，MitM 会卡 TF）"
         "",
         "## 小组件",
         "",
@@ -2577,7 +2586,7 @@ def main() -> None:
     (paths["mokuai"] / "README.md").write_text(
         "墨鱼 ddgksf2013：\n"
         "- AdBlock/*.conf + NBProAds + NBPro-egern + 开屏 StartUpAds/FakeiOSAds → heji/quguanggao\n"
-        "- Function（微信110 / TF / Emby…）+ ForOwnUse（专属VIP）→ heji/jiesuo\n",
+        "- Function（微信110 / Emby…；不含 TF MitM）+ ForOwnUse（专属VIP）→ heji/jiesuo\n",
         encoding="utf-8",
     )
 
