@@ -1,7 +1,7 @@
 # AUTO-EXPORTED from Routing/China-Direct.yaml
 # Format: Surge RULE-SET (no policy). scripts/export-surge-rulesets.py
 # Domain lines include extended-matching (SNI hit under always-real-ip / VIF).
-# Total entries: 31753
+# Total entries: 31751
 
 DOMAIN,0gr4uqmtt8y41hcjsgrzdrc31.ourdvsss.com,extended-matching
 DOMAIN,0gr4uqmtt8y41hcjsgrzdrc3s.ourdvsss.com,extended-matching
@@ -134,8 +134,7 @@ DOMAIN,www.123865.com,extended-matching
 DOMAIN,www.123912.com,extended-matching
 DOMAIN,www.libvideo.com,extended-matching
 DOMAIN,www.miqk.cc,extended-matching
-DOMAIN,www.muou.asia,extended-matching
-DOMAIN,www.muou.site,extended-matching
+DOMAIN,www.muoua.top,extended-matching
 DOMAIN,www.yxssp.com,extended-matching
 DOMAIN,wx.tenpay.com,extended-matching
 DOMAIN,wxapp.tc.qq.com,extended-matching
@@ -530,6 +529,7 @@ DOMAIN-SUFFIX,32us.com,extended-matching
 DOMAIN-SUFFIX,3304399.com,extended-matching
 DOMAIN-SUFFIX,3304399.net,extended-matching
 DOMAIN-SUFFIX,3322.org,extended-matching
+DOMAIN-SUFFIX,333291.xyz,extended-matching
 DOMAIN-SUFFIX,335xs.xyz,extended-matching
 DOMAIN-SUFFIX,3360.cn,extended-matching
 DOMAIN-SUFFIX,3387.com,extended-matching
@@ -18237,6 +18237,7 @@ IP-CIDR,123.49.232.0/22
 IP-CIDR,123.49.236.0/24
 IP-CIDR,123.49.240.0/24
 IP-CIDR,123.49.242.0/23
+IP-CIDR,123.49.245.0/24
 IP-CIDR,123.49.248.0/21
 IP-CIDR,123.50.160.0/19
 IP-CIDR,123.52.0.0/14
@@ -18934,6 +18935,7 @@ IP-CIDR,163.228.0.0/16
 IP-CIDR,163.244.246.0/24
 IP-CIDR,163.47.4.0/22
 IP-CIDR,163.52.108.0/23
+IP-CIDR,163.52.246.0/23
 IP-CIDR,163.52.28.0/23
 IP-CIDR,163.52.76.0/23
 IP-CIDR,163.53.0.0/20
@@ -24398,7 +24400,6 @@ IP-CIDR6,2403:6380:200::/39
 IP-CIDR6,2403:6380:4000::/34
 IP-CIDR6,2403:6380:400::/38
 IP-CIDR6,2403:6380:41::/48
-IP-CIDR6,2403:6380:43::/48
 IP-CIDR6,2403:6380:44::/46
 IP-CIDR6,2403:6380:48::/45
 IP-CIDR6,2403:6380:50::/44
@@ -24901,7 +24902,6 @@ IP-CIDR6,2405:84c0:7000::/36
 IP-CIDR6,2405:84c0:8000::/48
 IP-CIDR6,2405:84c0:8002::/48
 IP-CIDR6,2405:84c0:8006::/48
-IP-CIDR6,2405:84c0:8008::/45
 IP-CIDR6,2405:84c0:800a::/47
 IP-CIDR6,2405:84c0:800c::/46
 IP-CIDR6,2405:84c0:8010::/48
@@ -25208,7 +25208,6 @@ IP-CIDR6,2406:840:1801::/48
 IP-CIDR6,2406:840:1802::/47
 IP-CIDR6,2406:840:1804::/46
 IP-CIDR6,2406:840:1808::/45
-IP-CIDR6,2406:840:180::/41
 IP-CIDR6,2406:840:1810::/44
 IP-CIDR6,2406:840:181::/48
 IP-CIDR6,2406:840:1820::/43
@@ -25918,7 +25917,6 @@ IP-CIDR6,2406:840:fee0::/45
 IP-CIDR6,2406:840:fee8::/46
 IP-CIDR6,2406:840:feec::/48
 IP-CIDR6,2406:840:feee::/47
-IP-CIDR6,2406:840:fef1::/48
 IP-CIDR6,2406:840:ff00::/40
 IP-CIDR6,2406:8480::/32
 IP-CIDR6,2406:8500::/32

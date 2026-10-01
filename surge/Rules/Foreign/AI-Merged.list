@@ -1,7 +1,7 @@
 # AUTO-EXPORTED from Routing/Foreign/AI-Merged.yaml
 # Format: Surge RULE-SET (no policy). scripts/export-surge-rulesets.py
 # Domain lines include extended-matching (SNI hit under always-real-ip / VIF).
-# Total entries: 430
+# Total entries: 435
 
 DOMAIN,accountcapabilities-pa.googleapis.com,extended-matching
 DOMAIN,ai.developer.meta.com,extended-matching
@@ -75,6 +75,8 @@ DOMAIN,files.oaiusercontent.com,extended-matching
 DOMAIN,gateway.ai.cloudflare.com,extended-matching
 DOMAIN,gateway.bingviz.microsoft.net,extended-matching
 DOMAIN,gateway.bingviz.microsoftapp.net,extended-matching
+DOMAIN,geminiweb-pa.clients.google.com,extended-matching
+DOMAIN,geminiweb-pa.clients6.google.com,extended-matching
 DOMAIN,growth-pa.googleapis.com,extended-matching
 DOMAIN,hunyuan.tencentcloudapi.com,extended-matching
 DOMAIN,idetoolkits-hostedfiles.amazonaws.com,extended-matching
@@ -280,6 +282,7 @@ DOMAIN-SUFFIX,kimi.moonshot.cn,extended-matching
 DOMAIN-SUFFIX,kiro.dev,extended-matching
 DOMAIN-SUFFIX,labs.google,extended-matching
 DOMAIN-SUFFIX,labs.google.com,extended-matching
+DOMAIN-SUFFIX,labstailwind.pa.googleapis.com,extended-matching
 DOMAIN-SUFFIX,langchain.com,extended-matching
 DOMAIN-SUFFIX,launchdarkly.com,extended-matching
 DOMAIN-SUFFIX,lcicat.org,extended-matching
@@ -305,6 +308,7 @@ DOMAIN-SUFFIX,mchost.guru,extended-matching
 DOMAIN-SUFFIX,mcprev.cn,extended-matching
 DOMAIN-SUFFIX,mcpservertest.online,extended-matching
 DOMAIN-SUFFIX,meta.ai,extended-matching
+DOMAIN-SUFFIX,metaaivm.com,extended-matching
 DOMAIN-SUFFIX,miaibox.com,extended-matching
 DOMAIN-SUFFIX,midjourney.com,extended-matching
 DOMAIN-SUFFIX,minimax.io,extended-matching
@@ -317,6 +321,7 @@ DOMAIN-SUFFIX,modelscope.cn,extended-matching
 DOMAIN-SUFFIX,modelscope.com,extended-matching
 DOMAIN-SUFFIX,moonshot.ai,extended-matching
 DOMAIN-SUFFIX,moonshot.cn,extended-matching
+DOMAIN-SUFFIX,muse.ai,extended-matching
 DOMAIN-SUFFIX,muthos.com,extended-matching
 DOMAIN-SUFFIX,notebook.google,extended-matching
 DOMAIN-SUFFIX,notebook.google.com,extended-matching
