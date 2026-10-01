@@ -1,6 +1,6 @@
 # AUTO-EXPORTED from Routing/Foreign/AI-Merged.yaml
 # Format: Surge DOMAIN-SET (leading '.' = suffix). scripts/export-surge-rulesets.py
-# Total entries: 424
+# Total entries: 429
 
 accountcapabilities-pa.googleapis.com
 ai.developer.meta.com
@@ -74,6 +74,8 @@ files.oaiusercontent.com
 gateway.ai.cloudflare.com
 gateway.bingviz.microsoft.net
 gateway.bingviz.microsoftapp.net
+geminiweb-pa.clients.google.com
+geminiweb-pa.clients6.google.com
 growth-pa.googleapis.com
 hunyuan.tencentcloudapi.com
 idetoolkits-hostedfiles.amazonaws.com
@@ -279,6 +281,7 @@ yiyan.baidu.com
 .kiro.dev
 .labs.google
 .labs.google.com
+.labstailwind.pa.googleapis.com
 .langchain.com
 .launchdarkly.com
 .lcicat.org
@@ -304,6 +307,7 @@ yiyan.baidu.com
 .mcprev.cn
 .mcpservertest.online
 .meta.ai
+.metaaivm.com
 .miaibox.com
 .midjourney.com
 .minimax.io
@@ -316,6 +320,7 @@ yiyan.baidu.com
 .modelscope.com
 .moonshot.ai
 .moonshot.cn
+.muse.ai
 .muthos.com
 .notebook.google
 .notebook.google.com
