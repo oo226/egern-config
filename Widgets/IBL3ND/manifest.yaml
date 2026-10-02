@@ -158,3 +158,11 @@ widgets:
   upstream: https://raw.githubusercontent.com/IBL3ND/module/main/xiaohongshu.js
   local_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/xiaohongshu.js
   file: Widgets/IBL3ND/xiaohongshu.js
+- name: youtube-request.js
+  upstream: https://raw.githubusercontent.com/IBL3ND/module/main/youtube-request.js
+  local_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/youtube-request.js
+  file: Widgets/IBL3ND/youtube-request.js
+- name: youtube-response.js
+  upstream: https://raw.githubusercontent.com/IBL3ND/module/main/youtube-response.js
+  local_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/youtube-response.js
+  file: Widgets/IBL3ND/youtube-response.js

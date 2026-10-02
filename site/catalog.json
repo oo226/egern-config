@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-01T09:40:19Z",
+  "generated_at": "2026-10-02T09:11:15Z",
   "branch": "main",
   "repo": "oo226/egern-config",
   "raw_base": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main",
@@ -17,7 +17,7 @@
       "name": "按需开启",
       "icon": "🔧",
       "usage_tier": "optional",
-      "count": 166
+      "count": 168
     }
   ],
   "quick_start": [
@@ -178,16 +178,26 @@
   ],
   "sync_digest": {
     "commit": {
-      "hash": "f2ab68c",
+      "hash": "5e60157",
       "subject": "chore: sync upstream on sync branch",
-      "date": "2026-09-29"
+      "date": "2026-10-01"
     },
     "summary": [
-      "国内直连 31751 条"
+      "国内直连 31779 条"
     ],
     "files_changed": 0
   },
   "changelog": [
+    {
+      "hash": "25ab18b",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-10-01"
+    },
+    {
+      "hash": "f3e3738",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-10-01"
+    },
     {
       "hash": "4bae860",
       "subject": "chore: publish curated snapshot from sync",
@@ -217,20 +227,10 @@
       "hash": "2923e9f",
       "subject": "chore: publish curated snapshot from sync",
       "date": "2026-09-27"
-    },
-    {
-      "hash": "d10bbf3",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-09-26"
-    },
-    {
-      "hash": "f7675fc",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-09-26"
     }
   ],
   "local_health": {
-    "checked": 126,
+    "checked": 128,
     "fail": 0,
     "broken_ids": []
   },
@@ -277,7 +277,7 @@
       "id": "widgets",
       "name": "小组件",
       "icon": "📱",
-      "count": 39
+      "count": 41
     }
   ],
   "items": [
@@ -4850,7 +4850,49 @@
       ],
       "share_url": "https://oo226.github.io/egern-config/#id=widget-xiaohongshu",
       "health": "ok"
+    },
+    {
+      "id": "widget-youtube-request",
+      "kind": "widget",
+      "category": "widgets",
+      "group": "IBL3ND",
+      "name": "youtube-request",
+      "desc": "小组件脚本 — 仅写入 Egern widgets 段，勿加 scriptings。",
+      "icon": "",
+      "path": "Widgets/IBL3ND/youtube-request.js",
+      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/youtube-request.js",
+      "add_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/youtube-request.js",
+      "usage_tier": "optional",
+      "hint": "Oil 等常用：写入 Egern.yaml → widgets，不要写进 scriptings",
+      "tags": [
+        "小组件",
+        "Widget",
+        "按需开启"
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=widget-youtube-request",
+      "health": "ok"
+    },
+    {
+      "id": "widget-youtube-response",
+      "kind": "widget",
+      "category": "widgets",
+      "group": "IBL3ND",
+      "name": "youtube-response",
+      "desc": "小组件脚本 — 仅写入 Egern widgets 段，勿加 scriptings。",
+      "icon": "",
+      "path": "Widgets/IBL3ND/youtube-response.js",
+      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/youtube-response.js",
+      "add_url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Widgets/IBL3ND/youtube-response.js",
+      "usage_tier": "optional",
+      "hint": "Oil 等常用：写入 Egern.yaml → widgets，不要写进 scriptings",
+      "tags": [
+        "小组件",
+        "Widget",
+        "按需开启"
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=widget-youtube-response",
+      "health": "ok"
     }
   ],
-  "total": 232
+  "total": 234
 }
