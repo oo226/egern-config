@@ -7,7 +7,7 @@
 #   WeChat         — Repcz/Tool — 微信 (341 entries)
 #   Bilibili       — Repcz/Tool — 哔哩哔哩 (20 entries)
 #   AppleCN        — Repcz/Tool — 苹果中国 (167 entries)
-#   ChinaDomain    — Repcz/Tool — 国内域名 (13212 entries)
+#   ChinaDomain    — Repcz/Tool — 国内域名 (13223 entries)
 #   ChinaIP        — Repcz/Tool — 国内 IP (7346 entries)
 #   ChinaASN       — Repcz/Tool — 国内 ASN (5076 entries)
 #   Rabbit-China   — Rabbit-Spec — China.list (3763 entries)
@@ -15,7 +15,7 @@
 #   ResourceSite   — eulac-dev/Proxy — 视频资源站 (22 entries)
 #   PanVod         — eulac-dev/Proxy — 网盘点播 (47 entries)
 # Overlap removed: 7920
-# Total unique entries: 31779
+# Total unique entries: 31790
 
 no_resolve: true
 domain_set:
@@ -1640,6 +1640,8 @@ domain_suffix_set:
   - allinbots.com
   - alllget.com
   - alloyteam.com
+  - alltuu.cn
+  - alltuu.com
   - allyes.com
   - alphassl.com
   - alyms.cn
@@ -5420,6 +5422,7 @@ domain_suffix_set:
   - guigu.org
   - guijj.com
   - guishuji.com
+  - guituu.com
   - guodu.com
   - guoguo-app.com
   - guokr.com
@@ -8757,6 +8760,8 @@ domain_suffix_set:
   - pipaw.net
   - pipix.com
   - pitayaio.com
+  - piufoto.com
+  - piuphoto.com
   - pixocial.com
   - pkoplink.com
   - pkulaw.com
@@ -9875,6 +9880,7 @@ domain_suffix_set:
   - shoujikong.cn
   - shouyou.com
   - shouyoubus.com
+  - showmephoto.com
   - showshell.com
   - shrbank.com
   - shssp.org
@@ -9989,6 +9995,7 @@ domain_suffix_set:
   - sinauda.com
   - sinaurl.cn
   - sinesafe.com
+  - singaphoto.com
   - singapore01.kuaipandata.com
   - sinocache.cn
   - sinocache.com.cn
@@ -11594,6 +11601,7 @@ domain_suffix_set:
   - tuniu.com
   - tuniucdn.com
   - tuolajieightscore.com
+  - tupianzhibo.com
   - tushumi.com
   - tushuu.com
   - tutuapp.com
@@ -12098,6 +12106,8 @@ domain_suffix_set:
   - vosvmamt.com
   - voxlearning.com
   - vpgame.com
+  - vphant.cn
+  - vphant.com
   - vplay8.com
   - vplayer.net
   - vqskrzmq.com
@@ -13054,6 +13064,7 @@ domain_suffix_set:
   - xwuorvhz.com
   - xx-sapce.com
   - xx31xs.org
+  - xxalbum.com
   - xxbiquge.com
   - xxsy.com
   - xxsy.net
@@ -18599,6 +18610,7 @@ ip_cidr_set:
   - 14.196.0.0/15
   - 14.204.0.0/15
   - 14.208.0.0/12
+  - 14.241.232.0/21
   - 14.255.16.0/24
   - 14.255.238.0/24
   - 14.255.254.0/24
@@ -18785,7 +18797,6 @@ ip_cidr_set:
   - 156.107.170.0/24
   - 156.107.179.0/24
   - 156.107.181.0/24
-  - 156.227.239.0/24
   - 156.232.10.0/23
   - 156.232.9.0/24
   - 157.0.0.0/16
