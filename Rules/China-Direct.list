@@ -1,7 +1,7 @@
 # AUTO-EXPORTED from Routing/China-Direct.yaml
 # Format: Surge RULE-SET (no policy). scripts/export-surge-rulesets.py
 # Domain lines include extended-matching (SNI hit under always-real-ip / VIF).
-# Total entries: 31779
+# Total entries: 31790
 
 DOMAIN,0gr4uqmtt8y41hcjsgrzdrc31.ourdvsss.com,extended-matching
 DOMAIN,0gr4uqmtt8y41hcjsgrzdrc3s.ourdvsss.com,extended-matching
@@ -1623,6 +1623,8 @@ DOMAIN-SUFFIX,allcp.net,extended-matching
 DOMAIN-SUFFIX,allinbots.com,extended-matching
 DOMAIN-SUFFIX,alllget.com,extended-matching
 DOMAIN-SUFFIX,alloyteam.com,extended-matching
+DOMAIN-SUFFIX,alltuu.cn,extended-matching
+DOMAIN-SUFFIX,alltuu.com,extended-matching
 DOMAIN-SUFFIX,allyes.com,extended-matching
 DOMAIN-SUFFIX,alphassl.com,extended-matching
 DOMAIN-SUFFIX,alyms.cn,extended-matching
@@ -5403,6 +5405,7 @@ DOMAIN-SUFFIX,guidada.com,extended-matching
 DOMAIN-SUFFIX,guigu.org,extended-matching
 DOMAIN-SUFFIX,guijj.com,extended-matching
 DOMAIN-SUFFIX,guishuji.com,extended-matching
+DOMAIN-SUFFIX,guituu.com,extended-matching
 DOMAIN-SUFFIX,guodu.com,extended-matching
 DOMAIN-SUFFIX,guoguo-app.com,extended-matching
 DOMAIN-SUFFIX,guokr.com,extended-matching
@@ -8740,6 +8743,8 @@ DOMAIN-SUFFIX,pipaw.com,extended-matching
 DOMAIN-SUFFIX,pipaw.net,extended-matching
 DOMAIN-SUFFIX,pipix.com,extended-matching
 DOMAIN-SUFFIX,pitayaio.com,extended-matching
+DOMAIN-SUFFIX,piufoto.com,extended-matching
+DOMAIN-SUFFIX,piuphoto.com,extended-matching
 DOMAIN-SUFFIX,pixocial.com,extended-matching
 DOMAIN-SUFFIX,pkoplink.com,extended-matching
 DOMAIN-SUFFIX,pkulaw.com,extended-matching
@@ -9858,6 +9863,7 @@ DOMAIN-SUFFIX,shoujikanshu.cc,extended-matching
 DOMAIN-SUFFIX,shoujikong.cn,extended-matching
 DOMAIN-SUFFIX,shouyou.com,extended-matching
 DOMAIN-SUFFIX,shouyoubus.com,extended-matching
+DOMAIN-SUFFIX,showmephoto.com,extended-matching
 DOMAIN-SUFFIX,showshell.com,extended-matching
 DOMAIN-SUFFIX,shrbank.com,extended-matching
 DOMAIN-SUFFIX,shssp.org,extended-matching
@@ -9972,6 +9978,7 @@ DOMAIN-SUFFIX,sinasws.com,extended-matching
 DOMAIN-SUFFIX,sinauda.com,extended-matching
 DOMAIN-SUFFIX,sinaurl.cn,extended-matching
 DOMAIN-SUFFIX,sinesafe.com,extended-matching
+DOMAIN-SUFFIX,singaphoto.com,extended-matching
 DOMAIN-SUFFIX,singapore01.kuaipandata.com,extended-matching
 DOMAIN-SUFFIX,sinocache.cn,extended-matching
 DOMAIN-SUFFIX,sinocache.com.cn,extended-matching
@@ -11577,6 +11584,7 @@ DOMAIN-SUFFIX,tujia.com,extended-matching
 DOMAIN-SUFFIX,tuniu.com,extended-matching
 DOMAIN-SUFFIX,tuniucdn.com,extended-matching
 DOMAIN-SUFFIX,tuolajieightscore.com,extended-matching
+DOMAIN-SUFFIX,tupianzhibo.com,extended-matching
 DOMAIN-SUFFIX,tushumi.com,extended-matching
 DOMAIN-SUFFIX,tushuu.com,extended-matching
 DOMAIN-SUFFIX,tutuapp.com,extended-matching
@@ -12081,6 +12089,8 @@ DOMAIN-SUFFIX,voovnow.com,extended-matching
 DOMAIN-SUFFIX,vosvmamt.com,extended-matching
 DOMAIN-SUFFIX,voxlearning.com,extended-matching
 DOMAIN-SUFFIX,vpgame.com,extended-matching
+DOMAIN-SUFFIX,vphant.cn,extended-matching
+DOMAIN-SUFFIX,vphant.com,extended-matching
 DOMAIN-SUFFIX,vplay8.com,extended-matching
 DOMAIN-SUFFIX,vplayer.net,extended-matching
 DOMAIN-SUFFIX,vqskrzmq.com,extended-matching
@@ -13037,6 +13047,7 @@ DOMAIN-SUFFIX,xworld.net.cn,extended-matching
 DOMAIN-SUFFIX,xwuorvhz.com,extended-matching
 DOMAIN-SUFFIX,xx-sapce.com,extended-matching
 DOMAIN-SUFFIX,xx31xs.org,extended-matching
+DOMAIN-SUFFIX,xxalbum.com,extended-matching
 DOMAIN-SUFFIX,xxbiquge.com,extended-matching
 DOMAIN-SUFFIX,xxsy.com,extended-matching
 DOMAIN-SUFFIX,xxsy.net,extended-matching
@@ -18580,6 +18591,7 @@ IP-CIDR,14.192.76.0/22
 IP-CIDR,14.196.0.0/15
 IP-CIDR,14.204.0.0/15
 IP-CIDR,14.208.0.0/12
+IP-CIDR,14.241.232.0/21
 IP-CIDR,14.255.16.0/24
 IP-CIDR,14.255.238.0/24
 IP-CIDR,14.255.254.0/24
@@ -18766,7 +18778,6 @@ IP-CIDR,156.107.160.0/23
 IP-CIDR,156.107.170.0/24
 IP-CIDR,156.107.179.0/24
 IP-CIDR,156.107.181.0/24
-IP-CIDR,156.227.239.0/24
 IP-CIDR,156.232.10.0/23
 IP-CIDR,156.232.9.0/24
 IP-CIDR,157.0.0.0/16
