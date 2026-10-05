@@ -1,7 +1,7 @@
 # AUTO-EXPORTED from Routing/Foreign/AI.yaml
 # Format: Surge RULE-SET (no policy). scripts/export-surge-rulesets.py
 # Domain lines include extended-matching (SNI hit under always-real-ip / VIF).
-# Total entries: 51
+# Total entries: 52
 
 DOMAIN,ai.google.dev,extended-matching
 DOMAIN,aida.googleapis.com,extended-matching
@@ -24,6 +24,7 @@ DOMAIN-SUFFIX,bard.google.com,extended-matching
 DOMAIN-SUFFIX,chat.com,extended-matching
 DOMAIN-SUFFIX,chatgpt.com,extended-matching
 DOMAIN-SUFFIX,chatgpt.site,extended-matching
+DOMAIN-SUFFIX,clau.de,extended-matching
 DOMAIN-SUFFIX,claude.ai,extended-matching
 DOMAIN-SUFFIX,claude.com,extended-matching
 DOMAIN-SUFFIX,clipdrop.co,extended-matching
