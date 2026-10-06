@@ -7,7 +7,7 @@
 #   WeChat         — Repcz/Tool — 微信 (341 entries)
 #   Bilibili       — Repcz/Tool — 哔哩哔哩 (20 entries)
 #   AppleCN        — Repcz/Tool — 苹果中国 (167 entries)
-#   ChinaDomain    — Repcz/Tool — 国内域名 (13223 entries)
+#   ChinaDomain    — Repcz/Tool — 国内域名 (13222 entries)
 #   ChinaIP        — Repcz/Tool — 国内 IP (7351 entries)
 #   ChinaASN       — Repcz/Tool — 国内 ASN (5076 entries)
 #   Rabbit-China   — Rabbit-Spec — China.list (3763 entries)
@@ -15,7 +15,7 @@
 #   ResourceSite   — eulac-dev/Proxy — 视频资源站 (22 entries)
 #   PanVod         — eulac-dev/Proxy — 网盘点播 (47 entries)
 # Overlap removed: 7919
-# Total unique entries: 31796
+# Total unique entries: 31795
 
 no_resolve: true
 domain_set:
@@ -18452,7 +18452,6 @@ ip_cidr_set:
   - 125.62.0.0/18
   - 125.64.0.0/11
   - 125.64.0.0/12
-  - 125.64.107.13/11
   - 125.80.0.0/13
   - 125.88.0.0/14
   - 125.88.149.0/24
