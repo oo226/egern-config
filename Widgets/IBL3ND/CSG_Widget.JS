@@ -1,17 +1,143 @@
 /**
  * 南方电网用电小组件
  *
- *# ── 环境变量配置 ──
- * Token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.xxxxxxxx"
+ * 自动获取方式：
+ * 1. 打开南方电网 App 或小程序
+ * 2. 登录账号，进入「我的用电」或「电费查询」页面，等待数据加载
+ * 3. Egern 会自动捕获请求头里的 x-auth-token
+ * 4. 小组件自动使用捕获的 Token，无需手动填写环境变量
  *
- * 获取 x-auth-token 教程
- * 抓包工具 → 登录账号 → 进入「我的用电」或「电费查询」页面 → 等待几秒让数据加载完成 → 回到 抓包工具 → 点击「停止抓取」→ 搜索关键词：getAuthenticationResult → 找到请求：/mp/w2/wx/userauth/user/manage/getAuthenticationResult → 点击该请求 → 查看「请求头」(Request Headers) → 找到 `x-auth-token` 字段 → 长按复制整个值（一串长字符）
- * 示例格式：
- *x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.xxxxxxxx
+ * 自动捕获域名：
+ * 95598.csg.cn
+ *
+ * 也可以手动填写（可选，填写后优先使用）：
+ * 环境变量 Token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.xxxxxxxx"
+ *
+ * 同一个 JS：
+ * http_request → 自动抓 Token
+ * generic      → 显示 Widget
  */
 
-export default async function(ctx) {
-  const token = (ctx.env.Token || "").trim();
+/* ---------- Token 捕获 ---------- */
+
+function getRequestHeader(headers, name) {
+  if (!headers) return "";
+
+  try {
+    if (typeof headers.get === "function") {
+      return headers.get(name) || "";
+    }
+  } catch (e) {}
+
+  try {
+    for (const key of Object.keys(headers)) {
+      if (String(key).toLowerCase() === name.toLowerCase()) {
+        return headers[key] || "";
+      }
+    }
+  } catch (e) {}
+
+  return "";
+}
+
+async function handleCapture(ctx) {
+  const req = ctx.request || {};
+  const url = String(req.url || "");
+
+  // 只处理南方电网的请求，其余透传
+  if (!url.includes("95598.csg.cn")) return;
+
+  const token = String(getRequestHeader(req.headers, "x-auth-token") || "").trim();
+  if (!token) return;
+
+  // Token 没变化就不重复保存和通知
+  const oldToken = ctx.storage.get("csg_token") || "";
+  if (token === oldToken) return;
+
+  ctx.storage.set("csg_token", token);
+
+  ctx.notify({
+    title: "南方电网",
+    body: "已自动获取登录信息，小组件将自动更新",
+  });
+}
+
+/* ---------- 小组件 ---------- */
+
+/* 小尺寸专用：圆形图标 + 数值 + 说明 的横条 */
+function smallRow(color, symbol, glyph, value, unit, label) {
+  const iconChild = symbol
+    ? {
+        type: "image",
+        src: symbol,
+        color: "#FFFFFF",
+        width: 16,
+        height: 16,
+      }
+    : {
+        type: "text",
+        text: glyph,
+        font: { size: "headline", weight: "bold" },
+        textColor: "#FFFFFF",
+      };
+
+  return {
+    type: "stack",
+    direction: "row",
+    alignItems: "center",
+    gap: 8,
+    flex: 1,
+    padding: [4, 8, 4, 8],
+    backgroundColor: { light: color + "1F", dark: color + "33" },
+    borderRadius: 14,
+    children: [
+      {
+        type: "stack",
+        direction: "row",
+        alignItems: "center",
+        justifyContent: "center",
+        width: 30,
+        height: 30,
+        borderRadius: 15,
+        backgroundColor: color,
+        children: [iconChild],
+      },
+      {
+        type: "stack",
+        direction: "column",
+        flex: 1,
+        children: [
+          {
+            type: "stack",
+            direction: "row",
+            alignItems: "center",
+            gap: 3,
+            children: [
+              { type: "text", text: String(value), font: { size: "title3", weight: "bold" }, textColor: color, maxLines: 1, minScale: 0.5 },
+              { type: "text", text: String(unit), font: { size: "caption1", weight: "semibold" }, textColor: color, maxLines: 1 },
+              { type: "spacer" },
+            ],
+          },
+          {
+            type: "stack",
+            direction: "row",
+            alignItems: "center",
+            children: [
+              { type: "text", text: String(label), font: { size: "caption2", weight: "medium" }, textColor: color + "B3", maxLines: 1, minScale: 0.7 },
+              { type: "spacer" },
+            ],
+          },
+        ],
+      },
+    ],
+  };
+}
+
+async function handleWidget(ctx) {
+  // 手动填写的 Token 优先，其次用自动捕获的
+  const token =
+    (ctx.env.Token || "").trim() ||
+    (ctx.storage.get("csg_token") || "").trim();
 
   const colors = {
     bg:        { light: "#FFFFFF", dark: "#2C2C2E" },
@@ -36,8 +162,8 @@ export default async function(ctx) {
 
   if (!token) {
     data.error = "配置缺失";
-    data.debugInfo.push("❌ 未填写「Token」");
-    data.debugInfo.push("💡 请在小组件配置页 → 环境变量中添加");
+    data.debugInfo.push("❌ 尚未获取到 Token");
+    data.debugInfo.push("💡 请打开南方电网 App 或小程序，进入「我的用电」页面");
   } else {
     try {
       const resp = await ctx.http.post(
@@ -176,6 +302,23 @@ export default async function(ctx) {
     };
   }
 
+  // ═══════════ 小尺寸专用布局（仅 systemSmall 生效，其他尺寸不受影响）═══════════
+  if (isSmall) {
+    return {
+      type: "widget",
+      backgroundColor: colors.bg,
+      padding: [10, 10, 10, 10],
+      gap: 6,
+      refreshAfter: new Date(Date.now() + 60 * 60 * 1000).toISOString(),
+      children: [
+        smallRow("#E8651F", "sf-symbol:bolt.fill", "", data.yst.value, data.yst.unit, data.yst.title),
+        smallRow("#4DA6F0", "sf-symbol:calendar", "", data.total.value, data.total.unit, data.total.title),
+        smallRow("#55C759", null, "¥", data.bal.value, data.bal.unit, data.bal.title),
+      ],
+    };
+  }
+  // ═══════════ 小尺寸专用布局结束 ═══════════
+
   return {
     type: "widget",
     backgroundColor: colors.bg,
@@ -246,4 +389,16 @@ export default async function(ctx) {
       },
     ],
   };
+}
+
+/* ---------- Egern 入口：单文件双模式 ---------- */
+
+export default async function(ctx) {
+  // http_request 模式 → 自动抓 Token
+  if (ctx.request && ctx.request.url) {
+    return handleCapture(ctx);
+  }
+
+  // generic 模式 → 显示小组件
+  return handleWidget(ctx);
 }
