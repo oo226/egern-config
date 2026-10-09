@@ -1,7 +1,7 @@
 # AUTO-EXPORTED from Routing/Foreign/Proxy.yaml
 # Format: Surge RULE-SET (no policy). scripts/export-surge-rulesets.py
 # Domain lines include extended-matching (SNI hit under always-real-ip / VIF).
-# Total entries: 17385
+# Total entries: 17388
 
 DOMAIN,c33hcgiwev3.cloudfront.net,extended-matching
 DOMAIN,cc-ext-prod-pkgs.s3.amazonaws.com,extended-matching
@@ -1207,6 +1207,7 @@ DOMAIN-SUFFIX,appdynamics.info,extended-matching
 DOMAIN-SUFFIX,appdynamics.jp,extended-matching
 DOMAIN-SUFFIX,appdynamics.org,extended-matching
 DOMAIN-SUFFIX,approvedusedbmw.com,extended-matching
+DOMAIN-SUFFIX,approveit.today,extended-matching
 DOMAIN-SUFFIX,appshopper.com,extended-matching
 DOMAIN-SUFFIX,appsocks.net,extended-matching
 DOMAIN-SUFFIX,appspot.com,extended-matching
@@ -13550,6 +13551,7 @@ DOMAIN-SUFFIX,surge-activation.com,extended-matching
 DOMAIN-SUFFIX,surge.run,extended-matching
 DOMAIN-SUFFIX,suroot.com,extended-matching
 DOMAIN-SUFFIX,surrenderat20.net,extended-matching
+DOMAIN-SUFFIX,surveymonkey.com,extended-matching
 DOMAIN-SUFFIX,susebr.org,extended-matching
 DOMAIN-SUFFIX,susegeek.com,extended-matching
 DOMAIN-SUFFIX,suseitalia.org,extended-matching
@@ -14885,6 +14887,7 @@ DOMAIN-SUFFIX,vanithaveedu.com,extended-matching
 DOMAIN-SUFFIX,vanityfair.com,extended-matching
 DOMAIN-SUFFIX,vanpeople.com,extended-matching
 DOMAIN-SUFFIX,vansky.com,extended-matching
+DOMAIN-SUFFIX,vanta.com,extended-matching
 DOMAIN-SUFFIX,vaticannews.va,extended-matching
 DOMAIN-SUFFIX,vatn.org,extended-matching
 DOMAIN-SUFFIX,vaultproject.io,extended-matching
