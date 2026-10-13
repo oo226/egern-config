@@ -12,7 +12,10 @@ import urllib.request
 from pathlib import Path
 
 # iOS NE 内存紧：webview 引擎 + 每次执行都拉 GitHub 脚本，走动/切网会把 Surge/Egern 打爆。
+# Surge/Egern: script-update-interval=0 表示「每次执行前都检查更新」——会刷爆连接列表；
+# 86400=一天一次（默认语义）；-1=永不自动更新。钉缓存用 86400，绝不要写 0。
 _WEBVIEW_RE = re.compile(r",?\s*engine=webview", re.IGNORECASE)
+_SCRIPT_INTERVAL_DEFAULT = 86400
 
 
 def harden_iringo_scripts(text: str) -> str:
@@ -25,8 +28,15 @@ def harden_iringo_scripts(text: str) -> str:
         newline = "\n" if line.endswith("\n") else ""
         body = _WEBVIEW_RE.sub("", line.rstrip("\n"))
         body = re.sub(r",{2,}", ",", body)
-        if "script-update-interval=" not in body:
-            body = f"{body}, script-update-interval=0"
+        # 0 = 每次执行都拉；与「pin scripts」相反，一律收成日更
+        body = re.sub(
+            r"(script-update-interval\s*=\s*)0\b",
+            rf"\g<1>{_SCRIPT_INTERVAL_DEFAULT}",
+            body,
+            flags=re.I,
+        )
+        if "script-update-interval=" not in body.lower():
+            body = f"{body}, script-update-interval={_SCRIPT_INTERVAL_DEFAULT}"
         if "type=http-response" in body and "timeout=" not in body:
             body = f"{body}, timeout=10"
         out.append(body + newline)

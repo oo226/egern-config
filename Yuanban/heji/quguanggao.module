@@ -11,6 +11,7 @@
 # 毒奶/老书/BMJ/怎么肥事 已收进 heji/naisi-ads.module（与可莉线二选一换着测）
 # 奶思+叠层 → heji/naisi-ads.module（默认关，勿与本合集同开）
 # 脚本 URL 全部指向本仓 Yuanban/zuozhe/*/js（不依赖上游在线）
+# script-update-interval: 0=每次执行都检查(会刷连接)；合集已统一 86400 日更
 
 [General]
 
@@ -6783,315 +6784,315 @@ https:\/\/(webboot\.zhangyue\.com|ih2\.ireader\.com)\/zyam\/app\/app\.php\? data
 # - - - - - - - - - - - - - - - - - - - - - - - - 
 # 可莉 · 12306去广告
 # - - - - - - - - - - - - - - - - - - - - - - - - 
-移除12306开屏广告 = type=http-request, pattern=^https:\/\/ad\.12306\.cn\/ad\/ser\/getAdList$, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/12306-12306_remove_splashscreen_ads.js, requires-body=true
+移除12306开屏广告 = type=http-request, pattern=^https:\/\/ad\.12306\.cn\/ad\/ser\/getAdList$, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/12306-12306_remove_splashscreen_ads.js, requires-body=true,script-update-interval=86400
 
-移除12306应用内广告 = type=http-request, pattern=^https:\/\/mobile\.12306\.cn\/otsmobile\/app\/mgs\/mgw\.htm$, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/12306-12306_remove_ads.js
+移除12306应用内广告 = type=http-request, pattern=^https:\/\/mobile\.12306\.cn\/otsmobile\/app\/mgs\/mgw\.htm$, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/12306-12306_remove_ads.js,script-update-interval=86400
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - 
 # 可莉 · IT之家去广告
 # - - - - - - - - - - - - - - - - - - - - - - - - 
-IT之家去广告 = type=http-response, pattern=^https:\/\/napi\.ithome\.com\/api\/(news\/indexv2\/iphone\/\d+|topmenu\/getfeeds\?), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/IThome-IThome_remove_ads.js, requires-body=true, argument="[{{{removeAllBanners}}},{{{removePinnedArticles}}}]"
+IT之家去广告 = type=http-response, pattern=^https:\/\/napi\.ithome\.com\/api\/(news\/indexv2\/iphone\/\d+|topmenu\/getfeeds\?), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/IThome-IThome_remove_ads.js, requires-body=true, argument="[{{{removeAllBanners}}},{{{removePinnedArticles}}}]",script-update-interval=86400
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - 
 # 可莉 · Soul去广告
 # - - - - - - - - - - - - - - - - - - - - - - - - 
-移除Soul广告 = type=http-response, pattern=^https:\/\/(?:api-\w+|chat-live|post)\.soulapp\.cn\/(?:chat\/limitInfo|chatroom\/chatClassifyRoomList|homepage\/diamond\/position\/info|v2\/post\/recSquare\/subTabs|v6\/planet\/config), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Soul-Soul_remove_ads.js, requires-body=true
+移除Soul广告 = type=http-response, pattern=^https:\/\/(?:api-\w+|chat-live|post)\.soulapp\.cn\/(?:chat\/limitInfo|chatroom\/chatClassifyRoomList|homepage\/diamond\/position\/info|v2\/post\/recSquare\/subTabs|v6\/planet\/config), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Soul-Soul_remove_ads.js, requires-body=true,script-update-interval=86400
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - 
 # 可莉 · Spotify去广告
 # - - - - - - - - - - - - - - - - - - - - - - - - 
-Protobuf处理 = type=http-response, pattern=^https:\/\/(?:\w+-spclient|spclient\.wg)\.spotify\.com(?::443)?\/(?:bootstrap|user-customization-service), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Spotify-Spotify_remove_ads.js, requires-body=true, binary-body-mode=true, timeout=5, argument="[{{{tab}}},{{{useractivity}}}]"
+Protobuf处理 = type=http-response, pattern=^https:\/\/(?:\w+-spclient|spclient\.wg)\.spotify\.com(?::443)?\/(?:bootstrap|user-customization-service), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Spotify-Spotify_remove_ads.js, requires-body=true, binary-body-mode=true, timeout=5, argument="[{{{tab}}},{{{useractivity}}}]",script-update-interval=86400
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - 
 # 可莉 · Uki去广告
 # - - - - - - - - - - - - - - - - - - - - - - - - 
-移除匹配卡横幅 = type=http-response, pattern=^https:\/\/api\.chenlongtech\.cn\/v\d\/lover\/productList, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Uki-Uki_remove_ads.js, requires-body=true
+移除匹配卡横幅 = type=http-response, pattern=^https:\/\/api\.chenlongtech\.cn\/v\d\/lover\/productList, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Uki-Uki_remove_ads.js, requires-body=true,script-update-interval=86400
 
-移除密友横幅 = type=http-response, pattern=^https:\/\/api\.chenlongtech\.cn\/v\d\/friends\/closeFriend\/home, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Uki-Uki_remove_ads.js, requires-body=true
+移除密友横幅 = type=http-response, pattern=^https:\/\/api\.chenlongtech\.cn\/v\d\/friends\/closeFriend\/home, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Uki-Uki_remove_ads.js, requires-body=true,script-update-interval=86400
 
-移除娱乐页面横幅和悬浮窗配置 = type=http-response, pattern=^https:\/\/api\.chenlongtech\.cn\/v\d\/party\/config$, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Uki-Uki_remove_ads.js, requires-body=true
+移除娱乐页面横幅和悬浮窗配置 = type=http-response, pattern=^https:\/\/api\.chenlongtech\.cn\/v\d\/party\/config$, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Uki-Uki_remove_ads.js, requires-body=true,script-update-interval=86400
 
-移除广场搜索填充词 = type=http-response, pattern=^https:\/\/api\.chenlongtech\.cn\/v1\/post\/fetchSearchRecommend$, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Uki-Uki_remove_ads.js, requires-body=true
+移除广场搜索填充词 = type=http-response, pattern=^https:\/\/api\.chenlongtech\.cn\/v1\/post\/fetchSearchRecommend$, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Uki-Uki_remove_ads.js, requires-body=true,script-update-interval=86400
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - 
 # 可莉 · 中国人保去广告
 # - - - - - - - - - - - - - - - - - - - - - - - - 
-移除主页推广 = type=http-response, pattern=^https:\/\/zgrb\.epicc\.com\.cn\/G-HAPP\/a\/config\/homeInit\/v3, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/PICC_Insurance-PICC_Insurance_remove_ads.js, requires-body=true
+移除主页推广 = type=http-response, pattern=^https:\/\/zgrb\.epicc\.com\.cn\/G-HAPP\/a\/config\/homeInit\/v3, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/PICC_Insurance-PICC_Insurance_remove_ads.js, requires-body=true,script-update-interval=86400
 
-移除我的页面推广 = type=http-response, pattern=^https:\/\/zgrb\.epicc\.com\.cn\/G-HAPP\/mpageconfig\/myPageConfigList\/v3, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/PICC_Insurance-PICC_Insurance_remove_ads.js, requires-body=true
+移除我的页面推广 = type=http-response, pattern=^https:\/\/zgrb\.epicc\.com\.cn\/G-HAPP\/mpageconfig\/myPageConfigList\/v3, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/PICC_Insurance-PICC_Insurance_remove_ads.js, requires-body=true,script-update-interval=86400
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - 
 # 可莉 · 中国移动云盘去广告
 # - - - - - - - - - - - - - - - - - - - - - - - - 
-移除开屏广告 = type=http-response, pattern=^https:\/\/jzts\.cmpassport\.com\/personalized\/getPushContent, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/mobileClouds-mobileClouds_remove_ads.js, requires-body=true
+移除开屏广告 = type=http-response, pattern=^https:\/\/jzts\.cmpassport\.com\/personalized\/getPushContent, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/mobileClouds-mobileClouds_remove_ads.js, requires-body=true,script-update-interval=86400
 
-移除应用内广告 = type=http-response, pattern=^https:\/\/ad\.mcloud\.139\.com\/advertapi\/adv-filter\/, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/mobileClouds-mobileClouds_remove_ads.js, requires-body=true
+移除应用内广告 = type=http-response, pattern=^https:\/\/ad\.mcloud\.139\.com\/advertapi\/adv-filter\/, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/mobileClouds-mobileClouds_remove_ads.js, requires-body=true,script-update-interval=86400
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - 
 # 可莉 · 乐播投屏去广告
 # - - - - - - - - - - - - - - - - - - - - - - - - 
-移除底栏视频标签 = type=http-response, pattern=^https:\/\/saas\.hpplay\.cn\/api\/lebo-desk\/endpoint\/app-resource\/app_tab_red_dot\?user-tag=1$, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/TV_Assistant-TV_Assistant_remove_ads.js, requires-body=true
+移除底栏视频标签 = type=http-response, pattern=^https:\/\/saas\.hpplay\.cn\/api\/lebo-desk\/endpoint\/app-resource\/app_tab_red_dot\?user-tag=1$, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/TV_Assistant-TV_Assistant_remove_ads.js, requires-body=true,script-update-interval=86400
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - 
 # 可莉 · 书旗小说去广告
 # - - - - - - - - - - - - - - - - - - - - - - - - 
-移除书城横幅和阅读广告 = type=http-response, pattern=^https:\/\/ocean\.shuqireader\.com\/sqios\/render\/render\/page\/bookstore$, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/ShuQiCenterReader-ShuQiCenterReader_remove_ads.js, requires-body=true
+移除书城横幅和阅读广告 = type=http-response, pattern=^https:\/\/ocean\.shuqireader\.com\/sqios\/render\/render\/page\/bookstore$, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/ShuQiCenterReader-ShuQiCenterReader_remove_ads.js, requires-body=true,script-update-interval=86400
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - 
 # 可莉 · 云闪付去广告
 # - - - - - - - - - - - - - - - - - - - - - - - - 
-移除云闪付推广 = type=http-response, pattern=^https:\/\/base\.95516\.com\/app\/inApp\/sys\/appShowGroup\/, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/UnionPay-UnionPay_remove_ads_with_ssl_unpinning.js, requires-body=true
+移除云闪付推广 = type=http-response, pattern=^https:\/\/base\.95516\.com\/app\/inApp\/sys\/appShowGroup\/, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/UnionPay-UnionPay_remove_ads_with_ssl_unpinning.js, requires-body=true,script-update-interval=86400
 
-移除云闪付推广 = type=http-response, pattern=^https:\/\/account\.95516\.com\/fortune\/inApp\/common\/, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/UnionPay-UnionPay_remove_ads_with_ssl_unpinning.js, requires-body=true
+移除云闪付推广 = type=http-response, pattern=^https:\/\/account\.95516\.com\/fortune\/inApp\/common\/, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/UnionPay-UnionPay_remove_ads_with_ssl_unpinning.js, requires-body=true,script-update-interval=86400
 
-移除云闪付推广 = type=http-response, pattern=^https:\/\/content\.95516\.com\/koala-pre\/koala\/(recommend\/hotList|right\/queryAllRights), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/UnionPay-UnionPay_remove_ads_with_ssl_unpinning.js, requires-body=true
+移除云闪付推广 = type=http-response, pattern=^https:\/\/content\.95516\.com\/koala-pre\/koala\/(recommend\/hotList|right\/queryAllRights), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/UnionPay-UnionPay_remove_ads_with_ssl_unpinning.js, requires-body=true,script-update-interval=86400
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - 
 # 可莉 · 京东去广告
 # - - - - - - - - - - - - - - - - - - - - - - - - 
-移除京东广告 = type=http-response, pattern=^https:\/\/api\.m\.jd\.com\/client\.action\?functionId=(deliverLayer|getTabHomeInfo|myOrderInfo|orderTrackBusiness|personinfoBusiness|start|welcomeHome), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/JD-JD_remove_ads.js, requires-body=true
+移除京东广告 = type=http-response, pattern=^https:\/\/api\.m\.jd\.com\/client\.action\?functionId=(deliverLayer|getTabHomeInfo|myOrderInfo|orderTrackBusiness|personinfoBusiness|start|welcomeHome), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/JD-JD_remove_ads.js, requires-body=true,script-update-interval=86400
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - 
 # 可莉 · 哔哩哔哩去广告
 # - - - - - - - - - - - - - - - - - - - - - - - - 
-Proto处理 = type=http-response, pattern=^https:\/\/(?:grpc\.biliapi\.net|app\.bilibili\.com)\/bilibili\.(?:app\.(?:interface\.v1\.(?:Teenagers\/ModeStatus|Search\/DefaultWords)|show\.v1\.Popular\/Index|dynamic\.v2\.Dynamic\/DynAll|view(?:unite)?\.v1\.View\/(?:View|ViewProgress|TFInfo|RelatesFeed)|playurl\.v1\.PlayURL\/PlayView|playerunite\.v1\.Player\/PlayViewUnite)|polymer\.app\.search\.v1\.Search\/SearchAll|community\.service\.dm\.v1\.DM\/DmView|main\.community\.reply\.v1\.Reply\/MainList|pgc\.gateway\.player\.v2\.PlayURL\/PlayView)$, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Bilibili-Bilibili_proto_kokoryh.js, requires-body=true, binary-body-mode=true, argument=[{showUpList}]
+Proto处理 = type=http-response, pattern=^https:\/\/(?:grpc\.biliapi\.net|app\.bilibili\.com)\/bilibili\.(?:app\.(?:interface\.v1\.(?:Teenagers\/ModeStatus|Search\/DefaultWords)|show\.v1\.Popular\/Index|dynamic\.v2\.Dynamic\/DynAll|view(?:unite)?\.v1\.View\/(?:View|ViewProgress|TFInfo|RelatesFeed)|playurl\.v1\.PlayURL\/PlayView|playerunite\.v1\.Player\/PlayViewUnite)|polymer\.app\.search\.v1\.Search\/SearchAll|community\.service\.dm\.v1\.DM\/DmView|main\.community\.reply\.v1\.Reply\/MainList|pgc\.gateway\.player\.v2\.PlayURL\/PlayView)$, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Bilibili-Bilibili_proto_kokoryh.js, requires-body=true, binary-body-mode=true, argument=[{showUpList}],script-update-interval=86400
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - 
 # 可莉 · 哔哩哔哩漫画去广告
 # - - - - - - - - - - - - - - - - - - - - - - - - 
-移除顶部标签 = type=http-response, pattern=^https:\/\/manga\.bilibili\.com\/twirp\/comic\.v\d\.Comic\/GetClassPageAllTabs, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/BiliComic-BiliComic_remove_ads.js, requires-body=true
+移除顶部标签 = type=http-response, pattern=^https:\/\/manga\.bilibili\.com\/twirp\/comic\.v\d\.Comic\/GetClassPageAllTabs, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/BiliComic-BiliComic_remove_ads.js, requires-body=true,script-update-interval=86400
 
-精简我的页面 = type=http-response, pattern=^https:\/\/manga\.bilibili\.com\/twirp\/user\.v\d\.User\/UCenterConf, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/BiliComic-BiliComic_remove_ads.js, requires-body=true
+精简我的页面 = type=http-response, pattern=^https:\/\/manga\.bilibili\.com\/twirp\/user\.v\d\.User\/UCenterConf, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/BiliComic-BiliComic_remove_ads.js, requires-body=true,script-update-interval=86400
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - 
 # 可莉 · 宝宝树孕育去广告
 # - - - - - - - - - - - - - - - - - - - - - - - - 
-调整整体配置 = type=http-response, pattern=^http:\/\/api\.babytree\.com\/bafconfigcenter_intf\/config\/get\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/BabyTree-BabyTree_remove_ads.js, requires-body=true
+调整整体配置 = type=http-response, pattern=^http:\/\/api\.babytree\.com\/bafconfigcenter_intf\/config\/get\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/BabyTree-BabyTree_remove_ads.js, requires-body=true,script-update-interval=86400
 
-移除各页面推广 = type=http-response, pattern=^http:\/\/go\.babytree\.com\/go_pregnancy\/api\/(app_index\/get_app_tab|cms_column\/get_column_list|feeds\/get_index_feeds_list|user\/get_user_info)\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/BabyTree-BabyTree_remove_ads.js, requires-body=true
+移除各页面推广 = type=http-response, pattern=^http:\/\/go\.babytree\.com\/go_pregnancy\/api\/(app_index\/get_app_tab|cms_column\/get_column_list|feeds\/get_index_feeds_list|user\/get_user_info)\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/BabyTree-BabyTree_remove_ads.js, requires-body=true,script-update-interval=86400
 
-移除搜索列表推广 = type=http-response, pattern=^http:\/\/go\.babytree\.com\/go_search\/api\/mobile_search_new\/search_index, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/BabyTree-BabyTree_remove_ads.js, requires-body=true
+移除搜索列表推广 = type=http-response, pattern=^http:\/\/go\.babytree\.com\/go_search\/api\/mobile_search_new\/search_index, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/BabyTree-BabyTree_remove_ads.js, requires-body=true,script-update-interval=86400
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - 
 # 可莉 · 小红书去广告
 # - - - - - - - - - - - - - - - - - - - - - - - - 
-移除图片和实况照片水印 = type=http-response, pattern=^https:\/\/edith\.xiaohongshu\.com\/api\/sns\/v1\/note\/(?:imagefeed|live_photo\/save), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/RedPaper-RedPaper_remove_ads.js, requires-body=true
+移除图片和实况照片水印 = type=http-response, pattern=^https:\/\/edith\.xiaohongshu\.com\/api\/sns\/v1\/note\/(?:imagefeed|live_photo\/save), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/RedPaper-RedPaper_remove_ads.js, requires-body=true,script-update-interval=86400
 
-移除界面整体配置 = type=http-response, pattern=^https:\/\/edith\.xiaohongshu\.com\/api\/sns\/v1\/system\/service\/ui\/config\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/RedPaper-RedPaper_remove_ads.js, requires-body=true
+移除界面整体配置 = type=http-response, pattern=^https:\/\/edith\.xiaohongshu\.com\/api\/sns\/v1\/system\/service\/ui\/config\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/RedPaper-RedPaper_remove_ads.js, requires-body=true,script-update-interval=86400
 
-移除开屏广告 = type=http-response, pattern=^https:\/\/edith\.xiaohongshu\.com\/api\/sns\/v1\/system_service\/config\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/RedPaper-RedPaper_remove_ads.js, requires-body=true
+移除开屏广告 = type=http-response, pattern=^https:\/\/edith\.xiaohongshu\.com\/api\/sns\/v1\/system_service\/config\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/RedPaper-RedPaper_remove_ads.js, requires-body=true,script-update-interval=86400
 
-移除开屏广告 = type=http-response, pattern=^https:\/\/edith\.xiaohongshu\.com\/api\/sns\/v2\/system_service\/splash_config, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/RedPaper-RedPaper_remove_ads.js, requires-body=true
+移除开屏广告 = type=http-response, pattern=^https:\/\/edith\.xiaohongshu\.com\/api\/sns\/v2\/system_service\/splash_config, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/RedPaper-RedPaper_remove_ads.js, requires-body=true,script-update-interval=86400
 
-移除详情页小部件、关注页感兴趣的人 = type=http-response, pattern=^https:\/\/edith\.xiaohongshu\.com\/api\/sns\/v2\/(?:note\/widgets|user\/followings\/followfeed), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/RedPaper-RedPaper_remove_ads.js, requires-body=true
+移除详情页小部件、关注页感兴趣的人 = type=http-response, pattern=^https:\/\/edith\.xiaohongshu\.com\/api\/sns\/v2\/(?:note\/widgets|user\/followings\/followfeed), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/RedPaper-RedPaper_remove_ads.js, requires-body=true,script-update-interval=86400
 
-移除信息流广告 = type=http-response, pattern=^https:\/\/edith\.xiaohongshu\.com\/api\/sns\/v4\/followfeed\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/RedPaper-RedPaper_remove_ads.js, requires-body=true
+移除信息流广告 = type=http-response, pattern=^https:\/\/edith\.xiaohongshu\.com\/api\/sns\/v4\/followfeed\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/RedPaper-RedPaper_remove_ads.js, requires-body=true,script-update-interval=86400
 
-移除详情页感兴趣的人 = type=http-response, pattern=^https:\/\/edith\.xiaohongshu\.com\/api\/sns\/v5\/recommend\/user\/follow_recommend\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/RedPaper-RedPaper_remove_ads.js, requires-body=true
+移除详情页感兴趣的人 = type=http-response, pattern=^https:\/\/edith\.xiaohongshu\.com\/api\/sns\/v5\/recommend\/user\/follow_recommend\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/RedPaper-RedPaper_remove_ads.js, requires-body=true,script-update-interval=86400
 
-移除评论区实况照片水印 = type=http-response, pattern=^https:\/\/edith\.xiaohongshu\.com\/api\/sns\/(?:v1\/interaction\/comment\/video\/download|v5\/note\/comment\/list), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/RedPaper-RedPaper_remove_ads.js, requires-body=true
+移除评论区实况照片水印 = type=http-response, pattern=^https:\/\/edith\.xiaohongshu\.com\/api\/sns\/(?:v1\/interaction\/comment\/video\/download|v5\/note\/comment\/list), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/RedPaper-RedPaper_remove_ads.js, requires-body=true,script-update-interval=86400
 
-移除图片和视频水印 = type=http-response, pattern=^https:\/\/edith\.xiaohongshu\.com\/api\/sns\/(?:v2\/note\/feed|v3\/note\/videofeed), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/RedPaper-RedPaper_remove_ads.js, requires-body=true
+移除图片和视频水印 = type=http-response, pattern=^https:\/\/edith\.xiaohongshu\.com\/api\/sns\/(?:v2\/note\/feed|v3\/note\/videofeed), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/RedPaper-RedPaper_remove_ads.js, requires-body=true,script-update-interval=86400
 
-移除信息流广告 = type=http-response, pattern=^https:\/\/(?:edith|rec)\.xiaohongshu\.com\/api\/sns\/v6\/homefeed\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/RedPaper-RedPaper_remove_ads.js, requires-body=true
+移除信息流广告 = type=http-response, pattern=^https:\/\/(?:edith|rec)\.xiaohongshu\.com\/api\/sns\/v6\/homefeed\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/RedPaper-RedPaper_remove_ads.js, requires-body=true,script-update-interval=86400
 
-移除搜索页广告 = type=http-response, pattern=^https:\/\/(?:edith|so)\.xiaohongshu\.com\/api\/sns\/v10\/search\/notes\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/RedPaper-RedPaper_remove_ads.js, requires-body=true
+移除搜索页广告 = type=http-response, pattern=^https:\/\/(?:edith|so)\.xiaohongshu\.com\/api\/sns\/v10\/search\/notes\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/RedPaper-RedPaper_remove_ads.js, requires-body=true,script-update-interval=86400
 
-移除视频水印 = type=http-response, pattern=^https:\/\/(?:edith|rec|www)\.xiaohongshu\.com\/api\/sns\/(?:v4\/note\/videofeed|v10\/note\/video\/save), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/RedPaper-RedPaper_remove_ads.js, requires-body=true
+移除视频水印 = type=http-response, pattern=^https:\/\/(?:edith|rec|www)\.xiaohongshu\.com\/api\/sns\/(?:v4\/note\/videofeed|v10\/note\/video\/save), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/RedPaper-RedPaper_remove_ads.js, requires-body=true,script-update-interval=86400
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - 
 # 可莉 · 小象超市去广告
 # - - - - - - - - - - - - - - - - - - - - - - - - 
-移除下发广告 = type=http-response, pattern=^https:\/\/portal-portm\.meituan\.com\/horn_ios\/mergeRequest, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/iMaiCai-iMaiCai_remove_ads.js, requires-body=true
+移除下发广告 = type=http-response, pattern=^https:\/\/portal-portm\.meituan\.com\/horn_ios\/mergeRequest, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/iMaiCai-iMaiCai_remove_ads.js, requires-body=true,script-update-interval=86400
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - 
 # 可莉 · 帆书去广告
 # - - - - - - - - - - - - - - - - - - - - - - - - 
-帆书去广告 = type=http-response, pattern=^https?:\/\/g[a-z0-9-]+\.dushu365\.com\/chief-orch\/home\/bookPortal\/v105\/category, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/KebidaDushu-KebidaDushu_remove_ads.js, requires-body=true
+帆书去广告 = type=http-response, pattern=^https?:\/\/g[a-z0-9-]+\.dushu365\.com\/chief-orch\/home\/bookPortal\/v105\/category, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/KebidaDushu-KebidaDushu_remove_ads.js, requires-body=true,script-update-interval=86400
 
-帆书去广告 = type=http-response, pattern=^https?:\/\/g[a-z0-9-]+\.dushu365\.com\/abtest-front\/banner-modular\/get, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/KebidaDushu-KebidaDushu_remove_ads.js, requires-body=true
+帆书去广告 = type=http-response, pattern=^https?:\/\/g[a-z0-9-]+\.dushu365\.com\/abtest-front\/banner-modular\/get, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/KebidaDushu-KebidaDushu_remove_ads.js, requires-body=true,script-update-interval=86400
 
-帆书去广告 = type=http-response, pattern=^https?:\/\/g[a-z0-9-]+\.dushu365\.com\/resource-orchestration-system\/book\/channel\/v100\/info, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/KebidaDushu-KebidaDushu_remove_ads.js, requires-body=true
+帆书去广告 = type=http-response, pattern=^https?:\/\/g[a-z0-9-]+\.dushu365\.com\/resource-orchestration-system\/book\/channel\/v100\/info, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/KebidaDushu-KebidaDushu_remove_ads.js, requires-body=true,script-update-interval=86400
 
-帆书去广告 = type=http-response, pattern=^https?:\/\/g[a-z0-9-]+\.dushu365\.com\/fs-member\/user\/profile\/v100\/detail, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/KebidaDushu-KebidaDushu_remove_ads.js, requires-body=true
+帆书去广告 = type=http-response, pattern=^https?:\/\/g[a-z0-9-]+\.dushu365\.com\/fs-member\/user\/profile\/v100\/detail, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/KebidaDushu-KebidaDushu_remove_ads.js, requires-body=true,script-update-interval=86400
 
-帆书去广告 = type=http-response, pattern=^https?:\/\/g[a-z0-9-]+\.dushu365\.com\/chief-orch\/home\/bookPortal\/v111\/forApp, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/KebidaDushu-KebidaDushu_remove_ads.js, requires-body=true
+帆书去广告 = type=http-response, pattern=^https?:\/\/g[a-z0-9-]+\.dushu365\.com\/chief-orch\/home\/bookPortal\/v111\/forApp, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/KebidaDushu-KebidaDushu_remove_ads.js, requires-body=true,script-update-interval=86400
 
-帆书去广告 = type=http-response, pattern=^https?:\/\/g[a-z0-9-]+\.dushu365\.com\/sns-orchestration-system\/homePage\/api\/v100\/myPage, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/KebidaDushu-KebidaDushu_remove_ads.js, requires-body=true
+帆书去广告 = type=http-response, pattern=^https?:\/\/g[a-z0-9-]+\.dushu365\.com\/sns-orchestration-system\/homePage\/api\/v100\/myPage, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/KebidaDushu-KebidaDushu_remove_ads.js, requires-body=true,script-update-interval=86400
 
-帆书去广告 = type=http-response, pattern=^https?:\/\/g[a-z0-9-]+\.dushu365\.com\/task-orchestration\/taskCenter\/api\/v101\/taskList, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/KebidaDushu-KebidaDushu_remove_ads.js, requires-body=true
+帆书去广告 = type=http-response, pattern=^https?:\/\/g[a-z0-9-]+\.dushu365\.com\/task-orchestration\/taskCenter\/api\/v101\/taskList, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/KebidaDushu-KebidaDushu_remove_ads.js, requires-body=true,script-update-interval=86400
 
-帆书去广告 = type=http-response, pattern=^https?:\/\/g[a-z0-9-]+\.dushu365\.com\/resource-orchestration-system\/book\/v101\/content, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/KebidaDushu-KebidaDushu_remove_ads.js, requires-body=true
+帆书去广告 = type=http-response, pattern=^https?:\/\/g[a-z0-9-]+\.dushu365\.com\/resource-orchestration-system\/book\/v101\/content, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/KebidaDushu-KebidaDushu_remove_ads.js, requires-body=true,script-update-interval=86400
 
-帆书去广告 = type=http-response, pattern=^https?:\/\/g[a-z0-9-]+\.dushu365\.com\/user-orchestration\/user\/api\/v101\/ceiltip, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/KebidaDushu-KebidaDushu_remove_ads.js, requires-body=true
+帆书去广告 = type=http-response, pattern=^https?:\/\/g[a-z0-9-]+\.dushu365\.com\/user-orchestration\/user\/api\/v101\/ceiltip, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/KebidaDushu-KebidaDushu_remove_ads.js, requires-body=true,script-update-interval=86400
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - 
 # 可莉 · 彩云天气去广告
 # - - - - - - - - - - - - - - - - - - - - - - - - 
-彩云天气去广告 = type=http-response, pattern=^https:\/\/(wrapper\.cyapi\.cn|api\.caiyunapp\.com|cdn-w\.caiyunapp\.com)\/v1\/activity\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/ColorfulClouds-ColorfulClouds_remove_ads.js, requires-body=true
+彩云天气去广告 = type=http-response, pattern=^https:\/\/(wrapper\.cyapi\.cn|api\.caiyunapp\.com|cdn-w\.caiyunapp\.com)\/v1\/activity\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/ColorfulClouds-ColorfulClouds_remove_ads.js, requires-body=true,script-update-interval=86400
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - 
 # 可莉 · 微信小程序去广告
 # - - - - - - - - - - - - - - - - - - - - - - - - 
-企迈点单系统去广告 = type=http-response, pattern=^https:\/\/webapi\.qmai\.cn\/web\/catering\/design\/homePage-Config, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/kff-kff.js, requires-body=true
+企迈点单系统去广告 = type=http-response, pattern=^https:\/\/webapi\.qmai\.cn\/web\/catering\/design\/homePage-Config, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/kff-kff.js, requires-body=true,script-update-interval=86400
 
-EMS中国邮政物流速递去广告 = type=http-response, pattern=^https:\/\/ump\.ems\.com\.cn\/new-generation-extend\/redis\/pageInfoByChannel, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/ems-ems.js, requires-body=true
+EMS中国邮政物流速递去广告 = type=http-response, pattern=^https:\/\/ump\.ems\.com\.cn\/new-generation-extend\/redis\/pageInfoByChannel, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/ems-ems.js, requires-body=true,script-update-interval=86400
 
-小兔充充去广告 = type=http-response, pattern=^https:\/\/mapi\.xiaotucc\.com\/(mall\/main|main_page\/index\/getActivity), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/xiaotucc-xiaotucc.js, requires-body=true
+小兔充充去广告 = type=http-response, pattern=^https:\/\/mapi\.xiaotucc\.com\/(mall\/main|main_page\/index\/getActivity), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/xiaotucc-xiaotucc.js, requires-body=true,script-update-interval=86400
 
-全家微会员去广告 = type=http-response, pattern=^https:\/\/minifm\.maxxipoint\.com\/banner\/list, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/FamilyMart-FamilyMart.js, requires-body=true
+全家微会员去广告 = type=http-response, pattern=^https:\/\/minifm\.maxxipoint\.com\/banner\/list, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/FamilyMart-FamilyMart.js, requires-body=true,script-update-interval=86400
 
-罗森点点去广告 = type=http-response, pattern=^https:\/\/lawsonapi\.yorentown\.com\/area\/sh-lawson\/app\/v1\/home, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/lawson-lawson.js, requires-body=true
+罗森点点去广告 = type=http-response, pattern=^https:\/\/lawsonapi\.yorentown\.com\/area\/sh-lawson\/app\/v1\/home, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/lawson-lawson.js, requires-body=true,script-update-interval=86400
 
-茶颜悦色去广告 = type=http-response, pattern=^https:\/\/miniapp\.sexytea2013\.com\/cms\/slot\/queryByCodes\?codes=INDEX_TOP_BANNER, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/chayanyuese-chayanyuese_remove_ads.js, requires-body=true
+茶颜悦色去广告 = type=http-response, pattern=^https:\/\/miniapp\.sexytea2013\.com\/cms\/slot\/queryByCodes\?codes=INDEX_TOP_BANNER, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/chayanyuese-chayanyuese_remove_ads.js, requires-body=true,script-update-interval=86400
 
-COCO点单去广告 = type=http-response, pattern=^https:\/\/coco-com\.e\.verystar\.net\/v1\/home\/info, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/coco-coco.js, requires-body=true
+COCO点单去广告 = type=http-response, pattern=^https:\/\/coco-com\.e\.verystar\.net\/v1\/home\/info, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/coco-coco.js, requires-body=true,script-update-interval=86400
 
-滴滴青桔去广告 = type=http-response, pattern=^https:\/\/htwkop\.xiaojukeji\.com\/gateway\?api=hm\.fa\.homeConfig, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/qingju-qingju.js, requires-body=true
+滴滴青桔去广告 = type=http-response, pattern=^https:\/\/htwkop\.xiaojukeji\.com\/gateway\?api=hm\.fa\.homeConfig, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/qingju-qingju.js, requires-body=true,script-update-interval=86400
 
-一点点+去广告 = type=http-response, pattern=^https:\/\/cappapi\.alittle-tea\.com\/open\?method=catering\.set\.ad, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/alittle-tea-alittle-tea.js, requires-body=true
+一点点+去广告 = type=http-response, pattern=^https:\/\/cappapi\.alittle-tea\.com\/open\?method=catering\.set\.ad, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/alittle-tea-alittle-tea.js, requires-body=true,script-update-interval=86400
 
-M Stand去广告 = type=http-response, pattern=^https:\/\/api\.prod\.dj\.mstand\.cn\/scrm\/mini\/app\/index\/info, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/M_Stand-M_Stand.js, requires-body=true
+M Stand去广告 = type=http-response, pattern=^https:\/\/api\.prod\.dj\.mstand\.cn\/scrm\/mini\/app\/index\/info, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/M_Stand-M_Stand.js, requires-body=true,script-update-interval=86400
 
-T3出行去广告 = type=http-response, pattern=^https:\/\/passenger\.t3go\.cn\/(solution\-|common\-)?(passenger\-)?(activity\-|app\-)?api\/notoken\/(trip\/)?api\/(home\/|common\/)?(v[1-3]\/)?(ad\/getNegativescreen|solution\/passenger\/open\/getHomeMenu|leftmenu|getHomeInfoGlobal), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/T3-T3.js, requires-body=true
+T3出行去广告 = type=http-response, pattern=^https:\/\/passenger\.t3go\.cn\/(solution\-|common\-)?(passenger\-)?(activity\-|app\-)?api\/notoken\/(trip\/)?api\/(home\/|common\/)?(v[1-3]\/)?(ad\/getNegativescreen|solution\/passenger\/open\/getHomeMenu|leftmenu|getHomeInfoGlobal), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/T3-T3.js, requires-body=true,script-update-interval=86400
 
-古茗去广告 = type=http-response, pattern=^https:\/\/newton\.gumingnc\.com\/newton-buyer\/newton\/buyer\/(ump|touch|external\/front), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/ming-ming.js, requires-body=true
+古茗去广告 = type=http-response, pattern=^https:\/\/newton\.gumingnc\.com\/newton-buyer\/newton\/buyer\/(ump|touch|external\/front), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/ming-ming.js, requires-body=true,script-update-interval=86400
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - 
 # 可莉 · 微博去广告
 # - - - - - - - - - - - - - - - - - - - - - - - - 
-移除首页推广 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/(?:checkin\/show|client\/publisher_list|push\/active), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Weibo-Weibo_remove_ads.js, requires-body=true
+移除首页推广 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/(?:checkin\/show|client\/publisher_list|push\/active), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Weibo-Weibo_remove_ads.js, requires-body=true,script-update-interval=86400
 
-移除首页顶部标签 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/groups\/allgroups\/v2\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Weibo-Weibo_remove_ads.js, requires-body=true
+移除首页顶部标签 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/groups\/allgroups\/v2\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Weibo-Weibo_remove_ads.js, requires-body=true,script-update-interval=86400
 
-移除信息流广告 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/(?:cardlist|page), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Weibo-Weibo_remove_ads.js, requires-body=true
+移除信息流广告 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/(?:cardlist|page), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Weibo-Weibo_remove_ads.js, requires-body=true,script-update-interval=86400
 
-移除评论区广告 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/comments\/build_comments\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Weibo-Weibo_remove_ads.js, requires-body=true
+移除评论区广告 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/comments\/build_comments\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Weibo-Weibo_remove_ads.js, requires-body=true,script-update-interval=86400
 
-移除个人微博详情页广告 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/(?:container\/asyn|flowlist|flowpage), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Weibo-Weibo_remove_ads.js, requires-body=true
+移除个人微博详情页广告 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/(?:container\/asyn|flowlist|flowpage), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Weibo-Weibo_remove_ads.js, requires-body=true,script-update-interval=86400
 
-移除关注、取消关注弹窗 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/friendships\/(?:create|destroy), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Weibo-Weibo_remove_ads.js, requires-body=true
+移除关注、取消关注弹窗 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/friendships\/(?:create|destroy), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Weibo-Weibo_remove_ads.js, requires-body=true,script-update-interval=86400
 
-移除个人主页广告 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/profile\/(?:container_timeline|dealatt|me|statuses\/tab|userinfo), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Weibo-Weibo_remove_ads.js, requires-body=true
+移除个人主页广告 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/profile\/(?:container_timeline|dealatt|me|statuses\/tab|userinfo), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Weibo-Weibo_remove_ads.js, requires-body=true,script-update-interval=86400
 
-移除超话搜索页广告 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/shproxy\/chaohua\/discovery\/searchactive\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Weibo-Weibo_remove_ads.js, requires-body=true
+移除超话搜索页广告 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/shproxy\/chaohua\/discovery\/searchactive\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Weibo-Weibo_remove_ads.js, requires-body=true,script-update-interval=86400
 
-移除信息流广告 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/statuses\/(?:container_detail(_comment)?|container_timeline(?:_hot|_topic|_topicpage|_unread)?|repost_timeline|unread_hot_timeline), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Weibo-Weibo_remove_ads.js, requires-body=true
+移除信息流广告 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/statuses\/(?:container_detail(_comment)?|container_timeline(?:_hot|_topic|_topicpage|_unread)?|repost_timeline|unread_hot_timeline), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Weibo-Weibo_remove_ads.js, requires-body=true,script-update-interval=86400
 
-移除微博详情页广告 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/statuses\/(?:extend|show)\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Weibo-Weibo_remove_ads.js, requires-body=true
+移除微博详情页广告 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/statuses\/(?:extend|show)\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Weibo-Weibo_remove_ads.js, requires-body=true,script-update-interval=86400
 
-移除视频流广告 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/video\/(?:full_screen_stream|tiny_stream_mid_detail|tiny_stream_video_list)\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Weibo-Weibo_remove_ads.js, requires-body=true
+移除视频流广告 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/video\/(?:full_screen_stream|tiny_stream_mid_detail|tiny_stream_video_list)\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Weibo-Weibo_remove_ads.js, requires-body=true,script-update-interval=86400
 
-移除超话顶部标签 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/!\/huati\/discovery_home_bottom_channels\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Weibo-Weibo_remove_ads.js, requires-body=true
+移除超话顶部标签 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/!\/huati\/discovery_home_bottom_channels\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Weibo-Weibo_remove_ads.js, requires-body=true,script-update-interval=86400
 
-移除消息页列表广告 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/direct_messages\/user_list\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Weibo-Weibo_remove_ads.js, requires-body=true
+移除消息页列表广告 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/direct_messages\/user_list\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Weibo-Weibo_remove_ads.js, requires-body=true,script-update-interval=86400
 
-移除消息页提醒 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/messageflow\/notice\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Weibo-Weibo_remove_ads.js, requires-body=true
+移除消息页提醒 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/messageflow\/notice\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Weibo-Weibo_remove_ads.js, requires-body=true,script-update-interval=86400
 
-移除热门微博信息流广告 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/search\/(?:container_timeline|finder)\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Weibo-Weibo_remove_ads.js, requires-body=true
+移除热门微博信息流广告 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/search\/(?:container_timeline|finder)\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Weibo-Weibo_remove_ads.js, requires-body=true,script-update-interval=86400
 
-移除发现页搜索结果广告 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/searchall\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Weibo-Weibo_remove_ads.js, requires-body=true
+移除发现页搜索结果广告 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/searchall\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Weibo-Weibo_remove_ads.js, requires-body=true,script-update-interval=86400
 
-移除开屏广告 preload = type=http-response, pattern=^https:\/\/bootpreload\.uve\.weibo\.com\/v[12]\/ad\/preload, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Weibo-Weibo_remove_ads.js, requires-body=true
+移除开屏广告 preload = type=http-response, pattern=^https:\/\/bootpreload\.uve\.weibo\.com\/v[12]\/ad\/preload, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Weibo-Weibo_remove_ads.js, requires-body=true,script-update-interval=86400
 
-移除开屏广告 sdkad = type=http-response, pattern=^https:\/\/sdkapp\.uve\.weibo\.com\/interface\/sdk\/sdkad\.php, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Weibo-Weibo_remove_ads.js, requires-body=true
+移除开屏广告 sdkad = type=http-response, pattern=^https:\/\/sdkapp\.uve\.weibo\.com\/interface\/sdk\/sdkad\.php, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Weibo-Weibo_remove_ads.js, requires-body=true,script-update-interval=86400
 
-移除开屏广告 wbapplua = type=http-response, pattern=^https:\/\/wbapp\.uve\.weibo\.com\/(?:preload\/get_ad|wbapplua\/wbpullad\.lua), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Weibo-Weibo_remove_ads.js, requires-body=true
+移除开屏广告 wbapplua = type=http-response, pattern=^https:\/\/wbapp\.uve\.weibo\.com\/(?:preload\/get_ad|wbapplua\/wbpullad\.lua), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Weibo-Weibo_remove_ads.js, requires-body=true,script-update-interval=86400
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - 
 # 可莉 · 快看漫画去广告
 # - - - - - - - - - - - - - - - - - - - - - - - - 
-修改广告参数 = type=http-response, pattern=^https:\/\/(cdn-)?api\.kkmh\.com\/v\d\/ironman\/comic\/recommend, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/KuaiKanComic-KuaiKanComic_remove_ads.js, requires-body=true
+修改广告参数 = type=http-response, pattern=^https:\/\/(cdn-)?api\.kkmh\.com\/v\d\/ironman\/comic\/recommend, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/KuaiKanComic-KuaiKanComic_remove_ads.js, requires-body=true,script-update-interval=86400
 
-精简首页热门标签 = type=http-response, pattern=^https:\/\/(cdn-)?api\.kkmh\.com\/v\d\/ironman\/discovery_v\d\/tab_list_v\d, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/KuaiKanComic-KuaiKanComic_remove_ads.js, requires-body=true
+精简首页热门标签 = type=http-response, pattern=^https:\/\/(cdn-)?api\.kkmh\.com\/v\d\/ironman\/discovery_v\d\/tab_list_v\d, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/KuaiKanComic-KuaiKanComic_remove_ads.js, requires-body=true,script-update-interval=86400
 
-精简社区标签 = type=http-response, pattern=^https:\/\/(cdn-)?social\.kkmh\.com\/v\d\/graph\/homepage\/comicVideo\/v\d\/configs, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/KuaiKanComic-KuaiKanComic_remove_ads.js, requires-body=true
+精简社区标签 = type=http-response, pattern=^https:\/\/(cdn-)?social\.kkmh\.com\/v\d\/graph\/homepage\/comicVideo\/v\d\/configs, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/KuaiKanComic-KuaiKanComic_remove_ads.js, requires-body=true,script-update-interval=86400
 
-精简社区信息流 = type=http-response, pattern=^https:\/\/(cdn-)?social\.kkmh\.com\/v\d\/graph\/unified_feed$, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/KuaiKanComic-KuaiKanComic_remove_ads.js, requires-body=true
+精简社区信息流 = type=http-response, pattern=^https:\/\/(cdn-)?social\.kkmh\.com\/v\d\/graph\/unified_feed$, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/KuaiKanComic-KuaiKanComic_remove_ads.js, requires-body=true,script-update-interval=86400
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - 
 # 可莉 · 斗鱼去广告
 # - - - - - - - - - - - - - - - - - - - - - - - - 
-移除首页轮播图和视频流广告 = type=http-response, pattern=^https:\/\/apiv2\.douyucdn\.cn\/mgapi\/livenc\/home\/getRecV3, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Douyu-Douyu_remove_ads.js, requires-body=true
+移除首页轮播图和视频流广告 = type=http-response, pattern=^https:\/\/apiv2\.douyucdn\.cn\/mgapi\/livenc\/home\/getRecV3, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Douyu-Douyu_remove_ads.js, requires-body=true,script-update-interval=86400
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - 
 # 可莉 · 朴朴超市去广告
 # - - - - - - - - - - - - - - - - - - - - - - - - 
-移除朴朴超市广告 = type=http-response, pattern=^https:\/\/j1\.pupuapi\.com\/client\/marketing\/banner\/v7, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/PuPuMall-PuPuMall_remove_ads.js, requires-body=true
+移除朴朴超市广告 = type=http-response, pattern=^https:\/\/j1\.pupuapi\.com\/client\/marketing\/banner\/v7, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/PuPuMall-PuPuMall_remove_ads.js, requires-body=true,script-update-interval=86400
 
-移除朴朴超市广告 = type=http-response, pattern=^https:\/\/j1\.pupuapi\.com\/client\/marketing\/banner\/search_component_banner, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/PuPuMall-PuPuMall_remove_ads.js, requires-body=true
+移除朴朴超市广告 = type=http-response, pattern=^https:\/\/j1\.pupuapi\.com\/client\/marketing\/banner\/search_component_banner, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/PuPuMall-PuPuMall_remove_ads.js, requires-body=true,script-update-interval=86400
 
-移除朴朴超市广告 = type=http-response, pattern=^https:\/\/j1\.pupuapi\.com\/client\/search\/hot_keywords\/v3, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/PuPuMall-PuPuMall_remove_ads.js, requires-body=true
+移除朴朴超市广告 = type=http-response, pattern=^https:\/\/j1\.pupuapi\.com\/client\/search\/hot_keywords\/v3, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/PuPuMall-PuPuMall_remove_ads.js, requires-body=true,script-update-interval=86400
 
-移除朴朴超市广告 = type=http-response, pattern=^https:\/\/j1\.pupuapi\.com\/client\/app_resource\/resource_preload\/list_h5_resource, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/PuPuMall-PuPuMall_remove_ads.js, requires-body=true
+移除朴朴超市广告 = type=http-response, pattern=^https:\/\/j1\.pupuapi\.com\/client\/app_resource\/resource_preload\/list_h5_resource, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/PuPuMall-PuPuMall_remove_ads.js, requires-body=true,script-update-interval=86400
 
-移除朴朴超市广告 = type=http-response, pattern=^https:\/\/j1\.pupuapi\.com\/client\/recommendation\/interests\/products, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/PuPuMall-PuPuMall_remove_ads.js, requires-body=true
+移除朴朴超市广告 = type=http-response, pattern=^https:\/\/j1\.pupuapi\.com\/client\/recommendation\/interests\/products, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/PuPuMall-PuPuMall_remove_ads.js, requires-body=true,script-update-interval=86400
 
-移除朴朴超市广告 = type=http-response, pattern=^https:\/\/j1\.pupuapi\.com\/client\/marketing\/advertisement\/v1, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/PuPuMall-PuPuMall_remove_ads.js, requires-body=true
+移除朴朴超市广告 = type=http-response, pattern=^https:\/\/j1\.pupuapi\.com\/client\/marketing\/advertisement\/v1, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/PuPuMall-PuPuMall_remove_ads.js, requires-body=true,script-update-interval=86400
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - 
 # 可莉 · 汽水音乐去广告
 # - - - - - - - - - - - - - - - - - - - - - - - - 
-移除播放页面视频流 = type=http-response, pattern=^https:\/\/(beta-luna\.douyin|api5-lq\.qishui)\.com\/luna\/me\/recently-played-media\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/SodaMusic-SodaMusic_remove_ads.js, requires-body=true
+移除播放页面视频流 = type=http-response, pattern=^https:\/\/(beta-luna\.douyin|api5-lq\.qishui)\.com\/luna\/me\/recently-played-media\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/SodaMusic-SodaMusic_remove_ads.js, requires-body=true,script-update-interval=86400
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - 
 # 可莉 · 汽车之家去广告
 # - - - - - - - - - - - - - - - - - - - - - - - - 
-精简我的页面 = type=http-response, pattern=^https:\/\/news\.app\.autohome\.com\.cn\/news_v\d+(?:\.\d+){2}\/news\/homenavigation, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/AutoHome-AutoHome_remove_ads.js, requires-body=true
+精简我的页面 = type=http-response, pattern=^https:\/\/news\.app\.autohome\.com\.cn\/news_v\d+(?:\.\d+){2}\/news\/homenavigation, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/AutoHome-AutoHome_remove_ads.js, requires-body=true,script-update-interval=86400
 
-精简我的页面 = type=http-response, pattern=^https:\/\/(a\.athm\.cn\/)?mobile\.app\.autohome\.com\.cn\/platform\/carserver\/((usercenter\/getservicecards)|(carcard\/allcard)|(carcard\/mycardv\d+)|(carcard\/cards)), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/AutoHome-AutoHome_remove_ads.js, requires-body=true
+精简我的页面 = type=http-response, pattern=^https:\/\/(a\.athm\.cn\/)?mobile\.app\.autohome\.com\.cn\/platform\/carserver\/((usercenter\/getservicecards)|(carcard\/allcard)|(carcard\/mycardv\d+)|(carcard\/cards)), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/AutoHome-AutoHome_remove_ads.js, requires-body=true,script-update-interval=86400
 
-社区广场去广告 = type=http-response, pattern=^https:\/\/(a\.athm\.cn\/)?club\.app\.autohome\.com\.cn\/club_v\d+(?:\.\d+){2}\/club\/index\/businessv\d+, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/AutoHome-AutoHome_remove_ads.js, requires-body=true
+社区广场去广告 = type=http-response, pattern=^https:\/\/(a\.athm\.cn\/)?club\.app\.autohome\.com\.cn\/club_v\d+(?:\.\d+){2}\/club\/index\/businessv\d+, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/AutoHome-AutoHome_remove_ads.js, requires-body=true,script-update-interval=86400
 
-移除直播浮窗 = type=http-response, pattern=^https:\/\/(a\.athm\.cn\/)?cars\.app\.autohome\.com\.cn\/carstreaming\/selectcarportal\/reclist, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/AutoHome-AutoHome_remove_ads.js, requires-body=true
+移除直播浮窗 = type=http-response, pattern=^https:\/\/(a\.athm\.cn\/)?cars\.app\.autohome\.com\.cn\/carstreaming\/selectcarportal\/reclist, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/AutoHome-AutoHome_remove_ads.js, requires-body=true,script-update-interval=86400
 
-移除报价页面直播内容 = type=http-response, pattern=^https:\/\/(a\.athm\.cn\/)?cars\.app\.autohome\.com\.cn\/carstreaming\/selectcarportal\/seriestopwithtagscard, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/AutoHome-AutoHome_remove_ads.js, requires-body=true
+移除报价页面直播内容 = type=http-response, pattern=^https:\/\/(a\.athm\.cn\/)?cars\.app\.autohome\.com\.cn\/carstreaming\/selectcarportal\/seriestopwithtagscard, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/AutoHome-AutoHome_remove_ads.js, requires-body=true,script-update-interval=86400
 
-移除二手车竖版轮播图 = type=http-response, pattern=^https:\/\/(a\.athm\.cn\/)?apiautoappusc\.che168\.com\/apic\/v\d+\/gethomepagefeed, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/AutoHome-AutoHome_remove_ads.js, requires-body=true
+移除二手车竖版轮播图 = type=http-response, pattern=^https:\/\/(a\.athm\.cn\/)?apiautoappusc\.che168\.com\/apic\/v\d+\/gethomepagefeed, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/AutoHome-AutoHome_remove_ads.js, requires-body=true,script-update-interval=86400
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - 
 # 可莉 · 淘宝去广告
 # - - - - - - - - - - - - - - - - - - - - - - - - 
-移除淘宝开屏广告 = type=http-response, pattern=^https:\/\/guide-acs\.m\.taobao\.com\/gw\/mtop\.taobao\.(cloudvideo\.video\.query|wireless\.home\.splash\.awesome\.get), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Taobao-Taobao_remove_ads.js, requires-body=true
+移除淘宝开屏广告 = type=http-response, pattern=^https:\/\/guide-acs\.m\.taobao\.com\/gw\/mtop\.taobao\.(cloudvideo\.video\.query|wireless\.home\.splash\.awesome\.get), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Taobao-Taobao_remove_ads.js, requires-body=true,script-update-interval=86400
 
-移除淘宝开屏广告 = type=http-response, pattern=^https:\/\/poplayer\.template\.alibaba\.com\/\w+\.json, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Taobao-Taobao_remove_ads.js, requires-body=true
+移除淘宝开屏广告 = type=http-response, pattern=^https:\/\/poplayer\.template\.alibaba\.com\/\w+\.json, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Taobao-Taobao_remove_ads.js, requires-body=true,script-update-interval=86400
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - 
 # 可莉 · 漫客栈去广告
 # - - - - - - - - - - - - - - - - - - - - - - - - 
-配置修改 = type=http-response, pattern=^https:\/\/base\.mkzcdn\.com\/app\/config\/, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/MKZ-MKZ_remove_ads.js, requires-body=true
+配置修改 = type=http-response, pattern=^https:\/\/base\.mkzcdn\.com\/app\/config\/, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/MKZ-MKZ_remove_ads.js, requires-body=true,script-update-interval=86400
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - 
 # 可莉 · 百度网页去广告
 # - - - - - - - - - - - - - - - - - - - - - - - - 
-移除百度搜索首页信息流广告 = type=http-response, pattern="^https?:\/\/(www|m)\.baidu\.com\/?($|\?from=\w{8,9})", script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/BaiduSearch-BaiduSearchHomePage_remove_ads.js, requires-body=true
+移除百度搜索首页信息流广告 = type=http-response, pattern="^https?:\/\/(www|m)\.baidu\.com\/?($|\?from=\w{8,9})", script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/BaiduSearch-BaiduSearchHomePage_remove_ads.js, requires-body=true,script-update-interval=86400
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -7102,217 +7103,217 @@ T3出行去广告 = type=http-response, pattern=^https:\/\/passenger\.t3go\.cn\/
 # - - - - - - - - - - - - - - - - - - - - - - - - 
 # 可莉 · 百度贴吧去广告
 # - - - - - - - - - - - - - - - - - - - - - - - - 
-ProtoBuf处理 = type=http-response, pattern=^https?:\/\/tieba(?:c)?\.baidu\.com\/c\/(f\/excellent\/personalized|f\/frs\/page|b\/ad\/adBid|f\/ad\/getFeedAd|f\/pb\/page|f\/frs\/generalTabList)\?cmd=\d+&format=protobuf, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Tieba-tieba-proto.js, requires-body=true, binary-body-mode=true, timeout=10, argument=[{{{per_filter_video_thread}}}]
+ProtoBuf处理 = type=http-response, pattern=^https?:\/\/tieba(?:c)?\.baidu\.com\/c\/(f\/excellent\/personalized|f\/frs\/page|b\/ad\/adBid|f\/ad\/getFeedAd|f\/pb\/page|f\/frs\/generalTabList)\?cmd=\d+&format=protobuf, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Tieba-tieba-proto.js, requires-body=true, binary-body-mode=true, timeout=10, argument=[{{{per_filter_video_thread}}}],script-update-interval=86400
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - 
 # 可莉 · 百度贴吧去广告（贴吧）
 # - - - - - - - - - - - - - - - - - - - - - - - - 
-清理首页 = type=http-response, pattern=^https:\/\/tiebac\.baidu\.com\/livefeed\/feed, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Tieba-Tieba_remove_ads.js, requires-body=true
+清理首页 = type=http-response, pattern=^https:\/\/tiebac\.baidu\.com\/livefeed\/feed, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Tieba-Tieba_remove_ads.js, requires-body=true,script-update-interval=86400
 
-清理侧拉抽屉 = type=http-response, pattern=^https:\/\/tiebac\.baidu\.com\/c\/f\/sidebar\/home, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Tieba-Tieba_remove_ads.js, requires-body=true
+清理侧拉抽屉 = type=http-response, pattern=^https:\/\/tiebac\.baidu\.com\/c\/f\/sidebar\/home, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Tieba-Tieba_remove_ads.js, requires-body=true,script-update-interval=86400
 
-清理我的页面 = type=http-response, pattern=^https:\/\/tiebac\.baidu\.com\/c\/u\/user\/profile, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Tieba-Tieba_remove_ads.js, requires-body=true
+清理我的页面 = type=http-response, pattern=^https:\/\/tiebac\.baidu\.com\/c\/u\/user\/profile, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Tieba-Tieba_remove_ads.js, requires-body=true,script-update-interval=86400
 
-清理首页 = type=http-response, pattern=^https:\/\/tieba\.baidu\.com\/c\/f\/frs\/frsBottom, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Tieba-Tieba_remove_ads.js, requires-body=true
+清理首页 = type=http-response, pattern=^https:\/\/tieba\.baidu\.com\/c\/f\/frs\/frsBottom, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Tieba-Tieba_remove_ads.js, requires-body=true,script-update-interval=86400
 
-JSON处理 = type=http-response, pattern=^http(s:\/\/tiebac|:\/\/c\.tieba)\.baidu\.com\/(c\/f\/(frs\/(page|threadlist|generalTabList)|pb\/page|excellent\/personalized)$|tiebaads\/commonbatch|c\/s\/sync$), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Tieba-tieba-json.js, requires-body=true, timeout=10
+JSON处理 = type=http-response, pattern=^http(s:\/\/tiebac|:\/\/c\.tieba)\.baidu\.com\/(c\/f\/(frs\/(page|threadlist|generalTabList)|pb\/page|excellent\/personalized)$|tiebaads\/commonbatch|c\/s\/sync$), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Tieba-tieba-json.js, requires-body=true, timeout=10,script-update-interval=86400
 
-Proto处理 = type=http-response, pattern=^http(s:\/\/tiebac|:\/\/c\.tieba)\.baidu\.com\/c\/f\/(frs\/(page|threadlist|generalTabList)|pb\/page|excellent\/personalized)\?cmd, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Tieba-tieba-proto.js, requires-body=true, binary-body-mode=true, timeout=10
+Proto处理 = type=http-response, pattern=^http(s:\/\/tiebac|:\/\/c\.tieba)\.baidu\.com\/c\/f\/(frs\/(page|threadlist|generalTabList)|pb\/page|excellent\/personalized)\?cmd, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Tieba-tieba-proto.js, requires-body=true, binary-body-mode=true, timeout=10,script-update-interval=86400
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - 
 # 可莉 · 百度输入法去广告
 # - - - - - - - - - - - - - - - - - - - - - - - - 
-百度输入法去广告 = type=http-response, pattern=^https?:\/\/mime\.baidu\.com\/(imrobot\/v1\/pub\/relation\/get_robot_list|v5\/custom_page\/(layout|getdata)), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Baidu_input_method-Baidu_input_method_remove_ads.js, requires-body=true
+百度输入法去广告 = type=http-response, pattern=^https?:\/\/mime\.baidu\.com\/(imrobot\/v1\/pub\/relation\/get_robot_list|v5\/custom_page\/(layout|getdata)), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Baidu_input_method-Baidu_input_method_remove_ads.js, requires-body=true,script-update-interval=86400
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - 
 # 可莉 · 知乎去广告
 # - - - - - - - - - - - - - - - - - - - - - - - - 
-移除回答底部卡片推广 = type=http-response, pattern=^https:\/\/(?:api|page-info)\.zhihu\.com\/(?:answers|articles)\/v2\/\d+, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Zhihu-Zhihu_remove_ads.js, requires-body=true
+移除回答底部卡片推广 = type=http-response, pattern=^https:\/\/(?:api|page-info)\.zhihu\.com\/(?:answers|articles)\/v2\/\d+, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Zhihu-Zhihu_remove_ads.js, requires-body=true,script-update-interval=86400
 
-移除首页悬浮图标 = type=http-response, pattern=^https:\/\/api\.zhihu\.com\/commercial_api\/app_float_layer, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Zhihu-Zhihu_remove_ads.js, requires-body=true
+移除首页悬浮图标 = type=http-response, pattern=^https:\/\/api\.zhihu\.com\/commercial_api\/app_float_layer, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Zhihu-Zhihu_remove_ads.js, requires-body=true,script-update-interval=86400
 
-移除推荐信息流推广 = type=http-response, pattern=^https:\/\/api\.zhihu\.com\/feed\/render\/tab\/config\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Zhihu-Zhihu_remove_ads.js, requires-body=true
+移除推荐信息流推广 = type=http-response, pattern=^https:\/\/api\.zhihu\.com\/feed\/render\/tab\/config\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Zhihu-Zhihu_remove_ads.js, requires-body=true,script-update-interval=86400
 
-移除推荐信息流推广 = type=http-response, pattern=^https:\/\/api\.zhihu\.com\/(?:moments_v3|topstory\/hot-lists\/total|topstory\/recommend), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Zhihu-Zhihu_remove_ads.js, requires-body=true
+移除推荐信息流推广 = type=http-response, pattern=^https:\/\/api\.zhihu\.com\/(?:moments_v3|topstory\/hot-lists\/total|topstory\/recommend), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Zhihu-Zhihu_remove_ads.js, requires-body=true,script-update-interval=86400
 
-精简顶部标签 = type=http-response, pattern=^https:\/\/api\.zhihu\.com\/root\/tab, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Zhihu-Zhihu_remove_ads.js, requires-body=true
+精简顶部标签 = type=http-response, pattern=^https:\/\/api\.zhihu\.com\/root\/tab, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Zhihu-Zhihu_remove_ads.js, requires-body=true,script-update-interval=86400
 
-移除热榜信息流推广 = type=http-response, pattern=^https:\/\/api\.zhihu\.com\/v2\/topstory\/hot-lists\/everyone-seeing\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Zhihu-Zhihu_remove_ads.js, requires-body=true
+移除热榜信息流推广 = type=http-response, pattern=^https:\/\/api\.zhihu\.com\/v2\/topstory\/hot-lists\/everyone-seeing\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Zhihu-Zhihu_remove_ads.js, requires-body=true,script-update-interval=86400
 
-移除下一个回答推广、评论区顶部推广 = type=http-response, pattern=^https:\/\/api\.zhihu\.com\/next-(?:bff|data|render), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Zhihu-Zhihu_remove_ads.js, requires-body=true
+移除下一个回答推广、评论区顶部推广 = type=http-response, pattern=^https:\/\/api\.zhihu\.com\/next-(?:bff|data|render), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Zhihu-Zhihu_remove_ads.js, requires-body=true,script-update-interval=86400
 
-移除回答详情页推广 = type=http-response, pattern=^https:\/\/www\.zhihu\.com\/api\/v4\/(?:articles|answers)\/\d+\/recommendations?\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Zhihu-Zhihu_remove_ads.js, requires-body=true
+移除回答详情页推广 = type=http-response, pattern=^https:\/\/www\.zhihu\.com\/api\/v4\/(?:articles|answers)\/\d+\/recommendations?\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Zhihu-Zhihu_remove_ads.js, requires-body=true,script-update-interval=86400
 
-拦截服务器推送配置 config = type=http-response, pattern=^https:\/\/appcloud2\.zhihu\.com\/v3\/config, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Zhihu-Zhihu_remove_ads.js, requires-body=true
+拦截服务器推送配置 config = type=http-response, pattern=^https:\/\/appcloud2\.zhihu\.com\/v3\/config, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Zhihu-Zhihu_remove_ads.js, requires-body=true,script-update-interval=86400
 
-拦截服务器推送配置 config all = type=http-response, pattern=^https:\/\/m-cloud\.zhihu\.com\/api\/cloud\/zhihu\/config\/all\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Zhihu-Zhihu_remove_ads.js, requires-body=true
+拦截服务器推送配置 config all = type=http-response, pattern=^https:\/\/m-cloud\.zhihu\.com\/api\/cloud\/zhihu\/config\/all\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Zhihu-Zhihu_remove_ads.js, requires-body=true,script-update-interval=86400
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - 
 # 可莉 · 网易云音乐去广告
 # - - - - - - - - - - - - - - - - - - - - - - - - 
-评论区、热推、有话想说、分享一下、歌曲下的祝福等小提示 = type=http-response, pattern=^https?:\/\/interface\d?\.music\.163\.com\/eapi\/(?:batch|v2\/resource\/comment\/floor\/get), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/NeteaseCloudMusic-NeteaseCloudMusic_remove_ads.js, requires-body=true, binary-body-mode=true, timeout=20
+评论区、热推、有话想说、分享一下、歌曲下的祝福等小提示 = type=http-response, pattern=^https?:\/\/interface\d?\.music\.163\.com\/eapi\/(?:batch|v2\/resource\/comment\/floor\/get), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/NeteaseCloudMusic-NeteaseCloudMusic_remove_ads.js, requires-body=true, binary-body-mode=true, timeout=20,script-update-interval=86400
 
-推荐、home、主页 = type=http-response, pattern=^https?:\/\/interface\d?\.music\.163\.com\/eapi\/(?:homepage\/block\/page|link\/page\/rcmd\/(?:block\/resource\/multi\/refresh|resource\/show)), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/NeteaseCloudMusic-NeteaseCloudMusic_remove_ads.js, requires-body=true, binary-body-mode=true, timeout=20, argument="[{PRGG},{PRRK},{PRDRD},{PRSCVPT},{PRST},{PRRR},{HMPR},{PRMST},{PRCN}]"
+推荐、home、主页 = type=http-response, pattern=^https?:\/\/interface\d?\.music\.163\.com\/eapi\/(?:homepage\/block\/page|link\/page\/rcmd\/(?:block\/resource\/multi\/refresh|resource\/show)), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/NeteaseCloudMusic-NeteaseCloudMusic_remove_ads.js, requires-body=true, binary-body-mode=true, timeout=20, argument="[{PRGG},{PRRK},{PRDRD},{PRSCVPT},{PRST},{PRRR},{HMPR},{PRMST},{PRCN}]",script-update-interval=86400
 
-底部选项卡 = type=http-response, pattern=^https?:\/\/interface\d?\.music\.163\.com\/eapi\/link\/home\/framework\/tab, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/NeteaseCloudMusic-NeteaseCloudMusic_remove_ads.js, requires-body=true, binary-body-mode=true, timeout=20, argument="[{MY},{DT},{FX}]"
+底部选项卡 = type=http-response, pattern=^https?:\/\/interface\d?\.music\.163\.com\/eapi\/link\/home\/framework\/tab, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/NeteaseCloudMusic-NeteaseCloudMusic_remove_ads.js, requires-body=true, binary-body-mode=true, timeout=20, argument="[{MY},{DT},{FX}]",script-update-interval=86400
 
-发现页 = type=http-response, pattern=^https?:\/\/interface\d?\.music\.163\.com\/eapi\/link\/page\/discovery\/resource\/show, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/NeteaseCloudMusic-NeteaseCloudMusic_remove_ads.js, requires-body=true, binary-body-mode=true, timeout=20
+发现页 = type=http-response, pattern=^https?:\/\/interface\d?\.music\.163\.com\/eapi\/link\/page\/discovery\/resource\/show, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/NeteaseCloudMusic-NeteaseCloudMusic_remove_ads.js, requires-body=true, binary-body-mode=true, timeout=20,script-update-interval=86400
 
-我的页面 = type=http-response, pattern=^https?:\/\/interface\d?\.music\.163\.com\/eapi\/link\/position\/show\/resource, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/NeteaseCloudMusic-NeteaseCloudMusic_remove_ads.js, requires-body=true, binary-body-mode=true, timeout=20
+我的页面 = type=http-response, pattern=^https?:\/\/interface\d?\.music\.163\.com\/eapi\/link\/position\/show\/resource, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/NeteaseCloudMusic-NeteaseCloudMusic_remove_ads.js, requires-body=true, binary-body-mode=true, timeout=20,script-update-interval=86400
 
-显示未关注你的人 = type=http-response, pattern=^https?:\/\/interface\d?\.music\.163\.com\/eapi\/user\/follow\/users\/mixed\/get, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/NeteaseCloudMusic-NeteaseCloudMusic_remove_ads.js, requires-body=true, binary-body-mode=true, timeout=20
+显示未关注你的人 = type=http-response, pattern=^https?:\/\/interface\d?\.music\.163\.com\/eapi\/user\/follow\/users\/mixed\/get, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/NeteaseCloudMusic-NeteaseCloudMusic_remove_ads.js, requires-body=true, binary-body-mode=true, timeout=20,script-update-interval=86400
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - 
 # 可莉 · 网易大神去广告
 # - - - - - - - - - - - - - - - - - - - - - - - - 
-网易大神去广告 = type=http-response, pattern=^https:\/\/app-conf\.ds\.163\.com\/v1\/app\/base\/conf\/static\/start-config\?os=ios, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/NetEaseGodlike-NetEaseGodlike_remove_ads.js, requires-body=true, timeout=10
+网易大神去广告 = type=http-response, pattern=^https:\/\/app-conf\.ds\.163\.com\/v1\/app\/base\/conf\/static\/start-config\?os=ios, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/NetEaseGodlike-NetEaseGodlike_remove_ads.js, requires-body=true, timeout=10,script-update-interval=86400
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - 
 # 可莉 · 网易新闻去广告
 # - - - - - - - - - - - - - - - - - - - - - - - - 
-移除网易新闻广告 = type=http-response, pattern=^https:\/\/nex\.163\.com\/q, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/NeteaseNews-NeteaseNews_remove_ads.js, requires-body=true
+移除网易新闻广告 = type=http-response, pattern=^https:\/\/nex\.163\.com\/q, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/NeteaseNews-NeteaseNews_remove_ads.js, requires-body=true,script-update-interval=86400
 
-移除网易新闻广告 = type=http-response, pattern=^https:\/\/gw\.m\.163\.com\/nc\/api\/v1\/feed\/dynamic\/headline-list\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/NeteaseNews-NeteaseNews_remove_ads.js, requires-body=true
+移除网易新闻广告 = type=http-response, pattern=^https:\/\/gw\.m\.163\.com\/nc\/api\/v1\/feed\/dynamic\/headline-list\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/NeteaseNews-NeteaseNews_remove_ads.js, requires-body=true,script-update-interval=86400
 
-移除网易新闻广告 = type=http-response, pattern=^https:\/\/gw\.m\.163\.com\/nc\/api\/v1\/search\/hot-word, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/NeteaseNews-NeteaseNews_remove_ads.js, requires-body=true
+移除网易新闻广告 = type=http-response, pattern=^https:\/\/gw\.m\.163\.com\/nc\/api\/v1\/search\/hot-word, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/NeteaseNews-NeteaseNews_remove_ads.js, requires-body=true,script-update-interval=86400
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - 
 # 可莉 · 美颜相机去广告
 # - - - - - - - - - - - - - - - - - - - - - - - - 
-精简首页功能栏目并移除美颜推荐 = type=http-response, pattern=^https:\/\/api\.meiyan\.com\/operation\/home\.json\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/MeituMYXJ-MeituMYXJ_remove_ads.js, requires-body=true
+精简首页功能栏目并移除美颜推荐 = type=http-response, pattern=^https:\/\/api\.meiyan\.com\/operation\/home\.json\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/MeituMYXJ-MeituMYXJ_remove_ads.js, requires-body=true,script-update-interval=86400
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - 
 # 可莉 · 脉脉去广告
 # - - - - - - - - - - - - - - - - - - - - - - - - 
-移除信息流和评论区大块广告 = type=http-response, pattern=^https:\/\/(h3\.)?open\.taou\.com\/maimai\/(feed|gossip)\/v\d\/(focus_feed|gossip_detail_comment|feed_detail_comment?)\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/MaiMai-MaiMai_remove_ads.js, requires-body=true
+移除信息流和评论区大块广告 = type=http-response, pattern=^https:\/\/(h3\.)?open\.taou\.com\/maimai\/(feed|gossip)\/v\d\/(focus_feed|gossip_detail_comment|feed_detail_comment?)\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/MaiMai-MaiMai_remove_ads.js, requires-body=true,script-update-interval=86400
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - 
 # 可莉 · 腾讯视频去广告
 # - - - - - - - - - - - - - - - - - - - - - - - - 
-移除广告 = type=http-request, pattern=^https?:\/\/vv\.video\.qq\.com\/getvinfo, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/CommonScript-replace-body.js, requires-body=true, argument="&sppreviewtype=\d(.*)&spsrt=\d->&sppreviewtype=0$1&spsrt=0"
+移除广告 = type=http-request, pattern=^https?:\/\/vv\.video\.qq\.com\/getvinfo, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/CommonScript-replace-body.js, requires-body=true, argument="&sppreviewtype=\d(.*)&spsrt=\d->&sppreviewtype=0$1&spsrt=0",script-update-interval=86400
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - 
 # 可莉 · 航旅纵横去广告
 # - - - - - - - - - - - - - - - - - - - - - - - - 
-移除首页广告 = type=http-response, pattern=^http?:\/\/(114\.115\.217\.129)|(home\.umetrip\.com)\/gateway\/api\/umetrip\/native$, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Umetrip-Umetrip_remove_ads.js
+移除首页广告 = type=http-response, pattern=^http?:\/\/(114\.115\.217\.129)|(home\.umetrip\.com)\/gateway\/api\/umetrip\/native$, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Umetrip-Umetrip_remove_ads.js,script-update-interval=86400
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - 
 # 可莉 · 薄荷健康去广告
 # - - - - - - - - - - - - - - - - - - - - - - - - 
-移除广场推荐页面横幅 = type=http-response, pattern=^https:\/\/api\.boohee\.com\/meta-interface\/v1\/index\/plaza-flow\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/BooHee-BooHee_remove_ads.js, requires-body=true
+移除广场推荐页面横幅 = type=http-response, pattern=^https:\/\/api\.boohee\.com\/meta-interface\/v1\/index\/plaza-flow\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/BooHee-BooHee_remove_ads.js, requires-body=true,script-update-interval=86400
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - 
 # 可莉 · 虎扑去广告
 # - - - - - - - - - - - - - - - - - - - - - - - - 
-移除虎扑广告 = type=http-response, pattern=^https:\/\/fairy\.mobileapi\.hupu\.com\/mang\/preview\/banners, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/HUPU-HUPU_remove_ads.js, requires-body=true
+移除虎扑广告 = type=http-response, pattern=^https:\/\/fairy\.mobileapi\.hupu\.com\/mang\/preview\/banners, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/HUPU-HUPU_remove_ads.js, requires-body=true,script-update-interval=86400
 
-移除虎扑广告 = type=http-response, pattern=^https:\/\/bbs\.mobileapi\.hupu\.com\/\d\/\d\.\d\.\d+\/bbsallapi\/lego\/data, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/HUPU-HUPU_remove_ads.js, requires-body=true
+移除虎扑广告 = type=http-response, pattern=^https:\/\/bbs\.mobileapi\.hupu\.com\/\d\/\d\.\d\.\d+\/bbsallapi\/lego\/data, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/HUPU-HUPU_remove_ads.js, requires-body=true,script-update-interval=86400
 
-移除虎扑广告 = type=http-response, pattern=^https:\/\/games\.mobileapi\.hupu\.com\/\d\/\d\.\d\.\d+\/buffer\/hotList, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/HUPU-HUPU_remove_ads.js, requires-body=true
+移除虎扑广告 = type=http-response, pattern=^https:\/\/games\.mobileapi\.hupu\.com\/\d\/\d\.\d\.\d+\/buffer\/hotList, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/HUPU-HUPU_remove_ads.js, requires-body=true,script-update-interval=86400
 
-移除虎扑广告 = type=http-response, pattern=^https:\/\/games\.mobileapi\.hupu\.com\/\d\/\d\.\d\.\d+\/bplapi\/user\/v1\/more, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/HUPU-HUPU_remove_ads.js, requires-body=true
+移除虎扑广告 = type=http-response, pattern=^https:\/\/games\.mobileapi\.hupu\.com\/\d\/\d\.\d\.\d+\/bplapi\/user\/v1\/more, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/HUPU-HUPU_remove_ads.js, requires-body=true,script-update-interval=86400
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - 
 # 可莉 · 财新去广告
 # - - - - - - - - - - - - - - - - - - - - - - - - 
-移除财新数据通广告 = type=http-response, pattern=^https:\/\/entities\.caixin\.com\/api\/dataplus\/columns, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/CaixinMedia-CaixinMedia_remove_ads.js, requires-body=true
+移除财新数据通广告 = type=http-response, pattern=^https:\/\/entities\.caixin\.com\/api\/dataplus\/columns, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/CaixinMedia-CaixinMedia_remove_ads.js, requires-body=true,script-update-interval=86400
 
-移除文末广告 = type=http-response, pattern=^https:\/\/gateway\.caixin\.com\/api\/app-api\/(caixinapp\/appinfo|search\/getkeyword), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/CaixinMedia-CaixinMedia_remove_ads.js, requires-body=true
+移除文末广告 = type=http-response, pattern=^https:\/\/gateway\.caixin\.com\/api\/app-api\/(caixinapp\/appinfo|search\/getkeyword), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/CaixinMedia-CaixinMedia_remove_ads.js, requires-body=true,script-update-interval=86400
 
-移除财新FM广告 = type=http-response, pattern=^https:\/\/gateway\.caixin\.com\/api\/app-content\/fm\/index\/list\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/CaixinMedia-CaixinMedia_remove_ads.js, requires-body=true
+移除财新FM广告 = type=http-response, pattern=^https:\/\/gateway\.caixin\.com\/api\/app-content\/fm\/index\/list\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/CaixinMedia-CaixinMedia_remove_ads.js, requires-body=true,script-update-interval=86400
 
-移除开屏广告 = type=http-response, pattern=^https:\/\/gg\.caixin\.com\/s\?z=caixin&op=\d, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/CaixinMedia-CaixinMedia_remove_ads.js, requires-body=true
+移除开屏广告 = type=http-response, pattern=^https:\/\/gg\.caixin\.com\/s\?z=caixin&op=\d, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/CaixinMedia-CaixinMedia_remove_ads.js, requires-body=true,script-update-interval=86400
 
-移除正文广告 = type=http-response, pattern=^https:\/\/mappsv5\.caixin\.com\/articlev5\/\d+\/\d+\.json$, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/CaixinMedia-CaixinMedia_remove_ads.js, requires-body=true
+移除正文广告 = type=http-response, pattern=^https:\/\/mappsv5\.caixin\.com\/articlev5\/\d+\/\d+\.json$, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/CaixinMedia-CaixinMedia_remove_ads.js, requires-body=true,script-update-interval=86400
 
-移除正文广告 = type=http-response, pattern=^https:\/\/mapps?v5\.caixin\.com\/(channelv5\/list|\/?index_page_v5\/)\w+, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/CaixinMedia-CaixinMedia_remove_ads.js, requires-body=true
+移除正文广告 = type=http-response, pattern=^https:\/\/mapps?v5\.caixin\.com\/(channelv5\/list|\/?index_page_v5\/)\w+, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/CaixinMedia-CaixinMedia_remove_ads.js, requires-body=true,script-update-interval=86400
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - 
 # 可莉 · 配音秀去广告
 # - - - - - - - - - - - - - - - - - - - - - - - - 
-移除首页底部弹窗 = type=http-response, pattern=^https:\/\/iosapi\.peiyinxiu\.com\/Api\/Film\/GetConfigValue, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/DubbingShow-DubbingShow_remove_ads.js, requires-body=true
+移除首页底部弹窗 = type=http-response, pattern=^https:\/\/iosapi\.peiyinxiu\.com\/Api\/Film\/GetConfigValue, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/DubbingShow-DubbingShow_remove_ads.js, requires-body=true,script-update-interval=86400
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - 
 # 可莉 · 阿里云盘去广告
 # - - - - - - - - - - - - - - - - - - - - - - - - 
-移除阿里云盘广告 = type=http-response, pattern=^https:\/\/(biz)?api\.alipan\.com\/apps\/v\d\/users?\/home\/(news|widgets), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/AliYunDrive-AliYunDrive_remove_ads.js, requires-body=true
+移除阿里云盘广告 = type=http-response, pattern=^https:\/\/(biz)?api\.alipan\.com\/apps\/v\d\/users?\/home\/(news|widgets), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/AliYunDrive-AliYunDrive_remove_ads.js, requires-body=true,script-update-interval=86400
 
-移除阿里云盘广告 = type=http-response, pattern=^https:\/\/member\.alipan\.com\/v1\/users\/onboard_list, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/AliYunDrive-AliYunDrive_remove_ads.js, requires-body=true
+移除阿里云盘广告 = type=http-response, pattern=^https:\/\/member\.alipan\.com\/v1\/users\/onboard_list, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/AliYunDrive-AliYunDrive_remove_ads.js, requires-body=true,script-update-interval=86400
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - 
 # 可莉 · 风鸟去广告
 # - - - - - - - - - - - - - - - - - - - - - - - - 
-移除推荐老板 = type=http-response, pattern=^https:\/\/m\.riskbird\.com\/prod-qbb-api\/query\/person\/personRecommend, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/RiskBird-RiskBird_remove_ads.js, requires-body=true
+移除推荐老板 = type=http-response, pattern=^https:\/\/m\.riskbird\.com\/prod-qbb-api\/query\/person\/personRecommend, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/RiskBird-RiskBird_remove_ads.js, requires-body=true,script-update-interval=86400
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - 
 # 可莉 · 飞客去广告
 # - - - - - - - - - - - - - - - - - - - - - - - - 
-移除板块广告 = type=http-response, pattern=^https:\/\/www\.flyert\.com\.cn\/api\/mobile\/index\.php\?version=5, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/FlyerTea-FlyerTea_remove_ads.js, requires-body=true
+移除板块广告 = type=http-response, pattern=^https:\/\/www\.flyert\.com\.cn\/api\/mobile\/index\.php\?version=5, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/FlyerTea-FlyerTea_remove_ads.js, requires-body=true,script-update-interval=86400
 
-移除签到弹窗广告 = type=http-response, pattern=^https:\/\/www\.flyert\.com\.cn\/api\/mobile\/index\.php\?module=plugin&id=k_misign:sign, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/FlyerTea-FlyerTea_remove_ads.js, requires-body=true
+移除签到弹窗广告 = type=http-response, pattern=^https:\/\/www\.flyert\.com\.cn\/api\/mobile\/index\.php\?module=plugin&id=k_misign:sign, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/FlyerTea-FlyerTea_remove_ads.js, requires-body=true,script-update-interval=86400
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - 
 # 可莉 · 高德地图去广告
 # - - - - - - - - - - - - - - - - - - - - - - - - 
-移除路线规划推广 = type=http-response, pattern=^https:\/\/m5\.amap\.com\/ws\/aos\/perception\/publicTravel\/beforeNavi\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Amap-Amap_remove_ads.js, requires-body=true
+移除路线规划推广 = type=http-response, pattern=^https:\/\/m5\.amap\.com\/ws\/aos\/perception\/publicTravel\/beforeNavi\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Amap-Amap_remove_ads.js, requires-body=true,script-update-interval=86400
 
-移除路线规划、导航结束页推广 = type=http-response, pattern=^https:\/\/m5\.amap\.com\/ws\/bus\/plan\/integrate\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Amap-Amap_remove_ads.js, requires-body=true
+移除路线规划、导航结束页推广 = type=http-response, pattern=^https:\/\/m5\.amap\.com\/ws\/bus\/plan\/integrate\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Amap-Amap_remove_ads.js, requires-body=true,script-update-interval=86400
 
-移除导航详情页底部酒店、处理附近页 = type=http-response, pattern=^https:\/\/m5\.amap\.com\/ws\/c3frontend\/(?:af-(?:hotel|launch)\/page\/main|af-nearby\/nearby), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Amap-Amap_remove_ads.js, requires-body=true
+移除导航详情页底部酒店、处理附近页 = type=http-response, pattern=^https:\/\/m5\.amap\.com\/ws\/c3frontend\/(?:af-(?:hotel|launch)\/page\/main|af-nearby\/nearby), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Amap-Amap_remove_ads.js, requires-body=true,script-update-interval=86400
 
-移除路线规划推广 = type=http-response, pattern=^https:\/\/m5\.amap\.com\/ws\/perception\/drive\/(?:routeInfo|routePlan), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Amap-Amap_remove_ads.js, requires-body=true
+移除路线规划推广 = type=http-response, pattern=^https:\/\/m5\.amap\.com\/ws\/perception\/drive\/(?:routeInfo|routePlan), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Amap-Amap_remove_ads.js, requires-body=true,script-update-interval=86400
 
-移除搜索栏推广 = type=http-response, pattern=^https:\/\/m5\.amap\.com\/ws\/shield\/search_bff\/hotword\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Amap-Amap_remove_ads.js, requires-body=true
+移除搜索栏推广 = type=http-response, pattern=^https:\/\/m5\.amap\.com\/ws\/shield\/search_bff\/hotword\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Amap-Amap_remove_ads.js, requires-body=true,script-update-interval=86400
 
-移除搜索详情页推广 = type=http-response, pattern=^https:\/\/m5\.amap\.com\/ws\/shield\/search_poi\/(?:mps|search\/sp|sug|tips_operation_location), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Amap-Amap_remove_ads.js, requires-body=true
+移除搜索详情页推广 = type=http-response, pattern=^https:\/\/m5\.amap\.com\/ws\/shield\/search_poi\/(?:mps|search\/sp|sug|tips_operation_location), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Amap-Amap_remove_ads.js, requires-body=true,script-update-interval=86400
 
-移除首页推广 = type=http-response, pattern=^https:\/\/m5\.amap\.com\/ws\/faas\/amap-navigation\/(?:card-service-plan-home|main-page), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Amap-Amap_remove_ads.js, requires-body=true
+移除首页推广 = type=http-response, pattern=^https:\/\/m5\.amap\.com\/ws\/faas\/amap-navigation\/(?:card-service-plan-home|main-page), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Amap-Amap_remove_ads.js, requires-body=true,script-update-interval=86400
 
-移除首页推广 = type=http-response, pattern=^https:\/\/m5\.amap\.com\/ws\/shield\/frogserver\/aocs\/updatable\/1\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Amap-Amap_remove_ads.js, requires-body=true
+移除首页推广 = type=http-response, pattern=^https:\/\/m5\.amap\.com\/ws\/shield\/frogserver\/aocs\/updatable\/1\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Amap-Amap_remove_ads.js, requires-body=true,script-update-interval=86400
 
-移除我的页面推广 = type=http-response, pattern=^https:\/\/m5\.amap\.com\/ws\/shield\/dsp\/profile\/index\/nodefaasv3\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Amap-Amap_remove_ads.js, requires-body=true
+移除我的页面推广 = type=http-response, pattern=^https:\/\/m5\.amap\.com\/ws\/shield\/dsp\/profile\/index\/nodefaasv3\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Amap-Amap_remove_ads.js, requires-body=true,script-update-interval=86400
 
-移除附近页推广 = type=http-response, pattern=^https:\/\/m5\.amap\.com\/ws\/shield\/search\/nearbyrec_smart\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Amap-Amap_remove_ads.js, requires-body=true
+移除附近页推广 = type=http-response, pattern=^https:\/\/m5\.amap\.com\/ws\/shield\/search\/nearbyrec_smart\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Amap-Amap_remove_ads.js, requires-body=true,script-update-interval=86400
 
-移除开屏广告 = type=http-response, pattern=^https:\/\/m5\.amap\.com\/ws\/valueadded\/alimama\/splash_screen\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Amap-Amap_remove_ads.js, requires-body=true
+移除开屏广告 = type=http-response, pattern=^https:\/\/m5\.amap\.com\/ws\/valueadded\/alimama\/splash_screen\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Amap-Amap_remove_ads.js, requires-body=true,script-update-interval=86400
 
-移除打车页推广卡片、弹窗 = type=http-response, pattern=^https:\/\/m5-zb\.amap\.com\/ws\/boss\/(?:car\/order\/content_info|order_web\/friendly_information), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Amap-Amap_remove_ads.js, requires-body=true
+移除打车页推广卡片、弹窗 = type=http-response, pattern=^https:\/\/m5-zb\.amap\.com\/ws\/boss\/(?:car\/order\/content_info|order_web\/friendly_information), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Amap-Amap_remove_ads.js, requires-body=true,script-update-interval=86400
 
-移除打车页红点角标、天气图标 = type=http-response, pattern=^https:\/\/m5-zb\.amap\.com\/ws\/promotion-web\/resource(\/home)?\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Amap-Amap_remove_ads.js, requires-body=true
+移除打车页红点角标、天气图标 = type=http-response, pattern=^https:\/\/m5-zb\.amap\.com\/ws\/promotion-web\/resource(\/home)?\?, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Amap-Amap_remove_ads.js, requires-body=true,script-update-interval=86400
 
-移除导航详情页推广 = type=http-response, pattern=^https:\/\/(?:info|m5)\.amap\.com\/ws\/shield\/search\/(?:common\/coupon\/info|poi\/detail), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Amap-Amap_remove_ads.js, requires-body=true
+移除导航详情页推广 = type=http-response, pattern=^https:\/\/(?:info|m5)\.amap\.com\/ws\/shield\/search\/(?:common\/coupon\/info|poi\/detail), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/keli/js/Amap-Amap_remove_ads.js, requires-body=true,script-update-interval=86400
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - 
 # 墨鱼 · Bing首页简化
 # - - - - - - - - - - - - - - - - - - - - - - - - 
-moyu-BingSimplify-1 = type=http-response,pattern=^https?:\/\/sapphire\.api\.microsoftapp\.net\/config\/api\/v1\/get,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/bing.js,requires-body=true,timeout=60
+moyu-BingSimplify-1 = type=http-response,pattern=^https?:\/\/sapphire\.api\.microsoftapp\.net\/config\/api\/v1\/get,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/bing.js,requires-body=true,timeout=60,script-update-interval=86400
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - 
 # 墨鱼 · Keep超级净化
 # - - - - - - - - - - - - - - - - - - - - - - - - 
-moyu-KeepAds-1 = type=http-response,pattern=^https?:\/\/api\.gotokeep\.com\/athena\/v\d\/people\/my$,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/keepStyle.js,requires-body=true,timeout=60
-moyu-KeepAds-2 = type=http-response,pattern=^https?:\/\/api\.gotokeep\.com\/config\/v\d\/basic,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/keepStyle.js,requires-body=true,timeout=60
-moyu-KeepAds-3 = type=http-response,pattern=^https?:\/\/api\.gotokeep\.com\/twins\/v4\/feed\/course,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/keepStyle.js,requires-body=true,timeout=60
+moyu-KeepAds-1 = type=http-response,pattern=^https?:\/\/api\.gotokeep\.com\/athena\/v\d\/people\/my$,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/keepStyle.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-KeepAds-2 = type=http-response,pattern=^https?:\/\/api\.gotokeep\.com\/config\/v\d\/basic,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/keepStyle.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-KeepAds-3 = type=http-response,pattern=^https?:\/\/api\.gotokeep\.com\/twins\/v4\/feed\/course,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/keepStyle.js,requires-body=true,timeout=60,script-update-interval=86400
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -7328,206 +7329,206 @@ moyu-KeepAds-3 = type=http-response,pattern=^https?:\/\/api\.gotokeep\.com\/twin
 
 
 # NBPro /nb/app：只留一条（原先 nbpro-ads + moyu-NBProAds-1 重叠，后跑会 abort response）
-moyu-NBProAds-1 = type=http-response, pattern=^https?:\/\/(?:[^:/]*nbtool8\.com|124\.222\.32\.246|117\.72\.39\.157|47\.243\.71\.210|cesapp\.goypzc\.cn)(?::\d+)?\/nb\/app(?:\?.*)?$, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/nbpro.ads.js, requires-body=true, max-size=-1, timeout=60
+moyu-NBProAds-1 = type=http-response, pattern=^https?:\/\/(?:[^:/]*nbtool8\.com|124\.222\.32\.246|117\.72\.39\.157|47\.243\.71\.210|cesapp\.goypzc\.cn)(?::\d+)?\/nb\/app(?:\?.*)?$, script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/nbpro.ads.js, requires-body=true, max-size=-1, timeout=60,script-update-interval=86400
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - 
 # 墨鱼 · Reddit去广告
 # - - - - - - - - - - - - - - - - - - - - - - - - 
-moyu-RedditAds-1 = type=http-response,pattern=^https?:\/\/gql-fed\.reddit\.com\/$,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/reddit.js,requires-body=true,timeout=60
+moyu-RedditAds-1 = type=http-response,pattern=^https?:\/\/gql-fed\.reddit\.com\/$,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/reddit.js,requires-body=true,timeout=60,script-update-interval=86400
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - 
 # 墨鱼 · 什么值得买去广告
 # - - - - - - - - - - - - - - - - - - - - - - - - 
-moyu-SmzdmAds-1 = type=http-response,pattern=^https?:\/\/s-api.smzdm\.com\/sou\/search_default_keyword,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/smzdm_json.js,requires-body=true,timeout=60
-moyu-SmzdmAds-2 = type=http-response,pattern=^https?:\/\/app-api\.smzdm\.com\/util\/loading,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/smzdm_json.js,requires-body=true,timeout=60
-moyu-SmzdmAds-3 = type=http-response,pattern=^https?:\/\/.*zdmimg\.com\/cpm\/api\/v\d\/advert_distribution\/get_all_advertise,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/smzdm_json.js,requires-body=true,timeout=60
-moyu-SmzdmAds-4 = type=http-response,pattern=^https?:\/\/homepage-api\.smzdm\.com\/v3\/home,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/smzdm_json.js,requires-body=true,timeout=60
-moyu-SmzdmAds-5 = type=http-response,pattern=^https?:\/\/haojia-api\.smzdm\.com\/home\/list,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/smzdm_json.js,requires-body=true,timeout=60
-moyu-SmzdmAds-6 = type=http-response,pattern=^https?:\/\/haojia\.m\.smzdm\.com\/detail_modul\/article_releated_modul,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/smzdm_json.js,requires-body=true,timeout=60
-moyu-SmzdmAds-7 = type=http-response,pattern=^https?:\/\/baike-api\.smzdm\.com\/home_v3\/list,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/smzdm_json.js,requires-body=true,timeout=60
-moyu-SmzdmAds-8 = type=http-response,pattern=^https?:\/\/s-api\.smzdm\.com\/sou\/list_v10,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/smzdm_json.js,requires-body=true,timeout=60
-moyu-SmzdmAds-9 = type=http-response,pattern=^https?:\/\/s-api\.smzdm\.com\/sou\/filter\/tags\/hot_tags,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/smzdm_json.js,requires-body=true,timeout=60
-moyu-SmzdmAds-10 = type=http-response,pattern=^https?:\/\/zhiyou\.m\.smzdm\.com\/user\/vip\/ajax_get_banner,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/smzdm_json.js,requires-body=true,timeout=60
+moyu-SmzdmAds-1 = type=http-response,pattern=^https?:\/\/s-api.smzdm\.com\/sou\/search_default_keyword,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/smzdm_json.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-SmzdmAds-2 = type=http-response,pattern=^https?:\/\/app-api\.smzdm\.com\/util\/loading,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/smzdm_json.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-SmzdmAds-3 = type=http-response,pattern=^https?:\/\/.*zdmimg\.com\/cpm\/api\/v\d\/advert_distribution\/get_all_advertise,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/smzdm_json.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-SmzdmAds-4 = type=http-response,pattern=^https?:\/\/homepage-api\.smzdm\.com\/v3\/home,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/smzdm_json.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-SmzdmAds-5 = type=http-response,pattern=^https?:\/\/haojia-api\.smzdm\.com\/home\/list,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/smzdm_json.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-SmzdmAds-6 = type=http-response,pattern=^https?:\/\/haojia\.m\.smzdm\.com\/detail_modul\/article_releated_modul,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/smzdm_json.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-SmzdmAds-7 = type=http-response,pattern=^https?:\/\/baike-api\.smzdm\.com\/home_v3\/list,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/smzdm_json.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-SmzdmAds-8 = type=http-response,pattern=^https?:\/\/s-api\.smzdm\.com\/sou\/list_v10,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/smzdm_json.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-SmzdmAds-9 = type=http-response,pattern=^https?:\/\/s-api\.smzdm\.com\/sou\/filter\/tags\/hot_tags,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/smzdm_json.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-SmzdmAds-10 = type=http-response,pattern=^https?:\/\/zhiyou\.m\.smzdm\.com\/user\/vip\/ajax_get_banner,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/smzdm_json.js,requires-body=true,timeout=60,script-update-interval=86400
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - 
 # 墨鱼 · 去开屏 StartUpAds
 # - - - - - - - - - - - - - - - - - - - - - - - - 
-moyu-kp-1 = type=http-response,pattern=^https?:\/\/api\.369cx\.cn\/v\d\/Splash\/GetSplashAd,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/dict.js,requires-body=true,timeout=60
-moyu-kp-2 = type=http-response,pattern=^https?:\/\/[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+){1,4}(:\d+)?\/api\/v\d\/movie\/index_recommend,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/555Ad.js,requires-body=true,timeout=60
-moyu-kp-3 = type=http-response,pattern=^https?:\/\/www\.123pan\.com\/s\/[0-9a-zA-Z=_/-]+\.html,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/123pan.js,requires-body=true,timeout=60
-moyu-kp-4 = type=http-response,pattern=^https?:\/\/ad\.12306\.cn\/ad\/ser\/getAdList,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/12306.js,requires-body=true,timeout=60
-moyu-kp-5 = type=http-response,pattern=^http:\/\/[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+){1,4}(:\d+)?\/amdc\/mobileDispatch,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/amdc.js,requires-body=true,timeout=60
-moyu-kp-6 = type=http-response,pattern=^https?:\/\/.*(xbwpys|ahhhhfs)\.com\/($|[0-9a-zA-Z_/]+\/$),script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/ahfs.js,requires-body=true,timeout=60
-moyu-kp-7 = type=http-response,pattern=^https:\/\/newclient\.map\.baidu\.com\/client\/phpui2\/\?qt=ads,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/baidumap.js,requires-body=true,timeout=60
-moyu-kp-8 = type=http-response,pattern=^https?:\/\/bp-api\.bestv\.com\.cn\/cms\/api\/audit\/home\/getCommonMixData,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/baishitv.js,requires-body=true,timeout=60
-moyu-kp-9 = type=http-response,pattern=^https?:\/\/gg\.caixin\.com\/s\?z=caixin&op=1&c=3362,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/caixinads.js,requires-body=true,timeout=60
-moyu-kp-10 = type=http-response,pattern=^https?:\/\/.*flyert.*\/source\/plugin\/mobile\/mobile\.php\?module=threadpost&.+?&page=1,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/fly.js,requires-body=true,timeout=60
-moyu-kp-11 = type=http-response,pattern=^https?:\/\/.*umetrip\.com\.cn\/gateway\/api\/umetrip\/native$,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/hanglvzongheng.js,requires-body=false,timeout=60
-moyu-kp-12 = type=http-response,pattern=^https?:\/\/.*cupid\.iqiyi\.com\/mixer\?,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/iqiyi_open_ads.js,requires-body=true,timeout=60
-moyu-kp-13 = type=http-response,pattern=^https?:\/\/napi\.ithome\.com\/api\/news\/indexv\d\/iphone,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/ithome.js,requires-body=true,timeout=60
-moyu-kp-14 = type=http-response,pattern=^https?:\/\/api\.m\.jd\.com\/api\?functionId=delivery_show,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/startup.js,requires-body=true,timeout=60
-moyu-kp-15 = type=http-response,pattern=^https?:\/\/api\.m\.jd\.com\/client\.action\?functionId=(hotWords|hotSearchTerms),script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/jd_json.js,requires-body=true,timeout=60
-moyu-kp-16 = type=http-response,pattern=^https?:\/\/api\.coolapk\.com\/v6\/(feed\/(replyList|detail)|main\/indexV8|dataList),script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/coolapk.js,requires-body=true,timeout=60
-moyu-kp-17 = type=http-response,pattern=^https?:\/\/api.coolapk.com\/v6\/main\/init,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/coolapk.js,requires-body=true,timeout=60
-moyu-kp-18 = type=http-response,pattern=^https?:\/\/open-cms-api\.(uc|quark)\.cn\/open-cms,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/quark.js,requires-body=true,timeout=60
-moyu-kp-19 = type=http-response,pattern=^https?:\/\/mobilepaas\.abchina\.com\.cn:441\/mgw\.htm,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/abchina.js,requires-body=false,timeout=60
-moyu-kp-20 = type=http-response,pattern=^https?:\/\/j1\.pupuapi\.com\/client\/marketing\/banner\/v\d\?position,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/pupumarket.js,requires-body=true,timeout=60
-moyu-kp-21 = type=http-response,pattern=^https?:\/\/api\.jk\.cn\/m\.api,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/pinganads.js,requires-body=false,timeout=60
-moyu-kp-22 = type=http-response,pattern=^https?:\/\/apps\.teamair\.cn\/app\/version,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/qidian.js,requires-body=true,timeout=60
-moyu-kp-23 = type=http-response,pattern=https://ccsp-egmas.sf-express.com/cx-app-base/base/app/ad/queryInfoFlow,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/shunfeng_json.js,requires-body=true,timeout=60
-moyu-kp-24 = type=http-response,pattern=^https?:\/\/api\.shenyin\.name\/stay-fork\/browse\/featured$,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/stay.js,requires-body=true,timeout=60
-moyu-kp-25 = type=http-response,pattern=^https?:\/\/.*zdmimg\.com\/cpm\/api\/v\d\/advert_distribution\/get_all_advertise,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/smzdm_json.js,requires-body=true,timeout=60
-moyu-kp-26 = type=http-response,pattern=^https?:\/\/apiproxy\.zuche\.com\/resource\/cardes\/toufang\/marketing,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/dict.js,requires-body=true,timeout=60
-moyu-kp-27 = type=http-response,pattern=^https?:\/\/api\.zhihu\.com\/commercial_api.*launch_v2,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/zhihu_openads.js,requires-body=true,timeout=60
+moyu-kp-1 = type=http-response,pattern=^https?:\/\/api\.369cx\.cn\/v\d\/Splash\/GetSplashAd,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/dict.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-kp-2 = type=http-response,pattern=^https?:\/\/[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+){1,4}(:\d+)?\/api\/v\d\/movie\/index_recommend,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/555Ad.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-kp-3 = type=http-response,pattern=^https?:\/\/www\.123pan\.com\/s\/[0-9a-zA-Z=_/-]+\.html,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/123pan.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-kp-4 = type=http-response,pattern=^https?:\/\/ad\.12306\.cn\/ad\/ser\/getAdList,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/12306.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-kp-5 = type=http-response,pattern=^http:\/\/[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+){1,4}(:\d+)?\/amdc\/mobileDispatch,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/amdc.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-kp-6 = type=http-response,pattern=^https?:\/\/.*(xbwpys|ahhhhfs)\.com\/($|[0-9a-zA-Z_/]+\/$),script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/ahfs.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-kp-7 = type=http-response,pattern=^https:\/\/newclient\.map\.baidu\.com\/client\/phpui2\/\?qt=ads,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/baidumap.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-kp-8 = type=http-response,pattern=^https?:\/\/bp-api\.bestv\.com\.cn\/cms\/api\/audit\/home\/getCommonMixData,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/baishitv.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-kp-9 = type=http-response,pattern=^https?:\/\/gg\.caixin\.com\/s\?z=caixin&op=1&c=3362,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/caixinads.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-kp-10 = type=http-response,pattern=^https?:\/\/.*flyert.*\/source\/plugin\/mobile\/mobile\.php\?module=threadpost&.+?&page=1,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/fly.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-kp-11 = type=http-response,pattern=^https?:\/\/.*umetrip\.com\.cn\/gateway\/api\/umetrip\/native$,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/hanglvzongheng.js,requires-body=false,timeout=60,script-update-interval=86400
+moyu-kp-12 = type=http-response,pattern=^https?:\/\/.*cupid\.iqiyi\.com\/mixer\?,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/iqiyi_open_ads.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-kp-13 = type=http-response,pattern=^https?:\/\/napi\.ithome\.com\/api\/news\/indexv\d\/iphone,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/ithome.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-kp-14 = type=http-response,pattern=^https?:\/\/api\.m\.jd\.com\/api\?functionId=delivery_show,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/startup.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-kp-15 = type=http-response,pattern=^https?:\/\/api\.m\.jd\.com\/client\.action\?functionId=(hotWords|hotSearchTerms),script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/jd_json.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-kp-16 = type=http-response,pattern=^https?:\/\/api\.coolapk\.com\/v6\/(feed\/(replyList|detail)|main\/indexV8|dataList),script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/coolapk.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-kp-17 = type=http-response,pattern=^https?:\/\/api.coolapk.com\/v6\/main\/init,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/coolapk.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-kp-18 = type=http-response,pattern=^https?:\/\/open-cms-api\.(uc|quark)\.cn\/open-cms,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/quark.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-kp-19 = type=http-response,pattern=^https?:\/\/mobilepaas\.abchina\.com\.cn:441\/mgw\.htm,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/abchina.js,requires-body=false,timeout=60,script-update-interval=86400
+moyu-kp-20 = type=http-response,pattern=^https?:\/\/j1\.pupuapi\.com\/client\/marketing\/banner\/v\d\?position,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/pupumarket.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-kp-21 = type=http-response,pattern=^https?:\/\/api\.jk\.cn\/m\.api,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/pinganads.js,requires-body=false,timeout=60,script-update-interval=86400
+moyu-kp-22 = type=http-response,pattern=^https?:\/\/apps\.teamair\.cn\/app\/version,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/qidian.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-kp-23 = type=http-response,pattern=https://ccsp-egmas.sf-express.com/cx-app-base/base/app/ad/queryInfoFlow,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/shunfeng_json.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-kp-24 = type=http-response,pattern=^https?:\/\/api\.shenyin\.name\/stay-fork\/browse\/featured$,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/stay.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-kp-25 = type=http-response,pattern=^https?:\/\/.*zdmimg\.com\/cpm\/api\/v\d\/advert_distribution\/get_all_advertise,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/smzdm_json.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-kp-26 = type=http-response,pattern=^https?:\/\/apiproxy\.zuche\.com\/resource\/cardes\/toufang\/marketing,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/dict.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-kp-27 = type=http-response,pattern=^https?:\/\/api\.zhihu\.com\/commercial_api.*launch_v2,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/zhihu_openads.js,requires-body=true,timeout=60,script-update-interval=86400
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - 
 # 墨鱼 · 喜马拉雅去广告
 # - - - - - - - - - - - - - - - - - - - - - - - - 
-moyu-Ximalaya-1 = type=http-response,pattern=^https?:\/\/.*\.xima.*\.com\/discovery-category\/customCategories,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/ximalaya_json.js,requires-body=true,timeout=60
-moyu-Ximalaya-2 = type=http-response,pattern=^https?:\/\/.*\.xima.*\.com\/focus-mobile\/focusPic,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/ximalaya_json.js,requires-body=true,timeout=60
-moyu-Ximalaya-3 = type=http-response,pattern=^https?:\/\/.*\.xima.*\.com\/discovery-feed\/v\d\/mix,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/ximalaya_json.js,requires-body=true,timeout=60
-moyu-Ximalaya-4 = type=http-response,pattern=^https?:\/\/.*\.xima.*\.com\/discovery-category\/v\d/category,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/ximalaya_json.js,requires-body=true,timeout=60
-moyu-Ximalaya-5 = type=http-response,pattern=^https?:\/\/.*\.xima.*\.com\/mobile-user\/v\d\/homePage,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/ximalaya_json.js,requires-body=true,timeout=60
+moyu-Ximalaya-1 = type=http-response,pattern=^https?:\/\/.*\.xima.*\.com\/discovery-category\/customCategories,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/ximalaya_json.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-Ximalaya-2 = type=http-response,pattern=^https?:\/\/.*\.xima.*\.com\/focus-mobile\/focusPic,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/ximalaya_json.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-Ximalaya-3 = type=http-response,pattern=^https?:\/\/.*\.xima.*\.com\/discovery-feed\/v\d\/mix,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/ximalaya_json.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-Ximalaya-4 = type=http-response,pattern=^https?:\/\/.*\.xima.*\.com\/discovery-category\/v\d/category,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/ximalaya_json.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-Ximalaya-5 = type=http-response,pattern=^https?:\/\/.*\.xima.*\.com\/mobile-user\/v\d\/homePage,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/ximalaya_json.js,requires-body=true,timeout=60,script-update-interval=86400
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - 
 # 墨鱼 · 彩云天气净化
 # - - - - - - - - - - - - - - - - - - - - - - - - 
-moyu-CaiYunAds-1 = type=http-response,pattern=^https?:\/\/biz\.cyapi\.cn\/api\/v\d\/user_detail,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/caiyun_json.js,requires-body=true,timeout=60
-moyu-CaiYunAds-2 = type=http-response,pattern=^https?:\/\/biz\.cyapi\.cn\/v\d\/user,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/caiyun_json.js,requires-body=true,timeout=60
-moyu-CaiYunAds-3 = type=http-response,pattern=^https?:\/\/wrapper\.cyapi\.cn\/v\d\/activity,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/caiyun_json.js,requires-body=true,timeout=60
-moyu-CaiYunAds-4 = type=http-response,pattern=^https?:\/\/api\.caiyunapp\.com\/v\d\/activity,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/caiyun_json.js,requires-body=true,timeout=60
-moyu-CaiYunAds-5 = type=http-response,pattern=^https?:\/\/starplucker\.cyapi\.cn\/v\d/operation/homefeatures,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/caiyun_json.js,requires-body=true,timeout=60
-moyu-CaiYunAds-6 = type=http-response,pattern=^https?:\/\/starplucker\.cyapi\.cn\/v\d/notification/message_center,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/caiyun_json.js,requires-body=true,timeout=60
-moyu-CaiYunAds-7 = type=http-response,pattern=^https?:\/\/starplucker\.cyapi\.cn\/v\d/config/cypage,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/caiyun_json.js,requires-body=true,timeout=60
-moyu-CaiYunAds-8 = type=http-response,pattern=^https?:\/\/starplucker\.cyapi\.cn\/v\d/operation/feeds,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/caiyun_json.js,requires-body=true,timeout=60
-moyu-CaiYunAds-9 = type=http-response,pattern=^https?:\/\/starplucker\.cyapi\.cn\/v\d/operation/banners,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/caiyun_json.js,requires-body=true,timeout=60
-moyu-CaiYunAds-10 = type=http-response,pattern=^https?:\/\/starplucker\.cyapi\.cn\/v\d/operation/features,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/caiyun_json.js,requires-body=true,timeout=60
-moyu-CaiYunAds-11 = type=http-response,pattern=^https?:\/\/starplucker\.cyapi\.cn\/v\d/campaigns,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/caiyun_json.js,requires-body=true,timeout=60
+moyu-CaiYunAds-1 = type=http-response,pattern=^https?:\/\/biz\.cyapi\.cn\/api\/v\d\/user_detail,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/caiyun_json.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-CaiYunAds-2 = type=http-response,pattern=^https?:\/\/biz\.cyapi\.cn\/v\d\/user,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/caiyun_json.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-CaiYunAds-3 = type=http-response,pattern=^https?:\/\/wrapper\.cyapi\.cn\/v\d\/activity,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/caiyun_json.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-CaiYunAds-4 = type=http-response,pattern=^https?:\/\/api\.caiyunapp\.com\/v\d\/activity,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/caiyun_json.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-CaiYunAds-5 = type=http-response,pattern=^https?:\/\/starplucker\.cyapi\.cn\/v\d/operation/homefeatures,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/caiyun_json.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-CaiYunAds-6 = type=http-response,pattern=^https?:\/\/starplucker\.cyapi\.cn\/v\d/notification/message_center,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/caiyun_json.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-CaiYunAds-7 = type=http-response,pattern=^https?:\/\/starplucker\.cyapi\.cn\/v\d/config/cypage,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/caiyun_json.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-CaiYunAds-8 = type=http-response,pattern=^https?:\/\/starplucker\.cyapi\.cn\/v\d/operation/feeds,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/caiyun_json.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-CaiYunAds-9 = type=http-response,pattern=^https?:\/\/starplucker\.cyapi\.cn\/v\d/operation/banners,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/caiyun_json.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-CaiYunAds-10 = type=http-response,pattern=^https?:\/\/starplucker\.cyapi\.cn\/v\d/operation/features,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/caiyun_json.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-CaiYunAds-11 = type=http-response,pattern=^https?:\/\/starplucker\.cyapi\.cn\/v\d/campaigns,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/caiyun_json.js,requires-body=true,timeout=60,script-update-interval=86400
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - 
 # 墨鱼 · 微信小程序去广告
 # - - - - - - - - - - - - - - - - - - - - - - - - 
-moyu-Applet-1 = type=http-response,pattern=^https?:\/\/wx\.mygolbs\.com\/WxBusServer\/ApiData\.do,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/zhangshanggongjiao.js,requires-body=true,timeout=60
-moyu-Applet-2 = type=http-response,pattern=^(https?://)?([a-zA-Z0-9]+(-[a-zA-Z0-9]+)*\.)+[a-zA-Z]{2,}(:\d+)?/wp-json/[a-zA-Z0-9_-]+/(mp\/)?v\d/posts,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/applet.js,requires-body=true,timeout=60
+moyu-Applet-1 = type=http-response,pattern=^https?:\/\/wx\.mygolbs\.com\/WxBusServer\/ApiData\.do,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/zhangshanggongjiao.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-Applet-2 = type=http-response,pattern=^(https?://)?([a-zA-Z0-9]+(-[a-zA-Z0-9]+)*\.)+[a-zA-Z]{2,}(:\d+)?/wp-json/[a-zA-Z0-9_-]+/(mp\/)?v\d/posts,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/applet.js,requires-body=true,timeout=60,script-update-interval=86400
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - 
 # 墨鱼 · 微博/轻享版去广告
 # - - - - - - - - - - - - - - - - - - - - - - - - 
-moyu-WeiboAds-1 = type=http-response,pattern=^https?:\/\/api\.weibo\.cn\/\d\/statuses\/container_detail,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/weibo_json.js,requires-body=true,timeout=60
-moyu-WeiboAds-2 = type=http-response,pattern=^https?:\/\/api\.weibo\.cn\/\d\/groups\/allgroups\/v\d,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/weibo_json.js,requires-body=true,timeout=60
-moyu-WeiboAds-3 = type=http-response,pattern=^https?:\/\/boot.*weibo\.com\/v\d\/ad\/preload,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/weibo_json.js,requires-body=true,timeout=60
-moyu-WeiboAds-4 = type=http-response,pattern=^https?:\/\/api\.weibo\.cn\/\d\/\w{5}\/(statuses_unread_hot_timeline|timeline),script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/weibo_json.js,requires-body=true,timeout=60
-moyu-WeiboAds-5 = type=http-response,pattern=^https?:\/\/api\.weibo\.cn\/\d\/video\/tiny_stream_mid_detail,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/weibo_json.js,requires-body=true,timeout=60
-moyu-WeiboAds-6 = type=http-response,pattern=^https?:\/\/m?api\.weibo\.c(n|om)\/\d\/\w{5}\/cardlist,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/weibo_json.js,requires-body=true,timeout=60
-moyu-WeiboAds-7 = type=http-response,pattern=^https://api.weibo.cn/2/!/client/light_skin,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/weibo_json.js,requires-body=true,timeout=60
-moyu-WeiboAds-8 = type=http-response,pattern=^https://new.vip.weibo.cn/littleskin/preview,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/weibo_json.js,requires-body=true,timeout=60
-moyu-WeiboAds-9 = type=http-response,pattern=^https?:\/\/m?api\.weibo\.c(n|om)\/\d\/(searchall|page\?|0flowpage),script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/weibo_json.js,requires-body=true,timeout=60
-moyu-WeiboAds-10 = type=http-response,pattern=^https?:\/\/m?api\.weibo\.c(n|om)\/\d\/statuses/(unread_)?friends(/|_)timeline,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/weibo_json.js,requires-body=true,timeout=60
-moyu-WeiboAds-11 = type=http-response,pattern=^https?:\/\/m?api\.weibo\.c(n|om)\/\d\/groups/timeline,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/weibo_json.js,requires-body=true,timeout=60
-moyu-WeiboAds-12 = type=http-response,pattern=^https?:\/\/m?api\.weibo\.c(n|om)\/\d\/statuses/(container_timeline|unread_hot_timeline|extend|video_mixtimeline|unread_topic_timeline),script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/weibo_json.js,requires-body=true,timeout=60
-moyu-WeiboAds-13 = type=http-response,pattern=^https?:\/\/m?api\.weibo\.c(n|om)\/\d\/profile/(me|container_timeline),script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/weibo_json.js,requires-body=true,timeout=60
-moyu-WeiboAds-14 = type=http-response,pattern=^https?:\/\/m?api\.weibo\.c(n|om)\/\d\/video/(community_tab|remind_info|tiny_stream_video_list),script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/weibo_json.js,requires-body=true,timeout=60
-moyu-WeiboAds-15 = type=http-response,pattern=^https?:\/\/m?api\.weibo\.c(n|om)\/\d\/search/(finder|container_timeline|container_discover),script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/weibo_json.js,requires-body=true,timeout=60
-moyu-WeiboAds-16 = type=http-response,pattern=^https?:\/\/m?api\.weibo\.c(n|om)\/\d\/(checkin/show|\!/live/media_homelist|container/get_item),script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/weibo_json.js,requires-body=true,timeout=60
-moyu-WeiboAds-17 = type=http-response,pattern=^https?:\/\/m?api\.weibo\.c(n|om)\/\d\/cardlist,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/weibo_json.js,requires-body=true,timeout=60
-moyu-WeiboAds-18 = type=http-response,pattern=^https?:\/\/weibointl\.api\.weibo\.cn\/portal\.php\?a=open_app,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/weibo_json.js,requires-body=true,timeout=60
-moyu-WeiboAds-19 = type=http-response,pattern=^https?:\/\/weibointl\.api\.weibo\.c(n|om)\/portal\.php.*a=get_searching_info,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/weibo_search_info.json,requires-body=true,timeout=60
-moyu-WeiboAds-20 = type=http-response,pattern=^https?:\/\/weibointl\.api\.weibo\.c(n|om)\/portal\.php.*feed&a=search_topic,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/weibo_search_topic.json,requires-body=true,timeout=60
-moyu-WeiboAds-21 = type=http-response,pattern=^https?:\/\/weibointl\.api\.weibo\.c(n|om)\/portal\.php.*get_coopen_ads,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/weibo_json.js,requires-body=true,timeout=60
-moyu-WeiboAds-22 = type=http-response,pattern=^https?://(sdk|wb)app\.uve\.weibo\.com(/interface/sdk/sdkad.php|/wbapplua/wbpullad.lua),script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/weibo_json.js,requires-body=true,timeout=60
-moyu-WeiboAds-23 = type=http-response,pattern=^https?:\/\/weibointl\.api\.weibo\.c(n|om)\/portal\.php.*a=trends,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/weibo_json.js,requires-body=true,timeout=60
-moyu-WeiboAds-24 = type=http-response,pattern=^https?:\/\/weibointl\.api\.weibo\.cn\/portal\.php\?a=user_center,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/weibo_json.js,requires-body=true,timeout=60
-moyu-WeiboAds-25 = type=http-response,pattern=^https?:\/\/weibointl\.api\.weibo\.cn\/portal\.php\?a=search_topic,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/weibo_json.js,requires-body=true,timeout=60
+moyu-WeiboAds-1 = type=http-response,pattern=^https?:\/\/api\.weibo\.cn\/\d\/statuses\/container_detail,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/weibo_json.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-WeiboAds-2 = type=http-response,pattern=^https?:\/\/api\.weibo\.cn\/\d\/groups\/allgroups\/v\d,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/weibo_json.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-WeiboAds-3 = type=http-response,pattern=^https?:\/\/boot.*weibo\.com\/v\d\/ad\/preload,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/weibo_json.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-WeiboAds-4 = type=http-response,pattern=^https?:\/\/api\.weibo\.cn\/\d\/\w{5}\/(statuses_unread_hot_timeline|timeline),script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/weibo_json.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-WeiboAds-5 = type=http-response,pattern=^https?:\/\/api\.weibo\.cn\/\d\/video\/tiny_stream_mid_detail,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/weibo_json.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-WeiboAds-6 = type=http-response,pattern=^https?:\/\/m?api\.weibo\.c(n|om)\/\d\/\w{5}\/cardlist,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/weibo_json.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-WeiboAds-7 = type=http-response,pattern=^https://api.weibo.cn/2/!/client/light_skin,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/weibo_json.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-WeiboAds-8 = type=http-response,pattern=^https://new.vip.weibo.cn/littleskin/preview,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/weibo_json.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-WeiboAds-9 = type=http-response,pattern=^https?:\/\/m?api\.weibo\.c(n|om)\/\d\/(searchall|page\?|0flowpage),script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/weibo_json.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-WeiboAds-10 = type=http-response,pattern=^https?:\/\/m?api\.weibo\.c(n|om)\/\d\/statuses/(unread_)?friends(/|_)timeline,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/weibo_json.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-WeiboAds-11 = type=http-response,pattern=^https?:\/\/m?api\.weibo\.c(n|om)\/\d\/groups/timeline,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/weibo_json.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-WeiboAds-12 = type=http-response,pattern=^https?:\/\/m?api\.weibo\.c(n|om)\/\d\/statuses/(container_timeline|unread_hot_timeline|extend|video_mixtimeline|unread_topic_timeline),script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/weibo_json.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-WeiboAds-13 = type=http-response,pattern=^https?:\/\/m?api\.weibo\.c(n|om)\/\d\/profile/(me|container_timeline),script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/weibo_json.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-WeiboAds-14 = type=http-response,pattern=^https?:\/\/m?api\.weibo\.c(n|om)\/\d\/video/(community_tab|remind_info|tiny_stream_video_list),script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/weibo_json.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-WeiboAds-15 = type=http-response,pattern=^https?:\/\/m?api\.weibo\.c(n|om)\/\d\/search/(finder|container_timeline|container_discover),script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/weibo_json.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-WeiboAds-16 = type=http-response,pattern=^https?:\/\/m?api\.weibo\.c(n|om)\/\d\/(checkin/show|\!/live/media_homelist|container/get_item),script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/weibo_json.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-WeiboAds-17 = type=http-response,pattern=^https?:\/\/m?api\.weibo\.c(n|om)\/\d\/cardlist,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/weibo_json.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-WeiboAds-18 = type=http-response,pattern=^https?:\/\/weibointl\.api\.weibo\.cn\/portal\.php\?a=open_app,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/weibo_json.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-WeiboAds-19 = type=http-response,pattern=^https?:\/\/weibointl\.api\.weibo\.c(n|om)\/portal\.php.*a=get_searching_info,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/weibo_search_info.json,requires-body=true,timeout=60,script-update-interval=86400
+moyu-WeiboAds-20 = type=http-response,pattern=^https?:\/\/weibointl\.api\.weibo\.c(n|om)\/portal\.php.*feed&a=search_topic,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/weibo_search_topic.json,requires-body=true,timeout=60,script-update-interval=86400
+moyu-WeiboAds-21 = type=http-response,pattern=^https?:\/\/weibointl\.api\.weibo\.c(n|om)\/portal\.php.*get_coopen_ads,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/weibo_json.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-WeiboAds-22 = type=http-response,pattern=^https?://(sdk|wb)app\.uve\.weibo\.com(/interface/sdk/sdkad.php|/wbapplua/wbpullad.lua),script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/weibo_json.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-WeiboAds-23 = type=http-response,pattern=^https?:\/\/weibointl\.api\.weibo\.c(n|om)\/portal\.php.*a=trends,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/weibo_json.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-WeiboAds-24 = type=http-response,pattern=^https?:\/\/weibointl\.api\.weibo\.cn\/portal\.php\?a=user_center,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/weibo_json.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-WeiboAds-25 = type=http-response,pattern=^https?:\/\/weibointl\.api\.weibo\.cn\/portal\.php\?a=search_topic,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/weibo_json.js,requires-body=true,timeout=60,script-update-interval=86400
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - 
 # 墨鱼 · 油管去广告
 # - - - - - - - - - - - - - - - - - - - - - - - - 
-moyu-YoutubeAds-1 = type=http-response,pattern=^https?:\/\/youtubei\.googleapis\.com\/youtubei\/v1\/(browse|next|player|search|reel\/reel_watch_sequence|guide|account\/get_setting|get_watch),script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/油管去广告.js,requires-body=true,timeout=60
+moyu-YoutubeAds-1 = type=http-response,pattern=^https?:\/\/youtubei\.googleapis\.com\/youtubei\/v1\/(browse|next|player|search|reel\/reel_watch_sequence|guide|account\/get_setting|get_watch),script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/油管去广告.js,requires-body=true,timeout=60,script-update-interval=86400
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - 
 # 墨鱼 · 淘票票净化
 # - - - - - - - - - - - - - - - - - - - - - - - - 
-moyu-TaoPiaoPiaoA-1 = type=http-response,pattern=^http:\/\/amdc\.m\.taobao\.com,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/amdc.js,requires-body=true,timeout=60
+moyu-TaoPiaoPiaoA-1 = type=http-response,pattern=^http:\/\/amdc\.m\.taobao\.com,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/amdc.js,requires-body=true,timeout=60,script-update-interval=86400
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - 
 # 墨鱼 · 网易云去广告
 # - - - - - - - - - - - - - - - - - - - - - - - - 
-moyu-NeteaseAds-1 = type=http-response,pattern=^https?:\/\/interface(\d)?\.music\.163\.com\/e?api\/link\/home\/framework\/tab,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/netease.adblock.js,requires-body=true,timeout=60
-moyu-NeteaseAds-2 = type=http-response,pattern=^https?:\/\/interface(\d)?\.music\.163\.com\/e?api\/link\/page\/discovery\/resource\/show,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/netease.adblock.js,requires-body=true,timeout=60
-moyu-NeteaseAds-3 = type=http-response,pattern=^https?:\/\/interface(\d)?\.music\.163\.com\/e?api\/link\/page\/rcmd\/resource\/show,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/netease.adblock.js,requires-body=true,timeout=60
-moyu-NeteaseAds-4 = type=http-response,pattern=^https?:\/\/interface(\d)?\.music\.163\.com\/e?api\/ios\/upgrade\/get,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/netease.adblock.js,requires-body=true,timeout=60
-moyu-NeteaseAds-5 = type=http-response,pattern=^https?:\/\/interface(\d)?\.music\.163\.com\/e?api\/search\/default\/keyword\/list,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/netease.adblock.js,requires-body=true,timeout=60
-moyu-NeteaseAds-6 = type=http-response,pattern=^https?:\/\/interface(\d)?\.music\.163\.com\/e?api\/search\/rcmd\/keyword\/get,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/netease.adblock.js,requires-body=true,timeout=60
-moyu-NeteaseAds-7 = type=http-response,pattern=^https?:\/\/interface(\d)?\.music\.163\.com\/e?api\/search\/chart\/list,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/netease.adblock.js,requires-body=true,timeout=60
-moyu-NeteaseAds-8 = type=http-response,pattern=^https?:\/\/interface(\d)?\.music\.163\.com\/e?api\/search\/chart\/detail,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/netease.adblock.js,requires-body=true,timeout=60
-moyu-NeteaseAds-9 = type=http-response,pattern=^https?:\/\/interface(\d)?\.music\.163\.com\/e?api\/search\/suggest\/keyword\/get,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/netease.adblock.js,requires-body=true,timeout=60
-moyu-NeteaseAds-10 = type=http-response,pattern=^https?:\/\/interface(\d)?\.music\.163\.com\/e?api\/search\/specialkeyword\/get,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/netease.adblock.js,requires-body=true,timeout=60
-moyu-NeteaseAds-11 = type=http-response,pattern=^https?:\/\/interface(\d)?\.music\.163\.com\/e?api\/ad\/loading\/get,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/netease.adblock.js,requires-body=true,timeout=60
-moyu-NeteaseAds-12 = type=http-response,pattern=^https?:\/\/interface(\d)?\.music\.163\.com\/e?api\/ad\/loading\/current,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/netease.adblock.js,requires-body=true,timeout=60
-moyu-NeteaseAds-13 = type=http-response,pattern=^https?:\/\/interface(\d)?\.music\.163\.com\/e?api\/ad\/get,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/netease.adblock.js,requires-body=true,timeout=60
-moyu-NeteaseAds-14 = type=http-response,pattern=^https?:\/\/interface(\d)?\.music\.163\.com\/e?api\/link\/position\/show\/resource,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/netease.adblock.js,requires-body=true,timeout=60
-moyu-NeteaseAds-15 = type=http-response,pattern=^https?:\/\/interface(\d)?\.music\.163\.com\/e?api\/link\/scene\/show\/resource,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/netease.adblock.js,requires-body=true,timeout=60
-moyu-NeteaseAds-16 = type=http-response,pattern=^https?:\/\/interface(\d)?\.music\.163\.com\/e?api\/vip\/cashier\/tspopup\/get,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/netease.adblock.js,requires-body=true,timeout=60
-moyu-NeteaseAds-17 = type=http-response,pattern=^https?:\/\/interface(\d)?\.music\.163\.com\/e?api\/vipnewcenter\/app\/resource\/newaccountpage,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/netease.adblock.js,requires-body=true,timeout=60
-moyu-NeteaseAds-18 = type=http-response,pattern=^https?:\/\/interface(\d)?\.music\.163\.com\/e?api\/side-bar\/mini-program\/music-service\/account,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/netease.adblock.js,requires-body=true,timeout=60
-moyu-NeteaseAds-19 = type=http-response,pattern=^https?:\/\/interface(\d)?\.music\.163\.com\/e?api\/delivery\/deliver,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/netease.adblock.js,requires-body=true,timeout=60
-moyu-NeteaseAds-20 = type=http-response,pattern=^https?:\/\/interface(\d)?\.music\.163\.com\/e?api\/delivery\/batch-deliver,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/netease.adblock.js,requires-body=true,timeout=60
-moyu-NeteaseAds-21 = type=http-response,pattern=^https?:\/\/interface(\d)?\.music\.163\.com\/e?api\/yunbei\/account\/entrance\/get,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/netease.adblock.js,requires-body=true,timeout=60
-moyu-NeteaseAds-22 = type=http-response,pattern=^https?:\/\/interface(\d)?\.music\.163\.com\/e?api\/creator\/musician\/reminder\/message\/get,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/netease.adblock.js,requires-body=true,timeout=60
-moyu-NeteaseAds-23 = type=http-response,pattern=^https?:\/\/interface(\d)?\.music\.163\.com\/e?api\/batch,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/netease.adblock.js,requires-body=true,timeout=60
+moyu-NeteaseAds-1 = type=http-response,pattern=^https?:\/\/interface(\d)?\.music\.163\.com\/e?api\/link\/home\/framework\/tab,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/netease.adblock.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-NeteaseAds-2 = type=http-response,pattern=^https?:\/\/interface(\d)?\.music\.163\.com\/e?api\/link\/page\/discovery\/resource\/show,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/netease.adblock.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-NeteaseAds-3 = type=http-response,pattern=^https?:\/\/interface(\d)?\.music\.163\.com\/e?api\/link\/page\/rcmd\/resource\/show,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/netease.adblock.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-NeteaseAds-4 = type=http-response,pattern=^https?:\/\/interface(\d)?\.music\.163\.com\/e?api\/ios\/upgrade\/get,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/netease.adblock.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-NeteaseAds-5 = type=http-response,pattern=^https?:\/\/interface(\d)?\.music\.163\.com\/e?api\/search\/default\/keyword\/list,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/netease.adblock.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-NeteaseAds-6 = type=http-response,pattern=^https?:\/\/interface(\d)?\.music\.163\.com\/e?api\/search\/rcmd\/keyword\/get,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/netease.adblock.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-NeteaseAds-7 = type=http-response,pattern=^https?:\/\/interface(\d)?\.music\.163\.com\/e?api\/search\/chart\/list,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/netease.adblock.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-NeteaseAds-8 = type=http-response,pattern=^https?:\/\/interface(\d)?\.music\.163\.com\/e?api\/search\/chart\/detail,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/netease.adblock.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-NeteaseAds-9 = type=http-response,pattern=^https?:\/\/interface(\d)?\.music\.163\.com\/e?api\/search\/suggest\/keyword\/get,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/netease.adblock.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-NeteaseAds-10 = type=http-response,pattern=^https?:\/\/interface(\d)?\.music\.163\.com\/e?api\/search\/specialkeyword\/get,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/netease.adblock.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-NeteaseAds-11 = type=http-response,pattern=^https?:\/\/interface(\d)?\.music\.163\.com\/e?api\/ad\/loading\/get,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/netease.adblock.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-NeteaseAds-12 = type=http-response,pattern=^https?:\/\/interface(\d)?\.music\.163\.com\/e?api\/ad\/loading\/current,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/netease.adblock.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-NeteaseAds-13 = type=http-response,pattern=^https?:\/\/interface(\d)?\.music\.163\.com\/e?api\/ad\/get,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/netease.adblock.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-NeteaseAds-14 = type=http-response,pattern=^https?:\/\/interface(\d)?\.music\.163\.com\/e?api\/link\/position\/show\/resource,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/netease.adblock.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-NeteaseAds-15 = type=http-response,pattern=^https?:\/\/interface(\d)?\.music\.163\.com\/e?api\/link\/scene\/show\/resource,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/netease.adblock.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-NeteaseAds-16 = type=http-response,pattern=^https?:\/\/interface(\d)?\.music\.163\.com\/e?api\/vip\/cashier\/tspopup\/get,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/netease.adblock.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-NeteaseAds-17 = type=http-response,pattern=^https?:\/\/interface(\d)?\.music\.163\.com\/e?api\/vipnewcenter\/app\/resource\/newaccountpage,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/netease.adblock.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-NeteaseAds-18 = type=http-response,pattern=^https?:\/\/interface(\d)?\.music\.163\.com\/e?api\/side-bar\/mini-program\/music-service\/account,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/netease.adblock.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-NeteaseAds-19 = type=http-response,pattern=^https?:\/\/interface(\d)?\.music\.163\.com\/e?api\/delivery\/deliver,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/netease.adblock.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-NeteaseAds-20 = type=http-response,pattern=^https?:\/\/interface(\d)?\.music\.163\.com\/e?api\/delivery\/batch-deliver,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/netease.adblock.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-NeteaseAds-21 = type=http-response,pattern=^https?:\/\/interface(\d)?\.music\.163\.com\/e?api\/yunbei\/account\/entrance\/get,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/netease.adblock.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-NeteaseAds-22 = type=http-response,pattern=^https?:\/\/interface(\d)?\.music\.163\.com\/e?api\/creator\/musician\/reminder\/message\/get,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/netease.adblock.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-NeteaseAds-23 = type=http-response,pattern=^https?:\/\/interface(\d)?\.music\.163\.com\/e?api\/batch,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/netease.adblock.js,requires-body=true,timeout=60,script-update-interval=86400
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - 
 # 墨鱼 · 菜鸟裹裹去广告
 # - - - - - - - - - - - - - - - - - - - - - - - - 
-moyu-CainiaoAds-1 = type=http-response,pattern=^http:\/\/amdc\.m\.taobao\.com,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/amdc.js,requires-body=true,timeout=60
-moyu-CainiaoAds-2 = type=http-response,pattern=^https?:\/\/[a-zA-Z0-9_.-]+\.cainiao\.com\/gw\/mtop\.cainiao\.app\.e2e\.engine\.page\.fetch,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/cainiao_json.js,requires-body=true,timeout=60
-moyu-CainiaoAds-3 = type=http-response,pattern=^https?:\/\/[a-zA-Z0-9_.-]+\.cainiao\.com\/gw\/mtop\.cainiao\.nbpresentation\.homepage\.merge\.get\.cn,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/cainiao_json.js,requires-body=true,timeout=60
-moyu-CainiaoAds-4 = type=http-response,pattern=^https?:\/\/[a-zA-Z0-9_.-]+\.cainiao\.com\/gw\/mtop\.cainiao\.nbpresentation\.protocol\.homepage\.get\.cn,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/cainiao_json.js,requires-body=true,timeout=60
-moyu-CainiaoAds-5 = type=http-response,pattern=^https?:\/\/[a-zA-Z0-9_.-]+\.cainiao\.com\/gw\/mtop\.cainiao\.adkeyword,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/cainiao_json.js,requires-body=true,timeout=60
+moyu-CainiaoAds-1 = type=http-response,pattern=^http:\/\/amdc\.m\.taobao\.com,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/amdc.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-CainiaoAds-2 = type=http-response,pattern=^https?:\/\/[a-zA-Z0-9_.-]+\.cainiao\.com\/gw\/mtop\.cainiao\.app\.e2e\.engine\.page\.fetch,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/cainiao_json.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-CainiaoAds-3 = type=http-response,pattern=^https?:\/\/[a-zA-Z0-9_.-]+\.cainiao\.com\/gw\/mtop\.cainiao\.nbpresentation\.homepage\.merge\.get\.cn,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/cainiao_json.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-CainiaoAds-4 = type=http-response,pattern=^https?:\/\/[a-zA-Z0-9_.-]+\.cainiao\.com\/gw\/mtop\.cainiao\.nbpresentation\.protocol\.homepage\.get\.cn,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/cainiao_json.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-CainiaoAds-5 = type=http-response,pattern=^https?:\/\/[a-zA-Z0-9_.-]+\.cainiao\.com\/gw\/mtop\.cainiao\.adkeyword,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/cainiao_json.js,requires-body=true,timeout=60,script-update-interval=86400
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - 
 # 墨鱼 · 贴吧去广告
 # - - - - - - - - - - - - - - - - - - - - - - - - 
-moyu-TieBaAds-1 = type=http-response,pattern=^http(s:\/\/tiebac|:\/\/c\.tieba)\.baidu\.com\/c\/f\/(frs\/(page|threadlist|generalTabList)|pb\/page|excellent\/personalized)\?cmd,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/tieba-proto.js,requires-body=true,timeout=60
+moyu-TieBaAds-1 = type=http-response,pattern=^http(s:\/\/tiebac|:\/\/c\.tieba)\.baidu\.com\/c\/f\/(frs\/(page|threadlist|generalTabList)|pb\/page|excellent\/personalized)\?cmd,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/tieba-proto.js,requires-body=true,timeout=60,script-update-interval=86400
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - 
 # 墨鱼 · 车来了净化
 # - - - - - - - - - - - - - - - - - - - - - - - - 
-moyu-CheLaiLeAds-1 = type=http-response,pattern=^https?:\/\/.*chelaile\.net\.cn\/goocity\/city!,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/chelaile.js,requires-body=true,timeout=60
+moyu-CheLaiLeAds-1 = type=http-response,pattern=^https?:\/\/.*chelaile\.net\.cn\/goocity\/city!,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/chelaile.js,requires-body=true,timeout=60,script-update-interval=86400
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - 
 # 墨鱼 · 闲鱼净化
 # - - - - - - - - - - - - - - - - - - - - - - - - 
-moyu-GoofishAds-1 = type=http-response,pattern=^http:\/\/[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+){1,4}(:\d+)?\/amdc\/mobileDispatch,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/amdc.js,requires-body=true,timeout=60
+moyu-GoofishAds-1 = type=http-response,pattern=^http:\/\/[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+){1,4}(:\d+)?\/amdc\/mobileDispatch,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/amdc.js,requires-body=true,timeout=60,script-update-interval=86400
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - 
 # 墨鱼 · 高德地图去广告
 # - - - - - - - - - - - - - - - - - - - - - - - - 
-moyu-AmapAds-1 = type=http-response,pattern=^http:\/\/amdc\.m\.taobao\.com,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/amdc.js,requires-body=true,timeout=60
-moyu-AmapAds-2 = type=http-response,pattern=^https?:\/\/.*\.amap\.com\/ws\/message\/notice\/list,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/amap.js,requires-body=true,timeout=60
-moyu-AmapAds-3 = type=http-response,pattern=^https?:\/\/.*\.amap\.com\/ws\/shield\/frogserver\/aocs\/updatable,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/amap.js,requires-body=true,timeout=60
-moyu-AmapAds-4 = type=http-response,pattern=^https?:\/\/.*\.amap\.com\/ws\/shield\/search\/nearbyrec_smart,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/amap.js,requires-body=true,timeout=60
-moyu-AmapAds-5 = type=http-response,pattern=^https?:\/\/.*\.amap\.com\/ws\/promotion-web\/resource,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/amap.js,requires-body=true,timeout=60
-moyu-AmapAds-6 = type=http-response,pattern=^https?:\/\/.*\.amap\.com\/ws\/faas\/amap-navigation\/main-page,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/amap.js,requires-body=true,timeout=60
-moyu-AmapAds-7 = type=http-response,pattern=^https?:\/\/.*\.amap\.com\/ws\/valueadded\/alimama\/splash_screen,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/amap.js,requires-body=true,timeout=60
-moyu-AmapAds-8 = type=http-response,pattern=^https?:\/\/.*\.amap\.com\/ws\/msgbox\/pull,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/amap.js,requires-body=true,timeout=60
-moyu-AmapAds-9 = type=http-response,pattern=^https?:\/\/.*\.amap\.com\/ws\/shield\/dsp\/profile\/index\/nodefaas,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/amap.js,requires-body=true,timeout=60
-moyu-AmapAds-10 = type=http-response,pattern=^https?:\/\/.*\.amap\.com\/ws\/shield\/search\/new_hotword,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/amap.js,requires-body=true,timeout=60
+moyu-AmapAds-1 = type=http-response,pattern=^http:\/\/amdc\.m\.taobao\.com,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/amdc.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-AmapAds-2 = type=http-response,pattern=^https?:\/\/.*\.amap\.com\/ws\/message\/notice\/list,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/amap.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-AmapAds-3 = type=http-response,pattern=^https?:\/\/.*\.amap\.com\/ws\/shield\/frogserver\/aocs\/updatable,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/amap.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-AmapAds-4 = type=http-response,pattern=^https?:\/\/.*\.amap\.com\/ws\/shield\/search\/nearbyrec_smart,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/amap.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-AmapAds-5 = type=http-response,pattern=^https?:\/\/.*\.amap\.com\/ws\/promotion-web\/resource,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/amap.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-AmapAds-6 = type=http-response,pattern=^https?:\/\/.*\.amap\.com\/ws\/faas\/amap-navigation\/main-page,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/amap.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-AmapAds-7 = type=http-response,pattern=^https?:\/\/.*\.amap\.com\/ws\/valueadded\/alimama\/splash_screen,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/amap.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-AmapAds-8 = type=http-response,pattern=^https?:\/\/.*\.amap\.com\/ws\/msgbox\/pull,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/amap.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-AmapAds-9 = type=http-response,pattern=^https?:\/\/.*\.amap\.com\/ws\/shield\/dsp\/profile\/index\/nodefaas,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/amap.js,requires-body=true,timeout=60,script-update-interval=86400
+moyu-AmapAds-10 = type=http-response,pattern=^https?:\/\/.*\.amap\.com\/ws\/shield\/search\/new_hotword,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/moyu/js/amap.js,requires-body=true,timeout=60,script-update-interval=86400
 
 
 [MITM]
