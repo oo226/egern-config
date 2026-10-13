@@ -5,9 +5,9 @@
 #!category=🐻 NobyDa
 
 [Script]
-快看漫画[签到] = type=cron,cronexp="{{{定时签到}}}",wake-system=1,script-update-interval=0,timeout=60,script-path=https://raw.githubusercontent.com/NobyDa/Script/master/KuaiKan-DailyBonus/KKMH.js
+快看漫画[签到] = type=cron,cronexp="{{{定时签到}}}",wake-system=1,script-update-interval=86400,timeout=60,script-path=https://raw.githubusercontent.com/NobyDa/Script/master/KuaiKan-DailyBonus/KKMH.js
 
-{{{禁用脚本}}} = type=http-request,pattern=^https?:\/\/api\.kkmh\.com\/v\d\/passport\/user,script-path=https://raw.githubusercontent.com/NobyDa/Script/master/KuaiKan-DailyBonus/KKMH.js
+{{{禁用脚本}}} = type=http-request,pattern=^https?:\/\/api\.kkmh\.com\/v\d\/passport\/user,script-path=https://raw.githubusercontent.com/NobyDa/Script/master/KuaiKan-DailyBonus/KKMH.js,script-update-interval=86400
 
 [MITM]
 {{{禁用MITM}}} = %APPEND% api.kkmh.com
