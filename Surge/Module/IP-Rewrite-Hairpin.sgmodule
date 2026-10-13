@@ -1,11 +1,11 @@
 #!name=IP Rewrite 回环 (10.7.0.1)
-#!desc=官方手册示例：模块内 %INSERT% tun-included-routes + [IP Rewrite] reflect。需 App Store ≥ 5.23.0 / Mac ≥ 6.10。SideStore 等场景用；主配置勿写 %INSERT%。
+#!desc=SideStore/内网回环用。会写入 tun-included-routes（Surge 会弹官方警告，属预期）。不用回环请关闭本模块。需 App Store ≥ 5.23.0；主配置勿写 %INSERT%。
 #!category=Surge-Plus
 
 [General]
 # SideStore 忽略带 IPv6 的 utun；主配置已是 disabled 时此行无影响
 ipv6-vif = disabled
-# %INSERT% 仅为模块运算符，用来往主配置 tun-included-routes 前插入网段
+# 手册：%INSERT% 只能在模块里；写入后 Surge 可能警告「不应配置 tun-included-routes」——回环场景可忽略
 tun-included-routes = %INSERT% 10.7.0.1/32
 
 [IP Rewrite]
