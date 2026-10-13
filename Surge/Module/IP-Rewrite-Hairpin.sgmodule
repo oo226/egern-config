@@ -1,5 +1,5 @@
 #!name=IP Rewrite 回环 (10.7.0.1)
-#!desc=Surge VIF 层把 10.7.0.1 reflect 回本机（SideStore / LocalDevVPN 类场景）。需 iOS TF ≥ 5.23 / Mac ≥ 6.10；与主配置 ipv6-vif=disabled 配合。
+#!desc=Surge VIF 层把 10.7.0.1 reflect 回本机（SideStore 等）。App Store 5.23.0+ / Mac 6.10+；CN-Plus 已内置，原样 CN 可另装本模块。
 #!category=Surge-Plus
 
 [General]
