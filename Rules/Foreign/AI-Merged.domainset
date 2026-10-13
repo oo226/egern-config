@@ -1,6 +1,6 @@
 # AUTO-EXPORTED from Routing/Foreign/AI-Merged.yaml
 # Format: Surge DOMAIN-SET (leading '.' = suffix). scripts/export-surge-rulesets.py
-# Total entries: 430
+# Total entries: 433
 
 accountcapabilities-pa.googleapis.com
 ai.developer.meta.com
@@ -81,6 +81,7 @@ hunyuan.tencentcloudapi.com
 idetoolkits-hostedfiles.amazonaws.com
 idetoolkits.amazonwebservices.com
 in.appcenter.ms
+inference.codeium.com
 jules.google.com
 llama.developer.meta.com
 location.microsoft.com
@@ -108,6 +109,8 @@ qodercn-jb.oss-cn-hangzhou.aliyuncs.com
 robinfrontend-pa.googleapis.com
 self.events.data.microsoft.com
 servd-anthropic-website.b-cdn.net
+server.codeium.com
+server.self-serve.windsurf.com
 signaler-pa.googleapis.com
 static.cloudflareinsights.com
 storage.googleapis.com
