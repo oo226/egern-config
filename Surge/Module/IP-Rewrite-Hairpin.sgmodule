@@ -1,0 +1,11 @@
+#!name=IP Rewrite 回环 (10.7.0.1)
+#!desc=Surge VIF 层把 10.7.0.1 reflect 回本机（SideStore / LocalDevVPN 类场景）。需 iOS TF ≥ 5.23 / Mac ≥ 6.10；与主配置 ipv6-vif=disabled 配合。
+#!category=Surge-Plus
+
+[General]
+# 部分工具只认「无 IPv6 的 utun」；主配置已 disabled 时可忽略这行
+ipv6-vif = disabled
+tun-included-routes = %INSERT% 10.7.0.1/32
+
+[IP Rewrite]
+10.7.0.1 = reflect

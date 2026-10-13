@@ -1,0 +1,4 @@
+Upstream: https://github.com/Rabbit-Spec/Surge
+Mirrored paths: Conf/Spec/*.conf (except Surge-Mini-Plus.conf), Rules/*.list
+Upstream tip at mirror time: Master @ 2026-10-09 (Rules daily Update; Conf Spec last 2026-06-01)
+Local additions: Conf/Spec/Surge-Mini-Plus.conf, Module/IP-Rewrite-Hairpin.sgmodule, README.md
