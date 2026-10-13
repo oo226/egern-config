@@ -222,82 +222,82 @@ http-response-jq ^https:\/\/api\.pinduoduo\.com\/search 'delpaths([["expansion"]
 
 [Script]
 #>微博 //*.weibo.cn, *.weibo.com, weibo.com
-微博 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/(?:checkin\/show|client\/publisher_list|push\/active), script-path=https://raw.perzikkop.com/Scripts/Weibo.js, requires-body=true
-微博 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/groups\/allgroups\/v2\?, script-path=https://raw.perzikkop.com/Scripts/Weibo.js, requires-body=true
-微博 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/(?:cardlist|page), script-path=https://raw.perzikkop.com/Scripts/Weibo.js, requires-body=true
-微博 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/comments\/build_comments\?, script-path=https://raw.perzikkop.com/Scripts/Weibo.js, requires-body=true
-微博 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/(?:container\/asyn|flowlist|flowpage), script-path=https://raw.perzikkop.com/Scripts/Weibo.js, requires-body=true
-微博 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/friendships\/(?:create|destroy), script-path=https://raw.perzikkop.com/Scripts/Weibo.js, requires-body=true
-微博 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/profile\/(?:container_timeline|dealatt|me|statuses\/tab|userinfo), script-path=https://raw.perzikkop.com/Scripts/Weibo.js, requires-body=true
-微博 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/shproxy\/chaohua\/discovery\/searchactive\?, script-path=https://raw.perzikkop.com/Scripts/Weibo.js, requires-body=true
-微博 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/statuses\/(?:container_timeline(?:_hot|_topic|_topicpage|_unread)?|repost_timeline|unread_hot_timeline), script-path=https://raw.perzikkop.com/Scripts/Weibo.js, requires-body=true
-微博 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/statuses\/(?:extend|show), script-path=https://raw.perzikkop.com/Scripts/Weibo.js, requires-body=true
-微博 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/video\/(?:full_screen_stream|tiny_stream_mid_detail|tiny_stream_video_list)\?, script-path=https://raw.perzikkop.com/Scripts/Weibo.js, requires-body=true
-微博 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/!\/huati\/discovery_home_bottom_channels\?, script-path=https://raw.perzikkop.com/Scripts/Weibo.js, requires-body=true
-微博 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/direct_messages\/user_list\?, script-path=https://raw.perzikkop.com/Scripts/Weibo.js, requires-body=true
-微博 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/messageflow\/notice\?, script-path=https://raw.perzikkop.com/Scripts/Weibo.js, requires-body=true
-微博 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/search\/(?:container_timeline|finder), script-path=https://raw.perzikkop.com/Scripts/Weibo.js, requires-body=true
-微博 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/searchall\?, script-path=https://raw.perzikkop.com/Scripts/Weibo.js, requires-body=true
-微博 = type=http-response, pattern=^https:\/\/bootpreload\.uve\.weibo\.com\/v[12]\/ad\/preload, script-path=https://raw.perzikkop.com/Scripts/Weibo.js, requires-body=true
-微博 = type=http-response, pattern=^https:\/\/sdkapp\.uve\.weibo\.com\/interface\/sdk\/sdkad\.php, script-path=https://raw.perzikkop.com/Scripts/Weibo.js, requires-body=true
-微博 = type=http-response, pattern=^https:\/\/wbapp\.uve\.weibo\.com\/(?:preload\/get_ad|wbapplua\/wbpullad\.lua), script-path=https://raw.perzikkop.com/Scripts/Weibo.js, requires-body=true
-微博 = type=http-response, pattern=^https:\/\/new\.vip\.weibo\.cn\/aj\/appicon\/list\?, script-path=https://raw.perzikkop.com/Scripts/Weibo.js, requires-body=true
+微博 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/(?:checkin\/show|client\/publisher_list|push\/active), script-path=https://raw.perzikkop.com/Scripts/Weibo.js, requires-body=true,script-update-interval=86400
+微博 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/groups\/allgroups\/v2\?, script-path=https://raw.perzikkop.com/Scripts/Weibo.js, requires-body=true,script-update-interval=86400
+微博 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/(?:cardlist|page), script-path=https://raw.perzikkop.com/Scripts/Weibo.js, requires-body=true,script-update-interval=86400
+微博 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/comments\/build_comments\?, script-path=https://raw.perzikkop.com/Scripts/Weibo.js, requires-body=true,script-update-interval=86400
+微博 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/(?:container\/asyn|flowlist|flowpage), script-path=https://raw.perzikkop.com/Scripts/Weibo.js, requires-body=true,script-update-interval=86400
+微博 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/friendships\/(?:create|destroy), script-path=https://raw.perzikkop.com/Scripts/Weibo.js, requires-body=true,script-update-interval=86400
+微博 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/profile\/(?:container_timeline|dealatt|me|statuses\/tab|userinfo), script-path=https://raw.perzikkop.com/Scripts/Weibo.js, requires-body=true,script-update-interval=86400
+微博 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/shproxy\/chaohua\/discovery\/searchactive\?, script-path=https://raw.perzikkop.com/Scripts/Weibo.js, requires-body=true,script-update-interval=86400
+微博 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/statuses\/(?:container_timeline(?:_hot|_topic|_topicpage|_unread)?|repost_timeline|unread_hot_timeline), script-path=https://raw.perzikkop.com/Scripts/Weibo.js, requires-body=true,script-update-interval=86400
+微博 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/statuses\/(?:extend|show), script-path=https://raw.perzikkop.com/Scripts/Weibo.js, requires-body=true,script-update-interval=86400
+微博 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/video\/(?:full_screen_stream|tiny_stream_mid_detail|tiny_stream_video_list)\?, script-path=https://raw.perzikkop.com/Scripts/Weibo.js, requires-body=true,script-update-interval=86400
+微博 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/!\/huati\/discovery_home_bottom_channels\?, script-path=https://raw.perzikkop.com/Scripts/Weibo.js, requires-body=true,script-update-interval=86400
+微博 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/direct_messages\/user_list\?, script-path=https://raw.perzikkop.com/Scripts/Weibo.js, requires-body=true,script-update-interval=86400
+微博 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/messageflow\/notice\?, script-path=https://raw.perzikkop.com/Scripts/Weibo.js, requires-body=true,script-update-interval=86400
+微博 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/search\/(?:container_timeline|finder), script-path=https://raw.perzikkop.com/Scripts/Weibo.js, requires-body=true,script-update-interval=86400
+微博 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/searchall\?, script-path=https://raw.perzikkop.com/Scripts/Weibo.js, requires-body=true,script-update-interval=86400
+微博 = type=http-response, pattern=^https:\/\/bootpreload\.uve\.weibo\.com\/v[12]\/ad\/preload, script-path=https://raw.perzikkop.com/Scripts/Weibo.js, requires-body=true,script-update-interval=86400
+微博 = type=http-response, pattern=^https:\/\/sdkapp\.uve\.weibo\.com\/interface\/sdk\/sdkad\.php, script-path=https://raw.perzikkop.com/Scripts/Weibo.js, requires-body=true,script-update-interval=86400
+微博 = type=http-response, pattern=^https:\/\/wbapp\.uve\.weibo\.com\/(?:preload\/get_ad|wbapplua\/wbpullad\.lua), script-path=https://raw.perzikkop.com/Scripts/Weibo.js, requires-body=true,script-update-interval=86400
+微博 = type=http-response, pattern=^https:\/\/new\.vip\.weibo\.cn\/aj\/appicon\/list\?, script-path=https://raw.perzikkop.com/Scripts/Weibo.js, requires-body=true,script-update-interval=86400
 
 #>菜鸟
-菜鸟 = type=http-response, pattern=^https:\/\/cn-acs\.m\.cainiao\.com\/gw\/mtop\.cainiao\.app\.e2e\.engine\.page\.fetch\.cn, script-path=https://raw.perzikkop.com/Scripts/Cainiao.js, requires-body=true
-菜鸟 = type=http-response, pattern=^https:\/\/cn-acs\.m\.cainiao\.com\/gw\/mtop\.cainiao\.app\.mine\.main\.cn, script-path=https://raw.perzikkop.com/Scripts/Cainiao.js, requires-body=true
-菜鸟 = type=http-response, pattern=^https:\/\/cn-acs\.m\.cainiao\.com\/gw\/mtop\.cainiao\.nbpresentation\.(?:pickup\.empty\.page|protocol\.homepage)\.get\.cn, script-path=https://raw.perzikkop.com/Scripts/Cainiao.js, requires-body=true
-菜鸟 = type=http-response, pattern=^https:\/\/cn-acs\.m\.cainiao\.com\/gw\/mtop\.nbfriend\.message\.conversation\.list\.cn, script-path=https://raw.perzikkop.com/Scripts/Cainiao.js, requires-body=true
-菜鸟 = type=http-response, pattern=^https:\/\/guide-acs\.m\.taobao\.com\/gw\/mtop\.cainiao\.guoguo\.nbnetflow\.ads\.mshow, script-path=https://raw.perzikkop.com/Scripts/Cainiao.js, requires-body=true
-菜鸟 = type=http-response, pattern=^https:\/\/(?:cn-acs\.m|netflow-mtop)\.cainiao\.com\/gw\/mtop\.cainiao\.guoguo\.nbnetflow\.ads\.m?show\.cn, script-path=https://raw.perzikkop.com/Scripts/Cainiao.js, requires-body=true
+菜鸟 = type=http-response, pattern=^https:\/\/cn-acs\.m\.cainiao\.com\/gw\/mtop\.cainiao\.app\.e2e\.engine\.page\.fetch\.cn, script-path=https://raw.perzikkop.com/Scripts/Cainiao.js, requires-body=true,script-update-interval=86400
+菜鸟 = type=http-response, pattern=^https:\/\/cn-acs\.m\.cainiao\.com\/gw\/mtop\.cainiao\.app\.mine\.main\.cn, script-path=https://raw.perzikkop.com/Scripts/Cainiao.js, requires-body=true,script-update-interval=86400
+菜鸟 = type=http-response, pattern=^https:\/\/cn-acs\.m\.cainiao\.com\/gw\/mtop\.cainiao\.nbpresentation\.(?:pickup\.empty\.page|protocol\.homepage)\.get\.cn, script-path=https://raw.perzikkop.com/Scripts/Cainiao.js, requires-body=true,script-update-interval=86400
+菜鸟 = type=http-response, pattern=^https:\/\/cn-acs\.m\.cainiao\.com\/gw\/mtop\.nbfriend\.message\.conversation\.list\.cn, script-path=https://raw.perzikkop.com/Scripts/Cainiao.js, requires-body=true,script-update-interval=86400
+菜鸟 = type=http-response, pattern=^https:\/\/guide-acs\.m\.taobao\.com\/gw\/mtop\.cainiao\.guoguo\.nbnetflow\.ads\.mshow, script-path=https://raw.perzikkop.com/Scripts/Cainiao.js, requires-body=true,script-update-interval=86400
+菜鸟 = type=http-response, pattern=^https:\/\/(?:cn-acs\.m|netflow-mtop)\.cainiao\.com\/gw\/mtop\.cainiao\.guoguo\.nbnetflow\.ads\.m?show\.cn, script-path=https://raw.perzikkop.com/Scripts/Cainiao.js, requires-body=true,script-update-interval=86400
 
 #>淘宝 //acs.m.taobao.com,heic.alicdn.com,guide-acs.m.taobao.com,poplayer.template.alibaba.com
-淘宝 = type=http-response, pattern=^https:\/\/guide-acs\.m\.taobao\.com\/gw\/mtop\.taobao\.(cloudvideo\.video\.query|wireless\.home\.splash\.awesome\.get), script-path=https://raw.perzikkop.com/Scripts/Taobao.js, requires-body=true
-淘宝 = type=http-response, pattern=^https:\/\/poplayer\.template\.alibaba\.com\/\w+\.json, script-path=https://raw.perzikkop.com/Scripts/Taobao.js, requires-body=true
+淘宝 = type=http-response, pattern=^https:\/\/guide-acs\.m\.taobao\.com\/gw\/mtop\.taobao\.(cloudvideo\.video\.query|wireless\.home\.splash\.awesome\.get), script-path=https://raw.perzikkop.com/Scripts/Taobao.js, requires-body=true,script-update-interval=86400
+淘宝 = type=http-response, pattern=^https:\/\/poplayer\.template\.alibaba\.com\/\w+\.json, script-path=https://raw.perzikkop.com/Scripts/Taobao.js, requires-body=true,script-update-interval=86400
 
 #>12306 //ad.12306.cn, mobile.12306.cn
-12306 = type=http-request, pattern=^https:\/\/ad\.12306\.cn\/ad\/ser\/getAdList$, script-path=https://raw.perzikkop.com/Scripts/12306_splashscreen.js, requires-body=true
-12306 = type=http-response, pattern=^https:\/\/mobile\.12306\.cn\/otsmobile\/app\/mgs\/mgw\.htm$, script-path=https://raw.perzikkop.com/Scripts/12306.js
+12306 = type=http-request, pattern=^https:\/\/ad\.12306\.cn\/ad\/ser\/getAdList$, script-path=https://raw.perzikkop.com/Scripts/12306_splashscreen.js, requires-body=true,script-update-interval=86400
+12306 = type=http-response, pattern=^https:\/\/mobile\.12306\.cn\/otsmobile\/app\/mgs\/mgw\.htm$, script-path=https://raw.perzikkop.com/Scripts/12306.js,script-update-interval=86400
 
 #>阿里云盘 //*api.alipan.com, member.alipan.com
-阿里云盘 = type=http-response, pattern=^https:\/\/(biz)?api\.alipan\.com\/apps\/v\d\/users?\/home\/(?:news|widgets), script-path=https://raw.perzikkop.com/Scripts/Adrive.js, requires-body=true
-阿里云盘 = type=http-response, pattern=^https:\/\/member\.alipan\.com\/v1\/users\/onboard_list, script-path=https://raw.perzikkop.com/Scripts/Adrive.js, requires-body=true
+阿里云盘 = type=http-response, pattern=^https:\/\/(biz)?api\.alipan\.com\/apps\/v\d\/users?\/home\/(?:news|widgets), script-path=https://raw.perzikkop.com/Scripts/Adrive.js, requires-body=true,script-update-interval=86400
+阿里云盘 = type=http-response, pattern=^https:\/\/member\.alipan\.com\/v1\/users\/onboard_list, script-path=https://raw.perzikkop.com/Scripts/Adrive.js, requires-body=true,script-update-interval=86400
 
 #>虎扑 //*.hupu.com
-虎扑 = type=http-response, pattern=^https:\/\/fairy\.mobileapi\.hupu\.com\/mang\/preview\/banners, script-path=https://raw.perzikkop.com/Scripts/Hupu.js, requires-body=true
-虎扑 = type=http-response, pattern=^https:\/\/bbs\.mobileapi\.hupu\.com\/\d\/\d\.\d\.\d+\/bbsallapi\/lego\/data, script-path=https://raw.perzikkop.com/Scripts/Hupu.js, requires-body=true
-虎扑 = type=http-response, pattern=^https:\/\/games\.mobileapi\.hupu\.com\/\d\/\d\.\d\.\d+\/buffer\/hotList, script-path=https://raw.perzikkop.com/Scripts/Hupu.js, requires-body=true
-虎扑 = type=http-response, pattern=^https:\/\/games\.mobileapi\.hupu\.com\/\d\/\d\.\d\.\d+\/bplapi\/user\/v1\/more, script-path=https://raw.perzikkop.com/Scripts/Hupu.js, requires-body=true
+虎扑 = type=http-response, pattern=^https:\/\/fairy\.mobileapi\.hupu\.com\/mang\/preview\/banners, script-path=https://raw.perzikkop.com/Scripts/Hupu.js, requires-body=true,script-update-interval=86400
+虎扑 = type=http-response, pattern=^https:\/\/bbs\.mobileapi\.hupu\.com\/\d\/\d\.\d\.\d+\/bbsallapi\/lego\/data, script-path=https://raw.perzikkop.com/Scripts/Hupu.js, requires-body=true,script-update-interval=86400
+虎扑 = type=http-response, pattern=^https:\/\/games\.mobileapi\.hupu\.com\/\d\/\d\.\d\.\d+\/buffer\/hotList, script-path=https://raw.perzikkop.com/Scripts/Hupu.js, requires-body=true,script-update-interval=86400
+虎扑 = type=http-response, pattern=^https:\/\/games\.mobileapi\.hupu\.com\/\d\/\d\.\d\.\d+\/bplapi\/user\/v1\/more, script-path=https://raw.perzikkop.com/Scripts/Hupu.js, requires-body=true,script-update-interval=86400
 
 #>拼多多 //api.pinduoduo.com, api.yangkeduo.com
-拼多多 = type=http-response, pattern=^https:\/\/api\.pinduoduo\.com\/api\/alexa\/homepage\/hub\?, script-path=https://raw.perzikkop.com/Scripts/Pinduoduo.js, requires-body=true
+拼多多 = type=http-response, pattern=^https:\/\/api\.pinduoduo\.com\/api\/alexa\/homepage\/hub\?, script-path=https://raw.perzikkop.com/Scripts/Pinduoduo.js, requires-body=true,script-update-interval=86400
 
 #>高德地图 //m5.amap.com, m5-zb.amap.com, oss.amap.com, sns.amap.com
-高德地图 = type=http-response, pattern=^https:\/\/m5\.amap\.com\/ws\/aos\/perception\/publicTravel\/beforeNavi\?, script-path=https://raw.perzikkop.com/Scripts/Amap.js, requires-body=true
-高德地图 = type=http-response, pattern=^https:\/\/m5\.amap\.com\/ws\/bus\/plan\/integrate\?, script-path=https://raw.perzikkop.com/Scripts/Amap.js, requires-body=true
-高德地图 = type=http-response, pattern=^https:\/\/m5\.amap\.com\/ws\/c3frontend\/af-(hotel|launch)\/page\/main\?, script-path=https://raw.perzikkop.com/Scripts/Amap.js, requires-body=true
-高德地图 = type=http-response, pattern=^https:\/\/m5\.amap\.com\/ws\/perception\/drive\/(routeInfo|routePlan), script-path=https://raw.perzikkop.com/Scripts/Amap.js, requires-body=true
-高德地图 = type=http-response, pattern=^https:\/\/m5\.amap\.com\/ws\/shield\/search\/(common\/coupon\/info|poi\/detail), script-path=https://raw.perzikkop.com/Scripts/Amap.js, requires-body=true
-高德地图 = type=http-response, pattern=^https:\/\/m5\.amap\.com\/ws\/shield\/search_bff\/hotword\?, script-path=https://raw.perzikkop.com/Scripts/Amap.js, requires-body=true
-高德地图 = type=http-response, pattern=^https:\/\/m5\.amap\.com\/ws\/shield\/search_poi\/(?:mps|search\/sp|sug|tips_operation_location), script-path=https://raw.perzikkop.com/Scripts/Amap.js, requires-body=true
-高德地图 = type=http-response, pattern=^https:\/\/m5\.amap\.com\/ws\/faas\/amap-navigation\/(card-service-plan-home|main-page), script-path=https://raw.perzikkop.com/Scripts/Amap.js, requires-body=true
-高德地图 = type=http-response, pattern=^https:\/\/m5\.amap\.com\/ws\/shield\/frogserver\/aocs\/updatable\/1\?, script-path=https://raw.perzikkop.com/Scripts/Amap.js, requires-body=true
-高德地图 = type=http-response, pattern=^https:\/\/m5\.amap\.com\/ws\/shield\/dsp\/profile\/index\/nodefaasv3\?, script-path=https://raw.perzikkop.com/Scripts/Amap.js, requires-body=true
-高德地图 = type=http-response, pattern=^https:\/\/m5\.amap\.com\/ws\/shield\/search\/nearbyrec_smart\?, script-path=https://raw.perzikkop.com/Scripts/Amap.js, requires-body=true
-高德地图 = type=http-response, pattern=^https:\/\/m5\.amap\.com\/ws\/valueadded\/alimama\/splash_screen\?, script-path=https://raw.perzikkop.com/Scripts/Amap.js, requires-body=true
-高德地图 = type=http-response, pattern=^https:\/\/m5-zb\.amap\.com\/ws\/boss\/(car\/order\/content_info|order_web\/friendly_information), script-path=https://raw.perzikkop.com/Scripts/Amap.js, requires-body=true
-高德地图 = type=http-response, pattern=^https:\/\/m5-zb\.amap\.com\/ws\/promotion-web\/resource(\/home)?\?, script-path=https://raw.perzikkop.com/Scripts/Amap.js, requires-body=true
+高德地图 = type=http-response, pattern=^https:\/\/m5\.amap\.com\/ws\/aos\/perception\/publicTravel\/beforeNavi\?, script-path=https://raw.perzikkop.com/Scripts/Amap.js, requires-body=true,script-update-interval=86400
+高德地图 = type=http-response, pattern=^https:\/\/m5\.amap\.com\/ws\/bus\/plan\/integrate\?, script-path=https://raw.perzikkop.com/Scripts/Amap.js, requires-body=true,script-update-interval=86400
+高德地图 = type=http-response, pattern=^https:\/\/m5\.amap\.com\/ws\/c3frontend\/af-(hotel|launch)\/page\/main\?, script-path=https://raw.perzikkop.com/Scripts/Amap.js, requires-body=true,script-update-interval=86400
+高德地图 = type=http-response, pattern=^https:\/\/m5\.amap\.com\/ws\/perception\/drive\/(routeInfo|routePlan), script-path=https://raw.perzikkop.com/Scripts/Amap.js, requires-body=true,script-update-interval=86400
+高德地图 = type=http-response, pattern=^https:\/\/m5\.amap\.com\/ws\/shield\/search\/(common\/coupon\/info|poi\/detail), script-path=https://raw.perzikkop.com/Scripts/Amap.js, requires-body=true,script-update-interval=86400
+高德地图 = type=http-response, pattern=^https:\/\/m5\.amap\.com\/ws\/shield\/search_bff\/hotword\?, script-path=https://raw.perzikkop.com/Scripts/Amap.js, requires-body=true,script-update-interval=86400
+高德地图 = type=http-response, pattern=^https:\/\/m5\.amap\.com\/ws\/shield\/search_poi\/(?:mps|search\/sp|sug|tips_operation_location), script-path=https://raw.perzikkop.com/Scripts/Amap.js, requires-body=true,script-update-interval=86400
+高德地图 = type=http-response, pattern=^https:\/\/m5\.amap\.com\/ws\/faas\/amap-navigation\/(card-service-plan-home|main-page), script-path=https://raw.perzikkop.com/Scripts/Amap.js, requires-body=true,script-update-interval=86400
+高德地图 = type=http-response, pattern=^https:\/\/m5\.amap\.com\/ws\/shield\/frogserver\/aocs\/updatable\/1\?, script-path=https://raw.perzikkop.com/Scripts/Amap.js, requires-body=true,script-update-interval=86400
+高德地图 = type=http-response, pattern=^https:\/\/m5\.amap\.com\/ws\/shield\/dsp\/profile\/index\/nodefaasv3\?, script-path=https://raw.perzikkop.com/Scripts/Amap.js, requires-body=true,script-update-interval=86400
+高德地图 = type=http-response, pattern=^https:\/\/m5\.amap\.com\/ws\/shield\/search\/nearbyrec_smart\?, script-path=https://raw.perzikkop.com/Scripts/Amap.js, requires-body=true,script-update-interval=86400
+高德地图 = type=http-response, pattern=^https:\/\/m5\.amap\.com\/ws\/valueadded\/alimama\/splash_screen\?, script-path=https://raw.perzikkop.com/Scripts/Amap.js, requires-body=true,script-update-interval=86400
+高德地图 = type=http-response, pattern=^https:\/\/m5-zb\.amap\.com\/ws\/boss\/(car\/order\/content_info|order_web\/friendly_information), script-path=https://raw.perzikkop.com/Scripts/Amap.js, requires-body=true,script-update-interval=86400
+高德地图 = type=http-response, pattern=^https:\/\/m5-zb\.amap\.com\/ws\/promotion-web\/resource(\/home)?\?, script-path=https://raw.perzikkop.com/Scripts/Amap.js, requires-body=true,script-update-interval=86400
 
 #>彩云天气 //api.caiyunapp.com, *.cyapi.cn
-彩云天气 = type=http-response, pattern=^https:\/\/api\.caiyunapp\.com\/v1\/activity\?, script-path=https://raw.perzikkop.com/Scripts/Caiyun.js, requires-body=true
-彩云天气 = type=http-response, pattern=^https:\/\/wrapper\.cyapi\.cn\/v1\/activity\?, script-path=https://raw.perzikkop.com/Scripts/Caiyun.js, requires-body=true
-彩云天气 = type=http-request, pattern=^https:\/\/wrapper\.cyapi\.cn\/v1\/(nafp\/origin_images|satellite)\?, script-path=https://raw.perzikkop.com/Scripts/Caiyun.js, timeout=60
+彩云天气 = type=http-response, pattern=^https:\/\/api\.caiyunapp\.com\/v1\/activity\?, script-path=https://raw.perzikkop.com/Scripts/Caiyun.js, requires-body=true,script-update-interval=86400
+彩云天气 = type=http-response, pattern=^https:\/\/wrapper\.cyapi\.cn\/v1\/activity\?, script-path=https://raw.perzikkop.com/Scripts/Caiyun.js, requires-body=true,script-update-interval=86400
+彩云天气 = type=http-request, pattern=^https:\/\/wrapper\.cyapi\.cn\/v1\/(nafp\/origin_images|satellite)\?, script-path=https://raw.perzikkop.com/Scripts/Caiyun.js, timeout=60,script-update-interval=86400
 
 #>百度跳转 //m.baidu.com, www.baidu.com, zhidao.baidu.com
-百度跳转 = type=http-response, pattern=^https:\/\/(?:www|m)\.baidu\.com(\/|\/\?(tn=&)?from=\d+\w)?$, script-path=https://raw.perzikkop.com/Scripts/Baidu_index.js, requires-body=true
+百度跳转 = type=http-response, pattern=^https:\/\/(?:www|m)\.baidu\.com(\/|\/\?(tn=&)?from=\d+\w)?$, script-path=https://raw.perzikkop.com/Scripts/Baidu_index.js, requires-body=true,script-update-interval=86400
 
 #>微信链接限制解除  //weixin110.qq.com, security.wechat.com
-微信链接限制解除 = type=http-response,pattern=^https\:\/\/(weixin110\.qq|security.wechat)\.com\/cgi-bin\/mmspamsupport-bin\/newredirectconfirmcgi\?, script-path=https://raw.perzikkop.com/Scripts/UnblockURLinWeChat.js, requires-body=true
+微信链接限制解除 = type=http-response,pattern=^https\:\/\/(weixin110\.qq|security.wechat)\.com\/cgi-bin\/mmspamsupport-bin\/newredirectconfirmcgi\?, script-path=https://raw.perzikkop.com/Scripts/UnblockURLinWeChat.js, requires-body=true,script-update-interval=86400
 
 [MITM]
 hostname = %APPEND% wxa.wxs.qq.com, wximg.wxs.qq.com, wxsmw.wxs.qq.com, *.weibo.cn, *.weibo.com, weibo.com, *-mtop.cainiao.com, cn-acs.m.cainiao.com, acs.m.taobao.com, heic.alicdn.com, guide-acs.m.taobao.com, poplayer.template.alibaba.com, ad.12306.cn, mobile.12306.cn, *api.alipan.com, member.alipan.com, pan.baidu.com, flowplus.meituan.net, img.meituan.net, s3plus.meituan.net, osg-service.sgcc.com.cn, mp.weixin.qq.com, home.mi.com, wallet.95516.com, *.hupu.com, api.pinduoduo.com, video-dsp.pddpic.com, t-dsp.pinduoduo.com, images.pinduoduo.com, api.yangkeduo.com, m5.amap.com, m5-zb.amap.com, oss.amap.com, sns.amap.com, common.diditaxi.com.cn, freight.xiaojukeji.com, daijia.kuaidadi.com, ct.xiaojukeji.com, res.xiaojukeji.com, conf.diditaxi.com.cn, api.udache.com, 123.207.209.*, 112.53.55.225, 120.241.142.*, 120.241.143.*, 116.85.*, 139.199.240.84, api.caiyunapp.com, wrapper.cyapi.cn, weixin110.qq.com, security.wechat.com, m.baidu.com, www.baidu.com, zhidao.baidu.com

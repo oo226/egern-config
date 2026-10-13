@@ -6,5 +6,5 @@
 [Panel]
 YJ = script-name=YJ,update-interval=43200
 [Script]
-YJ = type=generic,timeout=5,script-path=https://raw.githubusercontent.com/getsomecat/GetSomeCats/Surge/script/youjia.js,argument=guangdong/guangzhou
+YJ = type=generic,timeout=5,script-path=https://raw.githubusercontent.com/getsomecat/GetSomeCats/Surge/script/youjia.js,argument=guangdong/guangzhou,script-update-interval=86400
 

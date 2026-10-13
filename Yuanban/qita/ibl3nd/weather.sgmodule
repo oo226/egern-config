@@ -6,4 +6,4 @@
 [Panel]
 天气=script-name=天气, update-interval=3600
 [Script]
-天气=type=generic,script-path=https://raw.githubusercontent.com/IBL3ND/module/refs/heads/main/weather.js,argument=icon=sun.max.fill&color=#ffc400&cityId={{{城市代码}}}
+天气=type=generic,script-path=https://raw.githubusercontent.com/IBL3ND/module/refs/heads/main/weather.js,argument=icon=sun.max.fill&color=#ffc400&cityId={{{城市代码}}},script-update-interval=86400

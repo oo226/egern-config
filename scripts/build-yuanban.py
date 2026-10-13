@@ -861,6 +861,34 @@ def mirror_js(url: str, author: str, cache: dict[str, str]) -> str:
     return local
 
 
+# Surge/Egern: 0=每次执行前检查更新（连接列表会整天刷 raw.githubusercontent.com）
+# 86400=一天一次；-1=永不自动更新。合集自托管脚本统一日更，避免 0 / 缺省踩坑。
+SCRIPT_UPDATE_INTERVAL = 86400
+_SCRIPT_UPDATE_ZERO_RE = re.compile(r"(script-update-interval\s*=\s*)0\b", re.I)
+
+
+def normalize_script_update_interval(
+    text: str, default: int = SCRIPT_UPDATE_INTERVAL
+) -> str:
+    """把 script-update-interval=0 收成日更；缺省则补上，避免远程 JS 连刷。"""
+    out: list[str] = []
+    for line in text.splitlines(True):
+        if line.endswith("\r\n"):
+            body, nl = line[:-2], "\r\n"
+        elif line.endswith("\n"):
+            body, nl = line[:-1], "\n"
+        else:
+            body, nl = line, ""
+        if body.lstrip().startswith("#") or "script-path=" not in body:
+            out.append(line)
+            continue
+        body = _SCRIPT_UPDATE_ZERO_RE.sub(rf"\g<1>{default}", body)
+        if "script-update-interval=" not in body.lower():
+            body = f"{body.rstrip()},script-update-interval={default}"
+        out.append(body + nl)
+    return "".join(out)
+
+
 def rewrite_js_urls(text: str, author: str, cache: dict[str, str]) -> str:
     """仅重写 script-path / QX script-*；结果必须是本仓 URL。"""
 
@@ -873,7 +901,7 @@ def rewrite_js_urls(text: str, author: str, cache: dict[str, str]) -> str:
 
     text = SCRIPT_PATH_RE.sub(_sub, text)
     text = QX_SCRIPT_URL_RE.sub(_sub, text)
-    return text
+    return normalize_script_update_interval(text)
 
 
 def fenliu_public_name(author: str, filename: str) -> str:
@@ -1408,6 +1436,7 @@ def merge_section_bags(
         f"# built_at={datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%MZ')}",
         f"# branch={BRANCH}",
         "# 作者规则正文不改；仅 script-path 改指 Yuanban/zuozhe/*/js 自托管",
+        "# script-update-interval: 0=每次执行都检查(会刷连接)；合集已统一 86400 日更",
         *notes,
         "",
     ]

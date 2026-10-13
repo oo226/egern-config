@@ -5,4 +5,4 @@
 #!category=🐻 NobyDa
 
 [Script]
-哔哩漫画[积分抢购] = type=cron,cronexp="{{{定时抢购}}}",script-update-interval=0,timeout=60,wake-system=1,script-path=https://raw.githubusercontent.com/NobyDa/Script/master/Bilibili-DailyBonus/ExchangePoints.js,argument="ProductName={{{商品名称}}}&ProductNum={{{抢购数量}}}&ExchangeNum={{{抢购次数}}}
+哔哩漫画[积分抢购] = type=cron,cronexp="{{{定时抢购}}}",script-update-interval=86400,timeout=60,wake-system=1,script-path=https://raw.githubusercontent.com/NobyDa/Script/master/Bilibili-DailyBonus/ExchangePoints.js,argument="ProductName={{{商品名称}}}&ProductNum={{{抢购数量}}}&ExchangeNum={{{抢购次数}}}

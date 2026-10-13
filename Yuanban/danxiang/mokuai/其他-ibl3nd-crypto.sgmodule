@@ -4,4 +4,4 @@
 [Panel]
 crypto=script-name=crypto
 [Script]
-crypto=type=generic,script-path=https://raw.githubusercontent.com/IBL3ND/module/refs/heads/main/crypto.js
+crypto=type=generic,script-path=https://raw.githubusercontent.com/IBL3ND/module/refs/heads/main/crypto.js,script-update-interval=86400

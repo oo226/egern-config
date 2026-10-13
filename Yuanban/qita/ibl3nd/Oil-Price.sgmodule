@@ -7,4 +7,4 @@
 [Panel]
 YJ = script-name=YJ,update-interval=43200
 [Script]
-YJ = type=generic,timeout=5,script-path=https://raw.githubusercontent.com/IBL3ND/module/refs/heads/main/Oil-Price.js,argument="{{{省份}}}/{{{城市}}}"
+YJ = type=generic,timeout=5,script-path=https://raw.githubusercontent.com/IBL3ND/module/refs/heads/main/Oil-Price.js,argument="{{{省份}}}/{{{城市}}}",script-update-interval=86400

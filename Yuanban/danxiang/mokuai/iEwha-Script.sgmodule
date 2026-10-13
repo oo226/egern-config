@@ -39,16 +39,16 @@ https:\/\/www.youtube.com\/api\/timedtext\?.+&lang=(?!(zh|zh\-Hans)&)((?!&tlang=
 
 [Script]
 # > bilbii换区,评分
-换区 = type=http-response,pattern=^https:\/\/ap(p|i)\.bili(bili|api)\.(com|net)\/(pgc\/view\/v\d\/app\/season|x\/offline\/version)\?,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/NobyDa/Script/master/Surge/JS/Bili_Auto_Regions.js
-搜索 = type=http-request,pattern=^https:\/\/ap(p|i)\.bili(bili|api)\.(com|net)\/x\/v\d\/search(\/type)?\?.+?%20(%E6%B8%AF|%E5%8F%B0|%E4%B8%AD)&,script-path=https://raw.githubusercontent.com/NobyDa/Script/master/Surge/JS/Bili_Auto_Regions.js
+换区 = type=http-response,pattern=^https:\/\/ap(p|i)\.bili(bili|api)\.(com|net)\/(pgc\/view\/v\d\/app\/season|x\/offline\/version)\?,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/NobyDa/Script/master/Surge/JS/Bili_Auto_Regions.js,script-update-interval=86400
+搜索 = type=http-request,pattern=^https:\/\/ap(p|i)\.bili(bili|api)\.(com|net)\/x\/v\d\/search(\/type)?\?.+?%20(%E6%B8%AF|%E5%8F%B0|%E4%B8%AD)&,script-path=https://raw.githubusercontent.com/NobyDa/Script/master/Surge/JS/Bili_Auto_Regions.js,script-update-interval=86400
 
 # > Boxjs 
-boxjs = type=http-request,pattern=https?:\/\/boxjs\.(com|net),script-path=https://raw.githubusercontent.com/chavyleung/scripts/master/box/chavy.boxjs.js, requires-body=true, timeout=120
+boxjs = type=http-request,pattern=https?:\/\/boxjs\.(com|net),script-path=https://raw.githubusercontent.com/chavyleung/scripts/master/box/chavy.boxjs.js, requires-body=true, timeout=120,script-update-interval=86400
 
 # > Sub-Store
-Sub-Store Core=type=http-request,pattern=^https?:\/\/sub\.store\/((download)|api\/(preview|sync|(utils\/node-info))),script-path=https://raw.githubusercontent.com/sub-store-org/Sub-Store/release/sub-store-1.min.js,requires-body=true,timeout=120
-Sub-Store Simple=type=http-request,pattern=^https?:\/\/sub\.store,script-path=https://raw.githubusercontent.com/sub-store-org/Sub-Store/release/sub-store-0.min.js,requires-body=true,timeout=120
-Sub-Store Sync=type=cron,cronexp=55 22 * * *,wake-system=1,timeout=120,script-path=https://raw.githubusercontent.com/sub-store-org/Sub-Store/release/cron-sync-artifacts.min.js
+Sub-Store Core=type=http-request,pattern=^https?:\/\/sub\.store\/((download)|api\/(preview|sync|(utils\/node-info))),script-path=https://raw.githubusercontent.com/sub-store-org/Sub-Store/release/sub-store-1.min.js,requires-body=true,timeout=120,script-update-interval=86400
+Sub-Store Simple=type=http-request,pattern=^https?:\/\/sub\.store,script-path=https://raw.githubusercontent.com/sub-store-org/Sub-Store/release/sub-store-0.min.js,requires-body=true,timeout=120,script-update-interval=86400
+Sub-Store Sync=type=cron,cronexp=55 22 * * *,wake-system=1,timeout=120,script-path=https://raw.githubusercontent.com/sub-store-org/Sub-Store/release/cron-sync-artifacts.min.js,script-update-interval=86400
 
 
 [MITM]

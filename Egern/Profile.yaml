@@ -596,6 +596,9 @@ widgets:
 # 解锁已含：Sub-Store、Script Hub、BoxJs、天气/地图、AntiRevoke、屏蔽更新、插件跳转、TG外链、SkipProxy
 # 去广告二选一换着测：可莉线(quguanggao) 默认开；奶思线(naisi-ads，含原叠层) 默认关——勿同开
 # 18+ / 抓参 / iRingo定位·TV·News 按需开
+# 远程 JS（日常开着的去广告+解锁+签到约 700+ 个自托管 script-path，不是截图那几条）：
+# 已全部钉 script-update-interval=86400。连接里 raw.githubusercontent.com/*.js 整天 304 时，
+# 先更新下列模块，再清一次脚本缓存（0=每次执行都检查，会刷爆）
 # ------------------------------------------
 modules:
   - name: 去广告合集

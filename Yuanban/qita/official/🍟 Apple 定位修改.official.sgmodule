@@ -14,7 +14,7 @@ DOMAIN,gspe1-ssl.ls.apple.com,DIRECT
 
 [Script]
 # 📍 Country Code
-📍 Location.pep.gcc.response = type=http-response, pattern=^https?:\/\/gspe1-ssl\.ls\.apple\.com\/pep\/gcc, requires-body=1, script-path=https://github.com/NSRingo/GeoServices/releases/latest/download/response.bundle.js, argument=PEP.GCC={{{GeoCountryCode}}}
+📍 Location.pep.gcc.response = type=http-response, pattern=^https?:\/\/gspe1-ssl\.ls\.apple\.com\/pep\/gcc, requires-body=1, script-path=https://github.com/NSRingo/GeoServices/releases/latest/download/response.bundle.js, argument=PEP.GCC={{{GeoCountryCode}}},script-update-interval=86400
 
 [MITM]
 hostname = %APPEND% gspe1-ssl.ls.apple.com
