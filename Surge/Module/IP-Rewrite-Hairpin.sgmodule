@@ -1,10 +1,11 @@
 #!name=IP Rewrite 回环 (10.7.0.1)
-#!desc=Surge VIF 层把 10.7.0.1 reflect 回本机（SideStore 等）。App Store 5.23.0+ / Mac 6.10+；CN-Plus 已内置，原样 CN 可另装本模块。
+#!desc=官方手册示例：模块内 %INSERT% tun-included-routes + [IP Rewrite] reflect。需 App Store ≥ 5.23.0 / Mac ≥ 6.10。SideStore 等场景用；主配置勿写 %INSERT%。
 #!category=Surge-Plus
 
 [General]
-# 部分工具只认「无 IPv6 的 utun」；主配置已 disabled 时可忽略这行
+# SideStore 忽略带 IPv6 的 utun；主配置已是 disabled 时此行无影响
 ipv6-vif = disabled
+# %INSERT% 仅为模块运算符，用来往主配置 tun-included-routes 前插入网段
 tun-included-routes = %INSERT% 10.7.0.1/32
 
 [IP Rewrite]
