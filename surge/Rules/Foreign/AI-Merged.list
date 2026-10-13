@@ -1,7 +1,7 @@
 # AUTO-EXPORTED from Routing/Foreign/AI-Merged.yaml
 # Format: Surge RULE-SET (no policy). scripts/export-surge-rulesets.py
 # Domain lines include extended-matching (SNI hit under always-real-ip / VIF).
-# Total entries: 436
+# Total entries: 439
 
 DOMAIN,accountcapabilities-pa.googleapis.com,extended-matching
 DOMAIN,ai.developer.meta.com,extended-matching
@@ -82,6 +82,7 @@ DOMAIN,hunyuan.tencentcloudapi.com,extended-matching
 DOMAIN,idetoolkits-hostedfiles.amazonaws.com,extended-matching
 DOMAIN,idetoolkits.amazonwebservices.com,extended-matching
 DOMAIN,in.appcenter.ms,extended-matching
+DOMAIN,inference.codeium.com,extended-matching
 DOMAIN,jules.google.com,extended-matching
 DOMAIN,llama.developer.meta.com,extended-matching
 DOMAIN,location.microsoft.com,extended-matching
@@ -109,6 +110,8 @@ DOMAIN,qodercn-jb.oss-cn-hangzhou.aliyuncs.com,extended-matching
 DOMAIN,robinfrontend-pa.googleapis.com,extended-matching
 DOMAIN,self.events.data.microsoft.com,extended-matching
 DOMAIN,servd-anthropic-website.b-cdn.net,extended-matching
+DOMAIN,server.codeium.com,extended-matching
+DOMAIN,server.self-serve.windsurf.com,extended-matching
 DOMAIN,signaler-pa.googleapis.com,extended-matching
 DOMAIN,static.cloudflareinsights.com,extended-matching
 DOMAIN,storage.googleapis.com,extended-matching
