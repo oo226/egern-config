@@ -14,17 +14,18 @@ DEST = ROUTING / "Direct-Priority.yaml"
 
 # 须在 ProxyGFW/China-Direct 之前直连的服务域（合并为一条规则，替代 Egern 里多行 DIRECT）
 SOURCES = [
+    # WeChat / TestFlight 若未单独落盘，合并脚本会 skip；Microsoft/AppleServers 在 Foreign/
     ROUTING_FOREIGN / "App" / "WeChat.yaml",
     ROUTING_FOREIGN / "Microsoft.yaml",
     ROUTING_FOREIGN / "AppleServers.yaml",
     ROUTING_FOREIGN / "App" / "TestFlight.yaml",
 ]
 
-# 用户指定须优先直连（在 Proxy 规则之前）：PingMe / 起点 / 120399
+# 用户指定须优先直连（在 Proxy 规则之前）：起点 / 120399
+# PingMe 已独立为 Egern/Routing/PingMe-Direct.yaml 规则集，勿再散落单行
 EXTRA_SUFFIXES: tuple[str, ...] = (
     "120399.xyz",
     "qidian.com",
-    "pingmeapp.net",
 )
 
 

@@ -1,0 +1,31 @@
+# 类型: 分流规则 — 视频资源站（ResourceSite）直连（规则集，勿散落写进 Profile）
+# 上游: eulac-dev/Proxy Loon/Rules/ResourceSite.lsr → Yuanban/zuozhe/eulac/fenliu
+# Profile 以 rule_set 整表挂载；勿再往 Direct-Priority 塞单行
+
+no_resolve: true
+domain_set:
+  - fmao.fun
+  - sd.sduc.site
+  - shandian.blog
+  - tv.214521.xyz
+  - woog.430520.xyz
+  - woog.nxog.eu.org
+  - woog.nxog.fun
+  - www.miqk.cc
+  - www.muou.asia
+  - www.muou.site
+domain_suffix_set:
+  - 666291.xyz
+  - mihdr.top
+  - xiaocgege.shop
+domain_keyword_set:
+  - 2xiaopan
+  - 2xiaozhan
+  - erixaopan
+  - erxiaopan
+  - erxiaozhan
+  - wexwp
+  - wogg
+  - yydsys
+ip_cidr_set:
+  - 121.205.88.174/32

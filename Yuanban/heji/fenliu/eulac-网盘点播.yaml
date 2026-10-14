@@ -1,6 +1,7 @@
 # 规则名称: 网盘点播（PanVod）
 # 上游: eulac-dev/Proxy
-# Total unique entries: 47
+# 主挂载请用 Egern/Routing/PanVod-Direct.yaml
+# Total unique entries: see Routing copy
 
 no_resolve: true
 domain_set:

@@ -88,6 +88,11 @@ https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/he
 https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/eulac-网盘点播.yaml
 https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/eulac-视频资源站.lsr
 https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/eulac-视频资源站.yaml
+
+Egern Profile 请挂独立规则集（不要只靠 China-Direct 合并兜底）：
+https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Routing/PanVod-Direct.yaml
+https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Routing/ResourceSite-Direct.yaml
+https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Routing/PingMe-Direct.yaml
 https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/本仓-追风.yaml
 https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/莫离-AI.list
 https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/莫离-APNs.list

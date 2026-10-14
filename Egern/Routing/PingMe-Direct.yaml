@@ -1,0 +1,9 @@
+# 类型: 分流规则 — PingMe 直连（规则集）
+# 用途: 签到/抓参域名优先 DIRECT，避免掉进 Proxy/GFW
+# 原散落在 Direct-Priority 的单行 pingmeapp.net，收成整表
+
+no_resolve: true
+domain_suffix_set:
+  - pingmeapp.net
+domain_set:
+  - api.pingmeapp.net

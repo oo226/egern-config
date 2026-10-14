@@ -3,6 +3,7 @@
 # Do not edit manually. Updated by GitHub Actions after upstream sync.
 # Merged: WeChat.yaml, Microsoft.yaml, AppleServers.yaml, TestFlight.yaml
 # Total unique entries: 725
+# PingMe → Egern/Routing/PingMe-Direct.yaml（独立规则集，不在本表）
 
 no_resolve: true
 domain_set:
@@ -561,7 +562,6 @@ domain_suffix_set:
   - passport.net
   - pbiwebcontent.cn
   - phonefactor.net
-  - pingmeapp.net
   - pixapp.net
   - playfabapi.cn
   - playfabcn.com
