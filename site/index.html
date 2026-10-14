@@ -25,7 +25,7 @@
         });
         if (window.caches && caches.keys) {
           caches.keys().then(function (keys) {
-            keys.filter(function (k) { return k.indexOf('egern-hub-') === 0 && k !== 'egern-hub-v8-force'; })
+            keys.filter(function (k) { return k.indexOf('egern-hub-') === 0 && k !== 'egern-hub-v9-force'; })
               .forEach(function (k) { caches.delete(k); });
           });
         }
@@ -41,7 +41,7 @@
         <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
       </button>
       <h1>⚡ egern-config 模块中心</h1>
-      <p>上游单条按<strong>代理工具 + 作者</strong>分类 — 默认筛 Surge；巨型合集慎开，挑完再组小合集更稳</p>
+      <p>点<strong>上游单条</strong>进分类栏目：先选代理工具 / 作者，再挑模块；巨型合集慎开</p>
       <div class="notice">本站内容为个人镜像整理，仅供学习交流与个人设备使用。详见 <a href="disclaimer.html">免责声明</a>。</div>
       <span class="badge" id="updated">加载中…</span>
     </div>
@@ -57,6 +57,7 @@
 
   <main>
     <div id="extras"></div>
+    <div id="catalog-sections" class="catalog-sections" hidden></div>
     <div class="stats" id="stats"></div>
     <div class="grid" id="grid"></div>
     <div class="empty" id="empty" hidden>没有匹配的项目</div>
@@ -252,79 +253,133 @@
       for (const g of groups) mk(g, g);
     }
 
-    function renderUpstreamGroups(items) {
-      let wrap = document.getElementById('upstream-filters');
+    const CLIENT_ICONS = {
+      surge: '🌊', egern: '⚡', loon: '🎈', quanx: '⚛️', shadowrocket: '🚀', stash: '🧰',
+    };
+
+    function pickUpstreamClient(id) {
+      activeUpstreamClient = id;
+      activeUpstreamGroup = 'all';
+      activeCategory = 'upstream';
+      document.querySelectorAll('#filters .filter-btn').forEach(b => b.classList.toggle('active', b.dataset.cat === 'upstream'));
+      renderBoxjsGroups(catalog?.items || []);
+      renderCatalogSections();
+      renderExtras();
+      renderGrid();
+      $('#catalog-sections')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function pickUpstreamAuthor(id) {
+      activeUpstreamGroup = id;
+      activeCategory = 'upstream';
+      document.querySelectorAll('#filters .filter-btn').forEach(b => b.classList.toggle('active', b.dataset.cat === 'upstream'));
+      renderBoxjsGroups(catalog?.items || []);
+      renderCatalogSections();
+      renderExtras();
+      renderGrid();
+      $('#stats')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function renderCatalogSections() {
+      const el = $('#catalog-sections');
+      if (!el || !catalog) return;
       if (activeCategory !== 'upstream') {
-        if (wrap) wrap.remove();
-        activeUpstreamGroup = 'all';
-        // 离开时保留 client 记忆；回到上游默认仍按 Surge
+        el.hidden = true;
+        el.innerHTML = '';
         return;
       }
-      if (!wrap) {
-        wrap = document.createElement('div');
-        wrap.id = 'upstream-filters';
-        wrap.className = 'upstream-filters';
-        $('#stats').after(wrap);
+      el.hidden = false;
+      el.innerHTML = '';
+
+      const head = document.createElement('div');
+      head.className = 'sections-head';
+      head.innerHTML = '<h2>分类栏目</h2><p>先选<strong>代理工具</strong>或<strong>作者</strong>，下面再出模块列表</p>';
+      el.appendChild(head);
+
+      // —— 代理工具栏目 ——
+      const toolsSec = document.createElement('section');
+      toolsSec.className = 'section-block';
+      toolsSec.innerHTML = '<div class="section-title">代理工具</div>';
+      const toolsGrid = document.createElement('div');
+      toolsGrid.className = 'section-grid';
+      const allCount = (catalog.items || []).filter(i => i.category === 'upstream').length;
+      const toolEntries = [
+        { id: 'all', name: '全部工具', count: allCount, icon: '📚' },
+        ...(catalog.client_index || []).map(c => ({
+          id: c.id, name: c.name, count: c.count, icon: CLIENT_ICONS[c.id] || '📦',
+        })),
+      ];
+      for (const t of toolEntries) {
+        const card = document.createElement('button');
+        card.type = 'button';
+        card.className = 'section-card' + (activeUpstreamClient === t.id ? ' active' : '') + (t.id !== 'all' ? ` client-${t.id}` : '');
+        card.innerHTML = `
+          <span class="section-card-icon">${t.icon}</span>
+          <span class="section-card-body">
+            <strong>${t.name}</strong>
+            <small>${t.count} 个模块</small>
+          </span>`;
+        card.onclick = () => pickUpstreamClient(t.id);
+        toolsGrid.appendChild(card);
       }
-      wrap.innerHTML = '';
+      toolsSec.appendChild(toolsGrid);
+      el.appendChild(toolsSec);
 
-      const mkRow = (label) => {
-        const row = document.createElement('div');
-        row.className = 'filter-row';
-        const lab = document.createElement('span');
-        lab.className = 'filter-row-label';
-        lab.textContent = label;
-        const btns = document.createElement('div');
-        btns.className = 'presets';
-        row.append(lab, btns);
-        wrap.appendChild(row);
-        return btns;
-      };
-
-      // 1) 代理工具
-      const clientBar = mkRow('代理工具');
-      const clients = (catalog.client_index || []).slice();
-      const mkClient = (id, label, count) => {
-        const b = document.createElement('button');
-        b.className = 'filter-btn' + (activeUpstreamClient === id ? ' active' : '');
-        b.textContent = count != null ? `${label} (${count})` : label;
-        b.onclick = () => {
-          activeUpstreamClient = id;
-          // 切换工具时，作者列表若与工具无关则重置
-          activeUpstreamGroup = 'all';
-          renderGrid();
-          renderUpstreamGroups(catalog.items);
-        };
-        clientBar.appendChild(b);
-      };
-      const allClientCount = items.filter(i => i.category === 'upstream').length;
-      mkClient('all', '全部工具', allClientCount);
-      for (const c of clients) mkClient(c.id, c.name, c.count);
-
-      // 2) 作者（随当前工具过滤）
-      const authorBar = mkRow('作者');
+      // —— 作者栏目 ——
+      const authorSec = document.createElement('section');
+      authorSec.className = 'section-block';
+      const curTool = activeUpstreamClient === 'all'
+        ? '全部工具'
+        : ((catalog.client_labels || {})[activeUpstreamClient] || activeUpstreamClient);
+      authorSec.innerHTML = `<div class="section-title">作者 <span class="section-sub">（当前工具：${curTool}）</span></div>`;
+      const authorGrid = document.createElement('div');
+      authorGrid.className = 'section-grid authors';
       const authors = (catalog.author_index || []).filter(a => {
         if (activeUpstreamClient === 'all') return true;
         return (a.clients || []).includes(activeUpstreamClient);
       });
-      const mkAuthor = (id, label) => {
-        const b = document.createElement('button');
-        b.className = 'filter-btn' + (activeUpstreamGroup === id ? ' active' : '');
-        b.textContent = label;
-        b.onclick = () => {
-          activeUpstreamGroup = id;
-          renderGrid();
-          renderUpstreamGroups(catalog.items);
-        };
-        authorBar.appendChild(b);
-      };
-      mkAuthor('all', '全部作者');
-      mkAuthor('__collections__', '只要合集');
-      mkAuthor('__mega__', '巨型合集(慎开)');
-      for (const a of authors) {
-        const tools = (a.client_labels || []).join('/');
-        mkAuthor(a.id, `${a.name} (${a.count}${tools ? ' · ' + tools : ''})`);
+      const specials = [
+        { id: 'all', name: '全部作者', count: authors.reduce((n, a) => n + a.count, 0), client_labels: [] },
+        { id: '__collections__', name: '只要合集', count: null, client_labels: [] },
+        { id: '__mega__', name: '巨型合集（慎开）', count: null, client_labels: [], warn: true },
+      ];
+      for (const a of [...specials, ...authors]) {
+        const card = document.createElement('button');
+        card.type = 'button';
+        card.className = 'section-card author' + (activeUpstreamGroup === a.id ? ' active' : '') + (a.warn ? ' warn' : '');
+        const tools = (a.client_labels || []).map(l => `<span class="mini-tag">${l}</span>`).join('');
+        const countHtml = a.count != null ? `<small>${a.count} 个</small>` : '<small>筛选</small>';
+        card.innerHTML = `
+          <span class="section-card-body">
+            <strong>${a.name}</strong>
+            ${countHtml}
+            <span class="mini-tags">${tools}</span>
+          </span>`;
+        card.onclick = () => pickUpstreamAuthor(a.id);
+        authorGrid.appendChild(card);
       }
+      authorSec.appendChild(authorGrid);
+      el.appendChild(authorSec);
+
+      const listHead = document.createElement('div');
+      listHead.className = 'sections-list-head';
+      const clientName = activeUpstreamClient === 'all'
+        ? '全部工具'
+        : ((catalog.client_labels || {})[activeUpstreamClient] || activeUpstreamClient);
+      let authorName = '全部作者';
+      if (activeUpstreamGroup === '__collections__') authorName = '只要合集';
+      else if (activeUpstreamGroup === '__mega__') authorName = '巨型合集';
+      else if (activeUpstreamGroup !== 'all') {
+        const hit = (catalog.author_index || []).find(a => a.id === activeUpstreamGroup);
+        authorName = hit?.name || activeUpstreamGroup;
+      }
+      listHead.innerHTML = `<div class="section-title">模块列表 <span class="section-sub">${clientName} · ${authorName}</span></div>`;
+      el.appendChild(listHead);
+    }
+
+    function renderUpstreamGroups() {
+      // 兼容旧调用：统一走栏目渲染
+      renderCatalogSections();
     }
 
     function isBrowsingAll() {
@@ -559,12 +614,17 @@
 
     function setCategory(cat) {
       activeCategory = cat;
-      if (cat === 'upstream' && !activeUpstreamClient) activeUpstreamClient = 'surge';
+      if (cat === 'upstream') {
+        if (!activeUpstreamClient) activeUpstreamClient = 'surge';
+      }
       document.querySelectorAll('#filters .filter-btn').forEach(b => b.classList.toggle('active', b.dataset.cat === cat));
       renderBoxjsGroups(catalog?.items || []);
-      renderUpstreamGroups(catalog?.items || []);
+      renderCatalogSections();
       renderExtras();
       renderGrid();
+      if (cat === 'upstream') {
+        $('#catalog-sections')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
     }
 
     function matches(item, q) {
@@ -745,10 +805,12 @@
     function renderGrid() {
       const q = $('#search').value.trim().toLowerCase();
       renderExtras();
+      renderCatalogSections();
       const items = (catalog?.items || []).filter(i => matches(i, q));
       $('#grid').innerHTML = '';
       $('#empty').hidden = items.length > 0;
-      $('#stats').textContent = `显示 ${items.length} / ${catalog?.total || 0} 项`;
+      const scope = activeCategory === 'upstream' ? '当前栏目' : '全部';
+      $('#stats').textContent = `${scope}显示 ${items.length} / ${catalog?.total || 0} 项`;
       for (const item of items) $('#grid').appendChild(renderCard(item));
     }
 
@@ -825,7 +887,7 @@
       renderPresets(catalog.presets);
       renderFilters(catalog.categories || []);
       renderBoxjsGroups(catalog.items);
-      renderUpstreamGroups(catalog.items);
+      renderCatalogSections();
       renderHealthBanner();
       renderExtras();
       renderGrid();
