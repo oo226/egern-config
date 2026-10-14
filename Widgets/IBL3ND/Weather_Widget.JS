@@ -27,8 +27,6 @@ export default async function (ctx) {
   const env = safeCtx.env || {};
   const widgetFamily = safeCtx.widgetFamily || 'systemMedium';
 
-  // 本地直测：key/host 写死在文件里，复制到 Egern 脚本编辑器直接运行
-  // ⚠️ 推公开仓库前记得删掉！
   const apiKey     = (env.KEY || '').trim();
   const apiHostRaw = (env.API_HOST || '').trim();
   const location   = (env.LOCATION || '').trim();
@@ -52,16 +50,21 @@ export default async function (ctx) {
       return renderAccessory(now, city, widgetFamily);
     }
     if (widgetFamily === 'systemSmall') {
-      return renderSmall(now, city);
+      const [daily3d, airSmall] = await Promise.all([
+        fetchDaily3d(safeCtx, apiKey, lon, lat, apiHost).catch(() => null),
+        fetchAirQuality(safeCtx, apiKey, lon, lat, apiHost).catch(() => null),
+      ]);
+      return renderSmall(now, city, daily3d, airSmall);
     }
     if (widgetFamily === 'systemLarge') {
       const [daily3d, hourly24h] = await Promise.all([
         fetchDaily3d(safeCtx, apiKey, lon, lat, apiHost).catch(() => null),
         fetchHourly24h(safeCtx, apiKey, lon, lat, apiHost).catch(() => null),
       ]);
-      return renderLarge(now, city, daily3d, hourly24h);
+      return renderLarge(now, city, daily3d, hourly24h, userName);
     }
-    return renderMedium(now, air, city);
+    const daily7d = await fetchDaily7d(safeCtx, apiKey, lon, lat, apiHost).catch(() => null);
+    return renderMedium(now, city, daily7d);
 
   } catch (e) {
     try { console.error(e); } catch (_) {}
@@ -70,22 +73,164 @@ export default async function (ctx) {
   }
 }
 
-function renderMedium(now, air, city) {
+function getNextHoliday() {
+  const now = new Date();
+  const y = now.getFullYear();
+  const holidays = [
+    { m: 1, d: 1, name: '元旦' },
+    { m: 2, d: 17, name: '春节', y: 2026 }, { m: 2, d: 6, name: '春节', y: 2027 },
+    { m: 3, d: 3, name: '元宵节', y: 2026 },
+    { m: 5, d: 1, name: '劳动节' },
+    { m: 6, d: 19, name: '端午节', y: 2026 }, { m: 6, d: 9, name: '端午节', y: 2027 },
+    { m: 8, d: 19, name: '七夕节', y: 2026 },
+    { m: 9, d: 25, name: '中秋节', y: 2026 }, { m: 9, d: 15, name: '中秋节', y: 2027 },
+    { m: 10, d: 18, name: '重阳节', y: 2026 },
+    { m: 10, d: 1, name: '国庆节' },
+    { m: 12, d: 25, name: '圣诞节' },
+    { m: 2, d: 4, name: '立春' }, { m: 2, d: 19, name: '雨水' },
+    { m: 3, d: 5, name: '惊蛰' }, { m: 3, d: 20, name: '春分' },
+    { m: 4, d: 4, name: '清明' }, { m: 4, d: 20, name: '谷雨' },
+    { m: 5, d: 5, name: '立夏' }, { m: 5, d: 21, name: '小满' },
+    { m: 6, d: 5, name: '芒种' }, { m: 6, d: 21, name: '夏至' },
+    { m: 7, d: 7, name: '小暑' }, { m: 7, d: 22, name: '大暑' },
+    { m: 8, d: 7, name: '立秋' }, { m: 8, d: 23, name: '处暑' },
+    { m: 9, d: 7, name: '白露' }, { m: 9, d: 23, name: '秋分' },
+    { m: 10, d: 8, name: '寒露' }, { m: 10, d: 23, name: '霜降' },
+    { m: 11, d: 7, name: '立冬' }, { m: 11, d: 22, name: '小雪' },
+    { m: 12, d: 7, name: '大雪' }, { m: 12, d: 21, name: '冬至' },
+    { m: 1, d: 5, name: '小寒' }, { m: 1, d: 20, name: '大寒' },
+  ];
+  let best = null;
+  for (const h of holidays) {
+    for (const yy of [y, y + 1]) {
+      if (h.y && h.y !== yy) continue;
+      const dt = new Date(yy, h.m - 1, h.d);
+      const days = Math.ceil((dt - now) / 86400000);
+      if (days >= 0 && (!best || days < best.days)) {
+        best = { name: h.name, days };
+      }
+    }
+  }
+  return best;
+}
+
+function renderMedium(now, city, daily7d) {
   const { icon, color: iconColor } = getWeatherStyle(now.icon);
-  const aqiStyle = getAQIStyle(air?.aqi);
+  const T = { light: '#1C1C1E', dark: '#F2F2F7' };
+  const S = { light: '#8E8E93', dark: '#AEAEB2' };
+  const weekNames = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
 
-  const time = new Date();
-  const timeStr = `${time.getMonth() + 1}-${time.getDate()} ${time.getHours()}:${String(time.getMinutes()).padStart(2, '0')}`;
+  const nowT = new Date();
+  const pad = (n) => String(n).padStart(2, '0');
+  const timeStr = `${nowT.getFullYear()}-${pad(nowT.getMonth() + 1)}-${pad(nowT.getDate())} ${pad(nowT.getHours())}:${pad(nowT.getMinutes())}`;
 
-  const bg = { light: '#FFFFFF', dark: '#2C2C2E' };
-  const cardBg = { light: '#F2F2F715', dark: '#FFFFFF15' };
+  const today = daily7d && daily7d[0];
+  const hlText = today ? `H:${today.tempMax}° L:${today.tempMin}°` : '';
+
+  const humidity = Math.max(0, Math.min(100, Number(now.humidity) || 0));
+  const barW = 300, barH = 10;
+  const fillW = Math.round(barW * humidity / 100);
+  const dotX = Math.max(6, Math.min(barW - 6, fillW));
+  const humiditySvg =
+    `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 ${barW} ${barH}' preserveAspectRatio='none'>` +
+    `<defs><linearGradient id='hg' x1='0' y1='0' x2='1' y2='0'>` +
+    `<stop offset='0' stop-color='%2334C759'/><stop offset='0.35' stop-color='%23FFCC00'/>` +
+    `<stop offset='0.55' stop-color='%23FF9500'/><stop offset='0.75' stop-color='%23FF3B30'/>` +
+    `<stop offset='1' stop-color='%23AF52DE'/></linearGradient></defs>` +
+    `<rect x='0' y='1' width='${barW}' height='${barH - 2}' rx='${(barH - 2) / 2}' fill='url(%23hg)' opacity='0.25'/>` +
+    `<rect x='0' y='1' width='${fillW}' height='${barH - 2}' rx='${(barH - 2) / 2}' fill='url(%23hg)'/>` +
+    `<circle cx='${dotX}' cy='${barH / 2}' r='5' fill='%23FFFFFF' opacity='0.95'/>` +
+    `</svg>`;
+
+  const forecastCells = [];
+  if (daily7d) {
+    for (let i = 1; i <= 6 && daily7d[i]; i++) {
+      const d = daily7d[i];
+      const dt = new Date(d.date + 'T12:00:00');
+      const { icon: dic, color: dcolor } = getWeatherStyle(d.iconDay);
+      forecastCells.push({
+        type: 'stack',
+        direction: 'column',
+        alignItems: 'center',
+        gap: 2,
+        flex: 1,
+        children: [
+          { type: 'text', text: weekNames[dt.getDay()], font: { size: 11 }, textColor: S, maxLines: 1 },
+          { type: 'image', src: `sf-symbol:${dic}`, width: 20, height: 20, color: dcolor },
+          { type: 'text', text: `${d.tempMax}°`, font: { size: 12, weight: 'semibold' }, textColor: T, maxLines: 1 },
+        ]
+      });
+    }
+  }
+
+  const hrLine = {
+    type: 'text', text: ' ',
+    font: { size: 1 },
+    backgroundColor: { light: '#00000018', dark: '#FFFFFF20' },
+  };
+
+  const holiday = getNextHoliday();
+  const holidayBlock = holiday ? {
+    type: 'stack',
+    direction: 'column',
+    alignItems: 'center',
+    gap: 0,
+    children: [
+      { type: 'text', text: `距离${holiday.name}`, font: { size: 11, weight: 'semibold' }, textColor: { light: '#FF3B30', dark: '#FF6B62' }, maxLines: 1 },
+      { type: 'text', text: holiday.days === 0 ? '就是今天' : `还有${holiday.days}天`, font: { size: 11 }, textColor: S, maxLines: 1 },
+    ]
+  } : { type: 'spacer' };
+
+  const infoRow = {
+    type: 'stack',
+    direction: 'row',
+    alignItems: 'center',
+    children: [
+      { type: 'spacer' },
+      { type: 'text', text: `体感 ${now.feelsLike}° · 降水 ${now.precip}mm · 能见度 ${now.vis}km`, font: { size: 10 }, textColor: S, maxLines: 1 },
+      { type: 'spacer' },
+    ]
+  };
 
   return {
     type: 'widget',
-    
-    padding: 14,
-    gap: 10,
+    padding: 10,
+    gap: 3,
     children: [
+      {
+        type: 'stack',
+        direction: 'row',
+        alignItems: 'center',
+        children: [
+          { type: 'image', src: `sf-symbol:${icon}`, width: 36, height: 36, color: iconColor },
+          { type: 'spacer', length: 8 },
+          {
+            type: 'stack',
+            direction: 'column',
+            gap: 1,
+            children: [
+              { type: 'text', text: city, font: { size: 18, weight: 'semibold' }, textColor: T, maxLines: 1 },
+              { type: 'text', text: now.text, font: { size: 13 }, textColor: T, maxLines: 1 },
+              { type: 'text', text: timeStr, font: { size: 10 }, textColor: S, maxLines: 1 },
+            ]
+          },
+          { type: 'spacer' },
+          holidayBlock,
+          { type: 'spacer' },
+          {
+            type: 'stack',
+            direction: 'column',
+            alignItems: 'end',
+            gap: 1,
+            children: [
+              { type: 'text', text: `${now.temp}°C`, font: { size: 30, weight: 'bold' }, textColor: T, maxLines: 1, minScale: 0.7 },
+              { type: 'text', text: hlText, font: { size: 12 }, textColor: S, maxLines: 1 },
+            ]
+          },
+        ]
+      },
+
+      infoRow,
 
       {
         type: 'stack',
@@ -93,89 +238,82 @@ function renderMedium(now, air, city) {
         alignItems: 'center',
         gap: 6,
         children: [
-          capsuleTag(city, { light: '#FF3B30', dark: '#FF453A' }, { light: '#FF3B3015', dark: '#FF453A25' }),
-          capsuleTag(now.text, iconColor, getBadgeBg(now.icon)),
-          { type: 'spacer' },
-          capsuleTag(`AQI ${air?.aqi ?? '--'}`, aqiStyle.color, aqiStyle.bg),
+          { type: 'text', text: '相对湿度', font: { size: 12 }, textColor: T, maxLines: 1 },
           {
-            type: 'text',
-            text: timeStr,
-            font: { size: 11 },
-            textColor: { light: '#8E8E93', dark: '#636366' }
-          }
+            type: 'image',
+            src: `data:image/svg+xml,${humiditySvg}`,
+            flex: 1,
+            height: 10,
+          },
+          { type: 'text', text: `${humidity}%`, font: { size: 12, weight: 'semibold' }, textColor: T, maxLines: 1 },
         ]
       },
+
+      hrLine,
 
       {
         type: 'stack',
         direction: 'row',
         alignItems: 'center',
-        gap: 0,
-        children: [
-          {
-            type: 'image',
-            src: `sf-symbol:${icon}`,
-            width: 52,
-            height: 52,
-            color: iconColor
-          },
-          { type: 'spacer' },
-          {
-            type: 'text',
-            text: `${now.temp}°`,
-            font: { size: 46, weight: 'bold' },
-            textColor: { light: '#1C1C1E', dark: '#F2F2F7' },
-            textAlign: 'center',
-            minScale: 0.7
-          },
-          { type: 'spacer' },
-          capsuleTagLarge(aqiStyle.text, aqiStyle.color, aqiStyle.bg)
-        ]
+        flex: 1,
+        children: forecastCells.length > 0 ? forecastCells : [{ type: 'spacer' }],
       },
-
-      {
-        type: 'stack',
-        direction: 'row',
-        gap: 8,
-        children: [
-          infoCard('drop.fill',    '湿度', `${now.humidity}%`,        '#007AFF', cardBg),
-          infoCard('wind',         '风向', `${now.windDir} ${now.windScale}级`, '#5856D6', cardBg),
-          infoCard('gauge.medium', '风速', `${now.windSpeed}km/h`,    '#FF9500', cardBg)
-        ]
-      }
     ]
   };
 }
 
-function renderSmall(now, city) {
+function renderSmall(now, city, daily3d, air) {
   const { icon, color: iconColor } = getWeatherStyle(now.icon);
+  const T = { light: '#1C1C1E', dark: '#F2F2F7' };
+  const S = { light: '#8E8E93', dark: '#AEAEB2' };
+  const weekNames = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
+
+  const header = {
+    type: 'stack', direction: 'row', alignItems: 'center',
+    children: [
+      { type: 'text', text: city, font: { size: 17, weight: 'semibold' }, textColor: T, maxLines: 1 },
+      { type: 'spacer' },
+      { type: 'image', src: `sf-symbol:${icon}`, width: 28, height: 28, color: iconColor }
+    ]
+  };
+
+  const today = daily3d && daily3d[0];
+  const todayRow = {
+    type: 'stack', direction: 'row', alignItems: 'center',
+    children: [
+      { type: 'text', text: `${now.temp}°`, font: { size: 38, weight: 'bold' }, textColor: T },
+      { type: 'spacer' },
+      today ? { type: 'text', text: `${today.tempMin}°`, font: { size: 20 }, textColor: S } : { type: 'spacer', length: 0 },
+      today ? { type: 'spacer', length: 12 } : { type: 'spacer', length: 0 },
+      today ? { type: 'text', text: `${today.tempMax}°`, font: { size: 20, weight: 'semibold' }, textColor: T } : { type: 'spacer', length: 0 }
+    ]
+  };
+
+  const rows = [];
+  const labels = ['明天'];
+  for (let i = 1; i < 3 && daily3d && daily3d[i]; i++) {
+    const d = daily3d[i];
+    const dt = new Date(d.date + 'T12:00:00');
+    const label = labels[i - 1] || weekNames[dt.getDay()];
+    const { icon: dic, color: dcolor } = getWeatherStyle(d.iconDay);
+    rows.push({ type: 'spacer', length: 6 });
+    rows.push({
+      type: 'stack', direction: 'row', alignItems: 'center',
+      children: [
+        { type: 'text', text: label, font: { size: 16 }, textColor: T, width: 44 },
+        { type: 'image', src: `sf-symbol:${dic}`, width: 22, height: 22, color: dcolor },
+        { type: 'spacer' },
+        { type: 'text', text: `${d.tempMin}°`, font: { size: 17 }, textColor: S },
+        { type: 'spacer', length: 12 },
+        { type: 'text', text: `${d.tempMax}°`, font: { size: 17, weight: 'semibold' }, textColor: T }
+      ]
+    });
+  }
+
   return {
     type: 'widget',
-    
     padding: 14,
-    gap: 8,
-    children: [
-      capsuleTag(city, { light: '#FF3B30', dark: '#FF453A' }, { light: '#FF3B3015', dark: '#FF453A25' }),
-      {
-        type: 'image',
-        src: `sf-symbol:${icon}`,
-        width: 40,
-        height: 40,
-        color: iconColor
-      },
-      {
-        type: 'text',
-        text: `${now.temp}°`,
-        font: { size: 36, weight: 'bold' },
-        textColor: { light: '#1C1C1E', dark: '#F2F2F7' }
-      },
-      {
-        type: 'text',
-        text: now.text,
-        font: { size: 13 },
-        textColor: { light: '#6E6E73', dark: '#AEAEB2' }
-      }
-    ]
+    children: [header, { type: 'spacer', length: 4 }, todayRow, ...rows, { type: 'spacer' }]
   };
 }
 
@@ -329,7 +467,6 @@ function isAccessoryFamily(family) {
 
 async function getLocation(ctx, locName, key, host) {
   const presets = {
-    // ── 海南省 ──
     '海口': { lon: '110.3288', lat: '20.0310' }, '三亚': { lon: '109.5119', lat: '18.2528' },
     '儋州': { lon: '109.5768', lat: '19.5209' }, '琼海': { lon: '110.4746', lat: '19.2584' },
     '万宁': { lon: '110.3893', lat: '18.7953' }, '文昌': { lon: '110.7530', lat: '19.6129' },
@@ -339,7 +476,6 @@ async function getLocation(ctx, locName, key, host) {
     '临高': { lon: '109.6877', lat: '19.9084' }, '定安': { lon: '110.3593', lat: '19.6849' },
     '乐东': { lon: '109.1717', lat: '18.7478' }, '昌江': { lon: '109.0556', lat: '19.2983' },
     '白沙': { lon: '109.4515', lat: '19.2240' }, '琼中': { lon: '109.8335', lat: '18.9982' },
-    // ── 广东省 ──
     '广州': { lon: '113.2644', lat: '23.1291' }, '深圳': { lon: '114.0579', lat: '22.5431' },
     '珠海': { lon: '113.5767', lat: '22.2707' }, '汕头': { lon: '116.6813', lat: '23.3540' },
     '佛山': { lon: '113.1214', lat: '23.0215' }, '韶关': { lon: '113.5975', lat: '24.8104' },
@@ -351,7 +487,6 @@ async function getLocation(ctx, locName, key, host) {
     '东莞': { lon: '113.7517', lat: '23.0206' }, '中山': { lon: '113.3927', lat: '22.5170' },
     '潮州': { lon: '116.6226', lat: '23.6569' }, '揭阳': { lon: '116.3728', lat: '23.5497' },
     '云浮': { lon: '112.0444', lat: '22.9150' },
-    // ── 全国热门城市 ──
     '北京': { lon: '116.4074', lat: '39.9042' }, '上海': { lon: '121.4737', lat: '31.2304' },
     '天津': { lon: '117.2008', lat: '39.0842' }, '重庆': { lon: '106.5049', lat: '29.5630' },
     '香港': { lon: '114.1733', lat: '22.3200' }, '澳门': { lon: '113.5491', lat: '22.1987' },
@@ -406,11 +541,27 @@ async function fetchWeatherNow(ctx, key, lon, lat, host) {
     humidity: data.now.humidity,
     windDir: data.now.windDir || '--',
     windScale: data.now.windScale || '--',
-    windSpeed: data.now.windSpeed || '--'
+    windSpeed: data.now.windSpeed || '--',
+    precip: data.now.precip || '0',
+    vis: data.now.vis || '--',
+    pressure: data.now.pressure || '--'
   };
 }
 
-// 3 天预报：拿今明后三天的高低温 + 白天图标
+async function fetchDaily7d(ctx, key, lon, lat, host) {
+  const url = `${host}/v7/weather/7d?location=${lon},${lat}&key=${key}&lang=zh`;
+  const resp = await ctx.http.get(url, { timeout: 8000 });
+  const data = await resp.json();
+  if (data.code !== '200') throw new Error(describeApiError('7d预报', resp, data));
+  return data.daily.map(d => ({
+    date: d.fxDate,
+    tempMax: d.tempMax,
+    tempMin: d.tempMin,
+    iconDay: d.iconDay,
+    textDay: d.textDay,
+  }));
+}
+
 async function fetchDaily3d(ctx, key, lon, lat, host) {
   const url = `${host}/v7/weather/3d?location=${lon},${lat}&key=${key}&lang=zh`;
   const resp = await ctx.http.get(url, { timeout: 8000 });
@@ -425,7 +576,6 @@ async function fetchDaily3d(ctx, key, lon, lat, host) {
   }));
 }
 
-// 24 小时预报：拿逐小时温度画曲线
 async function fetchHourly24h(ctx, key, lon, lat, host) {
   const url = `${host}/v7/weather/24h?location=${lon},${lat}&key=${key}&lang=zh`;
   const resp = await ctx.http.get(url, { timeout: 8000 });
@@ -437,7 +587,6 @@ async function fetchHourly24h(ctx, key, lon, lat, host) {
   }));
 }
 
-// 接口报错诊断：带上 HTTP 状态码和返回体摘要，方便定位是 host/key/套餐问题
 function describeApiError(tag, resp, data) {
   const status = resp ? resp.status : 'no-response';
   let snippet = '';
@@ -634,7 +783,6 @@ function daysDiff(from, to) {
   return Math.floor((t - f) / 86400000);
 }
 
-// 在给定公历年份 ~ 次年3月10日范围内，找到对应"农历 targetLunarMonth月targetLunarDay日"(非闰月)的公历日期
 function findSolarDateByLunar(targetLunarMonth, targetLunarDay, year) {
   const start = new Date(year, 0, 1);
   const end = new Date(year + 1, 2, 10);
@@ -703,7 +851,6 @@ function getCountdowns(customToday) {
 
 /* ===================== SVG 构建器 ===================== */
 
-// 模拟时钟 SVG（200x200）
 function buildClockSVG(hour, minute, second) {
   const cx = 100, cy = 100, r = 92;
   let ticks = '';
@@ -738,7 +885,6 @@ function buildClockSVG(hour, minute, second) {
   return 'data:image/svg+xml,' + svg;
 }
 
-// 逐小时温度曲线 SVG（360x120）
 function buildTempCurveSVG(hourly) {
   const W = 360, H = 120, padL = 8, padR = 8, padT = 22, padB = 16;
   const pts = hourly.slice(0, 9);
@@ -784,7 +930,7 @@ function getGreeting(hour) {
 
 /* ===================== 大尺寸（简化测试版） ===================== */
 
-function renderLarge(now, city, daily3d, hourly24h) {
+function renderLarge(now, city, daily3d, hourly24h, userName) {
   const T = { light: '#1C1C1E', dark: '#F2F2F7' };
   const S = { light: '#8E8E93', dark: '#AEAEB2' };
   const { icon, color } = getWeatherStyle(now.icon);
@@ -848,7 +994,6 @@ function renderLarge(now, city, daily3d, hourly24h) {
     padding: [12, 12, 4, 12],
     gap: 8,
     children: [
-      // 顶栏
       {
         type: 'stack', direction: 'row', alignItems: 'center',
         children: [
@@ -881,14 +1026,12 @@ function renderLarge(now, city, daily3d, hourly24h) {
             type: 'stack', direction: 'column', alignItems: 'center',
             children: [
               { type: 'text', text: String(d.getDate()), font: { size: 68, weight: 'bold' }, textColor: T },
-              { type: 'text', text: greeting + '!', font: { size: 14, weight: 'semibold' }, textColor: S },
+              { type: 'text', text: userName ? `${userName}，${greeting}！` : greeting + '!', font: { size: 14, weight: 'semibold' }, textColor: S },
             ]
           },
         ]
       },
-      // 星期条（周几+日期）
       { type: 'stack', direction: 'row', gap: 4, children: weekCells },
-      // 天气
       {
         type: 'stack', direction: 'row', alignItems: 'center', gap: 10,
         children: [
@@ -911,11 +1054,8 @@ function renderLarge(now, city, daily3d, hourly24h) {
           },
         ]
       },
-      // 明后天（中间）
       { type: 'stack', direction: 'row', gap: 16, children: [ dayCard('明天', tomorrow), dayCard('后天', dayAfter) ] },
-      // 弹性空隙：把曲线推到底部
       { type: 'spacer' },
-      // 曲线（最下面，宽度自适应）
       ...(curveSrc ? [{
         type: 'image', src: curveSrc, height: 112
       }] : []),

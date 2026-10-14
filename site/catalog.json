@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-14T04:24:16Z",
+  "generated_at": "2026-10-14T08:21:39Z",
   "branch": "main",
   "repo": "oo226/egern-config",
   "raw_base": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main",
@@ -17,7 +17,7 @@
       "name": "按需开启",
       "icon": "🔧",
       "usage_tier": "optional",
-      "count": 1687
+      "count": 1703
     }
   ],
   "quick_start": [
@@ -55,6 +55,30 @@
       "name": "微信跳过中间界面",
       "group": "工具",
       "add_url": "http://boxjs.com/#/app/UnblockURLinWeChat"
+    },
+    {
+      "id": "PearVideoSettings",
+      "name": "PearVideo 播放器设置",
+      "group": "播放器",
+      "add_url": "http://boxjs.com/#/app/PearVideoSettings"
+    },
+    {
+      "id": "QiyouShequSettings",
+      "name": "妻友社区 播放器设置",
+      "group": "播放器",
+      "add_url": "http://boxjs.com/#/app/QiyouShequSettings"
+    },
+    {
+      "id": "InsavSettings",
+      "name": "insav 播放器设置",
+      "group": "播放器",
+      "add_url": "http://boxjs.com/#/app/InsavSettings"
+    },
+    {
+      "id": "PorntubeSettings",
+      "name": "porntube 设置",
+      "group": "播放器",
+      "add_url": "http://boxjs.com/#/app/PorntubeSettings"
     },
     {
       "id": "xjh51_player",
@@ -156,17 +180,31 @@
   ],
   "sync_digest": {
     "commit": {
-      "hash": "9bd6990",
-      "subject": "fix(hub): 去掉 blackmatrix7 等 *_Mock 重复卡片",
+      "hash": "cd4b83f",
+      "subject": "feat(hub): 上游单条改为分类栏目页",
       "date": "2026-10-14"
     },
     "summary": [
-      "模块站 更新 1 个文件",
       "国内直连 31826 条"
     ],
-    "files_changed": 2
+    "files_changed": 0
   },
   "changelog": [
+    {
+      "hash": "3d18c16",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-10-14"
+    },
+    {
+      "hash": "d7638f5",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-10-14"
+    },
+    {
+      "hash": "5e01642",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-10-14"
+    },
     {
       "hash": "df0734a",
       "subject": "chore: publish curated snapshot from sync",
@@ -191,25 +229,10 @@
       "hash": "4680e97",
       "subject": "chore: publish curated snapshot from sync",
       "date": "2026-10-12"
-    },
-    {
-      "hash": "00f5b29",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-10-12"
-    },
-    {
-      "hash": "7f878d8",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-10-11"
-    },
-    {
-      "hash": "620b5a6",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-10-11"
     }
   ],
   "local_health": {
-    "checked": 1623,
+    "checked": 1634,
     "fail": 0,
     "broken_ids": []
   },
@@ -238,7 +261,7 @@
       "id": "upstream",
       "name": "上游单条",
       "icon": "📚",
-      "count": 1523
+      "count": 1534
     },
     {
       "id": "routing",
@@ -250,7 +273,7 @@
       "id": "boxjs",
       "name": "BoxJS",
       "icon": "📦",
-      "count": 107
+      "count": 112
     },
     {
       "id": "scripts",
@@ -277,12 +300,12 @@
     {
       "id": "surge",
       "name": "Surge",
-      "count": 1500
+      "count": 1511
     },
     {
       "id": "egern",
       "name": "Egern",
-      "count": 1500
+      "count": 1511
     },
     {
       "id": "loon",
@@ -297,7 +320,7 @@
     {
       "id": "shadowrocket",
       "name": "Shadowrocket",
-      "count": 13
+      "count": 14
     }
   ],
   "author_index": [
@@ -516,8 +539,47 @@
       ]
     },
     {
+      "id": "TencentSportsAdBlock.sgmodule",
+      "name": "TencentSportsAdBlock.sgmodule",
+      "count": 1,
+      "clients": [
+        "surge",
+        "egern"
+      ],
+      "client_labels": [
+        "Surge",
+        "Egern"
+      ]
+    },
+    {
       "id": "weigiegie",
       "name": "WeiGiegie",
+      "count": 1,
+      "clients": [
+        "surge",
+        "egern"
+      ],
+      "client_labels": [
+        "Surge",
+        "Egern"
+      ]
+    },
+    {
+      "id": "blackmatrix7-Advertising.sgmodule",
+      "name": "blackmatrix7-Advertising.sgmodule",
+      "count": 1,
+      "clients": [
+        "surge",
+        "egern"
+      ],
+      "client_labels": [
+        "Surge",
+        "Egern"
+      ]
+    },
+    {
+      "id": "blackmatrix7-AdvertisingScript.sgmodule",
+      "name": "blackmatrix7-AdvertisingScript.sgmodule",
       "count": 1,
       "clients": [
         "surge",
@@ -568,8 +630,86 @@
       ]
     },
     {
+      "id": "chxm1023-AppAd.sgmodule",
+      "name": "chxm1023-AppAd.sgmodule",
+      "count": 1,
+      "clients": [
+        "surge",
+        "egern"
+      ],
+      "client_labels": [
+        "Surge",
+        "Egern"
+      ]
+    },
+    {
+      "id": "chxm1023-Collections.sgmodule",
+      "name": "chxm1023-Collections.sgmodule",
+      "count": 1,
+      "clients": [
+        "surge",
+        "egern"
+      ],
+      "client_labels": [
+        "Surge",
+        "Egern"
+      ]
+    },
+    {
+      "id": "cookies.module",
+      "name": "cookies.module",
+      "count": 1,
+      "clients": [
+        "surge",
+        "egern"
+      ],
+      "client_labels": [
+        "Surge",
+        "Egern"
+      ]
+    },
+    {
+      "id": "fmz200-blockAds.module",
+      "name": "fmz200-blockAds.module",
+      "count": 1,
+      "clients": [
+        "surge",
+        "egern"
+      ],
+      "client_labels": [
+        "Surge",
+        "Egern"
+      ]
+    },
+    {
       "id": "iamsweet-skip-proxy",
       "name": "iamsweet SkipProxy",
+      "count": 1,
+      "clients": [
+        "surge",
+        "egern"
+      ],
+      "client_labels": [
+        "Surge",
+        "Egern"
+      ]
+    },
+    {
+      "id": "iewha-script.sgmodule",
+      "name": "iewha-script.sgmodule",
+      "count": 1,
+      "clients": [
+        "surge",
+        "egern"
+      ],
+      "client_labels": [
+        "Surge",
+        "Egern"
+      ]
+    },
+    {
+      "id": "iewha-unlock.sgmodule",
+      "name": "iewha-unlock.sgmodule",
       "count": 1,
       "clients": [
         "surge",
@@ -591,6 +731,21 @@
       "client_labels": [
         "Surge",
         "Egern"
+      ]
+    },
+    {
+      "id": "limbopro-Adblock4limbo.sgmodule",
+      "name": "limbopro-Adblock4limbo.sgmodule",
+      "count": 1,
+      "clients": [
+        "surge",
+        "egern",
+        "shadowrocket"
+      ],
+      "client_labels": [
+        "Surge",
+        "Egern",
+        "Shadowrocket"
       ]
     },
     {
@@ -620,6 +775,19 @@
       ]
     },
     {
+      "id": "miranquil-qq.sgmodule",
+      "name": "miranquil-qq.sgmodule",
+      "count": 1,
+      "clients": [
+        "surge",
+        "egern"
+      ],
+      "client_labels": [
+        "Surge",
+        "Egern"
+      ]
+    },
+    {
       "id": "tencent-sports",
       "name": "腾讯体育",
       "count": 1,
@@ -634,6 +802,39 @@
     }
   ],
   "items": [
+    {
+      "id": "up-_upstream-TencentSportsAdBlock",
+      "kind": "module",
+      "category": "upstream",
+      "group": "TencentSportsAdBlock.sgmodule",
+      "name": "腾讯体育去广告 · TencentSportsAdBlock.sgmodule",
+      "desc": "拦截开屏广告，移除首页信息流、会员推广、赛事页横幅、悬浮运营组件、金币任务会员弹层及赛事 PageCard 强制弹窗",
+      "icon": "",
+      "homepage": "",
+      "path": "Modules/_upstream/TencentSportsAdBlock.sgmodule",
+      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/_upstream/TencentSportsAdBlock.sgmodule",
+      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2F_upstream%2FTencentSportsAdBlock.sgmodule",
+      "usage_tier": "optional",
+      "tags": [
+        "上游",
+        "TencentSportsAdBlock.sgmodule",
+        "Surge",
+        "Egern"
+      ],
+      "upstream": true,
+      "author": "TencentSportsAdBlock.sgmodule",
+      "clients": [
+        "surge",
+        "egern"
+      ],
+      "client_labels": [
+        "Surge",
+        "Egern"
+      ],
+      "hint": "适用：Surge / Egern。按需添加，勿一次全开。",
+      "share_url": "https://oo226.github.io/egern-config/#id=up-_upstream-TencentSportsAdBlock",
+      "health": "ok"
+    },
     {
       "id": "up-_upstream-blackmatrix7-Advertising-Advertising",
       "kind": "module",
@@ -969,6 +1170,141 @@
       "health": "ok"
     },
     {
+      "id": "up-_upstream-blackmatrix7-Advertising",
+      "kind": "module",
+      "category": "upstream",
+      "group": "blackmatrix7-Advertising.sgmodule",
+      "name": "Advertising · blackmatrix7-Advertising.sgmodule",
+      "desc": "最后更新时间 2025-08-26 02:12:25",
+      "icon": "",
+      "homepage": "",
+      "path": "Modules/_upstream/blackmatrix7-Advertising.sgmodule",
+      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/_upstream/blackmatrix7-Advertising.sgmodule",
+      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2F_upstream%2Fblackmatrix7-Advertising.sgmodule",
+      "usage_tier": "optional",
+      "tags": [
+        "上游",
+        "blackmatrix7-Advertising.sgmodule",
+        "Surge",
+        "Egern",
+        "合集"
+      ],
+      "upstream": true,
+      "author": "blackmatrix7-Advertising.sgmodule",
+      "clients": [
+        "surge",
+        "egern"
+      ],
+      "client_labels": [
+        "Surge",
+        "Egern"
+      ],
+      "hint": "适用：Surge / Egern。按需添加，勿一次全开。",
+      "share_url": "https://oo226.github.io/egern-config/#id=up-_upstream-blackmatrix7-Advertising",
+      "health": "ok"
+    },
+    {
+      "id": "up-_upstream-blackmatrix7-AdvertisingScript",
+      "kind": "module",
+      "category": "upstream",
+      "group": "blackmatrix7-AdvertisingScript.sgmodule",
+      "name": "AdvertisingScript · blackmatrix7-AdvertisingScript.sgmodule",
+      "desc": "最后更新时间 2025-06-06 09:20:18",
+      "icon": "",
+      "homepage": "",
+      "path": "Modules/_upstream/blackmatrix7-AdvertisingScript.sgmodule",
+      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/_upstream/blackmatrix7-AdvertisingScript.sgmodule",
+      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2F_upstream%2Fblackmatrix7-AdvertisingScript.sgmodule",
+      "usage_tier": "optional",
+      "tags": [
+        "上游",
+        "blackmatrix7-AdvertisingScript.sgmodule",
+        "Surge",
+        "Egern",
+        "合集"
+      ],
+      "upstream": true,
+      "author": "blackmatrix7-AdvertisingScript.sgmodule",
+      "clients": [
+        "surge",
+        "egern"
+      ],
+      "client_labels": [
+        "Surge",
+        "Egern"
+      ],
+      "hint": "适用：Surge / Egern。按需添加，勿一次全开。",
+      "share_url": "https://oo226.github.io/egern-config/#id=up-_upstream-blackmatrix7-AdvertisingScript",
+      "health": "ok"
+    },
+    {
+      "id": "up-_upstream-chxm1023-AppAd",
+      "kind": "module",
+      "category": "upstream",
+      "group": "chxm1023-AppAd.sgmodule",
+      "name": "App/小程序-AD净化 · chxm1023-AppAd.sgmodule",
+      "desc": "去一些App/小程序的广告！",
+      "icon": "",
+      "homepage": "https://github.com/chxm1023/Script_X/blob/main/README.md",
+      "path": "Modules/_upstream/chxm1023-AppAd.sgmodule",
+      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/_upstream/chxm1023-AppAd.sgmodule",
+      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2F_upstream%2Fchxm1023-AppAd.sgmodule",
+      "usage_tier": "optional",
+      "tags": [
+        "上游",
+        "chxm1023-AppAd.sgmodule",
+        "Surge",
+        "Egern"
+      ],
+      "upstream": true,
+      "author": "chxm1023-AppAd.sgmodule",
+      "clients": [
+        "surge",
+        "egern"
+      ],
+      "client_labels": [
+        "Surge",
+        "Egern"
+      ],
+      "hint": "适用：Surge / Egern。按需添加，勿一次全开。",
+      "share_url": "https://oo226.github.io/egern-config/#id=up-_upstream-chxm1023-AppAd",
+      "health": "ok"
+    },
+    {
+      "id": "up-_upstream-chxm1023-Collections",
+      "kind": "module",
+      "category": "upstream",
+      "group": "chxm1023-Collections.sgmodule",
+      "name": "App解锁合集 · chxm1023-Collections.sgmodule",
+      "desc": "ddm1023 转载请说明",
+      "icon": "",
+      "homepage": "",
+      "path": "Modules/_upstream/chxm1023-Collections.sgmodule",
+      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/_upstream/chxm1023-Collections.sgmodule",
+      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2F_upstream%2Fchxm1023-Collections.sgmodule",
+      "usage_tier": "optional",
+      "tags": [
+        "上游",
+        "chxm1023-Collections.sgmodule",
+        "Surge",
+        "Egern",
+        "合集"
+      ],
+      "upstream": true,
+      "author": "chxm1023-Collections.sgmodule",
+      "clients": [
+        "surge",
+        "egern"
+      ],
+      "client_labels": [
+        "Surge",
+        "Egern"
+      ],
+      "hint": "适用：Surge / Egern。按需添加，勿一次全开。",
+      "share_url": "https://oo226.github.io/egern-config/#id=up-_upstream-chxm1023-Collections",
+      "health": "ok"
+    },
+    {
       "id": "up-_upstream-chxm1023-ads-AppAd",
       "kind": "module",
       "category": "upstream",
@@ -1033,6 +1369,40 @@
       ],
       "hint": "适用：Surge / Egern。按需添加，勿一次全开。",
       "share_url": "https://oo226.github.io/egern-config/#id=up-_upstream-chxm1023-scriptx-Collections",
+      "health": "ok"
+    },
+    {
+      "id": "up-_upstream-cookies",
+      "kind": "module",
+      "category": "upstream",
+      "group": "cookies.module",
+      "name": "获取cookie&token合集 · cookies.module",
+      "desc": "整合大部分获取cookie和token的配置Loon版，获取后禁用该配置",
+      "icon": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/others/cookie.png",
+      "homepage": "https://github.com/fmz200/wool_scripts",
+      "path": "Modules/_upstream/cookies.module",
+      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/_upstream/cookies.module",
+      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2F_upstream%2Fcookies.module",
+      "usage_tier": "optional",
+      "tags": [
+        "上游",
+        "cookies.module",
+        "Surge",
+        "Egern",
+        "合集"
+      ],
+      "upstream": true,
+      "author": "cookies.module",
+      "clients": [
+        "surge",
+        "egern"
+      ],
+      "client_labels": [
+        "Surge",
+        "Egern"
+      ],
+      "hint": "适用：Surge / Egern。按需添加，勿一次全开。",
+      "share_url": "https://oo226.github.io/egern-config/#id=up-_upstream-cookies",
       "health": "ok"
     },
     {
@@ -25363,6 +25733,40 @@
       "health": "ok"
     },
     {
+      "id": "up-_upstream-fmz200-blockAds",
+      "kind": "module",
+      "category": "upstream",
+      "group": "fmz200-blockAds.module",
+      "name": "广告拦截&净化合集 · fmz200-blockAds.module",
+      "desc": "(支持约730款APP/小程序)针对部分APP和小程序广告进行拦截，某些APP要清除缓存或者重新安装拦截广告才会生效！规则明细可以查看本插件的注释",
+      "icon": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/AdblockPlus.png",
+      "homepage": "https://github.com/fmz200/wool_scripts",
+      "path": "Modules/_upstream/fmz200-blockAds.module",
+      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/_upstream/fmz200-blockAds.module",
+      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2F_upstream%2Ffmz200-blockAds.module",
+      "usage_tier": "optional",
+      "tags": [
+        "上游",
+        "fmz200-blockAds.module",
+        "Surge",
+        "Egern",
+        "合集"
+      ],
+      "upstream": true,
+      "author": "fmz200-blockAds.module",
+      "clients": [
+        "surge",
+        "egern"
+      ],
+      "client_labels": [
+        "Surge",
+        "Egern"
+      ],
+      "hint": "适用：Surge / Egern。按需添加，勿一次全开。",
+      "share_url": "https://oo226.github.io/egern-config/#id=up-_upstream-fmz200-blockAds",
+      "health": "ok"
+    },
+    {
       "id": "up-_upstream-iamsweet-skip-proxy-skip-proxy-lists",
       "kind": "module",
       "category": "upstream",
@@ -25922,6 +26326,73 @@
       ],
       "hint": "适用：Surge / Egern。按需添加，勿一次全开。",
       "share_url": "https://oo226.github.io/egern-config/#id=up-_upstream-iewha-YouTube",
+      "health": "ok"
+    },
+    {
+      "id": "up-_upstream-iewha-script",
+      "kind": "module",
+      "category": "upstream",
+      "group": "iewha-script.sgmodule",
+      "name": "Scripts · iewha-script.sgmodule",
+      "desc": "屏蔽HTTP3/QUIC协议、Bilbii换区,评分、微信公众号广告",
+      "icon": "",
+      "homepage": "",
+      "path": "Modules/_upstream/iewha-script.sgmodule",
+      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/_upstream/iewha-script.sgmodule",
+      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2F_upstream%2Fiewha-script.sgmodule",
+      "usage_tier": "optional",
+      "tags": [
+        "上游",
+        "iewha-script.sgmodule",
+        "Surge",
+        "Egern"
+      ],
+      "upstream": true,
+      "author": "iewha-script.sgmodule",
+      "clients": [
+        "surge",
+        "egern"
+      ],
+      "client_labels": [
+        "Surge",
+        "Egern"
+      ],
+      "hint": "适用：Surge / Egern。按需添加，勿一次全开。",
+      "share_url": "https://oo226.github.io/egern-config/#id=up-_upstream-iewha-script",
+      "health": "ok"
+    },
+    {
+      "id": "up-_upstream-iewha-unlock",
+      "kind": "module",
+      "category": "upstream",
+      "group": "iewha-unlock.sgmodule",
+      "name": "APP功能 · iewha-unlock.sgmodule",
+      "desc": "解锁订阅，高级功能",
+      "icon": "",
+      "homepage": "",
+      "path": "Modules/_upstream/iewha-unlock.sgmodule",
+      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/_upstream/iewha-unlock.sgmodule",
+      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2F_upstream%2Fiewha-unlock.sgmodule",
+      "usage_tier": "optional",
+      "tags": [
+        "上游",
+        "iewha-unlock.sgmodule",
+        "Surge",
+        "Egern",
+        "合集"
+      ],
+      "upstream": true,
+      "author": "iewha-unlock.sgmodule",
+      "clients": [
+        "surge",
+        "egern"
+      ],
+      "client_labels": [
+        "Surge",
+        "Egern"
+      ],
+      "hint": "适用：Surge / Egern。按需添加，勿一次全开。",
+      "share_url": "https://oo226.github.io/egern-config/#id=up-_upstream-iewha-unlock",
       "health": "ok"
     },
     {
@@ -29385,6 +29856,42 @@
       "health": "ok"
     },
     {
+      "id": "up-_upstream-limbopro-Adblock4limbo",
+      "kind": "module",
+      "category": "upstream",
+      "group": "limbopro-Adblock4limbo.sgmodule",
+      "name": "毒奶特供(2026年10月10日更新) · limbopro-Adblock4limbo.sgmodule",
+      "desc": "毒奶去网页广告计划用户脚本 For Quantumult X & Surge & Shadowrocket & Loon & Stash & 油猴 ；1.新增页面右下角导航；2.通过 JavaScript 移除特定网站网页广告 —— 搜索引擎（Bing/Google）广告及内容农场结果清除/低端影视/欧乐影院/iyf爱壹帆/哔滴影视/Pornhub/Javbus/Supjav/Jable(支持抓取M3U8链接)/MissAv/91porn(支持视频下载)/hitomi/紳士漫畫/禁漫天堂/等视频&ACG&小说&漫画网站上的弹窗广告&视频广告&Gif图片广告等，保持网页清爽干净无打扰！ P.S. 欢迎提交issue",
+      "icon": "",
+      "homepage": "",
+      "path": "Modules/_upstream/limbopro-Adblock4limbo.sgmodule",
+      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/_upstream/limbopro-Adblock4limbo.sgmodule",
+      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2F_upstream%2Flimbopro-Adblock4limbo.sgmodule",
+      "usage_tier": "optional",
+      "tags": [
+        "上游",
+        "limbopro-Adblock4limbo.sgmodule",
+        "Surge",
+        "Egern",
+        "Shadowrocket"
+      ],
+      "upstream": true,
+      "author": "limbopro-Adblock4limbo.sgmodule",
+      "clients": [
+        "surge",
+        "egern",
+        "shadowrocket"
+      ],
+      "client_labels": [
+        "Surge",
+        "Egern",
+        "Shadowrocket"
+      ],
+      "hint": "适用：Surge / Egern / Shadowrocket。按需添加，勿一次全开。",
+      "share_url": "https://oo226.github.io/egern-config/#id=up-_upstream-limbopro-Adblock4limbo",
+      "health": "ok"
+    },
+    {
       "id": "up-_upstream-maasea-Alidns",
       "kind": "module",
       "category": "upstream",
@@ -29778,6 +30285,39 @@
       ],
       "hint": "适用：Surge / Egern。按需添加，勿一次全开。",
       "share_url": "https://oo226.github.io/egern-config/#id=up-_upstream-miranquil-tencent-c-pc-page-module",
+      "health": "ok"
+    },
+    {
+      "id": "up-_upstream-miranquil-qq",
+      "kind": "module",
+      "category": "upstream",
+      "group": "miranquil-qq.sgmodule",
+      "name": "禁用 QQ 非官方和禁止跳转页 · miranquil-qq.sgmodule",
+      "desc": "miranquil-qq.sgmodule · miranquil-qq.sgmodule",
+      "icon": "",
+      "homepage": "",
+      "path": "Modules/_upstream/miranquil-qq.sgmodule",
+      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/_upstream/miranquil-qq.sgmodule",
+      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2F_upstream%2Fmiranquil-qq.sgmodule",
+      "usage_tier": "optional",
+      "tags": [
+        "上游",
+        "miranquil-qq.sgmodule",
+        "Surge",
+        "Egern"
+      ],
+      "upstream": true,
+      "author": "miranquil-qq.sgmodule",
+      "clients": [
+        "surge",
+        "egern"
+      ],
+      "client_labels": [
+        "Surge",
+        "Egern"
+      ],
+      "hint": "适用：Surge / Egern。按需添加，勿一次全开。",
+      "share_url": "https://oo226.github.io/egern-config/#id=up-_upstream-miranquil-qq",
       "health": "ok"
     },
     {
@@ -51474,7 +52014,7 @@
       "kind": "module",
       "category": "upstream",
       "group": "奶思 fmz200",
-      "name": "12123 · fmz200-extra.sgmodule",
+      "name": "广告联盟 · fmz200-extra.sgmodule",
       "desc": "奶思 fmz200 全仓库单 App 模块合并去重（blockAds / cookies 之外的补充）",
       "icon": "",
       "homepage": "https://github.com/fmz200/wool_scripts",
@@ -51509,7 +52049,7 @@
       "kind": "module",
       "category": "upstream",
       "group": "奶思 fmz200",
-      "name": "Spotify · fmz200-unlock-extra.sgmodule",
+      "name": "抖音 · fmz200-unlock-extra.sgmodule",
       "desc": "奶思 fmz200 解锁/HTTPDNS 相关模块（本地镜像）",
       "icon": "",
       "homepage": "https://github.com/fmz200/wool_scripts",
@@ -53333,6 +53873,24 @@
       "share_url": "https://oo226.github.io/egern-config/#id=boxjs-pp_parking"
     },
     {
+      "id": "boxjs-PearVideoSettings",
+      "kind": "boxjs-app",
+      "category": "boxjs",
+      "group": "播放器",
+      "name": "PearVideo 播放器设置",
+      "desc": "",
+      "icon": "https://raw.githubusercontent.com/sE7En0908/Icon/refs/heads/master/1818.png",
+      "path": "Modules/egern.boxjs.json#PearVideoSettings",
+      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
+      "add_url": "http://boxjs.com/#/app/PearVideoSettings",
+      "usage_tier": "optional",
+      "tags": [
+        "BoxJS",
+        "播放器"
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-PearVideoSettings"
+    },
+    {
       "id": "boxjs-pingme_capture",
       "kind": "boxjs-app",
       "category": "boxjs",
@@ -53603,6 +54161,24 @@
       "share_url": "https://oo226.github.io/egern-config/#id=boxjs-iios_checkin"
     },
     {
+      "id": "boxjs-InsavSettings",
+      "kind": "boxjs-app",
+      "category": "boxjs",
+      "group": "播放器",
+      "name": "insav 播放器设置",
+      "desc": "",
+      "icon": "https://raw.githubusercontent.com/chavyleung/scripts/master/box/box.png",
+      "path": "Modules/egern.boxjs.json#InsavSettings",
+      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
+      "add_url": "http://boxjs.com/#/app/InsavSettings",
+      "usage_tier": "optional",
+      "tags": [
+        "BoxJS",
+        "播放器"
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-InsavSettings"
+    },
+    {
       "id": "boxjs-iMaoTai",
       "kind": "boxjs-app",
       "category": "boxjs",
@@ -53655,6 +54231,24 @@
         "签到 / 抓参"
       ],
       "share_url": "https://oo226.github.io/egern-config/#id=boxjs-fmz200_macat_signin"
+    },
+    {
+      "id": "boxjs-PorntubeSettings",
+      "kind": "boxjs-app",
+      "category": "boxjs",
+      "group": "播放器",
+      "name": "porntube 设置",
+      "desc": "",
+      "icon": "https://raw.githubusercontent.com/chavyleung/scripts/master/box/box.png",
+      "path": "Modules/egern.boxjs.json#PorntubeSettings",
+      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
+      "add_url": "http://boxjs.com/#/app/PorntubeSettings",
+      "usage_tier": "optional",
+      "tags": [
+        "BoxJS",
+        "播放器"
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-PorntubeSettings"
     },
     {
       "id": "boxjs-xjh51_player",
@@ -53979,6 +54573,24 @@
         "Yuheng"
       ],
       "share_url": "https://oo226.github.io/egern-config/#id=boxjs-yuheng.ncsp"
+    },
+    {
+      "id": "boxjs-QiyouShequSettings",
+      "kind": "boxjs-app",
+      "category": "boxjs",
+      "group": "播放器",
+      "name": "妻友社区 播放器设置",
+      "desc": "",
+      "icon": "https://raw.githubusercontent.com/chavyleung/scripts/master/box/box.png",
+      "path": "Modules/egern.boxjs.json#QiyouShequSettings",
+      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
+      "add_url": "http://boxjs.com/#/app/QiyouShequSettings",
+      "usage_tier": "optional",
+      "tags": [
+        "BoxJS",
+        "播放器"
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-QiyouShequSettings"
     },
     {
       "id": "boxjs-string_replace",
@@ -54807,6 +55419,24 @@
         "签到 / 抓参"
       ],
       "share_url": "https://oo226.github.io/egern-config/#id=boxjs-yuheng.qdreader"
+    },
+    {
+      "id": "boxjs-video",
+      "kind": "boxjs-app",
+      "category": "boxjs",
+      "group": "播放器",
+      "name": "选择你喜欢的播放器",
+      "desc": "",
+      "icon": "https://raw.githubusercontent.com/ios151/-/main/dingdangmao.jpg",
+      "path": "Modules/egern.boxjs.json#video",
+      "url": "https://raw.githubusercontent.com/oo226/egern-config/main/Modules/egern.boxjs.json",
+      "add_url": "http://boxjs.com/#/app/video",
+      "usage_tier": "optional",
+      "tags": [
+        "BoxJS",
+        "播放器"
+      ],
+      "share_url": "https://oo226.github.io/egern-config/#id=boxjs-video"
     },
     {
       "id": "boxjs-yuheng.kuwo",
@@ -56250,5 +56880,5 @@
       "health": "ok"
     }
   ],
-  "total": 1729
+  "total": 1745
 }

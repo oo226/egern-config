@@ -1,7 +1,7 @@
 /*************************************
 
 项目名称：iTunes-系列解锁合集
-更新日期：2026-07-18
+更新日期：2026-10-11
 脚本作者：@ddm1023
 电报频道：https://t.me/ddm1023
 使用声明：⚠️仅供参考，🈲转载与售卖！
@@ -56,6 +56,10 @@ const bundle_id = ddm.receipt["bundle_id"] || ddm.receipt["Bundle_Id"];
 
 // ===== App列表 =====
 const list = {
+  'PhimCiaj': { tp: 'timeb', hx: 'hxpda', id: "com.jiancent.calligraphymaster.lifetime" }, //练字大师
+  'Water%20Reminder': { tp: 'timea', hx: 'hxpda', id: "com.vgfit.premiumtracker.year" },  //WaterReminder-水提醒
+  'MusicMix%20Pro': { tp: 'timeb', hx: 'hxpda', id: "permanent" }, //音频剪辑
+  'StreamingLite': { tp: 'timeb', hx: 'hxpda', id: "NSP.lifetime" }, //Nero乐播-手机投屏助手
   'Anytable': { tp: 'timeb', hx: 'hxpda', id: "100004" }, //多多记账
   'bazaart': { tp: 'timea', hx: 'hxpda', id: "Bazaart_Super_Three_Months_v4" }, //Bazaart百色特
   'SHScan': { tp: 'timea', hx: 'hxpda', id: "com.ws.SHScanFree.Year" }, //扫描王
@@ -326,22 +330,23 @@ const list = {
 // ===== 自动App分组 =====
 const autoMap = {
   year: [
+    'com.pocket',  //NetPocket Co合集
     'com.xxtstudio.dailyspending',  //Daily记账
-    'com.internet-rocks',  //Air Apps System
-    'co.airapps'  //Air Apps System
+    'com.internet-rocks',  //Air Apps System合集
+    'co.airapps'  //Air Apps System合集
   ],
   yearly: [
-    'com.pocket'  //NetPocket Co
+    'com.mkapps.Vcaption'  //VideoCaption-视频对话标题
   ],
   yearlysubscription: [
-    'solutions.wzp'  //Air Apps System 
+    'solutions.wzp'  //Air Apps System合集
   ],
   lifetime: [
     'com.ydgn.dokacamera',  //Doka相机
-    'co.vulcanlabs'  //Vulcan Labs Company Limited
+    'co.vulcanlabs'  //Vulcan Labs Company Limited合集
   ],
   forever: [
-    
+    'com.paha.CapyMood'  //CapyMood-轻松水豚HRV自测
   ]
 };
 
@@ -359,7 +364,7 @@ const AutoID = {
   yearly: (bid) => `${bid}.yearly`,
   yearlysubscription: (bid) => `${bid}.yearlysubscription`,
   lifetime: (bid) => `${bid}.lifetime`,
-  forever: (bid) => `${bid}.Forever`
+  forever: (bid) => `${bid}.forever`
 };
 
 // ===== 自动注入list =====

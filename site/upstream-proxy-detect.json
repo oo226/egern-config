@@ -1,6 +1,6 @@
 {
   "generated_by": "scripts/discover-proxy-detect.py",
-  "count": 4,
+  "count": 6,
   "items": [
     {
       "id": "iamsweet-skip-proxy",
@@ -45,6 +45,38 @@
       "source": "seed",
       "upstream": true,
       "desc": "Last Updated: 2026-04-16T09:46:43.384Z"
+    },
+    {
+      "id": "proxy-detect-local-general",
+      "name": "General",
+      "desc": "最后更新时间 2025-06-06 09:20:55",
+      "kind": "module",
+      "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/General/General.sgmodule",
+      "homepage": "https://github.com/blackmatrix7/ios_rule_script",
+      "path": "blackmatrix7/General/General.sgmodule",
+      "tags": [
+        "代理检测",
+        "上游原链",
+        "blackmatrix7"
+      ],
+      "source": "local:blackmatrix7",
+      "upstream": true
+    },
+    {
+      "id": "proxy-detect-local-skip-proxy",
+      "name": "Skip Proxy",
+      "desc": "跳过部分应用的代理检测",
+      "kind": "module",
+      "url": "https://raw.githubusercontent.com/iEwha/Profiles/master/Skip-Proxy.sgmodule",
+      "homepage": "https://github.com/iEwha/Profiles",
+      "path": "iewha/Skip-Proxy.sgmodule",
+      "tags": [
+        "代理检测",
+        "上游原链",
+        "iewha"
+      ],
+      "source": "local:iewha",
+      "upstream": true
     },
     {
       "id": "proxy-detect-local-🍟 通用模块.official",

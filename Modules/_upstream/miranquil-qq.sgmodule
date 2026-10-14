@@ -1,0 +1,5 @@
+#!name=禁用 QQ 非官方和禁止跳转页
+
+[Script]
+c-pc-page = type=http-request,pattern=^https:\/\/c\.pc\.qq\.com\/,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/miranquil/surge-scripts/main/tencent/c-pc-page/script.js
+

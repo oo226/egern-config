@@ -1,9 +1,9 @@
-#!name=Spotify
+#!name=抖音
 #!desc=奶思 fmz200 解锁/HTTPDNS 相关模块（本地镜像）
 #!author=奶思
 #!category=奶思的模块
 #!homepage=https://github.com/fmz200/wool_scripts
-#!raw-url=https://github.com/fmz200/wool_scripts/raw/main/Surge/module/split/partS/Spotify.sgmodule
+#!raw-url=https://github.com/fmz200/wool_scripts/raw/main/Surge/module/split/partD/TikTok.sgmodule
 #!tg-channel=https://t.me/inaisi
 
 
@@ -11,36 +11,7 @@
 # 奶思 fmz200 解锁/HTTPDNS 相关模块（本地镜像）
 # Do not edit manually.
 
-[URL Rewrite]
-^https:\/\/(?:\w+-spclient|spclient\.wg)\.spotify\.com(?::443)?\/artistview\/v1\/artist\/(.*)&platform=iphone https://spclient.wg.spotify.com/artistview/v1/artist/$1&platform=ipad header
-^https:\/\/gae2-spclient\.spotify\.com:443\/ad - reject
-
-# >>> merged from blockHTTPDNS.module (unique only)
-^https?:\/\/203\.107\.1\.1/\d+/ss - reject
-^https?:\/\/203\.107\.1\.33/\d+/ss - reject
-^https?:\/\/203\.107\.1\.66/\d+/ss - reject
-^https?:\/\/203\.107\.1\.67/\d+/ss - reject
-^https?:\/\/203\.107\.1\.97/\d+/ss - reject
-^https?:\/\/2401:b180:2000:30::1c\/\d+\/d - reject
-^https?:\/\/2401:b180:2000:20::10\/\d+\/d - reject
-^https?:\/\/cdn\.wup\.huya\.com\/monitor\/monitor\.jsp - reject
-^https:\/\/gslbali\.ximalaya\.com\/linkeye-cloud\/httpdns\/ - reject
-
-
-[Map Local]
-^https:\/\/(?:\w+-spclient|spclient\.wg)\.spotify\.com(?::443)?\/pendragon\/ data-type=text data="{}" status-code=200 header="Content-Type:application/json"
-
-
-[Script]
-Protobuf = type=http-response, pattern=^https:\/\/(?:\w+-spclient|spclient\.wg)\.spotify\.com(?::443)?\/(?:bootstrap|user-customization-service), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/001ProMax/Surge/refs/heads/main/Script/Spotify.Crack.Dev.js, requires-body=true, binary-body-mode=true, timeout=3, argument="[{{{tab}}},{{{useractivity}}}]"
-
-
-[MITM]
-
-hostname = %APPEND% *-spclient.spotify.com, 203.107.1.1, 203.107.1.33, 203.107.1.66, 203.107.1.67, 203.107.1.97, 2401:b180:2000:20::10, 2401:b180:2000:30::1c, amdc.alipay.com, appconf.mail.163.com, msglb.91160.com, spclient.wg.spotify.com
-
 [Rule]
-# >>> merged from TikTok.sgmodule (unique only)
 DOMAIN-KEYWORD,bds.snssdk.com,REJECT
 DOMAIN-KEYWORD,p3.pstatp.com,REJECT
 
@@ -213,3 +184,29 @@ URL-REGEX,"^http:\/\/54\.222\.159\.138:8053\/httpdns\/",REJECT
 URL-REGEX,"^http:\/\/101\.42\.130\.147:8053\/httpdns\/",REJECT
 URL-REGEX,"^http:\/\/106\.55\.220\.18:8053\/httpdns\/",REJECT
 URL-REGEX,"^http:\/\/139\.196\.12\.179:8053\/httpdns\/",REJECT
+
+
+[URL Rewrite]
+# >>> merged from split/partS/Spotify.sgmodule (unique only)
+^https:\/\/(?:\w+-spclient|spclient\.wg)\.spotify\.com(?::443)?\/artistview\/v1\/artist\/(.*)&platform=iphone https://spclient.wg.spotify.com/artistview/v1/artist/$1&platform=ipad header
+^https:\/\/gae2-spclient\.spotify\.com:443\/ad - reject
+
+# >>> merged from blockHTTPDNS.module (unique only)
+^https?:\/\/203\.107\.1\.1/\d+/ss - reject
+^https?:\/\/203\.107\.1\.33/\d+/ss - reject
+^https?:\/\/203\.107\.1\.66/\d+/ss - reject
+^https?:\/\/203\.107\.1\.67/\d+/ss - reject
+^https?:\/\/203\.107\.1\.97/\d+/ss - reject
+^https?:\/\/2401:b180:2000:30::1c\/\d+\/d - reject
+^https?:\/\/2401:b180:2000:20::10\/\d+\/d - reject
+^https?:\/\/cdn\.wup\.huya\.com\/monitor\/monitor\.jsp - reject
+^https:\/\/gslbali\.ximalaya\.com\/linkeye-cloud\/httpdns\/ - reject
+
+
+[Script]
+# >>> merged from split/partS/Spotify.sgmodule (unique only)
+Protobuf = type=http-response, pattern=^https:\/\/(?:\w+-spclient|spclient\.wg)\.spotify\.com(?::443)?\/(?:bootstrap|user-customization-service), script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Scripts/_external/github-raw/001ProMax/Surge/refs/heads/main/Script/Spotify.Crack.Dev.js, requires-body=true, binary-body-mode=true, timeout=3, argument="[{{{tab}}},{{{useractivity}}}]"
+
+
+[MITM]
+hostname = %APPEND% *-spclient.spotify.com, 203.107.1.1, 203.107.1.33, 203.107.1.66, 203.107.1.67, 203.107.1.97, 2401:b180:2000:20::10, 2401:b180:2000:30::1c, amdc.alipay.com, appconf.mail.163.com, msglb.91160.com, spclient.wg.spotify.com
