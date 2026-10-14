@@ -117,17 +117,9 @@ dns:
         match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Routing/Foreign/Google.yaml
         value: Google
         update_interval: 86400
-    # 网盘 / 视频 / PingMe：DNS + 分流双挂（与下方 rules 规则集同表）
+    # 优先直连整表（含网盘/视频/PingMe）：DNS + 分流双挂
     - proxy_rule_set:
-        match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Routing/PanVod-Direct.yaml
-        value: DNSPod
-        update_interval: 86400
-    - proxy_rule_set:
-        match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Routing/ResourceSite-Direct.yaml
-        value: DNSPod
-        update_interval: 86400
-    - proxy_rule_set:
-        match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Routing/PingMe-Direct.yaml
+        match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Routing/Direct-Priority.yaml
         value: DNSPod
         update_interval: 86400
     - proxy_rule_set:
@@ -363,9 +355,6 @@ policy_groups:
 # 五、分流（Egern/Routing 合并表 —— 短、干净）
 # ------------------------------------------
 rules:
-  - ip_cidr:
-      match: 120.53.245.215/32
-      policy: DIRECT
 
   - rule_set:
       name: Tailscale
@@ -394,23 +383,8 @@ rules:
       update_interval: 86400
   - rule_set:
       name: 优先直连
+      # 已合并：网盘点播 + 视频资源站 + PingMe + 120399/起点（勿再散落）
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Routing/Direct-Priority.yaml
-      policy: DIRECT
-      update_interval: 86400
-  # 网盘 / 视频资源站 / PingMe：独立规则集（勿再散落单行进 Direct-Priority）
-  - rule_set:
-      name: 网盘点播
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Routing/PanVod-Direct.yaml
-      policy: DIRECT
-      update_interval: 86400
-  - rule_set:
-      name: 视频资源站
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Routing/ResourceSite-Direct.yaml
-      policy: DIRECT
-      update_interval: 86400
-  - rule_set:
-      name: PingMe
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Routing/PingMe-Direct.yaml
       policy: DIRECT
       update_interval: 86400
   - rule_set:

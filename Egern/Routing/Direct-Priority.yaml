@@ -1,30 +1,64 @@
 # AUTO-PUBLISHED by scripts/publish-direct-priority.py
-# 类型: 分流规则 — 国内/系统服务优先直连（须在 Proxy 类规则之前匹配）
+# 类型: 分流规则 — 优先直连整表（须在 Proxy 类规则之前匹配）
+# 含: 基表 + eulac 网盘点播/视频资源站 + PingMe + 120399/起点 + DoH IP
 # Do not edit manually. Updated by GitHub Actions after upstream sync.
-# Merged: WeChat.yaml, Microsoft.yaml, AppleServers.yaml, TestFlight.yaml
-# Total unique entries: 725
-# PingMe → Egern/Routing/PingMe-Direct.yaml（独立规则集，不在本表）
+# Merged: Direct-Priority(base), Microsoft.yaml, AppleServers.yaml, PanVod-Direct.yaml, ResourceSite-Direct.yaml, PingMe-Direct.yaml, eulac-网盘点播.yaml, eulac-视频资源站.yaml, extras(pingme/qidian/120399/doh-ip)
+# Total unique entries: 796
 
 no_resolve: true
 domain_set:
   - apd-pcdnwxlogin.teg.tencent-cloud.net
+  - api.pingmeapp.net
   - beta.apple.com
   - btrace.qq.com
   - dldir1.qq.com
+  - fhnfile.oss-cn-shenzhen.aliyuncs.com
+  - fmao.fun
+  - himg.bdimg.com
+  - matomo4397.123245.com
+  - sd.sduc.site
+  - shandian.blog
   - slife.xy-asia.com
   - soup.v.qq.com
+  - static.xbase.cloud
   - testflight.apple.com
+  - tv.214521.xyz
+  - umini.shujupie.com
+  - ux.21cn.com
   - vweixinf.tc.qq.com
   - weixin110.qq.com
+  - woog.430520.xyz
+  - woog.nxog.eu.org
+  - woog.nxog.fun
   - wup.imtt.qq.com
+  - www.123684.com
+  - www.123865.com
+  - www.123912.com
+  - www.miqk.cc
+  - www.muou.asia
+  - www.muou.site
+  - ynuf.aliapp.org
 domain_suffix_set:
+  - 10086.cn
+  - 115.com
+  - 115cdn.com
+  - 115cdn.net
+  - 115img.com
+  - 116cd.cn
+  - 116cd.com
+  - 116cd.net
   - 120399.xyz
+  - 123295.com
+  - 139.com
+  - 189.cn
   - 1drv.com
   - 1drv.ms
   - 21vbc.com
   - 21vbluecloud.com
   - 21vbluecloud.net
+  - 666291.xyz
   - a-msedge.net
+  - a.88cdn.com
   - a1158.g.akamai.net
   - a122.dscg3.akamai.net
   - a767.dscg3.akamai.net
@@ -36,7 +70,15 @@ domain_suffix_set:
   - aggresmart.com
   - aicscience.com
   - aka.ms
+  - alibaba.com
+  - alicdn.com
+  - alipan.com
+  - aliyun.com
+  - aliyuncs.com
+  - aliyundrive.com
+  - aliyundrive.net
   - ankarazirvesi2018.com
+  - anxia.com
   - api-extractor.com
   - apihub-internal.cn
   - apisof.net
@@ -124,7 +166,11 @@ domain_suffix_set:
   - b.akamaiedge.net
   - b2clogin.cn
   - b3itech.cn
+  - baidu.com
+  - baidupcs.com
   - bbing.com
+  - bcebos.com
+  - bdstatic.com
   - beth.games
   - bethesda.net
   - bethesdagamestudios.com
@@ -181,11 +227,15 @@ domain_suffix_set:
   - chinacloudapi.cn
   - chinacloudapp.cn
   - chinacloudsites.cn
+  - cjjd19.com
   - clipchamp.com
   - cloudapp.net
   - cloudappsecurity.com
+  - cmecloud.cn
+  - cmicapm.com
   - cn.bing.com
   - cn.bing.net
+  - cnzz.com
   - codethemicrobit.com
   - cortana.ai
   - cortanaanalytics.com
@@ -203,6 +253,7 @@ domain_suffix_set:
   - dictate.ms
   - discoverbing.com
   - ditu.live.com
+  - dlife.cn
   - docs.com
   - dot.net
   - dtlgalleryint.cloudapp.net
@@ -238,6 +289,8 @@ domain_suffix_set:
   - gotcosmos.com
   - graphengine.io
   - groupme.com
+  - guangyacdn.com
+  - guangyapan.com
   - hdinsightservices.cn
   - helpshift.com
   - here.com
@@ -435,6 +488,7 @@ domain_suffix_set:
   - microsofttranslator.com
   - microsoftusercontent.com
   - microsoftuwp.com
+  - mihdr.top
   - minecraft.net
   - minecraftshop.com
   - mmais.com.cn
@@ -562,6 +616,7 @@ domain_suffix_set:
   - passport.net
   - pbiwebcontent.cn
   - phonefactor.net
+  - pingmeapp.net
   - pixapp.net
   - playfabapi.cn
   - playfabcn.com
@@ -586,6 +641,7 @@ domain_suffix_set:
   - qidian.com
   - qlogo.cn
   - qpic.cn
+  - quark.cn
   - reactorms.com.cn
   - renlifang.com
   - renovacionoffice.com
@@ -613,6 +669,7 @@ domain_suffix_set:
   - skypeforbusiness.com
   - spoprod-a.akamaihd.net
   - sprinklesapp.com
+  - sq.cc
   - sqlserveronlinux.com
   - staffhub.ms
   - statics-marketingsites-eas-ms-com.akamaized.net
@@ -629,6 +686,7 @@ domain_suffix_set:
   - syncshop.cn
   - sysinternals.com
   - tailwindtraders.com
+  - taobao.com
   - techhub.ms
   - tellmewhygame.com
   - tenor.com
@@ -640,6 +698,7 @@ domain_suffix_set:
   - translatetheweb.com
   - trustcenter.cn
   - tryfunctions.com
+  - uc.cn
   - unity3dcloud.cn
   - unlocklimitlesslearning.com
   - up-hl.3g.qq.com
@@ -723,13 +782,26 @@ domain_suffix_set:
   - xboxservices.com
   - xboxstudios.com
   - xbx.lv
+  - xiaocgege.shop
   - xiaoice.com
+  - xunlei.com
   - yammer.com
   - yammerusercontent.com
   - yun-hl.3g.qq.com
 domain_keyword_set:
+  - 123pan
+  - 2xiaopan
+  - 2xiaozhan
+  - erixaopan
+  - erxiaopan
+  - erxiaozhan
   - testflight
+  - wexwp
+  - wogg
+  - yydsys
 ip_cidr_set:
+  - 120.53.245.215/32
+  - 121.205.88.174/32
   - 17.0.0.0/8
 asn_set:
   - 132203,no-resolve

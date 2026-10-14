@@ -89,7 +89,9 @@ https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/he
 https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/eulac-视频资源站.lsr
 https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/eulac-视频资源站.yaml
 
-Egern Profile 请挂独立规则集（不要只靠 China-Direct 合并兜底）：
+Egern Profile 优先直连整表（已合并网盘点播 / 视频资源站 / PingMe，勿再散落挂三张）：
+https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Routing/Direct-Priority.yaml
+源表对照（仅供合并脚本 / Surge·Loon 单挂）：
 https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Routing/PanVod-Direct.yaml
 https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Routing/ResourceSite-Direct.yaml
 https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Routing/PingMe-Direct.yaml

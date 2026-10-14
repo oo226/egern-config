@@ -1,6 +1,6 @@
 # 规则名称: 视频资源站（ResourceSite）
 # 上游: eulac-dev/Proxy
-# 主挂载请用 Egern/Routing/ResourceSite-Direct.yaml
+# 已并入 Egern/Routing/Direct-Priority.yaml；源表对照见 ResourceSite-Direct.yaml
 # Total unique entries: see Routing copy
 
 no_resolve: true

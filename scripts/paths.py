@@ -6,11 +6,15 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 
-ROUTING = ROOT / "Routing"
+# guize 日用分流在 Egern/Routing；sync / 旧布局可能仍用根目录 Routing/
+EGERN_ROUTING = ROOT / "Egern" / "Routing"
+ROUTING = EGERN_ROUTING if EGERN_ROUTING.is_dir() else (ROOT / "Routing")
 UNBREAK_RULES = ROUTING / "Unbreak.yaml"
 DIRECT_PRIORITY = ROUTING / "Direct-Priority.yaml"
 ROUTING_UPSTREAM = ROUTING / "_upstream"
 ROUTING_FOREIGN = ROUTING / "Foreign"
+YUANBAN = ROOT / "Yuanban"
+YUANBAN_FENLIU = YUANBAN / "heji" / "fenliu"
 WIDGETS = ROOT / "Widgets"
 IBL3ND_WIDGETS = WIDGETS / "IBL3ND"
 MODULES = ROOT / "Modules"
