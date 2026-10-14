@@ -47,8 +47,9 @@ CN-Plus 已挂 `Surge/Rules/Tailscale-DERP.list`（IP/域名直连）+ UDP 3478 
 
 ## 网盘 / 视频 / PingMe
 
-CN-Plus 已挂独立 RULE-SET（`Surge/Rules/PanVod.list`、`ResourceSite.list`、`PingMe.list` → DIRECT）。  
-Egern 对应：`Egern/Routing/{PanVod,ResourceSite,PingMe}-Direct.yaml`（见 guize / ruleset PR）。
+CN-Plus 挂整表 `Surge/Rules/Direct-Extras.list`（= PanVod + ResourceSite + PingMe → DIRECT）。  
+单件仍保留在 `Surge/Rules/{PanVod,ResourceSite,PingMe}.list` 供对照。  
+Egern 对应并入 `Egern/Routing/Direct-Priority.yaml`（见 ruleset-direct PR）。
 
 ## DNS（防运营商泄漏）
 
@@ -61,3 +62,14 @@ WebRTC 测「连接错误」= STUN 被拦，正常。
 ## Mini vs CN
 
 Mini 只有 Proxy/AIGC/GlobalMedia；CN 才有 Google/TG/Netflix 等分组。日常用 CN。
+
+## 分流链接（自托管）
+
+有喵原版指向 `Rabbit-Spec/Surge/Master/Rules/*.list`。本仓已 1:1 镜像在 `Surge/Rules/`，  
+所有 Spec 的 `RULE-SET` 已改成本仓 raw（结构不变，只换链接）。
+
+DNS 防侧漏：CN-Plus 主配置已内置；其它骨架可装模块  
+`Surge/Module/DNS-AntiLeak.sgmodule`（去掉 `system`、阿里 DoH、`hijack-dns=*:53`）。
+
+优先直连扩展：`Surge/Rules/Direct-Extras.list` = 网盘点播 + 视频资源站 + PingMe。
+
