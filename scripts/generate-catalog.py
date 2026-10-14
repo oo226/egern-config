@@ -451,6 +451,16 @@ AUTHOR_LABELS = {
     "iringo": "iRingo",
 }
 
+# 代理工具：id → 展示名（网站筛选用）
+CLIENT_LABELS = {
+    "surge": "Surge",
+    "egern": "Egern",
+    "loon": "Loon",
+    "quanx": "Quantumult X",
+    "shadowrocket": "Shadowrocket",
+    "stash": "Stash",
+}
+
 # 巨型合集：易抬内存，网站标警告；用户挑单条后再自组小合集
 MEGA_COLLECTION_NAMES = {
     "adblock-collection.module",
@@ -463,6 +473,75 @@ MEGA_COLLECTION_NAMES = {
 }
 
 
+def detect_clients(rel: str, path: Path, text: str) -> list[str]:
+    """按扩展名 / 路径 / 内容推断适用的代理工具。"""
+    path_l = rel.replace("\\", "/").lower()
+    suffix = path.suffix.lower()
+    head = text[:4000].lower()
+    found: set[str] = set()
+
+    if suffix in {".sgmodule", ".module"}:
+        found.update({"surge", "egern"})
+    if suffix == ".snippet":
+        found.add("quanx")
+    if suffix == ".plugin":
+        found.add("loon")
+
+    # 路径目录（作者仓里常按客户端分子目录）
+    segs = f"/{path_l}/"
+    if "/surge/" in segs or "surge/module" in path_l or "surge/rewrite" in path_l:
+        found.update({"surge", "egern"})
+    if "shadowrocket" in path_l:
+        found.add("shadowrocket")
+        # Shadowrocket 的 .module 有时也能被 Surge 吃，但不保证 → 不强加 Surge
+        if suffix == ".module" and "/surge/" not in segs:
+            found.discard("surge")
+            found.discard("egern")
+    if "/loon/" in segs or path_l.endswith(".plugin"):
+        found.add("loon")
+    if "quantumult" in path_l or "/quanx/" in segs or "/qx/" in segs:
+        found.add("quanx")
+    if "/stash/" in segs:
+        found.add("stash")
+
+    # 内容特征（避免脚本 URL 里偶然出现 Loon/QuanX 字样就误标）
+    if "#!name=" in head and ("[mitm]" in head or "[script]" in head or "[url rewrite]" in head):
+        if suffix in {".sgmodule", ".module"}:
+            found.update({"surge", "egern"})
+    if "#!loon_version=" in head or re.search(r"^#!loon\b", text[:4000], re.I | re.M):
+        found.add("loon")
+    if suffix == ".snippet" and re.search(r"^\s*hostname\s*=", text[:4000], re.I | re.M):
+        found.add("quanx")
+    if suffix == ".snippet" and (
+        " url reject" in head or " url script-" in head or " url 302 " in head
+    ):
+        found.add("quanx")
+
+    # 作者默认：怎么肥事 snippet → QuanX；可莉官方仓 → Surge/Egern
+    if "zenmofeishi" in path_l and suffix == ".snippet":
+        found = {"quanx"}
+    if "qingrex" in path_l and suffix == ".sgmodule":
+        found.update({"surge", "egern"})
+    if "nobyda" in path_l and "/surge/" in segs:
+        found.update({"surge", "egern"})
+    if "rabbit-spec" in path_l:
+        found.update({"surge", "egern"})
+    # limbopro 根目录 .sgmodule 多端；子目录已按路径区分
+    if "limbopro" in path_l and "/shadowrocket/" not in segs and suffix in {
+        ".sgmodule",
+        ".module",
+    }:
+        found.update({"surge", "egern", "shadowrocket"})
+
+    if not found:
+        # 兜底：本站镜像以 Surge 族为主
+        found.update({"surge", "egern"})
+
+    # 稳定顺序
+    order = list(CLIENT_LABELS.keys())
+    return [c for c in order if c in found]
+
+
 def _catalog_module_entry(
     *,
     rel: str,
@@ -470,7 +549,8 @@ def _catalog_module_entry(
     path: Path,
     extra_tags: list[str] | None = None,
 ) -> dict:
-    meta = parse_surge_header(path.read_text(encoding="utf-8", errors="replace"))
+    text = path.read_text(encoding="utf-8", errors="replace")
+    meta = parse_surge_header(text)
     name = meta.get("name") or path.stem
     # 同作者多文件共用 #!name 时，标题带上文件名方便区分
     if name and path.stem.lower() not in name.replace(" ", "").lower():
@@ -480,7 +560,9 @@ def _catalog_module_entry(
     homepage = meta.get("homepage") or ""
     stem_l = path.stem.lower()
     path_l = rel.lower()
-    tags = ["上游", author, "Surge", *(extra_tags or [])]
+    clients = detect_clients(rel, path, text)
+    client_names = [CLIENT_LABELS[c] for c in clients if c in CLIENT_LABELS]
+    tags = ["上游", author, *client_names, *(extra_tags or [])]
     is_mega = path.name in MEGA_COLLECTION_NAMES
     if is_mega or any(
         k in stem_l or k in path_l
@@ -506,6 +588,11 @@ def _catalog_module_entry(
     item_id = "up-" + "-".join(Path(rel).with_suffix("").parts)
     if len(item_id) > 120:
         item_id = item_id[:100] + "-" + str(abs(hash(rel)) % 10_000_000)
+    tools = " / ".join(client_names) if client_names else "未知"
+    if is_mega:
+        hint = f"适用：{tools}。巨集合集慎开，挑单条更稳。"
+    else:
+        hint = f"适用：{tools}。按需添加，勿一次全开。"
     return {
         "id": item_id,
         "kind": "module",
@@ -522,9 +609,9 @@ def _catalog_module_entry(
         "tags": list(dict.fromkeys(tags)),
         "upstream": True,
         "author": author,
-        "hint": "Surge：模块 → 安装；巨集合集慎开，挑单条更稳。"
-        if is_mega
-        else "Surge：模块 → 用链接安装；按需添加，勿一次全开。",
+        "clients": clients,
+        "client_labels": client_names,
+        "hint": hint,
     }
 
 
@@ -1094,6 +1181,40 @@ def build_catalog() -> dict:
     daily_count = sum(1 for i in items if i.get("usage_tier") == "daily")
     optional_count = sum(1 for i in items if i.get("usage_tier") == "optional")
 
+    # 上游：按作者 / 代理工具汇总，给网站做双筛选
+    upstream_items = [i for i in items if i.get("category") == "upstream"]
+    author_map: dict[str, dict] = {}
+    for it in upstream_items:
+        aid = it.get("author") or "other"
+        slot = author_map.setdefault(
+            aid,
+            {
+                "id": aid,
+                "name": AUTHOR_LABELS.get(aid, it.get("group") or aid),
+                "count": 0,
+                "clients": set(),
+            },
+        )
+        slot["count"] += 1
+        slot["clients"].update(it.get("clients") or [])
+    author_index = []
+    for slot in sorted(author_map.values(), key=lambda x: (-x["count"], x["name"])):
+        clients = [c for c in CLIENT_LABELS if c in slot["clients"]]
+        author_index.append(
+            {
+                "id": slot["id"],
+                "name": slot["name"],
+                "count": slot["count"],
+                "clients": clients,
+                "client_labels": [CLIENT_LABELS[c] for c in clients],
+            }
+        )
+    client_index = []
+    for cid, label in CLIENT_LABELS.items():
+        n = sum(1 for i in upstream_items if cid in (i.get("clients") or []))
+        if n:
+            client_index.append({"id": cid, "name": label, "count": n})
+
     return {
         "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "branch": "main",
@@ -1114,6 +1235,9 @@ def build_catalog() -> dict:
         "local_health": local_health,
         "upstream_health": upstream_health,
         "categories": [{**c, "count": counts[c["id"]]} for c in categories],
+        "client_labels": CLIENT_LABELS,
+        "client_index": client_index,
+        "author_index": author_index,
         "items": items,
         "total": len(items),
     }
