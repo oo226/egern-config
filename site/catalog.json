@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-14T04:09:04Z",
+  "generated_at": "2026-10-14T04:18:01Z",
   "branch": "main",
   "repo": "oo226/egern-config",
   "raw_base": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main",
@@ -17,7 +17,7 @@
       "name": "按需开启",
       "icon": "🔧",
       "usage_tier": "optional",
-      "count": 1694
+      "count": 1687
     }
   ],
   "quick_start": [
@@ -156,19 +156,24 @@
   ],
   "sync_digest": {
     "commit": {
-      "hash": "e024cfd",
-      "subject": "feat(hub): 上游单条/合集进 Pages，Yu9191 迁 ios151",
+      "hash": "3cea6dd",
+      "subject": "Merge pull request #161 from oo226/cursor/upstream-hub-f611",
       "date": "2026-10-14"
     },
     "summary": [
-      "模块 更新 895 个文件",
+      "模块 更新 982 个文件",
       "脚本 更新 228 个文件",
       "模块站 更新 2 个文件",
       "国内直连 31826 条"
     ],
-    "files_changed": 1636
+    "files_changed": 1724
   },
   "changelog": [
+    {
+      "hash": "bebbd3c",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-10-14"
+    },
     {
       "hash": "82592bc",
       "subject": "chore: publish curated snapshot from sync",
@@ -203,15 +208,10 @@
       "hash": "dbf792a",
       "subject": "chore: publish curated snapshot from sync",
       "date": "2026-10-10"
-    },
-    {
-      "hash": "8ce1cb8",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-10-10"
     }
   ],
   "local_health": {
-    "checked": 1630,
+    "checked": 1623,
     "fail": 0,
     "broken_ids": []
   },
@@ -240,7 +240,7 @@
       "id": "upstream",
       "name": "上游单条",
       "icon": "📚",
-      "count": 1530
+      "count": 1523
     },
     {
       "id": "routing",
@@ -294,31 +294,6 @@
       "health": "ok"
     },
     {
-      "id": "up-_upstream-blackmatrix7-Advertising-Advertising_Mock",
-      "kind": "module",
-      "category": "upstream",
-      "group": "blackmatrix7",
-      "name": "Advertising",
-      "desc": "最后更新时间 2025-08-26 02:12:25",
-      "icon": "",
-      "homepage": "",
-      "path": "Modules/_upstream/blackmatrix7/Advertising/Advertising_Mock.sgmodule",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/_upstream/blackmatrix7/Advertising/Advertising_Mock.sgmodule",
-      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2F_upstream%2Fblackmatrix7%2FAdvertising%2FAdvertising_Mock.sgmodule",
-      "usage_tier": "optional",
-      "tags": [
-        "上游",
-        "blackmatrix7",
-        "Surge",
-        "合集"
-      ],
-      "upstream": true,
-      "author": "blackmatrix7",
-      "hint": "Surge：模块 → 用链接安装；按需添加，勿一次全开。",
-      "share_url": "https://oo226.github.io/egern-config/#id=up-_upstream-blackmatrix7-Advertising-Advertising_Mock",
-      "health": "ok"
-    },
-    {
       "id": "up-_upstream-blackmatrix7-AdvertisingLite-AdvertisingLite",
       "kind": "module",
       "category": "upstream",
@@ -341,31 +316,6 @@
       "author": "blackmatrix7",
       "hint": "Surge：模块 → 用链接安装；按需添加，勿一次全开。",
       "share_url": "https://oo226.github.io/egern-config/#id=up-_upstream-blackmatrix7-AdvertisingLite-AdvertisingLite",
-      "health": "ok"
-    },
-    {
-      "id": "up-_upstream-blackmatrix7-AdvertisingLite-AdvertisingLite_Mock",
-      "kind": "module",
-      "category": "upstream",
-      "group": "blackmatrix7",
-      "name": "AdvertisingLite",
-      "desc": "最后更新时间 2025-07-12 02:12:05",
-      "icon": "",
-      "homepage": "",
-      "path": "Modules/_upstream/blackmatrix7/AdvertisingLite/AdvertisingLite_Mock.sgmodule",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/_upstream/blackmatrix7/AdvertisingLite/AdvertisingLite_Mock.sgmodule",
-      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2F_upstream%2Fblackmatrix7%2FAdvertisingLite%2FAdvertisingLite_Mock.sgmodule",
-      "usage_tier": "optional",
-      "tags": [
-        "上游",
-        "blackmatrix7",
-        "Surge",
-        "合集"
-      ],
-      "upstream": true,
-      "author": "blackmatrix7",
-      "hint": "Surge：模块 → 用链接安装；按需添加，勿一次全开。",
-      "share_url": "https://oo226.github.io/egern-config/#id=up-_upstream-blackmatrix7-AdvertisingLite-AdvertisingLite_Mock",
       "health": "ok"
     },
     {
@@ -394,31 +344,6 @@
       "health": "ok"
     },
     {
-      "id": "up-_upstream-blackmatrix7-AdvertisingScript-AdvertisingScript_Mock",
-      "kind": "module",
-      "category": "upstream",
-      "group": "blackmatrix7",
-      "name": "AdvertisingScript",
-      "desc": "最后更新时间 2025-06-06 09:20:18",
-      "icon": "",
-      "homepage": "",
-      "path": "Modules/_upstream/blackmatrix7/AdvertisingScript/AdvertisingScript_Mock.sgmodule",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/_upstream/blackmatrix7/AdvertisingScript/AdvertisingScript_Mock.sgmodule",
-      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2F_upstream%2Fblackmatrix7%2FAdvertisingScript%2FAdvertisingScript_Mock.sgmodule",
-      "usage_tier": "optional",
-      "tags": [
-        "上游",
-        "blackmatrix7",
-        "Surge",
-        "合集"
-      ],
-      "upstream": true,
-      "author": "blackmatrix7",
-      "hint": "Surge：模块 → 用链接安装；按需添加，勿一次全开。",
-      "share_url": "https://oo226.github.io/egern-config/#id=up-_upstream-blackmatrix7-AdvertisingScript-AdvertisingScript_Mock",
-      "health": "ok"
-    },
-    {
       "id": "up-_upstream-blackmatrix7-AllInOne-AllInOne",
       "kind": "module",
       "category": "upstream",
@@ -441,31 +366,6 @@
       "author": "blackmatrix7",
       "hint": "Surge：模块 → 用链接安装；按需添加，勿一次全开。",
       "share_url": "https://oo226.github.io/egern-config/#id=up-_upstream-blackmatrix7-AllInOne-AllInOne",
-      "health": "ok"
-    },
-    {
-      "id": "up-_upstream-blackmatrix7-AllInOne-AllInOne_Mock",
-      "kind": "module",
-      "category": "upstream",
-      "group": "blackmatrix7",
-      "name": "AllInOne",
-      "desc": "最后更新时间 2025-08-26 02:12:35",
-      "icon": "",
-      "homepage": "",
-      "path": "Modules/_upstream/blackmatrix7/AllInOne/AllInOne_Mock.sgmodule",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/_upstream/blackmatrix7/AllInOne/AllInOne_Mock.sgmodule",
-      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2F_upstream%2Fblackmatrix7%2FAllInOne%2FAllInOne_Mock.sgmodule",
-      "usage_tier": "optional",
-      "tags": [
-        "上游",
-        "blackmatrix7",
-        "Surge",
-        "合集"
-      ],
-      "upstream": true,
-      "author": "blackmatrix7",
-      "hint": "Surge：模块 → 用链接安装；按需添加，勿一次全开。",
-      "share_url": "https://oo226.github.io/egern-config/#id=up-_upstream-blackmatrix7-AllInOne-AllInOne_Mock",
       "health": "ok"
     },
     {
@@ -610,30 +510,6 @@
       "author": "blackmatrix7",
       "hint": "Surge：模块 → 用链接安装；按需添加，勿一次全开。",
       "share_url": "https://oo226.github.io/egern-config/#id=up-_upstream-blackmatrix7-Upgrade-Upgrade",
-      "health": "ok"
-    },
-    {
-      "id": "up-_upstream-blackmatrix7-Upgrade-Upgrade_Mock",
-      "kind": "module",
-      "category": "upstream",
-      "group": "blackmatrix7",
-      "name": "Upgrade",
-      "desc": "最后更新时间 2025-06-06 09:20:18",
-      "icon": "",
-      "homepage": "",
-      "path": "Modules/_upstream/blackmatrix7/Upgrade/Upgrade_Mock.sgmodule",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/_upstream/blackmatrix7/Upgrade/Upgrade_Mock.sgmodule",
-      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2F_upstream%2Fblackmatrix7%2FUpgrade%2FUpgrade_Mock.sgmodule",
-      "usage_tier": "optional",
-      "tags": [
-        "上游",
-        "blackmatrix7",
-        "Surge"
-      ],
-      "upstream": true,
-      "author": "blackmatrix7",
-      "hint": "Surge：模块 → 用链接安装；按需添加，勿一次全开。",
-      "share_url": "https://oo226.github.io/egern-config/#id=up-_upstream-blackmatrix7-Upgrade-Upgrade_Mock",
       "health": "ok"
     },
     {
@@ -21241,30 +21117,6 @@
       "health": "ok"
     },
     {
-      "id": "up-_upstream-limbopro-Surge-rewrite-sample",
-      "kind": "module",
-      "category": "upstream",
-      "group": "limbopro",
-      "name": "Pornhub Adsblock",
-      "desc": "移除 Pornhub 上gif/播放页视频广告；",
-      "icon": "",
-      "homepage": "",
-      "path": "Modules/_upstream/limbopro/Surge/rewrite/sample.sgmodule",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/_upstream/limbopro/Surge/rewrite/sample.sgmodule",
-      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2F_upstream%2Flimbopro%2FSurge%2Frewrite%2Fsample.sgmodule",
-      "usage_tier": "optional",
-      "tags": [
-        "上游",
-        "limbopro",
-        "Surge"
-      ],
-      "upstream": true,
-      "author": "limbopro",
-      "hint": "Surge：模块 → 用链接安装；按需添加，勿一次全开。",
-      "share_url": "https://oo226.github.io/egern-config/#id=up-_upstream-limbopro-Surge-rewrite-sample",
-      "health": "ok"
-    },
-    {
       "id": "up-_upstream-limbopro-YouTubeAds",
       "kind": "module",
       "category": "upstream",
@@ -21310,30 +21162,6 @@
       "author": "limbopro",
       "hint": "Surge：模块 → 用链接安装；按需添加，勿一次全开。",
       "share_url": "https://oo226.github.io/egern-config/#id=up-_upstream-limbopro-YouTubeAds",
-      "health": "ok"
-    },
-    {
-      "id": "up-_upstream-limbopro-sample",
-      "kind": "module",
-      "category": "upstream",
-      "group": "limbopro",
-      "name": "Pornhub Adsblock",
-      "desc": "移除 Pornhub 上gif/播放页视频广告；",
-      "icon": "",
-      "homepage": "",
-      "path": "Modules/_upstream/limbopro/sample.sgmodule",
-      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/_upstream/limbopro/sample.sgmodule",
-      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2F_upstream%2Flimbopro%2Fsample.sgmodule",
-      "usage_tier": "optional",
-      "tags": [
-        "上游",
-        "limbopro",
-        "Surge"
-      ],
-      "upstream": true,
-      "author": "limbopro",
-      "hint": "Surge：模块 → 用链接安装；按需添加，勿一次全开。",
-      "share_url": "https://oo226.github.io/egern-config/#id=up-_upstream-limbopro-sample",
       "health": "ok"
     },
     {
@@ -41092,5 +40920,5 @@
       "health": "ok"
     }
   ],
-  "total": 1736
+  "total": 1729
 }

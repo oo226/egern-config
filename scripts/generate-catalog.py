@@ -472,6 +472,9 @@ def _catalog_module_entry(
 ) -> dict:
     meta = parse_surge_header(path.read_text(encoding="utf-8", errors="replace"))
     name = meta.get("name") or path.stem
+    # 同作者多文件共用 #!name 时，标题带上文件名方便区分
+    if name and path.stem.lower() not in name.replace(" ", "").lower():
+        name = f"{name} · {path.name}"
     desc = meta.get("desc") or meta.get("description") or ""
     icon = meta.get("icon") or ""
     homepage = meta.get("homepage") or ""
@@ -536,6 +539,13 @@ def upstream_author_module_items() -> list[dict]:
             if not path.is_file():
                 continue
             if path.suffix.lower() not in {".module", ".sgmodule", ".snippet"}:
+                continue
+            # blackmatrix7 等仓库的 *_Mock 与正版同名，只是演示壳，不进站
+            stem = path.stem
+            if stem.endswith("_Mock") or stem.endswith("-Mock") or stem.lower() in {
+                "sample",
+                "example",
+            }:
                 continue
             rel = path.relative_to(MODULES).as_posix()
             parts = Path(rel).parts
