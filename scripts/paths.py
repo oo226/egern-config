@@ -75,6 +75,15 @@ EXTRA_SCRIPT_REWRITES = (
         "https://raw.githubusercontent.com/Yu9191/shortcutstudio-rewrite/baby/dist/",
         f"{GITHUB_RAW_MAIN}/Scripts/yu9191/",
     ),
+    # Yu9191 → ios151
+    (
+        "https://raw.githubusercontent.com/ios151/shortcutstudio-rewrite/refs/heads/baby/dist/",
+        f"{GITHUB_RAW_MAIN}/Scripts/yu9191/",
+    ),
+    (
+        "https://raw.githubusercontent.com/ios151/shortcutstudio-rewrite/baby/dist/",
+        f"{GITHUB_RAW_MAIN}/Scripts/yu9191/",
+    ),
     (
         "https://raw.githubusercontent.com/WeiGiegie/666/main/",
         f"{GITHUB_RAW_MAIN}/Scripts/weigiegie/",
@@ -113,6 +122,14 @@ EXTRA_SCRIPT_REWRITES = (
     ),
     (
         "https://raw.githubusercontent.com/Yu9191/Rewrite/main/",
+        f"{GITHUB_RAW_MAIN}/Scripts/yu9191/rewrite/",
+    ),
+    (
+        "https://raw.githubusercontent.com/ios151/Rewrite/refs/heads/main/",
+        f"{GITHUB_RAW_MAIN}/Scripts/yu9191/rewrite/",
+    ),
+    (
+        "https://raw.githubusercontent.com/ios151/Rewrite/main/",
         f"{GITHUB_RAW_MAIN}/Scripts/yu9191/rewrite/",
     ),
     (

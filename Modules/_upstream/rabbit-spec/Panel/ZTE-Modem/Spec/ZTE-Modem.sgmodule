@@ -1,0 +1,6 @@
+[Script]
+# 每 5 分钟自动更新一次面板信息
+ZTE_Modem_Status = type=generic, script-path=zte_panel.js, timeout=10
+
+# 每天凌晨 4 点自动对时
+ZTE_Time_Sync = type=cron, cronexp="0 4 * * *", script-path=zte_panel.js, argument="sync"
