@@ -432,6 +432,7 @@ AUTHOR_LABELS = {
     "ios151-shortcutstudio": "ios151 ShortcutStudio",
     "chxm1023": "chxm1023 Rewrite",
     "chxm1023-scriptx": "chxm1023 Script_X",
+    "chxm1023-ads": "chxm1023 去广告",
     "iewha": "iEwha",
     "blackmatrix7": "blackmatrix7",
     "mieqq": "mieqq",
@@ -439,66 +440,164 @@ AUTHOR_LABELS = {
     "rabbit-spec": "Rabbit-Spec",
     "tencent-sports": "腾讯体育",
     "zenmofeishi": "怎么肥事",
+    "miranquil": "miranquil",
+    "limbopro": "limbopro",
+    "yuheng": "Yuheng",
+    "nobyda": "NobyDa",
+    "maasea": "Maasea",
+    "keywos": "Keywos",
+    "local": "本仓补丁",
+    "qingrex-signin": "可莉签到",
+    "iringo": "iRingo",
+}
+
+# 巨型合集：易抬内存，网站标警告；用户挑单条后再自组小合集
+MEGA_COLLECTION_NAMES = {
+    "adblock-collection.module",
+    "adblock-egern.module",
+    "adblock-egern-v0815b.module",
+    "adblock-egern-v0815c.module",
+    "unlock-collection.module",
+    "cookie-collection.module",
+    "skip-proxy-collection.module",
 }
 
 
+def _catalog_module_entry(
+    *,
+    rel: str,
+    author: str,
+    path: Path,
+    extra_tags: list[str] | None = None,
+) -> dict:
+    meta = parse_surge_header(path.read_text(encoding="utf-8", errors="replace"))
+    name = meta.get("name") or path.stem
+    desc = meta.get("desc") or meta.get("description") or ""
+    icon = meta.get("icon") or ""
+    homepage = meta.get("homepage") or ""
+    stem_l = path.stem.lower()
+    path_l = rel.lower()
+    tags = ["上游", author, "Surge", *(extra_tags or [])]
+    is_mega = path.name in MEGA_COLLECTION_NAMES
+    if is_mega or any(
+        k in stem_l or k in path_l
+        for k in (
+            "collection",
+            "合集",
+            "blockads",
+            "cookies",
+            "advertising",
+            "unlock",
+            "allinone",
+            "-extra",
+        )
+    ):
+        tags.append("合集")
+    if is_mega:
+        tags.append("巨型合集")
+        desc = (desc + " ⚠️ 体积大易抬内存，建议改挑单条自组。").strip()
+    if author in {"ios151", "ios151-shortcutstudio"} or "yuredirect" in stem_l:
+        tags.append("Yu9191迁移")
+    group = AUTHOR_LABELS.get(author, author)
+    url = raw_url(f"Modules/{rel}")
+    item_id = "up-" + "-".join(Path(rel).with_suffix("").parts)
+    if len(item_id) > 120:
+        item_id = item_id[:100] + "-" + str(abs(hash(rel)) % 10_000_000)
+    return {
+        "id": item_id,
+        "kind": "module",
+        "category": "upstream",
+        "group": group,
+        "name": name,
+        "desc": desc or f"{group} · {path.name}",
+        "icon": icon,
+        "homepage": homepage,
+        "path": f"Modules/{rel}",
+        "url": url,
+        "add_url": module_add_url(url),
+        "usage_tier": "optional",
+        "tags": list(dict.fromkeys(tags)),
+        "upstream": True,
+        "author": author,
+        "hint": "Surge：模块 → 安装；巨集合集慎开，挑单条更稳。"
+        if is_mega
+        else "Surge：模块 → 用链接安装；按需添加，勿一次全开。",
+    }
+
+
 def upstream_author_module_items() -> list[dict]:
-    """Index Modules/_upstream/** 单条 + 合集（给 Pages 自己翻着用）。"""
-    root = MODULES / "_upstream"
-    if not root.is_dir():
-        return []
+    """Index 全部可挑模块：_upstream + 本仓单条/合集（Pages 自己翻，Surge 用）。"""
     items: list[dict] = []
-    for path in sorted(root.rglob("*")):
+    seen: set[str] = set()
+
+    root = MODULES / "_upstream"
+    if root.is_dir():
+        for path in sorted(root.rglob("*")):
+            if not path.is_file():
+                continue
+            if path.suffix.lower() not in {".module", ".sgmodule", ".snippet"}:
+                continue
+            rel = path.relative_to(MODULES).as_posix()
+            parts = Path(rel).parts
+            if len(parts) < 2:
+                continue
+            author = parts[1]
+            items.append(_catalog_module_entry(rel=rel, author=author, path=path))
+            seen.add(rel)
+
+    # 本仓已固化的单条/合集（含 iRingo、签到、解锁补丁等）
+    local_dirs = {
+        "yuheng": "yuheng",
+        "qingrex-signin": "qingrex-signin",
+    }
+    for dirname, author in local_dirs.items():
+        d = MODULES / dirname
+        if not d.is_dir():
+            continue
+        for path in sorted(d.rglob("*")):
+            if not path.is_file() or path.suffix.lower() not in {".module", ".sgmodule"}:
+                continue
+            rel = path.relative_to(MODULES).as_posix()
+            if rel in seen:
+                continue
+            items.append(_catalog_module_entry(rel=rel, author=author, path=path))
+            seen.add(rel)
+
+    for path in sorted(MODULES.iterdir()):
         if not path.is_file():
             continue
-        if path.suffix.lower() not in {".module", ".sgmodule", ".snippet"}:
+        if path.suffix.lower() not in {".module", ".sgmodule"}:
             continue
-        rel = path.relative_to(MODULES).as_posix()  # _upstream/<author>/...
-        parts = Path(rel).parts
-        if len(parts) < 2:
+        rel = path.name
+        if rel in seen:
             continue
-        author = parts[1]
-        meta = parse_surge_header(path.read_text(encoding="utf-8", errors="replace"))
-        name = meta.get("name") or path.stem
-        desc = meta.get("desc") or meta.get("description") or ""
-        icon = meta.get("icon") or ""
-        homepage = meta.get("homepage") or ""
-        stem_l = path.stem.lower()
-        path_l = rel.lower()
-        tags = ["上游", author]
-        if any(
-            k in stem_l or k in path_l
-            for k in ("collection", "合集", "blockads", "cookies", "advertising", "unlock", "all")
-        ):
-            tags.append("合集")
-        if author in {"ios151", "ios151-shortcutstudio"} or "yuredirect" in stem_l:
-            tags.append("Yu9191迁移")
-        group = AUTHOR_LABELS.get(author, author)
-        url = raw_url(f"Modules/{rel}")
-        item_id = "up-" + "-".join(Path(rel).with_suffix("").parts)
-        # keep id reasonably short / stable
-        if len(item_id) > 120:
-            item_id = item_id[:100] + "-" + str(abs(hash(rel)) % 10_000_000)
+        # 清单 yaml 旁路；模块本体全进站
+        author = "local"
+        if rel.startswith("iringo"):
+            author = "iringo"
+        elif "qingrex" in rel:
+            author = "qingrex"
+        elif "fmz200" in rel or "naisi" in rel:
+            author = "fmz200"
+        elif "yu9191" in rel or "ios151" in rel:
+            author = "ios151"
+        elif "weigiegie" in rel:
+            author = "weigiegie"
+        elif "liul0ng" in rel:
+            author = "liul0ng"
+        elif "chxm" in rel:
+            author = "chxm1023"
         items.append(
-            {
-                "id": item_id,
-                "kind": "module",
-                "category": "upstream",
-                "group": group,
-                "name": name,
-                "desc": desc or f"{group} · {path.name}",
-                "icon": icon,
-                "homepage": homepage,
-                "path": f"Modules/{rel}",
-                "url": url,
-                "add_url": module_add_url(url),
-                "usage_tier": "optional",
-                "tags": tags,
-                "upstream": True,
-                "author": author,
-            }
+            _catalog_module_entry(
+                rel=rel,
+                author=author,
+                path=path,
+                extra_tags=["本仓发布"],
+            )
         )
-    print(f"upstream author modules: {len(items)}")
+        seen.add(rel)
+
+    print(f"upstream/pickable modules: {len(items)}")
     return items
 
 
@@ -590,8 +689,10 @@ def published_module_files() -> list[str]:
                 continue
             names.append(name)
         for dirname in spec.get("include_dirs") or []:
-            # _upstream 由 upstream_author_module_items 专扫，避免双份进「模块」
-            if dirname == "_upstream" or dirname.startswith("_upstream/"):
+            # _upstream / 签到单条由 upstream_author_module_items 专扫
+            if dirname in {"_upstream", "yuheng", "qingrex-signin"} or dirname.startswith(
+                "_upstream/"
+            ):
                 continue
             root = MODULES / dirname
             if not root.is_dir():
@@ -599,6 +700,16 @@ def published_module_files() -> list[str]:
             for path in sorted(root.rglob("*")):
                 if path.suffix.lower() in {".module", ".sgmodule", ".yaml"} and path.is_file():
                     names.append(path.relative_to(MODULES).as_posix())
+        # include_globs 的 .sgmodule/.module 已进「上游单条」；这里只收 egern yaml 模块壳
+        for pattern in spec.get("include_globs") or []:
+            if not pattern.endswith(".yaml"):
+                continue
+            for path in sorted(MODULES.glob(pattern)):
+                if not path.is_file() or path.name in (spec.get("exclude_globs") or []):
+                    continue
+                if path.name.endswith(("-manifest.yaml", "manifest.yaml", "manifest.surge.yaml")):
+                    continue
+                names.append(path.name)
     return names
 
 
@@ -609,8 +720,16 @@ def published_includes(name: str) -> bool:
             continue
         if name in (spec.get("include_only") or []):
             return True
+        if name in (spec.get("exclude_globs") or []):
+            return False
         for d in spec.get("include_dirs") or []:
             if name == d or name.startswith(f"{d}/"):
+                return True
+        # include_globs: e.g. "*.sgmodule" / "egern.boxjs.json"
+        from fnmatch import fnmatch
+
+        for pattern in spec.get("include_globs") or []:
+            if fnmatch(Path(name).name, pattern) or fnmatch(name, pattern):
                 return True
     return False
 
@@ -925,6 +1044,25 @@ def build_catalog() -> dict:
     items.extend(boxjs_items(meta_cfg))
     items.extend(script_items())
     items.extend(widget_items())
+    # 同 path 去重：优先保留「上游单条」分类（自己挑），去掉 curated 重复卡
+    deduped: list[dict] = []
+    seen_paths: set[str] = set()
+    # upstream first
+    for item in items:
+        if item.get("category") != "upstream":
+            continue
+        p = (item.get("path") or "").split("#", 1)[0]
+        if p:
+            seen_paths.add(p)
+        deduped.append(item)
+    for item in items:
+        if item.get("category") == "upstream":
+            continue
+        p = (item.get("path") or "").split("#", 1)[0]
+        if p and p in seen_paths and item.get("kind") == "module":
+            continue
+        deduped.append(item)
+    items = deduped
     mark_featured(meta_cfg, items)
     items_by_id = {i["id"]: i for i in items}
     attach_share_urls(items)

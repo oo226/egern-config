@@ -150,3 +150,50 @@ repos:
       - Module/
     include_modules:
       - "^Module/.+\\.(sgmodule|module)$"
+
+  # ── 每日合集还会拉、但之前没整仓镜像的 ──
+  - id: miranquil
+    github: miranquil/surge-scripts
+    branch: main
+    include_modules:
+      - "^.+\\.sgmodule$"
+
+  - id: limbopro
+    github: limbopro/Adblock4limbo
+    branch: main
+    include_modules:
+      - "^.+\\.(sgmodule|module)$"
+
+  - id: chxm1023-ads
+    github: chxm1023/Advertising
+    branch: main
+    include_modules:
+      - "^.+\\.(sgmodule|module)$"
+      - "^Shadowrocket/.+\\.sgmodule$"
+      - "^Surge/.+\\.sgmodule$"
+
+  - id: yuheng
+    github: Yuheng0101/X
+    branch: main
+    include_modules:
+      - "^.+\\.sgmodule$"
+
+  - id: nobyda
+    github: NobyDa/Script
+    branch: master
+    include_modules:
+      - "^.+\\.(sgmodule|module)$"
+      - "^Surge/.+\\.(sgmodule|module)$"
+
+  - id: maasea
+    github: Maasea/sgmodule
+    branch: master
+    include_modules:
+      - "^.+\\.sgmodule$"
+
+  - id: keywos
+    github: Keywos/rule
+    branch: main
+    include_modules:
+      - "^.+\\.(sgmodule|module)$"
+      - "^surge/.+\\.(sgmodule|module)$"

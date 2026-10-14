@@ -67,14 +67,29 @@ def publish_routing(spec: dict) -> None:
 def publish_modules(spec: dict) -> None:
     include_only = spec.get("include_only") or []
     include_dirs = spec.get("include_dirs") or []
+    include_globs = spec.get("include_globs") or []
+    exclude_globs = set(spec.get("exclude_globs") or [])
     dst_root = WORKTREE / "Modules"
+    src_root = ROOT / "Modules"
     if dst_root.exists():
         shutil.rmtree(dst_root)
     dst_root.mkdir(parents=True, exist_ok=True)
     for name in include_only:
-        copy_file(ROOT / "Modules" / name, dst_root / name)
+        copy_file(src_root / name, dst_root / name)
+    # 根目录按 glob 全量拷贝（单条/合集进站自挑）
+    if include_globs:
+        copied = 0
+        for pattern in include_globs:
+            for path in sorted(src_root.glob(pattern)):
+                if not path.is_file():
+                    continue
+                if path.name in exclude_globs:
+                    continue
+                shutil.copy2(path, dst_root / path.name)
+                copied += 1
+        print(f"copy Modules/ globs={include_globs} files={copied}")
     for name in include_dirs:
-        src = ROOT / "Modules" / name
+        src = src_root / name
         if src.is_dir():
             shutil.copytree(src, dst_root / name)
             print(f"copy tree Modules/{name}")

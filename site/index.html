@@ -41,7 +41,7 @@
         <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
       </button>
       <h1>⚡ egern-config 模块中心</h1>
-      <p>main 稳定内容 + <strong>上游单条/合集</strong>镜像 — 点击添加，或复制 raw 链接自己翻</p>
+      <p>Surge / Egern 自用：每日 sync 上游<strong>单条+合集</strong>全在这 — 自己挑着装；巨型合集慎开，挑完再组小合集更稳</p>
       <div class="notice">本站内容为个人镜像整理，仅供学习交流与个人设备使用。详见 <a href="disclaimer.html">免责声明</a>。</div>
       <span class="badge" id="updated">加载中…</span>
     </div>
@@ -268,6 +268,7 @@
       };
       mk('all', '全部作者');
       mk('__collections__', '只要合集');
+      mk('__mega__', '巨型合集(慎开)');
       for (const g of groups) mk(g, g);
     }
 
@@ -515,7 +516,8 @@
       if (activePreset !== 'all' && item.usage_tier !== activePreset) return false;
       if (activeCategory === 'boxjs' && activeBoxjsGroup !== 'all' && item.kind === 'boxjs-app' && item.group !== activeBoxjsGroup) return false;
       if (activeCategory === 'upstream' && activeUpstreamGroup === '__collections__' && !(item.tags || []).includes('合集')) return false;
-      if (activeCategory === 'upstream' && activeUpstreamGroup !== 'all' && activeUpstreamGroup !== '__collections__' && item.group !== activeUpstreamGroup) return false;
+      if (activeCategory === 'upstream' && activeUpstreamGroup === '__mega__' && !(item.tags || []).includes('巨型合集')) return false;
+      if (activeCategory === 'upstream' && activeUpstreamGroup !== 'all' && activeUpstreamGroup !== '__collections__' && activeUpstreamGroup !== '__mega__' && item.group !== activeUpstreamGroup) return false;
       if (!q) return true;
       const hay = [item.name, item.desc, item.group, item.path, item.hint, item.author, ...(item.tags || [])].join(' ').toLowerCase();
       return hay.includes(q);
