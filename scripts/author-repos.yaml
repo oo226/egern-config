@@ -1,12 +1,15 @@
 # Full-repo mirrors: scripts land under Scripts/<id>/, modules under Modules/_upstream/<id>/
 # merge-adblock-modules.py rewrites raw.githubusercontent.com/<github>/... to local Scripts/<id>/...
+# Modules/_upstream 会进 sync 提交并 publish 到 main，供 Pages 模块中心「上游单条」浏览。
 
 repos:
   - id: fmz200
     github: fmz200/wool_scripts
     branch: main
     dest_scripts: fmz200
-    flat_module_names: true
+    # 保留目录结构（split/part*），方便网站按路径浏览
+    strip_module_prefixes:
+      - Surge/module/
     strip_script_prefixes:
       - Scripts/
     include_scripts:
@@ -29,6 +32,8 @@ repos:
     dest_scripts: weigiegie
     include_scripts:
       - "^[^/]+\\.js$"
+    include_modules:
+      - "^.+\\.(sgmodule|module)$"
     generate_unlock: true
 
   - id: liul0ng
@@ -37,13 +42,23 @@ repos:
     dest_scripts: liul0ng
     include_scripts:
       - "^[^/]+\\.js$"
+    include_modules:
+      - "^.+\\.(sgmodule|module)$"
     generate_unlock: true
 
-  # Yu9191/shortcutstudio-rewrite + Yu9191/Rewrite 已 404（仓库删除/私有）。
-  # 保留本地 Scripts/yu9191 缓存；enabled=false 避免每日 Sync 硬崩。
-  - id: yu9191
-    enabled: false
-    github: Yu9191/shortcutstudio-rewrite
+  # Yu9191 已迁移 → ios151（见 YuRedirect.sgmodule）
+  - id: ios151
+    github: ios151/Rewrite
+    branch: main
+    dest_scripts: yu9191/rewrite
+    include_scripts:
+      - "^.+\\.js$"
+    include_modules:
+      - "^.+\\.(sgmodule|module)$"
+    generate_unlock_modules: true
+
+  - id: ios151-shortcutstudio
+    github: ios151/shortcutstudio-rewrite
     branch: baby
     dest_scripts: yu9191
     flat_module_names: true
@@ -54,16 +69,18 @@ repos:
     include_modules:
       - "^modules/.+\\.sgmodule$"
 
+  # 旧 id 保留禁用项，避免别处引用崩；实际拉 ios151
+  - id: yu9191
+    enabled: false
+    github: Yu9191/shortcutstudio-rewrite
+    branch: baby
+    note: "migrated → ios151-shortcutstudio"
+
   - id: yu9191-rewrite
     enabled: false
     github: Yu9191/Rewrite
     branch: main
-    dest_scripts: yu9191/rewrite
-    include_scripts:
-      - "^.+\\.js$"
-    include_modules:
-      - "^.+\\.sgmodule$"
-    generate_unlock_modules: true
+    note: "migrated → ios151"
 
   - id: tencent-sports
     github: Hey-sayiwanna/TencentSports-Surge
@@ -71,6 +88,8 @@ repos:
     dest_scripts: tencent-sports
     include_scripts:
       - "^[^/]+\\.js$"
+    include_modules:
+      - "^.+\\.(sgmodule|module)$"
 
   - id: zenmofeishi
     github: ZenmoFeiShi/Qx
@@ -78,3 +97,56 @@ repos:
     dest_scripts: zenmofeishi
     include_scripts:
       - "^[^/]+\\.js$"
+    include_modules:
+      - "^.+\\.(sgmodule|module|snippet)$"
+
+  - id: chxm1023
+    github: chxm1023/Rewrite
+    branch: main
+    dest_scripts: chxm1023
+    include_scripts:
+      - "^.+\\.js$"
+    include_modules:
+      - "^.+\\.(sgmodule|module)$"
+
+  - id: chxm1023-scriptx
+    github: chxm1023/Script_X
+    branch: main
+    include_modules:
+      - "^.+\\.(sgmodule|module)$"
+
+  - id: iewha
+    github: iEwha/Profiles
+    branch: master
+    strip_module_prefixes:
+      - Surge/
+    include_modules:
+      - "^Surge/.+\\.(sgmodule|module)$"
+
+  - id: blackmatrix7
+    github: blackmatrix7/ios_rule_script
+    branch: master
+    strip_module_prefixes:
+      - rewrite/Surge/
+    include_modules:
+      - "^rewrite/Surge/.+\\.sgmodule$"
+
+  - id: mieqq
+    github: mieqq/mieqq
+    branch: master
+    include_modules:
+      - "^.+\\.sgmodule$"
+
+  - id: iamsweet-skip-proxy
+    github: iamsweet/Surge-Skip-Proxy-Lists
+    branch: main
+    include_modules:
+      - "^.+\\.sgmodule$"
+
+  - id: rabbit-spec
+    github: Rabbit-Spec/Surge
+    branch: Master
+    strip_module_prefixes:
+      - Module/
+    include_modules:
+      - "^Module/.+\\.(sgmodule|module)$"

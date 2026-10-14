@@ -29,11 +29,11 @@ UPSTREAM_SUBSCRIPTIONS: tuple[tuple[str, str], ...] = (
     ),
     (
         "yu9191_pear",
-        "https://raw.githubusercontent.com/Yu9191/Rewrite/refs/heads/main/pear.boxjs.json",
+        "https://raw.githubusercontent.com/ios151/Rewrite/refs/heads/main/pear.boxjs.json",
     ),
     (
         "yu9191_scheme",
-        "https://raw.githubusercontent.com/Yu9191/Rewrite/refs/heads/main/boxjs.json",
+        "https://raw.githubusercontent.com/ios151/Rewrite/refs/heads/main/boxjs.json",
     ),
     (
         "fokit",

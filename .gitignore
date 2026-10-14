@@ -1,8 +1,7 @@
 __pycache__/
 *.pyc
-_upstream/
+# 规则工厂缓存仍忽略；模块上游镜像 Modules/_upstream 要进仓给 Pages 浏览
 Routing/_upstream/
-Modules/_upstream/
 *.p12
 .DS_Store
 surge/.Rules-export-tmp/

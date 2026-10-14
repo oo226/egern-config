@@ -10,7 +10,7 @@ from paths import GITHUB_RAW_MAIN, GITHUB_RAW_MAIN_BOXJS, MODULES
 
 YU9191_BOXJS_SUBSCRIPTION = f"{GITHUB_RAW_MAIN_BOXJS}/Modules/yu9191-player.boxjs.json"
 YU9191_BOXJS_UPSTREAM = (
-    "https://raw.githubusercontent.com/Yu9191/Rewrite/refs/heads/main/pear.boxjs.json"
+    "https://raw.githubusercontent.com/ios151/Rewrite/refs/heads/main/pear.boxjs.json"
 )
 
 # Script path fragments whose module `argument=` overrides BoxJS settings.
@@ -30,6 +30,8 @@ _HEADER_ARGUMENT_RE = re.compile(r"^#!arguments(?:-desc)?=.*\n", re.MULTILINE)
 _SCRIPT_URL_REWRITES = (
     ("https://raw.githubusercontent.com/Yu9191/Rewrite/refs/heads/main/", f"{GITHUB_RAW_MAIN}/Scripts/yu9191/rewrite/"),
     ("https://raw.githubusercontent.com/Yu9191/Rewrite/main/", f"{GITHUB_RAW_MAIN}/Scripts/yu9191/rewrite/"),
+    ("https://raw.githubusercontent.com/ios151/Rewrite/refs/heads/main/", f"{GITHUB_RAW_MAIN}/Scripts/yu9191/rewrite/"),
+    ("https://raw.githubusercontent.com/ios151/Rewrite/main/", f"{GITHUB_RAW_MAIN}/Scripts/yu9191/rewrite/"),
 )
 
 

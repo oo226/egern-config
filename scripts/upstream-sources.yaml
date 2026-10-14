@@ -63,9 +63,10 @@ sources:
     used_for: [解锁, 脚本]
 
   - id: yu9191
-    name: Yu9191 Rewrite / ShortcutStudio
-    github: Yu9191/Rewrite
+    name: ios151 Rewrite / ShortcutStudio（原 Yu9191）
+    github: ios151/Rewrite
     used_for: [解锁, 脚本]
+    note: "Yu9191 已迁移；装 YuRedirect.sgmodule 可 302 旧链"
 
   - id: yuheng
     name: Yuheng0101/X

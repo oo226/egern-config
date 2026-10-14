@@ -423,6 +423,85 @@ def widget_items() -> list[dict]:
     return items
 
 
+AUTHOR_LABELS = {
+    "fmz200": "奶思 fmz200",
+    "qingrex": "可莉 QingRex",
+    "weigiegie": "WeiGiegie",
+    "liul0ng": "liul0ng",
+    "ios151": "ios151（原 Yu9191）",
+    "ios151-shortcutstudio": "ios151 ShortcutStudio",
+    "chxm1023": "chxm1023 Rewrite",
+    "chxm1023-scriptx": "chxm1023 Script_X",
+    "iewha": "iEwha",
+    "blackmatrix7": "blackmatrix7",
+    "mieqq": "mieqq",
+    "iamsweet-skip-proxy": "iamsweet SkipProxy",
+    "rabbit-spec": "Rabbit-Spec",
+    "tencent-sports": "腾讯体育",
+    "zenmofeishi": "怎么肥事",
+}
+
+
+def upstream_author_module_items() -> list[dict]:
+    """Index Modules/_upstream/** 单条 + 合集（给 Pages 自己翻着用）。"""
+    root = MODULES / "_upstream"
+    if not root.is_dir():
+        return []
+    items: list[dict] = []
+    for path in sorted(root.rglob("*")):
+        if not path.is_file():
+            continue
+        if path.suffix.lower() not in {".module", ".sgmodule", ".snippet"}:
+            continue
+        rel = path.relative_to(MODULES).as_posix()  # _upstream/<author>/...
+        parts = Path(rel).parts
+        if len(parts) < 2:
+            continue
+        author = parts[1]
+        meta = parse_surge_header(path.read_text(encoding="utf-8", errors="replace"))
+        name = meta.get("name") or path.stem
+        desc = meta.get("desc") or meta.get("description") or ""
+        icon = meta.get("icon") or ""
+        homepage = meta.get("homepage") or ""
+        stem_l = path.stem.lower()
+        path_l = rel.lower()
+        tags = ["上游", author]
+        if any(
+            k in stem_l or k in path_l
+            for k in ("collection", "合集", "blockads", "cookies", "advertising", "unlock", "all")
+        ):
+            tags.append("合集")
+        if author in {"ios151", "ios151-shortcutstudio"} or "yuredirect" in stem_l:
+            tags.append("Yu9191迁移")
+        group = AUTHOR_LABELS.get(author, author)
+        url = raw_url(f"Modules/{rel}")
+        item_id = "up-" + "-".join(Path(rel).with_suffix("").parts)
+        # keep id reasonably short / stable
+        if len(item_id) > 120:
+            item_id = item_id[:100] + "-" + str(abs(hash(rel)) % 10_000_000)
+        items.append(
+            {
+                "id": item_id,
+                "kind": "module",
+                "category": "upstream",
+                "group": group,
+                "name": name,
+                "desc": desc or f"{group} · {path.name}",
+                "icon": icon,
+                "homepage": homepage,
+                "path": f"Modules/{rel}",
+                "url": url,
+                "add_url": module_add_url(url),
+                "usage_tier": "optional",
+                "tags": tags,
+                "upstream": True,
+                "author": author,
+            }
+        )
+    print(f"upstream author modules: {len(items)}")
+    return items
+
+
 def external_module_items(meta_cfg: dict) -> list[dict]:
     items: list[dict] = []
     for entry in meta_cfg.get("external_modules") or []:
@@ -511,6 +590,9 @@ def published_module_files() -> list[str]:
                 continue
             names.append(name)
         for dirname in spec.get("include_dirs") or []:
+            # _upstream 由 upstream_author_module_items 专扫，避免双份进「模块」
+            if dirname == "_upstream" or dirname.startswith("_upstream/"):
+                continue
             root = MODULES / dirname
             if not root.is_dir():
                 continue
@@ -837,6 +919,7 @@ def build_catalog() -> dict:
         if item:
             items.append(item)
     items.extend(external_module_items(meta_cfg))
+    items.extend(upstream_author_module_items())
     # 跳过代理已合并为 skip-proxy-collection，不再把扫描到的多条上游原链铺到中心页
     items.extend(routing_items(meta_cfg))
     items.extend(boxjs_items(meta_cfg))
@@ -853,6 +936,7 @@ def build_catalog() -> dict:
     categories = [
         {"id": "config", "name": "主配置", "icon": "⚙️"},
         {"id": "modules", "name": "模块", "icon": "🧩"},
+        {"id": "upstream", "name": "上游单条", "icon": "📚"},
         {"id": "routing", "name": "分流规则", "icon": "🔀"},
         {"id": "boxjs", "name": "BoxJS", "icon": "📦"},
         {"id": "scripts", "name": "签到脚本", "icon": "📅"},

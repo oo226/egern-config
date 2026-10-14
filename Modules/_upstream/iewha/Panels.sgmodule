@@ -1,0 +1,18 @@
+#!name=Panels
+#!desc=信息面板
+
+[Panel]
+#Surge Pro标题,可显示启动时间,点击刷新为重载配置
+SurgePro_ ReloadProfile = script-name=缓存开关,update-interval=60
+
+#节点检测 
+ipcheck = script-name=ipcheck, title="节点信息", content="请刷新", style=info, update-interval=1
+
+
+[Script]
+#Surge Pro标题,可显示启动时间,点击刷新为重载配置
+缓存开关 = type=generic,timeout=10,script-path= https://raw.githubusercontent.com/iEwha/Profiles/master/Surge/Scripts/functionstatus.js,argument=icon=power.circle&color=#FF7500&title=Surge Pro
+
+#节点检测
+ipcheck = type=generic, timeout=3, script-path= https://raw.githubusercontent.com/iEwha/Profiles/master/Surge/Scripts/ipcheck.js
+
