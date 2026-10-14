@@ -5,27 +5,31 @@
 
 ## 直接复制用
 
+> 国内直连 `raw.githubusercontent.com` 常 `请求超时 (-1001)`。  
+> 配置下载与 RULE-SET 一律用 **jsDelivr（testingcf）**，不要再用 GitHub raw。
+
 **日常（有喵 CN 原样）：**
 ```
-https://raw.githubusercontent.com/oo226/egern-config/refs/heads/cursor/surge-rabbit-f611/Surge/Conf/Spec/Surge-CN.conf
+https://testingcf.jsdelivr.net/gh/oo226/egern-config@cursor/surge-rabbit-f611/Surge/Conf/Spec/Surge-CN.conf
 ```
 
 **CN + Tailscale（推荐）：**
 ```
-https://raw.githubusercontent.com/oo226/egern-config/refs/heads/cursor/surge-rabbit-f611/Surge/Conf/Spec/Surge-CN-Plus.conf
+https://testingcf.jsdelivr.net/gh/oo226/egern-config@cursor/surge-rabbit-f611/Surge/Conf/Spec/Surge-CN-Plus.conf
 ```
 
-导入后改三处：`policy-path`、`auth-key`、`YOURTAILNET.ts.net`。
+导入后改三处：`policy-path`、`auth-key`、`YOURTAILNET.ts.net`。  
+若本地已有旧版 CN-Plus：用上面链接 **从 URL 重新下载/覆盖**，或文本模式全局把 `raw.githubusercontent.com/oo226/.../refs/heads/cursor/surge-rabbit-f611` 换成 `testingcf.jsdelivr.net/gh/oo226/egern-config@cursor/surge-rabbit-f611`。
 
 **回环模块（官方写法；主配置不要写 `%INSERT%`）：**
 ```
-https://raw.githubusercontent.com/oo226/egern-config/refs/heads/cursor/surge-rabbit-f611/Surge/Module/IP-Rewrite-Hairpin.sgmodule
+https://testingcf.jsdelivr.net/gh/oo226/egern-config@cursor/surge-rabbit-f611/Surge/Module/IP-Rewrite-Hairpin.sgmodule
 ```
 Surge → 模块 → 安装 → 打开。需 App Store ≥ **5.23.0**。
 
 **Mini 原样（仅冒烟）：**
 ```
-https://raw.githubusercontent.com/oo226/egern-config/refs/heads/cursor/surge-rabbit-f611/Surge/Conf/Spec/Surge-Mini.conf
+https://testingcf.jsdelivr.net/gh/oo226/egern-config@cursor/surge-rabbit-f611/Surge/Conf/Spec/Surge-Mini.conf
 ```
 
 ## 回环怎么用
