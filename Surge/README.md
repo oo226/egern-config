@@ -36,6 +36,14 @@ https://raw.githubusercontent.com/oo226/egern-config/refs/heads/cursor/surge-rab
 Surge 弹「绝大多数情况下不应配置 `tun-included-routes`」：说明你开了回环模块（主配置本身没有该参数）。  
 不用 SideStore / 10.7.0.1 回环就关掉该模块；需要回环就点「好的」忽略即可。
 
+## Tailscale DERP 怎么走美国了？
+
+细节里若是 **规则 = FINAL、策略 = 美国某节点**：不是「美国 DERP 节点」本身的问题，而是  
+`derp*.tailscale.com` **常按 IP 拨号**，只写 `DOMAIN-SUFFIX,tailscale.com,DIRECT` 匹配不到，掉进 `FINAL → 节点选择`。
+
+CN-Plus 已挂 `Surge/Rules/Tailscale-DERP.list`（IP/域名直连）+ UDP 3478 DIRECT。  
+重载后再看最近请求，DERP 应变 **DIRECT**。更新 DERP 表：`python3 scripts/update-tailscale-derp-list.py`。
+
 ## DNS（防运营商泄漏）
 
 有喵原版写了 `dns-server = system, …`，`system` = 当前网卡的运营商 DNS（截图里一片「中国移动」+ `2409:8028::` IPv6）。  
