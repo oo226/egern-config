@@ -71,67 +71,10 @@ html[data-theme="light"] .theme-toggle .icon-sun { display: block; }
 html:not([data-theme="light"]) .theme-toggle .icon-moon { display: block; }
 .hero h1 { font-size: 1.75rem; font-weight: 700; letter-spacing: -0.02em; color: var(--text); }
 .hero p { color: var(--muted); margin-top: 0.4rem; font-size: 0.95rem; }
-.client-bar {
- max-width: 1100px;
- margin: 0 auto;
- padding: 0.85rem 1.25rem 0.35rem;
-}
-.client-bar-label {
- display: flex;
- flex-wrap: wrap;
- align-items: baseline;
- gap: 0.45rem 0.75rem;
- margin-bottom: 0.55rem;
-}
-.client-bar-label strong {
- font-size: 1rem;
- letter-spacing: -0.01em;
-}
-.client-bar-label span {
- color: var(--muted);
- font-size: 0.82rem;
-}
-.client-bar-row {
- display: flex;
- flex-wrap: wrap;
- gap: 0.45rem;
-}
-.client-pill {
- display: inline-flex;
- align-items: center;
- gap: 0.35rem;
- padding: 0.5rem 0.75rem;
- border-radius: 10px;
- border: 1px solid var(--border);
- background: var(--surface);
- color: var(--text);
- cursor: pointer;
- -webkit-appearance: none;
- appearance: none;
- font-family: inherit;
- transition: border-color .15s, background .15s, transform .12s;
-}
-.client-pill:hover {
- border-color: var(--accent);
- transform: translateY(-1px);
-}
-.client-pill.active {
- border-color: var(--accent);
- background: rgba(108, 140, 255, 0.12);
- box-shadow: inset 0 0 0 1px var(--accent);
-}
-.client-pill strong { font-size: 0.88rem; font-weight: 650; }
-.client-pill small { color: var(--muted); font-size: 0.72rem; }
-.client-pill.client-surge.active { background: rgba(108, 140, 255, 0.14); }
-.client-pill.client-egern.active { background: rgba(79, 209, 164, 0.14); border-color: var(--accent2); box-shadow: inset 0 0 0 1px var(--accent2); }
-.client-pill.client-loon.active { background: rgba(255, 159, 67, 0.14); border-color: #ff9f43; box-shadow: inset 0 0 0 1px #ff9f43; }
-.client-pill.client-quanx.active { background: rgba(187, 134, 252, 0.14); border-color: #bb86fc; box-shadow: inset 0 0 0 1px #bb86fc; }
-.client-pill.client-shadowrocket.active { background: rgba(100, 210, 255, 0.14); border-color: #64d2ff; box-shadow: inset 0 0 0 1px #64d2ff; }
-
 .catalog-sections {
- max-width: 1100px;
- margin: 0 auto 1.25rem;
- padding: 0 1.25rem;
+  max-width: 1100px;
+  margin: 0 auto 1.25rem;
+  padding: 0 1.25rem;
 }
 .sections-head {
   margin-bottom: 0.9rem;

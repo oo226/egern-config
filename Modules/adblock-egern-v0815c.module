@@ -12,7 +12,7 @@
 #!remark=下方的所有规则都标注了对应的hostname，可能存在错误或者遗漏，欢迎反馈。对于无法/可选MITM的hostname都特别做了“如开启可自行添加主机名”提示，如果提示后面没有标注主机名则包含所有主机名，否则只包含提示语后面的主机名。
 #!arguments=12306_enable:true
 
-# UPDATE-MARKER heat15-202610130958
+# UPDATE-MARKER heat15-202610140818
 
 # AUTO-MERGED by scripts/merge-adblock-modules.py
 # 类型: 模块 — MITM / URL Rewrite / Script / Map Local（整域 REJECT 并入 Reject-Merged）
@@ -1044,39 +1044,6 @@ DOMAIN,wxsmw.wxs.qq.com,REJECT,pre-matching # @keep
 # NB 控制口勿 AND REJECT：/nb/telnet=Network OK；/nb/app 用脚本改广告字段
 
 # >>> merged from fmz200-extra (unique only)
-
-# >>> merged from 17173Game.sgmodule (unique only)
-
-# >>> merged from 178Game.sgmodule (unique only)
-
-# >>> merged from 18183Game.sgmodule (unique only)
-
-# >>> merged from 1905MovieNetwork.sgmodule (unique only)
-
-# >>> merged from 2345WebNavigation.sgmodule (unique only)
-
-# >>> merged from 360.sgmodule (unique only)
-
-# >>> merged from 365Calendar.sgmodule (unique only)
-
-# >>> merged from 39Health.sgmodule (unique only)
-
-# >>> merged from 51CTO.sgmodule (unique only)
-
-# >>> merged from 58Auto.sgmodule (unique only)
-
-# >>> merged from 58TongCheng.sgmodule (unique only)
-
-# >>> merged from 9Game.sgmodule (unique only)
-
-# >>> merged from AOL.sgmodule (unique only)
-
-# >>> merged from Adobe.sgmodule (unique only)
-# Marketo, REJECT
-
-# >>> merged from AdobeFlash.sgmodule (unique only)
-
-# >>> merged from AffiliateMarketing.sgmodule (unique only)
 # 若有问题自行设置白名单, REJECT
 # Ad-Stir, REJECT
 # Adadapted, REJECT
@@ -1191,528 +1158,572 @@ DOMAIN,wxsmw.wxs.qq.com,REJECT,pre-matching # @keep
 # 诸葛智能, REJECT
 # Zedo, REJECT
 
-# >>> merged from AiPai.sgmodule (unique only)
+# >>> merged from split/part1/12123.sgmodule (unique only)
 
-# >>> merged from Akamai.sgmodule (unique only)
+# >>> merged from split/part1/17173Game.sgmodule (unique only)
 
-# >>> merged from AlibabaCloud.sgmodule (unique only)
+# >>> merged from split/part1/178Game.sgmodule (unique only)
 
-# >>> merged from AllFootball.sgmodule (unique only)
+# >>> merged from split/part1/18183Game.sgmodule (unique only)
 
-# >>> merged from Amazon.sgmodule (unique only)
+# >>> merged from split/part1/1905MovieNetwork.sgmodule (unique only)
 
-# >>> merged from Apple.sgmodule (unique only)
+# >>> merged from split/part2/2345WebNavigation.sgmodule (unique only)
+
+# >>> merged from split/part3/360.sgmodule (unique only)
+
+# >>> merged from split/part3/365Calendar.sgmodule (unique only)
+
+# >>> merged from split/part3/39Health.sgmodule (unique only)
+
+# >>> merged from split/part5/51CTO.sgmodule (unique only)
+
+# >>> merged from split/part5/58Auto.sgmodule (unique only)
+
+# >>> merged from split/part5/58TongCheng.sgmodule (unique only)
+
+# >>> merged from split/partA/AOL.sgmodule (unique only)
+
+# >>> merged from split/partA/Adobe.sgmodule (unique only)
+# Marketo, REJECT
+
+# >>> merged from split/partA/AdobeFlash.sgmodule (unique only)
+
+# >>> merged from split/partA/AiPai.sgmodule (unique only)
+
+# >>> merged from split/partA/Akamai.sgmodule (unique only)
+
+# >>> merged from split/partA/AlibabaCloud.sgmodule (unique only)
+
+# >>> merged from split/partA/Amazon.sgmodule (unique only)
+
+# >>> merged from split/partA/Apple.sgmodule (unique only)
 # 安全浏览限制解除, REJECT
 
-# >>> merged from AsiaInfoTechnology.sgmodule (unique only)
+# >>> merged from split/partA/XcarAuto.sgmodule (unique only)
 
-# >>> merged from AutoNavi.sgmodule (unique only)
+# >>> merged from split/partA/iQIYI.sgmodule (unique only)
 
-# >>> merged from Autohome.sgmodule (unique only)
+# >>> merged from split/partB/BBC.sgmodule (unique only)
 
-# >>> merged from BBC.sgmodule (unique only)
+# >>> merged from split/partB/BabyTree.sgmodule (unique only)
 
-# >>> merged from BabyTree.sgmodule (unique only)
+# >>> merged from split/partB/BaiYi.sgmodule (unique only)
 
-# >>> merged from BaiYi.sgmodule (unique only)
+# >>> merged from split/partB/Baidu.sgmodule (unique only)
 
-# >>> merged from Baidu.sgmodule (unique only)
+# >>> merged from split/partB/BaiduMaps.sgmodule (unique only)
 
-# >>> merged from BaiduMaps.sgmodule (unique only)
-
-# >>> merged from BaiduTieba.sgmodule (unique only)
+# >>> merged from split/partB/BaiduTieba.sgmodule (unique only)
 # 屏蔽域名dns查询, REJECT
 
-# >>> merged from Baixing.sgmodule (unique only)
+# >>> merged from split/partB/Baixing.sgmodule (unique only)
 
-# >>> merged from BaoMiHua.sgmodule (unique only)
+# >>> merged from split/partB/BaoMiHua.sgmodule (unique only)
 
-# >>> merged from BaofengPlayer.sgmodule (unique only)
+# >>> merged from split/partB/BaofengPlayer.sgmodule (unique only)
 
-# >>> merged from BiQuGe.sgmodule (unique only)
+# >>> merged from split/partB/BiQuGe.sgmodule (unique only)
 
-# >>> merged from Bing.sgmodule (unique only)
+# >>> merged from split/partB/Bing.sgmodule (unique only)
 
-# >>> merged from Braze.sgmodule (unique only)
+# >>> merged from split/partB/Braze.sgmodule (unique only)
 
-# >>> merged from ByteDance.sgmodule (unique only)
+# >>> merged from split/partB/HonkaiImpact3.sgmodule (unique only)
 
-# >>> merged from CBox.sgmodule (unique only)
+# >>> merged from split/partB/Pantum.sgmodule (unique only)
 
-# >>> merged from CCBLife.sgmodule (unique only)
-# 内置饿了么外卖弹窗, REJECT
+# >>> merged from split/partB/baicizhan.sgmodule (unique only)
 
-# >>> merged from CCTV.sgmodule (unique only)
+# >>> merged from split/partB/bilibili.sgmodule (unique only)
 
-# >>> merged from CEB_SunshineHuiLife.sgmodule (unique only)
+# >>> merged from split/partB/bshare.sgmodule (unique only)
 
-# >>> merged from CJMarketing.sgmodule (unique only)
+# >>> merged from split/partC/CJMarketing.sgmodule (unique only)
 # 苏州思杰马克丁软件有限公司, REJECT
 
-# >>> merged from CNINFO.sgmodule (unique only)
+# >>> merged from split/partC/CNN.sgmodule (unique only)
 
-# >>> merged from CNN.sgmodule (unique only)
+# >>> merged from split/partC/CaiXin.sgmodule (unique only)
 
-# >>> merged from CaiXin.sgmodule (unique only)
+# >>> merged from split/partC/Camera360.sgmodule (unique only)
 
-# >>> merged from Camera360.sgmodule (unique only)
+# >>> merged from split/partC/CheLaiLe.sgmodule (unique only)
 
-# >>> merged from CheLaiLe.sgmodule (unique only)
+# >>> merged from split/partC/Skyworth.sgmodule (unique only)
 
-# >>> merged from ChinaCom.sgmodule (unique only)
+# >>> merged from split/partC/csdn.sgmodule (unique only)
 
-# >>> merged from ChinaDaily.sgmodule (unique only)
+# >>> merged from split/partD/AllFootball.sgmodule (unique only)
 
-# >>> merged from ChinaMinshengBank.sgmodule (unique only)
+# >>> merged from split/partD/DangDang.sgmodule (unique only)
 
-# >>> merged from ChinaMobile.sgmodule (unique only)
+# >>> merged from split/partD/Dcar.sgmodule (unique only)
 
-# >>> merged from ChinaMobileCloudDrive.sgmodule (unique only)
-
-# >>> merged from ChinaTelecom.sgmodule (unique only)
-
-# >>> merged from ChinaUnicom.sgmodule (unique only)
-
-# >>> merged from CorelVideoStudio.sgmodule (unique only)
-
-# >>> merged from DangDang.sgmodule (unique only)
-
-# >>> merged from Dcar.sgmodule (unique only)
-
-# >>> merged from DiDiBike.sgmodule (unique only)
+# >>> merged from split/partD/DiDiBike.sgmodule (unique only)
 #DOMAIN-KEYWORD, pt-starimg.didistatic.com, REJECT
 
-# >>> merged from Dida.sgmodule (unique only)
+# >>> merged from split/partD/Dida.sgmodule (unique only)
 
-# >>> merged from DingDongMaiCai.sgmodule (unique only)
+# >>> merged from split/partD/DingDongMaiCai.sgmodule (unique only)
 
-# >>> merged from DongFangCaiFu.sgmodule (unique only)
+# >>> merged from split/partD/DongFangCaiFu.sgmodule (unique only)
 
-# >>> merged from Douban.sgmodule (unique only)
+# >>> merged from split/partD/Douban.sgmodule (unique only)
 
-# >>> merged from DouyuLive.sgmodule (unique only)
+# >>> merged from split/partD/DouyuLive.sgmodule (unique only)
 
-# >>> merged from DrPeng.sgmodule (unique only)
+# >>> merged from split/partD/DrPeng.sgmodule (unique only)
 #IP-CIDR, 10.72.25.0/24, REJECT, no-resolve
 
-# >>> merged from DuoDuoVideo.sgmodule (unique only)
+# >>> merged from split/partD/DuoDuoVideo.sgmodule (unique only)
 
-# >>> merged from DuoDuoXiuYuanQuan.sgmodule (unique only)
+# >>> merged from split/partD/DuoDuoXiuYuanQuan.sgmodule (unique only)
 # 微信小程序去广告, REJECT
 
-# >>> merged from Eastday.sgmodule (unique only)
+# >>> merged from split/partD/Eastday.sgmodule (unique only)
 
-# >>> merged from Eleme.sgmodule (unique only)
+# >>> merged from split/partD/PChome.sgmodule (unique only)
 
-# >>> merged from Elong.sgmodule (unique only)
+# >>> merged from split/partE/Eleme.sgmodule (unique only)
 
-# >>> merged from Facebook.sgmodule (unique only)
+# >>> merged from split/partF/Facebook.sgmodule (unique only)
 
-# >>> merged from FanQieNovel.sgmodule (unique only)
+# >>> merged from split/partF/FanQieNovel.sgmodule (unique only)
 #DOMAIN, i.snssdk.com, REJECT
 #DOMAIN-SUFFIX, bytedance.com, REJECT
 
-# >>> merged from Funshion.sgmodule (unique only)
+# >>> merged from split/partF/Funshion.sgmodule (unique only)
 
-# >>> merged from Gamersky.sgmodule (unique only)
+# >>> merged from split/partF/PhoenixNewMedia.sgmodule (unique only)
 
-# >>> merged from Ganji.sgmodule (unique only)
+# >>> merged from split/partF/Soufun.sgmodule (unique only)
 
-# >>> merged from Gionee.sgmodule (unique only)
+# >>> merged from split/partF/VariFlight.sgmodule (unique only)
 
-# >>> merged from GlobalTimes.sgmodule (unique only)
+# >>> merged from split/partG/AutoNavi.sgmodule (unique only)
 
-# >>> merged from Go.com.sgmodule (unique only)
+# >>> merged from split/partG/CEB_SunshineHuiLife.sgmodule (unique only)
 
-# >>> merged from GomeAppliances.sgmodule (unique only)
+# >>> merged from split/partG/Ganji.sgmodule (unique only)
 
-# >>> merged from Google.sgmodule (unique only)
+# >>> merged from split/partG/Go.com.sgmodule (unique only)
 
-# >>> merged from GouWuDang.sgmodule (unique only)
+# >>> merged from split/partG/GomeAppliances.sgmodule (unique only)
 
-# >>> merged from GozenData.sgmodule (unique only)
+# >>> merged from split/partG/Google.sgmodule (unique only)
 
-# >>> merged from Gridsum.sgmodule (unique only)
+# >>> merged from split/partG/GouWuDang.sgmodule (unique only)
 
-# >>> merged from GuangzhouMetroQRCode.sgmodule (unique only)
+# >>> merged from split/partG/GozenData.sgmodule (unique only)
+
+# >>> merged from split/partG/Gridsum.sgmodule (unique only)
+
+# >>> merged from split/partG/GuangzhouMetroQRCode.sgmodule (unique only)
 # 多个广告 感谢CtrlMusic🐓分享, REJECT
 
-# >>> merged from HanJuTV.sgmodule (unique only)
+# >>> merged from split/partH/CorelVideoStudio.sgmodule (unique only)
 
-# >>> merged from Hao123.sgmodule (unique only)
+# >>> merged from split/partH/GlobalTimes.sgmodule (unique only)
+
+# >>> merged from split/partH/HanJuTV.sgmodule (unique only)
+
+# >>> merged from split/partH/Hao123.sgmodule (unique only)
 # hao123上网导航, REJECT
 
-# >>> merged from HaoYouKuaiBao.sgmodule (unique only)
+# >>> merged from split/partH/HaoYouKuaiBao.sgmodule (unique only)
 
-# >>> merged from Hexun.sgmodule (unique only)
+# >>> merged from split/partH/Hexun.sgmodule (unique only)
 
-# >>> merged from HonkaiImpact3.sgmodule (unique only)
+# >>> merged from split/partH/HuChuan.sgmodule (unique only)
 
-# >>> merged from HuChuan.sgmodule (unique only)
-
-# >>> merged from HuangYouXiangJi.sgmodule (unique only)
+# >>> merged from split/partH/HuangYouXiangJi.sgmodule (unique only)
 # 开屏广告 感谢#Dragon分享, REJECT
 
-# >>> merged from HuaweiAspiegelBot.sgmodule (unique only)
+# >>> merged from split/partH/HuaweiAspiegelBot.sgmodule (unique only)
 
-# >>> merged from HuaweiStore.sgmodule (unique only)
+# >>> merged from split/partH/HuaweiStore.sgmodule (unique only)
 
-# >>> merged from HujiangOnlineSchool.sgmodule (unique only)
+# >>> merged from split/partH/HujiangOnlineSchool.sgmodule (unique only)
 
-# >>> merged from HunanTV.sgmodule (unique only)
+# >>> merged from split/partH/HunanTV.sgmodule (unique only)
 
-# >>> merged from Hupu.sgmodule (unique only)
+# >>> merged from split/partH/Hupu.sgmodule (unique only)
 
-# >>> merged from HuyaLive.sgmodule (unique only)
+# >>> merged from split/partH/HuyaLive.sgmodule (unique only)
 # 开屏广告, REJECT
 
-# >>> merged from JD.com.sgmodule (unique only)
+# >>> merged from split/partH/WasuTV.sgmodule (unique only)
+
+# >>> merged from split/partJ/9Game.sgmodule (unique only)
+
+# >>> merged from split/partJ/CCBLife.sgmodule (unique only)
+# 内置饿了么外卖弹窗, REJECT
+
+# >>> merged from split/partJ/CNINFO.sgmodule (unique only)
+
+# >>> merged from split/partJ/Gionee.sgmodule (unique only)
+
+# >>> merged from split/partJ/JD.com.sgmodule (unique only)
 # 屏蔽DNS, REJECT
 
-# >>> merged from JRJ.sgmodule (unique only)
+# >>> merged from split/partJ/JRJ.sgmodule (unique only)
 
-# >>> merged from JiaXiaoYiDianTong.sgmodule (unique only)
+# >>> merged from split/partJ/JiaXiaoYiDianTong.sgmodule (unique only)
 
-# >>> merged from JiayuanDating.sgmodule (unique only)
+# >>> merged from split/partJ/JinRongToutiao.sgmodule (unique only)
 
-# >>> merged from JinRongToutiao.sgmodule (unique only)
+# >>> merged from split/partJ/KingsoftPowerWord.sgmodule (unique only)
 
-# >>> merged from Keep.sgmodule (unique only)
+# >>> merged from split/partJ/KingsoftSeries.sgmodule (unique only)
+
+# >>> merged from split/partK/Keep.sgmodule (unique only)
 # 拦截HTTPDNS
 # 拦截广告下发
 
-# >>> merged from KingsoftPowerWord.sgmodule (unique only)
+# >>> merged from split/partK/Ku6.sgmodule (unique only)
 
-# >>> merged from KingsoftSeries.sgmodule (unique only)
+# >>> merged from split/partK/KuGouMusic.sgmodule (unique only)
 
-# >>> merged from Ku6.sgmodule (unique only)
+# >>> merged from split/partK/KuaYaZip.sgmodule (unique only)
 
-# >>> merged from KuGouMusic.sgmodule (unique only)
-
-# >>> merged from KuaYaZip.sgmodule (unique only)
-
-# >>> merged from KuaiDi100.sgmodule (unique only)
+# >>> merged from split/partK/KuaiDi100.sgmodule (unique only)
 #DOMAIN,is.snssdk.com,REJECT
 
-# >>> merged from KuaiDongBaike.sgmodule (unique only)
+# >>> merged from split/partK/KuaiDongBaike.sgmodule (unique only)
 
-# >>> merged from KuaiLeGuangBo.sgmodule (unique only)
+# >>> merged from split/partK/KuaiLeGuangBo.sgmodule (unique only)
 
-# >>> merged from KuaiSuWenYiSheng.sgmodule (unique only)
+# >>> merged from split/partK/KuaiSuWenYiSheng.sgmodule (unique only)
 
-# >>> merged from Kuaishou.sgmodule (unique only)
+# >>> merged from split/partK/Kuaishou.sgmodule (unique only)
 # DOMAIN, js-ad.a.yximgs.com, REJECT
 
-# >>> merged from KuwoMusic.sgmodule (unique only)
+# >>> merged from split/partK/KuwoMusic.sgmodule (unique only)
 
-# >>> merged from LanJiYin.sgmodule (unique only)
+# >>> merged from split/partL/LanJiYin.sgmodule (unique only)
 # 弹窗还在，需要手动关闭, REJECT
 
-# >>> merged from LeBoScreenCast.sgmodule (unique only)
+# >>> merged from split/partL/LeBoScreenCast.sgmodule (unique only)
 
-# >>> merged from LeEco.sgmodule (unique only)
+# >>> merged from split/partL/LeEco.sgmodule (unique only)
 
-# >>> merged from Leju.sgmodule (unique only)
+# >>> merged from split/partL/Leju.sgmodule (unique only)
 
-# >>> merged from Lenovo.sgmodule (unique only)
+# >>> merged from split/partL/Lenovo.sgmodule (unique only)
 
-# >>> merged from LiangBuLu.sgmodule (unique only)
+# >>> merged from split/partL/LiangBuLu.sgmodule (unique only)
 
-# >>> merged from Line.sgmodule (unique only)
+# >>> merged from split/partL/Line.sgmodule (unique only)
 
-# >>> merged from LinkWiFi.sgmodule (unique only)
+# >>> merged from split/partL/LinkWiFi.sgmodule (unique only)
 
-# >>> merged from LinkedIn.sgmodule (unique only)
+# >>> merged from split/partL/LinkedIn.sgmodule (unique only)
 
-# >>> merged from Lycos.sgmodule (unique only)
+# >>> merged from split/partL/Lycos.sgmodule (unique only)
 
-# >>> merged from MacKeeper.sgmodule (unique only)
+# >>> merged from split/partM/ChinaMinshengBank.sgmodule (unique only)
 
-# >>> merged from MaiDanBa.sgmodule (unique only)
+# >>> merged from split/partM/MacKeeper.sgmodule (unique only)
 
-# >>> merged from Makeding.sgmodule (unique only)
+# >>> merged from split/partM/MaiDanBa.sgmodule (unique only)
 
-# >>> merged from Mama.sgmodule (unique only)
+# >>> merged from split/partM/Makeding.sgmodule (unique only)
 
-# >>> merged from MangoTV.sgmodule (unique only)
+# >>> merged from split/partM/Mama.sgmodule (unique only)
 
-# >>> merged from MeiYanXiangJi.sgmodule (unique only)
+# >>> merged from split/partM/MangoTV.sgmodule (unique only)
+
+# >>> merged from split/partM/MeiYanXiangJi.sgmodule (unique only)
 # 去首页和轮播广告, REJECT
 
-# >>> merged from MeituXiuxiu.sgmodule (unique only)
+# >>> merged from split/partM/MeituXiuxiu.sgmodule (unique only)
 
-# >>> merged from Meituan.sgmodule (unique only)
+# >>> merged from split/partM/Meituan.sgmodule (unique only)
 
-# >>> merged from Meiyou.sgmodule (unique only)
+# >>> merged from split/partM/Meiyou.sgmodule (unique only)
 
-# >>> merged from Meizu.sgmodule (unique only)
+# >>> merged from split/partM/Meizu.sgmodule (unique only)
 
-# >>> merged from Microsoft.sgmodule (unique only)
+# >>> merged from split/partM/Microsoft.sgmodule (unique only)
 
-# >>> merged from MiguVideo.sgmodule (unique only)
+# >>> merged from split/partM/MiguVideo.sgmodule (unique only)
 
-# >>> merged from Mijia.sgmodule (unique only)
+# >>> merged from split/partM/Mijia.sgmodule (unique only)
 
-# >>> merged from MoguStreet.sgmodule (unique only)
+# >>> merged from split/partM/MoguStreet.sgmodule (unique only)
 
-# >>> merged from MojiWeather.sgmodule (unique only)
+# >>> merged from split/partM/MojiWeather.sgmodule (unique only)
 
-# >>> merged from Mop.sgmodule (unique only)
+# >>> merged from split/partM/Mop.sgmodule (unique only)
 
-# >>> merged from Naver.sgmodule (unique only)
+# >>> merged from split/partN/Naver.sgmodule (unique only)
 
-# >>> merged from NetEase.sgmodule (unique only)
+# >>> merged from split/partN/NewRelic.sgmodule (unique only)
 
-# >>> merged from NetEaseCloudMusic.sgmodule (unique only)
+# >>> merged from split/partO/OPPO.sgmodule (unique only)
 
-# >>> merged from NetEaseDashen.sgmodule (unique only)
-# 拦截HTTPDNS
+# >>> merged from split/partO/Openmultimedia.sgmodule (unique only)
 
-# >>> merged from NewRelic.sgmodule (unique only)
+# >>> merged from split/partO/Optimix.sgmodule (unique only)
 
-# >>> merged from OPPO.sgmodule (unique only)
+# >>> merged from split/partO/Oupeng.sgmodule (unique only)
 
-# >>> merged from Openmultimedia.sgmodule (unique only)
+# >>> merged from split/partO/Outfit7.sgmodule (unique only)
 
-# >>> merged from Optimix.sgmodule (unique only)
+# >>> merged from split/partO/Outlook.sgmodule (unique only)
 
-# >>> merged from Oupeng.sgmodule (unique only)
+# >>> merged from split/partP/PPTV.sgmodule (unique only)
 
-# >>> merged from Outfit7.sgmodule (unique only)
+# >>> merged from split/partP/PeanutWiFi.sgmodule (unique only)
 
-# >>> merged from Outlook.sgmodule (unique only)
+# >>> merged from split/partP/Photoable.sgmodule (unique only)
 
-# >>> merged from PChome.sgmodule (unique only)
-
-# >>> merged from PConline.sgmodule (unique only)
-
-# >>> merged from PPTV.sgmodule (unique only)
-
-# >>> merged from Pantum.sgmodule (unique only)
-
-# >>> merged from PeanutWiFi.sgmodule (unique only)
-
-# >>> merged from PeopleDaily.sgmodule (unique only)
-
-# >>> merged from PhoenixNewMedia.sgmodule (unique only)
-
-# >>> merged from PhoneChina.sgmodule (unique only)
-
-# >>> merged from Photoable.sgmodule (unique only)
-
-# >>> merged from PiPiXia.sgmodule (unique only)
+# >>> merged from split/partP/PiPiXia.sgmodule (unique only)
 # 推荐视频不能预览, REJECT
 
-# >>> merged from PingAnChina.sgmodule (unique only)
+# >>> merged from split/partP/ThePaperNews.sgmodule (unique only)
 
-# >>> merged from QQMusic.sgmodule (unique only)
+# >>> merged from split/partQ/Autohome.sgmodule (unique only)
 
-# >>> merged from QiMaoNovel.sgmodule (unique only)
+# >>> merged from split/partQ/NetEaseCloudMusic.sgmodule (unique only)
 
-# >>> merged from QiShuiMusic.sgmodule (unique only)
+# >>> merged from split/partQ/QQMusic.sgmodule (unique only)
+
+# >>> merged from split/partQ/QiMaoNovel.sgmodule (unique only)
+
+# >>> merged from split/partQ/QiShuiMusic.sgmodule (unique only)
 #DOMAIN, is.snssdk.com, REJECT
 # DOMAIN-KEYWORD, api-access.pangolin-sdk-toutiao, REJECT // 被复写替代
 
-# >>> merged from Qilu.sgmodule (unique only)
+# >>> merged from split/partQ/Qilu.sgmodule (unique only)
 
-# >>> merged from QingTingFM.sgmodule (unique only)
+# >>> merged from split/partQ/QingTingFM.sgmodule (unique only)
 
-# >>> merged from RenRenVideo.sgmodule (unique only)
+# >>> merged from split/partQ/XianYu.sgmodule (unique only)
 
-# >>> merged from SMZDM.sgmodule (unique only)
+# >>> merged from split/partQ/Xiaohongshu.sgmodule (unique only)
 
-# >>> merged from Sape.sgmodule (unique only)
+# >>> merged from split/partQ/YunKuaiChong.sgmodule (unique only)
+# 微信小程序
 
-# >>> merged from ShanMeng.sgmodule (unique only)
+# >>> merged from split/partQ/Zhihu.sgmodule (unique only)
 
-# >>> merged from ShengQuGames.sgmodule (unique only)
+# >>> merged from split/partR/PeopleDaily.sgmodule (unique only)
 
-# >>> merged from ShenzhenTong.sgmodule (unique only)
+# >>> merged from split/partR/RenRenVideo.sgmodule (unique only)
+
+# >>> merged from split/partS/JiayuanDating.sgmodule (unique only)
+
+# >>> merged from split/partS/PhoneChina.sgmodule (unique only)
+
+# >>> merged from split/partS/SMZDM.sgmodule (unique only)
+
+# >>> merged from split/partS/Sape.sgmodule (unique only)
+
+# >>> merged from split/partS/ShanMeng.sgmodule (unique only)
+
+# >>> merged from split/partS/ShengQuGames.sgmodule (unique only)
+
+# >>> merged from split/partS/ShenzhenTong.sgmodule (unique only)
 # 微信小程序, REJECT
 
-# >>> merged from ShouQianBa.sgmodule (unique only)
+# >>> merged from split/partS/ShouQianBa.sgmodule (unique only)
 # 买单小程序去广告, REJECT
 
-# >>> merged from ShuQiNovel.sgmodule (unique only)
+# >>> merged from split/partS/ShuQiNovel.sgmodule (unique only)
 
-# >>> merged from Shuzilm.sgmodule (unique only)
+# >>> merged from split/partS/Shuzilm.sgmodule (unique only)
 
-# >>> merged from Sina.sgmodule (unique only)
+# >>> merged from split/partS/Snapchat.sgmodule (unique only)
 
-# >>> merged from Skyworth.sgmodule (unique only)
-
-# >>> merged from Snapchat.sgmodule (unique only)
-
-# >>> merged from Sogou.sgmodule (unique only)
+# >>> merged from split/partS/Sogou.sgmodule (unique only)
 # 屏蔽京东和搜狗收集信息 @jFrecht, REJECT
 
-# >>> merged from SogouInput.sgmodule (unique only)
+# >>> merged from split/partS/SogouInput.sgmodule (unique only)
 # DOMAIN-SUFFIX, business-cdn.shouji.sogou.com, REJECT
 
-# >>> merged from Sohu.sgmodule (unique only)
+# >>> merged from split/partS/Sohu.sgmodule (unique only)
 
-# >>> merged from Soufun.sgmodule (unique only)
+# >>> merged from split/partS/Soul.sgmodule (unique only)
 
-# >>> merged from Soul.sgmodule (unique only)
+# >>> merged from split/partS/Suning.sgmodule (unique only)
 
-# >>> merged from Suning.sgmodule (unique only)
+# >>> merged from split/partT/PConline.sgmodule (unique only)
 
-# >>> merged from Talkatone.sgmodule (unique only)
+# >>> merged from split/partT/Talkatone.sgmodule (unique only)
 #DOMAIN-SUFFIX,akamaized.net, REJECT
 
-# >>> merged from Tanwan.sgmodule (unique only)
+# >>> merged from split/partT/Tanwan.sgmodule (unique only)
 
-# >>> merged from TaoTaoSou.sgmodule (unique only)
+# >>> merged from split/partT/TaoTaoSou.sgmodule (unique only)
 
-# >>> merged from Taobao.sgmodule (unique only)
+# >>> merged from split/partT/Taobao.sgmodule (unique only)
 
-# >>> merged from Tencent.sgmodule (unique only)
+# >>> merged from split/partT/Tencent.sgmodule (unique only)
 
-# >>> merged from TencentWisdom.sgmodule (unique only)
+# >>> merged from split/partT/TencentWisdom.sgmodule (unique only)
 
-# >>> merged from ThePaperNews.sgmodule (unique only)
+# >>> merged from split/partT/Thunder.sgmodule (unique only)
 
-# >>> merged from Thunder.sgmodule (unique only)
+# >>> merged from split/partT/TianShen.sgmodule (unique only)
 
-# >>> merged from TianShen.sgmodule (unique only)
+# >>> merged from split/partT/TianTianKanKan.sgmodule (unique only)
 
-# >>> merged from TianTianKanKan.sgmodule (unique only)
+# >>> merged from split/partT/Tongdun.sgmodule (unique only)
 
-# >>> merged from Tongdun.sgmodule (unique only)
+# >>> merged from split/partT/TuanYou.sgmodule (unique only)
 
-# >>> merged from TuanYou.sgmodule (unique only)
+# >>> merged from split/partT/TubeMax.sgmodule (unique only)
 
-# >>> merged from TubeMax.sgmodule (unique only)
+# >>> merged from split/partT/TuhuAutoCare.sgmodule (unique only)
 
-# >>> merged from TuhuAutoCare.sgmodule (unique only)
+# >>> merged from split/partT/Tumblr.sgmodule (unique only)
 
-# >>> merged from Tumblr.sgmodule (unique only)
+# >>> merged from split/partT/Turn.sgmodule (unique only)
 
-# >>> merged from Turn.sgmodule (unique only)
+# >>> merged from split/partT/Twitch.sgmodule (unique only)
 
-# >>> merged from Twitch.sgmodule (unique only)
+# >>> merged from split/partT/Twitter.sgmodule (unique only)
 
-# >>> merged from Twitter.sgmodule (unique only)
+# >>> merged from split/partT/iFinD.sgmodule (unique only)
 
-# >>> merged from U9Game.sgmodule (unique only)
+# >>> merged from split/partU/UCBrowser.sgmodule (unique only)
 
-# >>> merged from UCBrowser.sgmodule (unique only)
+# >>> merged from split/partU/UnityAds.sgmodule (unique only)
 
-# >>> merged from UUSee.sgmodule (unique only)
+# >>> merged from split/partU/UrbanAirship.sgmodule (unique only)
 
-# >>> merged from UnionPayCloudPay.sgmodule (unique only)
+# >>> merged from split/partV/VIVO.sgmodule (unique only)
 
-# >>> merged from UnityAds.sgmodule (unique only)
+# >>> merged from split/partV/VIVOMall.sgmodule (unique only)
 
-# >>> merged from UrbanAirship.sgmodule (unique only)
+# >>> merged from split/partW/NetEase.sgmodule (unique only)
 
-# >>> merged from VIVO.sgmodule (unique only)
+# >>> merged from split/partW/NetEaseCloudMusic.sgmodule (unique only)
 
-# >>> merged from VIVOMall.sgmodule (unique only)
+# >>> merged from split/partW/NetEaseDashen.sgmodule (unique only)
+# 拦截HTTPDNS
 
-# >>> merged from VariFlight.sgmodule (unique only)
+# >>> merged from split/partW/Vipshop.sgmodule (unique only)
 
-# >>> merged from Vipshop.sgmodule (unique only)
-
-# >>> merged from WaiMaiBaWangCan.sgmodule (unique only)
+# >>> merged from split/partW/WaiMaiBaWangCan.sgmodule (unique only)
 # 去开屏 , REJECT
 
-# >>> merged from Wandoujia.sgmodule (unique only)
+# >>> merged from split/partW/Wandoujia.sgmodule (unique only)
 
-# >>> merged from Waps.sgmodule (unique only)
+# >>> merged from split/partW/Waps.sgmodule (unique only)
 
-# >>> merged from WasuTV.sgmodule (unique only)
+# >>> merged from split/partW/WhaleCloud.sgmodule (unique only)
 
-# >>> merged from WhaleCloud.sgmodule (unique only)
-
-# >>> merged from WiFiMasterKey.sgmodule (unique only)
+# >>> merged from split/partW/WiFiMasterKey.sgmodule (unique only)
 # 感谢#All in 梭哈分享, REJECT
 # 去除导航栏免费短剧, REJECT
 
-# >>> merged from Wostore.sgmodule (unique only)
+# >>> merged from split/partW/Wostore.sgmodule (unique only)
 
-# >>> merged from XcarAuto.sgmodule (unique only)
+# >>> merged from split/partX/Sina.sgmodule (unique only)
 
-# >>> merged from XianYu.sgmodule (unique only)
+# >>> merged from split/partX/XianYu.sgmodule (unique only)
 
-# >>> merged from XiaoAiSpeaker.sgmodule (unique only)
+# >>> merged from split/partX/XiaoAiSpeaker.sgmodule (unique only)
 
-# >>> merged from XiaoLiShengHuo.sgmodule (unique only)
+# >>> merged from split/partX/XiaoLiShengHuo.sgmodule (unique only)
 
-# >>> merged from XiaoXiaoYingShi.sgmodule (unique only)
+# >>> merged from split/partX/XiaoXiaoYingShi.sgmodule (unique only)
 
-# >>> merged from XiaoXiaoYouXuan.sgmodule (unique only)
+# >>> merged from split/partX/XiaoXiaoYouXuan.sgmodule (unique only)
 
-# >>> merged from Xiaohongshu.sgmodule (unique only)
+# >>> merged from split/partX/Xiaohongshu.sgmodule (unique only)
 
-# >>> merged from Xiaomi.sgmodule (unique only)
+# >>> merged from split/partX/Xiaomi.sgmodule (unique only)
 
-# >>> merged from Ximalaya.sgmodule (unique only)
+# >>> merged from split/partX/Ximalaya.sgmodule (unique only)
 
-# >>> merged from Xinhuanet.sgmodule (unique only)
+# >>> merged from split/partX/Xinhuanet.sgmodule (unique only)
 
-# >>> merged from Xinmin.sgmodule (unique only)
+# >>> merged from split/partX/Xinmin.sgmodule (unique only)
 
-# >>> merged from XueQiu.sgmodule (unique only)
+# >>> merged from split/partX/XueQiu.sgmodule (unique only)
 
-# >>> merged from XunYiWenYao.sgmodule (unique only)
+# >>> merged from split/partX/XunYiWenYao.sgmodule (unique only)
 
-# >>> merged from YYLivePlatform.sgmodule (unique only)
+# >>> merged from split/partX/iFlytekInputMethod.sgmodule (unique only)
 
-# >>> merged from Yahoo.sgmodule (unique only)
+# >>> merged from split/partY/AsiaInfoTechnology.sgmodule (unique only)
 
-# >>> merged from Yicha.sgmodule (unique only)
+# >>> merged from split/partY/CBox.sgmodule (unique only)
 
-# >>> merged from Yiche.sgmodule (unique only)
+# >>> merged from split/partY/CCTV.sgmodule (unique only)
 
-# >>> merged from YidianNews.sgmodule (unique only)
+# >>> merged from split/partY/Elong.sgmodule (unique only)
 
-# >>> merged from YinyueTai.sgmodule (unique only)
+# >>> merged from split/partY/Gamersky.sgmodule (unique only)
 
-# >>> merged from Youku.sgmodule (unique only)
+# >>> merged from split/partY/U9Game.sgmodule (unique only)
+
+# >>> merged from split/partY/UUSee.sgmodule (unique only)
+
+# >>> merged from split/partY/UnionPayCloudPay.sgmodule (unique only)
+
+# >>> merged from split/partY/YYLivePlatform.sgmodule (unique only)
+
+# >>> merged from split/partY/Yahoo.sgmodule (unique only)
+
+# >>> merged from split/partY/Yicha.sgmodule (unique only)
+
+# >>> merged from split/partY/Yiche.sgmodule (unique only)
+
+# >>> merged from split/partY/YidianNews.sgmodule (unique only)
+
+# >>> merged from split/partY/YinyueTai.sgmodule (unique only)
+
+# >>> merged from split/partY/Youku.sgmodule (unique only)
 # DOMAIN-SUFFIX, acz.youku.com, REJECT
 # DOMAIN-SUFFIX, sjarvis.taobao.com, REJECT
 # DOMAIN, mc.atm.youku.com, REJECT
 # DOMAIN-SUFFIX, myes.youku.com, REJECT
 
-# >>> merged from Youmi.sgmodule (unique only)
+# >>> merged from split/partY/Youmi.sgmodule (unique only)
 
-# >>> merged from Youxun.sgmodule (unique only)
+# >>> merged from split/partY/Youxun.sgmodule (unique only)
 
-# >>> merged from YoyiInteractive.sgmodule (unique only)
+# >>> merged from split/partY/YoyiInteractive.sgmodule (unique only)
 
-# >>> merged from YuanjuNetwork.sgmodule (unique only)
+# >>> merged from split/partY/YuanjuNetwork.sgmodule (unique only)
 
-# >>> merged from YunKuaiChong.sgmodule (unique only)
+# >>> merged from split/partY/YunKuaiChong.sgmodule (unique only)
 # 微信小程序
 
-# >>> merged from YunZhiJia.sgmodule (unique only)
+# >>> merged from split/partY/YunZhiJia.sgmodule (unique only)
 
-# >>> merged from ZAKERNews.sgmodule (unique only)
+# >>> merged from split/partZ/ByteDance.sgmodule (unique only)
 
-# >>> merged from ZhenBuKa.sgmodule (unique only)
+# >>> merged from split/partZ/ChinaCom.sgmodule (unique only)
 
-# >>> merged from Zhihu.sgmodule (unique only)
+# >>> merged from split/partZ/ChinaDaily.sgmodule (unique only)
 
-# >>> merged from ZhongHuaWanNianLi.sgmodule (unique only)
+# >>> merged from split/partZ/ChinaMobile.sgmodule (unique only)
 
-# >>> merged from Zhongguancun.sgmodule (unique only)
+# >>> merged from split/partZ/ChinaMobileCloudDrive.sgmodule (unique only)
 
-# >>> merged from ZuoYeBang.sgmodule (unique only)
+# >>> merged from split/partZ/ChinaTelecom.sgmodule (unique only)
 
-# >>> merged from baicizhan.sgmodule (unique only)
+# >>> merged from split/partZ/ChinaUnicom.sgmodule (unique only)
 
-# >>> merged from bilibili.sgmodule (unique only)
+# >>> merged from split/partZ/PingAnChina.sgmodule (unique only)
 
-# >>> merged from bshare.sgmodule (unique only)
+# >>> merged from split/partZ/ZAKERNews.sgmodule (unique only)
 
-# >>> merged from csdn.sgmodule (unique only)
+# >>> merged from split/partZ/ZhenBuKa.sgmodule (unique only)
 
-# >>> merged from iFinD.sgmodule (unique only)
+# >>> merged from split/partZ/Zhihu.sgmodule (unique only)
 
-# >>> merged from iFlytekInputMethod.sgmodule (unique only)
+# >>> merged from split/partZ/ZhongHuaWanNianLi.sgmodule (unique only)
 
-# >>> merged from iQIYI.sgmodule (unique only)
+# >>> merged from split/partZ/Zhongguancun.sgmodule (unique only)
+
+# >>> merged from split/partZ/ZuoYeBang.sgmodule (unique only)
 
 # >>> merged from weibo.module (unique only)
 # 收集用户信息，上传用户日志的请求
@@ -1795,7 +1806,7 @@ http-response ^https:\/\/grpc\.biliapi\.net\/bilibili\.app\.(interface\.v1\.(Tee
 ^https?:\/\/(www\.xvideos)(\.)(\w{0,3})(?!(.*(api|cdn-cgi|verify|auth|captch|\.))).* header-replace Content-Security-Policy *
 
 # >>> merged from fmz200-extra (unique only)
-# >>> merged from bilibili.sgmodule (unique only)
+# >>> merged from split/partB/bilibili.sgmodule (unique only)
 
 [URL Rewrite]
 # heat9：排除 log-api / api-access（空 reject-200 狂重试）；其它广告路径仍假空 200
@@ -4112,255 +4123,235 @@ http:\/\/sv\.adintl\.cn - reject
 ^https:\/\/mp\.weixin\.qq\.com\/mp\/relatedsearchword - reject-dict
 
 # >>> merged from fmz200-extra (unique only)
+# >>> merged from split/part1/12123.sgmodule (unique only)
 #^https?:\/\/gab\.122\.gov\.cn\/eapp\/m\/sysquery reject
 
-# >>> merged from 21EconomicNet.sgmodule (unique only)
+# >>> merged from split/part2/21EconomicNet.sgmodule (unique only)
 
-# >>> merged from 500.sgmodule (unique only)
+# >>> merged from split/part5/500.sgmodule (unique only)
 
-# >>> merged from 51Job.sgmodule (unique only)
-# 去广告 (需卸载App重装) img01.51jobcdn.com
-# 开屏及营销广告
-# 顶部弹窗
-# 首页右上角浮窗及右边浮标
-# 弹窗广告
+# >>> merged from split/part5/555YingShi.sgmodule (unique only)
 
-# >>> merged from 555YingShi.sgmodule (unique only)
+# >>> merged from split/part5/58TongCheng.sgmodule (unique only)
 
-# >>> merged from 58TongCheng.sgmodule (unique only)
+# >>> merged from split/partA/AcFun.sgmodule (unique only)
 
-# >>> merged from ABC.sgmodule (unique only)
-# ^https?:\/\/midc\.cdn-static\.abchina\.com\.cn\/distributecenterimg\/file\/download\/(?!bbc2|f015|1655|0992|4678|a194|d8e2|c513|e51c|0ee1|166e|05ca|c882|d5b8|22ed|a0dc|a55a|6f89|3bf9|3c71|52ec|5b62|ve7a|001c|923d|accf|4a10|0bd7|be7a|5b62|5dd6|1f24|006c|775d|bd02|b983|5251|806b|d119|db14|43c9|41d3|8570|2c10|85ea|1435|814e|f422|aec7|738c|d7c8|0538|02b4|fd20|7647|f6ef|07c5|885b|e4cb|685b|30aa|c23b|9603|f27f|eaf8|8011|a5eb|409d|724c|3f2a|e07f|6744|60a6|158c|8ce3) reject-dict
+# >>> merged from split/partA/AiHuiShou.sgmodule (unique only)
 
-# >>> merged from AcFun.sgmodule (unique only)
+# >>> merged from split/partA/AiMeiJu.sgmodule (unique only)
 
-# >>> merged from AiHuiShou.sgmodule (unique only)
+# >>> merged from split/partA/AiSiAssistant.sgmodule (unique only)
 
-# >>> merged from AiMeiJu.sgmodule (unique only)
+# >>> merged from split/partA/AiYueShuXiang.sgmodule (unique only)
 
-# >>> merged from AiSiAssistant.sgmodule (unique only)
+# >>> merged from split/partA/AoMi.sgmodule (unique only)
 
-# >>> merged from AiYueShuXiang.sgmodule (unique only)
+# >>> merged from split/partA/AppSo.sgmodule (unique only)
 
-# >>> merged from AllFootball.sgmodule (unique only)
-#^https?:\/\/ap\.dongqiudi\.com\/plat\/v reject
+# >>> merged from split/partB/Baidu.sgmodule (unique only)
 
-# >>> merged from AoMi.sgmodule (unique only)
+# >>> merged from split/partB/BaiduInputMethod.sgmodule (unique only)
 
-# >>> merged from AppSo.sgmodule (unique only)
+# >>> merged from split/partB/BaiduMaps.sgmodule (unique only)
 
-# >>> merged from AutoNavi.sgmodule (unique only)
+# >>> merged from split/partB/BaiduNetdisk.sgmodule (unique only)
 
-# >>> merged from BTGHomeinns.sgmodule (unique only)
+# >>> merged from split/partB/BaiduTranslation.sgmodule (unique only)
 
-# >>> merged from Baidu.sgmodule (unique only)
+# >>> merged from split/partB/BeiKeZhaoFang.sgmodule (unique only)
 
-# >>> merged from BaiduInputMethod.sgmodule (unique only)
+# >>> merged from split/partB/BeijingShouQi.sgmodule (unique only)
 
-# >>> merged from BaiduMaps.sgmodule (unique only)
+# >>> merged from split/partB/BettyKitchen.sgmodule (unique only)
 
-# >>> merged from BaiduNetdisk.sgmodule (unique only)
+# >>> merged from split/partB/BiShiJie.sgmodule (unique only)
 
-# >>> merged from BaiduTranslation.sgmodule (unique only)
+# >>> merged from split/partB/BiTeQiuCloudDrive.sgmodule (unique only)
 
-# >>> merged from BeiKeZhaoFang.sgmodule (unique only)
+# >>> merged from split/partB/BoLuoBaoLightNovel.sgmodule (unique only)
 
-# >>> merged from BeijingShouQi.sgmodule (unique only)
+# >>> merged from split/partB/PizzaHut.sgmodule (unique only)
 
-# >>> merged from BettyKitchen.sgmodule (unique only)
+# >>> merged from split/partC/CaiJingZaZhi.sgmodule (unique only)
 
-# >>> merged from BiShiJie.sgmodule (unique only)
+# >>> merged from split/partC/CaiLianShe.sgmodule (unique only)
 
-# >>> merged from BiTeQiuCloudDrive.sgmodule (unique only)
-
-# >>> merged from BoLuoBaoLightNovel.sgmodule (unique only)
-
-# >>> merged from ByteDance.sgmodule (unique only)
-
-# >>> merged from CCBLife.sgmodule (unique only)
-
-# >>> merged from CCTVVideo.sgmodule (unique only)
-
-# >>> merged from CaiJingZaZhi.sgmodule (unique only)
-
-# >>> merged from CaiLianShe.sgmodule (unique only)
-
-# >>> merged from CaiNiaoGuoGuo.sgmodule (unique only)
+# >>> merged from split/partC/CaiNiaoGuoGuo.sgmodule (unique only)
 # 支付宝-菜鸟
 
-# >>> merged from CaoCaoZhuanChe.sgmodule (unique only)
+# >>> merged from split/partC/CaoCaoZhuanChe.sgmodule (unique only)
 
-# >>> merged from ChaoJiKeChengBiao.sgmodule (unique only)
+# >>> merged from split/partC/ChaoJiKeChengBiao.sgmodule (unique only)
 
-# >>> merged from ChaoXingXueXiTong.sgmodule (unique only)
+# >>> merged from split/partC/ChaoXingXueXiTong.sgmodule (unique only)
 
-# >>> merged from CheLaiLe.sgmodule (unique only)
+# >>> merged from split/partC/CheLaiLe.sgmodule (unique only)
 
-# >>> merged from ChinaCITICBank.sgmodule (unique only)
-# 开屏广告
+# >>> merged from split/partC/CiWeiMaoYueDu.sgmodule (unique only)
 
-# >>> merged from ChinaMobile.sgmodule (unique only)
-# 多个悬浮窗
+# >>> merged from split/partC/clicli.sgmodule (unique only)
 
-# >>> merged from ChinaTelecom.sgmodule (unique only)
+# >>> merged from split/partC/csdn.sgmodule (unique only)
+# 感谢【Jörgen Frecht】分享
 
-# >>> merged from CiWeiMaoYueDu.sgmodule (unique only)
+# >>> merged from split/partD/AllFootball.sgmodule (unique only)
+#^https?:\/\/ap\.dongqiudi\.com\/plat\/v reject
 
-# >>> merged from Ctrip.sgmodule (unique only)
-# 开屏去广告
-
-# >>> merged from DLabelCloudTag.sgmodule (unique only)
+# >>> merged from split/partD/DLabelCloudTag.sgmodule (unique only)
 # 去开屏广告
 
-# >>> merged from DaZhiHui.sgmodule (unique only)
+# >>> merged from split/partD/DaZhiHui.sgmodule (unique only)
 
-# >>> merged from Damai.sgmodule (unique only)
+# >>> merged from split/partD/Damai.sgmodule (unique only)
 
-# >>> merged from DangDangReading.sgmodule (unique only)
+# >>> merged from split/partD/DangDangReading.sgmodule (unique only)
 
-# >>> merged from DeWu.sgmodule (unique only)
+# >>> merged from split/partD/DeWu.sgmodule (unique only)
 # 开屏广告 【Runestoner】分享
 
-# >>> merged from DiDaChuxing.sgmodule (unique only)
+# >>> merged from split/partD/DiDaChuxing.sgmodule (unique only)
 # 小程序净化
 
-# >>> merged from DianPing.sgmodule (unique only)
+# >>> merged from split/partD/DianPing.sgmodule (unique only)
 # 开屏广告
 
-# >>> merged from DianShiJia.sgmodule (unique only)
+# >>> merged from split/partD/DianShiJia.sgmodule (unique only)
 
-# >>> merged from DingDingPai.sgmodule (unique only)
+# >>> merged from split/partD/DingDingPai.sgmodule (unique only)
 
-# >>> merged from DingDongMaiCai.sgmodule (unique only)
+# >>> merged from split/partD/DingDongMaiCai.sgmodule (unique only)
 # 开屏广告
 # 首页弹窗
 # 我的页VIP栏净化
 
-# >>> merged from DingXiangDoctor.sgmodule (unique only)
+# >>> merged from split/partD/DingXiangDoctor.sgmodule (unique only)
 
-# >>> merged from DingXiangYuan.sgmodule (unique only)
+# >>> merged from split/partD/DingXiangYuan.sgmodule (unique only)
 
-# >>> merged from DongFangCaiFu.sgmodule (unique only)
+# >>> merged from split/partD/DongFangCaiFu.sgmodule (unique only)
 
-# >>> merged from Douban.sgmodule (unique only)
+# >>> merged from split/partD/Douban.sgmodule (unique only)
 
-# >>> merged from DouyuLive.sgmodule (unique only)
+# >>> merged from split/partD/DouyuLive.sgmodule (unique only)
 
-# >>> merged from Eleme.sgmodule (unique only)
+# >>> merged from split/partE/Eleme.sgmodule (unique only)
 # 开屏广告
 
-# >>> merged from ElongTravel.sgmodule (unique only)
+# >>> merged from split/partF/FanDengReading.sgmodule (unique only)
 
-# >>> merged from Ezviz.sgmodule (unique only)
-
-# >>> merged from FamilyMart.sgmodule (unique only)
-
-# >>> merged from FanDengReading.sgmodule (unique only)
-
-# >>> merged from FanQieNovel.sgmodule (unique only)
+# >>> merged from split/partF/FanQieNovel.sgmodule (unique only)
 # 去章末广告
 
-# >>> merged from FeiKeChaGuan.sgmodule (unique only)
+# >>> merged from split/partF/FeiKeChaGuan.sgmodule (unique only)
 
-# >>> merged from FeiMaoGuanJia.sgmodule (unique only)
+# >>> merged from split/partF/FeiMaoGuanJia.sgmodule (unique only)
 # 开屏
 
-# >>> merged from FengChao.sgmodule (unique only)
+# >>> merged from split/partF/FengChao.sgmodule (unique only)
 # 已无法MITM
 
-# >>> merged from FengHuangXiu.sgmodule (unique only)
+# >>> merged from split/partF/FengHuangXiu.sgmodule (unique only)
 
-# >>> merged from Fliggy.sgmodule (unique only)
+# >>> merged from split/partF/Fliggy.sgmodule (unique only)
 
-# >>> merged from FutuNiuNiu.sgmodule (unique only)
+# >>> merged from split/partF/FutuNiuNiu.sgmodule (unique only)
 # 首页右下角角标
 
-# >>> merged from GaiDePaiHang.sgmodule (unique only)
+# >>> merged from split/partF/VariFlight.sgmodule (unique only)
 
-# >>> merged from GameTime.sgmodule (unique only)
+# >>> merged from split/partG/AutoNavi.sgmodule (unique only)
 
-# >>> merged from GaoTieGuanJia.sgmodule (unique only)
+# >>> merged from split/partG/GaiDePaiHang.sgmodule (unique only)
 
-# >>> merged from GomeAppliances.sgmodule (unique only)
+# >>> merged from split/partG/GaoTieGuanJia.sgmodule (unique only)
 
-# >>> merged from GongShiJiLu.sgmodule (unique only)
+# >>> merged from split/partG/GomeAppliances.sgmodule (unique only)
 
-# >>> merged from GuahaoWangWeiyi.sgmodule (unique only)
+# >>> merged from split/partG/GongShiJiLu.sgmodule (unique only)
 
-# >>> merged from GuaiShouChongDian.sgmodule (unique only)
+# >>> merged from split/partG/GuahaoWangWeiyi.sgmodule (unique only)
+
+# >>> merged from split/partG/GuaiShouChongDian.sgmodule (unique only)
 # 微信小程序
 
-# >>> merged from GuanYu.sgmodule (unique only)
+# >>> merged from split/partG/GuanYu.sgmodule (unique only)
 # 开屏广告
 
-# >>> merged from HaiTunYouHui.sgmodule (unique only)
+# >>> merged from split/partG/NMIServicePlatform.sgmodule (unique only)
+# 开屏广告
 
-# >>> merged from HanJuTV.sgmodule (unique only)
+# >>> merged from split/partH/HaiTunYouHui.sgmodule (unique only)
 
-# >>> merged from HangLvZongHeng.sgmodule (unique only)
+# >>> merged from split/partH/HanJuTV.sgmodule (unique only)
+
+# >>> merged from split/partH/HangLvZongHeng.sgmodule (unique only)
 # 此条存在首页横幅误杀，可以禁止MITM域名
 
-# >>> merged from HangZhouBus.sgmodule (unique only)
+# >>> merged from split/partH/HangZhouBus.sgmodule (unique only)
 
-# >>> merged from HangZhouCitizen.sgmodule (unique only)
+# >>> merged from split/partH/HangZhouCitizen.sgmodule (unique only)
 
-# >>> merged from HaoHaoZhu.sgmodule (unique only)
+# >>> merged from split/partH/HaoHaoZhu.sgmodule (unique only)
 
-# >>> merged from HaoQiXinDaily.sgmodule (unique only)
+# >>> merged from split/partH/HaoQiXinDaily.sgmodule (unique only)
 
-# >>> merged from HaoXingTiZhongCheng.sgmodule (unique only)
+# >>> merged from split/partH/HaoXingTiZhongCheng.sgmodule (unique only)
 
-# >>> merged from Hema.sgmodule (unique only)
+# >>> merged from split/partH/Hema.sgmodule (unique only)
 
-# >>> merged from HengDianCinema.sgmodule (unique only)
+# >>> merged from split/partH/HengDianCinema.sgmodule (unique only)
 # 开屏广告
 
-# >>> merged from HongBanBao.sgmodule (unique only)
+# >>> merged from split/partH/HongBanBao.sgmodule (unique only)
 
-# >>> merged from HuaShengDiTie.sgmodule (unique only)
+# >>> merged from split/partH/HuaShengDiTie.sgmodule (unique only)
 
-# >>> merged from HuangYouXiangJi.sgmodule (unique only)
+# >>> merged from split/partH/HuangYouXiangJi.sgmodule (unique only)
 
-# >>> merged from HuazhuClub.sgmodule (unique only)
+# >>> merged from split/partH/HuazhuClub.sgmodule (unique only)
 # 开屏广告
 
-# >>> merged from HuoMao.sgmodule (unique only)
+# >>> merged from split/partH/HuoMao.sgmodule (unique only)
 
-# >>> merged from Hupu.sgmodule (unique only)
+# >>> merged from split/partH/Hupu.sgmodule (unique only)
 
-# >>> merged from Huxiu.sgmodule (unique only)
+# >>> merged from split/partH/Huxiu.sgmodule (unique only)
 
-# >>> merged from HuyaLive.sgmodule (unique only)
+# >>> merged from split/partH/HuyaLive.sgmodule (unique only)
 
-# >>> merged from InkeLive.sgmodule (unique only)
+# >>> merged from split/partH/WallStreetCN.sgmodule (unique only)
 
-# >>> merged from JD.com.sgmodule (unique only)
+# >>> merged from split/partJ/CCBLife.sgmodule (unique only)
+
+# >>> merged from split/partJ/JD.com.sgmodule (unique only)
 # 禁京东直播小窗
 
-# >>> merged from JDFinance.sgmodule (unique only)
+# >>> merged from split/partJ/JDFinance.sgmodule (unique only)
 
-# >>> merged from JiJianHuiLv.sgmodule (unique only)
+# >>> merged from split/partJ/JiJianHuiLv.sgmodule (unique only)
 
-# >>> merged from JiaKaoBaoDian.sgmodule (unique only)
+# >>> merged from split/partJ/JiaKaoBaoDian.sgmodule (unique only)
 
-# >>> merged from JiaXiaoYiDianTong.sgmodule (unique only)
+# >>> merged from split/partJ/JiaXiaoYiDianTong.sgmodule (unique only)
 # 开屏广告 感谢【jinlvei】分享
 
-# >>> merged from JieMianNews.sgmodule (unique only)
+# >>> merged from split/partJ/JieMianNews.sgmodule (unique only)
 
-# >>> merged from JinRongToutiao.sgmodule (unique only)
+# >>> merged from split/partJ/JinRongToutiao.sgmodule (unique only)
 # 感谢【Jörgen Frecht】分享
 
-# >>> merged from JinShiData.sgmodule (unique only)
+# >>> merged from split/partJ/JinShiData.sgmodule (unique only)
 # 开屏广告和应用内弹窗
 
-# >>> merged from KFC.sgmodule (unique only)
+# >>> merged from split/partJ/KingsoftPowerWord.sgmodule (unique only)
 
-# >>> merged from KanLiXiang.sgmodule (unique only)
+# >>> merged from split/partK/KFC.sgmodule (unique only)
 
-# >>> merged from KanTianXia.sgmodule (unique only)
+# >>> merged from split/partK/KanLiXiang.sgmodule (unique only)
 
-# >>> merged from Keep.sgmodule (unique only)
+# >>> merged from split/partK/KanTianXia.sgmodule (unique only)
+
+# >>> merged from split/partK/Keep.sgmodule (unique only)
 # 屏蔽应用内弹窗
 # 屏蔽部分启动弹窗
 # 屏蔽开屏广告请求
@@ -4373,330 +4364,357 @@ http:\/\/sv\.adintl\.cn - reject
 # 屏蔽adbox
 # 屏蔽更新
 
-# >>> merged from KingsoftPowerWord.sgmodule (unique only)
+# >>> merged from split/partK/KuaiDi100.sgmodule (unique only)
 
-# >>> merged from KuaiDi100.sgmodule (unique only)
+# >>> merged from split/partL/LaiChong.sgmodule (unique only)
 
-# >>> merged from LaiChong.sgmodule (unique only)
+# >>> merged from split/partL/LaiFeng.sgmodule (unique only)
 
-# >>> merged from LaiFeng.sgmodule (unique only)
-
-# >>> merged from LanJiYin.sgmodule (unique only)
+# >>> merged from split/partL/LanJiYin.sgmodule (unique only)
 # 首页弹窗广告 OCc分享
 
-# >>> merged from LanJie100.sgmodule (unique only)
+# >>> merged from split/partL/LanJie100.sgmodule (unique only)
 
-# >>> merged from LanRenTingShu.sgmodule (unique only)
+# >>> merged from split/partL/LanRenTingShu.sgmodule (unique only)
 
-# >>> merged from LanTouZi.sgmodule (unique only)
+# >>> merged from split/partL/LanTouZi.sgmodule (unique only)
 
-# >>> merged from LeCheng.sgmodule (unique only)
+# >>> merged from split/partL/LeCheng.sgmodule (unique only)
 
-# >>> merged from Lenovo.sgmodule (unique only)
+# >>> merged from split/partL/Lenovo.sgmodule (unique only)
 
-# >>> merged from LiangBuLu.sgmodule (unique only)
+# >>> merged from split/partL/LiangBuLu.sgmodule (unique only)
 # host-suffix, admobile.top, reject
 
-# >>> merged from Line.sgmodule (unique only)
+# >>> merged from split/partL/Line.sgmodule (unique only)
 
-# >>> merged from MIX.sgmodule (unique only)
+# >>> merged from split/partL/linxi.sgmodule (unique only)
 
-# >>> merged from Mafengwo.sgmodule (unique only)
+# >>> merged from split/partM/MIX.sgmodule (unique only)
 
-# >>> merged from MaiDanBa.sgmodule (unique only)
+# >>> merged from split/partM/Mafengwo.sgmodule (unique only)
 
-# >>> merged from MaiDuiDui.sgmodule (unique only)
+# >>> merged from split/partM/MaiDanBa.sgmodule (unique only)
 
-# >>> merged from ManHuaRen.sgmodule (unique only)
+# >>> merged from split/partM/MaiDuiDui.sgmodule (unique only)
 
-# >>> merged from MangoTV.sgmodule (unique only)
+# >>> merged from split/partM/ManHuaRen.sgmodule (unique only)
+
+# >>> merged from split/partM/MangoTV.sgmodule (unique only)
 # 无用请求
 
-# >>> merged from MaoErFM.sgmodule (unique only)
+# >>> merged from split/partM/MaoErFM.sgmodule (unique only)
 # 开屏广告 感谢【可莉🅥】分享
 
-# >>> merged from MeiRiYouXian.sgmodule (unique only)
+# >>> merged from split/partM/MeiRiYouXian.sgmodule (unique only)
 
-# >>> merged from MeiWeiBuYongDeng.sgmodule (unique only)
+# >>> merged from split/partM/MeiWeiBuYongDeng.sgmodule (unique only)
 
-# >>> merged from MeituXiuxiu.sgmodule (unique only)
+# >>> merged from split/partM/MeituXiuxiu.sgmodule (unique only)
 
-# >>> merged from Meiyou.sgmodule (unique only)
+# >>> merged from split/partM/Meiyou.sgmodule (unique only)
 
-# >>> merged from MiDu.sgmodule (unique only)
+# >>> merged from split/partM/MiaoPai.sgmodule (unique only)
 
-# >>> merged from MiaoPai.sgmodule (unique only)
+# >>> merged from split/partM/MoGuZuFang.sgmodule (unique only)
 
-# >>> merged from MoGuZuFang.sgmodule (unique only)
+# >>> merged from split/partN/ABC.sgmodule (unique only)
+# ^https?:\/\/midc\.cdn-static\.abchina\.com\.cn\/distributecenterimg\/file\/download\/(?!bbc2|f015|1655|0992|4678|a194|d8e2|c513|e51c|0ee1|166e|05ca|c882|d5b8|22ed|a0dc|a55a|6f89|3bf9|3c71|52ec|5b62|ve7a|001c|923d|accf|4a10|0bd7|be7a|5b62|5dd6|1f24|006c|775d|bd02|b983|5251|806b|d119|db14|43c9|41d3|8570|2c10|85ea|1435|814e|f422|aec7|738c|d7c8|0538|02b4|fd20|7647|f6ef|07c5|885b|e4cb|685b|30aa|c23b|9603|f27f|eaf8|8011|a5eb|409d|724c|3f2a|e07f|6744|60a6|158c|8ce3) reject-dict
 
-# >>> merged from NMIServicePlatform.sgmodule (unique only)
-# 开屏广告
+# >>> merged from split/partO/ONE.sgmodule (unique only)
 
-# >>> merged from NetEaseDashen.sgmodule (unique only)
-# 广告下发
+# >>> merged from split/partO/Oray.sgmodule (unique only)
 
-# >>> merged from NetEaseKaola.sgmodule (unique only)
+# >>> merged from split/partO/ofoBicycle.sgmodule (unique only)
 
-# >>> merged from NetEaseMail.sgmodule (unique only)
+# >>> merged from split/partO/omofun.sgmodule (unique only)
 
-# >>> merged from NetEaseYanxuan.sgmodule (unique only)
+# >>> merged from split/partP/Pinduoduo.sgmodule (unique only)
 
-# >>> merged from NetEaseYoudaoDictionary.sgmodule (unique only)
-# 其他
+# >>> merged from split/partP/PingAnHaoCheZhu.sgmodule (unique only)
 
-# >>> merged from ONE.sgmodule (unique only)
-
-# >>> merged from Oray.sgmodule (unique only)
-
-# >>> merged from PConline.sgmodule (unique only)
-
-# >>> merged from PICC.sgmodule (unique only)
-# 人保头条
-
-# >>> merged from PSBC.sgmodule (unique only)
-# 屏蔽升级弹窗 感谢@jinlvei分享 影响软件运行，如开启可自行添加主机名
-
-# >>> merged from PeoplesDaily.sgmodule (unique only)
-
-# >>> merged from PerfectWorldEsports.sgmodule (unique only)
-# 开屏广告
-
-# >>> merged from Pinduoduo.sgmodule (unique only)
-
-# >>> merged from PingAnHaoCheZhu.sgmodule (unique only)
-
-# >>> merged from PizzaHut.sgmodule (unique only)
-
-# >>> merged from PuPuSupermarket.sgmodule (unique only)
+# >>> merged from split/partP/PuPuSupermarket.sgmodule (unique only)
 # 广告下发
 # 主页实惠卡横幅
 
-# >>> merged from QQBrowser.sgmodule (unique only)
+# >>> merged from split/partP/SPDBank.sgmodule (unique only)
 
-# >>> merged from QQMusic.sgmodule (unique only)
+# >>> merged from split/partP/ThePaperNews.sgmodule (unique only)
 
-# >>> merged from QQWallet.sgmodule (unique only)
+# >>> merged from split/partP/pikpak.sgmodule (unique only)
 
-# >>> merged from QiDianReading.sgmodule (unique only)
+# >>> merged from split/partQ/51Job.sgmodule (unique only)
+# 去广告 (需卸载App重装) img01.51jobcdn.com
+# 开屏及营销广告
+# 顶部弹窗
+# 首页右上角浮窗及右边浮标
+# 弹窗广告
 
-# >>> merged from QiMai.sgmodule (unique only)
+# >>> merged from split/partQ/FamilyMart.sgmodule (unique only)
 
-# >>> merged from QiMaoNovel.sgmodule (unique only)
+# >>> merged from split/partQ/QQBrowser.sgmodule (unique only)
+
+# >>> merged from split/partQ/QQMusic.sgmodule (unique only)
+
+# >>> merged from split/partQ/QQWallet.sgmodule (unique only)
+
+# >>> merged from split/partQ/QiDianReading.sgmodule (unique only)
+
+# >>> merged from split/partQ/QiMai.sgmodule (unique only)
+
+# >>> merged from split/partQ/QiMaoNovel.sgmodule (unique only)
 # 删除了域名lf-cdn-tos.bytescm.com，原因是无法MITM
 
-# >>> merged from QiShuiMusic.sgmodule (unique only)
+# >>> merged from split/partQ/QiShuiMusic.sgmodule (unique only)
 # 字节跳动广告
 
-# >>> merged from QinBaoBao.sgmodule (unique only)
+# >>> merged from split/partQ/QinBaoBao.sgmodule (unique only)
 
-# >>> merged from Qiongyou.sgmodule (unique only)
+# >>> merged from split/partQ/Qiongyou.sgmodule (unique only)
 
-# >>> merged from QiuMiBao.sgmodule (unique only)
+# >>> merged from split/partQ/QiuMiBao.sgmodule (unique only)
 
-# >>> merged from Qunar.sgmodule (unique only)
+# >>> merged from split/partQ/Qunar.sgmodule (unique only)
 
-# >>> merged from RenRenVideo.sgmodule (unique only)
-# RRTV_屏蔽軟件更新
-
-# >>> merged from RiRiZhu.sgmodule (unique only)
-
-# >>> merged from SFBest.sgmodule (unique only)
-
-# >>> merged from SPDBank.sgmodule (unique only)
-
-# >>> merged from SamClub.sgmodule (unique only)
-
-# >>> merged from SanLianZhongDu.sgmodule (unique only)
-
-# >>> merged from ShaoShuPai.sgmodule (unique only)
-
-# >>> merged from ShenMa.sgmodule (unique only)
-
-# >>> merged from ShengQuGames.sgmodule (unique only)
-
-# >>> merged from ShiHuo.sgmodule (unique only)
-# 开屏广告
-
-# >>> merged from ShouQiYueChe.sgmodule (unique only)
-
-# >>> merged from ShuQiNovel.sgmodule (unique only)
-
-# >>> merged from SnailSleep.sgmodule (unique only)
-
-# >>> merged from SogouInput.sgmodule (unique only)
-# 开屏广告
-
-# >>> merged from Sohu.sgmodule (unique only)
-
-# >>> merged from Soul.sgmodule (unique only)
-# 国际版Soul去广告
-
-# >>> merged from Suning.sgmodule (unique only)
-
-# >>> merged from TaoTaoReading.sgmodule (unique only)
-# 感谢【Baby】分享
-
-# >>> merged from Taopiaopiao.sgmodule (unique only)
-# 开屏广告
-
-# >>> merged from TencentGames.sgmodule (unique only)
-
-# >>> merged from TencentGamesCommunity.sgmodule (unique only)
-# 如果想拦截1234567890-1234?wx类的长连接就加长规则,不加结尾符,只要前面的匹配了都会拦截。
-
-# >>> merged from TencentNews.sgmodule (unique only)
-#^https?:\/\/r\.inews\.qq\.com\/getSplash\?apptype=ios&startarticleid=&__qnr= reject-img
-
-# >>> merged from TencentRideCode.sgmodule (unique only)
-# 感谢【jinlvei】分享
-
-# >>> merged from TencentSports.sgmodule (unique only)
-
-# >>> merged from ThePaperNews.sgmodule (unique only)
-
-# >>> merged from TianTianFund.sgmodule (unique only)
-
-# >>> merged from TianXingFinance.sgmodule (unique only)
-
-# >>> merged from TongChengTravel.sgmodule (unique only)
-# 开屏广告
-
-# >>> merged from TruthSocial.sgmodule (unique only)
-
-# >>> merged from TubeMax.sgmodule (unique only)
-# 感谢【可莉】分享
-
-# >>> merged from TuhuAutoCare.sgmodule (unique only)
-# 包含途虎小程序和App净化
-
-# >>> merged from TujiaHomestay.sgmodule (unique only)
-
-# >>> merged from UJing.sgmodule (unique only)
-
-# >>> merged from VariFlight.sgmodule (unique only)
-
-# >>> merged from Vipshop.sgmodule (unique only)
-
-# >>> merged from WIFIwannengyuechi.sgmodule (unique only)
-
-# >>> merged from WPS.sgmodule (unique only)
-
-# >>> merged from WallStreetCN.sgmodule (unique only)
-
-# >>> merged from WanCiWang.sgmodule (unique only)
-# 移除开屏
-
-# >>> merged from WangShangGuoWang.sgmodule (unique only)
-
-# >>> merged from WeiPhone.sgmodule (unique only)
-
-# >>> merged from WuTaCamera.sgmodule (unique only)
-
-# >>> merged from XiChuangZhu.sgmodule (unique only)
-
-# >>> merged from XiFanAnime.sgmodule (unique only)
-
-# >>> merged from XiaChuFang.sgmodule (unique only)
-
-# >>> merged from XiamenAirlines.sgmodule (unique only)
-# 开屏广告
-
-# >>> merged from XiamiMusic.sgmodule (unique only)
-
-# >>> merged from XianYu.sgmodule (unique only)
+# >>> merged from split/partQ/XianYu.sgmodule (unique only)
 # 消息页感兴趣推荐
 
-# >>> merged from XiaoAiSpeaker.sgmodule (unique only)
+# >>> merged from split/partQ/Zhihu.sgmodule (unique only)
+# 其他 - 服务器推送配置
 
-# >>> merged from XiaoBaiStudyPrinter.sgmodule (unique only)
+# >>> merged from split/partR/PeoplesDaily.sgmodule (unique only)
+
+# >>> merged from split/partR/RenRenVideo.sgmodule (unique only)
+# RRTV_屏蔽軟件更新
+
+# >>> merged from split/partR/RiRiZhu.sgmodule (unique only)
+
+# >>> merged from split/partS/BTGHomeinns.sgmodule (unique only)
+
+# >>> merged from split/partS/SFBest.sgmodule (unique only)
+
+# >>> merged from split/partS/SamClub.sgmodule (unique only)
+
+# >>> merged from split/partS/SanLianZhongDu.sgmodule (unique only)
+
+# >>> merged from split/partS/ShaoShuPai.sgmodule (unique only)
+
+# >>> merged from split/partS/ShenMa.sgmodule (unique only)
+
+# >>> merged from split/partS/ShengQuGames.sgmodule (unique only)
+
+# >>> merged from split/partS/ShiHuo.sgmodule (unique only)
+# 开屏广告
+
+# >>> merged from split/partS/ShouQiYueChe.sgmodule (unique only)
+
+# >>> merged from split/partS/ShuQiNovel.sgmodule (unique only)
+
+# >>> merged from split/partS/SogouInput.sgmodule (unique only)
+# 开屏广告
+
+# >>> merged from split/partS/Sohu.sgmodule (unique only)
+
+# >>> merged from split/partS/Soul.sgmodule (unique only)
+# 国际版Soul去广告
+
+# >>> merged from split/partS/Suning.sgmodule (unique only)
+
+# >>> merged from split/partT/PConline.sgmodule (unique only)
+
+# >>> merged from split/partT/TaoTaoReading.sgmodule (unique only)
+# 感谢【Baby】分享
+
+# >>> merged from split/partT/Taopiaopiao.sgmodule (unique only)
+# 开屏广告
+
+# >>> merged from split/partT/TencentGames.sgmodule (unique only)
+
+# >>> merged from split/partT/TencentGamesCommunity.sgmodule (unique only)
+# 如果想拦截1234567890-1234?wx类的长连接就加长规则,不加结尾符,只要前面的匹配了都会拦截。
+
+# >>> merged from split/partT/TencentNews.sgmodule (unique only)
+#^https?:\/\/r\.inews\.qq\.com\/getSplash\?apptype=ios&startarticleid=&__qnr= reject-img
+
+# >>> merged from split/partT/TencentRideCode.sgmodule (unique only)
+# 感谢【jinlvei】分享
+
+# >>> merged from split/partT/TencentSports.sgmodule (unique only)
+
+# >>> merged from split/partT/TianTianFund.sgmodule (unique only)
+
+# >>> merged from split/partT/TianXingFinance.sgmodule (unique only)
+
+# >>> merged from split/partT/TongChengTravel.sgmodule (unique only)
+# 开屏广告
+
+# >>> merged from split/partT/TruthSocial.sgmodule (unique only)
+
+# >>> merged from split/partT/TubeMax.sgmodule (unique only)
+# 感谢【可莉】分享
+
+# >>> merged from split/partT/TuhuAutoCare.sgmodule (unique only)
+# 包含途虎小程序和App净化
+
+# >>> merged from split/partT/TujiaHomestay.sgmodule (unique only)
+
+# >>> merged from split/partT/iFinD.sgmodule (unique only)
+
+# >>> merged from split/partT/top-widget.sgmodule (unique only)
+
+# >>> merged from split/partU/UJing.sgmodule (unique only)
+
+# >>> merged from split/partU/udnNews.sgmodule (unique only)
+
+# >>> merged from split/partW/NetEaseDashen.sgmodule (unique only)
+# 广告下发
+
+# >>> merged from split/partW/NetEaseKaola.sgmodule (unique only)
+
+# >>> merged from split/partW/NetEaseMail.sgmodule (unique only)
+
+# >>> merged from split/partW/NetEaseYanxuan.sgmodule (unique only)
+
+# >>> merged from split/partW/NetEaseYoudaoDictionary.sgmodule (unique only)
+# 其他
+
+# >>> merged from split/partW/PerfectWorldEsports.sgmodule (unique only)
+# 开屏广告
+
+# >>> merged from split/partW/SnailSleep.sgmodule (unique only)
+
+# >>> merged from split/partW/Vipshop.sgmodule (unique only)
+
+# >>> merged from split/partW/WIFIwannengyuechi.sgmodule (unique only)
+
+# >>> merged from split/partW/WPS.sgmodule (unique only)
+
+# >>> merged from split/partW/WanCiWang.sgmodule (unique only)
+# 移除开屏
+
+# >>> merged from split/partW/WangShangGuoWang.sgmodule (unique only)
+
+# >>> merged from split/partW/WeiPhone.sgmodule (unique only)
+
+# >>> merged from split/partW/WuTaCamera.sgmodule (unique only)
+
+# >>> merged from split/partX/Ctrip.sgmodule (unique only)
+# 开屏去广告
+
+# >>> merged from split/partX/MiDu.sgmodule (unique only)
+
+# >>> merged from split/partX/XiChuangZhu.sgmodule (unique only)
+
+# >>> merged from split/partX/XiFanAnime.sgmodule (unique only)
+
+# >>> merged from split/partX/XiaChuFang.sgmodule (unique only)
+
+# >>> merged from split/partX/XiamenAirlines.sgmodule (unique only)
+# 开屏广告
+
+# >>> merged from split/partX/XiamiMusic.sgmodule (unique only)
+
+# >>> merged from split/partX/XianYu.sgmodule (unique only)
+# 消息页感兴趣推荐
+
+# >>> merged from split/partX/XiaoAiSpeaker.sgmodule (unique only)
+
+# >>> merged from split/partX/XiaoBaiStudyPrinter.sgmodule (unique only)
 # 捕获试卷脚本：https://raw.githubusercontent.com/Yu9191/Script/main/shijuan.js
 
-# >>> merged from XiaoJuTechnology.sgmodule (unique only)
+# >>> merged from split/partX/XiaoJuTechnology.sgmodule (unique only)
 
-# >>> merged from XiaoLiShengHuo.sgmodule (unique only)
+# >>> merged from split/partX/XiaoLiShengHuo.sgmodule (unique only)
 
-# >>> merged from XiaoNiu.sgmodule (unique only)
+# >>> merged from split/partX/XiaoNiu.sgmodule (unique only)
 
-# >>> merged from XiaoRongJia.sgmodule (unique only)
+# >>> merged from split/partX/XiaoRongJia.sgmodule (unique only)
 # 屏蔽固件更新
 # 首页弹窗
 
-# >>> merged from XiaoShuiMian.sgmodule (unique only)
+# >>> merged from split/partX/XiaoShuiMian.sgmodule (unique only)
 
-# >>> merged from XiaoTuChongChong.sgmodule (unique only)
+# >>> merged from split/partX/XiaoTuChongChong.sgmodule (unique only)
 # 小程序净化
 
-# >>> merged from XiaoXiaoYouXuan.sgmodule (unique only)
+# >>> merged from split/partX/XiaoXiaoYouXuan.sgmodule (unique only)
 # 弹窗广告
 # 右下角的悬浮广告
 # 禁止上报设备信息
 
-# >>> merged from XiaoXiongArt.sgmodule (unique only)
+# >>> merged from split/partX/XiaoXiongArt.sgmodule (unique only)
 
-# >>> merged from XiaoYi.sgmodule (unique only)
+# >>> merged from split/partX/XiaoYi.sgmodule (unique only)
 
-# >>> merged from XinPianChang.sgmodule (unique only)
+# >>> merged from split/partX/XinPianChang.sgmodule (unique only)
 
-# >>> merged from XingHuoEnglish.sgmodule (unique only)
+# >>> merged from split/partX/XingHuoEnglish.sgmodule (unique only)
 # 开屏广告
 
-# >>> merged from YaNaiFei.sgmodule (unique only)
+# >>> merged from split/partY/CCTVVideo.sgmodule (unique only)
 
-# >>> merged from Yahoo.sgmodule (unique only)
+# >>> merged from split/partY/ElongTravel.sgmodule (unique only)
 
-# >>> merged from YiHaoDian.sgmodule (unique only)
+# >>> merged from split/partY/Ezviz.sgmodule (unique only)
 
-# >>> merged from YiKaoBang.sgmodule (unique only)
+# >>> merged from split/partY/GameTime.sgmodule (unique only)
+
+# >>> merged from split/partY/InkeLive.sgmodule (unique only)
+
+# >>> merged from split/partY/PSBC.sgmodule (unique only)
+# 屏蔽升级弹窗 感谢@jinlvei分享 影响软件运行，如开启可自行添加主机名
+
+# >>> merged from split/partY/YaNaiFei.sgmodule (unique only)
+
+# >>> merged from split/partY/Yahoo.sgmodule (unique only)
+
+# >>> merged from split/partY/YiHaoDian.sgmodule (unique only)
+
+# >>> merged from split/partY/YiKaoBang.sgmodule (unique only)
 # 去强制更新 感谢【SH DDDDD】分享
 
-# >>> merged from YiQiKaoJiaoShi.sgmodule (unique only)
+# >>> merged from split/partY/YiQiKaoJiaoShi.sgmodule (unique only)
 # 开屏广告及题库广告 感谢【Jessire】分享
 
-# >>> merged from YiTao.sgmodule (unique only)
+# >>> merged from split/partY/YiTao.sgmodule (unique only)
 
-# >>> merged from YinShengTong.sgmodule (unique only)
+# >>> merged from split/partY/YinShengTong.sgmodule (unique only)
 
-# >>> merged from YouLinYouKe.sgmodule (unique only)
+# >>> merged from split/partY/YouLinYouKe.sgmodule (unique only)
 
-# >>> merged from YouShu.sgmodule (unique only)
+# >>> merged from split/partY/YouShu.sgmodule (unique only)
 
-# >>> merged from YouTuReading.sgmodule (unique only)
+# >>> merged from split/partY/YouTuReading.sgmodule (unique only)
 
-# >>> merged from YunBaoBaoBigData.sgmodule (unique only)
+# >>> merged from split/partY/YunBaoBaoBigData.sgmodule (unique only)
 
-# >>> merged from ZhangShangLOL.sgmodule (unique only)
+# >>> merged from split/partZ/ByteDance.sgmodule (unique only)
 
-# >>> merged from ZhangShangShengHuo.sgmodule (unique only)
-# 设置栏目内广告
-
-# >>> merged from ZhiDianTianXia.sgmodule (unique only)
+# >>> merged from split/partZ/ChinaCITICBank.sgmodule (unique only)
 # 开屏广告
 
-# >>> merged from Zhihu.sgmodule (unique only)
+# >>> merged from split/partZ/ChinaMobile.sgmodule (unique only)
+# 多个悬浮窗
+
+# >>> merged from split/partZ/ChinaTelecom.sgmodule (unique only)
+
+# >>> merged from split/partZ/PICC.sgmodule (unique only)
+# 人保头条
+
+# >>> merged from split/partZ/ZhangShangLOL.sgmodule (unique only)
+
+# >>> merged from split/partZ/ZhangShangShengHuo.sgmodule (unique only)
+# 设置栏目内广告
+
+# >>> merged from split/partZ/ZhiDianTianXia.sgmodule (unique only)
+# 开屏广告
+
+# >>> merged from split/partZ/Zhihu.sgmodule (unique only)
 # 其他 - 服务器推送配置
 
-# >>> merged from ZhuiJuDaRen.sgmodule (unique only)
+# >>> merged from split/partZ/ZhuiJuDaRen.sgmodule (unique only)
 
-# >>> merged from ZuiYou.sgmodule (unique only)
-
-# >>> merged from clicli.sgmodule (unique only)
-
-# >>> merged from csdn.sgmodule (unique only)
-# 感谢【Jörgen Frecht】分享
-
-# >>> merged from iFinD.sgmodule (unique only)
-
-# >>> merged from linxi.sgmodule (unique only)
-
-# >>> merged from ofoBicycle.sgmodule (unique only)
-
-# >>> merged from omofun.sgmodule (unique only)
-
-# >>> merged from pikpak.sgmodule (unique only)
-
-# >>> merged from top-widget.sgmodule (unique only)
-
-# >>> merged from udnNews.sgmodule (unique only)
+# >>> merged from split/partZ/ZuiYou.sgmodule (unique only)
 
 # >>> merged from weibo.module (unique only)
 ^https?:\/\/sdkapp\.uve\.weibo\.com\/interface\/sdk\/(get-lbs-cell-info\.php|sdkconfig\.php) - reject
@@ -8795,290 +8813,17 @@ Admodule = type=http-response, pattern=^https?:\/\/lysl2020.com/wp-json/wp/v2/po
 Admodule = type=http-response, pattern=^https?:\/\/.*\.(hseon|hhios|ppkok|jiejing|trollstore|mrlin|xuxuyuan)\.(cn|com|store|xin|vip|top)\/api, script-path=https://cdn.jsdelivr.net/gh/oo226/egern-config@main/Scripts/chxm1023/advertising/Admodule.js, requires-body=true, max-size=-1, timeout=60
 
 # >>> merged from fmz200-extra (unique only)
-# >>> merged from 12306.sgmodule (unique only)
+# >>> merged from split/part1/12306.sgmodule (unique only)
 
-# >>> merged from 51CreditCardManager.sgmodule (unique only)
+# >>> merged from split/part5/51CreditCardManager.sgmodule (unique only)
 
-# >>> merged from 51Job.sgmodule (unique only)
+# >>> merged from split/part5/555YingShi.sgmodule (unique only)
 
-# 我的页净化
+# >>> merged from split/partA/Alibaba.sgmodule (unique only)
 
-# >>> merged from 555YingShi.sgmodule (unique only)
+# >>> merged from split/partA/AlibabaCloudDrive.sgmodule (unique only)
 
-# >>> merged from AdAlliance.sgmodule (unique only)
-
-# >>> merged from AirChina.sgmodule (unique only)
-
-# >>> merged from Alibaba.sgmodule (unique only)
-
-# >>> merged from AlibabaCloudDrive.sgmodule (unique only)
-
-# >>> merged from BaiduMaps.sgmodule (unique only)
-
-# >>> merged from BaiduTieba.sgmodule (unique only)
-
-# >>> merged from BananaIsAFruit.sgmodule (unique only)
-
-# >>> merged from BilibiliComics.sgmodule (unique only)
-
-# >>> merged from Blued.sgmodule (unique only)
-# 登录后个人界面广告
-
-# >>> merged from BoHeHealth.sgmodule (unique only)
-# 记录 大家都在看data.recom_cards / 底部按钮data.recom_btns
-
-# 广场 推荐 红标data.tabs[1].badge /轮播图data.recommend_ads
-
-# 代谢中心 顶部轮播图top_banner / 免费问诊推广diagnos_config / 合作医疗机构partner_hospital / 医患问答question_answer / 热门商品product / 品牌大事件brand_story
-
-# >>> merged from CCBLife.sgmodule (unique only)
-
-# 内置饿了么
-
-# >>> merged from CaiNiaoGuoGuo.sgmodule (unique only)
-
-# 消息中心
-
-# >>> merged from CaiXin.sgmodule (unique only)
-
-# >>> merged from ChinaMerchantsSecurities.sgmodule (unique only)
-# 首页和理财页面横幅广告
-
-# >>> merged from Coolapk.sgmodule (unique only)
-
-# >>> merged from DiDiChuxing.sgmodule (unique only)
-
-#http-response ^https?:\/\/conf\.diditaxi\.com\.cn\/homepage\/v\d\/core script-path=https://cdn.jsdelivr.net/gh/oo226/egern-config@main/Scripts/fmz200/didi/didiAds.js, requires-body=true, timeout=60, tag=滴滴出行
-
-# 微信小程序个人中心净化 感谢【TEXAS】分享
-
-# >>> merged from DianPing.sgmodule (unique only)
-# 开屏广告
-
-# >>> merged from DianYingLieShou.sgmodule (unique only)
-
-# >>> merged from DingDongMaiCai.sgmodule (unique only)
-# 开屏广告及首页推荐流及底部状态栏优化
-
-# 右下角AI
-
-# 我的页净化
-
-# >>> merged from DongHuaFeng.sgmodule (unique only)
-# (黑屏25秒)
-
-# >>> merged from FeiKeChaGuan.sgmodule (unique only)
-
-# >>> merged from FenBi.sgmodule (unique only)
-
-# >>> merged from FuYouHui.sgmodule (unique only)
-
-# >>> merged from HangLvZongHeng.sgmodule (unique only)
-
-# >>> merged from Hema.sgmodule (unique only)
-
-# >>> merged from HuifuWorld.sgmodule (unique only)
-# 感谢【可莉】分享
-
-# >>> merged from ITHome.sgmodule (unique only)
-# 移除 轮播图 置顶文章 信息流广告
-
-# >>> merged from JD.com.sgmodule (unique only)
-
-# >>> merged from JingXi.sgmodule (unique only)
-
-# >>> merged from Keep.sgmodule (unique only)
-# 我的页面去推广
-
-# 应用底部栏净化
-
-# 发现页处理
-
-# 课程预览页广告
-
-# 我的运动页面去除下方推荐
-
-# >>> merged from KuwoMusic.sgmodule (unique only)
-
-# 会员
-
-# >>> merged from LuoSenDianDian.sgmodule (unique only)
-
-# >>> merged from LvTuSuiShenTing.sgmodule (unique only)
-# 首页北京城市导览图片,首页上方轮播图片净化
-
-# >>> merged from Mafengwo.sgmodule (unique only)
-
-# >>> merged from MaiDanBa.sgmodule (unique only)
-
-# >>> merged from Maimai.sgmodule (unique only)
-# 帖子末尾 看过此贴的用户也在看
-
-# 移除信息流和评论区大块广告 信息流广告focus_feed / 评论区广告gossip_detail_comment / 评论区广告feed_detail_comment?
-
-# >>> merged from MangoTV.sgmodule (unique only)
-# 我的页面
-
-# 首页信息流,顶部tab
-
-# 底部tab
-
-# 播放详情页
-
-# 搜索框填充词
-
-# >>> merged from MeiLiXiuXing.sgmodule (unique only)
-# 去除开屏 首页广告 美修盒广告 我的页面广告
-
-# >>> merged from Meiyou.sgmodule (unique only)
-
-# >>> merged from MiguVideo.sgmodule (unique only)
-
-# >>> merged from NetEaseCloudMusic.sgmodule (unique only)
-# mian | 热推、有话想说、分享一下、歌曲下的祝福等小提示去除 ｜ 评论区 乐迷、星评等级 关注 等 图标去除
-
-# tab
-
-# 推荐 | home | 主页
-
-# 发现
-
-# 我的 MyPageBar ad
-
-# 显示未关注你
-
-# >>> merged from NetEaseYoudaoDictionary.sgmodule (unique only)
-# 首页净化，学习Tab界面净化，首页听读训练净化
-
-# >>> merged from PuPuSupermarket.sgmodule (unique only)
-
-# 搜索结果页信息流横幅广告
-
-# 下单页实惠卡开通推荐
-
-# 订单列表骑手反馈问题推荐
-
-# >>> merged from QiMai.sgmodule (unique only)
-
-# >>> merged from QuDa.sgmodule (unique only)
-# 首页开屏广告 感谢【德克萨斯】分享
-
-# >>> merged from Quark.sgmodule (unique only)
-
-# >>> merged from Reddit.sgmodule (unique only)
-# 过滤推广 关NSFW提示 感谢【xream】分享
-
-# >>> merged from RenRenVideo.sgmodule (unique only)
-# RRTV_level_info
-
-# RRTV_去除首頁廣告
-
-# RRTV_去除廣場tab
-
-# RRTV_去除商城廣告
-
-# RRTV_Ad_List
-
-# RRTV_Ad_All
-
-# RRTV_Get_Drama
-
-# RRTV_Watch_V4
-
-# RRTV_User_Info
-
-# >>> merged from SMZDM.sgmodule (unique only)
-
-# 感谢【怎么肥事】分享
-
-# >>> merged from Soul.sgmodule (unique only)
-# 替换信息收集
-
-# 青少年模式弹窗
-
-# >>> merged from SuDaXiaoYuanAPP.sgmodule (unique only)
-
-# >>> merged from Taobao.sgmodule (unique only)
-
-# >>> merged from TencentNews.sgmodule (unique only)
-
-# >>> merged from TuhuAutoCare.sgmodule (unique only)
-
-# >>> merged from WeChatUnlockLinkRestrict.sgmodule (unique only)
-# 微信跳过中间界面，支付宝链接、被封禁链接进行通知弹窗跳转，在微信中用快照显示被封禁的链接（可选），在微信中进行强制重定向（可选），群聊 / 扫码均可使用，可选项可在脚本 2、3 行更改，也可在 BoxJs 中更改。
-
-# >>> merged from WinnipegStation.sgmodule (unique only)
-
-# >>> merged from XianYu.sgmodule (unique only)
-# 商品信息流广告
-
-# 定位地区页面的信息流广告
-
-# 个人主页
-
-# 首页顶部频道菜单
-
-# 商品详情页周边推荐
-
-# 搜索结果信息流广告
-
-# 同城页横幅广告
-
-# >>> merged from XiaoMang.sgmodule (unique only)
-
-# >>> merged from XiaoRongJia.sgmodule (unique only)
-# 我的页推广
-
-# >>> merged from XiaoTuChongChong.sgmodule (unique only)
-
-# >>> merged from Xiaohongshu.sgmodule (unique only)
-# 搜索页
-
-# 开屏广告
-
-# 详情页,小部件
-
-# 图片水印,视频水印
-
-# 评论区图片、live图水印，表情包下载
-
-# >>> merged from XiaomiMall.sgmodule (unique only)
-
-# >>> merged from YouTube.sgmodule (unique only)
-# 响应体
-
-# >>> merged from YouXiAPP.sgmodule (unique only)
-
-# >>> merged from Youku.sgmodule (unique only)
-# 播放详情页,首页信息流,顶部tab,我的页面,评论区
-
-# 底部tab
-
-# 青少年模式弹窗
-
-# 搜索列表
-
-# 热剧弹窗
-
-# 开屏广告
-
-# >>> merged from ZhangShangGongJiao.sgmodule (unique only)
-
-# >>> merged from Zhihu.sgmodule (unique only)
-# 首页 - 悬浮图标、顶部横幅、开屏广告、关注页推荐、推荐信息流、热榜信息流、热榜直播、回答底部卡片、精简顶部标签
-
-# 会员页面 - 弹窗、悬浮动图
-
-# 回答详情页 - 评论区顶部、下一个回答
-
-# 其他 - 服务器推送配置
-
-# >>> merged from ZhuanZhuan.sgmodule (unique only)
-# “我的”页面去除冗余的模块
-
-# >>> merged from bilibili.sgmodule (unique only)
-
-# >>> merged from iQIYI.sgmodule (unique only)
+# >>> merged from split/partA/iQIYI.sgmodule (unique only)
 # 首页信息流广告
 
 # 播放详情页
@@ -9099,8 +8844,329 @@ Admodule = type=http-response, pattern=^https?:\/\/.*\.(hseon|hhios|ppkok|jiejin
 
 # 开屏广告,播放广告
 
-# >>> merged from vgTime.sgmodule (unique only)
+# >>> merged from split/partB/BaiduMaps.sgmodule (unique only)
+
+# >>> merged from split/partB/BaiduTieba.sgmodule (unique only)
+
+# >>> merged from split/partB/BilibiliComics.sgmodule (unique only)
+
+# >>> merged from split/partB/Blued.sgmodule (unique only)
+# 登录后个人界面广告
+
+# >>> merged from split/partB/BoHeHealth.sgmodule (unique only)
+# 记录 大家都在看data.recom_cards / 底部按钮data.recom_btns
+
+# 广场 推荐 红标data.tabs[1].badge /轮播图data.recommend_ads
+
+# 代谢中心 顶部轮播图top_banner / 免费问诊推广diagnos_config / 合作医疗机构partner_hospital / 医患问答question_answer / 热门商品product / 品牌大事件brand_story
+
+# >>> merged from split/partB/bilibili.sgmodule (unique only)
+
+# >>> merged from split/partC/CaiNiaoGuoGuo.sgmodule (unique only)
+
+# 消息中心
+
+# >>> merged from split/partC/CaiXin.sgmodule (unique only)
+
+# >>> merged from split/partD/DiDiChuxing.sgmodule (unique only)
+
+#http-response ^https?:\/\/conf\.diditaxi\.com\.cn\/homepage\/v\d\/core script-path=https://cdn.jsdelivr.net/gh/oo226/egern-config@main/Scripts/fmz200/didi/didiAds.js, requires-body=true, timeout=60, tag=滴滴出行
+
+# 微信小程序个人中心净化 感谢【TEXAS】分享
+
+# >>> merged from split/partD/DianPing.sgmodule (unique only)
+# 开屏广告
+
+# >>> merged from split/partD/DianYingLieShou.sgmodule (unique only)
+
+# >>> merged from split/partD/DingDongMaiCai.sgmodule (unique only)
+# 开屏广告及首页推荐流及底部状态栏优化
+
+# 右下角AI
+
+# 我的页净化
+
+# >>> merged from split/partD/DongHuaFeng.sgmodule (unique only)
+# (黑屏25秒)
+
+# >>> merged from split/partF/FeiKeChaGuan.sgmodule (unique only)
+
+# >>> merged from split/partF/FenBi.sgmodule (unique only)
+
+# >>> merged from split/partF/FuYouHui.sgmodule (unique only)
+
+# >>> merged from split/partH/HangLvZongHeng.sgmodule (unique only)
+
+# >>> merged from split/partH/Hema.sgmodule (unique only)
+
+# >>> merged from split/partH/HuifuWorld.sgmodule (unique only)
+# 感谢【可莉】分享
+
+# >>> merged from split/partI/ITHome.sgmodule (unique only)
+# 移除 轮播图 置顶文章 信息流广告
+
+# >>> merged from split/partJ/CCBLife.sgmodule (unique only)
+
+# 内置饿了么
+
+# >>> merged from split/partJ/JD.com.sgmodule (unique only)
+
+# >>> merged from split/partJ/JingXi.sgmodule (unique only)
+
+# >>> merged from split/partK/AdAlliance.sgmodule (unique only)
+
+# >>> merged from split/partK/Coolapk.sgmodule (unique only)
+
+# >>> merged from split/partK/Keep.sgmodule (unique only)
+# 我的页面去推广
+
+# 应用底部栏净化
+
+# 发现页处理
+
+# 课程预览页广告
+
+# 我的运动页面去除下方推荐
+
+# >>> merged from split/partK/KuwoMusic.sgmodule (unique only)
+
+# 会员
+
+# >>> merged from split/partK/Quark.sgmodule (unique only)
+
+# >>> merged from split/partL/LuoSenDianDian.sgmodule (unique only)
+
+# >>> merged from split/partL/LvTuSuiShenTing.sgmodule (unique only)
+# 首页北京城市导览图片,首页上方轮播图片净化
+
+# >>> merged from split/partM/Mafengwo.sgmodule (unique only)
+
+# >>> merged from split/partM/MaiDanBa.sgmodule (unique only)
+
+# >>> merged from split/partM/Maimai.sgmodule (unique only)
+# 帖子末尾 看过此贴的用户也在看
+
+# 移除信息流和评论区大块广告 信息流广告focus_feed / 评论区广告gossip_detail_comment / 评论区广告feed_detail_comment?
+
+# >>> merged from split/partM/MangoTV.sgmodule (unique only)
+# 我的页面
+
+# 首页信息流,顶部tab
+
+# 底部tab
+
+# 播放详情页
+
+# 搜索框填充词
+
+# >>> merged from split/partM/MeiLiXiuXing.sgmodule (unique only)
+# 去除开屏 首页广告 美修盒广告 我的页面广告
+
+# >>> merged from split/partM/Meiyou.sgmodule (unique only)
+
+# >>> merged from split/partM/MiguVideo.sgmodule (unique only)
+
+# >>> merged from split/partP/PuPuSupermarket.sgmodule (unique only)
+
+# 搜索结果页信息流横幅广告
+
+# 下单页实惠卡开通推荐
+
+# 订单列表骑手反馈问题推荐
+
+# >>> merged from split/partQ/51Job.sgmodule (unique only)
+
+# 我的页净化
+
+# >>> merged from split/partQ/NetEaseCloudMusic.sgmodule (unique only)
+# mian | 热推、有话想说、分享一下、歌曲下的祝福等小提示去除 ｜ 评论区 乐迷、星评等级 关注 等 图标去除
+
+# tab
+
+# 推荐 | home | 主页
+
+# 发现
+
+# 我的 MyPageBar ad
+
+# 显示未关注你
+
+# >>> merged from split/partQ/QiMai.sgmodule (unique only)
+
+# >>> merged from split/partQ/QuDa.sgmodule (unique only)
+# 首页开屏广告 感谢【德克萨斯】分享
+
+# >>> merged from split/partQ/XianYu.sgmodule (unique only)
+# 商品信息流广告
+
+# 定位地区页面的信息流广告
+
+# 个人主页
+
+# 首页顶部频道菜单
+
+# 商品详情页周边推荐
+
+# 搜索结果信息流广告
+
+# 同城页横幅广告
+
+# >>> merged from split/partQ/Xiaohongshu.sgmodule (unique only)
+# 搜索页
+
+# 开屏广告
+
+# 详情页,小部件
+
+# 图片水印,视频水印
+
+# 评论区图片、live图水印，表情包下载
+
+# >>> merged from split/partQ/Zhihu.sgmodule (unique only)
+# 首页 - 悬浮图标、顶部横幅、开屏广告、关注页推荐、推荐信息流、热榜信息流、热榜直播、回答底部卡片、精简顶部标签
+
+# 会员页面 - 弹窗、悬浮动图
+
+# 回答详情页 - 评论区顶部、下一个回答
+
+# 其他 - 服务器推送配置
+
+# >>> merged from split/partR/Reddit.sgmodule (unique only)
+# 过滤推广 关NSFW提示 感谢【xream】分享
+
+# >>> merged from split/partR/RenRenVideo.sgmodule (unique only)
+# RRTV_level_info
+
+# RRTV_去除首頁廣告
+
+# RRTV_去除廣場tab
+
+# RRTV_去除商城廣告
+
+# RRTV_Ad_List
+
+# RRTV_Ad_All
+
+# RRTV_Get_Drama
+
+# RRTV_Watch_V4
+
+# RRTV_User_Info
+
+# >>> merged from split/partS/SMZDM.sgmodule (unique only)
+
+# 感谢【怎么肥事】分享
+
+# >>> merged from split/partS/Soul.sgmodule (unique only)
+# 替换信息收集
+
+# 青少年模式弹窗
+
+# >>> merged from split/partS/SuDaXiaoYuanAPP.sgmodule (unique only)
+
+# >>> merged from split/partT/Taobao.sgmodule (unique only)
+
+# >>> merged from split/partT/TencentNews.sgmodule (unique only)
+
+# >>> merged from split/partT/TuhuAutoCare.sgmodule (unique only)
+
+# >>> merged from split/partV/vgTime.sgmodule (unique only)
 # App去开屏广告(需全新应用). 若要去新闻列表广告需要搭配广告联盟模块
+
+# >>> merged from split/partW/NetEaseCloudMusic.sgmodule (unique only)
+# mian | 热推、有话想说、分享一下、歌曲下的祝福等小提示去除 ｜ 评论区 乐迷、星评等级 关注 等 图标去除
+
+# tab
+
+# 推荐 | home | 主页
+
+# 发现
+
+# 我的 MyPageBar ad
+
+# 显示未关注你
+
+# >>> merged from split/partW/NetEaseYoudaoDictionary.sgmodule (unique only)
+# 首页净化，学习Tab界面净化，首页听读训练净化
+
+# >>> merged from split/partW/WeChatUnlockLinkRestrict.sgmodule (unique only)
+# 微信跳过中间界面，支付宝链接、被封禁链接进行通知弹窗跳转，在微信中用快照显示被封禁的链接（可选），在微信中进行强制重定向（可选），群聊 / 扫码均可使用，可选项可在脚本 2、3 行更改，也可在 BoxJs 中更改。
+
+# >>> merged from split/partW/WinnipegStation.sgmodule (unique only)
+
+# >>> merged from split/partX/BananaIsAFruit.sgmodule (unique only)
+
+# >>> merged from split/partX/XianYu.sgmodule (unique only)
+# 商品信息流广告
+
+# 定位地区页面的信息流广告
+
+# 个人主页
+
+# 首页顶部频道菜单
+
+# 商品详情页周边推荐
+
+# 搜索结果信息流广告
+
+# 同城页横幅广告
+
+# >>> merged from split/partX/XiaoMang.sgmodule (unique only)
+
+# >>> merged from split/partX/XiaoRongJia.sgmodule (unique only)
+# 我的页推广
+
+# >>> merged from split/partX/XiaoTuChongChong.sgmodule (unique only)
+
+# >>> merged from split/partX/Xiaohongshu.sgmodule (unique only)
+# 搜索页
+
+# 开屏广告
+
+# 详情页,小部件
+
+# 图片水印,视频水印
+
+# 评论区图片、live图水印，表情包下载
+
+# >>> merged from split/partX/XiaomiMall.sgmodule (unique only)
+
+# >>> merged from split/partY/YouTube.sgmodule (unique only)
+# 响应体
+
+# >>> merged from split/partY/YouXiAPP.sgmodule (unique only)
+
+# >>> merged from split/partY/Youku.sgmodule (unique only)
+# 播放详情页,首页信息流,顶部tab,我的页面,评论区
+
+# 底部tab
+
+# 青少年模式弹窗
+
+# 搜索列表
+
+# 热剧弹窗
+
+# 开屏广告
+
+# >>> merged from split/partZ/AirChina.sgmodule (unique only)
+
+# >>> merged from split/partZ/ChinaMerchantsSecurities.sgmodule (unique only)
+# 首页和理财页面横幅广告
+
+# >>> merged from split/partZ/ZhangShangGongJiao.sgmodule (unique only)
+
+# >>> merged from split/partZ/Zhihu.sgmodule (unique only)
+# 首页 - 悬浮图标、顶部横幅、开屏广告、关注页推荐、推荐信息流、热榜信息流、热榜直播、回答底部卡片、精简顶部标签
+
+# 会员页面 - 弹窗、悬浮动图
+
+# 回答详情页 - 评论区顶部、下一个回答
+
+# 其他 - 服务器推送配置
+
+# >>> merged from split/partZ/ZhuanZhuan.sgmodule (unique only)
+# “我的”页面去除冗余的模块
 
 # >>> merged from RedditTranslation.module (unique only)
 Reddit自动翻译 = type=http-request, pattern=^https?:\/\/gql(-fed)?\.reddit\.com, script-path=https://cdn.jsdelivr.net/gh/oo226/egern-config@main/Scripts/_external/gist/RavelloH/68ed0626dae69a1ce7c8ad6887087ea1/c008127260bc4dcd550fcd98285048cf6176f602/main.js
