@@ -1,0 +1,17 @@
+# Tailscale control plane (login / controlplane / log)
+# 控制面常按真 IP 拨号（always-real-ip），DOMAIN-SUFFIX 抓不到 → 掉进节点选择
+# ARIN TAILS: 192.200.0.0/24、199.165.136.0/24；IPv6 TAILSCALE: 2606:b740::/32
+# 策略请挂 DIRECT（置顶，先于 Proxy / FINAL）
+
+DOMAIN,controlplane.tailscale.com
+DOMAIN,login.tailscale.com
+DOMAIN,log.tailscale.com
+DOMAIN-SUFFIX,tailscale.com
+DOMAIN-SUFFIX,tailscale.net
+DOMAIN-SUFFIX,tailscale.io
+DOMAIN-SUFFIX,ts.net
+DOMAIN-SUFFIX,ipn.dev
+
+IP-CIDR,192.200.0.0/24
+IP-CIDR,199.165.136.0/24
+IP-CIDR6,2606:b740::/32
