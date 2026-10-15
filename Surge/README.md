@@ -40,17 +40,19 @@ https://testingcf.jsdelivr.net/gh/oo226/egern-config@cursor/surge-rabbit-f611/Su
 Surge 弹「绝大多数情况下不应配置 `tun-included-routes`」：说明你开了回环模块（主配置本身没有该参数）。  
 不用 SideStore / 10.7.0.1 回环就关掉该模块；需要回环就点「好的」忽略即可。
 
-## Tailscale DERP / 控制面怎么进节点了？
+## Tailscale 规则怎么挂？
 
-细节里若是 **规则 = FINAL、策略 = 新加坡/美国某节点**：不是「节点本身」的问题，而是  
-`controlplane` / `derp*` **常按真 IP 拨号**，只写 `DOMAIN-SUFFIX` 匹配不到，掉进 `FINAL → 节点选择`。
+CN-Plus 只留两个规则集 + 个人占位（别再在主配置堆 DOMAIN/IP）：
 
-CN-Plus 已挂：
-- 内联 `192.200.0.0/24` + `199.165.136.0/24` + `2606:b740::/32`（控制面 IP）
-- `Tailscale-Controlplane.list` + `Tailscale-DERP.list` + UDP 3478 DIRECT
+| RULE-SET | 策略 | 内容 |
+|---|---|---|
+| `Tailscale-Direct.list` | DIRECT | 控制面域名/IP + DERP + UDP 3478 |
+| `Tailscale-Tailnet.list` | 🛰️ Tailnet | `100.64.0.0/10` + `fd7a:115c:a1e0::/48` |
 
-重载并 **更新外部资源** 后，`192.200.0.x (controlplane…)` 应变 **DIRECT**。  
-更新 DERP 表：`python3 scripts/update-tailscale-derp-list.py`（会保留 controlplane 段）。
+主配置仅保留：`DOMAIN-SUFFIX,你的尾巴.ts.net,🛰️ Tailnet`（以及可选局域网段）。
+
+控制面/DERP **按真 IP 拨号** 时，只写 DOMAIN 会掉进节点；合集里已带 `192.200.0.0/24` 等 IP。  
+更新 DERP：`python3 scripts/update-tailscale-derp-list.py`（同时重写 Direct 合集）。
 
 
 ## 网盘 / 视频 / PingMe
