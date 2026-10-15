@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-14T08:21:39Z",
+  "generated_at": "2026-10-15T07:58:36Z",
   "branch": "main",
   "repo": "oo226/egern-config",
   "raw_base": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main",
@@ -180,16 +180,26 @@
   ],
   "sync_digest": {
     "commit": {
-      "hash": "cd4b83f",
-      "subject": "feat(hub): 上游单条改为分类栏目页",
+      "hash": "a0e328f",
+      "subject": "chore: sync upstream on sync branch",
       "date": "2026-10-14"
     },
     "summary": [
-      "国内直连 31826 条"
+      "国内直连 31854 条"
     ],
     "files_changed": 0
   },
   "changelog": [
+    {
+      "hash": "67c4bd8",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-10-14"
+    },
+    {
+      "hash": "0f0efd8",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-10-14"
+    },
     {
       "hash": "3d18c16",
       "subject": "chore: publish curated snapshot from sync",
@@ -219,16 +229,6 @@
       "hash": "82592bc",
       "subject": "chore: publish curated snapshot from sync",
       "date": "2026-10-13"
-    },
-    {
-      "hash": "7b26042",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-10-13"
-    },
-    {
-      "hash": "4680e97",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-10-12"
     }
   ],
   "local_health": {

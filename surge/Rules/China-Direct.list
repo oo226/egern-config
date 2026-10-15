@@ -1,7 +1,7 @@
 # AUTO-EXPORTED from Routing/China-Direct.yaml
 # Format: Surge RULE-SET (no policy). scripts/export-surge-rulesets.py
 # Domain lines include extended-matching (SNI hit under always-real-ip / VIF).
-# Total entries: 31826
+# Total entries: 31854
 
 DOMAIN,0gr4uqmtt8y41hcjsgrzdrc31.ourdvsss.com,extended-matching
 DOMAIN,0gr4uqmtt8y41hcjsgrzdrc3s.ourdvsss.com,extended-matching
@@ -116,6 +116,7 @@ DOMAIN,steamcommunity-a.akamaihd.net,extended-matching
 DOMAIN,sycm.mmstat.com,extended-matching
 DOMAIN,trae-api-sg.mchost.guru,extended-matching
 DOMAIN,tv.214521.xyz,extended-matching
+DOMAIN,umami.mao.fan,extended-matching
 DOMAIN,umini.shujupie.com,extended-matching
 DOMAIN,update.googleapis.com,extended-matching
 DOMAIN,upos-hz-mirrorakam.akamaized.net,extended-matching
@@ -2273,6 +2274,8 @@ DOMAIN-SUFFIX,blackberry.com,extended-matching
 DOMAIN-SUFFIX,blackdragon.com,extended-matching
 DOMAIN-SUFFIX,blah.me,extended-matching
 DOMAIN-SUFFIX,blingoffice.com,extended-matching
+DOMAIN-SUFFIX,blkcan.cn,extended-matching
+DOMAIN-SUFFIX,blkcan.com,extended-matching
 DOMAIN-SUFFIX,bllyxw.com,extended-matching
 DOMAIN-SUFFIX,blnovel.com,extended-matching
 DOMAIN-SUFFIX,blog.google,extended-matching
@@ -2530,6 +2533,11 @@ DOMAIN-SUFFIX,caocaotravel.cc,extended-matching
 DOMAIN-SUFFIX,caocaotrip.cc,extended-matching
 DOMAIN-SUFFIX,caocaotrip.cn,extended-matching
 DOMAIN-SUFFIX,caocaotrip.com,extended-matching
+DOMAIN-SUFFIX,capcut.cn,extended-matching
+DOMAIN-SUFFIX,capcut.com,extended-matching
+DOMAIN-SUFFIX,capcutapi.com,extended-matching
+DOMAIN-SUFFIX,capcutapi.us,extended-matching
+DOMAIN-SUFFIX,capcutstatic.com,extended-matching
 DOMAIN-SUFFIX,capitalonline.net,extended-matching
 DOMAIN-SUFFIX,capturetheflag.fun,extended-matching
 DOMAIN-SUFFIX,carbonxprogram.com,extended-matching
@@ -3966,6 +3974,7 @@ DOMAIN-SUFFIX,dqf14u8573.com,extended-matching
 DOMAIN-SUFFIX,dratio.com,extended-matching
 DOMAIN-SUFFIX,dreamavatar.com,extended-matching
 DOMAIN-SUFFIX,dreamcast.hk,extended-matching
+DOMAIN-SUFFIX,dreamina.cn,extended-matching
 DOMAIN-SUFFIX,dreams-travel.com,extended-matching
 DOMAIN-SUFFIX,drivergenius.com,extended-matching
 DOMAIN-SUFFIX,drm-lic-dom.net,extended-matching
@@ -4172,6 +4181,8 @@ DOMAIN-SUFFIX,edgeonevod1.com,extended-matching
 DOMAIN-SUFFIX,edgeonevod1.net,extended-matching
 DOMAIN-SUFFIX,edgep.net,extended-matching
 DOMAIN-SUFFIX,edgesrv.com,extended-matching
+DOMAIN-SUFFIX,editorjianying.com,extended-matching
+DOMAIN-SUFFIX,editorjianyingk.com,extended-matching
 DOMAIN-SUFFIX,edra5.cn,extended-matching
 DOMAIN-SUFFIX,edu.cn,extended-matching
 DOMAIN-SUFFIX,edu4399.com,extended-matching
@@ -5557,6 +5568,7 @@ DOMAIN-SUFFIX,hebaoi.com,extended-matching
 DOMAIN-SUFFIX,hefei.cc,extended-matching
 DOMAIN-SUFFIX,hehecam.com,extended-matching
 DOMAIN-SUFFIX,hehecamera.com,extended-matching
+DOMAIN-SUFFIX,heiguantou.cn,extended-matching
 DOMAIN-SUFFIX,heihei.com,extended-matching
 DOMAIN-SUFFIX,heisha.net,extended-matching
 DOMAIN-SUFFIX,heiyan.com,extended-matching
@@ -5580,6 +5592,10 @@ DOMAIN-SUFFIX,herostart.com,extended-matching
 DOMAIN-SUFFIX,hetu2.com,extended-matching
 DOMAIN-SUFFIX,hetushu.com,extended-matching
 DOMAIN-SUFFIX,hexun.com,extended-matching
+DOMAIN-SUFFIX,hey-can.cn,extended-matching
+DOMAIN-SUFFIX,hey-can.com,extended-matching
+DOMAIN-SUFFIX,hey-creator.cn,extended-matching
+DOMAIN-SUFFIX,hey-creator.com,extended-matching
 DOMAIN-SUFFIX,heycan.com,extended-matching
 DOMAIN-SUFFIX,heytap.cn,extended-matching
 DOMAIN-SUFFIX,heytap.com,extended-matching
@@ -6583,6 +6599,8 @@ DOMAIN-SUFFIX,jianliao.com,extended-matching
 DOMAIN-SUFFIX,jianshu.com,extended-matching
 DOMAIN-SUFFIX,jianshu.io,extended-matching
 DOMAIN-SUFFIX,jianshuapi.com,extended-matching
+DOMAIN-SUFFIX,jianying.com,extended-matching
+DOMAIN-SUFFIX,jianyingmicro.com,extended-matching
 DOMAIN-SUFFIX,jianyuweb.com,extended-matching
 DOMAIN-SUFFIX,jianzhi8.com,extended-matching
 DOMAIN-SUFFIX,jiaodong.net,extended-matching
@@ -6609,7 +6627,10 @@ DOMAIN-SUFFIX,jikejia.cn,extended-matching
 DOMAIN-SUFFIX,jikexueyuan.com,extended-matching
 DOMAIN-SUFFIX,jikipedia.com,extended-matching
 DOMAIN-SUFFIX,jilin55.com,extended-matching
+DOMAIN-SUFFIX,jimeng.cn,extended-matching
 DOMAIN-SUFFIX,jimeng.com,extended-matching
+DOMAIN-SUFFIX,jimeng.com.cn,extended-matching
+DOMAIN-SUFFIX,jimengai.com.cn,extended-matching
 DOMAIN-SUFFIX,jindidata.com,extended-matching
 DOMAIN-SUFFIX,jingdong.com,extended-matching
 DOMAIN-SUFFIX,jingdongjinrong.com,extended-matching
@@ -9423,6 +9444,7 @@ DOMAIN-SUFFIX,researchchina.cn,extended-matching
 DOMAIN-SUFFIX,resouxs.com,extended-matching
 DOMAIN-SUFFIX,resset.com,extended-matching
 DOMAIN-SUFFIX,restapi.amap.com,extended-matching
+DOMAIN-SUFFIX,retouchpics.com,extended-matching
 DOMAIN-SUFFIX,rexpos.cn,extended-matching
 DOMAIN-SUFFIX,rextech.cn,extended-matching
 DOMAIN-SUFFIX,reyoo.net,extended-matching
@@ -9476,7 +9498,6 @@ DOMAIN-SUFFIX,rs05.com,extended-matching
 DOMAIN-SUFFIX,rsc.org,extended-matching
 DOMAIN-SUFFIX,rtbasia.com,extended-matching
 DOMAIN-SUFFIX,rtbbox.com,extended-matching
-DOMAIN-SUFFIX,rtesvc.com,extended-matching
 DOMAIN-SUFFIX,rttgps.map.qq.com,extended-matching
 DOMAIN-SUFFIX,rtx.com.cn,extended-matching
 DOMAIN-SUFFIX,rtxapp.com,extended-matching
@@ -11784,10 +11805,13 @@ DOMAIN-SUFFIX,ukanshu.com,extended-matching
 DOMAIN-SUFFIX,ukoo.com.cn,extended-matching
 DOMAIN-SUFFIX,ukve4smo9gapv.com,extended-matching
 DOMAIN-SUFFIX,ulanzou.com,extended-matching
+DOMAIN-SUFFIX,ulikeapi.com,extended-matching
 DOMAIN-SUFFIX,ulikecam.cn,extended-matching
 DOMAIN-SUFFIX,ulikecam.com,extended-matching
 DOMAIN-SUFFIX,ulikecam.mobi,extended-matching
 DOMAIN-SUFFIX,ulikecam.net,extended-matching
+DOMAIN-SUFFIX,ulikepic.com,extended-matching
+DOMAIN-SUFFIX,ulikestatic.com,extended-matching
 DOMAIN-SUFFIX,um.run,extended-matching
 DOMAIN-SUFFIX,um0.cn,extended-matching
 DOMAIN-SUFFIX,um1.cn,extended-matching
@@ -12027,6 +12051,9 @@ DOMAIN-SUFFIX,vivotc.com,extended-matching
 DOMAIN-SUFFIX,viyouhui.com,extended-matching
 DOMAIN-SUFFIX,vk6oqcevmd1a.com,extended-matching
 DOMAIN-SUFFIX,vkrtzzc.com,extended-matching
+DOMAIN-SUFFIX,vlabimg.com,extended-matching
+DOMAIN-SUFFIX,vlabstatic.com,extended-matching
+DOMAIN-SUFFIX,vlabvod.com,extended-matching
 DOMAIN-SUFFIX,vlinkapi.com,extended-matching
 DOMAIN-SUFFIX,vlms.cn,extended-matching
 DOMAIN-SUFFIX,vmall-hw.com,extended-matching
@@ -12867,6 +12894,7 @@ DOMAIN-SUFFIX,xinghua.org.cn,extended-matching
 DOMAIN-SUFFIX,xingjiesj.com,extended-matching
 DOMAIN-SUFFIX,xingread.cn,extended-matching
 DOMAIN-SUFFIX,xingtan001.com,extended-matching
+DOMAIN-SUFFIX,xingtupics.com,extended-matching
 DOMAIN-SUFFIX,xingxuanwaimai.com,extended-matching
 DOMAIN-SUFFIX,xingyaocq.com,extended-matching
 DOMAIN-SUFFIX,xingyaoss.com,extended-matching
@@ -14597,7 +14625,6 @@ IP-CIDR,103.103.72.0/22
 IP-CIDR,103.104.0.0/21
 IP-CIDR,103.104.104.0/22
 IP-CIDR,103.104.152.0/22
-IP-CIDR,103.104.155.0/24
 IP-CIDR,103.104.188.0/22
 IP-CIDR,103.104.198.0/23
 IP-CIDR,103.104.252.0/22
@@ -22696,7 +22723,6 @@ IP-CIDR,45.255.112.0/21
 IP-CIDR,45.255.120.0/22
 IP-CIDR,45.255.136.0/21
 IP-CIDR,45.255.144.0/20
-IP-CIDR,45.255.152.0/22
 IP-CIDR,45.255.160.0/19
 IP-CIDR,45.255.192.0/19
 IP-CIDR,45.255.224.0/20
@@ -22884,7 +22910,6 @@ IP-CIDR,59.111.160.0/23
 IP-CIDR,59.111.160.195/32
 IP-CIDR,59.111.160.197/32
 IP-CIDR,59.111.162.0/24
-IP-CIDR,59.111.164.0/22
 IP-CIDR,59.111.168.0/22
 IP-CIDR,59.111.17.0/24
 IP-CIDR,59.111.173.0/24
@@ -24085,6 +24110,7 @@ IP-CIDR6,2402:7820::/32
 IP-CIDR6,2402:7d00::/32
 IP-CIDR6,2402:7d80::/32
 IP-CIDR6,2402:7da0::/32
+IP-CIDR6,2402:7e20::/32
 IP-CIDR6,2402:8180::/32
 IP-CIDR6,2402:8300::/32
 IP-CIDR6,2402:8380::/32
@@ -25214,7 +25240,6 @@ IP-CIDR6,2406:840:1a0::/43
 IP-CIDR6,2406:840:1c00::/38
 IP-CIDR6,2406:840:1c0::/42
 IP-CIDR6,2406:840:2000::/39
-IP-CIDR6,2406:840:200::/41
 IP-CIDR6,2406:840:201::/48
 IP-CIDR6,2406:840:202::/47
 IP-CIDR6,2406:840:204::/46
@@ -26338,7 +26363,10 @@ IP-CIDR6,240b:4002::/36
 IP-CIDR6,240b:4004::/31
 IP-CIDR6,240b:4006:1000::/43
 IP-CIDR6,240b:4006:1020::/44
+IP-CIDR6,240b:4006:1104::/46
 IP-CIDR6,240b:4006:110c::/46
+IP-CIDR6,240b:4006:1110::/45
+IP-CIDR6,240b:4006:1118::/46
 IP-CIDR6,240b:4006::/48
 IP-CIDR6,240b:4007::/32
 IP-CIDR6,240b:4009::/32
