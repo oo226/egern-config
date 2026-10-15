@@ -1,4 +1,12 @@
 # 优先直连扩展：网盘点播 + 视频资源站 + PingMe（整表，勿散落单行）
+# --- CDN / 规则源（须在 Proxy.list 的 jsdelivr 之前；本表置顶挂载）---
+DOMAIN-SUFFIX,jsdelivr.net
+DOMAIN-SUFFIX,jsdelivr.com
+DOMAIN,testingcf.jsdelivr.net
+DOMAIN,cdn.jsdelivr.net
+DOMAIN,fastly.jsdelivr.net
+DOMAIN,gcore.jsdelivr.net
+
 # --- PanVod.list ---
 # NAME: PanVod
 # AUTHOR: eulac-dev

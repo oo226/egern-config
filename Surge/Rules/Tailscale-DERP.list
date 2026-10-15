@@ -2,6 +2,16 @@
 # DERP 客户端常按 IP 拨号，DOMAIN-SUFFIX 匹配不到 → 掉进 FINAL/节点选择
 # 本表：DOMAIN + IP/32 + IP6/128 → 策略请挂 DIRECT
 # nodes=88 v4=88 v6=88
+#
+# --- controlplane (static; keep when regenerating derpmap) ---
+# ARIN TAILS 192.200.0.0/24 + 199.165.136.0/24；IPv6 2606:b740::/32
+DOMAIN,controlplane.tailscale.com
+DOMAIN,login.tailscale.com
+DOMAIN,log.tailscale.com
+IP-CIDR,192.200.0.0/24
+IP-CIDR,199.165.136.0/24
+IP-CIDR6,2606:b740::/32
+# --- end controlplane ---
 DOMAIN,derp10b.tailscale.com
 DOMAIN,derp10c.tailscale.com
 DOMAIN,derp10d.tailscale.com

@@ -27,6 +27,16 @@ def main() -> None:
         "# DERP 客户端常按 IP 拨号，DOMAIN-SUFFIX 匹配不到 → 掉进 FINAL/节点选择",
         "# 本表：DOMAIN + IP/32 + IP6/128 → 策略请挂 DIRECT",
         f"# nodes={len(hosts)} v4={len(ips4)} v6={len(ips6)}",
+        "#",
+        "# --- controlplane (static; keep when regenerating derpmap) ---",
+        "# ARIN TAILS 192.200.0.0/24 + 199.165.136.0/24；IPv6 2606:b740::/32",
+        "DOMAIN,controlplane.tailscale.com",
+        "DOMAIN,login.tailscale.com",
+        "DOMAIN,log.tailscale.com",
+        "IP-CIDR,192.200.0.0/24",
+        "IP-CIDR,199.165.136.0/24",
+        "IP-CIDR6,2606:b740::/32",
+        "# --- end controlplane ---",
     ]
     for h in sorted(hosts):
         lines.append(f"DOMAIN,{h}")
