@@ -2,7 +2,7 @@
 # 类型: 分流规则 — blackmatrix7 — TikTok 海外
 # Do not edit manually. Updated by GitHub Actions after upstream sync.
 # Source: TikTok.list
-# Total unique entries: 32
+# Total unique entries: 35
 
 no_resolve: true
 domain_set:
@@ -16,6 +16,9 @@ domain_suffix_set:
   - byteintlapi.com
   - byteoversea.com
   - capcut.com
+  - capcutapi.com
+  - capcutapi.us
+  - capcutstatic.com
   - ibytedtos.com
   - ibyteimg.com
   - ipstatp.com
