@@ -1,7 +1,7 @@
 /*************************************
 
 项目名称：Revenuecat系列解锁合集
-更新日期：2026-10-14
+更新日期：2026-10-17
 脚本作者：@ddm1023
 电报频道：https://t.me/ddm1023
 使用声明：⚠️仅供参考，🈲转载与售卖！
@@ -57,7 +57,7 @@ const bundle = {
   'moonbox.co.il.grow': { name: 'pro', id: 'moonbox.co.il.grow.lifetime.offer', cm: 'sjb' },  //植物识别-PlantID
   'tech.miidii.MDClock': { name: 'Entitlement.Pro', id: 'tech.miidii.MDClock.pro', cm: 'sjb' },  //谜底时钟
   'com.voicedream.Voic': { name: 'standard', id: 'vd_annual_79_3daytrial', cm: 'sja' },  //声之梦
-  'com.laser-focused.focus-ios': { name: 'subscribed', id: 'iap.io.masterbuilders.focus.pro_one_year', cm: 'sja' },  //Focus-专注时间管理
+  'com.laser-focused.focus-ios': { name: 'subscribed', id: 'iap.io.masterbuilders.focus.pro_one_year', cm: 'sja' },  //Focus专注-生产力时间管理工具
   'com.roehl': { name: 'Pro', id: 'habitkit_3499_lt', cm: 'sjb' },  //HabitKit/WinDiary-双件套
   'net.tengl.powertimer': { name: 'plus', id: 'powertimer.plus', cm: 'sjb' },  //元气计时-PowerTimer
   'com.reader.book': { name: 'pro', id: 'reader.lifetimeFamily.pro', cm: 'sja' },  //PureLibro
@@ -68,6 +68,8 @@ const bundle = {
 };
 
 const listua = {
+  'Fine': { name: 'Fine Pro', id: 'fine_subscription_yearly', cm: 'sja' },  //Fine修图
+  'nebuwall': { name: 'wallpaper_pass', id: 'wallpaper_pass_lifetime', cm: 'sjc' },  //Nebuwall-壁纸与AI创作
   'DailyIdiomApp': { name: 'calendar', id: 'com.fiachra.DailyIdiomApp.yearly', cm: 'sja' },  //Chengyu Calendar-成语日历
   'SLPDFMaker': { name: 'pro', id: 'com.pdfstudio.lifetime.pro', cm: 'sjb' },  //PDFMaker-PDF编辑制作工具
   'SaveLoop': { name: 'Sloop Pro', id: 'com.sloopbrowser.www.plus.Lifetime', cm: 'sjc' },  //SaveLoop: 视频下载与离线播放
