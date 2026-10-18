@@ -474,70 +474,95 @@ MEGA_COLLECTION_NAMES = {
 
 
 def detect_clients(rel: str, path: Path, text: str) -> list[str]:
-    """按扩展名 / 路径 / 内容推断适用的代理工具。"""
+    """按扩展名 / 路径 / 内容推断适用的代理工具。
+
+    原则：按真实格式打标，不把 Surge .sgmodule 一律标成 Egern「通用」。
+    多端仅在文件本身声明（如 #!loon_version）或作者仓按客户端分目录时叠加。
+    """
     path_l = rel.replace("\\", "/").lower()
     suffix = path.suffix.lower()
     head = text[:4000].lower()
     found: set[str] = set()
-
-    if suffix in {".sgmodule", ".module"}:
-        found.update({"surge", "egern"})
-    if suffix == ".snippet":
-        found.add("quanx")
-    if suffix == ".plugin":
-        found.add("loon")
-
-    # 路径目录（作者仓里常按客户端分子目录）
     segs = f"/{path_l}/"
-    if "/surge/" in segs or "surge/module" in path_l or "surge/rewrite" in path_l:
-        found.update({"surge", "egern"})
-    if "shadowrocket" in path_l:
+
+    # 路径目录（作者仓里常按客户端分子目录）— 先定专属端
+    path_shadowrocket = "shadowrocket" in path_l or "/shadowrocket/" in segs
+    path_loon = "/loon/" in segs or suffix == ".plugin"
+    path_quanx = (
+        "quantumult" in path_l
+        or "/quanx/" in segs
+        or "/qx/" in segs
+        or suffix == ".snippet"
+    )
+    path_stash = "/stash/" in segs
+    path_egern = "/egern/" in segs or "adblock-egern" in path_l
+    path_surge = (
+        "/surge/" in segs
+        or "surge/module" in path_l
+        or "surge/rewrite" in path_l
+    )
+
+    if path_shadowrocket:
         found.add("shadowrocket")
-        # Shadowrocket 的 .module 有时也能被 Surge 吃，但不保证 → 不强加 Surge
-        if suffix == ".module" and "/surge/" not in segs:
+    if path_loon:
+        found.add("loon")
+    if path_quanx:
+        found.add("quanx")
+    if path_stash:
+        found.add("stash")
+    if path_egern:
+        found.add("egern")
+    if path_surge:
+        found.add("surge")
+
+    # 扩展名默认：一种格式对应主客户端，不自动叠 Egern
+    if suffix == ".sgmodule":
+        if not path_shadowrocket and not path_quanx and not path_egern:
+            found.add("surge")
+        # 双端模块：同一文件带 Loon 声明（可莉 / 奶思等常见）
+        if "#!loon_version=" in head or re.search(r"^#!loon\b", text[:4000], re.I | re.M):
+            found.add("loon")
+    elif suffix == ".module":
+        if path_shadowrocket:
+            found.add("shadowrocket")
             found.discard("surge")
             found.discard("egern")
-    if "/loon/" in segs or path_l.endswith(".plugin"):
-        found.add("loon")
-    if "quantumult" in path_l or "/quanx/" in segs or "/qx/" in segs:
-        found.add("quanx")
-    if "/stash/" in segs:
-        found.add("stash")
+        elif path_loon:
+            found.add("loon")
+        elif path_egern:
+            found.add("egern")
+        elif not found:
+            found.add("surge")
+    elif suffix == ".plugin":
+        found = {"loon"}
+    elif suffix == ".snippet":
+        found = {"quanx"}
+    elif suffix in {".yaml", ".yml"} and path_egern:
+        found.add("egern")
 
-    # 内容特征（避免脚本 URL 里偶然出现 Loon/QuanX 字样就误标）
-    if "#!name=" in head and ("[mitm]" in head or "[script]" in head or "[url rewrite]" in head):
-        if suffix in {".sgmodule", ".module"}:
-            found.update({"surge", "egern"})
-    if "#!loon_version=" in head or re.search(r"^#!loon\b", text[:4000], re.I | re.M):
-        found.add("loon")
-    if suffix == ".snippet" and re.search(r"^\s*hostname\s*=", text[:4000], re.I | re.M):
-        found.add("quanx")
-    if suffix == ".snippet" and (
-        " url reject" in head or " url script-" in head or " url 302 " in head
-    ):
-        found.add("quanx")
+    # QuanX snippet 内容确认
+    if suffix == ".snippet":
+        if re.search(r"^\s*hostname\s*=", text[:4000], re.I | re.M) or (
+            " url reject" in head or " url script-" in head or " url 302 " in head
+        ):
+            found = {"quanx"}
 
-    # 作者默认：怎么肥事 snippet → QuanX；可莉官方仓 → Surge/Egern
+    # 作者特例（仍不虚构 Egern）
     if "zenmofeishi" in path_l and suffix == ".snippet":
         found = {"quanx"}
-    if "qingrex" in path_l and suffix == ".sgmodule":
-        found.update({"surge", "egern"})
-    if "nobyda" in path_l and "/surge/" in segs:
-        found.update({"surge", "egern"})
-    if "rabbit-spec" in path_l:
-        found.update({"surge", "egern"})
-    # limbopro 根目录 .sgmodule 多端；子目录已按路径区分
-    if "limbopro" in path_l and "/shadowrocket/" not in segs and suffix in {
-        ".sgmodule",
-        ".module",
-    }:
-        found.update({"surge", "egern", "shadowrocket"})
+    # limbopro 根目录 .sgmodule：Surge + Shadowrocket（子目录已按路径区分）
+    if (
+        "limbopro" in path_l
+        and not path_shadowrocket
+        and suffix in {".sgmodule", ".module"}
+    ):
+        found.update({"surge", "shadowrocket"})
+        found.discard("egern")
 
     if not found:
-        # 兜底：本站镜像以 Surge 族为主
-        found.update({"surge", "egern"})
+        # 兜底只标 Surge，避免「全员通用」假象
+        found.add("surge")
 
-    # 稳定顺序
     order = list(CLIENT_LABELS.keys())
     return [c for c in order if c in found]
 
