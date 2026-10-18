@@ -27,12 +27,18 @@ html[data-theme="light"] {
   --shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
+html {
+  overflow-x: clip;
+  max-width: 100%;
+}
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif;
   background: var(--bg);
   color: var(--text);
   line-height: 1.6;
   min-height: 100vh;
+  overflow-x: clip;
+  max-width: 100%;
 }
 a { color: var(--accent); }
 .hero {
@@ -79,6 +85,8 @@ html:not([data-theme="light"]) .theme-toggle .icon-moon { display: block; }
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--border);
+  max-width: 100%;
+  overflow-x: clip;
 }
 .chip-scroll {
   display: flex;
@@ -532,104 +540,154 @@ footer, .page-footer {
 .back-link { display: inline-block; margin-bottom: 1rem; font-size: 0.9rem; }
 @media (max-width: 640px) {
   .hero {
-    padding: 1.1rem 1rem 0.85rem;
+    padding: 0.85rem 0.9rem 0.65rem;
   }
-  .hero-inner { padding-right: 2.75rem; }
-  .hero h1 { font-size: 1.25rem; }
-  .hero p { font-size: 0.84rem; }
+  .hero-inner { padding-right: 2.6rem; }
+  .hero h1 { font-size: 1.15rem; }
+  .hero p { font-size: 0.8rem; margin-top: 0.25rem; }
   .notice {
-    margin-top: 0.45rem;
-    padding: 0.4rem 0.7rem;
-    font-size: 0.72rem;
+    display: none; /* 省竖屏空间；页脚仍有免责 */
   }
-  .badge { margin-top: 0.45rem; font-size: 0.7rem; }
+  .badge { margin-top: 0.35rem; font-size: 0.68rem; }
 
   .toolbar {
-    padding: 0.55rem 0.85rem 0.35rem;
-    gap: 0.4rem;
+    padding: 0.45rem 0.75rem 0.25rem;
+    gap: 0.35rem;
   }
   .search {
     min-width: 0;
     width: 100%;
     flex: 1 1 100%;
     font-size: 16px; /* iOS 避免自动放大 */
-    padding: 0.55rem 0.75rem;
+    padding: 0.5rem 0.7rem;
   }
+  /* 预设/分类：单行横滑，且不撑破整页 */
   .chip-scroll {
+    display: flex;
     flex-wrap: nowrap;
     overflow-x: auto;
+    overflow-y: hidden;
     -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
     scrollbar-width: none;
-    gap: 0.35rem;
-    padding-bottom: 0.15rem;
-    margin: 0 -0.15rem;
-    padding-left: 0.15rem;
-    padding-right: 0.15rem;
+    gap: 0.3rem;
+    width: 100%;
+    max-width: 100%;
+    padding-bottom: 0.1rem;
   }
   .chip-scroll::-webkit-scrollbar { display: none; }
   .presets, .filters {
-    flex-wrap: nowrap;
-    flex: 0 0 auto;
+    display: contents; /* 让按钮直接参与 chip-scroll 横滑 */
   }
   .filter-btn {
     flex: 0 0 auto;
     white-space: nowrap;
-    padding: 0.4rem 0.7rem;
-    font-size: 0.78rem;
+    padding: 0.35rem 0.6rem;
+    font-size: 0.75rem;
   }
 
   .client-bar {
-    padding: 0.35rem 0.85rem 0.55rem;
+    padding: 0.25rem 0.75rem 0.45rem;
+    max-width: 100%;
   }
+  .client-bar-label { margin-bottom: 0.3rem; }
+  .client-bar-label span { font-size: 0.72rem; }
   .client-bar-row {
     flex-wrap: nowrap;
     overflow-x: auto;
+    overflow-y: hidden;
     -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
     scrollbar-width: none;
-    gap: 0.4rem;
-    padding-bottom: 0.1rem;
+    gap: 0.35rem;
+    max-width: 100%;
+    padding-bottom: 0.05rem;
   }
   .client-bar-row::-webkit-scrollbar { display: none; }
   .client-pill {
-    padding: 0.45rem 0.65rem;
+    padding: 0.4rem 0.55rem;
   }
-  .client-pill strong { font-size: 0.84rem; }
+  .client-pill strong { font-size: 0.8rem; }
+  .client-pill small { font-size: 0.68rem; }
 
   .catalog-sections {
-    padding: 0.65rem 0.85rem 0.25rem;
-    margin-bottom: 0.5rem;
+    padding: 0.45rem 0.75rem 0.15rem;
+    margin-bottom: 0.25rem;
+    max-width: 100%;
+    overflow-x: clip;
   }
-  .sections-head h2 { font-size: 1.05rem; }
-  .sections-head p { font-size: 0.8rem; }
+  /* 手机上标题占空间，顶栏已说明用途 */
+  .sections-head { display: none; }
   .section-block {
-    padding: 0.7rem 0.75rem;
-    margin-bottom: 0.7rem;
+    padding: 0.55rem 0.65rem;
+    margin-bottom: 0.5rem;
+    overflow: hidden;
   }
-  /* 手机只用顶栏代理工具，避免重复占屏 */
+  .section-title { font-size: 0.85rem; margin-bottom: 0.45rem; }
   .tools-section-desktop { display: none; }
 
+  /* 作者：紧凑标签换行，不要大卡片横滑（会把整页撑歪） */
   .author-scroll {
     display: flex;
-    grid-template-columns: none;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    gap: 0.45rem;
-    padding-bottom: 0.2rem;
-    scroll-snap-type: x proximity;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    overflow: visible;
+    scroll-snap-type: none;
   }
-  .author-scroll::-webkit-scrollbar { display: none; }
   .author-scroll .section-card {
     flex: 0 0 auto;
-    min-width: 148px;
-    max-width: 200px;
-    scroll-snap-align: start;
+    min-width: 0;
+    max-width: 100%;
+    width: auto;
+    padding: 0.4rem 0.55rem;
+    gap: 0.3rem;
+    border-radius: 999px;
   }
+  .author-scroll .section-card-body {
+    flex-direction: row;
+    align-items: baseline;
+    gap: 0.3rem;
+    flex-wrap: wrap;
+  }
+  .author-scroll .section-card-body strong {
+    font-size: 0.8rem;
+  }
+  .author-scroll .section-card-body small {
+    font-size: 0.68rem;
+  }
+  .author-scroll .mini-tags { display: none; }
 
-  .grid { grid-template-columns: 1fr; }
-  main, .page-body { padding: 0.85rem; }
-  .stats { font-size: 0.8rem; margin-bottom: 0.65rem; }
-  .card { padding: 0.85rem; }
-  .actions .btn { padding: 0.5rem 0.65rem; }
+  .sections-list-head { margin: 0.35rem 0 0.15rem; }
+
+  .grid { grid-template-columns: 1fr; gap: 0.75rem; }
+  main, .page-body {
+    padding: 0.65rem 0.75rem 1.25rem;
+    max-width: 100%;
+    overflow-x: clip;
+  }
+  .stats { font-size: 0.78rem; margin-bottom: 0.5rem; }
+  .card {
+    padding: 0.75rem;
+    max-width: 100%;
+    overflow: hidden;
+  }
+  .card-title {
+    font-size: 0.92rem;
+    word-break: break-word;
+  }
+  .card-desc {
+    -webkit-line-clamp: 2;
+    font-size: 0.8rem;
+  }
+  .card-hint {
+    font-size: 0.72rem;
+    padding: 0.35rem 0.45rem;
+  }
+  .actions {
+    gap: 0.35rem;
+  }
+  .actions .btn {
+    padding: 0.45rem 0.55rem;
+    font-size: 0.75rem;
+  }
 }

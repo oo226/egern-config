@@ -25,7 +25,7 @@
         });
         if (window.caches && caches.keys) {
           caches.keys().then(function (keys) {
-            keys.filter(function (k) { return k.indexOf('egern-hub-') === 0 && k !== 'egern-hub-v11-mobile'; })
+            keys.filter(function (k) { return k.indexOf('egern-hub-') === 0 && k !== 'egern-hub-v12-compact'; })
               .forEach(function (k) { caches.delete(k); });
           });
         }
@@ -390,7 +390,7 @@
       const curTool = activeUpstreamClient === 'all'
         ? '全部工具'
         : ((catalog.client_labels || {})[activeUpstreamClient] || activeUpstreamClient);
-      authorSec.innerHTML = `<div class="section-title">作者 <span class="section-sub">（${curTool}）· 可左右滑</span></div>`;
+      authorSec.innerHTML = `<div class="section-title">作者 <span class="section-sub">（${curTool}）</span></div>`;
       const authorGrid = document.createElement('div');
       authorGrid.className = 'section-grid authors author-scroll';
       const upItems = (catalog.items || []).filter(i => i.category === 'upstream');
@@ -962,7 +962,7 @@
       const hashId = parseHashId();
       if (hashId) focusItemById(hashId);
       if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register(`sw.js?v=11`).then((reg) => reg.update()).catch(() => {});
+        navigator.serviceWorker.register(`sw.js?v=12`).then((reg) => reg.update()).catch(() => {});
       }
     }
 
