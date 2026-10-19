@@ -4,11 +4,11 @@
 #
 # Sources:
 #   Repcz-AI     — Repcz/Tool — AI.yaml (56 entries)
-#   VPSDance     — VPSDance/ai-proxy-rules — egern/all.yaml (375 entries)
+#   VPSDance     — VPSDance/ai-proxy-rules — egern/all.yaml (376 entries)
 #   Sukka-ai     — Sukka ruleset.skk.moe — non_ip/ai.conf (54 entries)
 #   local        — oo226/egern-config — AI-supplement.yaml (94 entries)
 # Overlap removed: 136
-# Total unique entries: 443
+# Total unique entries: 444
 
 no_resolve: true
 domain_set:
@@ -352,6 +352,7 @@ domain_suffix_set:
   - opal.google.com
   - openai.com
   - openai.com.cdn.cloudflare.net
+  - openai.org
   - openaiapi-site.azureedge.net
   - openaicom.imgix.net
   - openart.ai
