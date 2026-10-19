@@ -1,7 +1,7 @@
 # AUTO-EXPORTED from Routing/Foreign/AI-Merged.yaml
 # Format: Surge RULE-SET (no policy). scripts/export-surge-rulesets.py
 # Domain lines include extended-matching (SNI hit under always-real-ip / VIF).
-# Total entries: 440
+# Total entries: 441
 
 DOMAIN,accountcapabilities-pa.googleapis.com,extended-matching
 DOMAIN,ai.developer.meta.com,extended-matching
@@ -342,6 +342,7 @@ DOMAIN-SUFFIX,opal.google,extended-matching
 DOMAIN-SUFFIX,opal.google.com,extended-matching
 DOMAIN-SUFFIX,openai.com,extended-matching
 DOMAIN-SUFFIX,openai.com.cdn.cloudflare.net,extended-matching
+DOMAIN-SUFFIX,openai.org,extended-matching
 DOMAIN-SUFFIX,openaiapi-site.azureedge.net,extended-matching
 DOMAIN-SUFFIX,openaicom.imgix.net,extended-matching
 DOMAIN-SUFFIX,openart.ai,extended-matching
