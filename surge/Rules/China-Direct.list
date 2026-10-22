@@ -1,7 +1,7 @@
 # AUTO-EXPORTED from Routing/China-Direct.yaml
 # Format: Surge RULE-SET (no policy). scripts/export-surge-rulesets.py
 # Domain lines include extended-matching (SNI hit under always-real-ip / VIF).
-# Total entries: 32176
+# Total entries: 32179
 
 DOMAIN,0gr4uqmtt8y41hcjsgrzdrc31.ourdvsss.com,extended-matching
 DOMAIN,0gr4uqmtt8y41hcjsgrzdrc3s.ourdvsss.com,extended-matching
@@ -16943,6 +16943,7 @@ IP-CIDR,112.53.20.0/24
 IP-CIDR,112.64.0.0/14
 IP-CIDR,112.65.92.0/24
 IP-CIDR,112.73.222.0/24
+IP-CIDR,112.73.96.0/19
 IP-CIDR,112.74.0.0/15
 IP-CIDR,112.74.0.0/16
 IP-CIDR,112.80.0.0/12
@@ -23278,6 +23279,7 @@ IP-CIDR,60.160.0.0/11
 IP-CIDR,60.194.0.0/15
 IP-CIDR,60.200.0.0/13
 IP-CIDR,60.200.0.0/24
+IP-CIDR,60.200.35.0/24
 IP-CIDR,60.204.0.0/14
 IP-CIDR,60.208.0.0/12
 IP-CIDR,60.232.0.0/15
@@ -26573,6 +26575,7 @@ IP-CIDR6,2408:4014::/31
 IP-CIDR6,2408:4016:1000::/36
 IP-CIDR6,2408:4016:100::/40
 IP-CIDR6,2408:4016:10::/44
+IP-CIDR6,2408:4016:1::/48
 IP-CIDR6,2408:4016:2000::/35
 IP-CIDR6,2408:4016:200::/39
 IP-CIDR6,2408:4016:20::/43

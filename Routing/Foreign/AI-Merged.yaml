@@ -4,11 +4,11 @@
 #
 # Sources:
 #   Repcz-AI     — Repcz/Tool — AI.yaml (56 entries)
-#   VPSDance     — VPSDance/ai-proxy-rules — egern/all.yaml (376 entries)
+#   VPSDance     — VPSDance/ai-proxy-rules — egern/all.yaml (379 entries)
 #   Sukka-ai     — Sukka ruleset.skk.moe — non_ip/ai.conf (54 entries)
 #   local        — oo226/egern-config — AI-supplement.yaml (94 entries)
 # Overlap removed: 136
-# Total unique entries: 444
+# Total unique entries: 447
 
 no_resolve: true
 domain_set:
@@ -130,6 +130,7 @@ domain_set:
   - www.googleapis.com
   - yiyan.baidu.com
 domain_suffix_set:
+  - //github.com/aprilnea/reverse-engineering-claude-code-antspace
   - abtestvm-sg.bytedance.com
   - ai.cloudflare.com
   - ai.com
@@ -142,6 +143,7 @@ domain_suffix_set:
   - algolia.net
   - ampcode.com
   - ampworkers.com
+  - ant.dev
   - anthropic.com
   - anthropic.com.cn
   - anthropic.team
@@ -187,6 +189,7 @@ domain_suffix_set:
   - claude.dev
   - claude.new
   - claude.site
+  - claudeacademy.com
   - claudemcpclient.com
   - claudemcpcontent.com
   - claudepages.dev
