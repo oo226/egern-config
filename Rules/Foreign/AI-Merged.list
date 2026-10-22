@@ -1,7 +1,7 @@
 # AUTO-EXPORTED from Routing/Foreign/AI-Merged.yaml
 # Format: Surge RULE-SET (no policy). scripts/export-surge-rulesets.py
 # Domain lines include extended-matching (SNI hit under always-real-ip / VIF).
-# Total entries: 441
+# Total entries: 444
 
 DOMAIN,accountcapabilities-pa.googleapis.com,extended-matching
 DOMAIN,ai.developer.meta.com,extended-matching
@@ -120,6 +120,7 @@ DOMAIN,sydney.bing.com,extended-matching
 DOMAIN,webchannel-alkalimakersuite-pa.clients6.google.com,extended-matching
 DOMAIN,www.googleapis.com,extended-matching
 DOMAIN,yiyan.baidu.com,extended-matching
+DOMAIN-SUFFIX,//github.com/aprilnea/reverse-engineering-claude-code-antspace,extended-matching
 DOMAIN-SUFFIX,abtestvm-sg.bytedance.com,extended-matching
 DOMAIN-SUFFIX,ai.cloudflare.com,extended-matching
 DOMAIN-SUFFIX,ai.com,extended-matching
@@ -132,6 +133,7 @@ DOMAIN-SUFFIX,aistudio.google.com,extended-matching
 DOMAIN-SUFFIX,algolia.net,extended-matching
 DOMAIN-SUFFIX,ampcode.com,extended-matching
 DOMAIN-SUFFIX,ampworkers.com,extended-matching
+DOMAIN-SUFFIX,ant.dev,extended-matching
 DOMAIN-SUFFIX,anthropic.com,extended-matching
 DOMAIN-SUFFIX,anthropic.com.cn,extended-matching
 DOMAIN-SUFFIX,anthropic.team,extended-matching
@@ -177,6 +179,7 @@ DOMAIN-SUFFIX,claude.com,extended-matching
 DOMAIN-SUFFIX,claude.dev,extended-matching
 DOMAIN-SUFFIX,claude.new,extended-matching
 DOMAIN-SUFFIX,claude.site,extended-matching
+DOMAIN-SUFFIX,claudeacademy.com,extended-matching
 DOMAIN-SUFFIX,claudemcpclient.com,extended-matching
 DOMAIN-SUFFIX,claudemcpcontent.com,extended-matching
 DOMAIN-SUFFIX,claudepages.dev,extended-matching
