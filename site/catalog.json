@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-23T08:17:15Z",
+  "generated_at": "2026-10-24T07:53:38Z",
   "branch": "main",
   "repo": "oo226/egern-config",
   "raw_base": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main",
@@ -17,7 +17,7 @@
       "name": "按需开启",
       "icon": "🔧",
       "usage_tier": "optional",
-      "count": 1703
+      "count": 1704
     }
   ],
   "quick_start": [
@@ -185,16 +185,16 @@
       "date": "2026-10-23"
     },
     "summary": [
-      "分流规则 更新 2 个文件",
-      "模块 更新 5 个文件",
-      "脚本 更新 7 个文件",
-      "模块站 更新 2 个文件",
-      "主配置 更新 1 个文件",
-      "国内直连 32171 条"
+      "国内直连 32176 条"
     ],
-    "files_changed": 24
+    "files_changed": 0
   },
   "changelog": [
+    {
+      "hash": "39738b0",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-10-23"
+    },
     {
       "hash": "5abba70",
       "subject": "chore: publish curated snapshot from sync",
@@ -229,15 +229,10 @@
       "hash": "7728fea",
       "subject": "chore: publish curated snapshot from sync",
       "date": "2026-10-20"
-    },
-    {
-      "hash": "03b6458",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-10-19"
     }
   ],
   "local_health": {
-    "checked": 1634,
+    "checked": 1635,
     "fail": 0,
     "broken_ids": []
   },
@@ -266,7 +261,7 @@
       "id": "upstream",
       "name": "上游单条",
       "icon": "📚",
-      "count": 1534
+      "count": 1535
     },
     {
       "id": "routing",
@@ -320,7 +315,7 @@
     {
       "id": "quanx",
       "name": "Quantumult X",
-      "count": 23
+      "count": 24
     },
     {
       "id": "shadowrocket",
@@ -403,7 +398,7 @@
     {
       "id": "zenmofeishi",
       "name": "怎么肥事",
-      "count": 23,
+      "count": 24,
       "clients": [
         "quanx"
       ],
@@ -51054,6 +51049,36 @@
       "health": "ok"
     },
     {
+      "id": "up-_upstream-zenmofeishi-helloobike",
+      "kind": "module",
+      "category": "upstream",
+      "group": "怎么肥事",
+      "name": "哈啰净化 · helloobike.snippet",
+      "desc": "净化弹窗、首页推荐流、借钱入口与会员领券横条，隐藏我的页推广宫格、推荐、奖励金、接单券提醒及钱包金融整排。",
+      "icon": "",
+      "homepage": "",
+      "path": "Modules/_upstream/zenmofeishi/helloobike.snippet",
+      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/_upstream/zenmofeishi/helloobike.snippet",
+      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2F_upstream%2Fzenmofeishi%2Fhelloobike.snippet",
+      "usage_tier": "optional",
+      "tags": [
+        "上游",
+        "zenmofeishi",
+        "Quantumult X"
+      ],
+      "upstream": true,
+      "author": "zenmofeishi",
+      "clients": [
+        "quanx"
+      ],
+      "client_labels": [
+        "Quantumult X"
+      ],
+      "hint": "适用：Quantumult X。按需添加，勿一次全开。",
+      "share_url": "https://oo226.github.io/egern-config/#id=up-_upstream-zenmofeishi-helloobike",
+      "health": "ok"
+    },
+    {
       "id": "up-_upstream-zenmofeishi-hlwxx_remove_ads",
       "kind": "module",
       "category": "upstream",
@@ -56885,5 +56910,5 @@
       "health": "ok"
     }
   ],
-  "total": 1745
+  "total": 1746
 }
