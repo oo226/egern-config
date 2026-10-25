@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-24T07:53:38Z",
+  "generated_at": "2026-10-25T08:06:48Z",
   "branch": "main",
   "repo": "oo226/egern-config",
   "raw_base": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main",
@@ -17,7 +17,7 @@
       "name": "按需开启",
       "icon": "🔧",
       "usage_tier": "optional",
-      "count": 1704
+      "count": 1706
     }
   ],
   "quick_start": [
@@ -180,9 +180,9 @@
   ],
   "sync_digest": {
     "commit": {
-      "hash": "ae87c0f",
+      "hash": "4db7bfa",
       "subject": "chore: sync upstream on sync branch",
-      "date": "2026-10-23"
+      "date": "2026-10-24"
     },
     "summary": [
       "国内直连 32176 条"
@@ -190,6 +190,16 @@
     "files_changed": 0
   },
   "changelog": [
+    {
+      "hash": "53d1823",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-10-24"
+    },
+    {
+      "hash": "611e111",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-10-24"
+    },
     {
       "hash": "39738b0",
       "subject": "chore: publish curated snapshot from sync",
@@ -219,20 +229,10 @@
       "hash": "a22196b",
       "subject": "chore: publish curated snapshot from sync",
       "date": "2026-10-21"
-    },
-    {
-      "hash": "26d9547",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-10-20"
-    },
-    {
-      "hash": "7728fea",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-10-20"
     }
   ],
   "local_health": {
-    "checked": 1635,
+    "checked": 1637,
     "fail": 0,
     "broken_ids": []
   },
@@ -261,7 +261,7 @@
       "id": "upstream",
       "name": "上游单条",
       "icon": "📚",
-      "count": 1535
+      "count": 1537
     },
     {
       "id": "routing",
@@ -315,7 +315,7 @@
     {
       "id": "quanx",
       "name": "Quantumult X",
-      "count": 24
+      "count": 26
     },
     {
       "id": "shadowrocket",
@@ -398,7 +398,7 @@
     {
       "id": "zenmofeishi",
       "name": "怎么肥事",
-      "count": 24,
+      "count": 26,
       "clients": [
         "quanx"
       ],
@@ -29428,7 +29428,7 @@
       "kind": "module",
       "category": "upstream",
       "group": "limbopro",
-      "name": "毒奶特供(2026年10月10日更新) · Adblock4limbo.module",
+      "name": "毒奶特供(2026年10月24日更新) · Adblock4limbo.module",
       "desc": "毒奶去网页广告计划用户脚本 For Quantumult X & Surge & Shadowrocket & Loon & Stash & 油猴 ；1.新增页面右下角导航；2.通过 JavaScript 移除特定网站网页广告 —— 搜索引擎（Bing/Google）广告及内容农场结果清除/低端影视/欧乐影院/iyf爱壹帆/哔滴影视/Pornhub/Javbus/Supjav/Jable(支持抓取M3U8链接)/MissAv/91porn(支持视频下载)/hitomi/紳士漫畫/禁漫天堂/等视频&ACG&小说&漫画网站上的弹窗广告&视频广告&Gif图片广告等，保持网页清爽干净无打扰！ P.S. 欢迎提交issue",
       "icon": "",
       "homepage": "",
@@ -29464,7 +29464,7 @@
       "kind": "module",
       "category": "upstream",
       "group": "limbopro",
-      "name": "毒奶特供(2026年10月10日更新) · Adblock4limbo.sgmodule",
+      "name": "毒奶特供(2026年10月24日更新) · Adblock4limbo.sgmodule",
       "desc": "毒奶去网页广告计划用户脚本 For Quantumult X & Surge & Shadowrocket & Loon & Stash & 油猴 ；1.新增页面右下角导航；2.通过 JavaScript 移除特定网站网页广告 —— 搜索引擎（Bing/Google）广告及内容农场结果清除/低端影视/欧乐影院/iyf爱壹帆/哔滴影视/Pornhub/Javbus/Supjav/Jable(支持抓取M3U8链接)/MissAv/91porn(支持视频下载)/hitomi/紳士漫畫/禁漫天堂/等视频&ACG&小说&漫画网站上的弹窗广告&视频广告&Gif图片广告等，保持网页清爽干净无打扰！ P.S. 欢迎提交issue",
       "icon": "",
       "homepage": "",
@@ -29572,7 +29572,7 @@
       "kind": "module",
       "category": "upstream",
       "group": "limbopro",
-      "name": "毒奶特供(2026年10月10日更新) · Adblock4limbo.module",
+      "name": "毒奶特供(2026年10月24日更新) · Adblock4limbo.module",
       "desc": "毒奶去网页广告计划用户脚本 For Quantumult X & Surge & Shadowrocket & Loon & Stash & 油猴 ；1.新增页面右下角导航；2.通过 JavaScript 移除特定网站网页广告 —— 搜索引擎（Bing/Google）广告及内容农场结果清除/低端影视/欧乐影院/iyf爱壹帆/哔滴影视/Pornhub/Javbus/Supjav/Jable(支持抓取M3U8链接)/MissAv/91porn(支持视频下载)/hitomi/紳士漫畫/禁漫天堂/等视频&ACG&小说&漫画网站上的弹窗广告&视频广告&Gif图片广告等，保持网页清爽干净无打扰！ P.S. 欢迎提交issue",
       "icon": "",
       "homepage": "",
@@ -29644,7 +29644,7 @@
       "kind": "module",
       "category": "upstream",
       "group": "limbopro",
-      "name": "毒奶特供(2026年10月10日更新) · Adblock4limbo.sgmodule",
+      "name": "毒奶特供(2026年10月24日更新) · Adblock4limbo.sgmodule",
       "desc": "毒奶去网页广告计划用户脚本 For Quantumult X & Surge & Shadowrocket & Loon & Stash & 油猴 ；1.新增页面右下角导航；2.通过 JavaScript 移除特定网站网页广告 —— 搜索引擎（Bing/Google）广告及内容农场结果清除/低端影视/欧乐影院/iyf爱壹帆/哔滴影视/Pornhub/Javbus/Supjav/Jable(支持抓取M3U8链接)/MissAv/91porn(支持视频下载)/hitomi/紳士漫畫/禁漫天堂/等视频&ACG&小说&漫画网站上的弹窗广告&视频广告&Gif图片广告等，保持网页清爽干净无打扰！ P.S. 欢迎提交issue",
       "icon": "",
       "homepage": "",
@@ -29860,7 +29860,7 @@
       "kind": "module",
       "category": "upstream",
       "group": "limbopro-Adblock4limbo.sgmodule",
-      "name": "毒奶特供(2026年10月10日更新) · limbopro-Adblock4limbo.sgmodule",
+      "name": "毒奶特供(2026年10月24日更新) · limbopro-Adblock4limbo.sgmodule",
       "desc": "毒奶去网页广告计划用户脚本 For Quantumult X & Surge & Shadowrocket & Loon & Stash & 油猴 ；1.新增页面右下角导航；2.通过 JavaScript 移除特定网站网页广告 —— 搜索引擎（Bing/Google）广告及内容农场结果清除/低端影视/欧乐影院/iyf爱壹帆/哔滴影视/Pornhub/Javbus/Supjav/Jable(支持抓取M3U8链接)/MissAv/91porn(支持视频下载)/hitomi/紳士漫畫/禁漫天堂/等视频&ACG&小说&漫画网站上的弹窗广告&视频广告&Gif图片广告等，保持网页清爽干净无打扰！ P.S. 欢迎提交issue",
       "icon": "",
       "homepage": "",
@@ -50659,6 +50659,36 @@
       "health": "ok"
     },
     {
+      "id": "up-_upstream-zenmofeishi-MT",
+      "kind": "module",
+      "category": "upstream",
+      "group": "怎么肥事",
+      "name": "美团App 12.67.403 · MT.snippet",
+      "desc": "怎么肥事 · MT.snippet",
+      "icon": "",
+      "homepage": "",
+      "path": "Modules/_upstream/zenmofeishi/MT.snippet",
+      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/_upstream/zenmofeishi/MT.snippet",
+      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2F_upstream%2Fzenmofeishi%2FMT.snippet",
+      "usage_tier": "optional",
+      "tags": [
+        "上游",
+        "zenmofeishi",
+        "Quantumult X"
+      ],
+      "upstream": true,
+      "author": "zenmofeishi",
+      "clients": [
+        "quanx"
+      ],
+      "client_labels": [
+        "Quantumult X"
+      ],
+      "hint": "适用：Quantumult X。按需添加，勿一次全开。",
+      "share_url": "https://oo226.github.io/egern-config/#id=up-_upstream-zenmofeishi-MT",
+      "health": "ok"
+    },
+    {
       "id": "up-_upstream-zenmofeishi-Pinduoduo",
       "kind": "module",
       "category": "upstream",
@@ -51196,6 +51226,36 @@
       ],
       "hint": "适用：Quantumult X。按需添加，勿一次全开。",
       "share_url": "https://oo226.github.io/egern-config/#id=up-_upstream-zenmofeishi-xTerm256",
+      "health": "ok"
+    },
+    {
+      "id": "up-_upstream-zenmofeishi-xhey-ad-clean",
+      "kind": "module",
+      "category": "upstream",
+      "group": "怎么肥事",
+      "name": "XCamera广告净化合集 · xhey-ad-clean.snippet",
+      "desc": "XCamera 3.0.480开屏、插屏、信息流与RTB广告净化；作者：TG@ZenMoFiShi",
+      "icon": "",
+      "homepage": "",
+      "path": "Modules/_upstream/zenmofeishi/xhey-ad-clean.snippet",
+      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/_upstream/zenmofeishi/xhey-ad-clean.snippet",
+      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2F_upstream%2Fzenmofeishi%2Fxhey-ad-clean.snippet",
+      "usage_tier": "optional",
+      "tags": [
+        "上游",
+        "zenmofeishi",
+        "Quantumult X"
+      ],
+      "upstream": true,
+      "author": "zenmofeishi",
+      "clients": [
+        "quanx"
+      ],
+      "client_labels": [
+        "Quantumult X"
+      ],
+      "hint": "适用：Quantumult X。按需添加，勿一次全开。",
+      "share_url": "https://oo226.github.io/egern-config/#id=up-_upstream-zenmofeishi-xhey-ad-clean",
       "health": "ok"
     },
     {
@@ -56910,5 +56970,5 @@
       "health": "ok"
     }
   ],
-  "total": 1746
+  "total": 1748
 }
