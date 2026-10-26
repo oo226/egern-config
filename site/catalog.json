@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-25T08:06:59Z",
+  "generated_at": "2026-10-26T08:27:34Z",
   "branch": "main",
   "repo": "oo226/egern-config",
   "raw_base": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main",
@@ -17,7 +17,7 @@
       "name": "按需开启",
       "icon": "🔧",
       "usage_tier": "optional",
-      "count": 1706
+      "count": 1707
     }
   ],
   "quick_start": [
@@ -185,16 +185,16 @@
       "date": "2026-10-25"
     },
     "summary": [
-      "分流规则 更新 2 个文件",
-      "模块 更新 12 个文件",
-      "脚本 更新 11 个文件",
-      "模块站 更新 2 个文件",
-      "主配置 更新 1 个文件",
       "国内直连 32176 条"
     ],
-    "files_changed": 32
+    "files_changed": 0
   },
   "changelog": [
+    {
+      "hash": "00a30c5",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-10-25"
+    },
     {
       "hash": "2277c3d",
       "subject": "chore: publish curated snapshot from sync",
@@ -229,15 +229,10 @@
       "hash": "172c823",
       "subject": "chore: publish curated snapshot from sync",
       "date": "2026-10-22"
-    },
-    {
-      "hash": "21eed14",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-10-21"
     }
   ],
   "local_health": {
-    "checked": 1637,
+    "checked": 1638,
     "fail": 0,
     "broken_ids": []
   },
@@ -266,7 +261,7 @@
       "id": "upstream",
       "name": "上游单条",
       "icon": "📚",
-      "count": 1537
+      "count": 1538
     },
     {
       "id": "routing",
@@ -305,12 +300,12 @@
     {
       "id": "surge",
       "name": "Surge",
-      "count": 1511
+      "count": 1512
     },
     {
       "id": "egern",
       "name": "Egern",
-      "count": 1511
+      "count": 1512
     },
     {
       "id": "loon",
@@ -332,7 +327,7 @@
     {
       "id": "fmz200",
       "name": "奶思 fmz200",
-      "count": 739,
+      "count": 740,
       "clients": [
         "surge",
         "egern",
@@ -11610,6 +11605,39 @@
       ],
       "hint": "适用：Surge / Egern。按需添加，勿一次全开。",
       "share_url": "https://oo226.github.io/egern-config/#id=up-_upstream-fmz200-split-partL-LenovoPrint",
+      "health": "ok"
+    },
+    {
+      "id": "up-_upstream-fmz200-split-partL-LianTongMenHu",
+      "kind": "module",
+      "category": "upstream",
+      "group": "奶思 fmz200",
+      "name": "联掌门户去广告 · LianTongMenHu.sgmodule",
+      "desc": "移除开屏广告、弹窗，以及首页、服务和发现页的无用内容",
+      "icon": "",
+      "homepage": "https://hub.kelee.one",
+      "path": "Modules/_upstream/fmz200/split/partL/LianTongMenHu.sgmodule",
+      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/_upstream/fmz200/split/partL/LianTongMenHu.sgmodule",
+      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2F_upstream%2Ffmz200%2Fsplit%2FpartL%2FLianTongMenHu.sgmodule",
+      "usage_tier": "optional",
+      "tags": [
+        "上游",
+        "fmz200",
+        "Surge",
+        "Egern"
+      ],
+      "upstream": true,
+      "author": "fmz200",
+      "clients": [
+        "surge",
+        "egern"
+      ],
+      "client_labels": [
+        "Surge",
+        "Egern"
+      ],
+      "hint": "适用：Surge / Egern。按需添加，勿一次全开。",
+      "share_url": "https://oo226.github.io/egern-config/#id=up-_upstream-fmz200-split-partL-LianTongMenHu",
       "health": "ok"
     },
     {
@@ -56975,5 +57003,5 @@
       "health": "ok"
     }
   ],
-  "total": 1748
+  "total": 1749
 }
