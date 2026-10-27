@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-26T08:27:46Z",
+  "generated_at": "2026-10-27T08:37:20Z",
   "branch": "main",
   "repo": "oo226/egern-config",
   "raw_base": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main",
@@ -17,7 +17,7 @@
       "name": "按需开启",
       "icon": "🔧",
       "usage_tier": "optional",
-      "count": 1707
+      "count": 1708
     }
   ],
   "quick_start": [
@@ -185,16 +185,16 @@
       "date": "2026-10-26"
     },
     "summary": [
-      "分流规则 更新 2 个文件",
-      "模块 更新 11 个文件",
-      "脚本 更新 9 个文件",
-      "模块站 更新 2 个文件",
-      "主配置 更新 1 个文件",
       "国内直连 32176 条"
     ],
-    "files_changed": 30
+    "files_changed": 0
   },
   "changelog": [
+    {
+      "hash": "1cae085",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-10-26"
+    },
     {
       "hash": "d99c422",
       "subject": "chore: publish curated snapshot from sync",
@@ -229,15 +229,10 @@
       "hash": "5abba70",
       "subject": "chore: publish curated snapshot from sync",
       "date": "2026-10-23"
-    },
-    {
-      "hash": "370d261",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-10-22"
     }
   ],
   "local_health": {
-    "checked": 1638,
+    "checked": 1639,
     "fail": 0,
     "broken_ids": []
   },
@@ -266,7 +261,7 @@
       "id": "upstream",
       "name": "上游单条",
       "icon": "📚",
-      "count": 1538
+      "count": 1539
     },
     {
       "id": "routing",
@@ -320,7 +315,7 @@
     {
       "id": "quanx",
       "name": "Quantumult X",
-      "count": 26
+      "count": 27
     },
     {
       "id": "shadowrocket",
@@ -403,7 +398,7 @@
     {
       "id": "zenmofeishi",
       "name": "怎么肥事",
-      "count": 26,
+      "count": 27,
       "clients": [
         "quanx"
       ],
@@ -50967,6 +50962,36 @@
       "health": "ok"
     },
     {
+      "id": "up-_upstream-zenmofeishi-TxvideoAD",
+      "kind": "module",
+      "category": "upstream",
+      "group": "怎么肥事",
+      "name": "腾讯视频净化 · TxvideoAD.snippet",
+      "desc": "去除开屏广告、视频播放前广告、底部的多余 tap 栏、我的页面美化、我的界面顶部广告",
+      "icon": "",
+      "homepage": "",
+      "path": "Modules/_upstream/zenmofeishi/TxvideoAD.snippet",
+      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/_upstream/zenmofeishi/TxvideoAD.snippet",
+      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2F_upstream%2Fzenmofeishi%2FTxvideoAD.snippet",
+      "usage_tier": "optional",
+      "tags": [
+        "上游",
+        "zenmofeishi",
+        "Quantumult X"
+      ],
+      "upstream": true,
+      "author": "zenmofeishi",
+      "clients": [
+        "quanx"
+      ],
+      "client_labels": [
+        "Quantumult X"
+      ],
+      "hint": "适用：Quantumult X。按需添加，勿一次全开。",
+      "share_url": "https://oo226.github.io/egern-config/#id=up-_upstream-zenmofeishi-TxvideoAD",
+      "health": "ok"
+    },
+    {
       "id": "up-_upstream-zenmofeishi-WB",
       "kind": "module",
       "category": "upstream",
@@ -57008,5 +57033,5 @@
       "health": "ok"
     }
   ],
-  "total": 1749
+  "total": 1750
 }
