@@ -8,14 +8,14 @@
 #   Bilibili       — Repcz/Tool — 哔哩哔哩 (20 entries)
 #   AppleCN        — Repcz/Tool — 苹果中国 (167 entries)
 #   ChinaDomain    — Repcz/Tool — 国内域名 (13251 entries)
-#   ChinaIP        — Repcz/Tool — 国内 IP (7374 entries)
+#   ChinaIP        — Repcz/Tool — 国内 IP (7377 entries)
 #   ChinaASN       — Repcz/Tool — 国内 ASN (5076 entries)
 #   Rabbit-China   — Rabbit-Spec — China.list (3765 entries)
 #   Rabbit-CIDR    — Rabbit-Spec — ChinaCIDR.list (10033 entries)
 #   ResourceSite   — eulac-dev/Proxy — 视频资源站 (25 entries)
 #   PanVod         — eulac-dev/Proxy — 网盘点播 (47 entries)
-# Overlap removed: 7958
-# Total unique entries: 32176
+# Overlap removed: 7959
+# Total unique entries: 32178
 
 no_resolve: true
 domain_set:
@@ -15684,6 +15684,8 @@ ip_cidr_set:
   - 103.239.152.0/22
   - 103.239.180.0/22
   - 103.239.184.0/22
+  - 103.239.184.0/23
+  - 103.239.186.0/24
   - 103.239.192.0/21
   - 103.239.192.0/22
   - 103.239.204.0/22

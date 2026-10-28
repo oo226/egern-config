@@ -4,11 +4,11 @@
 #
 # Sources:
 #   Repcz-AI     — Repcz/Tool — AI.yaml (56 entries)
-#   VPSDance     — VPSDance/ai-proxy-rules — egern/all.yaml (378 entries)
+#   VPSDance     — VPSDance/ai-proxy-rules — egern/all.yaml (382 entries)
 #   Sukka-ai     — Sukka ruleset.skk.moe — non_ip/ai.conf (54 entries)
 #   local        — oo226/egern-config — AI-supplement.yaml (94 entries)
 # Overlap removed: 136
-# Total unique entries: 446
+# Total unique entries: 450
 
 no_resolve: true
 domain_set:
@@ -52,6 +52,9 @@ domain_set:
   - api.statsig.com
   - api.together.xyz
   - api2.cursor.sh
+  - appsgenaiserver-pa.clients.google.com
+  - appsgenaiserver-pa.clients6.google.com
+  - appsgenaiserver-pa.googleapis.com
   - ark.cn-beijing.volces.com
   - assets.msn.com
   - auth0.openai.com
@@ -325,6 +328,7 @@ domain_suffix_set:
   - mcprev.cn
   - mcpservertest.online
   - meta.ai
+  - metaaiusercontent.com
   - metaaivm.com
   - miaibox.com
   - midjourney.com
