@@ -1,7 +1,7 @@
 # AUTO-EXPORTED from Routing/Foreign/AI-Merged.yaml
 # Format: Surge RULE-SET (no policy). scripts/export-surge-rulesets.py
 # Domain lines include extended-matching (SNI hit under always-real-ip / VIF).
-# Total entries: 443
+# Total entries: 447
 
 DOMAIN,accountcapabilities-pa.googleapis.com,extended-matching
 DOMAIN,ai.developer.meta.com,extended-matching
@@ -43,6 +43,9 @@ DOMAIN,api.runwayml.com,extended-matching
 DOMAIN,api.statsig.com,extended-matching
 DOMAIN,api.together.xyz,extended-matching
 DOMAIN,api2.cursor.sh,extended-matching
+DOMAIN,appsgenaiserver-pa.clients.google.com,extended-matching
+DOMAIN,appsgenaiserver-pa.clients6.google.com,extended-matching
+DOMAIN,appsgenaiserver-pa.googleapis.com,extended-matching
 DOMAIN,ark.cn-beijing.volces.com,extended-matching
 DOMAIN,assets.msn.com,extended-matching
 DOMAIN,auth0.openai.com,extended-matching
@@ -315,6 +318,7 @@ DOMAIN-SUFFIX,mchost.guru,extended-matching
 DOMAIN-SUFFIX,mcprev.cn,extended-matching
 DOMAIN-SUFFIX,mcpservertest.online,extended-matching
 DOMAIN-SUFFIX,meta.ai,extended-matching
+DOMAIN-SUFFIX,metaaiusercontent.com,extended-matching
 DOMAIN-SUFFIX,metaaivm.com,extended-matching
 DOMAIN-SUFFIX,miaibox.com,extended-matching
 DOMAIN-SUFFIX,midjourney.com,extended-matching
