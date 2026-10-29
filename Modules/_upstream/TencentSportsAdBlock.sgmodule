@@ -2,9 +2,11 @@
 #!desc=拦截开屏广告，移除首页信息流、会员推广、赛事页横幅、悬浮运营组件、金币任务会员弹层及赛事 PageCard 强制弹窗
 
 [MITM]
-hostname = %APPEND%,app.sports.qq.com,config.ab.qq.com,shequ.sports.qq.com,film.video.qq.com,sports.qq.com,matchweb.sports.qq.com
+hostname = %APPEND%,app.sports.qq.com,config.ab.qq.com,shequ.sports.qq.com,film.video.qq.com,sports.qq.com,matchweb.sports.qq.com,*.l.qq.com
 
 [Map Local]
+# 视频贴片广告请求（lives.l.qq.com 等）本地返回空响应：广告 SDK 立即得到“无广告”，播放器不再等待约 8 秒超时
+^https?:\/\/[^\/]+\.l\.qq\.com\/ data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 ^https:\/\/config\.ab\.qq\.com\/tab\/GetTabRemoteConfig.* data-type=text data="" status-code=200 header="Content-Type:application/proto"
 ^https:\/\/config\.ab\.qq\.com\/tab\/GetTabToggle.* data-type=text data="" status-code=200 header="Content-Type:application/proto"
 

@@ -7,15 +7,15 @@
 #   WeChat         — Repcz/Tool — 微信 (341 entries)
 #   Bilibili       — Repcz/Tool — 哔哩哔哩 (20 entries)
 #   AppleCN        — Repcz/Tool — 苹果中国 (167 entries)
-#   ChinaDomain    — Repcz/Tool — 国内域名 (13251 entries)
-#   ChinaIP        — Repcz/Tool — 国内 IP (7377 entries)
+#   ChinaDomain    — Repcz/Tool — 国内域名 (13252 entries)
+#   ChinaIP        — Repcz/Tool — 国内 IP (7386 entries)
 #   ChinaASN       — Repcz/Tool — 国内 ASN (5076 entries)
 #   Rabbit-China   — Rabbit-Spec — China.list (3765 entries)
 #   Rabbit-CIDR    — Rabbit-Spec — ChinaCIDR.list (10033 entries)
 #   ResourceSite   — eulac-dev/Proxy — 视频资源站 (25 entries)
 #   PanVod         — eulac-dev/Proxy — 网盘点播 (47 entries)
-# Overlap removed: 7959
-# Total unique entries: 32178
+# Overlap removed: 7957
+# Total unique entries: 32190
 
 no_resolve: true
 domain_set:
@@ -2556,6 +2556,7 @@ domain_suffix_set:
   - capcut.com
   - capcutapi.com
   - capcutapi.us
+  - capcutcdn-us.com
   - capcutstatic.com
   - capitalonline.net
   - capturetheflag.fun
@@ -14554,7 +14555,7 @@ ip_cidr_set:
   - 101.50.56.0/22
   - 101.50.8.0/21
   - 101.52.0.0/16
-  - 101.52.112.0/21
+  - 101.52.116.0/22
   - 101.52.124.0/22
   - 101.52.128.0/20
   - 101.52.204.0/22
@@ -17820,6 +17821,7 @@ ip_cidr_set:
   - 119.44.24.0/23
   - 119.44.253.0/24
   - 119.44.254.0/23
+  - 119.44.26.0/24
   - 119.44.4.0/23
   - 119.44.45.0/24
   - 119.44.46.0/24
@@ -26978,6 +26980,16 @@ ip_cidr6_set:
   - "2a0a:d685:280::/41"
   - "2a0a:d685:4000::/34"
   - "2a0a:d685:400::/38"
+  - "2a0a:d685:400::/40"
+  - "2a0a:d685:500::/45"
+  - "2a0a:d685:508::/48"
+  - "2a0a:d685:50a::/47"
+  - "2a0a:d685:50c::/46"
+  - "2a0a:d685:510::/44"
+  - "2a0a:d685:520::/43"
+  - "2a0a:d685:540::/42"
+  - "2a0a:d685:580::/41"
+  - "2a0a:d685:600::/39"
   - "2a0a:d685:8000::/33"
   - "2a0a:d685:800::/37"
   - "2a0a:d685::/40"

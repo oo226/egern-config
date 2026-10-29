@@ -1,7 +1,7 @@
 # AUTO-EXPORTED from Routing/China-Direct.yaml
 # Format: Surge RULE-SET (no policy). scripts/export-surge-rulesets.py
 # Domain lines include extended-matching (SNI hit under always-real-ip / VIF).
-# Total entries: 32178
+# Total entries: 32190
 
 DOMAIN,0gr4uqmtt8y41hcjsgrzdrc31.ourdvsss.com,extended-matching
 DOMAIN,0gr4uqmtt8y41hcjsgrzdrc3s.ourdvsss.com,extended-matching
@@ -2539,6 +2539,7 @@ DOMAIN-SUFFIX,capcut.cn,extended-matching
 DOMAIN-SUFFIX,capcut.com,extended-matching
 DOMAIN-SUFFIX,capcutapi.com,extended-matching
 DOMAIN-SUFFIX,capcutapi.us,extended-matching
+DOMAIN-SUFFIX,capcutcdn-us.com,extended-matching
 DOMAIN-SUFFIX,capcutstatic.com,extended-matching
 DOMAIN-SUFFIX,capitalonline.net,extended-matching
 DOMAIN-SUFFIX,capturetheflag.fun,extended-matching
@@ -14535,7 +14536,7 @@ IP-CIDR,101.49.212.0/24
 IP-CIDR,101.50.56.0/22
 IP-CIDR,101.50.8.0/21
 IP-CIDR,101.52.0.0/16
-IP-CIDR,101.52.112.0/21
+IP-CIDR,101.52.116.0/22
 IP-CIDR,101.52.124.0/22
 IP-CIDR,101.52.128.0/20
 IP-CIDR,101.52.204.0/22
@@ -17801,6 +17802,7 @@ IP-CIDR,119.44.23.0/24
 IP-CIDR,119.44.24.0/23
 IP-CIDR,119.44.253.0/24
 IP-CIDR,119.44.254.0/23
+IP-CIDR,119.44.26.0/24
 IP-CIDR,119.44.4.0/23
 IP-CIDR,119.44.45.0/24
 IP-CIDR,119.44.46.0/24
@@ -26958,6 +26960,16 @@ IP-CIDR6,2a0a:d685:240::/42
 IP-CIDR6,2a0a:d685:280::/41
 IP-CIDR6,2a0a:d685:4000::/34
 IP-CIDR6,2a0a:d685:400::/38
+IP-CIDR6,2a0a:d685:400::/40
+IP-CIDR6,2a0a:d685:500::/45
+IP-CIDR6,2a0a:d685:508::/48
+IP-CIDR6,2a0a:d685:50a::/47
+IP-CIDR6,2a0a:d685:50c::/46
+IP-CIDR6,2a0a:d685:510::/44
+IP-CIDR6,2a0a:d685:520::/43
+IP-CIDR6,2a0a:d685:540::/42
+IP-CIDR6,2a0a:d685:580::/41
+IP-CIDR6,2a0a:d685:600::/39
 IP-CIDR6,2a0a:d685:8000::/33
 IP-CIDR6,2a0a:d685:800::/37
 IP-CIDR6,2a0a:d685::/40
