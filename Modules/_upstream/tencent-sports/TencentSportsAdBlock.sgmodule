@@ -1,6 +1,19 @@
 #!name=腾讯体育去广告
 #!desc=拦截开屏广告，移除首页信息流、会员推广、赛事页横幅、悬浮运营组件、金币任务会员弹层及赛事 PageCard 强制弹窗
 
+[Host]
+# 腾讯国内直连域名交给系统 DNS（当前 Wi-Fi / 运营商分配的 DNS）解析，避免配置里的境外 / 加密 DNS 解析慢或被 Wi-Fi 拦截导致首页转圈；不影响节点域名与其他域名
+qq.com = server:system
+*.qq.com = server:system
+*.gtimg.com = server:system
+*.gtimg.cn = server:system
+*.qpic.cn = server:system
+*.qlogo.cn = server:system
+tencent.com = server:system
+*.tencent.com = server:system
+*.tencent-cloud.net = server:system
+*.cdn-go.cn = server:system
+
 [MITM]
 hostname = %APPEND%,app.sports.qq.com,config.ab.qq.com,shequ.sports.qq.com,film.video.qq.com,sports.qq.com,matchweb.sports.qq.com,*.l.qq.com
 
