@@ -1,7 +1,7 @@
 # AUTO-EXPORTED from Routing/Foreign/Proxy.yaml
 # Format: Surge RULE-SET (no policy). scripts/export-surge-rulesets.py
 # Domain lines include extended-matching (SNI hit under always-real-ip / VIF).
-# Total entries: 17450
+# Total entries: 17451
 
 DOMAIN,api.avax.network,extended-matching
 DOMAIN,api.sprig.com,extended-matching
@@ -10357,6 +10357,7 @@ DOMAIN-SUFFIX,npm.im,extended-matching
 DOMAIN-SUFFIX,npm.io,extended-matching
 DOMAIN-SUFFIX,npmjs.com,extended-matching
 DOMAIN-SUFFIX,npmjs.org,extended-matching
+DOMAIN-SUFFIX,npmx.dev,extended-matching
 DOMAIN-SUFFIX,npnt.me,extended-matching
 DOMAIN-SUFFIX,npr.org,extended-matching
 DOMAIN-SUFFIX,nps.gov,extended-matching
