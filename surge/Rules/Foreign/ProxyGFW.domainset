@@ -1,6 +1,6 @@
 # AUTO-EXPORTED from Routing/Foreign/ProxyGFW.yaml
 # Format: Surge DOMAIN-SET (leading '.' = suffix). scripts/export-surge-rulesets.py
-# Total entries: 7498
+# Total entries: 7499
 
 ccmdl.adobe.com
 cloud.oracle.com
@@ -4573,6 +4573,7 @@ wego.here.com
 .npm.io
 .npmjs.com
 .npmjs.org
+.npmx.dev
 .npnt.me
 .npr.org
 .nps.gov
