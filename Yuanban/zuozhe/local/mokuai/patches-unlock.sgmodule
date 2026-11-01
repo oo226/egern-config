@@ -1,5 +1,5 @@
 #!name=本地解锁补全
-#!desc=SkipProxy（跳过代理检测）+ 屏蔽系统更新/P12；点进更新页会「无法检查」属预期。勿拒 xp.apple.com（会卡 TestFlight）
+#!desc=SkipProxy（跳过代理检测）+ 屏蔽系统更新；点进更新页会「无法检查」属预期。勿拒 xp.apple.com（会卡 TestFlight）。不含 P12/OCSP 屏蔽（避免企业证书掉签）
 #!author=oo226/egern-config (SkipProxy=mieqq/sooyaaabo；更新规则源自 BlueGrave/Surge)
 #!category=解锁补全
 #!system=ios
@@ -12,13 +12,10 @@ always-real-ip = %APPEND% easy-login.10099.com.cn, *-update.xoyocdn.com, id6.me,
 [Rule]
 # 农行代理检测探针（sooyaaabo/mieqq SkipProxy Rule）
 DOMAIN,msmp.abchina.com.cn,REJECT
-# 屏蔽 iOS/iPadOS 企业证书 OCSP 验证（P12 相关）
-DOMAIN-SUFFIX,ocsp-lb.apple.com.akadns.net,REJECT
-DOMAIN-SUFFIX,ocsp.apple.com,REJECT
-DOMAIN-SUFFIX,ocsp.g.aaplimg.com,REJECT
 # 屏蔽系统更新：硬拒后无法连苹果查清单 → 「无法检查更新」
 # 说明：苹果清单有签名，Map Local 空包/假包不能稳定伪装成「已是最新」消小红点
 # 不要 REJECT xp.apple.com：TestFlight / App 体验服务会一直转圈（日志里 Rule=REJECT）
+# 勿拒 ocsp*.apple.com / valid.apple.com / ppq.apple.com：会干扰企业 P12 验签导致掉签
 DOMAIN,ns.itunes.apple.com,REJECT
 DOMAIN,gdmf.apple.com,REJECT
 DOMAIN,mesu.apple.com,REJECT

@@ -429,7 +429,7 @@ QITA_SYNC_MODULES = (
     "fmz200-extra.sgmodule",
 )
 
-# 工具/分流补充（进仓库；天气地图+BoxJs+AntiRevoke 进 jiesuo）
+# 工具/分流补充（进仓库；天气地图+BoxJs 进 jiesuo；不含 AntiRevoke/P12 屏蔽）
 TOOL_EGERN_MODULES = (
     (
         "sub-store.egern.yaml",
@@ -1720,11 +1720,11 @@ def build_qita(cache: dict[str, str]) -> None:
             [
                 "# 其他脚本 / 工具（单件，无合集）",
                 "",
-                "工具单件。**BoxJs / iRingo 天气·地图原版 / AntiRevoke** 已并进 `heji/jiesuo`；",
+                "工具单件。**BoxJs / iRingo 天气·地图原版** 已并进 `heji/jiesuo`；",
                 "Sub-Store / Script Hub 为 Egern 原生 yaml，Profile 单独启用；定位/其他仍单件。",
                 "",
                 "- `official/` — QingRex Official 工具/增强（已排除去广告与签到）",
-                "- `local/` — BoxJs、Sub-Store/ScriptHub（Egern yaml）、IRingo、AntiRevoke、测速等",
+                "- `local/` — BoxJs、Sub-Store/ScriptHub（Egern yaml）、IRingo、测速等",
                 "- `ibl3nd/` — IBL3ND 小组件 + Surge 模块 + plugin-hub（插件跳转）",
                 "",
                 "去广告/开屏/解锁/抓参合集仍在 `heji/`；签到在 `qiandao/`。",
@@ -2105,8 +2105,7 @@ def heji_jiesuo(cache: dict[str, str]) -> None:
         ("chxm", "Collections.sgmodule", "chxm1023 · Collections 解锁"),
         ("miranquil", "qq-c-pc-page.sgmodule", "miranquil · QQ解锁"),
         ("local", "spotify-unlock.sgmodule", "本仓 · Spotify Eevee VIP"),
-        ("local", "patches-unlock.sgmodule", "本仓 · 屏蔽更新/P12 等"),
-        ("local", "antirevoke.sgmodule", "Salem · AntiRevoke 苹果证书"),
+        ("local", "patches-unlock.sgmodule", "本仓 · 屏蔽更新等"),
         ("local", "patches-alicloud.sgmodule", "本仓 · 阿里云盘倍速"),
         ("local", "boxjs.sgmodule", "Chavy · BoxJs"),
         ("local", "script-hub.sgmodule", "Script Hub · 重写/规则转换"),
@@ -2148,7 +2147,7 @@ def heji_jiesuo(cache: dict[str, str]) -> None:
             "# 墨鱼: UnblockURLinWeChat(微信110) + ForOwnUse(专属VIP) + Function(Emby/Upos/CC；不含 TF MitM)",
             "# Spotify 用 Eevee（spotify-unlock），不含 Crack",
             "# Yu9191/WeiGiegie 已剥离 18+ 分段",
-            "# 工具: Sub-Store + Script Hub + BoxJs + 插件跳转 + TG外链 + iRingo 天气/地图 + AntiRevoke + 屏蔽更新/P12",
+            "# 工具: Sub-Store + Script Hub + BoxJs + 插件跳转 + TG外链 + iRingo 天气/地图 + 屏蔽更新（不含 AntiRevoke/P12）",
             "# SkipProxy(mieqq): skip-proxy + always-real-ip + 农行 REJECT — 更新本合集资源即可",
             "# iRingo 定位/其他仍单件（qita/local），不进本合集",
             "# 已跳过可莉近重复: Google重定向 / 拦截HTTPDNS / Spotify歌词翻译（单件仍在 zuozhe）",

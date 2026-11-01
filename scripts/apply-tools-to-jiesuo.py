@@ -124,15 +124,7 @@ def mirror_tools(cache: dict[str, str]) -> None:
         "GeoServices",
     )
 
-    # AntiRevoke → sgmodule 形态进 local
-    ar = by.fetch(
-        "https://raw.githubusercontent.com/salem-2007/apple-cert-block/main/AntiRevoke.plugin"
-    ).decode("utf-8", errors="replace")
-    # plugin 头改成 sgmodule 友好
-    if not ar.lstrip().startswith("#!name"):
-        ar = "#!name=AntiRevoke（苹果证书）\n#!desc=屏蔽 Apple P12/OCSP 证书验证\n\n" + ar
-    save_text(local_m / "antirevoke.sgmodule", ar)
-    save_text(qlocal / "antirevoke.sgmodule", ar)
+    # 不再镜像 AntiRevoke：拒 OCSP/CRL 会导致企业 P12 掉签；旧文件若仍在仓库请勿并进合集
 
     # 保留 location/others 单件（已在 qita/local，不进合集）
     print("tools mirrored")

@@ -10,7 +10,7 @@
 # 墨鱼: UnblockURLinWeChat(微信110) + ForOwnUse(专属VIP) + Function(Emby/Upos/CC；不含 TF MitM)
 # Spotify 用 Eevee（spotify-unlock），不含 Crack
 # Yu9191/WeiGiegie 已剥离 18+ 分段
-# 工具: Sub-Store + Script Hub + BoxJs + 插件跳转 + TG外链 + iRingo 天气/地图 + AntiRevoke + 屏蔽更新/P12
+# 工具: Sub-Store + Script Hub + BoxJs + 插件跳转 + TG外链 + iRingo 天气/地图 + 屏蔽更新（不含 AntiRevoke/P12）
 # SkipProxy(mieqq): skip-proxy + always-real-ip + 农行 REJECT — 更新本合集资源即可
 # iRingo 定位/其他仍单件（qita/local），不进本合集
 # 已跳过可莉近重复: Google重定向 / 拦截HTTPDNS / Spotify歌词翻译（单件仍在 zuozhe）
@@ -66,40 +66,6 @@ DOMAIN,weather-analytics-events.apple.com,REJECT-DROP
 DOMAIN-SUFFIX,tthr.apple.com,REJECT-DROP,extended-matching
 DOMAIN,tether.edge.apple,REJECT-DROP,extended-matching
 AND,((OR,((IP-ASN,714,no-resolve),(IP-ASN,6185,no-resolve))),(PROTOCOL,QUIC)),REJECT-DROP
-
-
-# - - - - - - - - - - - - - - - - - - - - - - - - 
-# Salem · AntiRevoke 苹果证书
-# - - - - - - - - - - - - - - - - - - - - - - - - 
-
-# Apple OCSP
-DOMAIN,ocsp.apple.com,REJECT
-DOMAIN,ocsp2.apple.com,REJECT
-
-# Apple Validation
-DOMAIN,valid.apple.com,REJECT
-DOMAIN,ppq.apple.com,REJECT
-DOMAIN,ppq-ext.v.aaplimg.com,REJECT
-
-# Apple CRL
-DOMAIN,crl.apple.com,REJECT
-DOMAIN,certs.apple.com,REJECT
-
-# DigiCert
-DOMAIN,ocsp.digicert.com,REJECT
-DOMAIN,ocsp.digicert.cn,REJECT
-DOMAIN,crl3.digicert.com,REJECT
-DOMAIN,crl4.digicert.com,REJECT
-
-# Entrust
-DOMAIN,ocsp.entrust.net,REJECT
-DOMAIN,crl.entrust.net,REJECT
-
-# Sectigo / USERTrust
-DOMAIN,ocsp.sectigo.com,REJECT
-DOMAIN,crl.sectigo.com,REJECT
-DOMAIN,ocsp.usertrust.com,REJECT
-DOMAIN,crl.usertrust.com,REJECT
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -298,17 +264,14 @@ AND,((GEOIP,CN),(DOMAIN,pitaya.bytedance.com,extended-matching)),DIRECT
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - 
-# 本仓 · 屏蔽更新/P12 等
+# 本仓 · 屏蔽更新等（不含 P12/OCSP）
 # - - - - - - - - - - - - - - - - - - - - - - - - 
 # 农行代理检测探针（sooyaaabo/mieqq SkipProxy 的 Rule 段；General 名单见上方 [General]）
 DOMAIN,msmp.abchina.com.cn,REJECT
-# 屏蔽 iOS/iPadOS 企业证书 OCSP 验证（P12 相关）
-DOMAIN-SUFFIX,ocsp-lb.apple.com.akadns.net,REJECT
-DOMAIN-SUFFIX,ocsp.apple.com,REJECT
-DOMAIN-SUFFIX,ocsp.g.aaplimg.com,REJECT
 # 屏蔽系统更新：硬拒后无法连苹果查清单 → 「无法检查更新」
 # 说明：苹果清单有签名，Map Local 空包/假包不能稳定伪装成「已是最新」消小红点
 # 不要 REJECT xp.apple.com：TestFlight / App 体验服务会一直转圈（日志里 Rule=REJECT）
+# 勿拒 ocsp*.apple.com / valid.apple.com / ppq.apple.com：会干扰企业 P12 验签导致掉签
 DOMAIN,ns.itunes.apple.com,REJECT
 DOMAIN,gdmf.apple.com,REJECT
 DOMAIN,mesu.apple.com,REJECT
@@ -2289,7 +2252,7 @@ hostname = %APPEND% *.airdroid.cn, 1jietu.com, app.yidiansz.com, www.dbbqb.com, 
 hostname = %APPEND% question.tiku.cqxcj.top, base.cmoe.top, yyapi.yayingtk.com, learn.cqrry.com, api.sryx.net, api.meigit.com, question.api.anjiazui.com, app.bftk.com.cn, question.civil.shaoeyy.com, gzfanyin.com, translator.felo.me, baimiao.uzero.cn, my.getslopes.com, *.ihuaben.com, w.5hzs.com, *-slidebox-ios-prod.cloudfunctions.net, www.luqijianggushi.com, cdn-bm.camera360.com, api.intelimeditor.com, open3.vistastory.com, www.xfx119.com, water*.yunxiaoguo.cn, *.cloudfront.net, ftmailbox.cn, standard.rhinox*.com, appss.rhinox*.com, appss.linhongshi.com, purchase-*-api.*.com, user-kaji-api.b612kaji.com, api.*lianqin*.*, kkr-user.tapque.com, subscription-api.notedapp.io, *.execute-api.ap-northeast-2.amazonaws.com, creaceed.com, *api.quthing.com, backend.getdrafts.com, api.love.823123.com, jz.jarstones.com, koan.bopulab.cn, calc.kuaicad.com
 hostname = %APPEND% www.fuyoutech.club, www.kkmop.com, play.wo1wan.com, api.mattingm.com, *.camera360.com, api.995120.cn, api.hujuvod.com, api.qwapp.top, api.polaxiong.com, diary-id.sumi.io, calendar.aiyohoo.com, api-production.endel.io, yopu.co, api.timetreeapp.com, zy6kcqa01a.execute-api.us-east-2.amazonaws.com, fl*app.com, api.hummingbird.businessreview.global, bzpp2.iwzbz.com, www.1314zhilv.com, *.kuso.xyz, receipt-verifier.cdwapi.com, *.api.moji.com, *.wps.cn, license.pdfexpert.com, api.yonekura.cn, ssl-api.itranslateapp.com, *.videoshowiosglobalserver.com, *.enjoy-mobi.com, api.getdailyart.com, p.du.163.com, snailsleep.net, yeguo.236api.com, jz.wacaijizhang.com, schedule-api.julanling.com, *.xiangha.com, api.boohee.com, www.40sishi.com, kongque.twan.cn, iosapi.peiyinxiu.com, *.qingning6.com
 hostname = %APPEND% day-api.xixitime.com, dj.palmestore.com, asia.gikken.co, xianbeikeji.com, fimo.appfimo.com, *.meiyan.com, ggs.manmeng168.com, xremit.xcurrency.com, explorer.tratao.com, iap.etm.tech, api.open.loveclip.site, www.skyjos.cn, www2.tigeroom.com, cn.czur.cc, *.imendon.com, api2.vlognow.me, service.ilovepdf.com, www.freshhome.top, *.dicallapp.com, format-api.netpock.com, widget-box-api.codefuture.top, cubox.*, *.radio.cn, accounts.agenda.com, *.aoscdn.com, *.apsapp.cn, apimboom2.globaldelight.net, *.duitang.com, billing-ios.wallpaperscraft.com, screen-lock.*.com, api.risingfalling.com, api.meiease.cn, pan.baidu.com, *.intsig.net, *.camscanner.com, api*.speedtest.cn, app.yiyan.art, *.cyapi.cn, *.soutushenqi.com, api.bluepulse.cn
-hostname = %APPEND% *.snow.me, *.apphud.com, api.qonversion.io, api.adapty.io, *.oracle.bendingspoonsapps.com, speechenglish.cn, api.rc-backup.com, api.revenuecat.com, *spclient.spotify.com, ocsp.apple.com, ocsp2.apple.com, valid.apple.com, api.alipan.com, member.aliyundrive.com, member.alipan.com, api.aliyundrive.com, user.alipan.com, user.aliyundrive.com, %INSERT% boxjs.com, *.boxjs.com, *.boxjs.net, script.hub, *.script.hub, pluginhub.kelee.one, hub.kelee.one, surge.qingr.moe, t.me, telegram.me, weatherkit.apple.com, configuration.ls.apple.com, gspe35-ssl.ls.apple.com, *.*.mgtv.*, *.504*.xyz, *.aliyuncs.com, *.api.mgtv.com, *.artrg.cn, *.baidu.com, *.biliapi.*, *.bilibili.*, *.cqict.cn
+hostname = %APPEND% *.snow.me, *.apphud.com, api.qonversion.io, api.adapty.io, *.oracle.bendingspoonsapps.com, speechenglish.cn, api.rc-backup.com, api.revenuecat.com, *spclient.spotify.com, api.alipan.com, member.aliyundrive.com, member.alipan.com, api.aliyundrive.com, user.alipan.com, user.aliyundrive.com, %INSERT% boxjs.com, *.boxjs.com, *.boxjs.net, script.hub, *.script.hub, pluginhub.kelee.one, hub.kelee.one, surge.qingr.moe, t.me, telegram.me, weatherkit.apple.com, configuration.ls.apple.com, gspe35-ssl.ls.apple.com, *.*.mgtv.*, *.504*.xyz, *.aliyuncs.com, *.api.mgtv.com, *.artrg.cn, *.baidu.com, *.biliapi.*, *.bilibili.*, *.cqict.cn
 hostname = %APPEND% *.dushu365.com, *.flare.com.51kuajing.net, *.funshion.com, *.gotokeep.*, *.himalaya.*, *.himalaya.com, *.if.qidian.com, *.kkmh.com, *.kuwo.*, *.kuwo.cn, *.l.qq.com, *.mysteel.*, *.pcs.baidu.com, *.qidian.com, *.reader.qq.com, *.tencentcs.com, *.vo9ugl.xyz, *.ximalaya.*, *.ximalaya.com, *.xmcdn.com, *.xo2xo.live, *.zhimg.com, *api.h8h4h.com, *api.imendon.com, *hundun.cn, *igetcool.com, *jttv*, *kkmh.com, *mgtv.com, *music.163.com, *site, *toutiao.com, *wensan*com, *x-boy.*, *xdplt.com, *xima*, *xmcdn*, *xunlei.com, *yeyan*, *yyycb*
 hostname = %APPEND% 0ncf2i3.wl8td88.xyz, 1.194.255.171, 1.24.81.*, 1.62.62.64, 101.33.11.106, 101.33.11.32, 101.33.20.34, 101.33.27.*, 101.33.29.110, 101.42.124.*, 101.42.133.54:443, 101.72.233.*, 101.72.254.*, 101.89.53.*, 101.91.13*, 101.91.133.*, 101.91.133.96, 101.91.134.*, 101.91.135.*, 103.105.60.99, 103.215.78.*, 103.39.222.*, 103.41.167.*, 103.41.167.226, 103.41.167.234, 103.41.167.235, 103.41.167.236, 103.41.167.237, 103.44.236.*, 103.44.236.131:8001, 103.85.254.233, 106.41.204.126, 111.12.187.*, 111.13.143.140, 111.180.204.11, 111.30.171.170:443, 111.31.104.*, 111.31.104.108, 111.31.104.96, 111.31.33.*
 hostname = %APPEND% 111.42.194.*, 111.6.167.*, 111.6.56.*, 111.6.56.228, 111.63.149.170, 111.63.149.21, 111.63.149.40, 112.64.213.*, 112.80.180.72, 112.84.131.*, 112.98.170.228, 112.99.146.108, 114*0.*, 114.116.104.132, 114.80.139.2*, 114.80.139.237, 114.80.161.29, 114.80.99.*, 114.80.99.70, 114.80.99.71, 114.80.99.86, 114.80.99.87, 114.80.99.88, 114.80.99.89, 114.80.99.90, 114.80.99.91, 115.56.76.*, 116.114.96.*, 116.114.96.41, 116.136.12.*, 116.136.188.184, 116.153.*.*, 116.162.203.111, 116.177.225.247, 117.161.*.*, 117.161.169.*, 117.161.38.167, 117.161.96.7, 117.34.49.212, 118.180.43.252
