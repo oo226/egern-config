@@ -1,5 +1,5 @@
 #!name=本地解锁补全
-#!desc=屏蔽系统更新下载 + P12/OCSP（tf4）；勿拒 AASA/全局QUIC；MitM 排除 TestFlight
+#!desc=屏蔽系统更新；点进更新页会「无法检查」属预期。勿拒 xp.apple.com（会卡 TestFlight）。不含 P12/OCSP 屏蔽（避免企业证书掉签）
 #!author=oo226/egern-config (规则源自 BlueGrave/Surge、社区惯例)
 #!category=解锁补全
 #!system=ios
@@ -7,10 +7,7 @@
 [Rule]
 # 农行代理检测探针（原 skip-proxy-collection；skip-proxy 名单已收敛到主配置）
 DOMAIN,msmp.abchina.com.cn,REJECT
-# 屏蔽 iOS/iPadOS 企业证书 OCSP 验证（P12 相关）
-DOMAIN-SUFFIX,ocsp-lb.apple.com.akadns.net,REJECT
-DOMAIN-SUFFIX,ocsp.apple.com,REJECT
-DOMAIN-SUFFIX,ocsp.g.aaplimg.com,REJECT
+# 勿拒 ocsp*.apple.com / valid.apple.com / ppq.apple.com：会干扰企业 P12 验签导致掉签
 # 屏蔽系统更新（仅 mesu/gdmf/updates/appldnld/sw*）
 # 勿拒 xp.apple.com / ns.itunes.apple.com / configuration.apple.com → TestFlight 转圈
 DOMAIN,gdmf.apple.com,REJECT

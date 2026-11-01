@@ -1,5 +1,5 @@
 #!name=解锁合集
-#!desc=多源合并去重：链接解锁 + Spotify + VIP解锁 + 屏蔽更新（tf1：勿拒 xp.apple.com）
+#!desc=多源合并去重：链接解锁 + Spotify + VIP解锁 + 屏蔽更新（勿拒 xp.apple.com；不含 P12/OCSP）
 #!category=解锁
 
 
@@ -663,10 +663,7 @@ URL-REGEX,^https?://[^/]*adsdk[12]\.cc,REJECT
 # >>> merged from patches-unlock (unique only)
 # 农行代理检测探针（原 skip-proxy-collection；skip-proxy 名单已收敛到主配置）
 DOMAIN,msmp.abchina.com.cn,REJECT
-# 屏蔽 iOS/iPadOS 企业证书 OCSP 验证（P12 相关）
-DOMAIN-SUFFIX,ocsp-lb.apple.com.akadns.net,REJECT
-DOMAIN-SUFFIX,ocsp.apple.com,REJECT
-DOMAIN-SUFFIX,ocsp.g.aaplimg.com,REJECT
+# 勿拒 ocsp*.apple.com：避免企业 P12 掉签（已从合集移除 AntiRevoke/P12）
 # 屏蔽系统更新：硬拒后无法连苹果查清单 → 「无法检查更新」
 # 说明：苹果清单有签名，Map Local 空包/假包不能稳定伪装成「已是最新」消小红点
 # 不要 REJECT xp.apple.com：TestFlight / App 体验服务会一直转圈（日志里 Rule=REJECT）
