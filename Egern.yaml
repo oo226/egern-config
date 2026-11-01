@@ -915,9 +915,6 @@ modules:
     url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/iringo-others.sgmodule
     update_interval: 86400
     enabled: false
-  - name: AntiRevoke（苹果证书）
-    url: https://raw.githubusercontent.com/salem-2007/apple-cert-block/main/AntiRevoke.plugin
-    enabled: false
   - name: 抓参 Cookie 合集
     url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/cookie-collection.module
     update_interval: 86400
