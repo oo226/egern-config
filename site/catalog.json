@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-01T09:58:22Z",
+  "generated_at": "2026-11-02T10:17:04Z",
   "branch": "main",
   "repo": "oo226/egern-config",
   "raw_base": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main",
@@ -17,7 +17,7 @@
       "name": "按需开启",
       "icon": "🔧",
       "usage_tier": "optional",
-      "count": 1707
+      "count": 1708
     }
   ],
   "quick_start": [
@@ -180,16 +180,26 @@
   ],
   "sync_digest": {
     "commit": {
-      "hash": "0c1aff6",
-      "subject": "fix(sync): remove P12/OCSP reject and AntiRevoke from unlock modules",
+      "hash": "f48ba45",
+      "subject": "chore: sync upstream on sync branch",
       "date": "2026-11-01"
     },
     "summary": [
-      "国内直连 32206 条"
+      "国内直连 31297 条"
     ],
     "files_changed": 0
   },
   "changelog": [
+    {
+      "hash": "eb2b137",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-11-01"
+    },
+    {
+      "hash": "7679b26",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-11-01"
+    },
     {
       "hash": "091f204",
       "subject": "fix(main): remove P12/OCSP reject and AntiRevoke from unlock modules",
@@ -219,20 +229,10 @@
       "hash": "dfa9fd4",
       "subject": "chore: publish curated snapshot from sync",
       "date": "2026-10-29"
-    },
-    {
-      "hash": "80f005e",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-10-29"
-    },
-    {
-      "hash": "b4dfb29",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-10-28"
     }
   ],
   "local_health": {
-    "checked": 1638,
+    "checked": 1639,
     "fail": 0,
     "broken_ids": []
   },
@@ -261,7 +261,7 @@
       "id": "upstream",
       "name": "上游单条",
       "icon": "📚",
-      "count": 1540
+      "count": 1541
     },
     {
       "id": "routing",
@@ -315,7 +315,7 @@
     {
       "id": "quanx",
       "name": "Quantumult X",
-      "count": 27
+      "count": 28
     },
     {
       "id": "shadowrocket",
@@ -398,7 +398,7 @@
     {
       "id": "zenmofeishi",
       "name": "怎么肥事",
-      "count": 27,
+      "count": 28,
       "clients": [
         "quanx"
       ],
@@ -51300,6 +51300,36 @@
       "health": "ok"
     },
     {
+      "id": "up-_upstream-zenmofeishi-txsports-ad-clean",
+      "kind": "module",
+      "category": "upstream",
+      "group": "怎么肥事",
+      "name": "腾讯体育净化 · txsports-ad-clean.snippet",
+      "desc": "去除开屏广告、优化我的页面、去除底部会员tap、优化首页展示、去除搜索热词",
+      "icon": "",
+      "homepage": "",
+      "path": "Modules/_upstream/zenmofeishi/txsports-ad-clean.snippet",
+      "url": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main/Modules/_upstream/zenmofeishi/txsports-ad-clean.snippet",
+      "add_url": "egern:///modules/new?url=https%3A%2F%2Fraw.githubusercontent.com%2Foo226%2Fegern-config%2Frefs%2Fheads%2Fmain%2FModules%2F_upstream%2Fzenmofeishi%2Ftxsports-ad-clean.snippet",
+      "usage_tier": "optional",
+      "tags": [
+        "上游",
+        "zenmofeishi",
+        "Quantumult X"
+      ],
+      "upstream": true,
+      "author": "zenmofeishi",
+      "clients": [
+        "quanx"
+      ],
+      "client_labels": [
+        "Quantumult X"
+      ],
+      "hint": "适用：Quantumult X。按需添加，勿一次全开。",
+      "share_url": "https://oo226.github.io/egern-config/#id=up-_upstream-zenmofeishi-txsports-ad-clean",
+      "health": "ok"
+    },
+    {
       "id": "up-_upstream-zenmofeishi-xTerm256",
       "kind": "module",
       "category": "upstream",
@@ -57029,5 +57059,5 @@
       "health": "ok"
     }
   ],
-  "total": 1749
+  "total": 1750
 }
