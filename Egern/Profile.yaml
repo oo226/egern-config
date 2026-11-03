@@ -3,12 +3,15 @@
 # 分流: Egern/Routing（本分支合并表，面板短）
 # 模块: Yuanban/heji
 # 结构对齐 jnlaoshu/MySelf Egern Profile（同步至 2026.09.22；热度最高的专用 Profile 基线）
-# 客户端：App Store 美区/台区当前正式版仍是 2.20.0（2026-07-23），官方频道有完整更新说明；
-#   市面「2.21.0」多为证书签名/自签 IPA，官方未发 2.21 变更列表——配置按 2.20 公开能力写即可
-#   （策略组直接 urls、Smart 记真实失败、close_connections_on_policy_change、
-#    DNS h3:// / udp:// / tcp://、Snell/SSH/REALITY 等由客户端解析订阅）
-# 对照：IBL3ND/Egern（iBL3ND，俗称 3N）≈34★ 懒人全包；jnlaoshu/MySelf ≈606★ 更稳的 Profile 骨架；
-#   fmz200/wool_scripts 星更多但是多客户端规则仓，不是完整 Egern Profile。本仓跟老书骨架，不跟 3N 整份拷。
+# 客户端版本（2026-11 核对）：
+#   · App Store 正式版：仍是 2.20.0（2026-07-23），@egern_news 有完整说明
+#   · TestFlight：已是 2.21.0（群内 What to Test 最新约 build 794，2026-11-01）
+#     TF 2.21 相对 2.20 配置侧相关：Tailscale 入站/出口节点/宣告路由 + IPv6 直连对等、
+#     .local 主机名直接解析、DNS 上游健康监测（UI）、hosts 目标可临时禁用、
+#     Loon 3.5.1 Rewrite/Script 语法、mihomo 正则含逗号修复、Hy2/TUIC/WG/Sub-Store 脚本稳定性
+#     ——大多是客户端能力/修 bug，YAML 骨架仍按 2.20 字段（urls / smart / h3:// /
+#       close_connections_on_policy_change 等）即可；本仓已挂 Tailscale 直连规则 + vif_hairpin
+# 对照：IBL3ND/Egern（iBL3ND/3N）≈34★；jnlaoshu/MySelf ≈606★（跟这个）；fmz200 是规则仓不是 Profile
 # TF：https://testflight.apple.com/join/AzU6kAzX
 # https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Profile.yaml
 # ==========================================
