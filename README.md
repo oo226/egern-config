@@ -4,7 +4,7 @@
 
 ## 懒人总配置（先看这个）
 
-结构对齐 [jnlaoshu/MySelf Egern Profile](https://github.com/jnlaoshu/MySelf/tree/main/Egern)，底座用本仓 `Yuanban/heji`。
+结构对齐 [jnlaoshu/MySelf Egern Profile](https://github.com/jnlaoshu/MySelf/tree/main/Egern)（已跟到 2026.09 版 DNS/策略习惯），适配 Egern **2.20+**；底座用本仓 `Yuanban/heji`。
 
 ```
 https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Profile.yaml

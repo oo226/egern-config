@@ -2,6 +2,10 @@
 # Egern 懒人配置（guize）
 # 分流: Egern/Routing（本分支合并表，面板短）
 # 模块: Yuanban/heji
+# 结构对齐 jnlaoshu/MySelf Egern Profile（同步至 2026.09.22）
+# 适配 Egern App Store / TF 2.20.0：策略组可直接 urls、Smart 记真实失败、
+#   close_connections_on_policy_change、DNS h3:// 与 udp://、Snell/SSH/REALITY 等由客户端解析订阅
+# TF：https://testflight.apple.com/join/AzU6kAzX
 # https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Profile.yaml
 # ==========================================
 
@@ -25,6 +29,7 @@ hijack_dns:
   - '114.114.114.114'
 
 geoip_db_url: https://raw.githubusercontent.com/Loyalsoldier/geoip/release/Country.mmdb
+asn_db_url: https://raw.githubusercontent.com/P3TERX/GeoLite.mmdb/download/GeoLite2-ASN.mmdb
 proxy_latency_test_url: http://www.gstatic.com/generate_204
 direct_latency_test_url: http://www.apple.com/library/test/success.html
 
@@ -70,19 +75,25 @@ dns:
     cloudflare-dns.com:
       - 104.16.249.249
       - 104.16.248.249
+  # 上游组：抄老书；h3:// = DNS over QUIC（Egern 2.x），udp:// = 明文 UDP（字节官方无 DoH）
   upstreams:
+    AliDNS:
+      - h3://dns.alidns.com/dns-query
+      - https://dns.alidns.com/dns-query
     DNSPod:
       - https://doh.pub/dns-query
       - https://sm2.doh.pub/dns-query
+    ByteDNS:
+      - udp://180.184.1.1:53
+      - udp://180.184.2.2:53
     Google:
-      - https://8.8.8.8/dns-query
+      - h3://dns.google/dns-query
       - https://dns.google/dns-query
     Default:
-      - https://1.1.1.1/dns-query
-      - https://8.8.8.8/dns-query
+      - h3://dns.google/dns-query
       - https://cloudflare-dns.com/dns-query
     ProxyDNS:
-      - https://223.5.5.5/dns-query
+      - h3://dns.alidns.com/dns-query
       - https://doh.pub/dns-query
   forward:
     - proxy_rule_set:
@@ -109,6 +120,85 @@ dns:
         match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Routing/Zhuifeng.yaml
         value: DNSPod
         update_interval: 604800
+    # 阿里系 → AliDNS（老书）
+    - domain_suffix:
+        match: alibaba.com
+        value: AliDNS
+    - domain_suffix:
+        match: alipay.com
+        value: AliDNS
+    - domain_suffix:
+        match: alicdn.com
+        value: AliDNS
+    - domain_suffix:
+        match: aliyun.com
+        value: AliDNS
+    - domain_suffix:
+        match: aliyuncs.com
+        value: AliDNS
+    - domain_suffix:
+        match: taobao.com
+        value: AliDNS
+    - domain_suffix:
+        match: tmall.com
+        value: AliDNS
+    - domain_suffix:
+        match: amap.com
+        value: AliDNS
+    - domain_suffix:
+        match: ele.me
+        value: AliDNS
+    - domain_suffix:
+        match: dingtalk.com
+        value: AliDNS
+    # 腾讯 / 快手 / 小红书 → DNSPod
+    - domain_suffix:
+        match: qq.com
+        value: DNSPod
+    - domain_suffix:
+        match: weixin.com
+        value: DNSPod
+    - domain_suffix:
+        match: tencent.com
+        value: DNSPod
+    - domain_suffix:
+        match: qcloud.com
+        value: DNSPod
+    - domain_suffix:
+        match: myqcloud.com
+        value: DNSPod
+    - domain_suffix:
+        match: kuaishou.com
+        value: DNSPod
+    - domain_suffix:
+        match: xiaohongshu.com
+        value: DNSPod
+    # 字节系 → ByteDNS（官方仅明文 UDP）
+    - domain_suffix:
+        match: bytedance.com
+        value: ByteDNS
+    - domain_suffix:
+        match: douyin.com
+        value: ByteDNS
+    - domain_suffix:
+        match: toutiao.com
+        value: ByteDNS
+    - domain_suffix:
+        match: ixigua.com
+        value: ByteDNS
+    - domain_suffix:
+        match: bytecdn.com
+        value: ByteDNS
+    - domain_suffix:
+        match: byteimg.com
+        value: ByteDNS
+    # App Store 解析走境外，避免 CDN 错配（老书）
+    - domain_suffix:
+        match: itunes.apple.com
+        value: Default
+    - domain_suffix:
+        match: apps.apple.com
+        value: Default
     - proxy_rule_set:
         match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Routing/Foreign/YouTube.yaml
         value: Google
@@ -255,7 +345,7 @@ policy_groups:
       policies:
         - 全部节点
       flatten: true
-      filter: (?i)(?:🇺🇸|美国|洛杉矶|硅谷|西雅图|芝加哥|达拉斯|纽约|\b(?:US|USA|America)\b)
+      filter: (?i)(?:🇺🇸|美国|洛杉矶|硅谷|西雅图|芝加哥|达拉斯|纽约|迈阿密|休斯顿|亚特兰大|波特兰|丹佛|凤凰城|底特律|盐湖城|拉斯维加斯|华盛顿|圣何塞|\b(?:US|USA|United[\s_-]*States|America)\b)
       icon: https://iili.io/FaAug7s.png
   - smart:
       name: 台湾节点
@@ -283,7 +373,7 @@ policy_groups:
       policies:
         - 全部节点
       flatten: true
-      filter: (?i)(?:🇰🇷|韩国|首尔|\b(?:KR|KOR|Korea)\b)
+      filter: (?i)(?:🇰🇷|韩国|首尔|仁川|\b(?:KR|KOR|Korea)\b)
       icon: https://iili.io/Fa5Mdn1.png
   - select:
       name: 其他节点
@@ -345,6 +435,41 @@ policy_groups:
         - DIRECT
       flatten: true
       icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/04ProxySoft/emby.png
+
+  # —— 系统 / 开发（对齐老书；面板可手动切 DIRECT↔Proxy）——
+  - select:
+      name: Apple
+      policies:
+        - DIRECT
+        - Proxy
+      flatten: true
+      icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Apple.png
+  - select:
+      name: Google
+      policies:
+        - Proxy
+      flatten: true
+      block_quic: false
+      icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Google_Search.png
+  - select:
+      name: Microsoft
+      policies:
+        - DIRECT
+        - Proxy
+      flatten: true
+      icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Microsoft.png
+  - select:
+      name: GitHub
+      policies:
+        - Proxy
+      flatten: true
+      icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/GitHub.png
+  - select:
+      name: Cloudflare
+      policies:
+        - Proxy
+      flatten: true
+      icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/04ProxySoft/cloudflare.png
 
 # ------------------------------------------
 # 五、分流（Egern/Routing 合并表 —— 短、干净）
@@ -456,7 +581,7 @@ rules:
   - rule_set:
       name: GitHub
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Routing/Foreign/Github.yaml
-      policy: Proxy
+      policy: GitHub
       update_interval: 86400
   - rule_set:
       name: Emby
@@ -486,12 +611,17 @@ rules:
   - rule_set:
       name: Google
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Routing/Foreign/Google.yaml
-      policy: Proxy
+      policy: Google
+      update_interval: 86400
+  - rule_set:
+      name: Apple
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Routing/Foreign/AppleServers.yaml
+      policy: Apple
       update_interval: 86400
   - rule_set:
       name: 微软
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Routing/Foreign/Microsoft.yaml
-      policy: DIRECT
+      policy: Microsoft
       update_interval: 86400
   - rule_set:
       name: PayPal
@@ -570,6 +700,21 @@ mitm:
       - '*.openai.com'
       - '*.anthropic.com'
       - '*.claude.ai'
+      # Cloudflare / Pages（CF Worker 节点、证书固定）
+      - '*.cloudflare.com'
+      - '*.pages.dev'
+      - '*.workers.dev'
+      # 常见证书固定 / 风控（老书）
+      - '*.amazonaws.com'
+      - '*.googleapis.com'
+      - '*.gstatic.com'
+      - '*.googlevideo.com'
+      - '*.facebook.com'
+      - '*.instagram.com'
+      - '*.douyin.com'
+      - '*.toutiao.com'
+      - '*.kuaishou.com'
+      - '*.xiaohongshu.com'
 
 # ------------------------------------------
 # 七、通用脚本 + 小组件（今日油价：浙江宁波）
