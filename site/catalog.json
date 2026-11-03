@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-02T10:17:18Z",
+  "generated_at": "2026-11-03T10:18:06Z",
   "branch": "main",
   "repo": "oo226/egern-config",
   "raw_base": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main",
@@ -185,16 +185,16 @@
       "date": "2026-11-02"
     },
     "summary": [
-      "分流规则 更新 2 个文件",
-      "模块 更新 7 个文件",
-      "脚本 更新 6 个文件",
-      "模块站 更新 2 个文件",
-      "主配置 更新 1 个文件",
-      "国内直连 31297 条"
+      "国内直连 30927 条"
     ],
-    "files_changed": 25
+    "files_changed": 0
   },
   "changelog": [
+    {
+      "hash": "9448a94",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-11-02"
+    },
     {
       "hash": "1324de4",
       "subject": "chore: publish curated snapshot from sync",
@@ -227,11 +227,6 @@
     },
     {
       "hash": "ad7251a",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-10-30"
-    },
-    {
-      "hash": "0760558",
       "subject": "chore: publish curated snapshot from sync",
       "date": "2026-10-30"
     }
@@ -29468,7 +29463,7 @@
       "kind": "module",
       "category": "upstream",
       "group": "limbopro",
-      "name": "毒奶特供(2026年11月01日更新) · Adblock4limbo.module",
+      "name": "毒奶特供(2026年11月03日更新) · Adblock4limbo.module",
       "desc": "毒奶去网页广告计划用户脚本 For Quantumult X & Surge & Shadowrocket & Loon & Stash & 油猴 ；1.新增页面右下角导航；2.通过 JavaScript 移除特定网站网页广告 —— 搜索引擎（Bing/Google）广告及内容农场结果清除/低端影视/欧乐影院/iyf爱壹帆/哔滴影视/Pornhub/Javbus/Supjav/Jable(支持抓取M3U8链接)/MissAv/91porn(支持视频下载)/hitomi/紳士漫畫/禁漫天堂/等视频&ACG&小说&漫画网站上的弹窗广告&视频广告&Gif图片广告等，保持网页清爽干净无打扰！ P.S. 欢迎提交issue",
       "icon": "",
       "homepage": "",
@@ -29504,7 +29499,7 @@
       "kind": "module",
       "category": "upstream",
       "group": "limbopro",
-      "name": "毒奶特供(2026年11月01日更新) · Adblock4limbo.sgmodule",
+      "name": "毒奶特供(2026年11月03日更新) · Adblock4limbo.sgmodule",
       "desc": "毒奶去网页广告计划用户脚本 For Quantumult X & Surge & Shadowrocket & Loon & Stash & 油猴 ；1.新增页面右下角导航；2.通过 JavaScript 移除特定网站网页广告 —— 搜索引擎（Bing/Google）广告及内容农场结果清除/低端影视/欧乐影院/iyf爱壹帆/哔滴影视/Pornhub/Javbus/Supjav/Jable(支持抓取M3U8链接)/MissAv/91porn(支持视频下载)/hitomi/紳士漫畫/禁漫天堂/等视频&ACG&小说&漫画网站上的弹窗广告&视频广告&Gif图片广告等，保持网页清爽干净无打扰！ P.S. 欢迎提交issue",
       "icon": "",
       "homepage": "",
@@ -29612,7 +29607,7 @@
       "kind": "module",
       "category": "upstream",
       "group": "limbopro",
-      "name": "毒奶特供(2026年11月01日更新) · Adblock4limbo.module",
+      "name": "毒奶特供(2026年11月03日更新) · Adblock4limbo.module",
       "desc": "毒奶去网页广告计划用户脚本 For Quantumult X & Surge & Shadowrocket & Loon & Stash & 油猴 ；1.新增页面右下角导航；2.通过 JavaScript 移除特定网站网页广告 —— 搜索引擎（Bing/Google）广告及内容农场结果清除/低端影视/欧乐影院/iyf爱壹帆/哔滴影视/Pornhub/Javbus/Supjav/Jable(支持抓取M3U8链接)/MissAv/91porn(支持视频下载)/hitomi/紳士漫畫/禁漫天堂/等视频&ACG&小说&漫画网站上的弹窗广告&视频广告&Gif图片广告等，保持网页清爽干净无打扰！ P.S. 欢迎提交issue",
       "icon": "",
       "homepage": "",
@@ -29684,7 +29679,7 @@
       "kind": "module",
       "category": "upstream",
       "group": "limbopro",
-      "name": "毒奶特供(2026年11月01日更新) · Adblock4limbo.sgmodule",
+      "name": "毒奶特供(2026年11月03日更新) · Adblock4limbo.sgmodule",
       "desc": "毒奶去网页广告计划用户脚本 For Quantumult X & Surge & Shadowrocket & Loon & Stash & 油猴 ；1.新增页面右下角导航；2.通过 JavaScript 移除特定网站网页广告 —— 搜索引擎（Bing/Google）广告及内容农场结果清除/低端影视/欧乐影院/iyf爱壹帆/哔滴影视/Pornhub/Javbus/Supjav/Jable(支持抓取M3U8链接)/MissAv/91porn(支持视频下载)/hitomi/紳士漫畫/禁漫天堂/等视频&ACG&小说&漫画网站上的弹窗广告&视频广告&Gif图片广告等，保持网页清爽干净无打扰！ P.S. 欢迎提交issue",
       "icon": "",
       "homepage": "",
@@ -29900,7 +29895,7 @@
       "kind": "module",
       "category": "upstream",
       "group": "limbopro-Adblock4limbo.sgmodule",
-      "name": "毒奶特供(2026年11月01日更新) · limbopro-Adblock4limbo.sgmodule",
+      "name": "毒奶特供(2026年11月03日更新) · limbopro-Adblock4limbo.sgmodule",
       "desc": "毒奶去网页广告计划用户脚本 For Quantumult X & Surge & Shadowrocket & Loon & Stash & 油猴 ；1.新增页面右下角导航；2.通过 JavaScript 移除特定网站网页广告 —— 搜索引擎（Bing/Google）广告及内容农场结果清除/低端影视/欧乐影院/iyf爱壹帆/哔滴影视/Pornhub/Javbus/Supjav/Jable(支持抓取M3U8链接)/MissAv/91porn(支持视频下载)/hitomi/紳士漫畫/禁漫天堂/等视频&ACG&小说&漫画网站上的弹窗广告&视频广告&Gif图片广告等，保持网页清爽干净无打扰！ P.S. 欢迎提交issue",
       "icon": "",
       "homepage": "",
