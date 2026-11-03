@@ -2,9 +2,13 @@
 # Egern 懒人配置（guize）
 # 分流: Egern/Routing（本分支合并表，面板短）
 # 模块: Yuanban/heji
-# 结构对齐 jnlaoshu/MySelf Egern Profile（同步至 2026.09.22）
-# 适配 Egern App Store / TF 2.20.0：策略组可直接 urls、Smart 记真实失败、
-#   close_connections_on_policy_change、DNS h3:// 与 udp://、Snell/SSH/REALITY 等由客户端解析订阅
+# 结构对齐 jnlaoshu/MySelf Egern Profile（同步至 2026.09.22；热度最高的专用 Profile 基线）
+# 客户端：App Store 美区/台区当前正式版仍是 2.20.0（2026-07-23），官方频道有完整更新说明；
+#   市面「2.21.0」多为证书签名/自签 IPA，官方未发 2.21 变更列表——配置按 2.20 公开能力写即可
+#   （策略组直接 urls、Smart 记真实失败、close_connections_on_policy_change、
+#    DNS h3:// / udp:// / tcp://、Snell/SSH/REALITY 等由客户端解析订阅）
+# 对照：IBL3ND/Egern（iBL3ND，俗称 3N）≈34★ 懒人全包；jnlaoshu/MySelf ≈606★ 更稳的 Profile 骨架；
+#   fmz200/wool_scripts 星更多但是多客户端规则仓，不是完整 Egern Profile。本仓跟老书骨架，不跟 3N 整份拷。
 # TF：https://testflight.apple.com/join/AzU6kAzX
 # https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Profile.yaml
 # ==========================================
