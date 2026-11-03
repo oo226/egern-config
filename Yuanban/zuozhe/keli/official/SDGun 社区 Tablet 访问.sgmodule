@@ -26,7 +26,7 @@ http-response "^https?:\/\/bbs\.sdgun\.com\.cn\/template\/.*?\/image\/style\.css
 
 [Script]
 
-{{{video}}} = type=http-request,pattern=^https?:\/\/picapp\.sdgun\.net\/video\/.*?\.mp4,script-path=https://raw.githubusercontent.com/xream/scripts/main/surge/modules/sdgun/sdgun_video.js,timeout=120
+{{{video}}} = type=http-request,pattern=^https?:\/\/picapp\.sdgun\.net\/video\/.*?\.mp4,script-path=https://raw.githubusercontent.com/xream/scripts/main/surge/modules/sdgun/sdgun_video.js,timeout=120,script-update-interval=86400
 
 [MITM]
 

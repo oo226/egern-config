@@ -9,4 +9,4 @@
 Serverinfo = script-name= Serverinfo,update-interval=3600
 
 [Script]
-Serverinfo = type=generic,script-path=https://raw.githubusercontent.com/getsomecat/GetSomeCats/Surge/script/serverinfo.js, argument = url=http://127.0.0.1:7122&name=Server Info&icon=party.popper
+Serverinfo = type=generic,script-path=https://raw.githubusercontent.com/getsomecat/GetSomeCats/Surge/script/serverinfo.js, argument = url=http://127.0.0.1:7122&name=Server Info&icon=party.popper,script-update-interval=86400

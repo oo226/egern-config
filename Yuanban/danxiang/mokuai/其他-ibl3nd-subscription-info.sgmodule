@@ -10,4 +10,4 @@
 订阅流量 = script-name=订阅面板, update-interval=3600
 
 [Script]
-订阅面板 = type=generic, timeout=20, script-path=https://raw.githubusercontent.com/IBL3ND/MK/refs/heads/main/subscription-info.js, argument=title1={{{A_name}}}&url1={{{A_url}}}&resetDay1={{{A_reset}}}&title2={{{B_name}}}&url2={{{B_url}}}&resetDay2={{{B_reset}}}&title3={{{C_name}}}&url3={{{C_url}}}&resetDay3={{{C_reset}}}&title4={{{D_name}}}&url4={{{D_url}}}&resetDay4={{{D_reset}}}&title5={{{E_name}}}&url5={{{E_url}}}&resetDay5={{{E_reset}}}
+订阅面板 = type=generic, timeout=20, script-path=https://raw.githubusercontent.com/IBL3ND/MK/refs/heads/main/subscription-info.js, argument=title1={{{A_name}}}&url1={{{A_url}}}&resetDay1={{{A_reset}}}&title2={{{B_name}}}&url2={{{B_url}}}&resetDay2={{{B_reset}}}&title3={{{C_name}}}&url3={{{C_url}}}&resetDay3={{{C_reset}}}&title4={{{D_name}}}&url4={{{D_url}}}&resetDay4={{{D_reset}}}&title5={{{E_name}}}&url5={{{E_url}}}&resetDay5={{{E_reset}}},script-update-interval=86400
