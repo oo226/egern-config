@@ -265,10 +265,16 @@ try {
    */
   if (req_url.includes("/app/queryBalanceAndBonus")) {
     console.log('PingMe 开始');
+    const rawHeaders = req_headers || {};
+    const flat = {};
+    Object.keys(rawHeaders).forEach(k => {
+      const v = rawHeaders[k];
+      flat[k] = Array.isArray(v) ? v.map(String).join(', ') : (v == null ? '' : String(v));
+    });
     const capture = {
       url: req_url,
       paramsRaw: parseRawQuery(req_url),
-      headers: normalizeHeaderNameMap(req_headers || {}),
+      headers: normalizeHeaderNameMap(flat),
       capturedAt: Date.now()
     };
     const json = JSON.stringify(capture);
@@ -278,14 +284,17 @@ try {
       $persistentStore.write(json, 'pingme_capture_v3');
       $persistentStore.write(json, '#pingme_capture_v3');
     }
-    $.notify('PingMe 获取成功✅', '现在你可以禁用此配置了', '');
+    $.notify('PingMe 获取成功✅', '抓完把「PingMe抓参」改成 #，再跑签到', '');
     console.log('PingMe 获取到的内容为：' + req_url);
+    // Egern：抓参脚本若 $done({}) 可能冲掉原请求头；无参 $done 才是透传
+    if (typeof $done === 'function') $done();
+    return;
   }
 } catch (e) {
   console.log('脚本运行出现错误：' + e.message);
   $.notify('获取Cookie脚本运行出现错误❗️', "", "");
 }
-$.done();
+if (typeof $done === 'function') $done();
 
 // 将数据字符串解析为对象
 function parseDataString(dataString) {

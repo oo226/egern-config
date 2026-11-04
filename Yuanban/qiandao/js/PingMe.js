@@ -295,12 +295,15 @@ function cloneHeaders(headers) {
 }
 
 function buildHeaders(capture) {
-    const headers = cloneHeaders(capture.headers || {});
-    delete headers['Content-Length']; delete headers['content-length'];
-    delete headers[':authority']; delete headers[':method']; delete headers[':path']; delete headers[':scheme'];
-    headers['Host'] = 'api.pingmeapp.net';
-    headers['Accept'] = headers['Accept'] || 'application/json';
-    return headers;
+    // 与 PingMe-signin 一致：Egern 回放整包 MITM 头易 400 body:Error；认证在 query
+    let ua = 'PingMe/1.0.0 (iPhone; iOS 17.0; Scale/3.00) CFNetwork/1474 Darwin/23.0.0';
+    Object.keys(capture.headers || {}).forEach(k => {
+        if (String(k).toLowerCase() === 'user-agent') {
+            const v = capture.headers[k];
+            ua = Array.isArray(v) ? v.map(String).join(', ') : String(v || ua);
+        }
+    });
+    return { Accept: 'application/json', 'User-Agent': ua, Connection: 'close' };
 }
 
 // API start

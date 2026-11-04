@@ -202,7 +202,11 @@ async function startTasks() {
             msgs.join('\n'),
             err.path ? `接口：${err.path}` : '',
             err.error || String(err),
-            err.hint || (String(err.error || err).includes('400') ? '定时任务用的是旧抓参；请重新打开 PingMe 刷新，或临时手动跑一次' : '')
+            err.hint || (
+                /status:\s*400|HTTP\s*400|body:\s*Error/i.test(String(err.error || err) + msgs.join('\n'))
+                    ? '仍 400/body:Error：1) 签到合集参数「PingMe抓参」改成 # 关掉 2) 再打开 App 抓一次 3) 强制更新模块后手动跑签到'
+                    : ''
+            )
         ].filter(Boolean).join('\n');
         if (!isNode) {
             $.msg($.name + ' ❌ 任务失败', detail, '', {
@@ -318,8 +322,23 @@ function parseRawQuery(url) {
     return rawMap;
 }
 
+function headerValue(v) {
+    if (v == null) return '';
+    if (Array.isArray(v)) return v.map(String).join(', ');
+    return String(v);
+}
+
+function pickCapturedUA(headers) {
+    let ua = '';
+    Object.keys(headers || {}).forEach(k => {
+        if (String(k).toLowerCase() === 'user-agent') ua = headerValue(headers[k]);
+    });
+    return ua;
+}
+
 function buildSignedParamsRaw(capture) {
     const params = {};
+    // 与怎么肥事原版一致：用抓包原始 query 值参与签名（含已百分号编码的形态）
     Object.keys(capture.paramsRaw || {}).forEach(k => {
         if (!SIGN_DROP_KEYS[k]) params[k] = capture.paramsRaw[k];
     });
@@ -331,28 +350,21 @@ function buildSignedParamsRaw(capture) {
 
 function buildUrl(path, capture) {
     const params = buildSignedParamsRaw(capture);
+    // 与原版一致：再 encode 一次；服务端按「解码后的值」校验签名
     const qs = Object.keys(params).map(k => `${k}=${encodeURIComponent(params[k])}`).join('&');
     return `https://api.pingmeapp.net/app/${path}?${qs}`;
 }
 
-function cloneHeaders(headers) {
-    const out = {};
-    Object.keys(headers || {}).forEach(k => out[k] = headers[k]);
-    return out;
-}
-
 function buildHeaders(capture) {
-    const headers = cloneHeaders(capture.headers || {});
-    delete headers['Content-Length']; delete headers['content-length'];
-    delete headers[':authority']; delete headers[':method']; delete headers[':path']; delete headers[':scheme'];
-    Object.keys(headers).forEach(k => {
-        const lk = k.toLowerCase();
-        if (lk === 'connection' || lk === 'proxy-connection' || lk === 'keep-alive') delete headers[k];
-    });
-    headers['Host'] = 'api.pingmeapp.net';
-    headers['Accept'] = headers['Accept'] || 'application/json';
-    headers['Connection'] = 'close';
-    return headers;
+    // Egern MITM 抓到的整包头常含数组值 / Accept-Encoding / 伪头，回放易变成
+    //「HTTP error! status: 400, body: Error」。认证在 query，头只留必要项。
+    const ua = pickCapturedUA(capture.headers) ||
+        'PingMe/1.0.0 (iPhone; iOS 17.0; Scale/3.00) CFNetwork/1474 Darwin/23.0.0';
+    return {
+        Accept: 'application/json',
+        'User-Agent': ua,
+        Connection: 'close'
+    };
 }
 
 // Surge / Egern(.sgmodule) cron 入口（勿用 export default）
