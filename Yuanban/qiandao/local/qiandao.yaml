@@ -1,0 +1,123 @@
+# 原生 Egern 签到合集 — 开关写法对齐 IBL3ND（compat_arguments_schema + options true/false）
+# 抓参开关：true 时正则命中并抓；false 时用 [^false] 卡掉关键字母，脚本不跑（同 CSG/联通小组件）
+name: 签到合集
+description: PingMe + 起点。抓参默认关；打开对应开关 → 打开 App → 关掉开关 → 签到。
+author: 怎么肥事 / Yuheng / oo226
+icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Available.png
+homepage: https://github.com/oo226/egern-config
+compat_arguments:
+  pingmeCapture: 'false'
+  qdCapture: 'false'
+  PingMeCRON: 30 8,20 * * *
+  起点CRON: 11 2 * * *
+  TIMEOUT: '300'
+  是否开启调试模式: 'false'
+  是否开启激励任务: 'false'
+  是否开启每日任务: 'false'
+  是否开启每日抽奖: 'false'
+  是否开启每周兑换: 'false'
+  是否开启章节卡片: 'false'
+  是否开启大咖荐书: 'false'
+compat_arguments_schema:
+  pingmeCapture:
+    name: PingMe 抓参
+    description: 打开后打开 PingMe App，等到获取成功再关掉。开着抓参签到易 400 body:Error。
+    default_value: 'false'
+    options:
+      - 'true'
+      - 'false'
+  qdCapture:
+    name: 起点抓参
+    description: 打开后打开起点读书，抓到 Cookie 再关掉。
+    default_value: 'false'
+    options:
+      - 'true'
+      - 'false'
+  PingMeCRON:
+    name: PingMe 定时
+    description: 默认每天 8:30 与 20:30
+    default_value: 30 8,20 * * *
+  起点CRON:
+    name: 起点定时
+    description: 默认每天 2:11
+    default_value: 11 2 * * *
+  TIMEOUT:
+    name: 超时秒数
+    description: 签到脚本超时，默认 300
+    default_value: '300'
+  是否开启调试模式:
+    name: 起点调试
+    description: 起点脚本调试日志
+    default_value: 'false'
+    options:
+      - 'true'
+      - 'false'
+  是否开启激励任务:
+    name: 起点激励任务
+    default_value: 'false'
+    options:
+      - 'true'
+      - 'false'
+  是否开启每日任务:
+    name: 起点每日任务
+    default_value: 'false'
+    options:
+      - 'true'
+      - 'false'
+  是否开启每日抽奖:
+    name: 起点每日抽奖
+    default_value: 'false'
+    options:
+      - 'true'
+      - 'false'
+  是否开启每周兑换:
+    name: 起点每周兑换
+    default_value: 'false'
+    options:
+      - 'true'
+      - 'false'
+  是否开启章节卡片:
+    name: 起点章节卡片
+    default_value: 'false'
+    options:
+      - 'true'
+      - 'false'
+  是否开启大咖荐书:
+    name: 起点大咖荐书
+    default_value: 'false'
+    options:
+      - 'true'
+      - 'false'
+scriptings:
+  # pingme[^{{{pingmeCapture}}}]pp → true 时 [^true] 放行 a；false 时 [^false] 卡掉 a（IBL3ND CSG 同款）
+  - http_request:
+      name: PingMe获取参数
+      match: '^https://api\.pingme[^{{{pingmeCapture}}}]pp\.net/app/queryBalanceAndBonus'
+      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/qiandao/js/PingMe-cook.js
+      timeout: 60
+  - schedule:
+      name: PingMe签到
+      cron: '{{{PingMeCRON}}}'
+      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/qiandao/js/PingMe-signin.js
+      timeout: {{{TIMEOUT}}}
+  # /[^{{{qdCapture}}}]rgus/ → true 放行 argus；false 卡掉
+  - http_response:
+      name: 起点获取Cookie
+      match: '^https?://h5\.if\.qidian\.com/[^{{{qdCapture}}}]rgus/api/v1/user/getlogininfo'
+      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/local/js/qdreader.js
+      body_required: true
+      max_size: -1
+      arguments:
+        _compat.$argument: QDREADER_DEBUG="{{{是否开启调试模式}}}"
+  - schedule:
+      name: 起点读书自动签到
+      cron: '{{{起点CRON}}}'
+      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/local/js/qdreader.js
+      timeout: {{{TIMEOUT}}}
+      arguments:
+        _compat.$argument: QDREADER_DEBUG="{{{是否开启调试模式}}}"&QDREADER_ADV_JOB_ENABLE="{{{是否开启激励任务}}}"&QDREADER_EXTRA_ADV_JOB_ENABLE="{{{是否开启每日任务}}}"&QDREADER_LOTTERY_ENABLE="{{{是否开启每日抽奖}}}"&QDREADER_WEEKLY_EXCHANGE_ENABLE="{{{是否开启每周兑换}}}"&QDREADER_CHAPTER_CARD_ENABLE="{{{是否开启章节卡片}}}"&QDREADER_MESSAGE_BOX_ENABLE="{{{是否开启大咖荐书}}}"
+mitm:
+  hostnames:
+    includes:
+      - api.pingmeapp.net
+      - h5.if.qidian.com

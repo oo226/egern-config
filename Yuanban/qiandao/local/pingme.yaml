@@ -1,19 +1,41 @@
-# 原生 Egern PingMe 单件（Profile 日常用 qiandao.sgmodule）
-# 用法：开模块 → 打开 PingMe App 等到「获取成功」→ 手动跑「签到」或等 cron
+# 原生 Egern PingMe — 开关对齐 IBL3ND compat_arguments_schema
 name: PingMe 签到助手
+description: PingMe 抓参 + 定时签到。抓参默认关；打开开关 → 打开 App → 关掉 → 签到。
 author: 怎么肥事 (Adapted for Egern)
+homepage: https://github.com/oo226/egern-config
+icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Available.png
+compat_arguments:
+  pingmeCapture: 'false'
+  CRONEXP: 30 8,20 * * *
+  TIMEOUT: '300'
+compat_arguments_schema:
+  pingmeCapture:
+    name: PingMe 抓参
+    description: 打开后打开 PingMe App，等到获取成功再关掉。开着抓参签到易 400 body:Error。
+    default_value: 'false'
+    options:
+      - 'true'
+      - 'false'
+  CRONEXP:
+    name: 签到定时
+    description: 默认每天 8:30 与 20:30
+    default_value: 30 8,20 * * *
+  TIMEOUT:
+    name: 超时秒数
+    description: 默认 300
+    default_value: '300'
 dns: {}
 scriptings:
   - http_request:
-      name: 参数
-      match: ^https:\/\/api\.pingmeapp\.net\/app\/queryBalanceAndBonus
+      name: PingMe获取参数
+      match: '^https://api\.pingme[^{{{pingmeCapture}}}]pp\.net/app/queryBalanceAndBonus'
       script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/qiandao/js/PingMe-cook.js
       timeout: 60
   - schedule:
-      name: 签到
-      cron: 30 8,20 * * *
-      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/qiandao/js/PingMe.js
-      timeout: 300
+      name: PingMe签到
+      cron: '{{{CRONEXP}}}'
+      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/qiandao/js/PingMe-signin.js
+      timeout: {{{TIMEOUT}}}
 mitm:
   hostnames:
     includes:

@@ -1,18 +1,18 @@
 #!name=签到合集
-#!desc=PingMe + 起点读书。抓参默认开；打开对应 App 抓完后把该项改成 # 即可（抓参合集不含 PingMe）。
+#!desc=【Surge 用】PingMe + 起点。Egern 请改挂 local/qiandao.yaml（compat_arguments_schema 开关，同 IBL3ND）。本 sgmodule 仍用 # 关抓参。
 #!author=怎么肥事 / Yuheng / oo226
 #!icon=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Available.png
 #!homepage=https://github.com/oo226/egern-config
 #!category=签到
 #!system=ios
 #!tag=签到,PingMe,起点
-#!arguments=PingMe抓参:"PingMe抓参",起点抓参:"起点读书",PingMeCRON:"30 8,20 * * *",起点CRON:"11 2 * * *",TIMEOUT:300,是否开启调试模式:false,是否开启激励任务:false,是否开启每日任务:false,是否开启每日抽奖:false,是否开启每周兑换:false,是否开启章节卡片:false,是否开启大咖荐书:false
-#!arguments-desc=- PingMe抓参: ["PingMe抓参","#"] 默认开；打开 PingMe 抓完→改成 #\n- 起点抓参: ["起点读书","#"] 默认开；打开起点抓完→改成 #\n- PingMeCRON / 起点CRON: 定时（各一条，互不影响）\n- TIMEOUT: 两脚本共用超时秒数，300 够用\n- 其余为起点任务开关\n\n单件仍在 local/pingme.yaml、local/qdreader.sgmodule。
+#!arguments=PingMe抓参:"#",起点抓参:"#",PingMeCRON:"30 8,20 * * *",起点CRON:"11 2 * * *",TIMEOUT:300,是否开启调试模式:false,是否开启激励任务:false,是否开启每日任务:false,是否开启每日抽奖:false,是否开启每周兑换:false,是否开启章节卡片:false,是否开启大咖荐书:false
+#!arguments-desc=- PingMe抓参: ["#","PingMe抓参"] 默认 #；要抓改成 PingMe抓参→开 App→改回 #\n- 起点抓参: ["#","起点读书"] 同上\n- 其余同前\n\nEgern 不要用本文件，用 qiandao.yaml（模块设置里真开关）。
 
 [Script]
 {{{PingMe抓参}}}PingMe获取参数 = type=http-request,pattern=^https:\/\/api\.pingmeapp\.net\/app\/queryBalanceAndBonus,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/qiandao/js/PingMe-cook.js,timeout=60
 
-PingMe签到 = type=cron,cronexp="{{{PingMeCRON}}}",script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/qiandao/js/PingMe.js,timeout={{{TIMEOUT}}}
+PingMe签到 = type=cron,cronexp="{{{PingMeCRON}}}",script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/qiandao/js/PingMe-signin.js,timeout={{{TIMEOUT}}}
 
 {{{起点抓参}}}起点获取Cookie = type=http-response,pattern=^https?:\/\/h5\.if\.qidian\.com\/argus\/api\/v1\/user\/getlogininfo,requires-body=1,max-size=-1,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/local/js/qdreader.js,argument=QDREADER_DEBUG="{{{是否开启调试模式}}}"
 
