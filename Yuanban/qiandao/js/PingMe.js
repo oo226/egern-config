@@ -56,8 +56,37 @@ async function startTasks() {
     const msgs = [];
 
     function fetchApi(path) {
-        // return $task.fetch({ url: buildUrl(path, capture), method: 'GET', headers });
-        return $.http.get({url: buildUrl(path, capture), headers: headers});
+        // Egern：$httpClient 常把 HTTP 400 放进 err（status: 400 body:…），Env 会直接 reject；
+        // 且脚本请求默认可能走 Proxy。这里直连并消化 4xx，避免只看到「400」。
+        // 日常合集已改挂 PingMe-signin.js；本文件留给仍指向 quanx 路径的调用方。
+        const url = buildUrl(path, capture);
+        const options = { url, headers, timeout: 30000, policy: 'DIRECT' };
+        if (typeof $httpClient !== 'undefined') {
+            return new Promise((resolve, reject) => {
+                $httpClient.get(options, (err, resp, body) => {
+                    if (err) {
+                        const m = String(err);
+                        const statusMatch = m.match(/status:\s*(\d+)/i);
+                        if (statusMatch) {
+                            const bodyMatch = m.match(/body:\s*([\s\S]*)$/i);
+                            return resolve({
+                                status: Number(statusMatch[1]),
+                                statusCode: Number(statusMatch[1]),
+                                body: bodyMatch ? bodyMatch[1] : ''
+                            });
+                        }
+                        return reject(err);
+                    }
+                    resolve({
+                        status: (resp && (resp.status || resp.statusCode)) || 0,
+                        statusCode: (resp && (resp.status || resp.statusCode)) || 0,
+                        body: body || '',
+                        headers: (resp && resp.headers) || {}
+                    });
+                });
+            });
+        }
+        return $.http.get(options);
     }
 
     function doVideoLoop(count) {

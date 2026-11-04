@@ -12,7 +12,7 @@
 [Script]
 {{{PingMe抓参}}}PingMe获取参数 = type=http-request,pattern=^https:\/\/api\.pingmeapp\.net\/app\/queryBalanceAndBonus,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/qiandao/js/PingMe-cook.js,timeout=60
 
-PingMe签到 = type=cron,cronexp="{{{PingMeCRON}}}",script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/qiandao/js/PingMe.js,timeout={{{TIMEOUT}}}
+PingMe签到 = type=cron,cronexp="{{{PingMeCRON}}}",script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/qiandao/js/PingMe-signin.js,timeout={{{TIMEOUT}}}
 
 {{{起点抓参}}}起点获取Cookie = type=http-response,pattern=^https?:\/\/h5\.if\.qidian\.com\/argus\/api\/v1\/user\/getlogininfo,requires-body=1,max-size=-1,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/local/js/qdreader.js,argument=QDREADER_DEBUG="{{{是否开启调试模式}}}"
 

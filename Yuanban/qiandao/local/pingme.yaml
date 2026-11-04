@@ -1,5 +1,6 @@
 # 原生 Egern PingMe 单件（Profile 日常用 qiandao.sgmodule）
-# 用法：开模块 → 打开 PingMe App 等到「获取成功」→ 手动跑「签到」或等 cron
+# 用法：开模块 → 打开 PingMe App 等到「获取成功」→ 关抓参 → 手动跑「签到」或等 cron
+# 签到挂 PingMe-signin：解析 Egern $httpClient 的 status:400 body:…，并强制 policy DIRECT
 name: PingMe 签到助手
 author: 怎么肥事 (Adapted for Egern)
 dns: {}
@@ -12,7 +13,7 @@ scriptings:
   - schedule:
       name: 签到
       cron: 30 8,20 * * *
-      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/qiandao/js/PingMe.js
+      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/qiandao/js/PingMe-signin.js
       timeout: 300
 mitm:
   hostnames:

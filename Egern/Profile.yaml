@@ -667,6 +667,8 @@ mitm:
       - raw.githubusercontent.com
       - gist.githubusercontent.com
       - mp.weixin.qq.com
+      # PingMe 抓参（签到合集 MITM 也会 APPEND；写进 Profile 避免模块未合并时抓不到）
+      - api.pingmeapp.net
     excludes:
       # 微信：只排除聊天短链，勿 *.weixin.qq.com 整域
       - short.weixin.qq.com

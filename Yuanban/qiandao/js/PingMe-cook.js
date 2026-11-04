@@ -268,9 +268,16 @@ try {
     const capture = {
       url: req_url,
       paramsRaw: parseRawQuery(req_url),
-      headers: normalizeHeaderNameMap(req_headers || {})
+      headers: normalizeHeaderNameMap(req_headers || {}),
+      capturedAt: Date.now()
     };
-    $.write(JSON.stringify(capture), '#pingme_capture_v3');
+    const json = JSON.stringify(capture);
+    // # 前缀在 Surge/Egern API 里会剥掉再写 persistentStore；双写兼容旧读法
+    $.write(json, '#pingme_capture_v3');
+    if (typeof $persistentStore !== 'undefined') {
+      $persistentStore.write(json, 'pingme_capture_v3');
+      $persistentStore.write(json, '#pingme_capture_v3');
+    }
     $.notify('PingMe 获取成功✅', '现在你可以禁用此配置了', '');
     console.log('PingMe 获取到的内容为：' + req_url);
   }

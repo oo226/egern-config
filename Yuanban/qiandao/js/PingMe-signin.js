@@ -131,7 +131,8 @@ async function startTasks() {
 
     function fetchApi(path, attempt = 1) {
         const url = buildUrl(path, capture);
-        return httpFetch({ url, method: 'GET', headers, timeout: 30000 })
+        // Egern 脚本请求默认可能跟 Proxy；PingMe API 须直连（与分流优先直连一致）
+        return httpFetch({ url, method: 'GET', headers, timeout: 30000, policy: 'DIRECT' })
             .catch(err => {
                 const m = err && (err.error || String(err));
                 if (attempt < 3 && /SSL|timeout|timed out|reset|connection|network|stream closed|closed|EOF/i.test(m || '')) {
