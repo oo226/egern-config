@@ -29,12 +29,12 @@ scriptings:
   - http_request:
       name: PingMe获取参数
       match: '^https://api\.pingme[^{{{pingmeCapture}}}]pp\.net/app/queryBalanceAndBonus'
-      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/cursor/pingme-egern-400-f611/Yuanban/qiandao/js/PingMe-cook.js
+      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/qiandao/js/PingMe-cook.js
       timeout: 60
   - schedule:
       name: PingMe签到
       cron: '{{{CRONEXP}}}'
-      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/cursor/pingme-egern-400-f611/Yuanban/qiandao/js/PingMe-signin.js
+      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/qiandao/js/PingMe-signin.js
       timeout: {{{TIMEOUT}}}
 mitm:
   hostnames:

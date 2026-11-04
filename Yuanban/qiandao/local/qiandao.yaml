@@ -93,18 +93,18 @@ scriptings:
   - http_request:
       name: PingMe获取参数
       match: '^https://api\.pingme[^{{{pingmeCapture}}}]pp\.net/app/queryBalanceAndBonus'
-      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/cursor/pingme-egern-400-f611/Yuanban/qiandao/js/PingMe-cook.js
+      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/qiandao/js/PingMe-cook.js
       timeout: 60
   - schedule:
       name: PingMe签到
       cron: '{{{PingMeCRON}}}'
-      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/cursor/pingme-egern-400-f611/Yuanban/qiandao/js/PingMe-signin.js
+      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/qiandao/js/PingMe-signin.js
       timeout: {{{TIMEOUT}}}
   # /[^{{{qdCapture}}}]rgus/ → true 放行 argus；false 卡掉
   - http_response:
       name: 起点获取Cookie
       match: '^https?://h5\.if\.qidian\.com/[^{{{qdCapture}}}]rgus/api/v1/user/getlogininfo'
-      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/cursor/pingme-egern-400-f611/Yuanban/zuozhe/local/js/qdreader.js
+      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/local/js/qdreader.js
       body_required: true
       max_size: -1
       arguments:
@@ -112,7 +112,7 @@ scriptings:
   - schedule:
       name: 起点读书自动签到
       cron: '{{{起点CRON}}}'
-      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/cursor/pingme-egern-400-f611/Yuanban/zuozhe/local/js/qdreader.js
+      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/local/js/qdreader.js
       timeout: {{{TIMEOUT}}}
       arguments:
         _compat.$argument: QDREADER_DEBUG="{{{是否开启调试模式}}}"&QDREADER_ADV_JOB_ENABLE="{{{是否开启激励任务}}}"&QDREADER_EXTRA_ADV_JOB_ENABLE="{{{是否开启每日任务}}}"&QDREADER_LOTTERY_ENABLE="{{{是否开启每日抽奖}}}"&QDREADER_WEEKLY_EXCHANGE_ENABLE="{{{是否开启每周兑换}}}"&QDREADER_CHAPTER_CARD_ENABLE="{{{是否开启章节卡片}}}"&QDREADER_MESSAGE_BOX_ENABLE="{{{是否开启大咖荐书}}}"

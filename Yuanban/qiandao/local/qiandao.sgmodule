@@ -10,13 +10,13 @@
 #!arguments-desc=- PingMe抓参: ["#","PingMe抓参"] 默认 #；要抓改成 PingMe抓参→开 App→改回 #\n- 起点抓参: ["#","起点读书"] 同上\n- 其余同前\n\nEgern 不要用本文件，用 qiandao.yaml（模块设置里真开关）。
 
 [Script]
-{{{PingMe抓参}}}PingMe获取参数 = type=http-request,pattern=^https:\/\/api\.pingmeapp\.net\/app\/queryBalanceAndBonus,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/cursor/pingme-egern-400-f611/Yuanban/qiandao/js/PingMe-cook.js,timeout=60
+{{{PingMe抓参}}}PingMe获取参数 = type=http-request,pattern=^https:\/\/api\.pingmeapp\.net\/app\/queryBalanceAndBonus,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/qiandao/js/PingMe-cook.js,timeout=60
 
-PingMe签到 = type=cron,cronexp="{{{PingMeCRON}}}",script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/cursor/pingme-egern-400-f611/Yuanban/qiandao/js/PingMe-signin.js,timeout={{{TIMEOUT}}}
+PingMe签到 = type=cron,cronexp="{{{PingMeCRON}}}",script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/qiandao/js/PingMe-signin.js,timeout={{{TIMEOUT}}}
 
-{{{起点抓参}}}起点获取Cookie = type=http-response,pattern=^https?:\/\/h5\.if\.qidian\.com\/argus\/api\/v1\/user\/getlogininfo,requires-body=1,max-size=-1,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/cursor/pingme-egern-400-f611/Yuanban/zuozhe/local/js/qdreader.js,argument=QDREADER_DEBUG="{{{是否开启调试模式}}}"
+{{{起点抓参}}}起点获取Cookie = type=http-response,pattern=^https?:\/\/h5\.if\.qidian\.com\/argus\/api\/v1\/user\/getlogininfo,requires-body=1,max-size=-1,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/local/js/qdreader.js,argument=QDREADER_DEBUG="{{{是否开启调试模式}}}"
 
-起点读书自动签到 = type=cron,cronexp="{{{起点CRON}}}",script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/cursor/pingme-egern-400-f611/Yuanban/zuozhe/local/js/qdreader.js,timeout={{{TIMEOUT}}},argument=QDREADER_DEBUG="{{{是否开启调试模式}}}"&QDREADER_ADV_JOB_ENABLE="{{{是否开启激励任务}}}"&QDREADER_EXTRA_ADV_JOB_ENABLE="{{{是否开启每日任务}}}"&QDREADER_LOTTERY_ENABLE="{{{是否开启每日抽奖}}}"&QDREADER_WEEKLY_EXCHANGE_ENABLE="{{{是否开启每周兑换}}}"&QDREADER_CHAPTER_CARD_ENABLE="{{{是否开启章节卡片}}}"&QDREADER_MESSAGE_BOX_ENABLE="{{{是否开启大咖荐书}}}"
+起点读书自动签到 = type=cron,cronexp="{{{起点CRON}}}",script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/local/js/qdreader.js,timeout={{{TIMEOUT}}},argument=QDREADER_DEBUG="{{{是否开启调试模式}}}"&QDREADER_ADV_JOB_ENABLE="{{{是否开启激励任务}}}"&QDREADER_EXTRA_ADV_JOB_ENABLE="{{{是否开启每日任务}}}"&QDREADER_LOTTERY_ENABLE="{{{是否开启每日抽奖}}}"&QDREADER_WEEKLY_EXCHANGE_ENABLE="{{{是否开启每周兑换}}}"&QDREADER_CHAPTER_CARD_ENABLE="{{{是否开启章节卡片}}}"&QDREADER_MESSAGE_BOX_ENABLE="{{{是否开启大咖荐书}}}"
 
 [MITM]
 hostname = %APPEND% api.pingmeapp.net, h5.if.qidian.com
