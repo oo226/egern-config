@@ -1,29 +1,40 @@
-# 原生 Egern PingMe 单件
-# 抓参用 disabled 布尔开关（默认禁用）；开抓参=把「是否禁用抓参」设为 false
+# 原生 Egern PingMe — 开关对齐 IBL3ND compat_arguments_schema
 name: PingMe 签到助手
-description: PingMe 抓参 + 定时签到。抓参默认禁用；需要时关掉禁用开关→打开 App→再开回禁用→签到。
+description: PingMe 抓参 + 定时签到。抓参默认关；打开开关 → 打开 App → 关掉 → 签到。
 author: 怎么肥事 (Adapted for Egern)
 homepage: https://github.com/oo226/egern-config
+icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Available.png
 compat_arguments:
-  是否禁用抓参: true
+  pingmeCapture: 'false'
   CRONEXP: 30 8,20 * * *
-  TIMEOUT: 300
-compat_arguments_desc: |
-  是否禁用抓参: 默认 true。要抓参改成 false → 打开 PingMe → 改回 true。
-  Egern 对 true/false 会显示开关。开着抓参签到易 400 body:Error。
-  CRONEXP / TIMEOUT: 定时与超时。
+  TIMEOUT: '300'
+compat_arguments_schema:
+  pingmeCapture:
+    name: PingMe 抓参
+    description: 打开后打开 PingMe App，等到获取成功再关掉。开着抓参签到易 400 body:Error。
+    default_value: 'false'
+    options:
+      - 'true'
+      - 'false'
+  CRONEXP:
+    name: 签到定时
+    description: 默认每天 8:30 与 20:30
+    default_value: 30 8,20 * * *
+  TIMEOUT:
+    name: 超时秒数
+    description: 默认 300
+    default_value: '300'
 dns: {}
 scriptings:
   - http_request:
       name: PingMe获取参数
-      match: ^https:\/\/api\.pingmeapp\.net\/app\/queryBalanceAndBonus
-      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/qiandao/js/PingMe-cook.js
+      match: '^https://api\.pingme[^{{{pingmeCapture}}}]pp\.net/app/queryBalanceAndBonus'
+      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/cursor/pingme-egern-400-f611/Yuanban/qiandao/js/PingMe-cook.js
       timeout: 60
-      disabled: {{{是否禁用抓参}}}
   - schedule:
       name: PingMe签到
-      cron: "{{{CRONEXP}}}"
-      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/qiandao/js/PingMe-signin.js
+      cron: '{{{CRONEXP}}}'
+      script_url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/cursor/pingme-egern-400-f611/Yuanban/qiandao/js/PingMe-signin.js
       timeout: {{{TIMEOUT}}}
 mitm:
   hostnames:

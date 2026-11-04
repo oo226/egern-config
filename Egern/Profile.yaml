@@ -754,9 +754,12 @@ modules:
     update_interval: 86400
     enabled: true
   - name: 签到合集
-    url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/qiandao/local/qiandao.sgmodule
+    url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/cursor/pingme-egern-400-f611/Yuanban/qiandao/local/qiandao.yaml
     update_interval: 86400
     enabled: true
+    compat_arguments:
+      pingmeCapture: 'false'
+      qdCapture: 'false'
 
   - name: 奶思去广告（可选）
     url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/naisi-ads.module
