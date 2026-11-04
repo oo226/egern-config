@@ -1,15 +1,15 @@
 #!name=PingMe
-#!desc=PingMe 抓参 + 定时签到（Surge/Egern 通用 .sgmodule）。先开抓参→打开 App→改成 #→等 cron。签到用 PingMe-signin（兼容 Egern 把 HTTP 400 当 error）。
+#!desc=PingMe 抓参 + 定时签到。抓参用开关（true/false），默认关；开→打开 App→关→等 cron。
 #!author=怎么肥事 / fmz200 / oo226
 #!homepage=https://github.com/oo226/egern-config
 #!category=签到
 #!system=ios
 #!tag=PingMe,签到,抓参,模版参数
-#!arguments=是否开启抓取重写:"#",CRONEXP:"30 8,20 * * *",TIMEOUT:300
-#!arguments-desc=- 是否开启抓取重写: ["#","PingMe抓参"] 默认 #（Egern 开着抓参跑签到易 400）。\n  要抓：改成 PingMe抓参→开 App→改回 #。\n\n- CRONEXP / TIMEOUT: 定时与超时。\n\nMITM 需含 api.pingmeapp.net。
+#!arguments=是否开启抓取重写:false,CRONEXP:"30 8,20 * * *",TIMEOUT:300
+#!arguments-desc=- 是否开启抓取重写: ["true","false"] 默认 false。Egern 模块参数会显示为开关。\n  开→打开 PingMe→关→签到。\n\n- CRONEXP / TIMEOUT: 定时与超时。\n\nMITM 需含 api.pingmeapp.net。开着抓参跑签到易 400 body:Error。
 
 [Script]
-{{{是否开启抓取重写}}}获取参数 = type=http-request,pattern=^https:\/\/api\.pingmeapp\.net\/app\/queryBalanceAndBonus,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/qiandao/js/PingMe-cook.js,timeout=60
+PingMe获取参数 = type=http-request,pattern=^https:\/\/api\.pingmeapp\.net\/app\/queryBalanceAndBonus,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/qiandao/js/PingMe-cook.js,timeout=60,enable={{{是否开启抓取重写}}}
 
 PingMe签到 = type=cron,cronexp="{{{CRONEXP}}}",script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/qiandao/js/PingMe-signin.js,timeout={{{TIMEOUT}}}
 

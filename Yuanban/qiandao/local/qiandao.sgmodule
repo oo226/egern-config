@@ -1,20 +1,20 @@
 #!name=签到合集
-#!desc=PingMe + 起点。PingMe 抓参默认关（Egern 上开着抓参跑签到易 400 body:Error）；要抓时改成 PingMe抓参，抓完改回 #。
+#!desc=PingMe + 起点。抓参用开关（true/false），默认关；开开关→打开对应 App 抓参→再关掉→手动跑签到或等 cron。
 #!author=怎么肥事 / Yuheng / oo226
 #!icon=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Available.png
 #!homepage=https://github.com/oo226/egern-config
 #!category=签到
 #!system=ios
 #!tag=签到,PingMe,起点
-#!arguments=PingMe抓参:"#",起点抓参:"#",PingMeCRON:"30 8,20 * * *",起点CRON:"11 2 * * *",TIMEOUT:300,是否开启调试模式:false,是否开启激励任务:false,是否开启每日任务:false,是否开启每日抽奖:false,是否开启每周兑换:false,是否开启章节卡片:false,是否开启大咖荐书:false
-#!arguments-desc=- PingMe抓参: ["#","PingMe抓参"] 默认 #；要抓参时改成 PingMe抓参→开 App→改回 #\n- 起点抓参: ["#","起点读书"] 同上\n- PingMeCRON / 起点CRON: 定时\n- TIMEOUT: 共用超时秒数\n\nEgern 若仍 HTTP 400 body:Error：关掉抓参、强制更新模块、重新抓参后再签。
+#!arguments=是否开启PingMe抓参:false,是否开启起点抓参:false,PingMeCRON:"30 8,20 * * *",起点CRON:"11 2 * * *",TIMEOUT:300,是否开启调试模式:false,是否开启激励任务:false,是否开启每日任务:false,是否开启每日抽奖:false,是否开启每周兑换:false,是否开启章节卡片:false,是否开启大咖荐书:false
+#!arguments-desc=- 是否开启PingMe抓参: ["true","false"] 默认 false。开→打开 PingMe→关→签到\n- 是否开启起点抓参: ["true","false"] 同上（开 App 起点）\n- PingMeCRON / 起点CRON: 定时\n- TIMEOUT: 共用超时秒数\n- 其余起点任务开关: ["true","false"]\n\nEgern：模块参数里 true/false 会显示为开关。抓完务必关掉抓参再签（开着抓参易 400 body:Error）。
 
 [Script]
-{{{PingMe抓参}}}PingMe获取参数 = type=http-request,pattern=^https:\/\/api\.pingmeapp\.net\/app\/queryBalanceAndBonus,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/qiandao/js/PingMe-cook.js,timeout=60
+PingMe获取参数 = type=http-request,pattern=^https:\/\/api\.pingmeapp\.net\/app\/queryBalanceAndBonus,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/qiandao/js/PingMe-cook.js,timeout=60,enable={{{是否开启PingMe抓参}}}
 
 PingMe签到 = type=cron,cronexp="{{{PingMeCRON}}}",script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/qiandao/js/PingMe-signin.js,timeout={{{TIMEOUT}}}
 
-{{{起点抓参}}}起点获取Cookie = type=http-response,pattern=^https?:\/\/h5\.if\.qidian\.com\/argus\/api\/v1\/user\/getlogininfo,requires-body=1,max-size=-1,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/local/js/qdreader.js,argument=QDREADER_DEBUG="{{{是否开启调试模式}}}"
+起点获取Cookie = type=http-response,pattern=^https?:\/\/h5\.if\.qidian\.com\/argus\/api\/v1\/user\/getlogininfo,requires-body=1,max-size=-1,script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/local/js/qdreader.js,argument=QDREADER_DEBUG="{{{是否开启调试模式}}}",enable={{{是否开启起点抓参}}}
 
 起点读书自动签到 = type=cron,cronexp="{{{起点CRON}}}",script-path=https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/zuozhe/local/js/qdreader.js,timeout={{{TIMEOUT}}},argument=QDREADER_DEBUG="{{{是否开启调试模式}}}"&QDREADER_ADV_JOB_ENABLE="{{{是否开启激励任务}}}"&QDREADER_EXTRA_ADV_JOB_ENABLE="{{{是否开启每日任务}}}"&QDREADER_LOTTERY_ENABLE="{{{是否开启每日抽奖}}}"&QDREADER_WEEKLY_EXCHANGE_ENABLE="{{{是否开启每周兑换}}}"&QDREADER_CHAPTER_CARD_ENABLE="{{{是否开启章节卡片}}}"&QDREADER_MESSAGE_BOX_ENABLE="{{{是否开启大咖荐书}}}"
 
