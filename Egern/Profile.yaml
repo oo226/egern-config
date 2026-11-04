@@ -754,7 +754,7 @@ modules:
     update_interval: 86400
     enabled: true
   - name: 签到合集
-    url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/qiandao/local/qiandao.yaml
+    url: https://cdn.jsdelivr.net/gh/oo226/egern-config@guize/Yuanban/qiandao/local/qiandao.yaml
     update_interval: 86400
     enabled: true
     compat_arguments:
