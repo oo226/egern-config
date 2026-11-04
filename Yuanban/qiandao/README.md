@@ -6,8 +6,9 @@
 
 - `keli/` — 可莉 Surge 根目录签到（WPS / 书香门第）
 - `official/` — QingRex Official 签到 / 抢券 / 联通余量
-- `local/` — Profile 默认 `qiandao.sgmodule`（PingMe+起点）；单件 `pingme.yaml` / `qdreader.sgmodule` 仍保留  
-  - PingMe 签到脚本用 `js/PingMe-signin.js`（兼容 Egern 把 HTTP 400 当 `$httpClient` error、并 `policy: DIRECT`）。换端后强制更新模块，重新打开 App 抓一次参再签。
+- `local/` — Profile 默认 `qiandao.sgmodule`（PingMe+起点）；另有原生 `qiandao.yaml` / `pingme.yaml`，单件 `qdreader.sgmodule`  
+  - 抓参用 `enable=true/false` 开关（`#!arguments-desc` 写 `["true","false"]`，Egern 会显示 Toggle），**不再用 `#` 注释行**。默认关；开→打开 App→关→签到。  
+  - PingMe 签到脚本用 `js/PingMe-signin.js`（兼容 Egern 把 HTTP 400 当 `$httpClient` error、并 `policy: DIRECT`）。换端后强制更新模块，重新抓参再签。
 - `zenmofeishi/` — 怎么肥事签到（PingMe/一点万象/NodeSeek…，中文文件名）
 - `js/` — 其他 sync 签到脚本（fmz200 等）
 
