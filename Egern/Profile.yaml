@@ -88,6 +88,9 @@ dns:
     cloudflare-dns.com:
       - 104.16.249.249
       - 104.16.248.249
+    # Tailscale MagicDNS：Egern 劫持 *:53 后经常问不到 100.100.100.100（Surge 用 Host server: 能通）
+    # 稳妥写法：把常用机器写成真实 100.x（控制台点开机器可看 IP）。改 IP 后强制更新 Profile。
+    mi6server.tail4d8bef.ts.net: 100.72.99.126
   # 上游组：抄老书；h3:// = DNS over QUIC（Egern 2.x），udp:// = 明文 UDP（字节官方无 DoH）
   upstreams:
     AliDNS:
@@ -109,14 +112,14 @@ dns:
       - h3://dns.alidns.com/dns-query
       - https://doh.pub/dns-query
   forward:
-    # MagicDNS（对齐 Surge `[Host] *.ts.net = server:100.100.100.100`）
-    # forward 的 value 直接写 DNS 服务器 IP；走 upstream 组易被 hijack *:53 套娃失败
+    # MagicDNS 兜底：尽量问本机 100.100.100.100（与 Surge Host server: 同语义）
+    # 若仍失败（常见：VIF 发不出到 Quad100 的 UDP），靠上面 hosts 写死 100.x
     - domain_suffix:
         match: ts.net
-        value: '100.100.100.100'
+        value: 'udp://100.100.100.100:53'
     - domain_wildcard:
         match: '*.ts.net'
-        value: '100.100.100.100'
+        value: 'udp://100.100.100.100:53'
     - proxy_rule_set:
         match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Routing/Reject-Hot.yaml
         value: reject
