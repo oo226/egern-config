@@ -1,6 +1,9 @@
-# Tailscale 直连 — 与官方 App 并存时走 DIRECT
-# 用法：rules 最前引用本 rule_set；另需在 Egern.yaml 的
-# bypass_tunnel_proxy / real_ip_domains 保留对应条目（无法进 rule_set）
+# Tailscale 直连（规则集）
+# - Profile rules 最前挂本文件 → DIRECT（100.64/10 + fd7a::/48 + 控制面域名）
+# - Profile 还需：real_ip_domains（*.ts.net 等）+ bypass_tunnel_proxy（同域名）
+# - Egern 内置 TS：不要把 100.64/10 放进 vif_excluded（否则登录后 ping 不通）
+# - 官方 Tailscale App 并存：再把 100.64/10、fd7a::/48 加回 vif_excluded
+# - 「绕路」= DERP 中继：两端 Hard NAT / UDP 被挡时正常，看控制台 direct vs relay
 
 no_resolve: true
 domain_suffix_set:

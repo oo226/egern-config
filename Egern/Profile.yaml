@@ -33,17 +33,30 @@ asn_db_url: https://raw.githubusercontent.com/P3TERX/GeoLite.mmdb/download/GeoLi
 proxy_latency_test_url: http://www.gstatic.com/generate_204
 direct_latency_test_url: http://www.apple.com/library/test/success.html
 
+# 虚拟接口排除：真局域网段。勿把 100.64/10、fd7a::/48 写进来——
+# Egern 内置 Tailscale 登录后要吃 CGNAT/ULA；排除出去会「能登录但连不上节点」。
+# 若改用系统里的官方 Tailscale App 与 Egern 并存，再把下面两行加回 excluded：
+#   - 100.64.0.0/10
+#   - fd7a:115c:a1e0::/48
 vif_excluded_routes:
   - 10.0.0.0/8
   - 172.16.0.0/12
   - 192.0.0.0/29
   - 192.168.0.0/16
-  - 100.64.0.0/10
   - 169.254.0.0/16
   - 224.0.0.0/4
   - fc00::/7
   - fe80::/10
   - ff00::/8
+
+# 控制面 / MagicDNS 不走 HTTP 隧道代理（官方示例字段；规则 DIRECT 管的是分流，这个管隧道）
+bypass_tunnel_proxy:
+  - '*.ts.net'
+  - '*.tailscale.com'
+  - '*.tailscale.net'
+  - controlplane.tailscale.com
+  - log.tailscale.com
+  - login.tailscale.com
 
 # 回环（Hairpin）地址：访问该地址时经 VIF 回环（对齐老书；内网穿透/自建服务）
 vif_hairpin_addresses:
