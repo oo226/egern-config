@@ -28,7 +28,7 @@ dns: {}
 scriptings:
   - http_request:
       name: PingMe获取参数
-      match: '^https://api\.pingme[^{{{pingmeCapture}}}]pp\.net/app/queryBalanceAndBonus'
+      match: '^https://api\.pingmeapp\.net/app/queryBalanceAndBon[{{{pingmeCapture}}}]s'
       script_url: https://cdn.jsdelivr.net/gh/oo226/egern-config@guize/Yuanban/qiandao/js/PingMe-cook.js
       timeout: 60
   - schedule:
