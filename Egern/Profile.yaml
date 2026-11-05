@@ -108,7 +108,14 @@ dns:
     ProxyDNS:
       - h3://dns.alidns.com/dns-query
       - https://doh.pub/dns-query
+    # MagicDNS：只解析 *.ts.net，必须问本机 Tailscale 的 100.100.100.100（公网 DNS 没有这些名字）
+    TailscaleDNS:
+      - udp://100.100.100.100:53
   forward:
+    # 放最前：否则会被 Default/Google DoH 吃掉，MagicDNS 永远解析失败
+    - domain_suffix:
+        match: ts.net
+        value: TailscaleDNS
     - proxy_rule_set:
         match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Routing/Reject-Hot.yaml
         value: reject
