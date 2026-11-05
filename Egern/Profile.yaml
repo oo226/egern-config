@@ -503,6 +503,14 @@ rules:
       match: 120.53.245.215/32
       policy: DIRECT
 
+  # Tailscale 打洞：STUN(3478) / WireGuard(41641) 必须 DIRECT
+  # 若走「美国2-1」等代理，端对端建不成，只会 Tokyo DERP 中继 → 远程卡死
+  - dest_port:
+      match: '3478'
+      policy: DIRECT
+  - dest_port:
+      match: '41641'
+      policy: DIRECT
   - rule_set:
       name: Tailscale
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Routing/Tailscale-Direct.yaml
