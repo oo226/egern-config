@@ -1,0 +1,4 @@
+# Tailscale 数据面（CGNAT / ULA）→ 策略请挂 Tailnet 策略组
+# MagicDNS 个人后缀（xxx.ts.net）和局域网段请留在主配置，勿写入共享规则集
+IP-CIDR,100.64.0.0/10
+IP-CIDR6,fd7a:115c:a1e0::/48
