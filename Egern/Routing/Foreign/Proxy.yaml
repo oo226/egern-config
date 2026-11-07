@@ -13841,17 +13841,7 @@ domain_suffix_set:
   - terragraph.com
   - terrlficdates.com
   - tesco.com
-  - tesla-cdn.thron.cn
-  - tesla-cdn.thron.com
-  - tesla.cn
-  - tesla.com
-  - tesla.com.cn
-  - tesla.services
-  - teslaenergy.services
-  - teslamotors.cn
-  - teslamotors.com
-  - teslamotors.com.cn
-  - teslazta.net
+  # tesla* 已挪到 Routing/Tesla-Direct.yaml（中国 App 须 DIRECT，勿走代理）
   - tettediferro.it
   - tew.org
   - tex-talk.net
