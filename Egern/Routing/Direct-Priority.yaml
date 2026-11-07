@@ -1,7 +1,7 @@
 # AUTO-PUBLISHED by scripts/publish-direct-priority.py
 # 类型: 分流规则 — 国内/系统服务优先直连（须在 Proxy 类规则之前匹配）
 # Do not edit manually. Updated by GitHub Actions after upstream sync.
-# Merged: WeChat.yaml, Microsoft.yaml, AppleServers.yaml, TestFlight.yaml
+# Merged: WeChat.yaml, Microsoft.yaml, AppleServers.yaml, TestFlight.yaml + Tesla(EXTRA)
 # Total unique entries: 725
 
 no_resolve: true
@@ -727,6 +727,19 @@ domain_suffix_set:
   - yammer.com
   - yammerusercontent.com
   - yun-hl.3g.qq.com
+  - solarcity.com
+  - tesla-cdn.thron.cn
+  - tesla-cdn.thron.com
+  - tesla.cn
+  - tesla.com
+  - tesla.com.cn
+  - tesla.services
+  - teslaenergy.services
+  - teslamotors.cn
+  - teslamotors.com
+  - teslamotors.com.cn
+  - teslazta.net
+  - ts.la
 domain_keyword_set:
   - testflight
 ip_cidr_set:

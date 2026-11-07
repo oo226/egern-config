@@ -668,13 +668,6 @@ rules:
       policy: 美国节点
       update_interval: 604800
 
-  # 特斯拉中国：须在「代理列表」前直连（Proxy.yaml 里误收了 tesla.cn）
-  - rule_set:
-      name: 特斯拉
-      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Routing/Tesla-Direct.yaml
-      policy: DIRECT
-      update_interval: 86400
-
   - rule_set:
       name: GFW列表
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Routing/Foreign/ProxyGFW.yaml
