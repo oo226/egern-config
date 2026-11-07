@@ -13841,7 +13841,7 @@ domain_suffix_set:
   - terragraph.com
   - terrlficdates.com
   - tesco.com
-  # tesla* 已挪到 Routing/Tesla-Direct.yaml（中国 App 须 DIRECT，勿走代理）
+  # tesla* 已并入 Direct-Priority（优先直连；中国 App 须 DIRECT）
   - tettediferro.it
   - tew.org
   - tex-talk.net

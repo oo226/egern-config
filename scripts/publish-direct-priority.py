@@ -20,11 +20,25 @@ SOURCES = [
     ROUTING_FOREIGN / "App" / "TestFlight.yaml",
 ]
 
-# 用户指定须优先直连（在 Proxy 规则之前）：PingMe / 起点 / 120399
+# 用户指定须优先直连（在 Proxy 规则之前）：PingMe / 起点 / 120399 / 特斯拉中国
 EXTRA_SUFFIXES: tuple[str, ...] = (
     "120399.xyz",
     "qidian.com",
     "pingmeapp.net",
+    # 特斯拉中国 App（误进 Proxy 会「无网络」；须在代理列表前）
+    "tesla.cn",
+    "tesla.com.cn",
+    "teslamotors.cn",
+    "teslamotors.com.cn",
+    "tesla-cdn.thron.cn",
+    "tesla.com",
+    "teslamotors.com",
+    "tesla.services",
+    "teslaenergy.services",
+    "tesla-cdn.thron.com",
+    "teslazta.net",
+    "ts.la",
+    "solarcity.com",
 )
 
 
