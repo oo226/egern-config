@@ -2,9 +2,16 @@
 # Egern 懒人配置（guize）
 # 分流: Egern/Routing（本分支合并表，面板短）
 # 模块: Yuanban/heji
-# 结构对齐 jnlaoshu/MySelf Egern Profile（同步至 2026.09.22）
-# 适配 Egern App Store / TF 2.20.0：策略组可直接 urls、Smart 记真实失败、
-#   close_connections_on_policy_change、DNS h3:// 与 udp://、Snell/SSH/REALITY 等由客户端解析订阅
+# 结构对齐 jnlaoshu/MySelf Egern Profile（同步至 2026.09.22；热度最高的专用 Profile 基线）
+# 客户端版本（2026-11 核对）：
+#   · App Store 正式版：仍是 2.20.0（2026-07-23），@egern_news 有完整说明
+#   · TestFlight：已是 2.21.0（群内 What to Test 最新约 build 794，2026-11-01）
+#     TF 2.21 相对 2.20 配置侧相关：Tailscale 入站/出口节点/宣告路由 + IPv6 直连对等、
+#     .local 主机名直接解析、DNS 上游健康监测（UI）、hosts 目标可临时禁用、
+#     Loon 3.5.1 Rewrite/Script 语法、mihomo 正则含逗号修复、Hy2/TUIC/WG/Sub-Store 脚本稳定性
+#     ——大多是客户端能力/修 bug，YAML 骨架仍按 2.20 字段（urls / smart / h3:// /
+#       close_connections_on_policy_change 等）即可；本仓已挂 Tailscale 直连规则 + vif_hairpin
+# 对照：IBL3ND/Egern（iBL3ND/3N）≈34★；jnlaoshu/MySelf ≈606★（跟这个）；fmz200 是规则仓不是 Profile
 # TF：https://testflight.apple.com/join/AzU6kAzX
 # https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Profile.yaml
 # ==========================================
@@ -660,6 +667,13 @@ rules:
       match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/heji/fenliu/BMJ-PayPal.list
       policy: 美国节点
       update_interval: 604800
+
+  # 特斯拉中国：须在「代理列表」前直连（Proxy.yaml 里误收了 tesla.cn）
+  - rule_set:
+      name: 特斯拉
+      match: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Egern/Routing/Tesla-Direct.yaml
+      policy: DIRECT
+      update_interval: 86400
 
   - rule_set:
       name: GFW列表
