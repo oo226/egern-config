@@ -1,6 +1,6 @@
 # AUTO-EXPORTED from Routing/Foreign/AI-Merged.yaml
 # Format: Surge DOMAIN-SET (leading '.' = suffix). scripts/export-surge-rulesets.py
-# Total entries: 441
+# Total entries: 443
 
 accountcapabilities-pa.googleapis.com
 ai.developer.meta.com
@@ -105,6 +105,7 @@ platform.openai.com
 play.googleapis.com
 ppl-ai-file-upload.s3.amazonaws.com
 pplx-res.cloudinary.com
+production-copilot-host-westus.webpubsub.azure.com
 production-openaicom-storage.azureedge.net
 q-developer-integration.us-east-1.api.aws
 qianfan.baidubce.com
@@ -263,6 +264,7 @@ yiyan.baidu.com
 .grazie.aws.intellij.net
 .grok.com
 .grok.x.com
+.grokbot.com
 .grokipedia.com
 .groq.com
 .h2o.ai

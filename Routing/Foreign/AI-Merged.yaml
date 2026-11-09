@@ -4,11 +4,11 @@
 #
 # Sources:
 #   Repcz-AI     — Repcz/Tool — AI.yaml (56 entries)
-#   VPSDance     — VPSDance/ai-proxy-rules — egern/all.yaml (382 entries)
+#   VPSDance     — VPSDance/ai-proxy-rules — egern/all.yaml (384 entries)
 #   Sukka-ai     — Sukka ruleset.skk.moe — non_ip/ai.conf (54 entries)
 #   local        — oo226/egern-config — AI-supplement.yaml (94 entries)
 # Overlap removed: 136
-# Total unique entries: 450
+# Total unique entries: 452
 
 no_resolve: true
 domain_set:
@@ -115,6 +115,7 @@ domain_set:
   - play.googleapis.com
   - ppl-ai-file-upload.s3.amazonaws.com
   - pplx-res.cloudinary.com
+  - production-copilot-host-westus.webpubsub.azure.com
   - production-openaicom-storage.azureedge.net
   - q-developer-integration.us-east-1.api.aws
   - qianfan.baidubce.com
@@ -274,6 +275,7 @@ domain_suffix_set:
   - grazie.aws.intellij.net
   - grok.com
   - grok.x.com
+  - grokbot.com
   - grokipedia.com
   - groq.com
   - h2o.ai

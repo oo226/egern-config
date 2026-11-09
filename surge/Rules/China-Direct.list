@@ -1,7 +1,7 @@
 # AUTO-EXPORTED from Routing/China-Direct.yaml
 # Format: Surge RULE-SET (no policy). scripts/export-surge-rulesets.py
 # Domain lines include extended-matching (SNI hit under always-real-ip / VIF).
-# Total entries: 30919
+# Total entries: 30914
 
 DOMAIN,0gr4uqmtt8y41hcjsgrzdrc31.ourdvsss.com,extended-matching
 DOMAIN,0gr4uqmtt8y41hcjsgrzdrc3s.ourdvsss.com,extended-matching
@@ -101,6 +101,7 @@ DOMAIN,static.xbase.cloud,extended-matching
 DOMAIN,sycm.mmstat.com,extended-matching
 DOMAIN,trae-api-sg.mchost.guru,extended-matching
 DOMAIN,tv.214521.xyz,extended-matching
+DOMAIN,tvpanpan.site,extended-matching
 DOMAIN,umini.shujupie.com,extended-matching
 DOMAIN,update.googleapis.com,extended-matching
 DOMAIN,upos-hz-mirrorakam.akamaized.net,extended-matching
@@ -109,15 +110,15 @@ DOMAIN,vd.l.qq.com,extended-matching
 DOMAIN,vi.l.qq.com,extended-matching
 DOMAIN,vweixinf.tc.qq.com,extended-matching
 DOMAIN,weixin110.qq.com,extended-matching
+DOMAIN,woggpan.888484.xyz,extended-matching
 DOMAIN,woog.430520.xyz,extended-matching
-DOMAIN,woog.nxog.eu.org,extended-matching
 DOMAIN,woog.nxog.fun,extended-matching
 DOMAIN,wup.imtt.qq.com,extended-matching
 DOMAIN,www.123684.com,extended-matching
 DOMAIN,www.123865.com,extended-matching
 DOMAIN,www.123912.com,extended-matching
 DOMAIN,www.hjzhencai.top,extended-matching
-DOMAIN,www.miqk.cc,extended-matching
+DOMAIN,www.huanjuanwp.shop,extended-matching
 DOMAIN,www.mmpanpan.site,extended-matching
 DOMAIN,www.muoua.top,extended-matching
 DOMAIN,wx.tenpay.com,extended-matching
@@ -7324,7 +7325,6 @@ DOMAIN-SUFFIX,miguvideo.com,extended-matching
 DOMAIN-SUFFIX,miguvideo.com.cn,extended-matching
 DOMAIN-SUFFIX,mihayo.com,extended-matching
 DOMAIN-SUFFIX,mihayou.com,extended-matching
-DOMAIN-SUFFIX,mihdr.top,extended-matching
 DOMAIN-SUFFIX,mihoyo.com,extended-matching
 DOMAIN-SUFFIX,mihoyocg.com,extended-matching
 DOMAIN-SUFFIX,mihoyogift.com,extended-matching
@@ -11680,6 +11680,7 @@ DOMAIN-SUFFIX,wolfguandan-05.com,extended-matching
 DOMAIN-SUFFIX,wom186.com,extended-matching
 DOMAIN-SUFFIX,womai.com,extended-matching
 DOMAIN-SUFFIX,wonnder.com,extended-matching
+DOMAIN-SUFFIX,woog.nxog.eu.org,extended-matching
 DOMAIN-SUFFIX,wooyun.org,extended-matching
 DOMAIN-SUFFIX,woozooo.com,extended-matching
 DOMAIN-SUFFIX,woquge.cc,extended-matching
@@ -13370,8 +13371,6 @@ DOMAIN-KEYWORD,221.181.97.,extended-matching
 DOMAIN-KEYWORD,221.181.99.,extended-matching
 DOMAIN-KEYWORD,223.166.152.,extended-matching
 DOMAIN-KEYWORD,27.19.222.,extended-matching
-DOMAIN-KEYWORD,2xiaopan,extended-matching
-DOMAIN-KEYWORD,2xiaozhan,extended-matching
 DOMAIN-KEYWORD,36.136.108.,extended-matching
 DOMAIN-KEYWORD,36.152.4.,extended-matching
 DOMAIN-KEYWORD,36.155.202.,extended-matching
@@ -13413,11 +13412,8 @@ DOMAIN-KEYWORD,61.241.31.,extended-matching
 DOMAIN-KEYWORD,61.241.44.,extended-matching
 DOMAIN-KEYWORD,61.241.47.,extended-matching
 DOMAIN-KEYWORD,61.241.49.,extended-matching
-DOMAIN-KEYWORD,erixaopan,extended-matching
-DOMAIN-KEYWORD,erxiaopan,extended-matching
-DOMAIN-KEYWORD,erxiaozhan,extended-matching
-DOMAIN-KEYWORD,wexwp,extended-matching
 DOMAIN-KEYWORD,wogg,extended-matching
+DOMAIN-KEYWORD,xhban,extended-matching
 DOMAIN-KEYWORD,yydsys,extended-matching
 IP-CIDR,1.0.1.0/24
 IP-CIDR,1.0.2.0/23
@@ -19392,11 +19388,6 @@ IP-CIDR,203.205.226.0/23
 IP-CIDR,203.205.228.0/22
 IP-CIDR,203.205.240.0/21
 IP-CIDR,203.205.64.0/19
-IP-CIDR,203.205.64.0/20
-IP-CIDR,203.205.80.0/21
-IP-CIDR,203.205.88.0/22
-IP-CIDR,203.205.92.0/23
-IP-CIDR,203.205.94.0/24
 IP-CIDR,203.207.104.0/22
 IP-CIDR,203.207.112.0/20
 IP-CIDR,203.207.128.0/17
@@ -21389,6 +21380,7 @@ IP-CIDR,43.240.204.0/22
 IP-CIDR,43.240.220.0/22
 IP-CIDR,43.240.240.0/20
 IP-CIDR,43.240.56.0/21
+IP-CIDR,43.240.60.0/22
 IP-CIDR,43.240.68.0/22
 IP-CIDR,43.240.72.0/21
 IP-CIDR,43.240.72.0/22
@@ -23536,6 +23528,7 @@ IP-CIDR6,2403:6380:200::/39
 IP-CIDR6,2403:6380:20::/44
 IP-CIDR6,2403:6380:33::/48
 IP-CIDR6,2403:6380:36::/47
+IP-CIDR6,2403:6380:37::/48
 IP-CIDR6,2403:6380:38::/45
 IP-CIDR6,2403:6380:4000::/34
 IP-CIDR6,2403:6380:400::/38
@@ -24735,9 +24728,6 @@ IP-CIDR6,2406:840:e0d0::/44
 IP-CIDR6,2406:840:e0e4::/48
 IP-CIDR6,2406:840:e0e6::/47
 IP-CIDR6,2406:840:e0e8::/45
-IP-CIDR6,2406:840:e0e9::/48
-IP-CIDR6,2406:840:e0ea::/47
-IP-CIDR6,2406:840:e0ec::/46
 IP-CIDR6,2406:840:e0f0::/44
 IP-CIDR6,2406:840:e100::/45
 IP-CIDR6,2406:840:e108::/46
@@ -25729,6 +25719,11 @@ IP-CIDR6,2a0a:d685:50a::/47
 IP-CIDR6,2a0a:d685:50c::/46
 IP-CIDR6,2a0a:d685:510::/44
 IP-CIDR6,2a0a:d685:520::/43
+IP-CIDR6,2a0a:d685:520::/44
+IP-CIDR6,2a0a:d685:530::/45
+IP-CIDR6,2a0a:d685:538::/46
+IP-CIDR6,2a0a:d685:53c::/48
+IP-CIDR6,2a0a:d685:53e::/47
 IP-CIDR6,2a0a:d685:540::/42
 IP-CIDR6,2a0a:d685:580::/41
 IP-CIDR6,2a0a:d685:600::/39
