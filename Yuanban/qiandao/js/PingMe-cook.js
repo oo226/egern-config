@@ -284,7 +284,7 @@ try {
       $persistentStore.write(json, 'pingme_capture_v3');
       $persistentStore.write(json, '#pingme_capture_v3');
     }
-    $.notify('PingMe 获取成功✅', '抓完关掉「PingMe 抓参」开关，再跑签到', '');
+    $.notify('PingMe 获取成功✅', '抓完把「PingMe 抓参」改成 false，再跑签到', '');
     console.log('PingMe 获取到的内容为：' + req_url);
     // Egern：抓参脚本若 $done({}) 可能冲掉原请求头；无参 $done 才是透传
     if (typeof $done === 'function') $done();
