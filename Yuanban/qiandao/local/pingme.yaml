@@ -1,6 +1,6 @@
-# 原生 Egern PingMe — 开关对齐 IBL3ND compat_arguments_schema
+# 原生 Egern PingMe — 固定匹配 URL；开关只控制 CAPTURE= 是否写入
 name: PingMe 签到助手
-description: PingMe 抓参 + 定时签到。抓参默认开；打开 App 等到获取成功 → 关掉 → 签到。
+description: PingMe 抓参 + 定时签到。打开 App 我的/余额等到获取成功 → 关掉抓参 → 签到。
 author: 怎么肥事 (Adapted for Egern)
 homepage: https://github.com/oo226/egern-config
 icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Available.png
@@ -11,7 +11,7 @@ compat_arguments:
 compat_arguments_schema:
   pingmeCapture:
     name: PingMe 抓参
-    description: 默认开。打开 PingMe（我的/余额页）等到「获取成功」后改成 false，再跑签到。
+    description: 默认开。开着打开 PingMe 应弹出「获取成功」；抓到后改 false 再签到。
     default_value: 'true'
     options:
       - 'true'
@@ -28,9 +28,19 @@ dns: {}
 scriptings:
   - http_request:
       name: PingMe获取参数
-      match: '^https://api\.pingmeapp\.net/app/queryBalanceAndBon[{{{pingmeCapture}}}]s'
-      script_url: https://cdn.jsdelivr.net/gh/oo226/egern-config@guize/Yuanban/qiandao/js/PingMe-cook.js
+      match: '^https://api\.pingmeapp\.net/app/queryBalanceAndBonus'
+      script_url: https://cdn.jsdelivr.net/gh/oo226/egern-config@guize/Yuanban/qiandao/js/PingMe-capture.js
       timeout: 60
+      arguments:
+        _compat.$argument: CAPTURE={{{pingmeCapture}}}
+  - http_response:
+      name: PingMe获取参数兜底
+      match: '^https://api\.pingmeapp\.net/app/queryBalanceAndBonus'
+      script_url: https://cdn.jsdelivr.net/gh/oo226/egern-config@guize/Yuanban/qiandao/js/PingMe-capture.js
+      body_required: false
+      timeout: 60
+      arguments:
+        _compat.$argument: CAPTURE={{{pingmeCapture}}}
   - schedule:
       name: PingMe签到
       cron: '{{{CRONEXP}}}'
@@ -40,3 +50,4 @@ mitm:
   hostnames:
     includes:
       - api.pingmeapp.net
+      - '*.pingmeapp.net'
