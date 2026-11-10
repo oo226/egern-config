@@ -1,18 +1,18 @@
 # 原生 Egern PingMe — 开关对齐 IBL3ND compat_arguments_schema
 name: PingMe 签到助手
-description: PingMe 抓参 + 定时签到。抓参默认关；打开开关 → 打开 App → 关掉 → 签到。
+description: PingMe 抓参 + 定时签到。抓参默认开；打开 App 等到获取成功 → 关掉 → 签到。
 author: 怎么肥事 (Adapted for Egern)
 homepage: https://github.com/oo226/egern-config
 icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Available.png
 compat_arguments:
-  pingmeCapture: 'false'
+  pingmeCapture: 'true'
   CRONEXP: 30 8,20 * * *
   TIMEOUT: '300'
 compat_arguments_schema:
   pingmeCapture:
     name: PingMe 抓参
-    description: 打开后打开 PingMe App，等到获取成功再关掉。开着抓参签到易 400 body:Error。
-    default_value: 'false'
+    description: 默认开。打开 PingMe（我的/余额页）等到「获取成功」后改成 false，再跑签到。
+    default_value: 'true'
     options:
       - 'true'
       - 'false'
