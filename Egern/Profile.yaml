@@ -707,6 +707,7 @@ mitm:
       - mp.weixin.qq.com
       # PingMe 抓参（签到合集 MITM 也会 APPEND；写进 Profile 避免模块未合并时抓不到）
       - api.pingmeapp.net
+      - '*.pingmeapp.net'
     excludes:
       # 微信：只排除聊天短链，勿 *.weixin.qq.com 整域
       - short.weixin.qq.com
@@ -792,7 +793,8 @@ modules:
     update_interval: 86400
     enabled: true
   - name: 签到合集
-    url: https://cdn.jsdelivr.net/gh/oo226/egern-config@guize/Yuanban/qiandao/local/qiandao.yaml
+    # 用 raw：jsDelivr @guize 分支缓存会拖很久，抓参改完手机还在吃旧正则
+    url: https://raw.githubusercontent.com/oo226/egern-config/refs/heads/guize/Yuanban/qiandao/local/qiandao.yaml
     update_interval: 86400
     enabled: true
     # 抓参开关在模块设置里改，不要在这里写死 compat_arguments（会盖掉面板开关）
