@@ -1,7 +1,8 @@
 # 原生 Egern 签到合集 — 开关：compat_arguments_schema + options true/false（IBL3ND）
-# PingMe 抓参：Unicom 同款门闸 Bon[true/false]s；默认 true（同 CT_Widget），抓到后再关
+# PingMe：正则固定匹配完整路径（不再用 Bon[true]s 门闸，避免开关值未代入时永久无反应）
+# 开关通过 $argument CAPTURE= 控制是否写入；默认 true
 name: 签到合集
-description: PingMe + 起点。PingMe 抓参默认开；打开 App 等到「获取成功」→ 关掉抓参 → 签到。
+description: PingMe + 起点。打开 PingMe 我的/余额页等到「获取成功」→ 关掉抓参 → 签到。
 author: 怎么肥事 / Yuheng / oo226
 icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Available.png
 homepage: https://github.com/oo226/egern-config
@@ -21,7 +22,7 @@ compat_arguments:
 compat_arguments_schema:
   pingmeCapture:
     name: PingMe 抓参
-    description: 默认开。打开 PingMe（我的/余额页）等到「获取成功」后改成 false 关掉，再跑签到。
+    description: 默认开。开着时打开 PingMe（我的/余额）应弹出「获取成功」；抓到后改 false 再签到。
     default_value: 'true'
     options:
       - 'true'
@@ -89,12 +90,23 @@ compat_arguments_schema:
       - 'true'
       - 'false'
 scriptings:
-  # Bon[{{{pingmeCapture}}}]s：true→匹配 u；false→不匹配（对齐 IBL3ND 联通 cuCapture）
+  # 固定匹配完整 URL；用 CAPTURE 参数关写入（避免正则门闸导致「开了开关也没反应」）
   - http_request:
       name: PingMe获取参数
-      match: '^https://api\.pingmeapp\.net/app/queryBalanceAndBon[{{{pingmeCapture}}}]s'
-      script_url: https://cdn.jsdelivr.net/gh/oo226/egern-config@guize/Yuanban/qiandao/js/PingMe-cook.js
+      match: '^https://api\.pingmeapp\.net/app/queryBalanceAndBonus'
+      script_url: https://cdn.jsdelivr.net/gh/oo226/egern-config@guize/Yuanban/qiandao/js/PingMe-capture.js
       timeout: 60
+      arguments:
+        _compat.$argument: CAPTURE={{{pingmeCapture}}}
+  # 响应兜底：部分机型 http_request 不触发时仍能抓到
+  - http_response:
+      name: PingMe获取参数兜底
+      match: '^https://api\.pingmeapp\.net/app/queryBalanceAndBonus'
+      script_url: https://cdn.jsdelivr.net/gh/oo226/egern-config@guize/Yuanban/qiandao/js/PingMe-capture.js
+      body_required: false
+      timeout: 60
+      arguments:
+        _compat.$argument: CAPTURE={{{pingmeCapture}}}
   - schedule:
       name: PingMe签到
       cron: '{{{PingMeCRON}}}'
@@ -119,4 +131,5 @@ mitm:
   hostnames:
     includes:
       - api.pingmeapp.net
+      - '*.pingmeapp.net'
       - h5.if.qidian.com
