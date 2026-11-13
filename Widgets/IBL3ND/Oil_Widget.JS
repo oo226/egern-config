@@ -447,7 +447,6 @@ export default async function (ctx) {
   const CACHE_KEY = `qiyoujiage_oil_${regionParam}`;
   let prices = {p92:null, p95:null, p98:null, diesel:null};
   let regionName = "";
-  let trendInfo = "";
   let hasCache = false;
   let forecastText = "--";
   let forecastLow = null;
@@ -519,71 +518,11 @@ export default async function (ctx) {
           }
         }
       });
-      const regTrend = /<div class="tishi">[\s\S]*?<span>([^<]+)<\/span>[\s\S]*?<br\/>([\s\S]+?)<br\/>/;
-      const trendMatch = html.match(regTrend);
-      
-      if (trendMatch && trendMatch.length >= 3) {
-        const datePart = trendMatch[1].split('价')[1]?.slice(0, -2) || "";
-        const valuePart = trendMatch[2];
-        const trend = (valuePart.includes('下调') || valuePart.includes('下跌')) ? '↓' : '↑';
-        let amount = "";
-        const allPrices = valuePart.match(/([\d\.]+)\s*元\/升/g);
-        if (allPrices && allPrices.length >= 2) {
-          const nums = allPrices.map(p => p.match(/([\d\.]+)/)[1]);
-          amount = `${nums[0]}-${nums[1]}`;
-        }
-        else {
-          const allTons = valuePart.match(/([\d]+)\s*元(?:\/吨)?/g);
-          if (allTons && allTons.length >= 2) {
-            const nums = allTons.map(p => p.match(/([\d]+)/)[1]);
-            amount = `${nums[0]}-${nums[1]}元/吨`;
-          }
-          else {
-            const singleMatch = valuePart.match(/([\d\.]+)\s*元\/升/);
-            if (singleMatch) {
-              amount = `${singleMatch[1]}元/L`;
-            }
-          }
-        }
-        
-        if (valuePart.includes('搁浅') || valuePart.includes('维持目前价格不变')) {
-          forecastText = "不变";
-          forecastLow = null;
-          forecastHigh = null;
-          forecastDir = 0;
-        } else if (allPrices && allPrices.length >= 2) {
-          const nums = allPrices.map(p => parseFloat(p.match(/([\d\.]+)/)[1]));
-          forecastLow = nums[0];
-          forecastHigh = nums[1];
-          forecastDir = trend === '↓' ? -1 : 1;
-          forecastText = `${trend} ${nums[0]}-${nums[1]}`;
-        } else if (allPrices && allPrices.length === 1) {
-          const v = parseFloat(allPrices[0].match(/([\d\.]+)/)[1]);
-          forecastLow = v;
-          forecastHigh = v;
-          forecastDir = trend === '↓' ? -1 : 1;
-          forecastText = `${trend} ${v}`;
-        } else if (amount) {
-          forecastLow = null;
-          forecastHigh = null;
-          forecastDir = trend === '↓' ? -1 : 1;
-          forecastText = `${trend} ${amount}`;
-        }
-        trendInfo = `${datePart}调整 ${trend} ${amount}`.trim();
-      }
 
       const adjMatch = html.match(/<div class="tishi">[\s\S]*?<span>([^<]+)<\/span>[\s\S]*?<br\/>([\s\S]+?)<br\/>/);
       if (adjMatch) {
         const dm = adjMatch[1].match(/(\d{1,2})月(\d{1,2})日/);
         if (dm) nextAdj = { month: parseInt(dm[1]), day: parseInt(dm[2]) };
-        const adjBody = adjMatch[2] || "";
-        siteStranded = adjBody.includes('搁浅') || adjBody.includes('维持目前价格不变');
-      }
-      if (siteStranded) {
-        forecastText = "不变";
-        forecastLow = null;
-        forecastHigh = null;
-        forecastDir = 0;
       }
       ctx.storage.setJSON(CACHE_KEY, { prices, regionName });
       fetchError = false;
@@ -654,15 +593,15 @@ export default async function (ctx) {
     });
     if (jlcResp.status === 200) {
       const jlcHtml = await jlcResp.text();
-      const jlcM = jlcHtml.match(/据金联创测算，截至\d{1,2}月\d{1,2}日第[一二三四五六七八九十\d]+个工作日，参考原油品种均价为[\d.]+美元\/桶，变化率为-?[\d.]+%，影响国内汽柴油标准品零售价应(上调|下调)(\d+)元\/吨/);
+      const jlcM = jlcHtml.match(/据金联创测算，截至\d{1,2}月\d{1,2}日第[一二三四五六七八九十\d]+个工作日，参考原油品种均价为[\d.]+美元\/桶，变化率为-?[\d.]+%，影响国内汽柴油标准品零售价(?:应(上调|下调)(\d+)|分别(上调|下调)(\d+)和\d+)元\/吨/);
       const winM = jlcHtml.match(/窗口期：\s*(\d{4})年(\d{1,2})月(\d{1,2})日/);
       if (jlcM && winM) {
-        const tons = parseInt(jlcM[2]);
+        const tons = parseInt(jlcM[2] || jlcM[4]);
         fcAdjFull = { y: parseInt(winM[1]), m: parseInt(winM[2]), d: parseInt(winM[3]) };
         nextAdj = { month: fcAdjFull.m, day: fcAdjFull.d };
         if (tons >= 50) {
           fcTons = tons;
-          forecastDir = jlcM[1] === '下调' ? -1 : 1;
+          forecastDir = (jlcM[1] || jlcM[3]) === '下调' ? -1 : 1;
           forecastLow = Number((tons * 0.00075).toFixed(2));
           forecastHigh = Number((tons * 0.0009).toFixed(2));
           forecastText = `${forecastDir < 0 ? '↓' : '↑'} ${forecastLow.toFixed(2)}-${forecastHigh.toFixed(2)}`;
@@ -788,9 +727,8 @@ export default async function (ctx) {
     const place = regionName || "油价";
 
     let lockDate = "";
-    const ldm = trendInfo.match(/(\d{1,2})月(\d{1,2})日/);
-    if (ldm) {
-      lockDate = `${ldm[1].padStart(2,"0")}-${ldm[2].padStart(2,"0")}`;
+    if (nextAdj) {
+      lockDate = `${String(nextAdj.month).padStart(2, "0")}-${String(nextAdj.day).padStart(2, "0")}`;
     }
 
     if (rows.length === 0) {
