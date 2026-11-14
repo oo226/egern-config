@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-13T10:22:50Z",
+  "generated_at": "2026-11-14T09:42:05Z",
   "branch": "main",
   "repo": "oo226/egern-config",
   "raw_base": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main",
@@ -180,16 +180,26 @@
   ],
   "sync_digest": {
     "commit": {
-      "hash": "6d59247",
+      "hash": "63468d4",
       "subject": "chore: sync upstream on sync branch",
-      "date": "2026-11-12"
+      "date": "2026-11-13"
     },
     "summary": [
-      "国内直连 30895 条"
+      "国内直连 30906 条"
     ],
     "files_changed": 0
   },
   "changelog": [
+    {
+      "hash": "6976dd5",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-11-13"
+    },
+    {
+      "hash": "7781ac7",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-11-13"
+    },
     {
       "hash": "aef1a0d",
       "subject": "chore: publish curated snapshot from sync",
@@ -219,16 +229,6 @@
       "hash": "a9ef480",
       "subject": "chore: publish curated snapshot from sync",
       "date": "2026-11-10"
-    },
-    {
-      "hash": "26ba0d4",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-11-09"
-    },
-    {
-      "hash": "d4f63aa",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-11-09"
     }
   ],
   "local_health": {
@@ -29463,7 +29463,7 @@
       "kind": "module",
       "category": "upstream",
       "group": "limbopro",
-      "name": "毒奶特供(2026年11月13日更新) · Adblock4limbo.module",
+      "name": "毒奶特供(2026年11月14日更新) · Adblock4limbo.module",
       "desc": "毒奶去网页广告计划用户脚本 For Quantumult X & Surge & Shadowrocket & Loon & Stash & 油猴 ；1.新增页面右下角导航；2.通过 JavaScript 移除特定网站网页广告 —— 搜索引擎（Bing/Google）广告及内容农场结果清除/低端影视/欧乐影院/iyf爱壹帆/哔滴影视/Pornhub/Javbus/Supjav/Jable(支持抓取M3U8链接)/MissAv/91porn(支持视频下载)/hitomi/紳士漫畫/禁漫天堂/等视频&ACG&小说&漫画网站上的弹窗广告&视频广告&Gif图片广告等，保持网页清爽干净无打扰！ P.S. 欢迎提交issue",
       "icon": "",
       "homepage": "",
@@ -29499,7 +29499,7 @@
       "kind": "module",
       "category": "upstream",
       "group": "limbopro",
-      "name": "毒奶特供(2026年11月13日更新) · Adblock4limbo.sgmodule",
+      "name": "毒奶特供(2026年11月14日更新) · Adblock4limbo.sgmodule",
       "desc": "毒奶去网页广告计划用户脚本 For Quantumult X & Surge & Shadowrocket & Loon & Stash & 油猴 ；1.新增页面右下角导航；2.通过 JavaScript 移除特定网站网页广告 —— 搜索引擎（Bing/Google）广告及内容农场结果清除/低端影视/欧乐影院/iyf爱壹帆/哔滴影视/Pornhub/Javbus/Supjav/Jable(支持抓取M3U8链接)/MissAv/91porn(支持视频下载)/hitomi/紳士漫畫/禁漫天堂/等视频&ACG&小说&漫画网站上的弹窗广告&视频广告&Gif图片广告等，保持网页清爽干净无打扰！ P.S. 欢迎提交issue",
       "icon": "",
       "homepage": "",
@@ -29607,7 +29607,7 @@
       "kind": "module",
       "category": "upstream",
       "group": "limbopro",
-      "name": "毒奶特供(2026年11月13日更新) · Adblock4limbo.module",
+      "name": "毒奶特供(2026年11月14日更新) · Adblock4limbo.module",
       "desc": "毒奶去网页广告计划用户脚本 For Quantumult X & Surge & Shadowrocket & Loon & Stash & 油猴 ；1.新增页面右下角导航；2.通过 JavaScript 移除特定网站网页广告 —— 搜索引擎（Bing/Google）广告及内容农场结果清除/低端影视/欧乐影院/iyf爱壹帆/哔滴影视/Pornhub/Javbus/Supjav/Jable(支持抓取M3U8链接)/MissAv/91porn(支持视频下载)/hitomi/紳士漫畫/禁漫天堂/等视频&ACG&小说&漫画网站上的弹窗广告&视频广告&Gif图片广告等，保持网页清爽干净无打扰！ P.S. 欢迎提交issue",
       "icon": "",
       "homepage": "",
@@ -29679,7 +29679,7 @@
       "kind": "module",
       "category": "upstream",
       "group": "limbopro",
-      "name": "毒奶特供(2026年11月13日更新) · Adblock4limbo.sgmodule",
+      "name": "毒奶特供(2026年11月14日更新) · Adblock4limbo.sgmodule",
       "desc": "毒奶去网页广告计划用户脚本 For Quantumult X & Surge & Shadowrocket & Loon & Stash & 油猴 ；1.新增页面右下角导航；2.通过 JavaScript 移除特定网站网页广告 —— 搜索引擎（Bing/Google）广告及内容农场结果清除/低端影视/欧乐影院/iyf爱壹帆/哔滴影视/Pornhub/Javbus/Supjav/Jable(支持抓取M3U8链接)/MissAv/91porn(支持视频下载)/hitomi/紳士漫畫/禁漫天堂/等视频&ACG&小说&漫画网站上的弹窗广告&视频广告&Gif图片广告等，保持网页清爽干净无打扰！ P.S. 欢迎提交issue",
       "icon": "",
       "homepage": "",
@@ -29895,7 +29895,7 @@
       "kind": "module",
       "category": "upstream",
       "group": "limbopro-Adblock4limbo.sgmodule",
-      "name": "毒奶特供(2026年11月13日更新) · limbopro-Adblock4limbo.sgmodule",
+      "name": "毒奶特供(2026年11月14日更新) · limbopro-Adblock4limbo.sgmodule",
       "desc": "毒奶去网页广告计划用户脚本 For Quantumult X & Surge & Shadowrocket & Loon & Stash & 油猴 ；1.新增页面右下角导航；2.通过 JavaScript 移除特定网站网页广告 —— 搜索引擎（Bing/Google）广告及内容农场结果清除/低端影视/欧乐影院/iyf爱壹帆/哔滴影视/Pornhub/Javbus/Supjav/Jable(支持抓取M3U8链接)/MissAv/91porn(支持视频下载)/hitomi/紳士漫畫/禁漫天堂/等视频&ACG&小说&漫画网站上的弹窗广告&视频广告&Gif图片广告等，保持网页清爽干净无打扰！ P.S. 欢迎提交issue",
       "icon": "",
       "homepage": "",
