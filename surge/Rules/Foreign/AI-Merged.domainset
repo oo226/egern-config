@@ -1,11 +1,12 @@
 # AUTO-EXPORTED from Routing/Foreign/AI-Merged.yaml
 # Format: Surge DOMAIN-SET (leading '.' = suffix). scripts/export-surge-rulesets.py
-# Total entries: 443
+# Total entries: 446
 
 accountcapabilities-pa.googleapis.com
 ai.developer.meta.com
 ai.google.dev
 ai.meta.com
+aicode.googleapis.com
 aida.googleapis.com
 aidemos.meta.com
 aisandbox-pa.googleapis.com
@@ -59,6 +60,7 @@ chat.deepseek.com
 chat.openai.com
 claudeusercontent.com
 client-telemetry.us-east-1.amazonaws.com
+cloud.zed.dev
 cloudaicompanion.googleapis.com
 cloudcode-pa.googleapis.com
 codewhisperer.us-east-1.amazonaws.com
@@ -69,6 +71,7 @@ copilot-workspace.githubnext.com
 copilot.microsoft.com
 copilotprodattachments.blob.core.windows.net
 daily-cloudcode-pa.googleapis.com
+daily-cloudcode-pa.sandbox.googleapis.com
 dashscope.aliyuncs.com
 developer.meta.com
 ernie.baidu.com

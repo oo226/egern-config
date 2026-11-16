@@ -1,8 +1,9 @@
 # AUTO-EXPORTED from Routing/Foreign/AI.yaml
 # Format: Surge DOMAIN-SET (leading '.' = suffix). scripts/export-surge-rulesets.py
-# Total entries: 53
+# Total entries: 55
 
 ai.google.dev
+aicode.googleapis.com
 aida.googleapis.com
 aisandbox-pa.googleapis.com
 alkalicore-pa.clients6.google.com
@@ -11,6 +12,7 @@ antigravity.google
 api.github.com
 api.jetbrains.ai
 daily-cloudcode-pa.googleapis.com
+daily-cloudcode-pa.sandbox.googleapis.com
 file.oaiusercontent.com
 gateway.ai.cloudflare.com
 inference.codeium.com
