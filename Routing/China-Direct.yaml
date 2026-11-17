@@ -3,18 +3,18 @@
 # Do not edit manually. Updated by GitHub Actions after upstream sync.
 #
 # Merged & deduplicated domestic direct rules:
-#   Direct         — Repcz/Tool — 通用直连 (35 entries)
+#   Direct         — Repcz/Tool — 通用直连 (34 entries)
 #   WeChat         — Repcz/Tool — 微信 (341 entries)
 #   Bilibili       — Repcz/Tool — 哔哩哔哩 (20 entries)
 #   AppleCN        — Repcz/Tool — 苹果中国 (167 entries)
 #   ChinaDomain    — Repcz/Tool — 国内域名 (13252 entries)
-#   ChinaIP        — Repcz/Tool — 国内 IP (7329 entries)
+#   ChinaIP        — Repcz/Tool — 国内 IP (7326 entries)
 #   ChinaASN       — Repcz/Tool — 国内 ASN (5076 entries)
 #   Rabbit-China   — Rabbit-Spec — China.list (0 entries)
 #   Rabbit-CIDR    — Rabbit-Spec — ChinaCIDR.list (9664 entries)
 #   ResourceSite   — eulac-dev/Proxy — 视频资源站 (21 entries)
 #   PanVod         — eulac-dev/Proxy — 网盘点播 (47 entries)
-# Overlap removed: 5026
+# Overlap removed: 5022
 # Total unique entries: 30926
 
 no_resolve: true
@@ -97,11 +97,11 @@ domain_set:
   - hellofontpreview.oss-cn-beijing.aliyuncs.com
   - hellowebfonts.oss-cn-beijing.aliyuncs.com
   - himg.bdimg.com
-  - ifconfig.me
   - lf16-effectcdn.byteeffecttos-g.com
   - lf16-pkgcdn.pitaya-clientai.com
   - livew.l.qq.com
   - log.mmstat.com
+  - loopback.nssurge.com
   - matomo4397.123245.com
   - msg.umeng.com
   - msg.umengcloud.com
@@ -24707,6 +24707,7 @@ ip_cidr6_set:
   - "2406:840:9968::/46"
   - "2406:840:996d::/48"
   - "2406:840:996e::/47"
+  - "2406:840:9970::/44"
   - "2406:840:9970::/46"
   - "2406:840:9974::/47"
   - "2406:840:9976::/48"
@@ -25742,7 +25743,6 @@ ip_cidr6_set:
   - "2a0a:d685:280::/41"
   - "2a0a:d685:4000::/34"
   - "2a0a:d685:400::/40"
-  - "2a0a:d685:500::/46"
   - "2a0a:d685:500::/48"
   - "2a0a:d685:502::/47"
   - "2a0a:d685:504::/48"
