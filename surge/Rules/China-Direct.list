@@ -81,11 +81,11 @@ DOMAIN,gs-loc-cn.apple.com,extended-matching
 DOMAIN,hellofontpreview.oss-cn-beijing.aliyuncs.com,extended-matching
 DOMAIN,hellowebfonts.oss-cn-beijing.aliyuncs.com,extended-matching
 DOMAIN,himg.bdimg.com,extended-matching
-DOMAIN,ifconfig.me,extended-matching
 DOMAIN,lf16-effectcdn.byteeffecttos-g.com,extended-matching
 DOMAIN,lf16-pkgcdn.pitaya-clientai.com,extended-matching
 DOMAIN,livew.l.qq.com,extended-matching
 DOMAIN,log.mmstat.com,extended-matching
+DOMAIN,loopback.nssurge.com,extended-matching
 DOMAIN,matomo4397.123245.com,extended-matching
 DOMAIN,msg.umeng.com,extended-matching
 DOMAIN,msg.umengcloud.com,extended-matching
@@ -24687,6 +24687,7 @@ IP-CIDR6,2406:840:9965::/48
 IP-CIDR6,2406:840:9968::/46
 IP-CIDR6,2406:840:996d::/48
 IP-CIDR6,2406:840:996e::/47
+IP-CIDR6,2406:840:9970::/44
 IP-CIDR6,2406:840:9970::/46
 IP-CIDR6,2406:840:9974::/47
 IP-CIDR6,2406:840:9976::/48
@@ -25722,7 +25723,6 @@ IP-CIDR6,2a0a:d685:240::/42
 IP-CIDR6,2a0a:d685:280::/41
 IP-CIDR6,2a0a:d685:4000::/34
 IP-CIDR6,2a0a:d685:400::/40
-IP-CIDR6,2a0a:d685:500::/46
 IP-CIDR6,2a0a:d685:500::/48
 IP-CIDR6,2a0a:d685:502::/47
 IP-CIDR6,2a0a:d685:504::/48
