@@ -1,6 +1,6 @@
 # AUTO-EXPORTED from Routing/Foreign/AI-Merged.yaml
 # Format: Surge DOMAIN-SET (leading '.' = suffix). scripts/export-surge-rulesets.py
-# Total entries: 446
+# Total entries: 449
 
 accountcapabilities-pa.googleapis.com
 ai.developer.meta.com
@@ -52,12 +52,14 @@ auth0.openai.com
 aws-language-servers.us-east-1.amazonaws.com
 aws-toolkit-language-servers.amazonaws.com
 bailian.console.aliyun.com
+bridge.claudeusercontent.com
 browser-intake-datadoghq.com
 browser-intake-us5-datadoghq.com
 cdn.growthbook.io
 cdn.usefathom.com
 chat.deepseek.com
 chat.openai.com
+claude.site
 claudeusercontent.com
 client-telemetry.us-east-1.amazonaws.com
 cloud.zed.dev
@@ -242,6 +244,7 @@ yiyan.baidu.com
 .eigent.ai
 .elevenlabs.com
 .elevenlabs.io
+.elevenlabsusercontent.com
 .events.statsigapi.net
 .factory.ai
 .featuregates.org
