@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-17T11:29:20Z",
+  "generated_at": "2026-11-19T10:57:03Z",
   "branch": "main",
   "repo": "oo226/egern-config",
   "raw_base": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main",
@@ -185,16 +185,16 @@
       "date": "2026-11-17"
     },
     "summary": [
-      "分流规则 更新 4 个文件",
-      "模块 更新 8 个文件",
-      "脚本 更新 1 个文件",
-      "模块站 更新 2 个文件",
-      "主配置 更新 1 个文件",
-      "国内直连 30926 条"
+      "国内直连 30942 条"
     ],
-    "files_changed": 28
+    "files_changed": 0
   },
   "changelog": [
+    {
+      "hash": "2920890",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-11-17"
+    },
     {
       "hash": "9d221eb",
       "subject": "chore: publish curated snapshot from sync",
@@ -229,11 +229,6 @@
       "hash": "452fdae",
       "subject": "chore: publish curated snapshot from sync",
       "date": "2026-11-14"
-    },
-    {
-      "hash": "6976dd5",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-11-13"
     }
   ],
   "local_health": {
@@ -26109,7 +26104,7 @@
       "category": "upstream",
       "group": "iEwha",
       "name": "Scripts",
-      "desc": "屏蔽HTTP3/QUIC协议、Bilbii换区,评分、微信公众号广告",
+      "desc": "屏蔽HTTP3/QUIC协议、微信公众号广告",
       "icon": "",
       "homepage": "",
       "path": "Modules/_upstream/iewha/Script.sgmodule",
@@ -26374,7 +26369,7 @@
       "category": "upstream",
       "group": "iewha-script.sgmodule",
       "name": "Scripts · iewha-script.sgmodule",
-      "desc": "屏蔽HTTP3/QUIC协议、Bilbii换区,评分、微信公众号广告",
+      "desc": "屏蔽HTTP3/QUIC协议、微信公众号广告",
       "icon": "",
       "homepage": "",
       "path": "Modules/_upstream/iewha-script.sgmodule",
