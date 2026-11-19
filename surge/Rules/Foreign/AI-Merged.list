@@ -1,7 +1,7 @@
 # AUTO-EXPORTED from Routing/Foreign/AI-Merged.yaml
 # Format: Surge RULE-SET (no policy). scripts/export-surge-rulesets.py
 # Domain lines include extended-matching (SNI hit under always-real-ip / VIF).
-# Total entries: 452
+# Total entries: 455
 
 DOMAIN,accountcapabilities-pa.googleapis.com,extended-matching
 DOMAIN,ai.developer.meta.com,extended-matching
@@ -53,12 +53,14 @@ DOMAIN,auth0.openai.com,extended-matching
 DOMAIN,aws-language-servers.us-east-1.amazonaws.com,extended-matching
 DOMAIN,aws-toolkit-language-servers.amazonaws.com,extended-matching
 DOMAIN,bailian.console.aliyun.com,extended-matching
+DOMAIN,bridge.claudeusercontent.com,extended-matching
 DOMAIN,browser-intake-datadoghq.com,extended-matching
 DOMAIN,browser-intake-us5-datadoghq.com,extended-matching
 DOMAIN,cdn.growthbook.io,extended-matching
 DOMAIN,cdn.usefathom.com,extended-matching
 DOMAIN,chat.deepseek.com,extended-matching
 DOMAIN,chat.openai.com,extended-matching
+DOMAIN,claude.site,extended-matching
 DOMAIN,claudeusercontent.com,extended-matching
 DOMAIN,client-telemetry.us-east-1.amazonaws.com,extended-matching
 DOMAIN,cloud.zed.dev,extended-matching
@@ -243,6 +245,7 @@ DOMAIN-SUFFIX,edgeservices.bing.com,extended-matching
 DOMAIN-SUFFIX,eigent.ai,extended-matching
 DOMAIN-SUFFIX,elevenlabs.com,extended-matching
 DOMAIN-SUFFIX,elevenlabs.io,extended-matching
+DOMAIN-SUFFIX,elevenlabsusercontent.com,extended-matching
 DOMAIN-SUFFIX,events.statsigapi.net,extended-matching
 DOMAIN-SUFFIX,factory.ai,extended-matching
 DOMAIN-SUFFIX,featuregates.org,extended-matching

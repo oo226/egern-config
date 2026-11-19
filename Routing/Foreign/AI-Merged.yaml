@@ -4,11 +4,11 @@
 #
 # Sources:
 #   Repcz-AI     — Repcz/Tool — AI.yaml (59 entries)
-#   VPSDance     — VPSDance/ai-proxy-rules — egern/all.yaml (384 entries)
-#   Sukka-ai     — Sukka ruleset.skk.moe — non_ip/ai.conf (57 entries)
+#   VPSDance     — VPSDance/ai-proxy-rules — egern/all.yaml (385 entries)
+#   Sukka-ai     — Sukka ruleset.skk.moe — non_ip/ai.conf (59 entries)
 #   local        — oo226/egern-config — AI-supplement.yaml (94 entries)
 # Overlap removed: 139
-# Total unique entries: 455
+# Total unique entries: 458
 
 no_resolve: true
 domain_set:
@@ -62,12 +62,14 @@ domain_set:
   - aws-language-servers.us-east-1.amazonaws.com
   - aws-toolkit-language-servers.amazonaws.com
   - bailian.console.aliyun.com
+  - bridge.claudeusercontent.com
   - browser-intake-datadoghq.com
   - browser-intake-us5-datadoghq.com
   - cdn.growthbook.io
   - cdn.usefathom.com
   - chat.deepseek.com
   - chat.openai.com
+  - claude.site
   - claudeusercontent.com
   - client-telemetry.us-east-1.amazonaws.com
   - cloud.zed.dev
@@ -253,6 +255,7 @@ domain_suffix_set:
   - eigent.ai
   - elevenlabs.com
   - elevenlabs.io
+  - elevenlabsusercontent.com
   - events.statsigapi.net
   - factory.ai
   - featuregates.org
