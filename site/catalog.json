@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-19T10:57:03Z",
+  "generated_at": "2026-11-20T11:50:14Z",
   "branch": "main",
   "repo": "oo226/egern-config",
   "raw_base": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main",
@@ -180,16 +180,26 @@
   ],
   "sync_digest": {
     "commit": {
-      "hash": "5dcc669",
+      "hash": "576643b",
       "subject": "chore: sync upstream on sync branch",
-      "date": "2026-11-17"
+      "date": "2026-11-19"
     },
     "summary": [
-      "国内直连 30942 条"
+      "国内直连 30932 条"
     ],
     "files_changed": 0
   },
   "changelog": [
+    {
+      "hash": "a7ec8c3",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-11-19"
+    },
+    {
+      "hash": "0a30d8d",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-11-19"
+    },
     {
       "hash": "2920890",
       "subject": "chore: publish curated snapshot from sync",
@@ -219,16 +229,6 @@
       "hash": "8fff0d9",
       "subject": "chore: publish curated snapshot from sync",
       "date": "2026-11-15"
-    },
-    {
-      "hash": "137ef22",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-11-14"
-    },
-    {
-      "hash": "452fdae",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-11-14"
     }
   ],
   "local_health": {
