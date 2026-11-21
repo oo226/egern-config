@@ -937,7 +937,6 @@ DOMAIN,httpdns.baidubce.com,REJECT
 DOMAIN,lc.map.baidu.com,REJECT
 
 # >>> merged from split/partB/BaiduTieba.sgmodule (unique only)
-DOMAIN,180.76.76.200,REJECT
 # 屏蔽域名dns查询, REJECT
 IP-CIDR,180.76.76.200/32,REJECT,no-resolve
 
@@ -3464,7 +3463,6 @@ DOMAIN-SUFFIX,zhengxiaoliu.top,REJECT
 
 # >>> merged from split/partZ/Zhihu.sgmodule (unique only)
 USER-AGENT,"AVOS*",REJECT
-DOMAIN,118.89.204.198,REJECT
 
 # >>> merged from split/partZ/ZhongHuaWanNianLi.sgmodule (unique only)
 DOMAIN-KEYWORD,lkme.cc,REJECT
