@@ -5,7 +5,7 @@
 # Merged & deduplicated domestic direct rules:
 #   Direct         — Repcz/Tool — 通用直连 (34 entries)
 #   WeChat         — Repcz/Tool — 微信 (341 entries)
-#   Bilibili       — Repcz/Tool — 哔哩哔哩 (20 entries)
+#   Bilibili       — Repcz/Tool — 哔哩哔哩 (21 entries)
 #   AppleCN        — Repcz/Tool — 苹果中国 (167 entries)
 #   ChinaDomain    — Repcz/Tool — 国内域名 (13252 entries)
 #   ChinaIP        — Repcz/Tool — 国内 IP (7355 entries)
@@ -14,8 +14,8 @@
 #   Rabbit-CIDR    — Rabbit-Spec — ChinaCIDR.list (9689 entries)
 #   ResourceSite   — eulac-dev/Proxy — 视频资源站 (21 entries)
 #   PanVod         — eulac-dev/Proxy — 网盘点播 (47 entries)
-# Overlap removed: 5054
-# Total unique entries: 30948
+# Overlap removed: 5053
+# Total unique entries: 30950
 
 no_resolve: true
 domain_set:
@@ -17640,7 +17640,6 @@ ip_cidr_set:
   - 125.98.122.0/23
   - 125.98.128.0/17
   - 128.1.193.215/32
-  - 128.107.24.0/23
   - 128.108.0.0/16
   - 128.14.195.78/32
   - 129.204.0.0/16
@@ -17661,7 +17660,7 @@ ip_cidr_set:
   - 134.175.0.0/16
   - 134.175.207.130/32
   - 134.49.240.0/22
-  - 135.84.80.0/22
+  - 135.84.80.0/23
   - 136.143.176.0/23
   - 136.143.186.0/23
   - 136.143.188.0/22
@@ -18179,7 +18178,6 @@ ip_cidr_set:
   - 165.101.4.0/23
   - 165.101.66.0/23
   - 165.101.70.0/24
-  - 165.173.128.0/23
   - 165.173.174.0/23
   - 165.173.179.0/24
   - 165.173.180.0/22
@@ -24736,6 +24734,10 @@ ip_cidr6_set:
   - "2406:840:996d::/48"
   - "2406:840:996e::/47"
   - "2406:840:9970::/44"
+  - "2406:840:9970::/46"
+  - "2406:840:9974::/47"
+  - "2406:840:9976::/48"
+  - "2406:840:9978::/45"
   - "2406:840:9981::/48"
   - "2406:840:9982::/47"
   - "2406:840:9984::/46"
