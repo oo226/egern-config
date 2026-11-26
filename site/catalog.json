@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-25T12:03:40Z",
+  "generated_at": "2026-11-26T12:40:21Z",
   "branch": "main",
   "repo": "oo226/egern-config",
   "raw_base": "https://raw.githubusercontent.com/oo226/egern-config/refs/heads/main",
@@ -180,16 +180,26 @@
   ],
   "sync_digest": {
     "commit": {
-      "hash": "5728f3e",
+      "hash": "035c526",
       "subject": "chore: sync upstream on sync branch",
-      "date": "2026-11-24"
+      "date": "2026-11-25"
     },
     "summary": [
-      "国内直连 30936 条"
+      "国内直连 31004 条"
     ],
     "files_changed": 0
   },
   "changelog": [
+    {
+      "hash": "32af818",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-11-25"
+    },
+    {
+      "hash": "46ad2fc",
+      "subject": "chore: publish curated snapshot from sync",
+      "date": "2026-11-25"
+    },
     {
       "hash": "e010f48",
       "subject": "chore: publish curated snapshot from sync",
@@ -219,16 +229,6 @@
       "hash": "ed16afc",
       "subject": "chore: publish curated snapshot from sync",
       "date": "2026-11-22"
-    },
-    {
-      "hash": "2330667",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-11-21"
-    },
-    {
-      "hash": "4d43978",
-      "subject": "chore: publish curated snapshot from sync",
-      "date": "2026-11-21"
     }
   ],
   "local_health": {
@@ -23495,8 +23495,8 @@
       "kind": "module",
       "category": "upstream",
       "group": "奶思 fmz200",
-      "name": "YouTube",
-      "desc": "某些APP要清除缓存或者重新安装拦截广告才会生效！",
+      "name": "Youtube (Music) Enhance",
+      "desc": "适用于 Youtube & Youtube Music",
       "icon": "",
       "homepage": "https://github.com/fmz200/wool_scripts",
       "path": "Modules/_upstream/fmz200/split/partY/YouTube.sgmodule",
