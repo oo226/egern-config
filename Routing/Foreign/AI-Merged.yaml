@@ -3,12 +3,12 @@
 # Do not edit manually. Updated by GitHub Actions after upstream sync.
 #
 # Sources:
-#   Repcz-AI     — Repcz/Tool — AI.yaml (61 entries)
+#   Repcz-AI     — Repcz/Tool — AI.yaml (60 entries)
 #   VPSDance     — VPSDance/ai-proxy-rules — egern/all.yaml (386 entries)
-#   Sukka-ai     — Sukka ruleset.skk.moe — non_ip/ai.conf (59 entries)
+#   Sukka-ai     — Sukka ruleset.skk.moe — non_ip/ai.conf (58 entries)
 #   local        — oo226/egern-config — AI-supplement.yaml (94 entries)
-# Overlap removed: 141
-# Total unique entries: 459
+# Overlap removed: 140
+# Total unique entries: 458
 
 no_resolve: true
 domain_set:
@@ -99,7 +99,6 @@ domain_set:
   - idetoolkits-hostedfiles.amazonaws.com
   - idetoolkits.amazonwebservices.com
   - in.appcenter.ms
-  - inference.codeium.com
   - jules.google.com
   - llama.developer.meta.com
   - location.microsoft.com
